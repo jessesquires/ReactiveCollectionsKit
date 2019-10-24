@@ -16,6 +16,8 @@
 		8829EA842361F4ED00604A43 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8829EA822361F4ED00604A43 /* LaunchScreen.storyboard */; };
 		8829EA8F2361F4ED00604A43 /* ExampleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8829EA8E2361F4ED00604A43 /* ExampleTests.swift */; };
 		8829EA9A2361F4ED00604A43 /* ExampleUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8829EA992361F4ED00604A43 /* ExampleUITests.swift */; };
+		88B4FEA22362446000B284FB /* DiffableCollectionsKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 88B4FE9E2362445500B284FB /* DiffableCollectionsKit.framework */; };
+		88B4FEA32362446000B284FB /* DiffableCollectionsKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 88B4FE9E2362445500B284FB /* DiffableCollectionsKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -33,7 +35,35 @@
 			remoteGlobalIDString = 8829EA712361F4EB00604A43;
 			remoteInfo = Example;
 		};
+		88B4FE9D2362445500B284FB /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 88B4FE982362445500B284FB /* DiffableCollectionsKit.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 886C04E923613BA900E5C66C;
+			remoteInfo = DiffableCollectionsKit;
+		};
+		88B4FE9F2362445500B284FB /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 88B4FE982362445500B284FB /* DiffableCollectionsKit.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 886C04F223613BA900E5C66C;
+			remoteInfo = DiffableCollectionsKitTests;
+		};
 /* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		88B4FEA42362446000B284FB /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				88B4FEA32362446000B284FB /* DiffableCollectionsKit.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		8829EA722361F4EB00604A43 /* Example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Example.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -51,6 +81,7 @@
 		8829EA952361F4ED00604A43 /* ExampleUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ExampleUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		8829EA992361F4ED00604A43 /* ExampleUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExampleUITests.swift; sourceTree = "<group>"; };
 		8829EA9B2361F4ED00604A43 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		88B4FE982362445500B284FB /* DiffableCollectionsKit.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = DiffableCollectionsKit.xcodeproj; path = ../DiffableCollectionsKit.xcodeproj; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,6 +89,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				88B4FEA22362446000B284FB /* DiffableCollectionsKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -81,10 +113,12 @@
 		8829EA692361F4EB00604A43 = {
 			isa = PBXGroup;
 			children = (
+				88B4FE982362445500B284FB /* DiffableCollectionsKit.xcodeproj */,
 				8829EA742361F4EB00604A43 /* Sources */,
 				8829EA8D2361F4ED00604A43 /* Tests */,
 				8829EA982361F4ED00604A43 /* UITests */,
 				8829EA732361F4EB00604A43 /* Products */,
+				88B4FEA12362446000B284FB /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -131,6 +165,22 @@
 			path = UITests;
 			sourceTree = "<group>";
 		};
+		88B4FE992362445500B284FB /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				88B4FE9E2362445500B284FB /* DiffableCollectionsKit.framework */,
+				88B4FEA02362445500B284FB /* DiffableCollectionsKitTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		88B4FEA12362446000B284FB /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -141,6 +191,7 @@
 				8829EA6E2361F4EB00604A43 /* Sources */,
 				8829EA6F2361F4EB00604A43 /* Frameworks */,
 				8829EA702361F4EB00604A43 /* Resources */,
+				88B4FEA42362446000B284FB /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -221,6 +272,12 @@
 			mainGroup = 8829EA692361F4EB00604A43;
 			productRefGroup = 8829EA732361F4EB00604A43 /* Products */;
 			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = 88B4FE992362445500B284FB /* Products */;
+					ProjectRef = 88B4FE982362445500B284FB /* DiffableCollectionsKit.xcodeproj */;
+				},
+			);
 			projectRoot = "";
 			targets = (
 				8829EA712361F4EB00604A43 /* Example */,
@@ -229,6 +286,23 @@
 			);
 		};
 /* End PBXProject section */
+
+/* Begin PBXReferenceProxy section */
+		88B4FE9E2362445500B284FB /* DiffableCollectionsKit.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = DiffableCollectionsKit.framework;
+			remoteRef = 88B4FE9D2362445500B284FB /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		88B4FEA02362445500B284FB /* DiffableCollectionsKitTests.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = DiffableCollectionsKitTests.xctest;
+			remoteRef = 88B4FE9F2362445500B284FB /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
 		8829EA702361F4EB00604A43 /* Resources */ = {

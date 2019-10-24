@@ -17,6 +17,7 @@
 //
 
 import UIKit
+import DiffableCollectionsKit
 
 final class TableViewController: UITableViewController {
 
