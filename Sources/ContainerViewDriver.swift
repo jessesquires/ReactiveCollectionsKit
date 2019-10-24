@@ -29,9 +29,14 @@ public final class ContainerViewDriver<View: UIView & CellContainerViewProtocol>
     public init(view: View, model: ContainerViewModel) {
         self.view = view
         self.model = model
-
         self._dataSourceDelegate = ContainerViewDataSourceDelegate(model: model)
+
+        self.view.register(viewModel: model)
         self.view.dataSource = self._dataSourceDelegate as? View.DataSource
         self.view.delegate = self._dataSourceDelegate as? View.Delegate
+    }
+
+    public func reloadData() {
+        self.view.reloadData()
     }
 }

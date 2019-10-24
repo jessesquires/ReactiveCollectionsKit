@@ -67,6 +67,10 @@ public protocol CellContainerViewProtocol: AnyObject {
     func registerSupplementaryViewNib(_ supplementaryNib: UINib?,
                                       kind: SupplementaryViewKind,
                                       identifier: String)
+
+    // MARK: Reloading
+
+    func reloadData()
 }
 
 extension CellContainerViewProtocol {
