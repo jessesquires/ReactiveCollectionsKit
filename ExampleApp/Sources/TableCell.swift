@@ -17,16 +17,13 @@
 //
 
 import UIKit
-import DiffableCollectionsKit
 
-final class TableViewController: UITableViewController {
+final class PersonTableCell: UITableViewCell {
+    override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
+        super.init(style: .subtitle, reuseIdentifier: reuseIdentifier)
+    }
 
-    let model = ViewModel.makeTableViewModel()
-
-    lazy var driver = ContainerViewDriver(view: self.tableView, model: self.model)
-
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        self.driver.reloadData()
+    required init?(coder: NSCoder) {
+        super.init(coder: coder)
     }
 }

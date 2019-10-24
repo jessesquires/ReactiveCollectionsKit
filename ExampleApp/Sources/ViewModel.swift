@@ -19,14 +19,16 @@
 import UIKit
 import DiffableCollectionsKit
 
-final class TableViewController: UITableViewController {
+enum ViewModel {
 
-    let model = ViewModel.makeTableViewModel()
+    static func makeTableViewModel() -> ContainerViewModel {
+        let people = Person.makePeople()
 
-    lazy var driver = ContainerViewDriver(view: self.tableView, model: self.model)
+        let peopleCellViewModels = people.map { PersonTableCellViewModel(person: $0) }
 
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        self.driver.reloadData()
+        let section = SectionViewModel(cells: peopleCellViewModels)
+
+        return ContainerViewModel(sections: [section])
     }
 }
+
