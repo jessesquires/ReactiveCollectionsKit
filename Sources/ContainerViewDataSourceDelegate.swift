@@ -54,6 +54,17 @@ extension ContainerViewDataSourceDelegate: UICollectionViewDataSource, UICollect
                                                             model: self.model,
                                                             at: indexPath)!
     }
+
+    func collectionView(_ collectionView: UICollectionView,
+                        layout collectionViewLayout: UICollectionViewLayout,
+                        sizeForItemAt indexPath: IndexPath) -> CGSize {
+        #warning("Fix me")
+        let viewWidth = collectionView.frame.size.width
+        let sectionInset = (collectionViewLayout as! UICollectionViewFlowLayout).sectionInset
+        let insets = (sectionInset.left + sectionInset.right) * 2
+        let size = (viewWidth - insets) / 2
+        return CGSize(width: size, height: size)
+    }
 }
 
 extension ContainerViewDataSourceDelegate: UITableViewDataSource, UITableViewDelegate {

@@ -21,8 +21,13 @@ import DiffableCollectionsKit
 
 final class CollectionViewController: UICollectionViewController {
 
+    let model = ViewModel.makeCollectionViewModel()
+
+    lazy var driver = ContainerViewDriver(view: self.collectionView, model: self.model)
+
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.collectionView.backgroundColor = .systemGray6
+        self.driver.reloadData()
     }
 }
-

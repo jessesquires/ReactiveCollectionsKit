@@ -21,6 +21,16 @@ import DiffableCollectionsKit
 
 enum ViewModel {
 
+    static func makeCollectionViewModel() -> ContainerViewModel {
+        let people = Person.makePeople()
+
+        let peopleCellViewModels = people.map { PersonCollectionCellViewModel(person: $0) }
+
+        let section = SectionViewModel(cells: peopleCellViewModels)
+
+        return ContainerViewModel(sections: [section])
+    }
+
     static func makeTableViewModel() -> ContainerViewModel {
         let people = Person.makePeople()
 
