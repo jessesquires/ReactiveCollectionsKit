@@ -13,6 +13,7 @@
 		8829EA57236166CE00604A43 /* CellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8829EA56236166CE00604A43 /* CellViewModel.swift */; };
 		8829EA5A2361DFE500604A43 /* SupplementaryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8829EA592361DFE500604A43 /* SupplementaryViewModel.swift */; };
 		8829EA5C2361E09A00604A43 /* SectionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8829EA5B2361E09A00604A43 /* SectionViewModel.swift */; };
+		8829EA5E2361E13C00604A43 /* ContainerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8829EA5D2361E13C00604A43 /* ContainerViewModel.swift */; };
 		886C04F323613BA900E5C66C /* DiffableCollectionsKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 886C04E923613BA900E5C66C /* DiffableCollectionsKit.framework */; };
 		886C04F823613BA900E5C66C /* DiffableCollectionsKitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 886C04F723613BA900E5C66C /* DiffableCollectionsKitTests.swift */; };
 		886C04FA23613BA900E5C66C /* DiffableCollectionsKit.h in Headers */ = {isa = PBXBuildFile; fileRef = 886C04EC23613BA900E5C66C /* DiffableCollectionsKit.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -37,6 +38,7 @@
 		8829EA56236166CE00604A43 /* CellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CellViewModel.swift; sourceTree = "<group>"; };
 		8829EA592361DFE500604A43 /* SupplementaryViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SupplementaryViewModel.swift; sourceTree = "<group>"; };
 		8829EA5B2361E09A00604A43 /* SectionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SectionViewModel.swift; sourceTree = "<group>"; };
+		8829EA5D2361E13C00604A43 /* ContainerViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContainerViewModel.swift; sourceTree = "<group>"; };
 		886C04E923613BA900E5C66C /* DiffableCollectionsKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = DiffableCollectionsKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		886C04EC23613BA900E5C66C /* DiffableCollectionsKit.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DiffableCollectionsKit.h; sourceTree = "<group>"; };
 		886C04ED23613BA900E5C66C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -87,16 +89,17 @@
 		886C04EB23613BA900E5C66C /* Sources */ = {
 			isa = PBXGroup;
 			children = (
+				88C9571B236155EE00DF00E8 /* CellContainerViewProtocol.swift */,
+				8829EA56236166CE00604A43 /* CellViewModel.swift */,
+				8829EA5D2361E13C00604A43 /* ContainerViewModel.swift */,
 				886C04EC23613BA900E5C66C /* DiffableCollectionsKit.h */,
 				886C04ED23613BA900E5C66C /* Info.plist */,
 				88C957192361559E00DF00E8 /* ReusableViewProtocol.swift */,
-				8829EA56236166CE00604A43 /* CellViewModel.swift */,
-				8829EA592361DFE500604A43 /* SupplementaryViewModel.swift */,
-				88C9571B236155EE00DF00E8 /* CellContainerViewProtocol.swift */,
+				8829EA542361631500604A43 /* ReusableViewRegistration.swift */,
 				8829EA5B2361E09A00604A43 /* SectionViewModel.swift */,
 				8829EA502361600E00604A43 /* SupplementaryViewKind.swift */,
+				8829EA592361DFE500604A43 /* SupplementaryViewModel.swift */,
 				8829EA52236161D900604A43 /* ViewRegistrationMethod.swift */,
-				8829EA542361631500604A43 /* ReusableViewRegistration.swift */,
 			);
 			path = Sources;
 			sourceTree = "<group>";
@@ -225,6 +228,7 @@
 				8829EA5C2361E09A00604A43 /* SectionViewModel.swift in Sources */,
 				88C9571A2361559E00DF00E8 /* ReusableViewProtocol.swift in Sources */,
 				8829EA53236161D900604A43 /* ViewRegistrationMethod.swift in Sources */,
+				8829EA5E2361E13C00604A43 /* ContainerViewModel.swift in Sources */,
 				8829EA5A2361DFE500604A43 /* SupplementaryViewModel.swift in Sources */,
 				8829EA57236166CE00604A43 /* CellViewModel.swift in Sources */,
 				8829EA512361600E00604A43 /* SupplementaryViewKind.swift in Sources */,
