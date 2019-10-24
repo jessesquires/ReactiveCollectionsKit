@@ -38,12 +38,12 @@ public enum ViewRegistrationMethod {
 }
 
 extension ViewRegistrationMethod: Equatable {
-    public static func == (lhs: ViewRegistrationMethod, rhs: ViewRegistrationMethod) -> Bool {
-        switch (lhs, rhs) {
+    public static func == (left: ViewRegistrationMethod, right: ViewRegistrationMethod) -> Bool {
+        switch (left, right) {
         case let (.fromClass(lhsClass), .fromClass(rhsClass)):
             return lhsClass == rhsClass
-        case let (.fromNib(lhsName, lhsBundle), .fromNib(rhsName, rhsBundle)):
-            return lhsName == rhsName && lhsBundle == rhsBundle
+        case let (.fromNib(leftName, leftBundle), .fromNib(rightName, rightBundle)):
+            return leftName == rightName && leftBundle == rightBundle
         default:
             return false
         }
