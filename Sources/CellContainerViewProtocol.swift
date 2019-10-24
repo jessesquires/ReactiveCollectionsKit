@@ -24,7 +24,7 @@ import UIKit
 /// It describes a view that is the "container" view for a cell or supplementary view.
 /// For `UICollectionViewCell`, this would be `UICollectionView`.
 /// For `UITableViewCell`, this would be `UITableView`.
-public protocol CellContainerViewProtocol {
+public protocol CellContainerViewProtocol: AnyObject {
 
     // MARK: Associated types
 
@@ -33,6 +33,13 @@ public protocol CellContainerViewProtocol {
 
     /// The type of supplementary view for this container view.
     associatedtype SupplementaryViewType: UIView & ReusableViewProtocol
+
+    /// The data source for this container view.
+    associatedtype DataSource
+
+    // MARK: Properties
+
+    var dataSource: DataSource? { get set }
 
     // MARK: Cells
 
@@ -57,6 +64,8 @@ public protocol CellContainerViewProtocol {
                                       identifier: String)
 }
 
+// MARK: - UICollectionView
+
 extension UICollectionView: CellContainerViewProtocol {
 
     /// :nodoc:
@@ -64,6 +73,9 @@ extension UICollectionView: CellContainerViewProtocol {
 
     /// :nodoc:
     public typealias SupplementaryViewType = UICollectionReusableView
+
+    /// :nodoc:
+    public typealias DataSource = UICollectionViewDataSource
 
     /// :nodoc:
     public func dequeueReusableCellFor(identifier: String, indexPath: IndexPath) -> CellType {
@@ -108,6 +120,8 @@ extension UICollectionView: CellContainerViewProtocol {
     }
 }
 
+// MARK: - UITableView
+
 extension UITableView: CellContainerViewProtocol {
 
     /// :nodoc:
@@ -115,6 +129,9 @@ extension UITableView: CellContainerViewProtocol {
 
     /// :nodoc:
     public typealias SupplementaryViewType = UITableViewHeaderFooterView
+
+    /// :nodoc:
+    public typealias DataSource = UITableViewDataSource
 
     /// :nodoc:
     public func dequeueReusableCellFor(identifier: String, indexPath: IndexPath) -> CellType {
