@@ -8,6 +8,10 @@
 build/
 DerivedData/
 
+## Swift PM
+.swiftpm
+.build
+
 ## Various settings
 *.pbxuser
 !default.pbxuser
