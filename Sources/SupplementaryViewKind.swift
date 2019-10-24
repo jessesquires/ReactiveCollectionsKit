@@ -27,6 +27,15 @@ public enum SupplementaryViewKind: Equatable {
     /// A footer view.
     case footer
 
+    init(collectionElementKind: String) {
+        switch collectionElementKind {
+        case UICollectionView.elementKindSectionHeader: self = .header
+        case UICollectionView.elementKindSectionFooter: self = .footer
+        default:
+            fatalError("Unknown elementKindSection: \(collectionElementKind)")
+        }
+    }
+
     var collectionElementKind: String {
         switch self {
         case .header: return UICollectionView.elementKindSectionHeader
