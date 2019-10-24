@@ -121,12 +121,12 @@
 		8829EA692361F4EB00604A43 = {
 			isa = PBXGroup;
 			children = (
-				88B4FE982362445500B284FB /* DiffableCollectionsKit.xcodeproj */,
 				8829EA742361F4EB00604A43 /* Sources */,
 				8829EA8D2361F4ED00604A43 /* Tests */,
 				8829EA982361F4ED00604A43 /* UITests */,
 				8829EA732361F4EB00604A43 /* Products */,
 				88B4FEA12362446000B284FB /* Frameworks */,
+				88B4FE982362445500B284FB /* DiffableCollectionsKit.xcodeproj */,
 			);
 			sourceTree = "<group>";
 		};
