@@ -22,6 +22,10 @@ public struct ContainerViewModel {
 
     public let sections: [SectionViewModel]
 
+    public init(sections: [SectionViewModel]) {
+        self.sections = sections
+    }
+
     public subscript (indexPath: IndexPath) -> CellViewModel {
         self.sections[indexPath.section].cellViewModels[indexPath.item]
     }

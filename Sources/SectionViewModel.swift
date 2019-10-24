@@ -26,9 +26,9 @@ public struct SectionViewModel {
 
     public let footerViewModel: SupplementaryViewModel?
 
-    init(cells: [CellViewModel],
-         header: SupplementaryViewModel? = nil,
-         footer: SupplementaryViewModel? = nil) {
+    public init(cells: [CellViewModel],
+                header: SupplementaryViewModel? = nil,
+                footer: SupplementaryViewModel? = nil) {
         self.cellViewModels = cells
         self.headerViewModel = header
         self.footerViewModel = footer
