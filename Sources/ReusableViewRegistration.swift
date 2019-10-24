@@ -25,25 +25,25 @@ public struct ReusableViewRegistration: Equatable {
     public let reuseIdentifier: String
 
     /// The registration method for the view.
-    public let registrationMethod: ViewRegistrationMethod
+    public let method: ViewRegistrationMethod
 
     /// Initializes a class-based `ReusableViewRegistration` for the provided `classType`.
     ///
     /// - Note:
     /// The class name is used for `reuseIdentifier`.
-    /// The `registrationMethod` is set to `.fromClass`.
+    /// The `method` is set to `.fromClass`.
     ///
     /// - Parameter classType: The cell or supplementary view class.
     public init(classType: AnyClass) {
         self.reuseIdentifier = "\(classType)"
-        self.registrationMethod = .fromClass(classType)
+        self.method = .fromClass(classType)
     }
 
     /// Initializes a nib-based `ReusableViewRegistration` for the provided `nibType`.
     ///
     /// - Note:
     /// The class name is used for `reuseIdentifier`.
-    /// The `registrationMethod` is set to `.fromNib` using the class name and main bundle.
+    /// The `method` is set to `.fromNib` using the class name and main bundle.
     ///
     /// - Parameter nibType: The cell or supplementary view class.
     public init(nibType: AnyClass) {
@@ -54,13 +54,13 @@ public struct ReusableViewRegistration: Equatable {
     ///
     /// - Note:
     /// The class name is used for `reuseIdentifier`.
-    /// The `registrationMethod` is set to `.fromNib` using the provided `nibName` and `bundle`.
+    /// The `method` is set to `.fromNib` using the provided `nibName` and `bundle`.
     ///
     /// - Parameter classType: The cell or supplementary view class.
     /// - Parameter nibName: The name of the nib for the view.
     /// - Parameter bundle: The bundle in which the nib is located. Pass `nil` to use the main bundle.
     public init(classType: AnyClass, nibName: String, bundle: Bundle? = nil) {
         self.reuseIdentifier = "\(classType)"
-        self.registrationMethod = .fromNib(name: nibName, bundle: bundle)
+        self.method = .fromNib(name: nibName, bundle: bundle)
     }
 }

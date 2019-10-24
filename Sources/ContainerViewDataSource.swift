@@ -34,7 +34,6 @@ final class ContainerViewDataSource: NSObject {
     }
 }
 
-
 extension ContainerViewDataSource: UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     func numberOfSections(in collectionView: UICollectionView) -> Int {
         self.numberOfSections()

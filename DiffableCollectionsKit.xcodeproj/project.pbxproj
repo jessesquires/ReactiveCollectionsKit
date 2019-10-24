@@ -16,6 +16,8 @@
 		8829EA5E2361E13C00604A43 /* ContainerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8829EA5D2361E13C00604A43 /* ContainerViewModel.swift */; };
 		8829EA602361E23400604A43 /* ContainerViewDriver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8829EA5F2361E23400604A43 /* ContainerViewDriver.swift */; };
 		8829EA622361E25B00604A43 /* ContainerViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8829EA612361E25B00604A43 /* ContainerViewDataSource.swift */; };
+		8829EA642361E91700604A43 /* CellContainerViewProtocol+Collection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8829EA632361E91700604A43 /* CellContainerViewProtocol+Collection.swift */; };
+		8829EA662361E98100604A43 /* CellContainerViewProtocol+Table.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8829EA652361E98100604A43 /* CellContainerViewProtocol+Table.swift */; };
 		886C04F323613BA900E5C66C /* DiffableCollectionsKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 886C04E923613BA900E5C66C /* DiffableCollectionsKit.framework */; };
 		886C04F823613BA900E5C66C /* DiffableCollectionsKitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 886C04F723613BA900E5C66C /* DiffableCollectionsKitTests.swift */; };
 		886C04FA23613BA900E5C66C /* DiffableCollectionsKit.h in Headers */ = {isa = PBXBuildFile; fileRef = 886C04EC23613BA900E5C66C /* DiffableCollectionsKit.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -43,6 +45,8 @@
 		8829EA5D2361E13C00604A43 /* ContainerViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContainerViewModel.swift; sourceTree = "<group>"; };
 		8829EA5F2361E23400604A43 /* ContainerViewDriver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContainerViewDriver.swift; sourceTree = "<group>"; };
 		8829EA612361E25B00604A43 /* ContainerViewDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContainerViewDataSource.swift; sourceTree = "<group>"; };
+		8829EA632361E91700604A43 /* CellContainerViewProtocol+Collection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CellContainerViewProtocol+Collection.swift"; sourceTree = "<group>"; };
+		8829EA652361E98100604A43 /* CellContainerViewProtocol+Table.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CellContainerViewProtocol+Table.swift"; sourceTree = "<group>"; };
 		886C04E923613BA900E5C66C /* DiffableCollectionsKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = DiffableCollectionsKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		886C04EC23613BA900E5C66C /* DiffableCollectionsKit.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DiffableCollectionsKit.h; sourceTree = "<group>"; };
 		886C04ED23613BA900E5C66C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -94,6 +98,8 @@
 			isa = PBXGroup;
 			children = (
 				88C9571B236155EE00DF00E8 /* CellContainerViewProtocol.swift */,
+				8829EA632361E91700604A43 /* CellContainerViewProtocol+Collection.swift */,
+				8829EA652361E98100604A43 /* CellContainerViewProtocol+Table.swift */,
 				8829EA56236166CE00604A43 /* CellViewModel.swift */,
 				8829EA612361E25B00604A43 /* ContainerViewDataSource.swift */,
 				8829EA5F2361E23400604A43 /* ContainerViewDriver.swift */,
@@ -236,9 +242,11 @@
 				88C9571A2361559E00DF00E8 /* ReusableViewProtocol.swift in Sources */,
 				8829EA53236161D900604A43 /* ViewRegistrationMethod.swift in Sources */,
 				8829EA5E2361E13C00604A43 /* ContainerViewModel.swift in Sources */,
+				8829EA642361E91700604A43 /* CellContainerViewProtocol+Collection.swift in Sources */,
 				8829EA602361E23400604A43 /* ContainerViewDriver.swift in Sources */,
 				8829EA5A2361DFE500604A43 /* SupplementaryViewModel.swift in Sources */,
 				8829EA57236166CE00604A43 /* CellViewModel.swift in Sources */,
+				8829EA662361E98100604A43 /* CellContainerViewProtocol+Table.swift in Sources */,
 				8829EA512361600E00604A43 /* SupplementaryViewKind.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -66,16 +66,16 @@ public protocol CellContainerViewProtocol: AnyObject {
 
 extension CellContainerViewProtocol {
 
-    public func dequeueAndConfigureCell(for model: ContainerViewModel, at indexPath: IndexPath) -> CellType {
+    func dequeueAndConfigureCell(for model: ContainerViewModel, at indexPath: IndexPath) -> CellType {
         let cellModel = model[indexPath]
         let cell = self.dequeueReusableCellFor(identifier: cellModel.registration.reuseIdentifier, indexPath: indexPath)
         cellModel.applyViewModelTo(cell: cell)
         return cell
     }
 
-    public func dequeueAndConfigureSupplementaryView(for kind: SupplementaryViewKind,
-                                                     model: ContainerViewModel,
-                                                     at indexPath: IndexPath) -> SupplementaryViewType? {
+    func dequeueAndConfigureSupplementaryView(for kind: SupplementaryViewKind,
+                                              model: ContainerViewModel,
+                                              at indexPath: IndexPath) -> SupplementaryViewType? {
         var viewModel: SupplementaryViewModel?
         switch kind {
         case .header:
@@ -91,118 +91,58 @@ extension CellContainerViewProtocol {
             return self.dequeueReusableSupplementaryViewFor(kind: kind,
                                                             identifier: registration.reuseIdentifier,
                                                             indexPath: indexPath)
-        case .title(let text):
-            #warning("TODO")
-            print(text)
-            fatalError()
         }
     }
 
-    #warning("TODO: cell registration")
-}
-
-// MARK: - UICollectionView
-
-extension UICollectionView: CellContainerViewProtocol {
-
-    /// :nodoc:
-    public typealias CellType = UICollectionViewCell
-
-    /// :nodoc:
-    public typealias SupplementaryViewType = UICollectionReusableView
-
-    /// :nodoc:
-    public typealias DataSource = UICollectionViewDataSource
-
-    /// :nodoc:
-    public func dequeueReusableCellFor(identifier: String, indexPath: IndexPath) -> CellType {
-        self.dequeueReusableCell(withReuseIdentifier: identifier, for: indexPath)
+    func register(viewModel: ContainerViewModel) {
+        viewModel.sections.forEach {
+            self.register(sectionViewModel: $0)
+        }
     }
 
-    /// :nodoc:
-    public func registerCellClass(_ cellClass: AnyClass?, identifier: String) {
-        self.register(cellClass, forCellWithReuseIdentifier: identifier)
+    func register(sectionViewModel: SectionViewModel) {
+        sectionViewModel.cellViewModels.forEach {
+            self.register(cellViewModel: $0)
+        }
+
+        if let header = sectionViewModel.headerViewModel {
+            self.register(supplementaryViewModel: header)
+        }
+
+        if let footer = sectionViewModel.footerViewModel {
+            self.register(supplementaryViewModel: footer)
+        }
     }
 
-    /// :nodoc:
-    public func registerCellNib(_ cellNib: UINib?, identifier: String) {
-        self.register(cellNib, forCellWithReuseIdentifier: identifier)
+    func register(cellViewModel: CellViewModel) {
+        let registration = cellViewModel.registration
+        let identifier = registration.reuseIdentifier
+        let method = registration.method
+
+        switch method {
+        case .fromClass(let cellClass):
+            self.registerCellClass(cellClass, identifier: identifier)
+        case .fromNib:
+            self.registerCellNib(method.nib, identifier: identifier)
+        }
     }
 
-    /// :nodoc:
-    public func dequeueReusableSupplementaryViewFor(kind: SupplementaryViewKind,
-                                                    identifier: String,
-                                                    indexPath: IndexPath) -> SupplementaryViewType? {
-        self.dequeueReusableSupplementaryView(ofKind: kind.collectionElementKind,
-                                              withReuseIdentifier: identifier,
-                                              for: indexPath)
-    }
+    func register(supplementaryViewModel: SupplementaryViewModel) {
+        let style = supplementaryViewModel.style
+        let kind = supplementaryViewModel.kind
 
-    /// :nodoc:
-    public func registerSupplementaryViewClass(_ supplementaryClass: AnyClass?,
-                                               kind: SupplementaryViewKind,
-                                               identifier: String) {
-        self.register(supplementaryClass,
-                      forSupplementaryViewOfKind: kind.collectionElementKind,
-                      withReuseIdentifier: identifier)
-    }
+        switch style {
+        case .customView(let registration):
 
-    /// :nodoc:
-    public func registerSupplementaryViewNib(_ supplementaryNib: UINib?,
-                                             kind: SupplementaryViewKind,
-                                             identifier: String) {
-        self.register(supplementaryNib,
-                      forSupplementaryViewOfKind: kind.collectionElementKind,
-                      withReuseIdentifier: identifier)
-    }
-}
+            let identifier = registration.reuseIdentifier
+            let method = registration.method
 
-// MARK: - UITableView
-
-extension UITableView: CellContainerViewProtocol {
-
-    /// :nodoc:
-    public typealias CellType = UITableViewCell
-
-    /// :nodoc:
-    public typealias SupplementaryViewType = UITableViewHeaderFooterView
-
-    /// :nodoc:
-    public typealias DataSource = UITableViewDataSource
-
-    /// :nodoc:
-    public func dequeueReusableCellFor(identifier: String, indexPath: IndexPath) -> CellType {
-        self.dequeueReusableCell(withIdentifier: identifier, for: indexPath)
-    }
-
-    /// :nodoc:
-    public func registerCellClass(_ cellClass: AnyClass?, identifier: String) {
-        self.register(cellClass, forCellReuseIdentifier: identifier)
-    }
-
-    /// :nodoc:
-    public func registerCellNib(_ cellNib: UINib?, identifier: String) {
-        self.register(cellNib, forCellReuseIdentifier: identifier)
-    }
-
-    /// :nodoc:
-    public func dequeueReusableSupplementaryViewFor(kind: SupplementaryViewKind,
-                                                    identifier: String,
-                                                    indexPath: IndexPath) -> SupplementaryViewType? {
-        self.dequeueReusableHeaderFooterView(withIdentifier: identifier)
-    }
-
-    /// :nodoc:
-    public func registerSupplementaryViewClass(_ supplementaryClass: AnyClass?,
-                                               kind: SupplementaryViewKind,
-                                               identifier: String) {
-        self.register(supplementaryClass, forHeaderFooterViewReuseIdentifier: identifier)
-    }
-
-    /// :nodoc:
-    public func registerSupplementaryViewNib(_ supplementaryNib: UINib?,
-                                             kind: SupplementaryViewKind,
-                                             identifier: String) {
-        self.register(supplementaryNib, forHeaderFooterViewReuseIdentifier: identifier)
+            switch method {
+            case .fromClass(let viewClass):
+                self.registerSupplementaryViewClass(viewClass, kind: kind, identifier: identifier)
+            case .fromNib:
+                self.registerSupplementaryViewNib(method.nib, kind: kind, identifier: identifier)
+            }
+        }
     }
 }

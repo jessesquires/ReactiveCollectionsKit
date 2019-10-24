@@ -20,7 +20,9 @@ import UIKit
 
 public enum SupplementaryViewStyle {
     case customView(ReusableViewRegistration)
-    case title(String)
+
+    #warning("TODO")
+    // case title(String)
 }
 
 public protocol SupplementaryViewModel {
