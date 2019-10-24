@@ -18,9 +18,6 @@
 
 import UIKit
 
-#warning("TODO: make this a type")
-public typealias SupplementaryViewKind = String
-
 /// This protocol unifies `UICollectionView` and `UITableView` with a common interface
 /// for dequeuing and registering cells and supplementary views.
 ///
@@ -87,21 +84,27 @@ extension UICollectionView: CellContainerViewProtocol {
     public func dequeueReusableSupplementaryViewFor(kind: SupplementaryViewKind,
                                                     identifier: String,
                                                     indexPath: IndexPath) -> SupplementaryViewType? {
-        self.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: identifier, for: indexPath)
+        self.dequeueReusableSupplementaryView(ofKind: kind.collectionElementKind,
+                                              withReuseIdentifier: identifier,
+                                              for: indexPath)
     }
 
     /// :nodoc:
     public func registerSupplementaryViewClass(_ supplementaryClass: AnyClass?,
                                                kind: SupplementaryViewKind,
                                                identifier: String) {
-        self.register(supplementaryClass, forSupplementaryViewOfKind: kind, withReuseIdentifier: identifier)
+        self.register(supplementaryClass,
+                      forSupplementaryViewOfKind: kind.collectionElementKind,
+                      withReuseIdentifier: identifier)
     }
 
     /// :nodoc:
     public func registerSupplementaryViewNib(_ supplementaryNib: UINib?,
                                              kind: SupplementaryViewKind,
                                              identifier: String) {
-        self.register(supplementaryNib, forSupplementaryViewOfKind: kind, withReuseIdentifier: identifier)
+        self.register(supplementaryNib,
+                      forSupplementaryViewOfKind: kind.collectionElementKind,
+                      withReuseIdentifier: identifier)
     }
 }
 
