@@ -64,6 +64,43 @@ public protocol CellContainerViewProtocol: AnyObject {
                                       identifier: String)
 }
 
+extension CellContainerViewProtocol {
+
+    public func dequeueAndConfigureCell(for model: ContainerViewModel, at indexPath: IndexPath) -> CellType {
+        let cellModel = model[indexPath]
+        let cell = self.dequeueReusableCellFor(identifier: cellModel.registration.reuseIdentifier, indexPath: indexPath)
+        cellModel.applyViewModelTo(cell: cell)
+        return cell
+    }
+
+    public func dequeueAndConfigureSupplementaryView(for kind: SupplementaryViewKind,
+                                                     model: ContainerViewModel,
+                                                     at indexPath: IndexPath) -> SupplementaryViewType? {
+        var viewModel: SupplementaryViewModel?
+        switch kind {
+        case .header:
+            viewModel = model.sections[indexPath.section].headerViewModel
+        case .footer:
+            viewModel = model.sections[indexPath.section].footerViewModel
+        }
+
+        guard let headerFooter = viewModel else { return nil }
+
+        switch headerFooter.style {
+        case .customView(let registration):
+            return self.dequeueReusableSupplementaryViewFor(kind: kind,
+                                                            identifier: registration.reuseIdentifier,
+                                                            indexPath: indexPath)
+        case .title(let text):
+            #warning("TODO")
+            print(text)
+            fatalError()
+        }
+    }
+
+    #warning("TODO: cell registration")
+}
+
 // MARK: - UICollectionView
 
 extension UICollectionView: CellContainerViewProtocol {
