@@ -18,10 +18,7 @@
 
 import UIKit
 
-/// Defines the kind of a supplementary view.
-///
-/// - header: indicates that the view is a header
-/// - footer: indicates that the view is a footer
+/// Defines the kind of a supplementary view (i.e., a header or footer).
 public enum SupplementaryViewKind: Equatable {
 
     /// A header view.
