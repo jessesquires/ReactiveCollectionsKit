@@ -32,6 +32,10 @@ final class ContainerViewDataSourceDelegate: NSObject {
     func numberOfItems(in section: Int) -> Int {
         self.model.sections[section].cellViewModels.count
     }
+
+    func sizeOfItem<V: UIView & CellContainerViewProtocol>(at indexPath: IndexPath, in containerView: V) -> CGSize {
+        return self.model[indexPath].size(in: containerView)
+    }
 }
 
 extension ContainerViewDataSourceDelegate: UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
@@ -58,12 +62,7 @@ extension ContainerViewDataSourceDelegate: UICollectionViewDataSource, UICollect
     func collectionView(_ collectionView: UICollectionView,
                         layout collectionViewLayout: UICollectionViewLayout,
                         sizeForItemAt indexPath: IndexPath) -> CGSize {
-        #warning("Fix me")
-        let viewWidth = collectionView.frame.size.width
-        let sectionInset = (collectionViewLayout as! UICollectionViewFlowLayout).sectionInset
-        let insets = (sectionInset.left + sectionInset.right) * 2
-        let size = (viewWidth - insets) / 2
-        return CGSize(width: size, height: size)
+        self.sizeOfItem(at: indexPath, in: collectionView)
     }
 }
 
@@ -90,5 +89,9 @@ extension ContainerViewDataSourceDelegate: UITableViewDataSource, UITableViewDel
         tableView.dequeueAndConfigureSupplementaryView(for: .footer,
                                                        model: self.model,
                                                        at: IndexPath(row: 0, section: section))
+    }
+
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        self.sizeOfItem(at: indexPath, in: tableView).height
     }
 }

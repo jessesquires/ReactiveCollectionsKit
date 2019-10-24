@@ -21,13 +21,26 @@ import DiffableCollectionsKit
 
 final class CollectionViewController: UICollectionViewController {
 
-    let model = ViewModel.makeCollectionViewModel()
-
-    lazy var driver = ContainerViewDriver(view: self.collectionView, model: self.model)
+    var model: ContainerViewModel!
+    var driver: ContainerViewDriver<UICollectionView>!
 
     override func viewDidLoad() {
         super.viewDidLoad()
         self.collectionView.backgroundColor = .systemGray6
+
+        self.model = ViewModel.makeCollectionViewModel()
+        self.driver = ContainerViewDriver(view: self.collectionView, model: self.model)
+
         self.driver.reloadData()
+    }
+}
+
+extension UICollectionView {
+    func uniformCellSize() -> CGSize {
+        let viewWidth = self.frame.size.width
+        let sectionInset = (collectionViewLayout as! UICollectionViewFlowLayout).sectionInset
+        let insets = (sectionInset.left + sectionInset.right) * 2
+        let size = (viewWidth - insets) / 2
+        return CGSize(width: size, height: size)
     }
 }

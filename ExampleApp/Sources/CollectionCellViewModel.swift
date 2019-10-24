@@ -19,9 +19,7 @@
 import UIKit
 import DiffableCollectionsKit
 
-struct PersonCollectionCellViewModel: CellViewModel {
-    let registration = ReusableViewRegistration(classType: PersonCollectionCell.self, nibName: "CollectionCell", bundle: nil)
-
+struct PersonCollectionCellViewModel {
     let person: Person
 
     private static let _formatter: DateFormatter = {
@@ -33,6 +31,17 @@ struct PersonCollectionCellViewModel: CellViewModel {
 
     private var _dateText: String {
         Self._formatter.string(from: self.person.birthdate)
+    }
+}
+
+extension PersonCollectionCellViewModel: CellViewModel {
+    var registration: ReusableViewRegistration {
+        ReusableViewRegistration(classType: PersonCollectionCell.self, nibName: "CollectionCell", bundle: nil)
+    }
+
+    func size<V: UIView & CellContainerViewProtocol>(in containerView: V) -> CGSize {
+        let collection = containerView as! UICollectionView
+        return collection.uniformCellSize()
     }
 
     func applyViewModelTo(cell: Self.CellType) {

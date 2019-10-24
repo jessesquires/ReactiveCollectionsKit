@@ -23,5 +23,8 @@ public protocol CellViewModel {
 
     var registration: ReusableViewRegistration { get }
 
+    /// - Note: for table views the width is ignored
+    func size<V: UIView & CellContainerViewProtocol>(in containerView: V) -> CGSize
+
     func applyViewModelTo(cell: CellType)
 }
