@@ -18,7 +18,7 @@
 
 import UIKit
 
-final class ContainerViewDataSource: NSObject {
+final class ContainerViewDataSourceDelegate: NSObject {
     let model: ContainerViewModel
 
     init(model: ContainerViewModel) {
@@ -34,7 +34,7 @@ final class ContainerViewDataSource: NSObject {
     }
 }
 
-extension ContainerViewDataSource: UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
+extension ContainerViewDataSourceDelegate: UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     func numberOfSections(in collectionView: UICollectionView) -> Int {
         self.numberOfSections()
     }
@@ -56,7 +56,7 @@ extension ContainerViewDataSource: UICollectionViewDataSource, UICollectionViewD
     }
 }
 
-extension ContainerViewDataSource: UITableViewDataSource, UITableViewDelegate {
+extension ContainerViewDataSourceDelegate: UITableViewDataSource, UITableViewDelegate {
     func numberOfSections(in tableView: UITableView) -> Int {
         self.numberOfSections()
     }

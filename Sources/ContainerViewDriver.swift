@@ -24,14 +24,14 @@ public final class ContainerViewDriver<View: UIView & CellContainerViewProtocol>
 
     public let model: ContainerViewModel
 
-    private let _dataSource: ContainerViewDataSource
+    private let _dataSourceDelegate: ContainerViewDataSourceDelegate
 
     public init(view: View, model: ContainerViewModel) {
         self.view = view
         self.model = model
 
-        self._dataSource = ContainerViewDataSource(model: model)
-        self.view.dataSource = self._dataSource as? View.DataSource
-        self.view.delegate = self._dataSource as? View.Delegate
+        self._dataSourceDelegate = ContainerViewDataSourceDelegate(model: model)
+        self.view.dataSource = self._dataSourceDelegate as? View.DataSource
+        self.view.delegate = self._dataSourceDelegate as? View.Delegate
     }
 }
