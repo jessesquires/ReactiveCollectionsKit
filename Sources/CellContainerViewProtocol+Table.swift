@@ -30,6 +30,9 @@ extension UITableView: CellContainerViewProtocol {
     public typealias DataSource = UITableViewDataSource
 
     /// :nodoc:
+    public typealias Delegate = UITableViewDelegate
+
+    /// :nodoc:
     public func dequeueReusableCellFor(identifier: String, indexPath: IndexPath) -> CellType {
         self.dequeueReusableCell(withIdentifier: identifier, for: indexPath)
     }

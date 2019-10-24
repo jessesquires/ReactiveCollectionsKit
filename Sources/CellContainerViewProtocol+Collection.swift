@@ -30,6 +30,9 @@ extension UICollectionView: CellContainerViewProtocol {
     public typealias DataSource = UICollectionViewDataSource
 
     /// :nodoc:
+    public typealias Delegate = UICollectionViewDelegate
+
+    /// :nodoc:
     public func dequeueReusableCellFor(identifier: String, indexPath: IndexPath) -> CellType {
         self.dequeueReusableCell(withReuseIdentifier: identifier, for: indexPath)
     }

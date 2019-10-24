@@ -37,9 +37,14 @@ public protocol CellContainerViewProtocol: AnyObject {
     /// The data source for this container view.
     associatedtype DataSource
 
+    /// The delegate for this container view.
+    associatedtype Delegate
+
     // MARK: Properties
 
     var dataSource: DataSource? { get set }
+
+    var delegate: Delegate? { get set }
 
     // MARK: Cells
 

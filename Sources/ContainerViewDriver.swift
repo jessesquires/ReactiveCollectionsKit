@@ -29,7 +29,9 @@ public final class ContainerViewDriver<View: UIView & CellContainerViewProtocol>
     public init(view: View, model: ContainerViewModel) {
         self.view = view
         self.model = model
+
         self._dataSource = ContainerViewDataSource(model: model)
         self.view.dataSource = self._dataSource as? View.DataSource
+        self.view.delegate = self._dataSource as? View.Delegate
     }
 }
