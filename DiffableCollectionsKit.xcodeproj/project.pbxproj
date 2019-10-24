@@ -10,6 +10,8 @@
 		886C04F323613BA900E5C66C /* DiffableCollectionsKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 886C04E923613BA900E5C66C /* DiffableCollectionsKit.framework */; };
 		886C04F823613BA900E5C66C /* DiffableCollectionsKitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 886C04F723613BA900E5C66C /* DiffableCollectionsKitTests.swift */; };
 		886C04FA23613BA900E5C66C /* DiffableCollectionsKit.h in Headers */ = {isa = PBXBuildFile; fileRef = 886C04EC23613BA900E5C66C /* DiffableCollectionsKit.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		88C9571A2361559E00DF00E8 /* ReusableViewProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88C957192361559E00DF00E8 /* ReusableViewProtocol.swift */; };
+		88C9571C236155EE00DF00E8 /* CellContainerViewProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88C9571B236155EE00DF00E8 /* CellContainerViewProtocol.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -29,6 +31,8 @@
 		886C04F223613BA900E5C66C /* DiffableCollectionsKitTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DiffableCollectionsKitTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		886C04F723613BA900E5C66C /* DiffableCollectionsKitTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiffableCollectionsKitTests.swift; sourceTree = "<group>"; };
 		886C04F923613BA900E5C66C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		88C957192361559E00DF00E8 /* ReusableViewProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReusableViewProtocol.swift; sourceTree = "<group>"; };
+		88C9571B236155EE00DF00E8 /* CellContainerViewProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CellContainerViewProtocol.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -73,6 +77,8 @@
 			children = (
 				886C04EC23613BA900E5C66C /* DiffableCollectionsKit.h */,
 				886C04ED23613BA900E5C66C /* Info.plist */,
+				88C957192361559E00DF00E8 /* ReusableViewProtocol.swift */,
+				88C9571B236155EE00DF00E8 /* CellContainerViewProtocol.swift */,
 			);
 			path = Sources;
 			sourceTree = "<group>";
@@ -196,6 +202,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				88C9571C236155EE00DF00E8 /* CellContainerViewProtocol.swift in Sources */,
+				88C9571A2361559E00DF00E8 /* ReusableViewProtocol.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -394,6 +402,7 @@
 		886C050123613BA900E5C66C /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 5VRJU68BZ5;
 				INFOPLIST_FILE = Tests/Info.plist;
@@ -410,6 +419,7 @@
 		886C050223613BA900E5C66C /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 5VRJU68BZ5;
 				INFOPLIST_FILE = Tests/Info.plist;
