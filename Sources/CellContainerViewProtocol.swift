@@ -63,9 +63,11 @@ public protocol CellContainerViewProtocol: AnyObject {
                                       kind: SupplementaryViewKind,
                                       identifier: String)
 
-    // MARK: Reloading
+    // MARK: Updating
 
     func reloadData()
+
+    func performBatchUpdates(_ updates: (() -> Void)?, completion: ((Bool) -> Void)?)
 }
 
 extension CellContainerViewProtocol {
