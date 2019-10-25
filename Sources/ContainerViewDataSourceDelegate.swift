@@ -32,10 +32,6 @@ final class ContainerViewDataSourceDelegate: NSObject {
     func numberOfItems(in section: Int) -> Int {
         self.model.sections[section].cellViewModels.count
     }
-
-    func sizeOfItem<V: UIView & CellContainerViewProtocol>(at indexPath: IndexPath, in containerView: V) -> CGSize {
-        return self.model[indexPath].size(in: containerView)
-    }
 }
 
 extension ContainerViewDataSourceDelegate: UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
@@ -62,7 +58,11 @@ extension ContainerViewDataSourceDelegate: UICollectionViewDataSource, UICollect
     func collectionView(_ collectionView: UICollectionView,
                         layout collectionViewLayout: UICollectionViewLayout,
                         sizeForItemAt indexPath: IndexPath) -> CGSize {
-        self.sizeOfItem(at: indexPath, in: collectionView)
+        self.model[indexPath].size(in: collectionView)
+    }
+
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        self.model[indexPath].didSelect()
     }
 
     func collectionView(_ collectionView: UICollectionView, shouldHighlightItemAt indexPath: IndexPath) -> Bool {
@@ -96,7 +96,11 @@ extension ContainerViewDataSourceDelegate: UITableViewDataSource, UITableViewDel
     }
 
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        self.sizeOfItem(at: indexPath, in: tableView).height
+        self.model[indexPath].size(in: tableView).height
+    }
+
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        self.model[indexPath].didSelect()
     }
 
     func tableView(_ tableView: UITableView, shouldHighlightRowAt indexPath: IndexPath) -> Bool {

@@ -25,6 +25,8 @@ public protocol CellViewModel {
 
     var shouldHighlight: Bool { get }
 
+    var didSelect: CellActions.DidSelect { get }
+
     /// - Note: for table views the width is ignored
     func size<V: UIView & CellContainerViewProtocol>(in containerView: V) -> CGSize
 

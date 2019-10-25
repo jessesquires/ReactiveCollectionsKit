@@ -21,20 +21,30 @@ import DiffableCollectionsKit
 
 enum ViewModel {
 
-    static func makeCollectionViewModel() -> ContainerViewModel {
+    static func makeCollectionViewModel(controller: UIViewController) -> ContainerViewModel {
         let people = Person.makePeople()
 
-        let peopleCellViewModels = people.map { PersonCollectionCellViewModel(person: $0) }
+        let peopleCellViewModels = people.map { person in
+            PersonCollectionCellViewModel(person: person, didSelect: {
+                let personVC = PersonViewController(person: person)
+                controller.navigationController?.pushViewController(personVC, animated: true)
+            })
+        }
 
         let section = SectionViewModel(cells: peopleCellViewModels)
 
         return ContainerViewModel(sections: [section])
     }
 
-    static func makeTableViewModel() -> ContainerViewModel {
+    static func makeTableViewModel(controller: UIViewController) -> ContainerViewModel {
         let people = Person.makePeople()
 
-        let peopleCellViewModels = people.map { PersonTableCellViewModel(person: $0) }
+        let peopleCellViewModels = people.map { person in
+            PersonTableCellViewModel(person: person, didSelect: {
+                let personVC = PersonViewController(person: person)
+                controller.navigationController?.pushViewController(personVC, animated: true)
+            })
+        }
 
         let section = SectionViewModel(cells: peopleCellViewModels)
 

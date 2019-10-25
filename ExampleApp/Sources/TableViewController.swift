@@ -21,12 +21,15 @@ import DiffableCollectionsKit
 
 final class TableViewController: UITableViewController {
 
-    let model = ViewModel.makeTableViewModel()
-
-    lazy var driver = ContainerViewDriver(view: self.tableView, model: self.model)
+    var model: ContainerViewModel!
+    var driver: ContainerViewDriver<UITableView>!
 
     override func viewDidLoad() {
         super.viewDidLoad()
+
+        self.model = ViewModel.makeTableViewModel(controller: self)
+        self.driver = ContainerViewDriver(view: self.tableView, model: self.model)
+
         self.driver.reloadData()
     }
 }

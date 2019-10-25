@@ -19,25 +19,14 @@
 import UIKit
 import DiffableCollectionsKit
 
-struct PersonCollectionCellViewModel {
+struct PersonCollectionCellViewModel: CellViewModel {
     let person: Person
 
-    private static let _formatter: DateFormatter = {
-        let fm = DateFormatter()
-        fm.dateStyle = .long
-        fm.timeStyle = .none
-        return fm
-    }()
+    let didSelect: CellActions.DidSelect
 
-    private var _dateText: String {
-        Self._formatter.string(from: self.person.birthdate)
-    }
-}
-
-extension PersonCollectionCellViewModel: CellViewModel {
-    var registration: ReusableViewRegistration {
-        ReusableViewRegistration(classType: PersonCollectionCell.self, nibName: "CollectionCell", bundle: nil)
-    }
+    let registration = ReusableViewRegistration(classType: PersonCollectionCell.self,
+                                                nibName: "CollectionCell",
+                                                bundle: nil)
 
     func size<V: UIView & CellContainerViewProtocol>(in containerView: V) -> CGSize {
         let collection = containerView as! UICollectionView
@@ -47,7 +36,7 @@ extension PersonCollectionCellViewModel: CellViewModel {
     func applyViewModelTo(cell: Self.CellType) {
         let cell = cell as! PersonCollectionCell
         cell.titleLabel.text = self.person.name
-        cell.subtitleLabel.text = self._dateText
+        cell.subtitleLabel.text = self.person.birthDateText
         cell.flagLabel.text = self.person.nationality
     }
 }

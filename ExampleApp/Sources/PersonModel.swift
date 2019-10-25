@@ -24,6 +24,17 @@ struct Person {
     let birthdate: Date
 
     let nationality: String
+
+    var birthDateText: String {
+        Self._formatter.string(from: self.birthdate)
+    }
+
+    private static let _formatter: DateFormatter = {
+        let fm = DateFormatter()
+        fm.dateStyle = .long
+        fm.timeStyle = .none
+        return fm
+    }()
 }
 
 extension Date {

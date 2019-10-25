@@ -28,7 +28,7 @@ final class CollectionViewController: UICollectionViewController {
         super.viewDidLoad()
         self.collectionView.backgroundColor = .systemGray6
 
-        self.model = ViewModel.makeCollectionViewModel()
+        self.model = ViewModel.makeCollectionViewModel(controller: self)
         self.driver = ContainerViewDriver(view: self.collectionView, model: self.model)
 
         self.driver.reloadData()
