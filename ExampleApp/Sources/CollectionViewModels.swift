@@ -11,8 +11,8 @@
 //  Copyright © 2019-present Jesse Squires
 //
 
-import UIKit
 import ReactiveCollectionsKit
+import UIKit
 
 struct PersonCollectionCellViewModel: CellViewModel {
     let person: Person

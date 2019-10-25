@@ -11,8 +11,8 @@
 //  Copyright © 2019-present Jesse Squires
 //
 
-import UIKit
 import ReactiveCollectionsKit
+import UIKit
 
 enum ViewModel {
 
@@ -50,4 +50,3 @@ enum ViewModel {
         return ContainerViewModel(sections: [section])
     }
 }
-

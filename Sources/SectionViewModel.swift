@@ -29,7 +29,7 @@ public struct SectionViewModel {
         self.footerViewModel = footer
     }
 
-    // TODO: get empty state correct
+    #warning("TODO: get empty state correct")
     // https://github.com/plangrid/ReactiveLists/issues/122
 }
 

@@ -26,6 +26,7 @@ public enum ViewRegistrationMethod {
         switch self {
         case let .fromNib(name, bundle):
             return UINib(nibName: name, bundle: bundle)
+
         case .fromClass:
             fatalError("Attempt to access nib for class-based view")
         }
@@ -37,8 +38,10 @@ extension ViewRegistrationMethod: Equatable {
         switch (left, right) {
         case let (.fromClass(lhsClass), .fromClass(rhsClass)):
             return lhsClass == rhsClass
+
         case let (.fromNib(leftName, leftBundle), .fromNib(rightName, rightBundle)):
             return leftName == rightName && leftBundle == rightBundle
+
         default:
             return false
         }

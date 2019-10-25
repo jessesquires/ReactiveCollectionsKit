@@ -18,11 +18,12 @@ final class ExampleUITests: XCTestCase {
     let app = XCUIApplication()
 
     override func setUp() {
+        super.setUp()
         self.continueAfterFailure = false
         self.app.launch()
     }
 
     func testExample() {
-
+        XCTAssert(true)
     }
 }

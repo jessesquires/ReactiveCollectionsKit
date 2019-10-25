@@ -17,7 +17,7 @@ import PackageDescription
 let package = Package(
     name: "ReactiveCollectionsKit",
     platforms: [
-        .iOS(.v13),
+        .iOS(.v13)
     ],
     products: [.library(name: "ReactiveCollectionsKit",
                         targets: ["ReactiveCollectionsKit"])],
@@ -27,7 +27,7 @@ let package = Package(
                 path: "Sources"),
         .testTarget(name: "ReactiveCollectionsKitTests",
                     dependencies: ["ReactiveCollectionsKit"],
-                    path: "Tests"),
+                    path: "Tests")
     ],
     swiftLanguageVersions: [.v5]
 )

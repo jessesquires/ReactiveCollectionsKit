@@ -84,6 +84,7 @@ extension CellContainerViewProtocol {
         switch kind {
         case .header:
             viewModel = model.sections[indexPath.section].headerViewModel
+
         case .footer:
             viewModel = model.sections[indexPath.section].footerViewModel
         }
@@ -95,6 +96,7 @@ extension CellContainerViewProtocol {
             return self.dequeueReusableSupplementaryViewFor(kind: kind,
                                                             identifier: registration.reuseIdentifier,
                                                             indexPath: indexPath)
+
         case .title:
             #warning("nil works for table views only. fix for collections?")
             return nil
@@ -129,6 +131,7 @@ extension CellContainerViewProtocol {
         switch method {
         case .fromClass(let cellClass):
             self.registerCellClass(cellClass, identifier: identifier)
+
         case .fromNib:
             self.registerCellNib(method.nib, identifier: identifier)
         }
@@ -147,9 +150,11 @@ extension CellContainerViewProtocol {
             switch method {
             case .fromClass(let viewClass):
                 self.registerSupplementaryViewClass(viewClass, kind: kind, identifier: identifier)
+
             case .fromNib:
                 self.registerSupplementaryViewNib(method.nib, kind: kind, identifier: identifier)
             }
+
         case .title:
             // ignore. cannot register title-based views.
             break
