@@ -29,8 +29,6 @@ final class ContainerViewDataSourceDelegate: NSObject {
     }
 }
 
-#warning("TODO: context menus")
-
 extension ContainerViewDataSourceDelegate: UICollectionViewDataSource {
     func numberOfSections(in collectionView: UICollectionView) -> Int {
         self.numberOfSections()

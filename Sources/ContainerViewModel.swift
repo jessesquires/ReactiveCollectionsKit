@@ -17,6 +17,10 @@ public struct ContainerViewModel {
 
     public let sections: [SectionViewModel]
 
+    public var isEmpty: Bool {
+        self.sections.isEmpty || !self.sections.contains { !$0.isEmpty }
+    }
+
     public init(sections: [SectionViewModel]) {
         self.sections = sections
     }

@@ -21,6 +21,12 @@ public struct SectionViewModel {
 
     public let footerViewModel: SupplementaryViewModel?
 
+    public var isEmpty: Bool {
+        self.cellViewModels.isEmpty
+            && self.headerViewModel == nil
+            && self.footerViewModel == nil
+    }
+
     public init(cells: [CellViewModel],
                 header: SupplementaryViewModel? = nil,
                 footer: SupplementaryViewModel? = nil) {
@@ -28,9 +34,6 @@ public struct SectionViewModel {
         self.headerViewModel = header
         self.footerViewModel = footer
     }
-
-    #warning("TODO: get empty state correct")
-    // https://github.com/plangrid/ReactiveLists/issues/122
 }
 
 extension SectionViewModel {
