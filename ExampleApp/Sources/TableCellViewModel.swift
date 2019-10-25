@@ -32,6 +32,7 @@ struct PersonTableCellViewModel: CellViewModel {
 
     func applyViewModelTo(cell: Self.CellType) {
         let cell = cell as! PersonTableCell
+        cell.accessoryType = .disclosureIndicator
         cell.textLabel?.text = self.person.name
         cell.detailTextLabel?.text = "\(self.person.nationality) \(self.person.birthDateText)"
     }
