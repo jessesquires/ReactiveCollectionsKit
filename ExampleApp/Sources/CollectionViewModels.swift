@@ -17,7 +17,7 @@
 //
 
 import UIKit
-import DiffableCollectionsKit
+import ReactiveCollectionsKit
 
 struct PersonCollectionCellViewModel: CellViewModel {
     let person: Person

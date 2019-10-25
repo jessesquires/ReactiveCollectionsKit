@@ -1,1 +1,1 @@
-# DiffableCollectionsKit
+# ReactiveCollectionsKit

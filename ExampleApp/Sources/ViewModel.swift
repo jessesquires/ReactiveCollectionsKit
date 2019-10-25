@@ -17,7 +17,7 @@
 //
 
 import UIKit
-import DiffableCollectionsKit
+import ReactiveCollectionsKit
 
 enum ViewModel {
 

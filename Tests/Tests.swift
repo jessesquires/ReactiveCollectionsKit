@@ -1,9 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
-<plist version="1.0">
-<dict>
-<key>FILEHEADER</key>
-<string>
+//
 //  Created by Jesse Squires
 //  https://www.jessesquires.com
 //
@@ -19,6 +14,11 @@
 //  License
 //  Copyright © 2019-present Jesse Squires
 //  Released under an MIT license: https://opensource.org/licenses/MIT
-//</string>
-</dict>
-</plist>
+//
+
+import XCTest
+@testable import ReactiveCollectionsKit
+
+final class Tests: XCTestCase {
+
+}

@@ -15,10 +15,9 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="DiffableCollectionsKit" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5Cw-Hb-25L">
-                                <rect key="frame" x="49" y="427.5" width="316" height="41"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ReactiveCollectionsKit" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5Cw-Hb-25L">
+                                <rect key="frame" x="20" y="427.5" width="374" height="41"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="316" id="Gpn-8a-t3F"/>
                                     <constraint firstAttribute="height" constant="41" id="W0O-Ks-oMF"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" style="UICTFontTextStyleTitle0"/>
@@ -28,15 +27,16 @@
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
+                            <constraint firstItem="5Cw-Hb-25L" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="20" id="05u-Nu-jIz"/>
                             <constraint firstItem="5Cw-Hb-25L" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" id="Utr-di-iyb"/>
-                            <constraint firstItem="5Cw-Hb-25L" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="qJs-uM-uaH"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="5Cw-Hb-25L" secondAttribute="trailing" constant="20" id="Zf9-6M-x9N"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iYj-Kq-Ea1" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="53" y="375"/>
+            <point key="canvasLocation" x="52.173913043478265" y="375"/>
         </scene>
     </scenes>
 </document>

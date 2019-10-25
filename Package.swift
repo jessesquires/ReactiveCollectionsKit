@@ -20,18 +20,18 @@
 import PackageDescription
 
 let package = Package(
-    name: "DiffableCollectionsKit",
+    name: "ReactiveCollectionsKit",
     platforms: [
         .iOS(.v13),
     ],
-    products: [.library(name: "DiffableCollectionsKit",
-                        targets: ["DiffableCollectionsKit"])],
+    products: [.library(name: "ReactiveCollectionsKit",
+                        targets: ["ReactiveCollectionsKit"])],
     dependencies: [],
     targets: [
-        .target(name: "DiffableCollectionsKit",
+        .target(name: "ReactiveCollectionsKit",
                 path: "Sources"),
-        .testTarget(name: "DiffableCollectionsKitTests",
-                    dependencies: ["DiffableCollectionsKit"],
+        .testTarget(name: "ReactiveCollectionsKitTests",
+                    dependencies: ["ReactiveCollectionsKit"],
                     path: "Tests"),
     ],
     swiftLanguageVersions: [.v5]
