@@ -50,7 +50,6 @@ opt_in_rules:
 
   # style
   - attributes
-  - number_separator
   - operator_usage_whitespace
   - sorted_imports
   - vertical_parameter_alignment_on_call

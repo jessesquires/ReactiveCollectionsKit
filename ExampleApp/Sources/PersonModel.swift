@@ -51,7 +51,7 @@ extension Person {
             Person(name: "Mikhail Bakunin", birthdate: Date(year: 1814, month: 5, day: 30), nationality: "🇷🇺"),
             Person(name: "Ursula K. Le Guin", birthdate: Date(year: 1929, month: 10, day: 21), nationality: "🇺🇸"),
             Person(name: "Peter Kropotkin", birthdate: Date(year: 1842, month: 12, day: 9), nationality: "🇷🇺"),
-            Person(name: "Marie Louise Berneri", birthdate: Date(year: 1918, month: 3, day: 1), nationality: "🇮🇹"),
+            Person(name: "Marie Louise Berneri", birthdate: Date(year: 1918, month: 3, day: 1), nationality: "🇮🇹")
         ]
     }
 }

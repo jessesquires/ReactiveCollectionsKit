@@ -14,6 +14,8 @@
 import ReactiveCollectionsKit
 import UIKit
 
+// swiftlint:disable trailing_closure
+
 enum ViewModel {
 
     static func makeCollectionViewModel(controller: UIViewController) -> ContainerViewModel {
@@ -50,3 +52,5 @@ enum ViewModel {
         return ContainerViewModel(sections: [section])
     }
 }
+
+// swiftlint:enable trailing_closure
