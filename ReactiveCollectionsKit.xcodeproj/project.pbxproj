@@ -24,6 +24,7 @@
 		88FA49112363A7890061F8B2 /* CellActions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88FA49022363A7890061F8B2 /* CellActions.swift */; };
 		88FA49122363A7890061F8B2 /* CellContainerViewProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88FA49032363A7890061F8B2 /* CellContainerViewProtocol.swift */; };
 		88FA49132363A7890061F8B2 /* SupplementaryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88FA49042363A7890061F8B2 /* SupplementaryViewModel.swift */; };
+		88FA49312363BC5F0061F8B2 /* DiffableViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88FA49302363BC5F0061F8B2 /* DiffableViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -57,6 +58,7 @@
 		88FA49022363A7890061F8B2 /* CellActions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CellActions.swift; sourceTree = "<group>"; };
 		88FA49032363A7890061F8B2 /* CellContainerViewProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CellContainerViewProtocol.swift; sourceTree = "<group>"; };
 		88FA49042363A7890061F8B2 /* SupplementaryViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SupplementaryViewModel.swift; sourceTree = "<group>"; };
+		88FA49302363BC5F0061F8B2 /* DiffableViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiffableViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -107,6 +109,7 @@
 				88FA49012363A7890061F8B2 /* ContainerViewDataSourceDelegate.swift */,
 				88FA48FA2363A7880061F8B2 /* ContainerViewDriver.swift */,
 				88FA48F92363A7880061F8B2 /* ContainerViewModel.swift */,
+				88FA49302363BC5F0061F8B2 /* DiffableViewModel.swift */,
 				88FA48DE2363A6160061F8B2 /* Info.plist */,
 				88FA48F62363A7880061F8B2 /* ReusableViewProtocol.swift */,
 				88FA48FE2363A7890061F8B2 /* ReusableViewRegistration.swift */,
@@ -270,6 +273,7 @@
 				88FA49132363A7890061F8B2 /* SupplementaryViewModel.swift in Sources */,
 				88FA490D2363A7890061F8B2 /* ReusableViewRegistration.swift in Sources */,
 				88FA49072363A7890061F8B2 /* CellContainerViewProtocol+Collection.swift in Sources */,
+				88FA49312363BC5F0061F8B2 /* DiffableViewModel.swift in Sources */,
 				88FA490B2363A7890061F8B2 /* ViewRegistrationMethod.swift in Sources */,
 				88FA49082363A7890061F8B2 /* ContainerViewModel.swift in Sources */,
 				88FA490A2363A7890061F8B2 /* CellViewModel.swift in Sources */,

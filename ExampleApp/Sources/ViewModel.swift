@@ -28,7 +28,8 @@ enum ViewModel {
             })
         }
 
-        let section = SectionViewModel(cells: peopleCellViewModels)
+        let section = SectionViewModel(id: "section_0",
+                                       cells: peopleCellViewModels)
 
         return ContainerViewModel(sections: [section])
     }
@@ -47,7 +48,10 @@ enum ViewModel {
 
         let footer = PersonTableFooterViewModel()
 
-        let section = SectionViewModel(cells: peopleCellViewModels, header: header, footer: footer)
+        let section = SectionViewModel(id: "section_0",
+                                       cells: peopleCellViewModels,
+                                       header: header,
+                                       footer: footer)
 
         return ContainerViewModel(sections: [section])
     }

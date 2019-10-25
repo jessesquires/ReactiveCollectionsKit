@@ -13,7 +13,9 @@
 
 import Foundation
 
-public struct SectionViewModel {
+public struct SectionViewModel: DiffableViewModel {
+
+    public let id: UniqueIdentifier
 
     public let cellViewModels: [CellViewModel]
 
@@ -27,9 +29,11 @@ public struct SectionViewModel {
             && self.footerViewModel == nil
     }
 
-    public init(cells: [CellViewModel],
+    public init(id: UniqueIdentifier,
+                cells: [CellViewModel],
                 header: SupplementaryViewModel? = nil,
                 footer: SupplementaryViewModel? = nil) {
+        self.id = id
         self.cellViewModels = cells
         self.headerViewModel = header
         self.footerViewModel = footer

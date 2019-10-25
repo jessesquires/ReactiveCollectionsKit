@@ -13,7 +13,7 @@
 
 import UIKit
 
-public protocol SupplementaryViewModel {
+public protocol SupplementaryViewModel: DiffableViewModel {
     typealias SupplementaryViewType = UIView & ReusableViewProtocol
 
     var kind: SupplementaryViewKind { get }

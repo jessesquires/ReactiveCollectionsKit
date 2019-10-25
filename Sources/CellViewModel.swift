@@ -13,7 +13,7 @@
 
 import UIKit
 
-public protocol CellViewModel {
+public protocol CellViewModel: DiffableViewModel {
     typealias CellType = UIView & ReusableViewProtocol
 
     var registration: ReusableViewRegistration { get }
