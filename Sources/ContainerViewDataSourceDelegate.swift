@@ -64,6 +64,10 @@ extension ContainerViewDataSourceDelegate: UICollectionViewDataSource, UICollect
                         sizeForItemAt indexPath: IndexPath) -> CGSize {
         self.sizeOfItem(at: indexPath, in: collectionView)
     }
+
+    func collectionView(_ collectionView: UICollectionView, shouldHighlightItemAt indexPath: IndexPath) -> Bool {
+        self.model[indexPath].shouldHighlight
+    }
 }
 
 extension ContainerViewDataSourceDelegate: UITableViewDataSource, UITableViewDelegate {
@@ -93,5 +97,9 @@ extension ContainerViewDataSourceDelegate: UITableViewDataSource, UITableViewDel
 
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         self.sizeOfItem(at: indexPath, in: tableView).height
+    }
+
+    func tableView(_ tableView: UITableView, shouldHighlightRowAt indexPath: IndexPath) -> Bool {
+        self.model[indexPath].shouldHighlight
     }
 }

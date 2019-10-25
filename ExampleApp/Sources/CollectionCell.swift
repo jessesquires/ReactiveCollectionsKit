@@ -28,5 +28,7 @@ final class PersonCollectionCell: UICollectionViewCell {
 
     override func awakeFromNib() {
         super.awakeFromNib()
+        self.selectedBackgroundView = UIView()
+        self.selectedBackgroundView?.backgroundColor = .systemGray4
     }
 }
