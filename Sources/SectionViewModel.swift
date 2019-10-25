@@ -33,6 +33,9 @@ public struct SectionViewModel {
         self.headerViewModel = header
         self.footerViewModel = footer
     }
+
+    // TODO: get empty state correct
+    // https://github.com/plangrid/ReactiveLists/issues/122
 }
 
 extension SectionViewModel {
