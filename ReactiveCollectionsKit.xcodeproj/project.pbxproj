@@ -149,6 +149,7 @@
 				88FA48D62363A6160061F8B2 /* Sources */,
 				88FA48D72363A6160061F8B2 /* Frameworks */,
 				88FA48D82363A6160061F8B2 /* Resources */,
+				88FA49242363AF790061F8B2 /* SwiftLint */,
 			);
 			buildRules = (
 			);
@@ -231,6 +232,27 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		88FA49242363AF790061F8B2 /* SwiftLint */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = SwiftLint;
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/scripts/lint.sh\"\n";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		88FA48D62363A6160061F8B2 /* Sources */ = {
