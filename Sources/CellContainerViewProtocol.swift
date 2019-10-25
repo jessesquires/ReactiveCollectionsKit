@@ -100,6 +100,9 @@ extension CellContainerViewProtocol {
             return self.dequeueReusableSupplementaryViewFor(kind: kind,
                                                             identifier: registration.reuseIdentifier,
                                                             indexPath: indexPath)
+        case .title:
+            #warning("nil works for table views only. fix for collections?")
+            return nil
         }
     }
 
@@ -152,6 +155,9 @@ extension CellContainerViewProtocol {
             case .fromNib:
                 self.registerSupplementaryViewNib(method.nib, kind: kind, identifier: identifier)
             }
+        case .title:
+            // ignore. cannot register title-based views.
+            break
         }
     }
 }

@@ -37,3 +37,17 @@ struct PersonTableCellViewModel: CellViewModel {
         cell.detailTextLabel?.text = "\(self.person.nationality) \(self.person.birthDateText)"
     }
 }
+
+struct PersonTableHeaderViewModel: SupplementaryViewModel {
+    let kind = SupplementaryViewKind.header
+    let style = SupplementaryViewStyle.title("Comrades")
+
+    func applyViewModelTo(view: Self.SupplementaryViewType) { }
+}
+
+struct PersonTableFooterViewModel: SupplementaryViewModel {
+    let kind = SupplementaryViewKind.footer
+    let style = SupplementaryViewStyle.title("Note: list is incomplete")
+
+    func applyViewModelTo(view: Self.SupplementaryViewType) { }
+}

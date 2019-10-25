@@ -18,19 +18,29 @@
 
 import UIKit
 
-public enum SupplementaryViewStyle {
-    case customView(ReusableViewRegistration)
-
-    #warning("TODO title-based views")
-    // case title(String)
-}
-
 public protocol SupplementaryViewModel {
     typealias SupplementaryViewType = UIView & ReusableViewProtocol
 
-    var style: SupplementaryViewStyle { get }
-
     var kind: SupplementaryViewKind { get }
 
+    var style: SupplementaryViewStyle { get }
+
+    #warning("TODO: move this to Style.customView as a config prop/func. can't style title-based headers/footers")
     func applyViewModelTo(view: SupplementaryViewType)
+}
+
+extension SupplementaryViewModel {
+    var registration: ReusableViewRegistration? {
+        if case let .customView(registration) = self.style {
+            return registration
+        }
+        return nil
+    }
+
+    var title: String? {
+        if case let .title(text) = self.style {
+            return text
+        }
+        return nil
+    }
 }

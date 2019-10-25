@@ -19,6 +19,7 @@
 		8829EA662361E98100604A43 /* CellContainerViewProtocol+Table.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8829EA652361E98100604A43 /* CellContainerViewProtocol+Table.swift */; };
 		8829EA682361F41C00604A43 /* ContainerViewDataSourceDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8829EA672361F41C00604A43 /* ContainerViewDataSourceDelegate.swift */; };
 		8863DABE23636B080094182F /* CellActions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8863DABD23636B080094182F /* CellActions.swift */; };
+		8863DAC723637BB40094182F /* SupplementaryViewStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8863DAC623637BB40094182F /* SupplementaryViewStyle.swift */; };
 		886C04F323613BA900E5C66C /* DiffableCollectionsKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 886C04E923613BA900E5C66C /* DiffableCollectionsKit.framework */; };
 		886C04F823613BA900E5C66C /* DiffableCollectionsKitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 886C04F723613BA900E5C66C /* DiffableCollectionsKitTests.swift */; };
 		886C04FA23613BA900E5C66C /* DiffableCollectionsKit.h in Headers */ = {isa = PBXBuildFile; fileRef = 886C04EC23613BA900E5C66C /* DiffableCollectionsKit.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -49,6 +50,7 @@
 		8829EA652361E98100604A43 /* CellContainerViewProtocol+Table.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CellContainerViewProtocol+Table.swift"; sourceTree = "<group>"; };
 		8829EA672361F41C00604A43 /* ContainerViewDataSourceDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContainerViewDataSourceDelegate.swift; sourceTree = "<group>"; };
 		8863DABD23636B080094182F /* CellActions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CellActions.swift; sourceTree = "<group>"; };
+		8863DAC623637BB40094182F /* SupplementaryViewStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SupplementaryViewStyle.swift; sourceTree = "<group>"; };
 		886C04E923613BA900E5C66C /* DiffableCollectionsKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = DiffableCollectionsKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		886C04EC23613BA900E5C66C /* DiffableCollectionsKit.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DiffableCollectionsKit.h; sourceTree = "<group>"; };
 		886C04ED23613BA900E5C66C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -114,6 +116,7 @@
 				8829EA5B2361E09A00604A43 /* SectionViewModel.swift */,
 				8829EA502361600E00604A43 /* SupplementaryViewKind.swift */,
 				8829EA592361DFE500604A43 /* SupplementaryViewModel.swift */,
+				8863DAC623637BB40094182F /* SupplementaryViewStyle.swift */,
 				8829EA52236161D900604A43 /* ViewRegistrationMethod.swift */,
 			);
 			path = Sources;
@@ -252,6 +255,7 @@
 				8829EA57236166CE00604A43 /* CellViewModel.swift in Sources */,
 				8829EA662361E98100604A43 /* CellContainerViewProtocol+Table.swift in Sources */,
 				8829EA512361600E00604A43 /* SupplementaryViewKind.swift in Sources */,
+				8863DAC723637BB40094182F /* SupplementaryViewStyle.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

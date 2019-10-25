@@ -87,7 +87,13 @@ extension ContainerViewDataSourceDelegate: UITableViewDataSource {
         tableView.dequeueAndConfigureCell(for: self.model, at: indexPath)
     }
 
-    #warning("TODO: header/footer titles")
+    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        self.model.sections[section].headerTitle
+    }
+
+    func tableView(_ tableView: UITableView, titleForFooterInSection section: Int) -> String? {
+        self.model.sections[section].footerTitle
+    }
 }
 
 extension ContainerViewDataSourceDelegate: UITableViewDelegate {

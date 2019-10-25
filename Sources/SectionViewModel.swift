@@ -35,3 +35,12 @@ public struct SectionViewModel {
     }
 }
 
+extension SectionViewModel {
+    var headerTitle: String? {
+        self.headerViewModel?.title
+    }
+
+    var footerTitle: String? {
+        self.footerViewModel?.title
+    }
+}
