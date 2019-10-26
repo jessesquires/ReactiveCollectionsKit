@@ -16,8 +16,9 @@ import UIKit
 
 struct PersonTableCellViewModel: CellViewModel {
     let person: Person
-
     let didSelect: CellActions.DidSelect
+
+    var id: UniqueIdentifier { self.person.name }
 
     let registration = ReusableViewRegistration(classType: PersonTableCell.self)
 
