@@ -25,8 +25,14 @@ final class CollectionViewController: UICollectionViewController {
 
         self.model = ViewModel.makeCollectionViewModel(controller: self)
         self.driver = ContainerViewDriver(view: self.collectionView, model: self.model)
-
         self.driver.reloadData()
+
+        self.addShuffle(action: #selector(shuffle))
+    }
+
+    @objc
+    func shuffle() {
+        self.driver.model = ViewModel.makeCollectionViewModel(controller: self, shuffled: true)
     }
 }
 

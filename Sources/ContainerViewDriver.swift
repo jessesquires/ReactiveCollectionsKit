@@ -17,21 +17,52 @@ public final class ContainerViewDriver<View: UIView & CellContainerViewProtocol>
 
     public let view: View
 
-    public let model: ContainerViewModel
+    public var model: ContainerViewModel {
+        set {
+            assert(Thread.isMainThread, "\(#function) must be used on main thread only")
+            self._updateModel(from: self._model, to: newValue)
+        }
+        get {
+            self._model
+        }
+    }
 
-    private let _dataSourceDelegate: ContainerViewDataSourceDelegate
+    private var _model: ContainerViewModel {
+        didSet {
+            self._didSetModel()
+        }
+    }
+
+    private var _dataSourceDelegate: ContainerViewDataSourceDelegate
+
+    // MARK: Init
 
     public init(view: View, model: ContainerViewModel) {
         self.view = view
-        self.model = model
+        self._model = model
         self._dataSourceDelegate = ContainerViewDataSourceDelegate(model: model)
+        self._didSetModel()
+    }
 
-        self.view.register(viewModel: model)
+    // MARK: Public
+
+    public func reloadData() {
+        self.view.reloadData()
+    }
+
+    // MARK: Private
+
+    private func _didSetModel() {
+        self._dataSourceDelegate = ContainerViewDataSourceDelegate(model: self._model)
+        self.view.register(viewModel: self._model)
         self.view.dataSource = self._dataSourceDelegate as? View.DataSource
         self.view.delegate = self._dataSourceDelegate as? View.Delegate
     }
 
-    public func reloadData() {
-        self.view.reloadData()
+    private func _updateModel(from old: ContainerViewModel, to new: ContainerViewModel) {
+        self._model = new
+
+        #warning("TODO: implement diffing")
+        self.reloadData()
     }
 }

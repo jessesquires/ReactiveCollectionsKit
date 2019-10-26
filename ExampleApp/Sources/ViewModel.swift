@@ -18,14 +18,18 @@ import UIKit
 
 enum ViewModel {
 
-    static func makeCollectionViewModel(controller: UIViewController) -> ContainerViewModel {
+    static func makeCollectionViewModel(controller: UIViewController, shuffled: Bool = false) -> ContainerViewModel {
         let people = Person.makePeople()
 
-        let peopleCellViewModels = people.map { person in
+        var peopleCellViewModels = people.map { person in
             PersonCollectionCellViewModel(person: person, didSelect: {
                 let personVC = PersonViewController(person: person)
                 controller.navigationController?.pushViewController(personVC, animated: true)
             })
+        }
+
+        if shuffled {
+            peopleCellViewModels.shuffle()
         }
 
         let section = SectionViewModel(id: "section_0",
@@ -34,18 +38,21 @@ enum ViewModel {
         return ContainerViewModel(sections: [section])
     }
 
-    static func makeTableViewModel(controller: UIViewController) -> ContainerViewModel {
+    static func makeTableViewModel(controller: UIViewController, shuffled: Bool = false) -> ContainerViewModel {
         let people = Person.makePeople()
 
-        let peopleCellViewModels = people.map { person in
+        var peopleCellViewModels = people.map { person in
             PersonTableCellViewModel(person: person, didSelect: {
                 let personVC = PersonViewController(person: person)
                 controller.navigationController?.pushViewController(personVC, animated: true)
             })
         }
 
-        let header = PersonTableHeaderViewModel()
+        if shuffled {
+            peopleCellViewModels.shuffle()
+        }
 
+        let header = PersonTableHeaderViewModel()
         let footer = PersonTableFooterViewModel()
 
         let section = SectionViewModel(id: "section_0",

@@ -24,7 +24,13 @@ final class TableViewController: UITableViewController {
 
         self.model = ViewModel.makeTableViewModel(controller: self)
         self.driver = ContainerViewDriver(view: self.tableView, model: self.model)
-
         self.driver.reloadData()
+
+        self.addShuffle(action: #selector(shuffle))
+    }
+
+    @objc
+    func shuffle() {
+        self.driver.model = ViewModel.makeTableViewModel(controller: self, shuffled: true)
     }
 }
