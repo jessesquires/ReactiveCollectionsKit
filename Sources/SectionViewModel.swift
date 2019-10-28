@@ -23,12 +23,6 @@ public struct SectionViewModel: DiffableViewModel {
 
     public let footerViewModel: SupplementaryViewModel?
 
-    public var isEmpty: Bool {
-        self.cellViewModels.isEmpty
-            && self.headerViewModel == nil
-            && self.footerViewModel == nil
-    }
-
     public init(id: UniqueIdentifier,
                 cells: [CellViewModel],
                 header: SupplementaryViewModel? = nil,
@@ -47,5 +41,38 @@ extension SectionViewModel {
 
     var footerTitle: String? {
         self.footerViewModel?.title
+    }
+}
+
+extension SectionViewModel: Collection, RandomAccessCollection {
+
+    /// :nodoc:
+    public var count: Int {
+        self.cellViewModels.count
+    }
+
+    /// :nodoc:
+    public var isEmpty: Bool {
+        self.cellViewModels.isEmpty
+    }
+
+    /// :nodoc:
+    public subscript(position: Int) -> CellViewModel {
+        self.cellViewModels[position]
+    }
+
+    /// :nodoc:
+    public var startIndex: Int {
+        self.cellViewModels.startIndex
+    }
+
+    /// :nodoc:
+    public var endIndex: Int {
+        self.cellViewModels.endIndex
+    }
+
+    /// :nodoc:
+    public func index(after i: Int) -> Int {
+        self.cellViewModels.index(after: i)
     }
 }
