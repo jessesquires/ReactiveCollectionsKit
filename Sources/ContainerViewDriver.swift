@@ -29,6 +29,7 @@ public final class ContainerViewDriver<View: UIView & CellContainerViewProtocol>
 
     private var _model: ContainerViewModel {
         didSet {
+            assert(Thread.isMainThread, "\(#function) must be used on main thread only")
             self._didSetModel()
         }
     }
