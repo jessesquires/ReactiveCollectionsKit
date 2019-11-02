@@ -155,21 +155,11 @@
 		8829EA742361F4EB00604A43 /* Sources */ = {
 			isa = PBXGroup;
 			children = (
-				8829EA752361F4EB00604A43 /* AppDelegate.swift */,
-				8807212E236258C000E34B61 /* CollectionCell.swift */,
-				8807212F236258C000E34B61 /* CollectionCell.xib */,
-				8829EA7B2361F4EB00604A43 /* CollectionViewController.swift */,
-				88B4FEB2236251C600B284FB /* CollectionViewModels.swift */,
-				88B4FEA5236244D500B284FB /* PersonModel.swift */,
-				8863DABF23636D0E0094182F /* PersonViewController.swift */,
-				8863DAC023636D0E0094182F /* PersonViewController.xib */,
+				88389EFC236DFE4E00DDECA5 /* CollectionView */,
+				88389EFF236DFF0F00DDECA5 /* Common */,
+				88389EFE236DFEAD00DDECA5 /* Main */,
 				88B4FEAD236248F900B284FB /* Resources */,
-				8829EA772361F4EB00604A43 /* SceneDelegate.swift */,
-				88B4FEA9236248D500B284FB /* TableCell.swift */,
-				8829EA792361F4EB00604A43 /* TableViewController.swift */,
-				88B4FEA72362486D00B284FB /* TableViewModels.swift */,
-				88FA49322363C2E00061F8B2 /* UIKit+Extensions.swift */,
-				88B4FEAE23624B2500B284FB /* ViewModel.swift */,
+				88389EFD236DFE6400DDECA5 /* TableView */,
 			);
 			path = Sources;
 			sourceTree = "<group>";
@@ -190,6 +180,48 @@
 				8829EA9B2361F4ED00604A43 /* Info.plist */,
 			);
 			path = UITests;
+			sourceTree = "<group>";
+		};
+		88389EFC236DFE4E00DDECA5 /* CollectionView */ = {
+			isa = PBXGroup;
+			children = (
+				8807212E236258C000E34B61 /* CollectionCell.swift */,
+				8807212F236258C000E34B61 /* CollectionCell.xib */,
+				8829EA7B2361F4EB00604A43 /* CollectionViewController.swift */,
+				88B4FEB2236251C600B284FB /* CollectionViewModels.swift */,
+			);
+			path = CollectionView;
+			sourceTree = "<group>";
+		};
+		88389EFD236DFE6400DDECA5 /* TableView */ = {
+			isa = PBXGroup;
+			children = (
+				88B4FEA9236248D500B284FB /* TableCell.swift */,
+				8829EA792361F4EB00604A43 /* TableViewController.swift */,
+				88B4FEA72362486D00B284FB /* TableViewModels.swift */,
+			);
+			path = TableView;
+			sourceTree = "<group>";
+		};
+		88389EFE236DFEAD00DDECA5 /* Main */ = {
+			isa = PBXGroup;
+			children = (
+				8829EA752361F4EB00604A43 /* AppDelegate.swift */,
+				8829EA772361F4EB00604A43 /* SceneDelegate.swift */,
+				88FA49322363C2E00061F8B2 /* UIKit+Extensions.swift */,
+			);
+			path = Main;
+			sourceTree = "<group>";
+		};
+		88389EFF236DFF0F00DDECA5 /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				88B4FEA5236244D500B284FB /* PersonModel.swift */,
+				8863DABF23636D0E0094182F /* PersonViewController.swift */,
+				8863DAC023636D0E0094182F /* PersonViewController.xib */,
+				88B4FEAE23624B2500B284FB /* ViewModel.swift */,
+			);
+			path = Common;
 			sourceTree = "<group>";
 		};
 		88B4FEA12362446000B284FB /* Frameworks */ = {
