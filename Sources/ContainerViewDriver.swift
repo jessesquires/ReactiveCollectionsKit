@@ -34,7 +34,8 @@ public final class ContainerViewDriver<View: UIView & CellContainerViewProtocol>
         }
     }
 
-    private var _dataSourceDelegate: ContainerViewDataSourceDelegate
+    private let _dataSourceDelegate: ContainerViewDataSourceDelegate
+    private let _diffableDataSource: DiffableDataSourceProtocol
 
     // MARK: Init
 
@@ -42,6 +43,9 @@ public final class ContainerViewDriver<View: UIView & CellContainerViewProtocol>
         self.view = view
         self._model = model
         self._dataSourceDelegate = ContainerViewDataSourceDelegate(model: model)
+        self._diffableDataSource = makeDiffableDataSource(with: view)
+        self.view.dataSource = self._dataSourceDelegate as? View.DataSource
+        self.view.delegate = self._dataSourceDelegate as? View.Delegate
         self._didSetModel()
     }
 
@@ -54,16 +58,16 @@ public final class ContainerViewDriver<View: UIView & CellContainerViewProtocol>
     // MARK: Private
 
     private func _didSetModel() {
-        self._dataSourceDelegate = ContainerViewDataSourceDelegate(model: self._model)
+        self._dataSourceDelegate.model = self._model
         self.view.register(viewModel: self._model)
-        self.view.dataSource = self._dataSourceDelegate as? View.DataSource
-        self.view.delegate = self._dataSourceDelegate as? View.Delegate
     }
 
     private func _updateModel(from old: ContainerViewModel, to new: ContainerViewModel) {
         self._model = new
-
-        #warning("TODO: implement diffing")
         self.reloadData()
+
+        #warning("TODO: this doesn't work :(")
+        // let snapshot = DiffableSnapshot(containerViewModel: new)
+        // self._diffableDataSource.apply(snapshot, animatingDifferences: true, completion: nil)
     }
 }

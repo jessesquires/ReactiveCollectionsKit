@@ -14,7 +14,7 @@
 import UIKit
 
 final class ContainerViewDataSourceDelegate: NSObject {
-    let model: ContainerViewModel
+    var model: ContainerViewModel
 
     init(model: ContainerViewModel) {
         self.model = model

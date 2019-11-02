@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		88C02079236CBCB000B43713 /* DiffableDataSourceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88C02078236CBCB000B43713 /* DiffableDataSourceProtocol.swift */; };
 		88FA48E42363A6160061F8B2 /* ReactiveCollectionsKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 88FA48DA2363A6160061F8B2 /* ReactiveCollectionsKit.framework */; };
 		88FA48F52363A7400061F8B2 /* Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88FA48F42363A7400061F8B2 /* Tests.swift */; };
 		88FA49052363A7890061F8B2 /* ReusableViewProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88FA48F62363A7880061F8B2 /* ReusableViewProtocol.swift */; };
@@ -38,6 +39,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		88C02078236CBCB000B43713 /* DiffableDataSourceProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiffableDataSourceProtocol.swift; sourceTree = "<group>"; };
 		88FA48DA2363A6160061F8B2 /* ReactiveCollectionsKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = ReactiveCollectionsKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		88FA48DE2363A6160061F8B2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		88FA48E32363A6160061F8B2 /* ReactiveCollectionsKitTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ReactiveCollectionsKitTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -109,6 +111,7 @@
 				88FA49012363A7890061F8B2 /* ContainerViewDataSourceDelegate.swift */,
 				88FA48FA2363A7880061F8B2 /* ContainerViewDriver.swift */,
 				88FA48F92363A7880061F8B2 /* ContainerViewModel.swift */,
+				88C02078236CBCB000B43713 /* DiffableDataSourceProtocol.swift */,
 				88FA49302363BC5F0061F8B2 /* DiffableViewModel.swift */,
 				88FA48DE2363A6160061F8B2 /* Info.plist */,
 				88FA48F62363A7880061F8B2 /* ReusableViewProtocol.swift */,
@@ -270,6 +273,7 @@
 				88FA490F2363A7890061F8B2 /* SupplementaryViewKind.swift in Sources */,
 				88FA49102363A7890061F8B2 /* ContainerViewDataSourceDelegate.swift in Sources */,
 				88FA490E2363A7890061F8B2 /* CellContainerViewProtocol+Table.swift in Sources */,
+				88C02079236CBCB000B43713 /* DiffableDataSourceProtocol.swift in Sources */,
 				88FA49132363A7890061F8B2 /* SupplementaryViewModel.swift in Sources */,
 				88FA490D2363A7890061F8B2 /* ReusableViewRegistration.swift in Sources */,
 				88FA49072363A7890061F8B2 /* CellContainerViewProtocol+Collection.swift in Sources */,
