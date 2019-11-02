@@ -15,15 +15,19 @@ import UIKit
 
 public final class ContainerViewDriver<View: UIView & CellContainerViewProtocol> {
 
+    public typealias DidUpdate = () -> Void
+
     public let view: View
 
     public var animateUpdates: Bool
+
+    public let didUpdate: DidUpdate?
 
     public var model: ContainerViewModel {
         set {
             assertMainThread()
             self._model = newValue
-            self._didUpdateModel(animated: self.animateUpdates)
+            self._didUpdateModel(animated: self.animateUpdates, completion: self.didUpdate)
         }
         get {
             self._model
@@ -42,16 +46,20 @@ public final class ContainerViewDriver<View: UIView & CellContainerViewProtocol>
 
     // MARK: Init
 
-    public init(view: View, model: ContainerViewModel, animateUpdates: Bool = true) {
+    public init(view: View,
+                model: ContainerViewModel,
+                animateUpdates: Bool = true,
+                didUpdate: DidUpdate? = nil) {
         self.view = view
         self._model = model
         self.animateUpdates = animateUpdates
+        self.didUpdate = didUpdate
         self._dataSourceDelegate = ContainerViewDataSourceDelegate(model: model)
         self._differ = makeDiffableDataSource(with: view)
         self.view.dataSource = self._dataSourceDelegate as? View.DataSource
         self.view.delegate = self._dataSourceDelegate as? View.Delegate
         self._didSetModel()
-        self._didUpdateModel(animated: false)
+        self._didUpdateModel(animated: false, completion: nil)
     }
 
     // MARK: Public
@@ -67,7 +75,7 @@ public final class ContainerViewDriver<View: UIView & CellContainerViewProtocol>
         self.view.register(viewModel: self._model)
     }
 
-    private func _didUpdateModel(animated: Bool) {
-        self._differ.apply(self._model, animated: animated, completion: nil)
+    private func _didUpdateModel(animated: Bool, completion: DidUpdate?) {
+        self._differ.apply(self._model, animated: animated, completion: completion)
     }
 }
