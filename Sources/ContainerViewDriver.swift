@@ -47,6 +47,9 @@ public final class ContainerViewDriver<View: UIView & CellContainerViewProtocol>
         self.view.dataSource = self._dataSourceDelegate as? View.DataSource
         self.view.delegate = self._dataSourceDelegate as? View.Delegate
         self._didSetModel()
+
+        let snapshot = DiffableSnapshot(containerViewModel: model)
+        self._diffableDataSource.apply(snapshot, animatingDifferences: false, completion: nil)
     }
 
     // MARK: Public
@@ -64,10 +67,7 @@ public final class ContainerViewDriver<View: UIView & CellContainerViewProtocol>
 
     private func _updateModel(from old: ContainerViewModel, to new: ContainerViewModel) {
         self._model = new
-        self.reloadData()
-
-        #warning("TODO: this doesn't work :(")
-        // let snapshot = DiffableSnapshot(containerViewModel: new)
-        // self._diffableDataSource.apply(snapshot, animatingDifferences: true, completion: nil)
+         let snapshot = DiffableSnapshot(containerViewModel: new)
+         self._diffableDataSource.apply(snapshot, animatingDifferences: true, completion: nil)
     }
 }
