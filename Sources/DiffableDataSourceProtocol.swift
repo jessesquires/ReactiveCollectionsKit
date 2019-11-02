@@ -13,7 +13,7 @@
 
 import UIKit
 
-protocol DiffableDataSourceProtocol {
+protocol DiffableDataSourceProtocol: AnyObject {
 
     typealias Completion = () -> Void
 
@@ -31,11 +31,11 @@ extension DiffableDataSourceProtocol {
 
 func makeDiffableDataSource<View: UIView & CellContainerViewProtocol>(with view: View) -> DiffableDataSourceProtocol {
     switch view {
-    case let table as UITableView:
-        return TableDiffableDataSource(tableView: table)
+    case let tableView as UITableView:
+        return TableDiffableDataSource(view: tableView)
 
-    case let collection as UICollectionView:
-        return CollectionDiffableDataSource(collectionView: collection)
+    case let collectionView as UICollectionView:
+        return CollectionDiffableDataSource(view: collectionView)
 
     default:
         fatalError("Unsupported View type: \(view)")
@@ -48,8 +48,8 @@ typealias CollectionDiffableDataSource = UICollectionViewDiffableDataSource<Stri
 
 extension CollectionDiffableDataSource: DiffableDataSourceProtocol {
 
-    convenience init(collectionView: UICollectionView) {
-        self.init(collectionView: collectionView) { _, _, _ -> UICollectionViewCell? in nil }
+    convenience init(view: UICollectionView) {
+        self.init(collectionView: view) { _, _, _ -> UICollectionViewCell? in nil }
         self.supplementaryViewProvider = { _, _, _ -> UICollectionReusableView? in nil }
     }
 }
@@ -60,8 +60,8 @@ typealias TableDiffableDataSource = UITableViewDiffableDataSource<String, String
 
 extension TableDiffableDataSource: DiffableDataSourceProtocol {
 
-    convenience init(tableView: UITableView) {
-        self.init(tableView: tableView) { _, _, _ -> UITableViewCell? in nil }
+    convenience init(view: UITableView) {
+        self.init(tableView: view) { _, _, _ -> UITableViewCell? in nil }
         self.defaultRowAnimation = .fade
     }
 }
