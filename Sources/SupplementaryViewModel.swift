@@ -21,7 +21,7 @@ public protocol SupplementaryViewModel: DiffableViewModel {
     var style: SupplementaryViewStyle { get }
 
     #warning("TODO: move this to Style.customView as a config prop/func. can't style title-based headers/footers")
-    func applyViewModelTo(view: SupplementaryViewType)
+    func apply(to view: SupplementaryViewType)
 }
 
 extension SupplementaryViewModel {

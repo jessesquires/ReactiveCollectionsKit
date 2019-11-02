@@ -29,7 +29,7 @@ struct PersonCollectionCellViewModel: CellViewModel {
         return collection.uniformCellSize()
     }
 
-    func applyViewModelTo(cell: Self.CellType) {
+    func apply(to cell: Self.CellType) {
         let cell = cell as! PersonCollectionCell
         cell.titleLabel.text = self.person.name
         cell.subtitleLabel.text = self.person.birthDateText

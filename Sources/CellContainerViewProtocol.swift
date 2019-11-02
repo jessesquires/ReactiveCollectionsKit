@@ -75,7 +75,7 @@ extension CellContainerViewProtocol {
     func dequeueAndConfigureCell(for model: ContainerViewModel, at indexPath: IndexPath) -> CellType {
         let cellModel = model[indexPath]
         let cell = self.dequeueReusableCellFor(identifier: cellModel.registration.reuseIdentifier, indexPath: indexPath)
-        cellModel.applyViewModelTo(cell: cell)
+        cellModel.apply(to: cell)
         return cell
     }
 

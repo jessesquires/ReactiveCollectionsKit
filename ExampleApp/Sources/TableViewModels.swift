@@ -26,7 +26,7 @@ struct PersonTableCellViewModel: CellViewModel {
         CGSize(width: 0, height: 60)
     }
 
-    func applyViewModelTo(cell: Self.CellType) {
+    func apply(to cell: Self.CellType) {
         let cell = cell as! PersonTableCell
         cell.accessoryType = .disclosureIndicator
         cell.textLabel?.text = self.person.name
@@ -38,12 +38,12 @@ struct PersonTableHeaderViewModel: SupplementaryViewModel {
     let kind = SupplementaryViewKind.header
     let style = SupplementaryViewStyle.title("Comrades")
 
-    func applyViewModelTo(view: Self.SupplementaryViewType) { }
+    func apply(to view: Self.SupplementaryViewType) { }
 }
 
 struct PersonTableFooterViewModel: SupplementaryViewModel {
     let kind = SupplementaryViewKind.footer
     let style = SupplementaryViewStyle.title("Note: list is incomplete")
 
-    func applyViewModelTo(view: Self.SupplementaryViewType) { }
+    func apply(to view: Self.SupplementaryViewType) { }
 }

@@ -23,18 +23,18 @@ public final class ContainerViewDriver<View: UIView & CellContainerViewProtocol>
 
     public let didUpdate: DidUpdate?
 
-    public var model: ContainerViewModel {
+    public var viewModel: ContainerViewModel {
         set {
             assertMainThread()
-            self._model = newValue
+            self._viewModel = newValue
             self._didUpdateModel(animated: self.animateUpdates, completion: self.didUpdate)
         }
         get {
-            self._model
+            self._viewModel
         }
     }
 
-    private var _model: ContainerViewModel {
+    private var _viewModel: ContainerViewModel {
         didSet {
             assertMainThread()
             self._didSetModel()
@@ -47,14 +47,14 @@ public final class ContainerViewDriver<View: UIView & CellContainerViewProtocol>
     // MARK: Init
 
     public init(view: View,
-                model: ContainerViewModel,
+                viewModel: ContainerViewModel,
                 animateUpdates: Bool = true,
                 didUpdate: DidUpdate? = nil) {
         self.view = view
-        self._model = model
+        self._viewModel = viewModel
         self.animateUpdates = animateUpdates
         self.didUpdate = didUpdate
-        self._dataSourceDelegate = ContainerViewDataSourceDelegate(model: model)
+        self._dataSourceDelegate = ContainerViewDataSourceDelegate(model: viewModel)
         self._differ = makeDiffableDataSource(with: view)
         self.view.dataSource = self._dataSourceDelegate as? View.DataSource
         self.view.delegate = self._dataSourceDelegate as? View.Delegate
@@ -71,11 +71,11 @@ public final class ContainerViewDriver<View: UIView & CellContainerViewProtocol>
     // MARK: Private
 
     private func _didSetModel() {
-        self._dataSourceDelegate.model = self._model
-        self.view.register(viewModel: self._model)
+        self._dataSourceDelegate.model = self._viewModel
+        self.view.register(viewModel: self._viewModel)
     }
 
     private func _didUpdateModel(animated: Bool, completion: DidUpdate?) {
-        self._differ.apply(self._model, animated: animated, completion: completion)
+        self._differ.apply(self._viewModel, animated: animated, completion: completion)
     }
 }

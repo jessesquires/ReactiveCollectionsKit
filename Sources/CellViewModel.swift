@@ -25,7 +25,7 @@ public protocol CellViewModel: DiffableViewModel {
     /// - Note: for table views the width is ignored
     func size<V: UIView & CellContainerViewProtocol>(in containerView: V) -> CGSize
 
-    func applyViewModelTo(cell: CellType)
+    func apply(to cell: CellType)
 }
 
 extension CellViewModel {

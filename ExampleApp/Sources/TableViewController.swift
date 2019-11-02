@@ -16,14 +16,13 @@ import UIKit
 
 final class TableViewController: UITableViewController {
 
-    var model: ContainerViewModel!
     var driver: ContainerViewDriver<UITableView>!
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        self.model = ViewModel.makeTableViewModel(controller: self)
-        self.driver = ContainerViewDriver(view: self.tableView, model: self.model)
+        let viewModel = ViewModel.makeTableViewModel(controller: self)
+        self.driver = ContainerViewDriver(view: self.tableView, viewModel: viewModel)
         self.driver.reloadData()
 
         self.addShuffle(action: #selector(shuffle))
@@ -31,6 +30,6 @@ final class TableViewController: UITableViewController {
 
     @objc
     func shuffle() {
-        self.driver.model = ViewModel.makeTableViewModel(controller: self, shuffled: true)
+        self.driver.viewModel = ViewModel.makeTableViewModel(controller: self, shuffled: true)
     }
 }
