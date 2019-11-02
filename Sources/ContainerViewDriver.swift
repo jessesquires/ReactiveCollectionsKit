@@ -19,8 +19,9 @@ public final class ContainerViewDriver<View: UIView & CellContainerViewProtocol>
 
     public var model: ContainerViewModel {
         set {
-            assert(Thread.isMainThread, "\(#function) must be used on main thread only")
-            self._updateModel(from: self._model, to: newValue)
+            assertMainThread()
+            self._model = newValue
+            self._didUpdateModel()
         }
         get {
             self._model
@@ -29,13 +30,13 @@ public final class ContainerViewDriver<View: UIView & CellContainerViewProtocol>
 
     private var _model: ContainerViewModel {
         didSet {
-            assert(Thread.isMainThread, "\(#function) must be used on main thread only")
+            assertMainThread()
             self._didSetModel()
         }
     }
 
     private let _dataSourceDelegate: ContainerViewDataSourceDelegate
-    private let _diffableDataSource: DiffableDataSourceProtocol
+    private let _differ: DiffableDataSourceProtocol
 
     // MARK: Init
 
@@ -43,13 +44,11 @@ public final class ContainerViewDriver<View: UIView & CellContainerViewProtocol>
         self.view = view
         self._model = model
         self._dataSourceDelegate = ContainerViewDataSourceDelegate(model: model)
-        self._diffableDataSource = makeDiffableDataSource(with: view)
+        self._differ = makeDiffableDataSource(with: view)
         self.view.dataSource = self._dataSourceDelegate as? View.DataSource
         self.view.delegate = self._dataSourceDelegate as? View.Delegate
         self._didSetModel()
-
-        let snapshot = DiffableSnapshot(containerViewModel: model)
-        self._diffableDataSource.apply(snapshot, animatingDifferences: false, completion: nil)
+        self._didUpdateModel(animatingDifferences: false)
     }
 
     // MARK: Public
@@ -65,9 +64,8 @@ public final class ContainerViewDriver<View: UIView & CellContainerViewProtocol>
         self.view.register(viewModel: self._model)
     }
 
-    private func _updateModel(from old: ContainerViewModel, to new: ContainerViewModel) {
-        self._model = new
-         let snapshot = DiffableSnapshot(containerViewModel: new)
-         self._diffableDataSource.apply(snapshot, animatingDifferences: true, completion: nil)
+    private func _didUpdateModel(animatingDifferences: Bool = true) {
+        let snapshot = DiffableSnapshot(model: self._model)
+        self._differ.apply(snapshot, animatingDifferences: animatingDifferences, completion: nil)
     }
 }

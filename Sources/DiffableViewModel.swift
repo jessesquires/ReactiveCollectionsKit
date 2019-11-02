@@ -13,11 +13,13 @@
 
 import Foundation
 
-/// Unique identifier for a `DiffableViewModel`.
+/// The unique identifier type for a `DiffableViewModel`.
 public typealias UniqueIdentifier = String
 
+/// Describes a view model that is diffable.
 public protocol DiffableViewModel {
 
+    /// An identifier that uniquely identifies this instance.
     var id: UniqueIdentifier { get }
 }
 

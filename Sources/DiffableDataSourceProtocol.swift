@@ -13,12 +13,6 @@
 
 import UIKit
 
-typealias DiffableSnapshot = NSDiffableDataSourceSnapshot<String, String>
-
-typealias CollectionDiffableDataSource = UICollectionViewDiffableDataSource<String, String>
-
-typealias TableDiffableDataSource = UITableViewDiffableDataSource<String, String>
-
 protocol DiffableDataSourceProtocol {
 
     typealias Completion = () -> Void
@@ -41,6 +35,10 @@ func makeDiffableDataSource<View: UIView & CellContainerViewProtocol>(with view:
     }
 }
 
+// MARK: CollectionDiffableDataSource
+
+typealias CollectionDiffableDataSource = UICollectionViewDiffableDataSource<String, String>
+
 extension CollectionDiffableDataSource: DiffableDataSourceProtocol {
 
     convenience init(collectionView: UICollectionView) {
@@ -48,6 +46,10 @@ extension CollectionDiffableDataSource: DiffableDataSourceProtocol {
         self.supplementaryViewProvider = { _, _, _ -> UICollectionReusableView? in nil }
     }
 }
+
+// MARK: TableDiffableDataSource
+
+typealias TableDiffableDataSource = UITableViewDiffableDataSource<String, String>
 
 extension TableDiffableDataSource: DiffableDataSourceProtocol {
 
@@ -57,15 +59,19 @@ extension TableDiffableDataSource: DiffableDataSourceProtocol {
     }
 }
 
+// MARK: DiffableSnapshot
+
+typealias DiffableSnapshot = NSDiffableDataSourceSnapshot<String, String>
+
 extension DiffableSnapshot {
 
-    init(containerViewModel: ContainerViewModel) {
+    init(model: ContainerViewModel) {
         self.init()
 
-        let allSectionIdentifiers = containerViewModel.sections.map { $0.id }
+        let allSectionIdentifiers = model.sections.map { $0.id }
         self.appendSections(allSectionIdentifiers)
 
-        containerViewModel.sections.forEach {
+        model.sections.forEach {
             let allCellIdentifiers = $0.cellViewModels.map { $0.id }
             self.appendItems(allCellIdentifiers, toSection: $0.id)
         }

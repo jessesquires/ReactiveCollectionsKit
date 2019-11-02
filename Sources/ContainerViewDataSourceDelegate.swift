@@ -29,6 +29,8 @@ final class ContainerViewDataSourceDelegate: NSObject {
     }
 }
 
+// MARK: UICollectionViewDataSource
+
 extension ContainerViewDataSourceDelegate: UICollectionViewDataSource {
     func numberOfSections(in collectionView: UICollectionView) -> Int {
         self.numberOfSections()
@@ -51,6 +53,8 @@ extension ContainerViewDataSourceDelegate: UICollectionViewDataSource {
     }
 }
 
+// MARK: UICollectionViewDelegateFlowLayout
+
 extension ContainerViewDataSourceDelegate: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         self.model[indexPath].didSelect()
@@ -66,6 +70,8 @@ extension ContainerViewDataSourceDelegate: UICollectionViewDelegateFlowLayout {
         self.model[indexPath].size(in: collectionView)
     }
 }
+
+// MARK: UITableViewDelegate
 
 extension ContainerViewDataSourceDelegate: UITableViewDataSource {
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -89,6 +95,8 @@ extension ContainerViewDataSourceDelegate: UITableViewDataSource {
     }
 }
 
+// MARK: UITableViewDelegate
+
 extension ContainerViewDataSourceDelegate: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         self.model[indexPath].didSelect()
@@ -105,12 +113,18 @@ extension ContainerViewDataSourceDelegate: UITableViewDelegate {
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         tableView.dequeueAndConfigureSupplementaryView(for: .header,
                                                        model: self.model,
-                                                       at: IndexPath(row: 0, section: section))
+                                                       at: IndexPath(section: section))
     }
 
     func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
         tableView.dequeueAndConfigureSupplementaryView(for: .footer,
                                                        model: self.model,
-                                                       at: IndexPath(row: 0, section: section))
+                                                       at: IndexPath(section: section))
+    }
+}
+
+extension IndexPath {
+    init(section: Int) {
+        self.init(item: 0, section: section)
     }
 }
