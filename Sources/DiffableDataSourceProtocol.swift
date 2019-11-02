@@ -22,6 +22,13 @@ protocol DiffableDataSourceProtocol {
     func snapshot() -> DiffableSnapshot
 }
 
+extension DiffableDataSourceProtocol {
+    func apply(_ viewModel: ContainerViewModel, animated: Bool, completion: Completion?) {
+        let snapshot = DiffableSnapshot(viewModel: viewModel)
+        self.apply(snapshot, animatingDifferences: animated, completion: completion)
+    }
+}
+
 func makeDiffableDataSource<View: UIView & CellContainerViewProtocol>(with view: View) -> DiffableDataSourceProtocol {
     switch view {
     case let table as UITableView:
@@ -65,13 +72,13 @@ typealias DiffableSnapshot = NSDiffableDataSourceSnapshot<String, String>
 
 extension DiffableSnapshot {
 
-    init(model: ContainerViewModel) {
+    init(viewModel: ContainerViewModel) {
         self.init()
 
-        let allSectionIdentifiers = model.sections.map { $0.id }
+        let allSectionIdentifiers = viewModel.sections.map { $0.id }
         self.appendSections(allSectionIdentifiers)
 
-        model.sections.forEach {
+        viewModel.sections.forEach {
             let allCellIdentifiers = $0.cellViewModels.map { $0.id }
             self.appendItems(allCellIdentifiers, toSection: $0.id)
         }

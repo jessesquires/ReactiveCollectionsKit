@@ -17,11 +17,13 @@ public final class ContainerViewDriver<View: UIView & CellContainerViewProtocol>
 
     public let view: View
 
+    public var animateUpdates: Bool
+
     public var model: ContainerViewModel {
         set {
             assertMainThread()
             self._model = newValue
-            self._didUpdateModel()
+            self._didUpdateModel(animated: self.animateUpdates)
         }
         get {
             self._model
@@ -40,15 +42,16 @@ public final class ContainerViewDriver<View: UIView & CellContainerViewProtocol>
 
     // MARK: Init
 
-    public init(view: View, model: ContainerViewModel) {
+    public init(view: View, model: ContainerViewModel, animateUpdates: Bool = true) {
         self.view = view
         self._model = model
+        self.animateUpdates = animateUpdates
         self._dataSourceDelegate = ContainerViewDataSourceDelegate(model: model)
         self._differ = makeDiffableDataSource(with: view)
         self.view.dataSource = self._dataSourceDelegate as? View.DataSource
         self.view.delegate = self._dataSourceDelegate as? View.Delegate
         self._didSetModel()
-        self._didUpdateModel(animatingDifferences: false)
+        self._didUpdateModel(animated: false)
     }
 
     // MARK: Public
@@ -64,8 +67,7 @@ public final class ContainerViewDriver<View: UIView & CellContainerViewProtocol>
         self.view.register(viewModel: self._model)
     }
 
-    private func _didUpdateModel(animatingDifferences: Bool = true) {
-        let snapshot = DiffableSnapshot(model: self._model)
-        self._differ.apply(snapshot, animatingDifferences: animatingDifferences, completion: nil)
+    private func _didUpdateModel(animated: Bool) {
+        self._differ.apply(self._model, animated: animated, completion: nil)
     }
 }
