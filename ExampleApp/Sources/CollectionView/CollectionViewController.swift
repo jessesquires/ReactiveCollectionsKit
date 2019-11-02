@@ -20,11 +20,9 @@ final class CollectionViewController: UICollectionViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.collectionView.backgroundColor = .systemGray6
 
         let viewModel = ViewModel.makeCollectionViewModel(controller: self)
         self.driver = ContainerViewDriver(view: self.collectionView, viewModel: viewModel)
-        self.driver.reloadData()
 
         self.addShuffle(action: #selector(shuffle))
     }
