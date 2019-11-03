@@ -32,7 +32,7 @@ jobs:
           ruby-version: 2.6.x
 
       - name: bundle install
-        run: bundle update --bundler && bundle install
+        run: gem install bundler && bundle install
 
       - name: xcodebuild version
         run: xcodebuild -version -sdk
