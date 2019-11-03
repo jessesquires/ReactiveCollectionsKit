@@ -21,9 +21,9 @@ jobs:
     steps:
       - name: bundle install
         run: |
-        gem update --system
-        gem install bundler
-        bundle install
+          gem update --system
+          gem install bundler
+          bundle install
 
   iOS:
     name: iOS Test
