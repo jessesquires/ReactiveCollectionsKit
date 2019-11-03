@@ -1,0 +1,35 @@
+name: CI
+
+on:
+  push:
+    branches:
+      - master
+      - dev
+  pull_request:
+    branches:
+      - master
+      - dev
+
+jobs:
+  env:
+    PROJECT: ReactiveCollectionsKit.xcodeproj
+    SCHEME: ReactiveCollectionsKit
+    IOS_SDK: iphonesimulator13.2
+
+  iOS:
+    name: Test iOS
+    runs-on: macOS-latest
+    env:
+      DEVELOPER_DIR: /Applications/Xcode_11.2.app/Contents/Developer
+    strategy:
+      matrix:
+        destination: ["OS=13.2,name=iPhone 11"]
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v1
+
+      - name: iOS - ${{ matrix.destination }}
+        run: |
+          set -o pipefail
+          xcodebuild -version -sdk
+          xcodebuild clean test -project "$PROJECT" -scheme "$SCHEME" -sdk "$IOS_SDK" -destination "${{ matrix.destination }}" -enableCodeCoverage YES -configuration Debug ONLY_ACTIVE_ARCH=NO CODE_SIGNING_REQUIRED=NO | bundle exec xcpretty -c;
