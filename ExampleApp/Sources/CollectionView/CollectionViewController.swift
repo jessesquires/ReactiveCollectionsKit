@@ -22,7 +22,10 @@ final class CollectionViewController: UICollectionViewController {
         super.viewDidLoad()
 
         let viewModel = ViewModel.makeCollectionViewModel(controller: self)
-        self.driver = ContainerViewDriver(view: self.collectionView, viewModel: viewModel)
+        self.driver = ContainerViewDriver(view: self.collectionView,
+                                          viewModel: viewModel,
+                                          diffingQueue: .global(qos: .userInteractive),
+                                          didUpdate: { print("collection finished update!") })
 
         self.addShuffle(action: #selector(shuffle))
     }

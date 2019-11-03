@@ -21,13 +21,11 @@ public final class ContainerViewDriver<View: UIView & CellContainerViewProtocol>
 
     public var animateUpdates: Bool
 
-    public let didUpdate: DidUpdate?
-
     public var viewModel: ContainerViewModel {
         set {
             assertMainThread()
             self._viewModel = newValue
-            self._didUpdateModel(animated: self.animateUpdates, completion: self.didUpdate)
+            self._didUpdateModel(animated: self.animateUpdates, completion: self._didUpdate)
         }
         get {
             self._viewModel
@@ -43,17 +41,21 @@ public final class ContainerViewDriver<View: UIView & CellContainerViewProtocol>
 
     private let _dataSourceDelegate: ContainerViewDataSourceDelegate
     private let _differ: DiffableDataSourceProtocol
+    private let _diffingQueue: DispatchQueue?
+    private let _didUpdate: DidUpdate?
 
     // MARK: Init
 
     public init(view: View,
                 viewModel: ContainerViewModel,
                 animateUpdates: Bool = true,
+                diffingQueue: DispatchQueue? = nil,
                 didUpdate: DidUpdate? = nil) {
         self.view = view
         self._viewModel = viewModel
         self.animateUpdates = animateUpdates
-        self.didUpdate = didUpdate
+        self._diffingQueue = diffingQueue
+        self._didUpdate = didUpdate
         self._dataSourceDelegate = ContainerViewDataSourceDelegate(model: viewModel)
         self._differ = makeDiffableDataSource(with: view)
         self.view.dataSource = self._dataSourceDelegate as? View.DataSource
@@ -76,6 +78,14 @@ public final class ContainerViewDriver<View: UIView & CellContainerViewProtocol>
     }
 
     private func _didUpdateModel(animated: Bool, completion: DidUpdate?) {
-        self._differ.apply(self._viewModel, animated: animated, completion: completion)
+        let apply = {
+            self._differ.apply(self._viewModel, animated: animated, completion: completion)
+        }
+
+        if let queue = self._diffingQueue {
+            queue.async(execute: apply)
+        } else {
+            apply()
+        }
     }
 }
