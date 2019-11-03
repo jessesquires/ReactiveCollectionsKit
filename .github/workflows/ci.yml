@@ -10,6 +10,7 @@ on:
       - master
       - dev
 env:
+  DEVELOPER_DIR: /Applications/Xcode_11.2.app/Contents/Developer
   PROJECT: ReactiveCollectionsKit.xcodeproj
   SCHEME: ReactiveCollectionsKit
   IOS_SDK: iphonesimulator13.2
