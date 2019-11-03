@@ -16,20 +16,29 @@ env:
 
 jobs:
 
-  iOS:
-    name: Test iOS
+  bundler:
     runs-on: macOS-latest
-    env:
-      DEVELOPER_DIR: /Applications/Xcode_11.2.app/Contents/Developer
+    steps:
+      - name: bundle install
+        run: |
+        gem update --system
+        gem install bundler
+        bundle install
+
+  iOS:
+    name: iOS Test
+    runs-on: macOS-latest
     strategy:
       matrix:
         destination: ["OS=13.2,name=iPhone 11"]
     steps:
-      - name: Checkout
+      - name: git checkout
         uses: actions/checkout@v1
+
+      - name: xcodebuild version
+        run: xcodebuild -version -sdk
 
       - name: iOS - ${{ matrix.destination }}
         run: |
           set -o pipefail
-          xcodebuild -version -sdk
           xcodebuild clean test -project "$PROJECT" -scheme "$SCHEME" -sdk "$IOS_SDK" -destination "${{ matrix.destination }}" -enableCodeCoverage YES -configuration Debug ONLY_ACTIVE_ARCH=NO CODE_SIGNING_REQUIRED=NO | bundle exec xcpretty -c;
