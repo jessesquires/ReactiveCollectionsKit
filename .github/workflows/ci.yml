@@ -29,12 +29,10 @@ jobs:
       - name: setup ruby
         uses: actions/setup-ruby@v1
         with:
-          ruby-version: 2.6.4
+          ruby-version: 2.6.x
 
       - name: bundle install
-        run: |
-          gem install bundler
-          bundle install
+        run: bundle install
 
       - name: xcodebuild version
         run: xcodebuild -version -sdk
