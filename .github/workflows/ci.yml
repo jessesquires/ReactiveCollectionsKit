@@ -16,15 +16,6 @@ env:
 
 jobs:
 
-  bundler:
-    runs-on: macOS-latest
-    steps:
-      - name: bundle install
-        run: |
-          gem update --system
-          gem install bundler
-          bundle install
-
   iOS:
     name: iOS Test
     runs-on: macOS-latest
@@ -35,6 +26,16 @@ jobs:
       - name: git checkout
         uses: actions/checkout@v1
 
+      - name: setup ruby
+        uses: actions/setup-ruby@v1
+        with:
+          ruby-version: 2.6.x
+
+      - name: bundle install
+        run: |
+          gem install bundler
+          bundle install
+
       - name: xcodebuild version
         run: xcodebuild -version -sdk
 
@@ -42,3 +43,4 @@ jobs:
         run: |
           set -o pipefail
           xcodebuild clean test -project "$PROJECT" -scheme "$SCHEME" -sdk "$IOS_SDK" -destination "${{ matrix.destination }}" -enableCodeCoverage YES -configuration Debug ONLY_ACTIVE_ARCH=NO CODE_SIGNING_REQUIRED=NO | bundle exec xcpretty -c;
+
