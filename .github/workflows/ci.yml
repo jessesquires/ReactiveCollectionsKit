@@ -9,12 +9,12 @@ on:
     branches:
       - master
       - dev
+env:
+  PROJECT: ReactiveCollectionsKit.xcodeproj
+  SCHEME: ReactiveCollectionsKit
+  IOS_SDK: iphonesimulator13.2
 
 jobs:
-  env:
-    PROJECT: ReactiveCollectionsKit.xcodeproj
-    SCHEME: ReactiveCollectionsKit
-    IOS_SDK: iphonesimulator13.2
 
   iOS:
     name: Test iOS
