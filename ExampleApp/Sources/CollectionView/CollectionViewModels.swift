@@ -36,3 +36,24 @@ struct PersonCollectionCellViewModel: CellViewModel {
         cell.flagLabel.text = self.person.nationality
     }
 }
+
+struct ColorCollectionCellViewModel: CellViewModel {
+    let color: ColorModel
+
+    var id: UniqueIdentifier { "\(self.color.red)_\(self.color.green)_\(self.color.blue)" }
+
+    let registration = ReusableViewRegistration(classType: UICollectionViewCell.self)
+
+    let didSelect: CellActions.DidSelect = { }
+
+    let shouldHighlight = false
+
+    func size<V: UIView & CellContainerViewProtocol>(in containerView: V) -> CGSize {
+        return CGSize(width: 100, height: 100)
+    }
+
+    func apply(to cell: Self.CellType) {
+        let cell = cell as! UICollectionViewCell
+        cell.backgroundColor = self.color.uiColor
+    }
+}

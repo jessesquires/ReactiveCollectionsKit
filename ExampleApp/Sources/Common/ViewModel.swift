@@ -16,8 +16,9 @@ import UIKit
 
 // swiftlint:disable trailing_closure
 
-enum ViewModel {
+enum ViewModel { }
 
+extension ViewModel {
     static func makeCollectionViewModel(controller: UIViewController, shuffled: Bool = false) -> ContainerViewModel {
         let people = Person.makePeople()
 
@@ -32,12 +33,19 @@ enum ViewModel {
             peopleCellViewModels.shuffle()
         }
 
-        let section = SectionViewModel(id: "section_0",
-                                       cells: peopleCellViewModels)
+        let peopleSection = SectionViewModel(id: "section_0_people",
+                                             cells: peopleCellViewModels)
 
-        return ContainerViewModel(sections: [section])
+        let colors = ColorModel.makeColors()
+        let colorCellViewModels = colors.map { ColorCollectionCellViewModel(color: $0) }
+        let colorSection = SectionViewModel(id: "section_1_colors",
+                                            cells: colorCellViewModels)
+
+        return ContainerViewModel(sections: [peopleSection, colorSection])
     }
+}
 
+extension ViewModel {
     static func makeTableViewModel(controller: UIViewController, shuffled: Bool = false) -> ContainerViewModel {
         let people = Person.makePeople()
 
@@ -52,15 +60,18 @@ enum ViewModel {
             peopleCellViewModels.shuffle()
         }
 
-        let header = PersonTableHeaderViewModel()
-        let footer = PersonTableFooterViewModel()
+        let peopleSection = SectionViewModel(id: "section_0_people",
+                                             cells: peopleCellViewModels,
+                                             header: PersonTableHeaderViewModel(),
+                                             footer: PersonTableFooterViewModel())
 
-        let section = SectionViewModel(id: "section_0",
-                                       cells: peopleCellViewModels,
-                                       header: header,
-                                       footer: footer)
+        let colors = ColorModel.makeColors()
+        let colorCellViewModels = colors.map { ColorTableCellViewModel(color: $0) }
+        let colorSection = SectionViewModel(id: "section_1_colors",
+                                            cells: colorCellViewModels,
+                                            header: ColorTableHeaderViewModel())
 
-        return ContainerViewModel(sections: [section])
+        return ContainerViewModel(sections: [peopleSection, colorSection])
     }
 }
 

@@ -47,3 +47,31 @@ struct PersonTableFooterViewModel: SupplementaryViewModel {
 
     func apply(to view: Self.SupplementaryViewType) { }
 }
+
+struct ColorTableCellViewModel: CellViewModel {
+    let color: ColorModel
+
+    var id: UniqueIdentifier { "\(self.color.red)_\(self.color.green)_\(self.color.blue)" }
+
+    let registration = ReusableViewRegistration(classType: UITableViewCell.self)
+
+    let didSelect: CellActions.DidSelect = { }
+
+    let shouldHighlight = false
+
+    func size<V: UIView & CellContainerViewProtocol>(in containerView: V) -> CGSize {
+        return CGSize(width: 0, height: 50)
+    }
+
+    func apply(to cell: Self.CellType) {
+        let cell = cell as! UITableViewCell
+        cell.backgroundColor = self.color.uiColor
+    }
+}
+
+struct ColorTableHeaderViewModel: SupplementaryViewModel {
+    let kind = SupplementaryViewKind.header
+    let style = SupplementaryViewStyle.title("Random Colors")
+
+    func apply(to view: Self.SupplementaryViewType) { }
+}
