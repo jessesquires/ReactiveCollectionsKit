@@ -19,25 +19,19 @@ import UIKit
 enum ViewModel { }
 
 extension ViewModel {
-    static func makeCollectionViewModel(controller: UIViewController, shuffled: Bool = false) -> ContainerViewModel {
-        let people = Person.makePeople()
+    static func makeCollectionViewModel(model: Model, controller: UIViewController) -> ContainerViewModel {
 
-        var peopleCellViewModels = people.map { person in
+        let peopleCellViewModels = model.people.map { person in
             PersonCollectionCellViewModel(person: person, didSelect: {
                 let personVC = PersonViewController(person: person)
                 controller.navigationController?.pushViewController(personVC, animated: true)
             })
         }
 
-        if shuffled {
-            peopleCellViewModels.shuffle()
-        }
-
         let peopleSection = SectionViewModel(id: "section_0_people",
                                              cells: peopleCellViewModels)
 
-        let colors = ColorModel.makeColors()
-        let colorCellViewModels = colors.map { ColorCollectionCellViewModel(color: $0) }
+        let colorCellViewModels = model.colors.map { ColorCollectionCellViewModel(color: $0) }
         let colorSection = SectionViewModel(id: "section_1_colors",
                                             cells: colorCellViewModels)
 
@@ -46,18 +40,13 @@ extension ViewModel {
 }
 
 extension ViewModel {
-    static func makeTableViewModel(controller: UIViewController, shuffled: Bool = false) -> ContainerViewModel {
-        let people = Person.makePeople()
+    static func makeTableViewModel(model: Model, controller: UIViewController) -> ContainerViewModel {
 
-        var peopleCellViewModels = people.map { person in
+        let peopleCellViewModels = model.people.map { person in
             PersonTableCellViewModel(person: person, didSelect: {
                 let personVC = PersonViewController(person: person)
                 controller.navigationController?.pushViewController(personVC, animated: true)
             })
-        }
-
-        if shuffled {
-            peopleCellViewModels.shuffle()
         }
 
         let peopleSection = SectionViewModel(id: "section_0_people",
@@ -65,8 +54,7 @@ extension ViewModel {
                                              header: PersonTableHeaderViewModel(),
                                              footer: PersonTableFooterViewModel())
 
-        let colors = ColorModel.makeColors()
-        let colorCellViewModels = colors.map { ColorTableCellViewModel(color: $0) }
+        let colorCellViewModels = model.colors.map { ColorTableCellViewModel(color: $0) }
         let colorSection = SectionViewModel(id: "section_1_colors",
                                             cells: colorCellViewModels,
                                             header: ColorTableHeaderViewModel())

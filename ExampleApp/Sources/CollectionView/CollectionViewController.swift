@@ -18,10 +18,12 @@ final class CollectionViewController: UICollectionViewController {
 
     var driver: ContainerViewDriver<UICollectionView>!
 
+    var model = Model()
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        let viewModel = ViewModel.makeCollectionViewModel(controller: self)
+        let viewModel = ViewModel.makeCollectionViewModel(model: self.model, controller: self)
         self.driver = ContainerViewDriver(view: self.collectionView,
                                           viewModel: viewModel,
                                           diffingQueue: .global(qos: .userInteractive),
@@ -32,7 +34,8 @@ final class CollectionViewController: UICollectionViewController {
 
     @objc
     func shuffle() {
-        self.driver.viewModel = ViewModel.makeCollectionViewModel(controller: self, shuffled: true)
+        self.model = Model(shuffle: true)
+        self.driver.viewModel = ViewModel.makeCollectionViewModel(model: self.model, controller: self)
     }
 }
 
