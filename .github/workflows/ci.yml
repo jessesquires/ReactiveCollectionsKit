@@ -37,6 +37,10 @@ jobs:
       #     gem install bundler
       #     bundle install --without=documentation --jobs 4 --retry 3
 
+      - name: Switch to Xcode 11
+        run: sudo xcode-select --switch /Applications/Xcode_11.1.app
+      - name: Generate xcodeproj
+        run: swift package generate-xcodeproj
       - name: xcodebuild version
         run: xcodebuild -version -sdk
 
