@@ -39,5 +39,7 @@ jobs:
 
       - name: Generate xcodeproj SwiftPM
         run: swift package generate-xcodeproj
-      - name: Test Swift Package
-        run: swift test
+      - name: iOS - ${{ matrix.destination }}
+        run: |
+          set -o pipefail
+          xcodebuild clean test -project "$PROJECT" -scheme "$SCHEME" -sdk "$IOS_SDK" -destination "${{ matrix.destination }}" -enableCodeCoverage YES -configuration Debug ONLY_ACTIVE_ARCH=NO CODE_SIGNING_REQUIRED=NO | xcpretty -c;
