@@ -37,14 +37,7 @@ jobs:
       #     gem install bundler
       #     bundle install --without=documentation --jobs 4 --retry 3
 
-      - name: Switch to Xcode 11
-        run: sudo xcode-select --switch /Applications/Xcode_11.1.app
-      - name: Generate xcodeproj
-        run: swift package generate-xcodeproj
-      - name: xcodebuild version
-        run: xcodebuild -version -sdk
-
-      - name: iOS - ${{ matrix.destination }}
-        run: |
-          set -o pipefail
-          xcodebuild clean test -project "$PROJECT" -scheme "$SCHEME" -sdk "$IOS_SDK" -destination "${{ matrix.destination }}" -enableCodeCoverage YES -configuration Debug ONLY_ACTIVE_ARCH=NO CODE_SIGNING_REQUIRED=NO | xcpretty -c;
+      - name: Select Xcode Version
+        run: sudo xcode-select --switch ${{DEVELOPER_DIR}}
+      - name: Test SwiftPM
+        run: swift package generate-xcodeproj && swift test
