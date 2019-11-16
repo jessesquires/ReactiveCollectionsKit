@@ -12,7 +12,8 @@
 //
 
 import Foundation
+import UIKit
 
 public enum CellActions {
-    public typealias DidSelect = () -> Void
+    public typealias DidSelect = (UIViewController) -> Void
 }

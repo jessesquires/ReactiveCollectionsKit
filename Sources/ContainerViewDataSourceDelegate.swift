@@ -14,10 +14,12 @@
 import UIKit
 
 final class ContainerViewDataSourceDelegate: NSObject {
+    weak var containerController: UIViewController?
     var model: ContainerViewModel
 
-    init(model: ContainerViewModel) {
+    init(model: ContainerViewModel, containerController: UIViewController?) {
         self.model = model
+        self.containerController = containerController
     }
 
     func numberOfSections() -> Int {
@@ -57,7 +59,8 @@ extension ContainerViewDataSourceDelegate: UICollectionViewDataSource {
 
 extension ContainerViewDataSourceDelegate: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        self.model[indexPath].didSelect()
+        guard let controller = self.containerController else { return }
+        self.model[indexPath].didSelect(controller)
     }
 
     func collectionView(_ collectionView: UICollectionView, shouldHighlightItemAt indexPath: IndexPath) -> Bool {
@@ -99,7 +102,8 @@ extension ContainerViewDataSourceDelegate: UITableViewDataSource {
 
 extension ContainerViewDataSourceDelegate: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        self.model[indexPath].didSelect()
+        guard let controller = self.containerController else { return }
+        self.model[indexPath].didSelect(controller)
     }
 
     func tableView(_ tableView: UITableView, shouldHighlightRowAt indexPath: IndexPath) -> Bool {

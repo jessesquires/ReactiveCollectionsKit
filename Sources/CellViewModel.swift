@@ -30,4 +30,5 @@ public protocol CellViewModel: DiffableViewModel {
 
 extension CellViewModel {
     public var shouldHighlight: Bool { true }
+    public var didSelect: CellActions.DidSelect { return { _ in } }
 }

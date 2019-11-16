@@ -23,9 +23,10 @@ final class CollectionViewController: UICollectionViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        let viewModel = ViewModel.makeCollectionViewModel(model: self.model, controller: self)
+        let viewModel = ViewModel.makeCollectionViewModel(model: self.model)
         self.driver = ContainerViewDriver(view: self.collectionView,
                                           viewModel: viewModel,
+                                          containerController: self,
                                           diffingQueue: .global(qos: .userInteractive),
                                           didUpdate: { print("collection finished update!") })
 
@@ -35,7 +36,7 @@ final class CollectionViewController: UICollectionViewController {
     @objc
     func shuffle() {
         self.model = Model(shuffle: true)
-        self.driver.viewModel = ViewModel.makeCollectionViewModel(model: self.model, controller: self)
+        self.driver.viewModel = ViewModel.makeCollectionViewModel(model: self.model)
     }
 }
 

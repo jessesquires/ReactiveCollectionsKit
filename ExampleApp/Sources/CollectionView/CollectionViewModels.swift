@@ -44,8 +44,6 @@ struct ColorCollectionCellViewModel: CellViewModel {
 
     let registration = ReusableViewRegistration(classType: UICollectionViewCell.self)
 
-    let didSelect: CellActions.DidSelect = { }
-
     let shouldHighlight = false
 
     func size<V: UIView & CellContainerViewProtocol>(in containerView: V) -> CGSize {
