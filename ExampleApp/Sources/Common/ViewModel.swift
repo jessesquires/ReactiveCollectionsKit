@@ -14,7 +14,7 @@
 import ReactiveCollectionsKit
 import UIKit
 
-// swiftlint:disable trailing_closure
+// swiftlint:disable trailing_closure unused_closure_parameter
 
 enum ViewModel { }
 
@@ -22,7 +22,7 @@ extension ViewModel {
     static func makeCollectionViewModel(model: Model) -> ContainerViewModel {
 
         let peopleCellViewModels = model.people.map { person in
-            PersonCollectionCellViewModel(person: person, didSelect: { controller in
+            PersonCollectionCellViewModel(person: person, didSelect: { indexPath, container, controller in
                 let personVC = PersonViewController(person: person)
                 controller.navigationController?.pushViewController(personVC, animated: true)
             })
@@ -43,7 +43,7 @@ extension ViewModel {
     static func makeTableViewModel(model: Model) -> ContainerViewModel {
 
         let peopleCellViewModels = model.people.map { person in
-            PersonTableCellViewModel(person: person, didSelect: { controller in
+            PersonTableCellViewModel(person: person, didSelect: { indexPath, container, controller in
                 let personVC = PersonViewController(person: person)
                 controller.navigationController?.pushViewController(personVC, animated: true)
             })
@@ -63,4 +63,4 @@ extension ViewModel {
     }
 }
 
-// swiftlint:enable trailing_closure
+// swiftlint:enable trailing_closure unused_closure_parameter

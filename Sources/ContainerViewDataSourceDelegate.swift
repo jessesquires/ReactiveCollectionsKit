@@ -64,7 +64,7 @@ extension _ContainerViewDataSourceDelegate: UICollectionViewDataSource {
 
 extension _ContainerViewDataSourceDelegate: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        self.viewModel[indexPath].didSelect(controller)
+        self.viewModel[indexPath].didSelect(indexPath, collectionView, self.controller)
     }
 
     func collectionView(_ collectionView: UICollectionView, shouldHighlightItemAt indexPath: IndexPath) -> Bool {
@@ -106,7 +106,7 @@ extension _ContainerViewDataSourceDelegate: UITableViewDataSource {
 
 extension _ContainerViewDataSourceDelegate: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        self.viewModel[indexPath].didSelect(controller)
+        self.viewModel[indexPath].didSelect(indexPath, tableView, self.controller)
     }
 
     func tableView(_ tableView: UITableView, shouldHighlightRowAt indexPath: IndexPath) -> Bool {
