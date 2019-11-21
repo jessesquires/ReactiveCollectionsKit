@@ -32,7 +32,7 @@ public enum SupplementaryViewKind: Equatable {
         }
     }
 
-    var collectionElementKind: String {
+    var _collectionElementKind: String {
         switch self {
         case .header: return UICollectionView.elementKindSectionHeader
         case .footer: return UICollectionView.elementKindSectionFooter

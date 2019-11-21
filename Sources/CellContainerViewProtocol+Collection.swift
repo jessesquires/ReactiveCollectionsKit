@@ -13,6 +13,7 @@
 
 import UIKit
 
+/// Conformance to `CellContainerViewProtocol`.
 extension UICollectionView: CellContainerViewProtocol {
 
     /// :nodoc:
@@ -46,7 +47,7 @@ extension UICollectionView: CellContainerViewProtocol {
     public func dequeueReusableSupplementaryViewFor(kind: SupplementaryViewKind,
                                                     identifier: String,
                                                     indexPath: IndexPath) -> SupplementaryViewType? {
-        self.dequeueReusableSupplementaryView(ofKind: kind.collectionElementKind,
+        self.dequeueReusableSupplementaryView(ofKind: kind._collectionElementKind,
                                               withReuseIdentifier: identifier,
                                               for: indexPath)
     }
@@ -56,7 +57,7 @@ extension UICollectionView: CellContainerViewProtocol {
                                                kind: SupplementaryViewKind,
                                                identifier: String) {
         self.register(supplementaryClass,
-                      forSupplementaryViewOfKind: kind.collectionElementKind,
+                      forSupplementaryViewOfKind: kind._collectionElementKind,
                       withReuseIdentifier: identifier)
     }
 
@@ -65,7 +66,7 @@ extension UICollectionView: CellContainerViewProtocol {
                                              kind: SupplementaryViewKind,
                                              identifier: String) {
         self.register(supplementaryNib,
-                      forSupplementaryViewOfKind: kind.collectionElementKind,
+                      forSupplementaryViewOfKind: kind._collectionElementKind,
                       withReuseIdentifier: identifier)
     }
 }

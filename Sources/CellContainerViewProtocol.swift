@@ -29,16 +29,18 @@ public protocol CellContainerViewProtocol: AnyObject {
     /// The type of supplementary view for this container view.
     associatedtype SupplementaryViewType: UIView & ReusableViewProtocol
 
-    /// The data source for this container view.
+    /// The type of data source for this container view.
     associatedtype DataSource
 
-    /// The delegate for this container view.
+    /// The type of delegate for this container view.
     associatedtype Delegate
 
     // MARK: Properties
 
+    /// The data source for this container view.
     var dataSource: DataSource? { get set }
 
+    /// The delegate for this container view.
     var delegate: Delegate? { get set }
 
     // MARK: Cells
@@ -72,16 +74,16 @@ public protocol CellContainerViewProtocol: AnyObject {
 
 extension CellContainerViewProtocol {
 
-    func dequeueAndConfigureCell(for model: ContainerViewModel, at indexPath: IndexPath) -> CellType {
+    func _dequeueAndConfigureCell(for model: ContainerViewModel, at indexPath: IndexPath) -> CellType {
         let cellModel = model[indexPath]
         let cell = self.dequeueReusableCellFor(identifier: cellModel.registration.reuseIdentifier, indexPath: indexPath)
         cellModel.apply(to: cell)
         return cell
     }
 
-    func dequeueAndConfigureSupplementaryView(for kind: SupplementaryViewKind,
-                                              model: ContainerViewModel,
-                                              at indexPath: IndexPath) -> SupplementaryViewType? {
+    func _dequeueAndConfigureSupplementaryView(for kind: SupplementaryViewKind,
+                                               model: ContainerViewModel,
+                                               at indexPath: IndexPath) -> SupplementaryViewType? {
         var viewModel: SupplementaryViewModel?
         switch kind {
         case .header:
@@ -105,27 +107,27 @@ extension CellContainerViewProtocol {
         }
     }
 
-    func register(viewModel: ContainerViewModel) {
+    func _register(viewModel: ContainerViewModel) {
         viewModel.sections.forEach {
-            self.register(sectionViewModel: $0)
+            self._register(sectionViewModel: $0)
         }
     }
 
-    func register(sectionViewModel: SectionViewModel) {
+    func _register(sectionViewModel: SectionViewModel) {
         sectionViewModel.cellViewModels.forEach {
-            self.register(cellViewModel: $0)
+            self._register(cellViewModel: $0)
         }
 
         if let header = sectionViewModel.headerViewModel {
-            self.register(supplementaryViewModel: header)
+            self._register(supplementaryViewModel: header)
         }
 
         if let footer = sectionViewModel.footerViewModel {
-            self.register(supplementaryViewModel: footer)
+            self._register(supplementaryViewModel: footer)
         }
     }
 
-    func register(cellViewModel: CellViewModel) {
+    func _register(cellViewModel: CellViewModel) {
         let registration = cellViewModel.registration
         let identifier = registration.reuseIdentifier
         let method = registration.method
@@ -135,11 +137,11 @@ extension CellContainerViewProtocol {
             self.registerCellClass(cellClass, identifier: identifier)
 
         case .fromNib:
-            self.registerCellNib(method.nib, identifier: identifier)
+            self.registerCellNib(method._nib, identifier: identifier)
         }
     }
 
-    func register(supplementaryViewModel: SupplementaryViewModel) {
+    func _register(supplementaryViewModel: SupplementaryViewModel) {
         let style = supplementaryViewModel.style
         let kind = supplementaryViewModel.kind
 
@@ -154,7 +156,7 @@ extension CellContainerViewProtocol {
                 self.registerSupplementaryViewClass(viewClass, kind: kind, identifier: identifier)
 
             case .fromNib:
-                self.registerSupplementaryViewNib(method.nib, kind: kind, identifier: identifier)
+                self.registerSupplementaryViewNib(method._nib, kind: kind, identifier: identifier)
             }
 
         case .title:

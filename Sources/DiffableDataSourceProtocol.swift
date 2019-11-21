@@ -13,40 +13,40 @@
 
 import UIKit
 
-protocol DiffableDataSourceProtocol: AnyObject {
+protocol _DiffableDataSourceProtocol: AnyObject {
 
     typealias Completion = () -> Void
 
-    func apply(_ snapshot: DiffableSnapshot, animatingDifferences: Bool, completion: Completion?)
+    func apply(_ snapshot: _DiffableSnapshot, animatingDifferences: Bool, completion: Completion?)
 
-    func snapshot() -> DiffableSnapshot
+    func snapshot() -> _DiffableSnapshot
 }
 
-extension DiffableDataSourceProtocol {
+extension _DiffableDataSourceProtocol {
     func apply(_ viewModel: ContainerViewModel, animated: Bool, completion: Completion?) {
-        let snapshot = DiffableSnapshot(viewModel: viewModel)
+        let snapshot = _DiffableSnapshot(viewModel: viewModel)
         self.apply(snapshot, animatingDifferences: animated, completion: completion)
     }
 }
 
-func makeDiffableDataSource<View: UIView & CellContainerViewProtocol>(with view: View) -> DiffableDataSourceProtocol {
+func _makeDiffableDataSource<View: UIView & CellContainerViewProtocol>(with view: View) -> _DiffableDataSourceProtocol {
     switch view {
     case let tableView as UITableView:
-        return TableDiffableDataSource(view: tableView)
+        return _TableDiffableDataSource(view: tableView)
 
     case let collectionView as UICollectionView:
-        return CollectionDiffableDataSource(view: collectionView)
+        return _CollectionDiffableDataSource(view: collectionView)
 
     default:
         fatalError("Unsupported View type: \(view)")
     }
 }
 
-// MARK: CollectionDiffableDataSource
+// MARK: _CollectionDiffableDataSource
 
-typealias CollectionDiffableDataSource = UICollectionViewDiffableDataSource<String, String>
+typealias _CollectionDiffableDataSource = UICollectionViewDiffableDataSource<String, String>
 
-extension CollectionDiffableDataSource: DiffableDataSourceProtocol {
+extension _CollectionDiffableDataSource: _DiffableDataSourceProtocol {
 
     convenience init(view: UICollectionView) {
         self.init(collectionView: view) { _, _, _ -> UICollectionViewCell? in nil }
@@ -54,11 +54,11 @@ extension CollectionDiffableDataSource: DiffableDataSourceProtocol {
     }
 }
 
-// MARK: TableDiffableDataSource
+// MARK: _TableDiffableDataSource
 
-typealias TableDiffableDataSource = UITableViewDiffableDataSource<String, String>
+typealias _TableDiffableDataSource = UITableViewDiffableDataSource<String, String>
 
-extension TableDiffableDataSource: DiffableDataSourceProtocol {
+extension _TableDiffableDataSource: _DiffableDataSourceProtocol {
 
     convenience init(view: UITableView) {
         self.init(tableView: view) { _, _, _ -> UITableViewCell? in nil }
@@ -66,11 +66,11 @@ extension TableDiffableDataSource: DiffableDataSourceProtocol {
     }
 }
 
-// MARK: DiffableSnapshot
+// MARK: _DiffableSnapshot
 
-typealias DiffableSnapshot = NSDiffableDataSourceSnapshot<String, String>
+typealias _DiffableSnapshot = NSDiffableDataSourceSnapshot<String, String>
 
-extension DiffableSnapshot {
+extension _DiffableSnapshot {
 
     init(viewModel: ContainerViewModel) {
         self.init()

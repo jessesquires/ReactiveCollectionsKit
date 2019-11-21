@@ -13,6 +13,7 @@
 
 import UIKit
 
+/// Conformance to `CellContainerViewProtocol`.
 extension UITableView: CellContainerViewProtocol {
 
     /// :nodoc:

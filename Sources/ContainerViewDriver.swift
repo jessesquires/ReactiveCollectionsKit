@@ -23,7 +23,7 @@ public final class ContainerViewDriver<View: UIView & CellContainerViewProtocol>
 
     public var viewModel: ContainerViewModel {
         set {
-            assertMainThread()
+            _assertMainThread()
             self._viewModel = newValue
             self._didUpdateModel(animated: self.animateUpdates, completion: self._didUpdate)
         }
@@ -34,13 +34,13 @@ public final class ContainerViewDriver<View: UIView & CellContainerViewProtocol>
 
     private var _viewModel: ContainerViewModel {
         didSet {
-            assertMainThread()
+            _assertMainThread()
             self._didSetModel()
         }
     }
 
-    private let _dataSourceDelegate: ContainerViewDataSourceDelegate
-    private let _differ: DiffableDataSourceProtocol
+    private let _dataSourceDelegate: _ContainerViewDataSourceDelegate
+    private let _differ: _DiffableDataSourceProtocol
     private let _diffingQueue: DispatchQueue?
     private let _didUpdate: DidUpdate?
 
@@ -57,8 +57,8 @@ public final class ContainerViewDriver<View: UIView & CellContainerViewProtocol>
         self.animateUpdates = animateUpdates
         self._diffingQueue = diffingQueue
         self._didUpdate = didUpdate
-        self._dataSourceDelegate = ContainerViewDataSourceDelegate(viewModel: viewModel, controller: controller)
-        self._differ = makeDiffableDataSource(with: view)
+        self._dataSourceDelegate = _ContainerViewDataSourceDelegate(viewModel: viewModel, controller: controller)
+        self._differ = _makeDiffableDataSource(with: view)
         self.view.dataSource = self._dataSourceDelegate as? View.DataSource
         self.view.delegate = self._dataSourceDelegate as? View.Delegate
         self._didSetModel()
@@ -75,7 +75,7 @@ public final class ContainerViewDriver<View: UIView & CellContainerViewProtocol>
 
     private func _didSetModel() {
         self._dataSourceDelegate.viewModel = self._viewModel
-        self.view.register(viewModel: self._viewModel)
+        self.view._register(viewModel: self._viewModel)
     }
 
     private func _didUpdateModel(animated: Bool, completion: DidUpdate?) {

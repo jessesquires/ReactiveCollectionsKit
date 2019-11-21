@@ -13,7 +13,7 @@
 
 import UIKit
 
-final class ContainerViewDataSourceDelegate: NSObject {
+final class _ContainerViewDataSourceDelegate: NSObject {
 
     var viewModel: ContainerViewModel
 
@@ -38,7 +38,7 @@ final class ContainerViewDataSourceDelegate: NSObject {
 
 // MARK: UICollectionViewDataSource
 
-extension ContainerViewDataSourceDelegate: UICollectionViewDataSource {
+extension _ContainerViewDataSourceDelegate: UICollectionViewDataSource {
     func numberOfSections(in collectionView: UICollectionView) -> Int {
         self.numberOfSections()
     }
@@ -48,21 +48,21 @@ extension ContainerViewDataSourceDelegate: UICollectionViewDataSource {
     }
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        collectionView.dequeueAndConfigureCell(for: self.viewModel, at: indexPath)
+        collectionView._dequeueAndConfigureCell(for: self.viewModel, at: indexPath)
     }
 
     func collectionView(_ collectionView: UICollectionView,
                         viewForSupplementaryElementOfKind kind: String,
                         at indexPath: IndexPath) -> UICollectionReusableView {
-        collectionView.dequeueAndConfigureSupplementaryView(for: SupplementaryViewKind(collectionElementKind: kind),
-                                                            model: self.viewModel,
-                                                            at: indexPath)!
+        collectionView._dequeueAndConfigureSupplementaryView(for: SupplementaryViewKind(collectionElementKind: kind),
+                                                             model: self.viewModel,
+                                                             at: indexPath)!
     }
 }
 
 // MARK: UICollectionViewDelegateFlowLayout
 
-extension ContainerViewDataSourceDelegate: UICollectionViewDelegateFlowLayout {
+extension _ContainerViewDataSourceDelegate: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         self.viewModel[indexPath].didSelect(controller)
     }
@@ -80,7 +80,7 @@ extension ContainerViewDataSourceDelegate: UICollectionViewDelegateFlowLayout {
 
 // MARK: UITableViewDelegate
 
-extension ContainerViewDataSourceDelegate: UITableViewDataSource {
+extension _ContainerViewDataSourceDelegate: UITableViewDataSource {
     func numberOfSections(in tableView: UITableView) -> Int {
         self.numberOfSections()
     }
@@ -90,21 +90,21 @@ extension ContainerViewDataSourceDelegate: UITableViewDataSource {
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        tableView.dequeueAndConfigureCell(for: self.viewModel, at: indexPath)
+        tableView._dequeueAndConfigureCell(for: self.viewModel, at: indexPath)
     }
 
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        self.viewModel.sections[section].headerTitle
+        self.viewModel.sections[section]._headerTitle
     }
 
     func tableView(_ tableView: UITableView, titleForFooterInSection section: Int) -> String? {
-        self.viewModel.sections[section].footerTitle
+        self.viewModel.sections[section]._footerTitle
     }
 }
 
 // MARK: UITableViewDelegate
 
-extension ContainerViewDataSourceDelegate: UITableViewDelegate {
+extension _ContainerViewDataSourceDelegate: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         self.viewModel[indexPath].didSelect(controller)
     }
@@ -118,15 +118,15 @@ extension ContainerViewDataSourceDelegate: UITableViewDelegate {
     }
 
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        tableView.dequeueAndConfigureSupplementaryView(for: .header,
-                                                       model: self.viewModel,
-                                                       at: IndexPath(section: section))
+        tableView._dequeueAndConfigureSupplementaryView(for: .header,
+                                                        model: self.viewModel,
+                                                        at: IndexPath(section: section))
     }
 
     func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
-        tableView.dequeueAndConfigureSupplementaryView(for: .footer,
-                                                       model: self.viewModel,
-                                                       at: IndexPath(section: section))
+        tableView._dequeueAndConfigureSupplementaryView(for: .footer,
+                                                        model: self.viewModel,
+                                                        at: IndexPath(section: section))
     }
 }
 

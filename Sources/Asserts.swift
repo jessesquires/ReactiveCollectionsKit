@@ -13,6 +13,8 @@
 
 import Foundation
 
-func assertMainThread(_ function: String = #function) {
+/// Asserts that execution is on the main thread.
+/// - Parameter function: The calling function.
+func _assertMainThread(_ function: String = #function) {
     assert(Thread.isMainThread, "*** \(function) must be called on main thread only")
 }

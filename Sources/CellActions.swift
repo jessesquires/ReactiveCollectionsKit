@@ -14,7 +14,10 @@
 import Foundation
 import UIKit
 
+/// A namespace for the actions for the `CellViewModel` protocol.
 public enum CellActions {
+
+    /// Describes a "did select" action for a cell.
     public typealias DidSelect = (UIViewController) -> Void
 
     /// A "no-op" `DidSelect` implementation. It does nothing.

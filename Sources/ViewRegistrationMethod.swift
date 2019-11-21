@@ -22,7 +22,7 @@ public enum ViewRegistrationMethod {
     /// Nib-based views.
     case fromNib(name: String, bundle: Bundle?)
 
-    var nib: UINib {
+    var _nib: UINib {
         switch self {
         case let .fromNib(name, bundle):
             return UINib(nibName: name, bundle: bundle)
