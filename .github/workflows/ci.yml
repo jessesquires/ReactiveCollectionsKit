@@ -27,20 +27,16 @@ jobs:
       - name: git checkout
         uses: actions/checkout@v1
 
-      # - name: setup ruby
-      #   uses: actions/setup-ruby@v1
-      #   with:
-      #     ruby-version: 2.6.x
+      - name: bundle install
+        run: bundle install --without=documentation
 
-      # - name: bundle install
-      #   run: |
-      #     gem install bundler
-      #     bundle install --without=documentation --jobs 4 --retry 3
-
-      - name: xcodebuild version
+      - name: xcode version
         run: xcodebuild -version -sdk
+
+      - name: pod lint
+        run: bundle exec pod lib lint --allow-warnings # TODO: REMOVE "allow-warnings"
 
       - name: iOS - ${{ matrix.destination }}
         run: |
           set -o pipefail
-          xcodebuild clean test -project "$PROJECT" -scheme "$SCHEME" -sdk "$IOS_SDK" -destination "${{ matrix.destination }}" -enableCodeCoverage YES -configuration Debug ONLY_ACTIVE_ARCH=NO CODE_SIGNING_REQUIRED=NO | xcpretty -c;
+          xcodebuild clean test -project "$PROJECT" -scheme "$SCHEME" -sdk "$IOS_SDK" -destination "${{ matrix.destination }}" -enableCodeCoverage YES -configuration Debug ONLY_ACTIVE_ARCH=NO CODE_SIGNING_REQUIRED=NO | bundle exec xcpretty -c;
