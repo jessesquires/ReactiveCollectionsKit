@@ -40,7 +40,7 @@ extension ViewRegistrationMethod: Equatable {
             return lhsClass == rhsClass
 
         case let (.fromNib(leftName, leftBundle), .fromNib(rightName, rightBundle)):
-            return leftName == rightName && leftBundle == rightBundle
+            return leftName == rightName && leftBundle?.bundleIdentifier == rightBundle?.bundleIdentifier
 
         default:
             return false
