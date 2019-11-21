@@ -55,6 +55,8 @@ struct ColorTableCellViewModel: CellViewModel {
 
     let registration = ReusableViewRegistration(classType: UITableViewCell.self)
 
+    let didSelect = CellActions.DidSelectNoOp
+
     let shouldHighlight = false
 
     func size<V: UIView & CellContainerViewProtocol>(in containerView: V) -> CGSize {
