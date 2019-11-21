@@ -23,8 +23,8 @@ final class TableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        let viewModel = ViewModel.makeTableViewModel(model: self.model, controller: self)
-        self.driver = ContainerViewDriver(view: self.tableView, viewModel: viewModel)
+        let viewModel = ViewModel.makeTableViewModel(model: self.model)
+        self.driver = ContainerViewDriver(view: self.tableView, viewModel: viewModel, controller: self)
 
         self.addShuffle(action: #selector(shuffle))
     }
@@ -32,6 +32,6 @@ final class TableViewController: UITableViewController {
     @objc
     func shuffle() {
         self.model = Model(shuffle: true)
-        self.driver.viewModel = ViewModel.makeTableViewModel(model: self.model, controller: self)
+        self.driver.viewModel = ViewModel.makeTableViewModel(model: self.model)
     }
 }

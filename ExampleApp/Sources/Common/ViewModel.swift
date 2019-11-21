@@ -19,10 +19,10 @@ import UIKit
 enum ViewModel { }
 
 extension ViewModel {
-    static func makeCollectionViewModel(model: Model, controller: UIViewController) -> ContainerViewModel {
+    static func makeCollectionViewModel(model: Model) -> ContainerViewModel {
 
         let peopleCellViewModels = model.people.map { person in
-            PersonCollectionCellViewModel(person: person, didSelect: {
+            PersonCollectionCellViewModel(person: person, didSelect: { controller in
                 let personVC = PersonViewController(person: person)
                 controller.navigationController?.pushViewController(personVC, animated: true)
             })
@@ -40,10 +40,10 @@ extension ViewModel {
 }
 
 extension ViewModel {
-    static func makeTableViewModel(model: Model, controller: UIViewController) -> ContainerViewModel {
+    static func makeTableViewModel(model: Model) -> ContainerViewModel {
 
         let peopleCellViewModels = model.people.map { person in
-            PersonTableCellViewModel(person: person, didSelect: {
+            PersonTableCellViewModel(person: person, didSelect: { controller in
                 let personVC = PersonViewController(person: person)
                 controller.navigationController?.pushViewController(personVC, animated: true)
             })
