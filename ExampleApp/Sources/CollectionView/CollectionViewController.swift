@@ -26,7 +26,7 @@ final class CollectionViewController: UICollectionViewController {
         let viewModel = ViewModel.makeCollectionViewModel(model: self.model)
         self.driver = ContainerViewDriver(view: self.collectionView,
                                           viewModel: viewModel,
-                                          containerController: self,
+                                          controller: self,
                                           diffingQueue: .global(qos: .userInteractive),
                                           didUpdate: { print("collection finished update!") })
 

@@ -48,7 +48,7 @@ public final class ContainerViewDriver<View: UIView & CellContainerViewProtocol>
 
     public init(view: View,
                 viewModel: ContainerViewModel,
-                containerController: UIViewController,
+                controller: UIViewController,
                 animateUpdates: Bool = true,
                 diffingQueue: DispatchQueue? = nil,
                 didUpdate: DidUpdate? = nil) {
@@ -57,7 +57,7 @@ public final class ContainerViewDriver<View: UIView & CellContainerViewProtocol>
         self.animateUpdates = animateUpdates
         self._diffingQueue = diffingQueue
         self._didUpdate = didUpdate
-        self._dataSourceDelegate = ContainerViewDataSourceDelegate(model: viewModel, containerController: containerController)
+        self._dataSourceDelegate = ContainerViewDataSourceDelegate(viewModel: viewModel, controller: controller)
         self._differ = makeDiffableDataSource(with: view)
         self.view.dataSource = self._dataSourceDelegate as? View.DataSource
         self.view.delegate = self._dataSourceDelegate as? View.Delegate
@@ -74,7 +74,7 @@ public final class ContainerViewDriver<View: UIView & CellContainerViewProtocol>
     // MARK: Private
 
     private func _didSetModel() {
-        self._dataSourceDelegate.model = self._viewModel
+        self._dataSourceDelegate.viewModel = self._viewModel
         self.view.register(viewModel: self._viewModel)
     }
 

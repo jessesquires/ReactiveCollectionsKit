@@ -24,7 +24,7 @@ final class TableViewController: UITableViewController {
         super.viewDidLoad()
 
         let viewModel = ViewModel.makeTableViewModel(model: self.model)
-        self.driver = ContainerViewDriver(view: self.tableView, viewModel: viewModel, containerController: self)
+        self.driver = ContainerViewDriver(view: self.tableView, viewModel: viewModel, controller: self)
 
         self.addShuffle(action: #selector(shuffle))
     }

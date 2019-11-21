@@ -14,20 +14,25 @@
 import UIKit
 
 final class ContainerViewDataSourceDelegate: NSObject {
-    weak var containerController: UIViewController?
-    var model: ContainerViewModel
 
-    init(model: ContainerViewModel, containerController: UIViewController?) {
-        self.model = model
-        self.containerController = containerController
+    var viewModel: ContainerViewModel
+
+    // avoiding a strong reference to prevent a retain cycle.
+    // passed from the `ContainerViewDriver`, which the view controller must own.
+    // thus, we know the controller must be alive so unowned is safe.
+    unowned var controller: UIViewController
+
+    init(viewModel: ContainerViewModel, controller: UIViewController) {
+        self.viewModel = viewModel
+        self.controller = controller
     }
 
     func numberOfSections() -> Int {
-        self.model.sections.count
+        self.viewModel.sections.count
     }
 
     func numberOfItems(in section: Int) -> Int {
-        self.model.sections[section].cellViewModels.count
+        self.viewModel.sections[section].cellViewModels.count
     }
 }
 
@@ -43,14 +48,14 @@ extension ContainerViewDataSourceDelegate: UICollectionViewDataSource {
     }
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        collectionView.dequeueAndConfigureCell(for: self.model, at: indexPath)
+        collectionView.dequeueAndConfigureCell(for: self.viewModel, at: indexPath)
     }
 
     func collectionView(_ collectionView: UICollectionView,
                         viewForSupplementaryElementOfKind kind: String,
                         at indexPath: IndexPath) -> UICollectionReusableView {
         collectionView.dequeueAndConfigureSupplementaryView(for: SupplementaryViewKind(collectionElementKind: kind),
-                                                            model: self.model,
+                                                            model: self.viewModel,
                                                             at: indexPath)!
     }
 }
@@ -59,18 +64,17 @@ extension ContainerViewDataSourceDelegate: UICollectionViewDataSource {
 
 extension ContainerViewDataSourceDelegate: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        guard let controller = self.containerController else { return }
-        self.model[indexPath].didSelect(controller)
+        self.viewModel[indexPath].didSelect(controller)
     }
 
     func collectionView(_ collectionView: UICollectionView, shouldHighlightItemAt indexPath: IndexPath) -> Bool {
-        self.model[indexPath].shouldHighlight
+        self.viewModel[indexPath].shouldHighlight
     }
 
     func collectionView(_ collectionView: UICollectionView,
                         layout collectionViewLayout: UICollectionViewLayout,
                         sizeForItemAt indexPath: IndexPath) -> CGSize {
-        self.model[indexPath].size(in: collectionView)
+        self.viewModel[indexPath].size(in: collectionView)
     }
 }
 
@@ -86,15 +90,15 @@ extension ContainerViewDataSourceDelegate: UITableViewDataSource {
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        tableView.dequeueAndConfigureCell(for: self.model, at: indexPath)
+        tableView.dequeueAndConfigureCell(for: self.viewModel, at: indexPath)
     }
 
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        self.model.sections[section].headerTitle
+        self.viewModel.sections[section].headerTitle
     }
 
     func tableView(_ tableView: UITableView, titleForFooterInSection section: Int) -> String? {
-        self.model.sections[section].footerTitle
+        self.viewModel.sections[section].footerTitle
     }
 }
 
@@ -102,27 +106,26 @@ extension ContainerViewDataSourceDelegate: UITableViewDataSource {
 
 extension ContainerViewDataSourceDelegate: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        guard let controller = self.containerController else { return }
-        self.model[indexPath].didSelect(controller)
+        self.viewModel[indexPath].didSelect(controller)
     }
 
     func tableView(_ tableView: UITableView, shouldHighlightRowAt indexPath: IndexPath) -> Bool {
-        self.model[indexPath].shouldHighlight
+        self.viewModel[indexPath].shouldHighlight
     }
 
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        self.model[indexPath].size(in: tableView).height
+        self.viewModel[indexPath].size(in: tableView).height
     }
 
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         tableView.dequeueAndConfigureSupplementaryView(for: .header,
-                                                       model: self.model,
+                                                       model: self.viewModel,
                                                        at: IndexPath(section: section))
     }
 
     func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
         tableView.dequeueAndConfigureSupplementaryView(for: .footer,
-                                                       model: self.model,
+                                                       model: self.viewModel,
                                                        at: IndexPath(section: section))
     }
 }
