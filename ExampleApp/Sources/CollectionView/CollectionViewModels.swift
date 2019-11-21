@@ -44,7 +44,7 @@ struct ColorCollectionCellViewModel: CellViewModel {
 
     let registration = ReusableViewRegistration(classType: UICollectionViewCell.self)
 
-    let didSelect = CellActions.DidSelectNoOp
+    let didSelect = CellActions.DidSelectNoOperation
 
     let shouldHighlight = false
 

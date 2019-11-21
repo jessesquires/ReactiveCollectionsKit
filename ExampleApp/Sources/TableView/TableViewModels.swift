@@ -55,7 +55,7 @@ struct ColorTableCellViewModel: CellViewModel {
 
     let registration = ReusableViewRegistration(classType: UITableViewCell.self)
 
-    let didSelect = CellActions.DidSelectNoOp
+    let didSelect = CellActions.DidSelectNoOperation
 
     let shouldHighlight = false
 
