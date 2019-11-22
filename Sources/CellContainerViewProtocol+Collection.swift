@@ -29,7 +29,7 @@ extension UICollectionView: CellContainerViewProtocol {
     public typealias Delegate = UICollectionViewDelegate
 
     /// :nodoc:
-    public func dequeueReusableCellFor(identifier: String, indexPath: IndexPath) -> CellType {
+    public func dequeueReusableCell(identifier: String, indexPath: IndexPath) -> CellType {
         self.dequeueReusableCell(withReuseIdentifier: identifier, for: indexPath)
     }
 
@@ -44,9 +44,9 @@ extension UICollectionView: CellContainerViewProtocol {
     }
 
     /// :nodoc:
-    public func dequeueReusableSupplementaryViewFor(kind: SupplementaryViewKind,
-                                                    identifier: String,
-                                                    indexPath: IndexPath) -> SupplementaryViewType? {
+    public func dequeueReusableSupplementaryView(kind: SupplementaryViewKind,
+                                                 identifier: String,
+                                                 indexPath: IndexPath) -> SupplementaryViewType? {
         self.dequeueReusableSupplementaryView(ofKind: kind._collectionElementKind,
                                               withReuseIdentifier: identifier,
                                               for: indexPath)

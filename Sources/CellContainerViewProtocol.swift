@@ -45,7 +45,7 @@ public protocol CellContainerViewProtocol: AnyObject {
 
     // MARK: Cells
 
-    func dequeueReusableCellFor(identifier: String, indexPath: IndexPath) -> CellType
+    func dequeueReusableCell(identifier: String, indexPath: IndexPath) -> CellType
 
     func registerCellClass(_ cellClass: AnyClass?, identifier: String)
 
@@ -53,9 +53,9 @@ public protocol CellContainerViewProtocol: AnyObject {
 
     // MARK: Supplementary views
 
-    func dequeueReusableSupplementaryViewFor(kind: SupplementaryViewKind,
-                                             identifier: String,
-                                             indexPath: IndexPath) -> SupplementaryViewType?
+    func dequeueReusableSupplementaryView(kind: SupplementaryViewKind,
+                                          identifier: String,
+                                          indexPath: IndexPath) -> SupplementaryViewType?
 
     func registerSupplementaryViewClass(_ supplementaryClass: AnyClass?,
                                         kind: SupplementaryViewKind,
@@ -76,7 +76,7 @@ extension CellContainerViewProtocol {
 
     func _dequeueAndConfigureCell(for model: ContainerViewModel, at indexPath: IndexPath) -> CellType {
         let cellModel = model[indexPath]
-        let cell = self.dequeueReusableCellFor(identifier: cellModel.registration.reuseIdentifier, indexPath: indexPath)
+        let cell = self.dequeueReusableCell(identifier: cellModel.registration.reuseIdentifier, indexPath: indexPath)
         cellModel.apply(to: cell)
         return cell
     }
@@ -97,9 +97,9 @@ extension CellContainerViewProtocol {
 
         switch headerFooter.style {
         case .customView(let registration):
-            return self.dequeueReusableSupplementaryViewFor(kind: kind,
-                                                            identifier: registration.reuseIdentifier,
-                                                            indexPath: indexPath)
+            return self.dequeueReusableSupplementaryView(kind: kind,
+                                                         identifier: registration.reuseIdentifier,
+                                                         indexPath: indexPath)
 
         case .title:
             #warning("nil works for table views only. fix for collections?")
