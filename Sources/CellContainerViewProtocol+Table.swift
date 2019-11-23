@@ -34,13 +34,13 @@ extension UITableView: CellContainerViewProtocol {
     }
 
     /// :nodoc:
-    public func registerCellClass(_ cellClass: AnyClass?, identifier: String) {
-        self.register(cellClass, forCellReuseIdentifier: identifier)
+    public func registerCell(viewClass: AnyClass?, identifier: String) {
+        self.register(viewClass, forCellReuseIdentifier: identifier)
     }
 
     /// :nodoc:
-    public func registerCellNib(_ cellNib: UINib?, identifier: String) {
-        self.register(cellNib, forCellReuseIdentifier: identifier)
+    public func registerCell(nib: UINib?, identifier: String) {
+        self.register(nib, forCellReuseIdentifier: identifier)
     }
 
     /// :nodoc:
@@ -51,16 +51,16 @@ extension UITableView: CellContainerViewProtocol {
     }
 
     /// :nodoc:
-    public func registerSupplementaryViewClass(_ supplementaryClass: AnyClass?,
-                                               kind: SupplementaryViewKind,
-                                               identifier: String) {
-        self.register(supplementaryClass, forHeaderFooterViewReuseIdentifier: identifier)
+    public func registerSupplementaryView(viewClass: AnyClass?,
+                                          kind: SupplementaryViewKind,
+                                          identifier: String) {
+        self.register(viewClass, forHeaderFooterViewReuseIdentifier: identifier)
     }
 
     /// :nodoc:
-    public func registerSupplementaryViewNib(_ supplementaryNib: UINib?,
-                                             kind: SupplementaryViewKind,
-                                             identifier: String) {
-        self.register(supplementaryNib, forHeaderFooterViewReuseIdentifier: identifier)
+    public func registerSupplementaryView(nib: UINib?,
+                                          kind: SupplementaryViewKind,
+                                          identifier: String) {
+        self.register(nib, forHeaderFooterViewReuseIdentifier: identifier)
     }
 }

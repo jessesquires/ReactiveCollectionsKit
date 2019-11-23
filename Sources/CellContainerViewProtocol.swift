@@ -45,30 +45,59 @@ public protocol CellContainerViewProtocol: AnyObject {
 
     // MARK: Cells
 
+    /// - Parameters:
+    ///   - identifier: The reuse identifier for the specified cell.
+    ///   - indexPath: The index path specifying the location of the cell.
+    /// - Returns: A reusable cell of type `CellType`.
     func dequeueReusableCell(identifier: String, indexPath: IndexPath) -> CellType
 
-    func registerCellClass(_ cellClass: AnyClass?, identifier: String)
+    /// Registers a cell for reuse with the container view.
+    /// - Parameters:
+    ///   - viewClass: The class of a cell that you want to use in the container view.
+    ///   - identifier: The reuse identifier to associate with the specified class.
+    func registerCell(viewClass: AnyClass?, identifier: String)
 
-    func registerCellNib(_ cellNib: UINib?, identifier: String)
+    /// Registers a cell for reuse with the container view.
+    /// - Parameters:
+    ///   - nib: The nib object containing the cell object.
+    ///   - identifier: The reuse identifier to associate with the specified nib file.
+    func registerCell(nib: UINib?, identifier: String)
 
     // MARK: Supplementary views
 
+    /// - Parameters:
+    ///   - kind: The kind of supplementary view to retrieve.
+    ///   - identifier: The reuse identifier for the specified view.
+    ///   - indexPath: The index path specifying the location of the supplementary view in the container view.
+    /// - Returns: A reusable supplementary view of type `SupplementaryViewType`.
     func dequeueReusableSupplementaryView(kind: SupplementaryViewKind,
                                           identifier: String,
                                           indexPath: IndexPath) -> SupplementaryViewType?
 
-    func registerSupplementaryViewClass(_ supplementaryClass: AnyClass?,
-                                        kind: SupplementaryViewKind,
-                                        identifier: String)
+    /// Registers a supplementary view for reuse with the container view.
+    /// - Parameters:
+    ///   - viewClass: The class of the view that you want to use in the container view.
+    ///   - kind: The kind of supplementary view.
+    ///   - identifier: The reuse identifier to associate with the specified class.
+    func registerSupplementaryView(viewClass: AnyClass?,
+                                   kind: SupplementaryViewKind,
+                                   identifier: String)
 
-    func registerSupplementaryViewNib(_ supplementaryNib: UINib?,
-                                      kind: SupplementaryViewKind,
-                                      identifier: String)
+    /// Registers a supplementary view for reuse with the container view.
+    /// - Parameters:
+    ///   - nib: The nib object containing the view object.
+    ///   - kind: The kind of supplementary view.
+    ///   - identifier: The reuse identifier to associate with the specified nib file.
+    func registerSupplementaryView(nib: UINib?,
+                                   kind: SupplementaryViewKind,
+                                   identifier: String)
 
     // MARK: Updating
 
+    /// Reloads all of the data for the container view.
     func reloadData()
 
+    /// Animates multiple insert, delete, reload, and move operations as a group.
     func performBatchUpdates(_ updates: (() -> Void)?, completion: ((Bool) -> Void)?)
 }
 
@@ -134,10 +163,10 @@ extension CellContainerViewProtocol {
 
         switch method {
         case .fromClass(let cellClass):
-            self.registerCellClass(cellClass, identifier: identifier)
+            self.registerCell(viewClass: cellClass, identifier: identifier)
 
         case .fromNib:
-            self.registerCellNib(method._nib, identifier: identifier)
+            self.registerCell(nib: method._nib, identifier: identifier)
         }
     }
 
@@ -153,10 +182,10 @@ extension CellContainerViewProtocol {
 
             switch method {
             case .fromClass(let viewClass):
-                self.registerSupplementaryViewClass(viewClass, kind: kind, identifier: identifier)
+                self.registerSupplementaryView(viewClass: viewClass, kind: kind, identifier: identifier)
 
             case .fromNib:
-                self.registerSupplementaryViewNib(method._nib, kind: kind, identifier: identifier)
+                self.registerSupplementaryView(nib: method._nib, kind: kind, identifier: identifier)
             }
 
         case .title:

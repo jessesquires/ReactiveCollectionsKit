@@ -34,13 +34,13 @@ extension UICollectionView: CellContainerViewProtocol {
     }
 
     /// :nodoc:
-    public func registerCellClass(_ cellClass: AnyClass?, identifier: String) {
-        self.register(cellClass, forCellWithReuseIdentifier: identifier)
+    public func registerCell(viewClass: AnyClass?, identifier: String) {
+        self.register(viewClass, forCellWithReuseIdentifier: identifier)
     }
 
     /// :nodoc:
-    public func registerCellNib(_ cellNib: UINib?, identifier: String) {
-        self.register(cellNib, forCellWithReuseIdentifier: identifier)
+    public func registerCell(nib: UINib?, identifier: String) {
+        self.register(nib, forCellWithReuseIdentifier: identifier)
     }
 
     /// :nodoc:
@@ -53,19 +53,19 @@ extension UICollectionView: CellContainerViewProtocol {
     }
 
     /// :nodoc:
-    public func registerSupplementaryViewClass(_ supplementaryClass: AnyClass?,
-                                               kind: SupplementaryViewKind,
-                                               identifier: String) {
-        self.register(supplementaryClass,
+    public func registerSupplementaryView(viewClass: AnyClass?,
+                                          kind: SupplementaryViewKind,
+                                          identifier: String) {
+        self.register(viewClass,
                       forSupplementaryViewOfKind: kind._collectionElementKind,
                       withReuseIdentifier: identifier)
     }
 
     /// :nodoc:
-    public func registerSupplementaryViewNib(_ supplementaryNib: UINib?,
-                                             kind: SupplementaryViewKind,
-                                             identifier: String) {
-        self.register(supplementaryNib,
+    public func registerSupplementaryView(nib: UINib?,
+                                          kind: SupplementaryViewKind,
+                                          identifier: String) {
+        self.register(nib,
                       forSupplementaryViewOfKind: kind._collectionElementKind,
                       withReuseIdentifier: identifier)
     }
