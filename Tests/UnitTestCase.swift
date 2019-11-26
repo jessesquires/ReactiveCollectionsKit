@@ -20,14 +20,25 @@ enum ReuseIdentifier: String {
     case footerView
 }
 
-struct TestViewModel: CellViewModel {
-    let registration = ReusableViewRegistration(classType: FakeTableCell.self)
+struct TestCellModel: CellViewModel {
+    let cellClassType: AnyClass
+
+    var registration: ReusableViewRegistration { ReusableViewRegistration(classType: self.cellClassType) }
 
     let didSelect = CellActions.DidSelectNoOperation
 
     func size<V: UIView & CellContainerViewProtocol>(in containerView: V) -> CGSize { .zero }
 
     func apply(to cell: Self.CellType) { }
+}
+
+struct TestHeaderFooterModel: SupplementaryViewModel {
+    let title: String
+    let kind: SupplementaryViewKind
+
+    var style: SupplementaryViewStyle { .title(self.title) }
+
+    func apply(to view: Self.SupplementaryViewType) { }
 }
 
 class UnitTestCase: XCTestCase {

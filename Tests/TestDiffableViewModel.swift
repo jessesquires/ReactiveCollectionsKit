@@ -17,8 +17,8 @@ import XCTest
 final class TestDiffableViewModel: XCTestCase {
 
     func test_DiffableViewModel_protocol_default_values() {
-        let viewModel = TestViewModel()
+        let viewModel = TestCellModel(cellClassType: FakeTableCell.self)
 
-        XCTAssertEqual(viewModel.id, "\(TestViewModel.self)")
+        XCTAssertEqual(viewModel.id, "\(TestCellModel.self)")
     }
 }
