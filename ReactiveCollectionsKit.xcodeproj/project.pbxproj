@@ -12,6 +12,7 @@
 		884880DA238CEA1A0056F669 /* FakeCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 884880D8238CE9BF0056F669 /* FakeCollectionView.swift */; };
 		884880DC238CEAFC0056F669 /* FakeTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 884880DB238CEAFC0056F669 /* FakeTableView.swift */; };
 		884880DE238CF02F0056F669 /* XCTestCase+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 884880DD238CF02F0056F669 /* XCTestCase+Extensions.swift */; };
+		88BD6D16238D03F100FB1846 /* TestCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88BD6D15238D03F100FB1846 /* TestCellViewModel.swift */; };
 		88C02079236CBCB000B43713 /* DiffableDataSourceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88C02078236CBCB000B43713 /* DiffableDataSourceProtocol.swift */; };
 		88FA48E42363A6160061F8B2 /* ReactiveCollectionsKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 88FA48DA2363A6160061F8B2 /* ReactiveCollectionsKit.framework */; };
 		88FA48F52363A7400061F8B2 /* TestCellContainerViewProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88FA48F42363A7400061F8B2 /* TestCellContainerViewProtocol.swift */; };
@@ -49,6 +50,7 @@
 		884880D8238CE9BF0056F669 /* FakeCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FakeCollectionView.swift; sourceTree = "<group>"; };
 		884880DB238CEAFC0056F669 /* FakeTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FakeTableView.swift; sourceTree = "<group>"; };
 		884880DD238CF02F0056F669 /* XCTestCase+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "XCTestCase+Extensions.swift"; sourceTree = "<group>"; };
+		88BD6D15238D03F100FB1846 /* TestCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestCellViewModel.swift; sourceTree = "<group>"; };
 		88C02078236CBCB000B43713 /* DiffableDataSourceProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiffableDataSourceProtocol.swift; sourceTree = "<group>"; };
 		88FA48DA2363A6160061F8B2 /* ReactiveCollectionsKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = ReactiveCollectionsKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		88FA48DE2363A6160061F8B2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -143,6 +145,7 @@
 				884880DB238CEAFC0056F669 /* FakeTableView.swift */,
 				88FA48EA2363A6160061F8B2 /* Info.plist */,
 				88FA48F42363A7400061F8B2 /* TestCellContainerViewProtocol.swift */,
+				88BD6D15238D03F100FB1846 /* TestCellViewModel.swift */,
 				884880D6238CE9020056F669 /* UnitTestCase.swift */,
 				884880DD238CF02F0056F669 /* XCTestCase+Extensions.swift */,
 			);
@@ -305,6 +308,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				88BD6D16238D03F100FB1846 /* TestCellViewModel.swift in Sources */,
 				884880DC238CEAFC0056F669 /* FakeTableView.swift in Sources */,
 				88FA48F52363A7400061F8B2 /* TestCellContainerViewProtocol.swift in Sources */,
 				884880DE238CF02F0056F669 /* XCTestCase+Extensions.swift in Sources */,
