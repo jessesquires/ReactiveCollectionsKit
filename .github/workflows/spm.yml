@@ -1,0 +1,39 @@
+name: SwiftPM Integration
+
+on:
+  push:
+    branches:
+      - master
+      - dev
+  pull_request:
+    branches:
+      - master
+      - dev
+env:
+  DEVELOPER_DIR: /Applications/Xcode_11.2.app/Contents/Developer
+  PROJECT: ReactiveCollectionsKit.xcodeproj
+  SCHEME: ReactiveCollectionsKit
+  IOS_SDK: iphonesimulator13.2
+
+jobs:
+
+  iOS:
+    name: iOS Test
+    runs-on: macOS-latest
+    strategy:
+      matrix:
+        destination: ["OS=13.2,name=iPhone 11"]
+    steps:
+      - name: git checkout
+        uses: actions/checkout@v1
+
+      - name: xcode version
+        run: xcodebuild -version -sdk
+
+      - name: Generate xcodeproj
+        run: swift package generate-xcodeproj
+
+      - name: Test - ${{ matrix.destination }}
+        run: |
+          set -o pipefail
+          xcodebuild clean test -scheme "$SCHEME" -sdk "$IOS_SDK" -destination "${{ matrix.destination }}" | xcpretty -c;
