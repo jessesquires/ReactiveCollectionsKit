@@ -33,6 +33,9 @@ jobs:
       - name: xcode version
         run: xcodebuild -version -sdk
 
+      - name: list simulators
+        run: xcrun simctl list
+
       - name: pod lint
         run: bundle exec pod lib lint --allow-warnings # TODO: REMOVE "allow-warnings"
 
