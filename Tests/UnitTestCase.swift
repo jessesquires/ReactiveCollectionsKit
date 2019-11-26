@@ -11,12 +11,23 @@
 //  Copyright © 2019-present Jesse Squires
 //
 
+@testable import ReactiveCollectionsKit
 import XCTest
 
 enum ReuseIdentifier: String {
     case cell
     case headerView
     case footerView
+}
+
+struct TestViewModel: CellViewModel {
+    let registration = ReusableViewRegistration(classType: FakeTableCell.self)
+
+    let didSelect = CellActions.DidSelectNoOperation
+
+    func size<V: UIView & CellContainerViewProtocol>(in containerView: V) -> CGSize { .zero }
+
+    func apply(to cell: Self.CellType) { }
 }
 
 class UnitTestCase: XCTestCase {

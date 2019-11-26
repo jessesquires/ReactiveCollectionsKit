@@ -14,11 +14,11 @@
 @testable import ReactiveCollectionsKit
 import XCTest
 
-final class TestCellViewModel: XCTestCase {
+final class TestDiffableViewModel: XCTestCase {
 
-    func test_CellViewModel_protocol_default_values() {
+    func test_DiffableViewModel_protocol_default_values() {
         let viewModel = TestViewModel()
 
-        XCTAssertTrue(viewModel.shouldHighlight)
+        XCTAssertEqual(viewModel.id, "\(TestViewModel.self)")
     }
 }
