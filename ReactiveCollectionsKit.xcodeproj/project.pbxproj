@@ -10,6 +10,7 @@
 		88389EF6236DEE0A00DDECA5 /* Asserts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88389EF5236DEE0A00DDECA5 /* Asserts.swift */; };
 		88462764238F9E0C005FB389 /* TestViewRegistrationMethod.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88462763238F9E0C005FB389 /* TestViewRegistrationMethod.swift */; };
 		88462766238FA2C8005FB389 /* FakeNib.xib in Resources */ = {isa = PBXBuildFile; fileRef = 88462765238FA2C8005FB389 /* FakeNib.xib */; };
+		88462768238FA419005FB389 /* TestSupplementaryViewKind.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88462767238FA419005FB389 /* TestSupplementaryViewKind.swift */; };
 		884880D7238CE9020056F669 /* UnitTestCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 884880D6238CE9020056F669 /* UnitTestCase.swift */; };
 		884880DA238CEA1A0056F669 /* FakeCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 884880D8238CE9BF0056F669 /* FakeCollectionView.swift */; };
 		884880DC238CEAFC0056F669 /* FakeTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 884880DB238CEAFC0056F669 /* FakeTableView.swift */; };
@@ -54,6 +55,7 @@
 		88389EF5236DEE0A00DDECA5 /* Asserts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Asserts.swift; sourceTree = "<group>"; };
 		88462763238F9E0C005FB389 /* TestViewRegistrationMethod.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestViewRegistrationMethod.swift; sourceTree = "<group>"; };
 		88462765238FA2C8005FB389 /* FakeNib.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FakeNib.xib; sourceTree = "<group>"; };
+		88462767238FA419005FB389 /* TestSupplementaryViewKind.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestSupplementaryViewKind.swift; sourceTree = "<group>"; };
 		884880D6238CE9020056F669 /* UnitTestCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnitTestCase.swift; sourceTree = "<group>"; };
 		884880D8238CE9BF0056F669 /* FakeCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FakeCollectionView.swift; sourceTree = "<group>"; };
 		884880DB238CEAFC0056F669 /* FakeTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FakeTableView.swift; sourceTree = "<group>"; };
@@ -163,6 +165,7 @@
 				8872DE94238D18D5005774EA /* TestContainerViewDataSourceDelegate.swift */,
 				8872DE97238D2769005774EA /* TestDiffableViewModel.swift */,
 				8872DE99238D28BE005774EA /* TestSectionViewModel.swift */,
+				88462767238FA419005FB389 /* TestSupplementaryViewKind.swift */,
 				88462763238F9E0C005FB389 /* TestViewRegistrationMethod.swift */,
 				884880D6238CE9020056F669 /* UnitTestCase.swift */,
 				884880DD238CF02F0056F669 /* XCTestCase+Extensions.swift */,
@@ -331,6 +334,7 @@
 				8872DE95238D18D5005774EA /* TestContainerViewDataSourceDelegate.swift in Sources */,
 				88BD6D16238D03F100FB1846 /* TestCellViewModel.swift in Sources */,
 				884880DC238CEAFC0056F669 /* FakeTableView.swift in Sources */,
+				88462768238FA419005FB389 /* TestSupplementaryViewKind.swift in Sources */,
 				88FA48F52363A7400061F8B2 /* TestCellContainerViewProtocol.swift in Sources */,
 				88BD6D1B238D127700FB1846 /* FakeCollectionViewModel.swift in Sources */,
 				884880DE238CF02F0056F669 /* XCTestCase+Extensions.swift in Sources */,
