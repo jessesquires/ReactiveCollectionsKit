@@ -11,13 +11,10 @@
 //  Copyright © 2019-present Jesse Squires
 //
 
-import Foundation
+import UIKit
 
-public enum SupplementaryViewStyle {
+public struct SupplementaryViewConfig {
+    public typealias ViewType = UIView & ReusableViewProtocol
 
-    case customView(ReusableViewRegistration, SupplementaryViewConfig)
-
-    case title(String)
-
-    #warning("TODO: collection title-based headers/footers")
+    public let apply: (ViewType) -> Void
 }

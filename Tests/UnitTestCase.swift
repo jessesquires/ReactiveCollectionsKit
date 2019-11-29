@@ -37,8 +37,6 @@ struct TestHeaderFooterModel: SupplementaryViewModel {
     let kind: SupplementaryViewKind
 
     var style: SupplementaryViewStyle { .title(self.title) }
-
-    func apply(to view: Self.SupplementaryViewType) { }
 }
 
 class UnitTestCase: XCTestCase {

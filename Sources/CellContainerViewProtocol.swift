@@ -125,10 +125,14 @@ extension CellContainerViewProtocol {
         guard let headerFooter = viewModel else { return nil }
 
         switch headerFooter.style {
-        case .customView(let registration):
-            return self.dequeueReusableSupplementaryView(kind: kind,
-                                                         identifier: registration.reuseIdentifier,
-                                                         indexPath: indexPath)
+        case .customView(let registration, let config):
+            let view = self.dequeueReusableSupplementaryView(kind: kind,
+                                                             identifier: registration.reuseIdentifier,
+                                                             indexPath: indexPath)
+            // safe to un-wrap. if view model exists, there *must* be a view.
+            // nil is returned above if no view model exists.
+            config.apply(view!)
+            return view
 
         case .title:
             #warning("nil works for table views only. fix for collections?")
@@ -175,7 +179,7 @@ extension CellContainerViewProtocol {
         let kind = supplementaryViewModel.kind
 
         switch style {
-        case .customView(let registration):
+        case .customView(let registration, _):
 
             let identifier = registration.reuseIdentifier
             let method = registration.method
@@ -190,7 +194,7 @@ extension CellContainerViewProtocol {
 
         case .title:
             // ignore. cannot register title-based views.
-            break
+            #warning("TODO: collection views, register custom titled view?")
         }
     }
 }

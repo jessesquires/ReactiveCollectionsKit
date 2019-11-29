@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		882CCB602390F51500E4B72B /* SupplementaryViewConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 882CCB5F2390F51500E4B72B /* SupplementaryViewConfig.swift */; };
+		882CCB622390FB5F00E4B72B /* TestSupplementaryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 882CCB612390FB5F00E4B72B /* TestSupplementaryViewModel.swift */; };
 		88389EF6236DEE0A00DDECA5 /* Asserts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88389EF5236DEE0A00DDECA5 /* Asserts.swift */; };
 		88462764238F9E0C005FB389 /* TestViewRegistrationMethod.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88462763238F9E0C005FB389 /* TestViewRegistrationMethod.swift */; };
 		88462766238FA2C8005FB389 /* FakeNib.xib in Resources */ = {isa = PBXBuildFile; fileRef = 88462765238FA2C8005FB389 /* FakeNib.xib */; };
@@ -52,6 +54,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		882CCB5F2390F51500E4B72B /* SupplementaryViewConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SupplementaryViewConfig.swift; sourceTree = "<group>"; };
+		882CCB612390FB5F00E4B72B /* TestSupplementaryViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestSupplementaryViewModel.swift; sourceTree = "<group>"; };
 		88389EF5236DEE0A00DDECA5 /* Asserts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Asserts.swift; sourceTree = "<group>"; };
 		88462763238F9E0C005FB389 /* TestViewRegistrationMethod.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestViewRegistrationMethod.swift; sourceTree = "<group>"; };
 		88462765238FA2C8005FB389 /* FakeNib.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FakeNib.xib; sourceTree = "<group>"; };
@@ -144,6 +148,7 @@
 				88FA48F62363A7880061F8B2 /* ReusableViewProtocol.swift */,
 				88FA48FE2363A7890061F8B2 /* ReusableViewRegistration.swift */,
 				88FA48FD2363A7880061F8B2 /* SectionViewModel.swift */,
+				882CCB5F2390F51500E4B72B /* SupplementaryViewConfig.swift */,
 				88FA49002363A7890061F8B2 /* SupplementaryViewKind.swift */,
 				88FA49042363A7890061F8B2 /* SupplementaryViewModel.swift */,
 				88FA48F72363A7880061F8B2 /* SupplementaryViewStyle.swift */,
@@ -166,6 +171,7 @@
 				8872DE97238D2769005774EA /* TestDiffableViewModel.swift */,
 				8872DE99238D28BE005774EA /* TestSectionViewModel.swift */,
 				88462767238FA419005FB389 /* TestSupplementaryViewKind.swift */,
+				882CCB612390FB5F00E4B72B /* TestSupplementaryViewModel.swift */,
 				88462763238F9E0C005FB389 /* TestViewRegistrationMethod.swift */,
 				884880D6238CE9020056F669 /* UnitTestCase.swift */,
 				884880DD238CF02F0056F669 /* XCTestCase+Extensions.swift */,
@@ -310,6 +316,7 @@
 				88FA49092363A7890061F8B2 /* ContainerViewDriver.swift in Sources */,
 				88FA49112363A7890061F8B2 /* CellActions.swift in Sources */,
 				88FA490C2363A7890061F8B2 /* SectionViewModel.swift in Sources */,
+				882CCB602390F51500E4B72B /* SupplementaryViewConfig.swift in Sources */,
 				88389EF6236DEE0A00DDECA5 /* Asserts.swift in Sources */,
 				88FA490F2363A7890061F8B2 /* SupplementaryViewKind.swift in Sources */,
 				88FA49102363A7890061F8B2 /* ContainerViewDataSourceDelegate.swift in Sources */,
@@ -340,6 +347,7 @@
 				884880DE238CF02F0056F669 /* XCTestCase+Extensions.swift in Sources */,
 				884880D7238CE9020056F669 /* UnitTestCase.swift in Sources */,
 				884880DA238CEA1A0056F669 /* FakeCollectionView.swift in Sources */,
+				882CCB622390FB5F00E4B72B /* TestSupplementaryViewModel.swift in Sources */,
 				88462764238F9E0C005FB389 /* TestViewRegistrationMethod.swift in Sources */,
 				8872DE98238D2769005774EA /* TestDiffableViewModel.swift in Sources */,
 			);

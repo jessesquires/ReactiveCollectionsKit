@@ -36,11 +36,11 @@ public struct SectionViewModel: DiffableViewModel {
 
 extension SectionViewModel {
     var _headerTitle: String? {
-        self.headerViewModel?.title
+        self.headerViewModel?._title
     }
 
     var _footerTitle: String? {
-        self.footerViewModel?.title
+        self.footerViewModel?._title
     }
 }
 

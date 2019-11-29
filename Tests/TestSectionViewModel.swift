@@ -42,8 +42,8 @@ final class TestSectionViewModel: XCTestCase {
         let cells = [TestCellModel(cellClassType: FakeTableCell.self)]
 
         let section = SectionViewModel(id: "name", cells: cells, header: header, footer: footer)
-        XCTAssertEqual(section._headerTitle, header.title)
-        XCTAssertEqual(section._footerTitle, footer.title)
+        XCTAssertEqual(section._headerTitle, header._title)
+        XCTAssertEqual(section._footerTitle, footer._title)
     }
 
     func test_RandomAccessCollection_conformance() {

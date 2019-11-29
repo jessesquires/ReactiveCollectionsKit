@@ -37,15 +37,11 @@ struct PersonTableCellViewModel: CellViewModel {
 struct PersonTableHeaderViewModel: SupplementaryViewModel {
     let kind = SupplementaryViewKind.header
     let style = SupplementaryViewStyle.title("Comrades")
-
-    func apply(to view: Self.SupplementaryViewType) { }
 }
 
 struct PersonTableFooterViewModel: SupplementaryViewModel {
     let kind = SupplementaryViewKind.footer
     let style = SupplementaryViewStyle.title("Note: list is incomplete")
-
-    func apply(to view: Self.SupplementaryViewType) { }
 }
 
 struct ColorTableCellViewModel: CellViewModel {
@@ -72,6 +68,4 @@ struct ColorTableCellViewModel: CellViewModel {
 struct ColorTableHeaderViewModel: SupplementaryViewModel {
     let kind = SupplementaryViewKind.header
     let style = SupplementaryViewStyle.title("Random Colors")
-
-    func apply(to view: Self.SupplementaryViewType) { }
 }

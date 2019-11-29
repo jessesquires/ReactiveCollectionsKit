@@ -14,28 +14,42 @@
 import UIKit
 
 public protocol SupplementaryViewModel: DiffableViewModel {
-    typealias SupplementaryViewType = UIView & ReusableViewProtocol
-
     var kind: SupplementaryViewKind { get }
 
     var style: SupplementaryViewStyle { get }
-
-    #warning("TODO: move this to Style.customView as a config prop/func. can't style title-based headers/footers")
-    func apply(to view: SupplementaryViewType)
 }
 
 extension SupplementaryViewModel {
-    var registration: ReusableViewRegistration? {
-        if case let .customView(registration) = self.style {
+
+    var _registration: ReusableViewRegistration? {
+        switch self.style {
+        case let .customView(registration, _):
             return registration
+
+        case .title:
+            assertionFailure("Attempt to access customView for a title-based supplementary view")
+            return nil
         }
-        return nil
     }
 
-    var title: String? {
-        if case let .title(text) = self.style {
-            return text
+    func _apply(to view: SupplementaryViewConfig.ViewType) {
+        switch self.style {
+        case let .customView(_, config):
+            config.apply(view)
+
+        case .title:
+            assertionFailure("Attempt to apply config to a title-based supplementary view")
         }
-        return nil
+    }
+
+    var _title: String? {
+        switch self.style {
+        case let .title(text):
+            return text
+
+        case .customView:
+            assertionFailure("Attempt to access title for a customView-based supplementary view")
+            return nil
+        }
     }
 }
