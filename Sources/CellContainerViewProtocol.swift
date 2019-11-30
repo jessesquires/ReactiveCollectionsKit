@@ -135,7 +135,11 @@ extension CellContainerViewProtocol {
             return view
 
         case .title:
-            #warning("nil works for table views only. fix for collections?")
+            if self is UICollectionView {
+                #warning("TODO: dequeue and configure titled header/footer view")
+            }
+
+            assertionFailure("Cannot dequeue and configure title-based headers/footers for table views")
             return nil
         }
     }
@@ -193,8 +197,12 @@ extension CellContainerViewProtocol {
             }
 
         case .title:
-            // ignore. cannot register title-based views.
-            #warning("TODO: collection views, register custom titled view?")
+            if self is UICollectionView {
+                #warning("TODO: register custom titled header/footer view")
+            }
+
+            // otherwise, ignore.
+            // cannot register title-based headers/footers for table views.
         }
     }
 }

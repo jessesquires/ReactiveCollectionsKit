@@ -52,4 +52,18 @@ extension SupplementaryViewModel {
             return nil
         }
     }
+
+    var _isTitleBased: Bool {
+        switch self.style {
+        case .title: return true
+        case .customView: return false
+        }
+    }
+
+    var _isCustomViewBased: Bool {
+        switch self.style {
+        case .title: return false
+        case .customView: return true
+        }
+    }
 }

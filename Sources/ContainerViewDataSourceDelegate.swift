@@ -118,15 +118,27 @@ extension _ContainerViewDataSourceDelegate: UITableViewDelegate {
     }
 
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        tableView._dequeueAndConfigureSupplementaryView(for: .header,
-                                                        model: self.viewModel,
-                                                        at: IndexPath(section: section))
+        // don't attempt to dequeue custom view header if does not exist
+        guard
+            let header = self.viewModel.sections[section].headerViewModel,
+            header._isCustomViewBased else {
+                return nil
+        }
+        return tableView._dequeueAndConfigureSupplementaryView(for: .header,
+                                                               model: self.viewModel,
+                                                               at: IndexPath(section: section))
     }
 
     func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
-        tableView._dequeueAndConfigureSupplementaryView(for: .footer,
-                                                        model: self.viewModel,
-                                                        at: IndexPath(section: section))
+        // don't attempt to dequeue custom view footer if does not exist
+        guard
+            let footer = self.viewModel.sections[section].footerViewModel,
+            footer._isCustomViewBased else {
+                return nil
+        }
+        return tableView._dequeueAndConfigureSupplementaryView(for: .footer,
+                                                               model: self.viewModel,
+                                                               at: IndexPath(section: section))
     }
 }
 

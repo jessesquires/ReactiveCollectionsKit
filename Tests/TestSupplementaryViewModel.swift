@@ -41,6 +41,9 @@ final class TestSupplementaryViewModel: XCTestCase {
     func test_extensions_for_customView_based_model() {
         var customViewHeader = FakeCustomViewHeaderModel()
 
+        XCTAssertTrue(customViewHeader._isCustomViewBased)
+        XCTAssertFalse(customViewHeader._isTitleBased)
+
         XCTAssertEqual(customViewHeader._registration, customViewHeader.registration)
 
         customViewHeader.expectation = self.expectation()
@@ -50,6 +53,9 @@ final class TestSupplementaryViewModel: XCTestCase {
 
     func test_extensions_for_title_based_model() {
         let titleFooter = FakeTitleFooterModel()
+
+        XCTAssertTrue(titleFooter._isTitleBased)
+        XCTAssertFalse(titleFooter._isCustomViewBased)
 
         XCTAssertEqual(titleFooter._title, "Footer Title")
     }

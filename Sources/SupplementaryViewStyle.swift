@@ -18,6 +18,4 @@ public enum SupplementaryViewStyle {
     case customView(ReusableViewRegistration, SupplementaryViewConfig)
 
     case title(String)
-
-    #warning("TODO: collection title-based headers/footers")
 }
