@@ -76,6 +76,8 @@ extension _ContainerViewDataSourceDelegate: UICollectionViewDelegateFlowLayout {
                         sizeForItemAt indexPath: IndexPath) -> CGSize {
         self.viewModel[indexPath].size(in: collectionView)
     }
+
+    #warning("TODO: header/footer size methods")
 }
 
 // MARK: UITableViewDelegate
@@ -116,6 +118,8 @@ extension _ContainerViewDataSourceDelegate: UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         self.viewModel[indexPath].size(in: tableView).height
     }
+
+    #warning("TODO: header/footer size methods")
 
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         // don't attempt to dequeue custom view header if does not exist

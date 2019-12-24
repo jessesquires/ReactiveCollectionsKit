@@ -17,6 +17,8 @@ public protocol SupplementaryViewModel: DiffableViewModel {
     var kind: SupplementaryViewKind { get }
 
     var style: SupplementaryViewStyle { get }
+
+    #warning("TODO: header/footer view size")
 }
 
 extension SupplementaryViewModel {
