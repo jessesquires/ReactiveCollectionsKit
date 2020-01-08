@@ -13,7 +13,7 @@ env:
   DEVELOPER_DIR: /Applications/Xcode_11.3.app/Contents/Developer
   PROJECT: ReactiveCollectionsKit.xcodeproj
   SCHEME: ReactiveCollectionsKit
-  IOS_SDK: iphonesimulator13.3
+  IOS_SDK: iphonesimulator13.2
 
 jobs:
 
