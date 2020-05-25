@@ -22,7 +22,7 @@
 ### [CocoaPods](http://cocoapods.org)
 
 ````ruby
-pod 'ReactiveCollectionsKit', '~> 1.0.0'
+pod 'ReactiveCollectionsKit', '~> 0.1.0'
 
 # develop branch
 pod 'ReactiveCollectionsKit', :git => 'https://github.com/jessesquires/ReactiveCollectionsKit.git', :branch => 'dev'
@@ -34,7 +34,7 @@ Add `PROJECT` to the `dependencies` value of your `Package.swift`.
 
 ```swift
 dependencies: [
-    .package(url: "https://github.com/jessesquires/PROJECT.git", from: "1.0.0")
+    .package(url: "https://github.com/jessesquires/PROJECT.git", from: "0.1.0")
 ]
 ```
 
@@ -63,4 +63,4 @@ Created and maintained by [**@jesse_squires**](https://twitter.com/jesse_squires
 
 Released under the MIT License. See `LICENSE` for details.
 
-> **Copyright &copy; 2020-present Jesse Squires.**
+> **Copyright &copy; 2019-present Jesse Squires.**
