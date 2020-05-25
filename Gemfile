@@ -1,12 +1,24 @@
-source "https://rubygems.org"
+source 'https://rubygems.org'
 
-gem 'cocoapods', '~> 1.8'
+gem 'cocoapods', '1.9.2'
 
-gem 'danger', '~> 6.1'
-gem 'danger-swiftlint'
-gem 'danger-xcode_summary'
+# ------------
+# Danger Setup
+# ------------
+gem 'danger'
+
+# github
 gem 'danger-auto_label'
+
+# general
+gem 'danger-todoist'
 gem 'danger-prose'
 
-gem 'xcpretty'
-gem 'xcpretty-json-formatter'
+# xcode, ios, macos
+gem 'danger-swiftlint'
+gem 'danger-jazzy'
+gem 'jazzy'
+
+# fixes for github security vulnerability warnings
+gem "rubyzip", ">= 1.3.0"
+gem "excon", ">= 0.71.0"
