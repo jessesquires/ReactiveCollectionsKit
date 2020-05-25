@@ -11,7 +11,7 @@ on:
       - dev
 
 env:
-  SCHEME: PROJECT
+  SCHEME: ReactiveCollectionsKit
   DEVELOPER_DIR: /Applications/Xcode_11.5.app/Contents/Developer
   IOS_SDK: iphonesimulator13.5
 
