@@ -23,7 +23,6 @@ extension UIBarButtonItem {
 }
 
 extension UIViewController {
-
     func addShuffle(action: Selector?) {
         var items = self.navigationItem.rightBarButtonItems ?? []
         items.append(UIBarButtonItem(systemImage: "shuffle", target: self, action: action))
