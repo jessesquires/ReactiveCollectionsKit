@@ -28,7 +28,7 @@ struct Person {
     let nationality: String
 
     var birthDateText: String {
-        Self._formatter.string(from: self.birthdate)
+        _formatter.string(from: self.birthdate)
     }
 }
 
