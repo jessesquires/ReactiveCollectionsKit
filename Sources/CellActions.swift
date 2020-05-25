@@ -24,7 +24,7 @@ public enum CellActions {
     public typealias DidSelect = (IndexPath, UIView, UIViewController) -> Void
 
     /// A "no-op" `DidSelect` implementation. It does nothing.
-    /// Use this in your `CellViewModel` conformance for cell view models that
+    /// You may use this in your `CellViewModel` conformance for cell view models that
     /// do not have a `DidSelect` action, since providing a `DidSelect` action is required.
     public static var DidSelectNoOperation: DidSelect { { _, _, _ in } }
 }

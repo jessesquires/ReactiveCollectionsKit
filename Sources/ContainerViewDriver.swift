@@ -79,14 +79,14 @@ public final class ContainerViewDriver<View: UIView & CellContainerViewProtocol>
     }
 
     private func _didUpdateModel(animated: Bool, completion: DidUpdate?) {
-        let apply = {
+        let applyDiff = {
             self._differ.apply(self._viewModel, animated: animated, completion: completion)
         }
 
         if let queue = self._diffingQueue {
-            queue.async(execute: apply)
+            queue.async(execute: applyDiff)
         } else {
-            apply()
+            applyDiff()
         }
     }
 }

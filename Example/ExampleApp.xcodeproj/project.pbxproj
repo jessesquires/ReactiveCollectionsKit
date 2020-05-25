@@ -160,12 +160,12 @@
 			isa = PBXGroup;
 			children = (
 				8829EA802361F4ED00604A43 /* Assets.xcassets */,
-				88389EFC236DFE4E00DDECA5 /* CollectionView */,
-				88389EFF236DFF0F00DDECA5 /* Common */,
 				8829EA852361F4ED00604A43 /* Info.plist */,
 				8829EA822361F4ED00604A43 /* LaunchScreen.storyboard */,
-				88389EFE236DFEAD00DDECA5 /* Main */,
 				8829EA7D2361F4EB00604A43 /* Main.storyboard */,
+				88389EFC236DFE4E00DDECA5 /* CollectionView */,
+				88389EFF236DFF0F00DDECA5 /* Common */,
+				88389EFE236DFEAD00DDECA5 /* Main */,
 				88389EFD236DFE6400DDECA5 /* TableView */,
 			);
 			path = Sources;
