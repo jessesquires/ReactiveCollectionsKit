@@ -34,16 +34,6 @@ extension SupplementaryViewModel {
         }
     }
 
-    func _apply(to view: SupplementaryViewConfig.ViewType) {
-        switch self.style {
-        case let .customView(_, config):
-            config.apply(view)
-
-        case .title:
-            assertionFailure("Attempt to apply config to a title-based supplementary view")
-        }
-    }
-
     var _title: String? {
         switch self.style {
         case let .title(text):
@@ -66,6 +56,16 @@ extension SupplementaryViewModel {
         switch self.style {
         case .title: return false
         case .customView: return true
+        }
+    }
+
+    func _apply(to view: SupplementaryViewConfig.ViewType) {
+        switch self.style {
+        case let .customView(_, config):
+            config.apply(view)
+
+        case .title:
+            assertionFailure("Attempt to apply config to a title-based supplementary view")
         }
     }
 }

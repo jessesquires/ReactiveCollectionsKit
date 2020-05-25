@@ -19,7 +19,7 @@ struct ColorModel {
     let blue: CGFloat
 
     var uiColor: UIColor {
-        return UIColor(red: red, green: green, blue: blue, alpha: 1.0)
+        UIColor(red: red, green: green, blue: blue, alpha: 1.0)
     }
 }
 
@@ -32,6 +32,6 @@ extension ColorModel {
 
 extension ColorModel {
     static func makeColors() -> [ColorModel] {
-        return (0...14).map { _ in ColorModel.random }
+        (0...14).map { _ in ColorModel.random }
     }
 }

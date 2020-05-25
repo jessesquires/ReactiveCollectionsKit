@@ -49,7 +49,7 @@ struct ColorCollectionCellViewModel: CellViewModel {
     let shouldHighlight = false
 
     func size<V: UIView & CellContainerViewProtocol>(in containerView: V) -> CGSize {
-        return CGSize(width: 100, height: 100)
+        CGSize(width: 100, height: 100)
     }
 
     func apply(to cell: Self.CellType) {

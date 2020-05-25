@@ -25,9 +25,9 @@ private struct FakeCustomViewHeaderModel: SupplementaryViewModel {
 
     var expectation: XCTestExpectation?
     var config: SupplementaryViewConfig {
-        SupplementaryViewConfig(apply: { _ in
+        SupplementaryViewConfig { _ in
             self.expectation?.fulfill()
-        })
+        }
     }
 }
 

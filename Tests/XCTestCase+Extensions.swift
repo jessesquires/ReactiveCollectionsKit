@@ -23,6 +23,6 @@ extension XCTestCase {
     }
 
     func expectation(function: String = #function) -> XCTestExpectation {
-        return self.expectation(description: function)
+        self.expectation(description: function)
     }
 }

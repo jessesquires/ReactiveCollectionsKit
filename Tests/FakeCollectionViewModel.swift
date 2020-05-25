@@ -23,8 +23,7 @@ struct FakeCollectionCellViewModel: CellViewModel {
     let didSelectExpectation: XCTestExpectation?
     let applyExpectation: XCTestExpectation?
 
-    var didSelect: CellActions.DidSelect {
-        return { indexPath, view, controller -> Void in
+    var didSelect: CellActions.DidSelect { { indexPath, view, controller -> Void in
             self.didSelectExpectation?.fulfill()
         }
     }

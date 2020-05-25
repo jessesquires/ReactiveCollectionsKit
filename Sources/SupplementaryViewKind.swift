@@ -31,7 +31,9 @@ public enum SupplementaryViewKind: Equatable {
             fatalError("Unknown collectionElementKind: \(collectionElementKind)")
         }
     }
+}
 
+extension SupplementaryViewKind {
     var _collectionElementKind: String {
         switch self {
         case .header: return UICollectionView.elementKindSectionHeader

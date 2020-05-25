@@ -14,6 +14,8 @@
 import UIKit
 import XCTest
 
+// swiftlint:disable type_contents_order
+
 final class FakeTableCell: UITableViewCell { }
 
 final class FakeTableHeaderView: UITableViewHeaderFooterView { }
@@ -59,3 +61,5 @@ final class FakeTableView: UITableView {
         super.register(nib, forHeaderFooterViewReuseIdentifier: identifier)
     }
 }
+
+// swiftlint:enable type_contents_order

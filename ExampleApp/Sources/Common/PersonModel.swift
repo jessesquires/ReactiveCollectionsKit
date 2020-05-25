@@ -13,6 +13,13 @@
 
 import Foundation
 
+private let _formatter: DateFormatter = {
+    let fm = DateFormatter()
+    fm.dateStyle = .long
+    fm.timeStyle = .none
+    return fm
+}()
+
 struct Person {
     let name: String
 
@@ -23,13 +30,6 @@ struct Person {
     var birthDateText: String {
         Self._formatter.string(from: self.birthdate)
     }
-
-    private static let _formatter: DateFormatter = {
-        let fm = DateFormatter()
-        fm.dateStyle = .long
-        fm.timeStyle = .none
-        return fm
-    }()
 }
 
 extension Date {
@@ -45,7 +45,7 @@ extension Date {
 
 extension Person {
     static func makePeople() -> [Person] {
-        return [
+        [
             Person(name: "Noam Chomsky", birthdate: Date(year: 1928, month: 12, day: 7), nationality: "🇺🇸"),
             Person(name: "Emma Goldman", birthdate: Date(year: 1869, month: 6, day: 27), nationality: "🇷🇺"),
             Person(name: "Mikhail Bakunin", birthdate: Date(year: 1814, month: 5, day: 30), nationality: "🇷🇺"),

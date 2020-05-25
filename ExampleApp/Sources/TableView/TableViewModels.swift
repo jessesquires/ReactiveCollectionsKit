@@ -56,7 +56,7 @@ struct ColorTableCellViewModel: CellViewModel {
     let shouldHighlight = false
 
     func size<V: UIView & CellContainerViewProtocol>(in containerView: V) -> CGSize {
-        return CGSize(width: 0, height: 50)
+        CGSize(width: 0, height: 50)
     }
 
     func apply(to cell: Self.CellType) {

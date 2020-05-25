@@ -27,6 +27,6 @@ extension DiffableViewModel {
 
     /// Default implementation. Uses type name.
     public var id: UniqueIdentifier {
-        return String(describing: Self.self)
+        String(describing: Self.self)
     }
 }

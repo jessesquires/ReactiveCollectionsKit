@@ -57,11 +57,6 @@ extension SectionViewModel: Collection, RandomAccessCollection {
     }
 
     /// :nodoc:
-    public subscript(position: Int) -> CellViewModel {
-        self.cellViewModels[position]
-    }
-
-    /// :nodoc:
     public var startIndex: Int {
         self.cellViewModels.startIndex
     }
@@ -69,6 +64,11 @@ extension SectionViewModel: Collection, RandomAccessCollection {
     /// :nodoc:
     public var endIndex: Int {
         self.cellViewModels.endIndex
+    }
+
+    /// :nodoc:
+    public subscript(position: Int) -> CellViewModel {
+        self.cellViewModels[position]
     }
 
     /// :nodoc:
