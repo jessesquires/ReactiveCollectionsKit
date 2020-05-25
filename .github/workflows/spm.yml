@@ -9,15 +9,15 @@ on:
     branches:
       - master
       - dev
+
 env:
-  DEVELOPER_DIR: /Applications/Xcode_11.2.app/Contents/Developer
   SCHEME: ReactiveCollectionsKit
-  IOS_SDK: iphonesimulator13.2
+  DEVELOPER_DIR: /Applications/Xcode_11.5.app/Contents/Developer
+  IOS_SDK: iphonesimulator13.5
 
 jobs:
-
-  iOS:
-    name: iOS Test
+  job-build:
+    name: SwiftPM Build
     runs-on: macOS-latest
     steps:
       - name: git checkout
@@ -26,10 +26,15 @@ jobs:
       - name: xcode version
         run: xcodebuild -version -sdk
 
-      - name: SPM generate xcodeproj
+      - name: list simulators
+        run: |
+          xcrun simctl delete unavailable
+          xcrun simctl list
+
+      - name: generate xcodeproj
         run: swift package generate-xcodeproj
 
-      - name: Test
+      - name: Build
         run: |
           set -o pipefail
-          xcodebuild clean test -scheme "$SCHEME" -sdk "$IOS_SDK" -destination 'name=iPhone 11' | xcpretty -c;
+          xcodebuild clean build -scheme "$SCHEME" -sdk "$IOS_SDK" -destination 'name=iPhone 11' | xcpretty -c

@@ -11,7 +11,7 @@
 //  Copyright © 2019-present Jesse Squires
 //
 
-@testable import Example
+@testable import ExampleApp
 import XCTest
 
 final class ExampleTests: XCTestCase {
