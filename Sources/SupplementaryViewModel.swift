@@ -13,12 +13,10 @@
 
 import UIKit
 
-public protocol SupplementaryViewModel: DiffableViewModel {
+public protocol SupplementaryViewModel: DiffableViewModel, SizeableViewModel {
     var kind: SupplementaryViewKind { get }
 
     var style: SupplementaryViewStyle { get }
-
-    #warning("TODO: header/footer view size")
 }
 
 extension SupplementaryViewModel {

@@ -77,7 +77,23 @@ extension _ContainerViewDataSourceDelegate: UICollectionViewDelegateFlowLayout {
         self.viewModel[indexPath].size(in: collectionView)
     }
 
-    #warning("TODO: header/footer size methods")
+    func collectionView(_ collectionView: UICollectionView,
+                        layout collectionViewLayout: UICollectionViewLayout,
+                        referenceSizeForHeaderInSection section: Int) -> CGSize {
+        guard let header = self.viewModel.sections[section].headerViewModel else {
+            return .zero
+        }
+        return header.size(in: collectionView)
+    }
+
+    func collectionView(_ collectionView: UICollectionView,
+                        layout collectionViewLayout: UICollectionViewLayout,
+                        referenceSizeForFooterInSection section: Int) -> CGSize {
+        guard let footer = self.viewModel.sections[section].footerViewModel else {
+            return .zero
+        }
+        return footer.size(in: collectionView)
+    }
 }
 
 // MARK: UITableViewDelegate
@@ -116,38 +132,40 @@ extension _ContainerViewDataSourceDelegate: UITableViewDelegate {
     }
 
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        self.viewModel[indexPath].size(in: tableView).height
+        self.viewModel[indexPath].height(in: tableView)
     }
-
-    #warning("TODO: header/footer size methods")
 
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         // don't attempt to dequeue custom view header if does not exist
-        guard
-            let header = self.viewModel.sections[section].headerViewModel,
-            header._isCustomViewBased else {
-                return nil
+        guard let header = self.viewModel.sections[section].headerViewModel, header._isCustomViewBased else {
+            return nil
         }
         return tableView._dequeueAndConfigureSupplementaryView(for: .header,
                                                                model: self.viewModel,
                                                                at: IndexPath(section: section))
     }
 
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        guard let header = self.viewModel.sections[section].headerViewModel else {
+            return 0
+        }
+        return header.height(in: tableView)
+    }
+
     func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
         // don't attempt to dequeue custom view footer if does not exist
-        guard
-            let footer = self.viewModel.sections[section].footerViewModel,
-            footer._isCustomViewBased else {
-                return nil
+        guard let footer = self.viewModel.sections[section].footerViewModel, footer._isCustomViewBased else {
+            return nil
         }
         return tableView._dequeueAndConfigureSupplementaryView(for: .footer,
                                                                model: self.viewModel,
                                                                at: IndexPath(section: section))
     }
-}
 
-extension IndexPath {
-    init(section: Int) {
-        self.init(item: 0, section: section)
+    func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+        guard let footer = self.viewModel.sections[section].footerViewModel else {
+            return 0
+        }
+        return footer.height(in: tableView)
     }
 }

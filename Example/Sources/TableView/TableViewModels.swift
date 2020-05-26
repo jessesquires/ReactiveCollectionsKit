@@ -22,8 +22,8 @@ struct PersonTableCellViewModel: CellViewModel {
 
     let registration = ReusableViewRegistration(classType: PersonTableCell.self)
 
-    func size<V: UIView & CellContainerViewProtocol>(in containerView: V) -> CGSize {
-        CGSize(width: 0, height: 60)
+    func height<V: UIView & CellContainerViewProtocol>(in containerView: V) -> CGFloat {
+        60
     }
 
     func apply(to cell: Self.CellType) {
@@ -37,11 +37,19 @@ struct PersonTableCellViewModel: CellViewModel {
 struct PersonTableHeaderViewModel: SupplementaryViewModel {
     let kind = SupplementaryViewKind.header
     let style = SupplementaryViewStyle.title("Comrades")
+
+    func height<V: UIView & CellContainerViewProtocol>(in containerView: V) -> CGFloat {
+        44
+    }
 }
 
 struct PersonTableFooterViewModel: SupplementaryViewModel {
     let kind = SupplementaryViewKind.footer
     let style = SupplementaryViewStyle.title("Note: list is incomplete")
+
+    func height<V: UIView & CellContainerViewProtocol>(in containerView: V) -> CGFloat {
+        44
+    }
 }
 
 struct ColorTableCellViewModel: CellViewModel {
@@ -55,8 +63,8 @@ struct ColorTableCellViewModel: CellViewModel {
 
     let shouldHighlight = false
 
-    func size<V: UIView & CellContainerViewProtocol>(in containerView: V) -> CGSize {
-        CGSize(width: 0, height: 50)
+    func height<V: UIView & CellContainerViewProtocol>(in containerView: V) -> CGFloat {
+        50
     }
 
     func apply(to cell: Self.CellType) {
@@ -68,4 +76,8 @@ struct ColorTableCellViewModel: CellViewModel {
 struct ColorTableHeaderViewModel: SupplementaryViewModel {
     let kind = SupplementaryViewKind.header
     let style = SupplementaryViewStyle.title("Random Colors")
+
+    func height<V: UIView & CellContainerViewProtocol>(in containerView: V) -> CGFloat {
+        44
+    }
 }

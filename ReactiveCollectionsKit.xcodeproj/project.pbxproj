@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		881BD16B247C85D900E8D23C /* SizeableViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 881BD16A247C85D900E8D23C /* SizeableViewModel.swift */; };
+		881BD16D247C880100E8D23C /* IndexPath+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 881BD16C247C880100E8D23C /* IndexPath+Extensions.swift */; };
 		882CCB602390F51500E4B72B /* SupplementaryViewConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 882CCB5F2390F51500E4B72B /* SupplementaryViewConfig.swift */; };
 		882CCB622390FB5F00E4B72B /* TestSupplementaryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 882CCB612390FB5F00E4B72B /* TestSupplementaryViewModel.swift */; };
 		88389EF6236DEE0A00DDECA5 /* Asserts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88389EF5236DEE0A00DDECA5 /* Asserts.swift */; };
@@ -54,6 +56,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		881BD16A247C85D900E8D23C /* SizeableViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SizeableViewModel.swift; sourceTree = "<group>"; };
+		881BD16C247C880100E8D23C /* IndexPath+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "IndexPath+Extensions.swift"; sourceTree = "<group>"; };
 		882CCB5F2390F51500E4B72B /* SupplementaryViewConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SupplementaryViewConfig.swift; sourceTree = "<group>"; };
 		882CCB612390FB5F00E4B72B /* TestSupplementaryViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestSupplementaryViewModel.swift; sourceTree = "<group>"; };
 		88389EF5236DEE0A00DDECA5 /* Asserts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Asserts.swift; sourceTree = "<group>"; };
@@ -148,11 +152,13 @@
 				88FA48F62363A7880061F8B2 /* ReusableViewProtocol.swift */,
 				88FA48FE2363A7890061F8B2 /* ReusableViewRegistration.swift */,
 				88FA48FD2363A7880061F8B2 /* SectionViewModel.swift */,
+				881BD16A247C85D900E8D23C /* SizeableViewModel.swift */,
 				882CCB5F2390F51500E4B72B /* SupplementaryViewConfig.swift */,
 				88FA49002363A7890061F8B2 /* SupplementaryViewKind.swift */,
 				88FA49042363A7890061F8B2 /* SupplementaryViewModel.swift */,
 				88FA48F72363A7880061F8B2 /* SupplementaryViewStyle.swift */,
 				88FA48FC2363A7880061F8B2 /* ViewRegistrationMethod.swift */,
+				881BD16C247C880100E8D23C /* IndexPath+Extensions.swift */,
 			);
 			path = Sources;
 			sourceTree = "<group>";
@@ -312,6 +318,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				88FA49122363A7890061F8B2 /* CellContainerViewProtocol.swift in Sources */,
+				881BD16B247C85D900E8D23C /* SizeableViewModel.swift in Sources */,
 				88FA49062363A7890061F8B2 /* SupplementaryViewStyle.swift in Sources */,
 				88FA49092363A7890061F8B2 /* ContainerViewDriver.swift in Sources */,
 				88FA49112363A7890061F8B2 /* CellActions.swift in Sources */,
@@ -325,6 +332,7 @@
 				88FA49132363A7890061F8B2 /* SupplementaryViewModel.swift in Sources */,
 				88FA490D2363A7890061F8B2 /* ReusableViewRegistration.swift in Sources */,
 				88FA49072363A7890061F8B2 /* CellContainerViewProtocol+Collection.swift in Sources */,
+				881BD16D247C880100E8D23C /* IndexPath+Extensions.swift in Sources */,
 				88FA49312363BC5F0061F8B2 /* DiffableViewModel.swift in Sources */,
 				88FA490B2363A7890061F8B2 /* ViewRegistrationMethod.swift in Sources */,
 				88FA49082363A7890061F8B2 /* ContainerViewModel.swift in Sources */,

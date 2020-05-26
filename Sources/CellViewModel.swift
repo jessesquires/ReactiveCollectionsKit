@@ -13,7 +13,7 @@
 
 import UIKit
 
-public protocol CellViewModel: DiffableViewModel {
+public protocol CellViewModel: DiffableViewModel, SizeableViewModel {
     typealias CellType = UIView & ReusableViewProtocol
 
     var registration: ReusableViewRegistration { get }
@@ -21,9 +21,6 @@ public protocol CellViewModel: DiffableViewModel {
     var shouldHighlight: Bool { get }
 
     var didSelect: CellActions.DidSelect { get }
-
-    /// - Note: for table views the width is ignored
-    func size<V: UIView & CellContainerViewProtocol>(in containerView: V) -> CGSize
 
     func apply(to cell: CellType)
 }
