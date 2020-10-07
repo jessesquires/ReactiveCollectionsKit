@@ -13,8 +13,8 @@
 ## Requirements
 
 - iOS 13.0+
-- Swift 5.2+
-- Xcode 11.5+
+- Swift 5.3+
+- Xcode 12.0+
 - [SwiftLint](https://github.com/realm/SwiftLint)
 
 ## Installation

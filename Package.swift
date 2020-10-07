@@ -1,4 +1,4 @@
-// swift-tools-version:5.2
+// swift-tools-version:5.3
 //
 //  Created by Jesse Squires
 //  https://www.jessesquires.com
@@ -24,10 +24,12 @@ let package = Package(
     dependencies: [],
     targets: [
         .target(name: "ReactiveCollectionsKit",
-                path: "Sources"),
+                path: "Sources",
+                exclude: ["Info.plist"]),
         .testTarget(name: "ReactiveCollectionsKitTests",
                     dependencies: ["ReactiveCollectionsKit"],
-                    path: "Tests")
+                    path: "Tests",
+                    exclude: ["Info.plist"])
     ],
     swiftLanguageVersions: [.v5]
 )
