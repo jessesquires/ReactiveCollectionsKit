@@ -23,18 +23,13 @@
 
 ````ruby
 pod 'ReactiveCollectionsKit', '~> 0.1.0'
-
-# develop branch
-pod 'ReactiveCollectionsKit', :git => 'https://github.com/jessesquires/ReactiveCollectionsKit.git', :branch => 'dev'
 ````
 
 ### [Swift Package Manager](https://swift.org/package-manager/)
 
-Add `PROJECT` to the `dependencies` value of your `Package.swift`.
-
 ```swift
 dependencies: [
-    .package(url: "https://github.com/jessesquires/PROJECT.git", from: "0.1.0")
+    .package(url: "https://github.com/jessesquires/ReactiveCollectionsKit.git", from: "0.1.0")
 ]
 ```
 
