@@ -15,7 +15,7 @@ import UIKit
 
 // swiftlint:disable discouraged_optional_collection
 
-@UIApplicationMain
+@main
 final class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication,
