@@ -22,13 +22,13 @@ public final class ContainerViewDriver<View: UIView & CellContainerViewProtocol>
     public var animateUpdates: Bool
 
     public var viewModel: ContainerViewModel {
+        get {
+            self._viewModel
+        }
         set {
             _assertMainThread()
             self._viewModel = newValue
             self._didUpdateModel(animated: self.animateUpdates, completion: self._didUpdate)
-        }
-        get {
-            self._viewModel
         }
     }
 
