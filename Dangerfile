@@ -19,15 +19,9 @@ end
 # -----------------------------------------------------------------------------
 # All pull requests need a description
 # -----------------------------------------------------------------------------
-if github.pr_body.length < 15
+if github.pr_body.length < 25
     fail("Please provide a detailed summary in the pull request description.")
 end
-
-# -----------------------------------------------------------------------------
-# Fail on TODOs in code
-# -----------------------------------------------------------------------------
-todoist.message = "Oops! We should not commit TODOs. Please fix them before merging."
-todoist.fail_for_todos
 
 # -----------------------------------------------------------------------------
 # All pull requests should be submitted to dev/develop branch
@@ -58,6 +52,44 @@ if has_doc_changes
     fail("Documentation cannot be edited directly.")
     message(%(Docs are automatically regenerated when creating new releases using [Jazzy](https://github.com/realm/jazzy).
         If you want to update docs, please update the doc comments or markdown files directly.))
+end
+
+# -----------------------------------------------------------------------------
+# Verify correct `pod install` and `bundle install`
+# -----------------------------------------------------------------------------
+def files_changed_as_set(files)
+    changed_files = files.select { |file| git.modified_files.include? file }
+    not_changed_files = files.select { |file| !changed_files.include? file }
+    all_files_changed = not_changed_files.empty?
+    no_files_changed = changed_files.empty?
+    return all_files_changed || no_files_changed
+end
+
+# Verify proper pod install.
+# If Podfile has been modified, so must the lock files.
+did_update_podfile = git.modified_files.include?("Podfile")
+pod_files = ["Podfile", "Podfile.lock", "Pods/Manifest.lock"]
+if did_update_podfile && !files_changed_as_set(pod_files)
+    fail("CocoaPods error: #{pod_files} should all be changed at the same time.
+        Run `pod install` and commit the changes to fix.")
+end
+
+# Prevent editing `Pods/` source directly.
+# If Pods has changed, then Podfile.lock must have changed too.
+has_modified_pods = !(git.added_files + git.modified_files + git.deleted_files).grep(/Pods/).empty?
+did_update_podlock = git.modified_files.include?("Podfile.lock")
+if has_modified_pods && !did_update_podlock
+  fail("It looks like you are modifying CocoaPods source in `Pods/`. 3rd-party dependencies should not be edited.
+        To update or change pods, please update the `Podfile` and run `pod install`.")
+end
+
+# Verify proper bundle install.
+# If Gemfile has been modified, so must the lock file.
+did_update_gemfile = git.modified_files.include?("Gemfile")
+gem_files = ["Gemfile", "Gemfile.lock"]
+if did_update_gemfile && !files_changed_as_set(gem_files)
+    fail("Bundler error: #{gem_files} should all be changed at the same time.
+        Run `bundle install` and commit the changes to fix.")
 end
 
 # -----------------------------------------------------------------------------
