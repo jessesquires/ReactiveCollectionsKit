@@ -46,12 +46,12 @@ extension Date {
 extension Person {
     static func makePeople() -> [Person] {
         [
-            Person(name: "Noam Chomsky", birthdate: Date(year: 1928, month: 12, day: 7), nationality: "🇺🇸"),
-            Person(name: "Emma Goldman", birthdate: Date(year: 1869, month: 6, day: 27), nationality: "🇷🇺"),
-            Person(name: "Mikhail Bakunin", birthdate: Date(year: 1814, month: 5, day: 30), nationality: "🇷🇺"),
-            Person(name: "Ursula K. Le Guin", birthdate: Date(year: 1929, month: 10, day: 21), nationality: "🇺🇸"),
-            Person(name: "Peter Kropotkin", birthdate: Date(year: 1842, month: 12, day: 9), nationality: "🇷🇺"),
-            Person(name: "Marie Louise Berneri", birthdate: Date(year: 1918, month: 3, day: 1), nationality: "🇮🇹")
+            Person(name: "Noam Chomsky", birthdate: Date(year: 1_928, month: 12, day: 7), nationality: "🇺🇸"),
+            Person(name: "Emma Goldman", birthdate: Date(year: 1_869, month: 6, day: 27), nationality: "🇷🇺"),
+            Person(name: "Mikhail Bakunin", birthdate: Date(year: 1_814, month: 5, day: 30), nationality: "🇷🇺"),
+            Person(name: "Ursula K. Le Guin", birthdate: Date(year: 1_929, month: 10, day: 21), nationality: "🇺🇸"),
+            Person(name: "Peter Kropotkin", birthdate: Date(year: 1_842, month: 12, day: 9), nationality: "🇷🇺"),
+            Person(name: "Marie Louise Berneri", birthdate: Date(year: 1_918, month: 3, day: 1), nationality: "🇮🇹")
         ]
     }
 }

@@ -24,11 +24,13 @@ final class CollectionViewController: UICollectionViewController {
         super.viewDidLoad()
 
         let viewModel = ViewModel.makeCollectionViewModel(model: self.model)
-        self.driver = ContainerViewDriver(view: self.collectionView,
-                                          viewModel: viewModel,
-                                          controller: self,
-                                          diffingQueue: .global(qos: .userInteractive),
-                                          didUpdate: { print("collection finished update!") })
+        self.driver = ContainerViewDriver(
+            view: self.collectionView,
+            viewModel: viewModel,
+            controller: self,
+            diffingQueue: .global(qos: .userInteractive)) {
+            print("collection finished update!")
+        }
 
         self.addShuffle(action: #selector(shuffle))
     }
