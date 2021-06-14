@@ -14,15 +14,13 @@
 import UIKit
 
 public protocol CellViewModel: DiffableViewModel {
-    typealias CellType = UIView & ReusableViewProtocol
-
     var registration: ReusableViewRegistration { get }
 
     var shouldHighlight: Bool { get }
 
     var didSelect: CellActions.DidSelect { get }
 
-    func apply(to cell: CellType)
+    func apply(to cell: UICollectionViewCell)
 }
 
 extension CellViewModel {

@@ -14,7 +14,5 @@
 import UIKit
 
 public struct SupplementaryViewConfig {
-    public typealias ViewType = UIView & ReusableViewProtocol
-
-    public let apply: (ViewType) -> Void
+    public let apply: (UICollectionReusableView) -> Void
 }

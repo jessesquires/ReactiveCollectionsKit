@@ -24,7 +24,7 @@ struct PersonCollectionCellViewModel: CellViewModel {
                                                 nibName: "CollectionCell",
                                                 bundle: nil)
 
-    func apply(to cell: Self.CellType) {
+    func apply(to cell: UICollectionViewCell) {
         let cell = cell as! PersonCollectionCell
         cell.titleLabel.text = self.person.name
         cell.subtitleLabel.text = self.person.birthDateText
@@ -43,8 +43,7 @@ struct ColorCollectionCellViewModel: CellViewModel {
 
     let shouldHighlight = false
 
-    func apply(to cell: Self.CellType) {
-        let cell = cell as! UICollectionViewCell
+    func apply(to cell: UICollectionViewCell) {
         cell.backgroundColor = self.color.uiColor
     }
 }

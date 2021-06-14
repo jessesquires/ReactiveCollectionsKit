@@ -24,7 +24,6 @@
 		88BD6D1B238D127700FB1846 /* FakeCollectionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88BD6D19238D124300FB1846 /* FakeCollectionViewModel.swift */; };
 		88C02079236CBCB000B43713 /* DiffableDataSourceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88C02078236CBCB000B43713 /* DiffableDataSourceProtocol.swift */; };
 		88FA48E42363A6160061F8B2 /* ReactiveCollectionsKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 88FA48DA2363A6160061F8B2 /* ReactiveCollectionsKit.framework */; };
-		88FA49052363A7890061F8B2 /* ReusableViewProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88FA48F62363A7880061F8B2 /* ReusableViewProtocol.swift */; };
 		88FA49062363A7890061F8B2 /* SupplementaryViewStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88FA48F72363A7880061F8B2 /* SupplementaryViewStyle.swift */; };
 		88FA49082363A7890061F8B2 /* CollectionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88FA48F92363A7880061F8B2 /* CollectionViewModel.swift */; };
 		88FA49092363A7890061F8B2 /* CollectionViewDriver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88FA48FA2363A7880061F8B2 /* CollectionViewDriver.swift */; };
@@ -33,7 +32,6 @@
 		88FA490C2363A7890061F8B2 /* SectionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88FA48FD2363A7880061F8B2 /* SectionViewModel.swift */; };
 		88FA490D2363A7890061F8B2 /* ReusableViewRegistration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88FA48FE2363A7890061F8B2 /* ReusableViewRegistration.swift */; };
 		88FA490F2363A7890061F8B2 /* SupplementaryViewKind.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88FA49002363A7890061F8B2 /* SupplementaryViewKind.swift */; };
-		88FA49102363A7890061F8B2 /* ContainerViewDataSourceDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88FA49012363A7890061F8B2 /* ContainerViewDataSourceDelegate.swift */; };
 		88FA49112363A7890061F8B2 /* CellActions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88FA49022363A7890061F8B2 /* CellActions.swift */; };
 		88FA49122363A7890061F8B2 /* UICollectionView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88FA49032363A7890061F8B2 /* UICollectionView+Extensions.swift */; };
 		88FA49132363A7890061F8B2 /* SupplementaryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88FA49042363A7890061F8B2 /* SupplementaryViewModel.swift */; };
@@ -71,7 +69,6 @@
 		88FA48DE2363A6160061F8B2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		88FA48E32363A6160061F8B2 /* ReactiveCollectionsKitTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ReactiveCollectionsKitTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		88FA48EA2363A6160061F8B2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		88FA48F62363A7880061F8B2 /* ReusableViewProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReusableViewProtocol.swift; sourceTree = "<group>"; };
 		88FA48F72363A7880061F8B2 /* SupplementaryViewStyle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SupplementaryViewStyle.swift; sourceTree = "<group>"; };
 		88FA48F92363A7880061F8B2 /* CollectionViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CollectionViewModel.swift; sourceTree = "<group>"; };
 		88FA48FA2363A7880061F8B2 /* CollectionViewDriver.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CollectionViewDriver.swift; sourceTree = "<group>"; };
@@ -80,7 +77,6 @@
 		88FA48FD2363A7880061F8B2 /* SectionViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SectionViewModel.swift; sourceTree = "<group>"; };
 		88FA48FE2363A7890061F8B2 /* ReusableViewRegistration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReusableViewRegistration.swift; sourceTree = "<group>"; };
 		88FA49002363A7890061F8B2 /* SupplementaryViewKind.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SupplementaryViewKind.swift; sourceTree = "<group>"; };
-		88FA49012363A7890061F8B2 /* ContainerViewDataSourceDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContainerViewDataSourceDelegate.swift; sourceTree = "<group>"; };
 		88FA49022363A7890061F8B2 /* CellActions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CellActions.swift; sourceTree = "<group>"; };
 		88FA49032363A7890061F8B2 /* UICollectionView+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UICollectionView+Extensions.swift"; sourceTree = "<group>"; };
 		88FA49042363A7890061F8B2 /* SupplementaryViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SupplementaryViewModel.swift; sourceTree = "<group>"; };
@@ -132,12 +128,10 @@
 				88FA48FB2363A7880061F8B2 /* CellViewModel.swift */,
 				88FA48FA2363A7880061F8B2 /* CollectionViewDriver.swift */,
 				88FA48F92363A7880061F8B2 /* CollectionViewModel.swift */,
-				88FA49012363A7890061F8B2 /* ContainerViewDataSourceDelegate.swift */,
 				88C02078236CBCB000B43713 /* DiffableDataSourceProtocol.swift */,
 				88FA49302363BC5F0061F8B2 /* DiffableViewModel.swift */,
 				881BD16C247C880100E8D23C /* IndexPath+Extensions.swift */,
 				88FA48DE2363A6160061F8B2 /* Info.plist */,
-				88FA48F62363A7880061F8B2 /* ReusableViewProtocol.swift */,
 				88FA48FE2363A7890061F8B2 /* ReusableViewRegistration.swift */,
 				88FA48FD2363A7880061F8B2 /* SectionViewModel.swift */,
 				882CCB5F2390F51500E4B72B /* SupplementaryViewConfig.swift */,
@@ -310,7 +304,6 @@
 				882CCB602390F51500E4B72B /* SupplementaryViewConfig.swift in Sources */,
 				88389EF6236DEE0A00DDECA5 /* Asserts.swift in Sources */,
 				88FA490F2363A7890061F8B2 /* SupplementaryViewKind.swift in Sources */,
-				88FA49102363A7890061F8B2 /* ContainerViewDataSourceDelegate.swift in Sources */,
 				88C02079236CBCB000B43713 /* DiffableDataSourceProtocol.swift in Sources */,
 				88FA49132363A7890061F8B2 /* SupplementaryViewModel.swift in Sources */,
 				88FA490D2363A7890061F8B2 /* ReusableViewRegistration.swift in Sources */,
@@ -319,7 +312,6 @@
 				88FA490B2363A7890061F8B2 /* ViewRegistrationMethod.swift in Sources */,
 				88FA49082363A7890061F8B2 /* CollectionViewModel.swift in Sources */,
 				88FA490A2363A7890061F8B2 /* CellViewModel.swift in Sources */,
-				88FA49052363A7890061F8B2 /* ReusableViewProtocol.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

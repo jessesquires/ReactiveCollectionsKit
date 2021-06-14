@@ -57,7 +57,7 @@ extension SupplementaryViewModel {
         }
     }
 
-    func _apply(to view: SupplementaryViewConfig.ViewType) {
+    func _apply(to view: UICollectionReusableView) {
         switch self.style {
         case let .customView(_, config):
             config.apply(view)
