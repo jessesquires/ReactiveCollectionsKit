@@ -24,8 +24,8 @@ on:
 env:
   DEVELOPER_DIR: /Applications/Xcode_12.5.app/Contents/Developer
 
-  IOS_SDK: iphonesimulator14.4
-  IOS_DEST: "OS=14.4,name=iPhone 12 Mini"
+  IOS_SDK: iphonesimulator14.5
+  IOS_DEST: "OS=14.5,name=iPhone 12 Mini"
 
   SCHEME: ReactiveCollectionsKit
 
