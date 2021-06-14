@@ -19,9 +19,9 @@ final class PersonViewController: UIViewController {
     @IBOutlet private weak var subtitleLabel: UILabel!
     @IBOutlet private weak var flagLabel: UILabel!
 
-    let person: Person
+    let person: PersonModel
 
-    init(person: Person) {
+    init(person: PersonModel) {
         self.person = person
         super.init(nibName: "\(PersonViewController.self)", bundle: nil)
         self.title = "Person"

@@ -1,4 +1,4 @@
-// swift-tools-version:5.3
+// swift-tools-version:5.4
 //
 //  Created by Jesse Squires
 //  https://www.jessesquires.com
@@ -14,16 +14,18 @@
 
 import PackageDescription
 
+let name = "ReactiveCollectionsKit"
+
 let package = Package(
-    name: "ReactiveCollectionsKit",
+    name: name,
     platforms: [
         .iOS(.v13)
     ],
-    products: [.library(name: "ReactiveCollectionsKit",
-                        targets: ["ReactiveCollectionsKit"])],
+    products: [.library(name: name,
+                        targets: [name])],
     dependencies: [],
     targets: [
-        .target(name: "ReactiveCollectionsKit",
+        .target(name: name,
                 path: "Sources",
                 exclude: ["Info.plist"]),
         .testTarget(name: "ReactiveCollectionsKitTests",

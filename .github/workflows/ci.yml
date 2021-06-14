@@ -1,38 +1,43 @@
+# GitHub Actions Virtual Environments
+# https://github.com/actions/virtual-environments/
+
 name: CI
 
 on:
   push:
     branches:
       - main
-      - dev
+    paths:
+      - '.github/workflows/ci.yml'
+      - 'Sources/**/*.*'
+      - 'Tests/**/*.*'
+      - 'Example/**/*.*'
   pull_request:
     branches:
       - main
-      - dev
+    paths:
+      - '.github/workflows/ci.yml'
+      - 'Sources/**/*.*'
+      - 'Tests/**/*.*'
+      - 'Example/**/*.*'
 
 env:
-  # https://github.com/actions/virtual-environments/tree/main/images/macos
-  DEVELOPER_DIR: /Applications/Xcode_12.3.app/Contents/Developer
-
-  IOS_SDK: iphonesimulator14.3
-
   PROJECT: ReactiveCollectionsKit.xcodeproj
   SCHEME: ReactiveCollectionsKit
 
   EXAMPLE_PROJECT: Example/ExampleApp.xcodeproj
   EXAMPLE_SCHEME: ExampleApp
 
-  IOS_DEST: "OS=14.3,name=iPhone 12 Mini"
+  DEVELOPER_DIR: /Applications/Xcode_12.5.app/Contents/Developer
+
+  IOS_SDK: iphonesimulator14.5
+  IOS_DEST: "OS=14.5,name=iPhone 12 Mini"
 
 jobs:
-  job-build-test:
-    name: Build and Test
-    runs-on: macOS-latest
-
+  env-details:
+    name: Environment details
+    runs-on: macOS-11
     steps:
-      - name: git checkout
-        uses: actions/checkout@v2
-
       - name: xcode version
         run: xcodebuild -version -sdk
 
@@ -40,6 +45,13 @@ jobs:
         run: |
           xcrun simctl delete unavailable
           xcrun simctl list
+
+  test-iOS:
+    name: iOS unit test
+    runs-on: macOS-11
+    steps:
+      - name: git checkout
+        uses: actions/checkout@v2
 
       - name: unit tests
         run: |
@@ -50,6 +62,13 @@ jobs:
               -sdk "$IOS_SDK" \
               -destination "$IOS_DEST" \
               ONLY_ACTIVE_ARCH=NO CODE_SIGNING_REQUIRED=NO | xcpretty -c
+
+  ui-test-iOS:
+    name: iOS UI test
+    runs-on: macOS-11
+    steps:
+      - name: git checkout
+        uses: actions/checkout@v2
 
       - name: ui tests
         run: |

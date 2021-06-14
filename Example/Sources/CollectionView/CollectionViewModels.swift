@@ -15,7 +15,7 @@ import ReactiveCollectionsKit
 import UIKit
 
 struct PersonCollectionCellViewModel: CellViewModel {
-    let person: Person
+    let person: PersonModel
     let didSelect: CellActions.DidSelect
 
     var id: UniqueIdentifier { self.person.name }

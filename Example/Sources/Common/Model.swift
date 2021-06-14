@@ -14,10 +14,10 @@
 import Foundation
 
 struct Model {
-    let people: [Person]
+    let people: [PersonModel]
     let colors: [ColorModel]
 
-    init(people: [Person] = Person.makePeople(),
+    init(people: [PersonModel] = PersonModel.makePeople(),
          colors: [ColorModel] = ColorModel.makeColors(),
          shuffle: Bool = false) {
         self.people = shuffle ? people.shuffled() : people
