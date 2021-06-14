@@ -1,11 +1,12 @@
 source 'https://rubygems.org'
 
-gem 'cocoapods', '1.10.0'
+gem 'cocoapods', '~> 1.10'
+gem 'synx'
 
 # ------------
 # Danger Setup
 # ------------
-gem 'danger'
+gem 'danger', '~> 8.0'
 
 # general
 gem 'danger-prose'
@@ -14,7 +15,3 @@ gem 'danger-prose'
 gem 'danger-swiftlint'
 gem 'danger-jazzy'
 gem 'jazzy'
-
-# fixes for github security vulnerability warnings
-gem "rubyzip", ">= 1.3.0"
-gem "excon", ">= 0.71.0"
