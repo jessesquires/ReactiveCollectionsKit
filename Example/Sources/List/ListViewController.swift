@@ -11,14 +11,9 @@
 //  Copyright © 2019-present Jesse Squires
 //
 
+import ReactiveCollectionsKit
 import UIKit
 
-final class PersonTableCell: UITableViewCell {
-    override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
-        super.init(style: .subtitle, reuseIdentifier: reuseIdentifier)
-    }
+final class ListViewController: UICollectionViewController {
 
-    required init?(coder: NSCoder) {
-        super.init(coder: coder)
-    }
 }

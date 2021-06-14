@@ -13,15 +13,12 @@
 
 import UIKit
 
-// swiftlint:disable discouraged_optional_collection
-
 @main
 final class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication,
+                     // swiftlint:disable:next discouraged_optional_collection
                      didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         true
     }
 }
-
-// swiftlint:enable discouraged_optional_collection

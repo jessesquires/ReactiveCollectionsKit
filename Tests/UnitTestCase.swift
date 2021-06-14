@@ -46,15 +46,10 @@ class UnitTestCase: XCTestCase {
     let collectionView = FakeCollectionView(frame: frame,
                                             collectionViewLayout: FakeCollectionLayout())
 
-    let tableView = FakeTableView(frame: frame, style: .plain)
-
     override func setUp() {
         super.setUp()
 
         self.collectionView.layoutSubviews()
         self.collectionView.reloadData()
-
-        self.tableView.layoutSubviews()
-        self.tableView.reloadData()
     }
 }

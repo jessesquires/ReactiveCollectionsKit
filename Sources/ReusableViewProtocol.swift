@@ -25,7 +25,3 @@ public protocol ReusableViewProtocol: AnyObject {
 }
 
 extension UICollectionReusableView: ReusableViewProtocol { }
-
-extension UITableViewCell: ReusableViewProtocol { }
-
-extension UITableViewHeaderFooterView: ReusableViewProtocol { }

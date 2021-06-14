@@ -14,7 +14,7 @@
 import ReactiveCollectionsKit
 import UIKit
 
-final class CollectionViewController: UICollectionViewController {
+final class GridViewController: UICollectionViewController {
 
     var driver: ContainerViewDriver<UICollectionView>!
 

@@ -39,28 +39,4 @@ extension ViewModel {
     }
 }
 
-extension ViewModel {
-    static func makeTableViewModel(model: Model) -> ContainerViewModel {
-
-        let peopleCellViewModels = model.people.map { person in
-            PersonTableCellViewModel(person: person, didSelect: { indexPath, container, controller in
-                let personVC = PersonViewController(person: person)
-                controller.navigationController?.pushViewController(personVC, animated: true)
-            })
-        }
-
-        let peopleSection = SectionViewModel(id: "section_0_people",
-                                             cells: peopleCellViewModels,
-                                             header: PersonTableHeaderViewModel(),
-                                             footer: PersonTableFooterViewModel())
-
-        let colorCellViewModels = model.colors.map { ColorTableCellViewModel(color: $0) }
-        let colorSection = SectionViewModel(id: "section_1_colors",
-                                            cells: colorCellViewModels,
-                                            header: ColorTableHeaderViewModel())
-
-        return ContainerViewModel(sections: [peopleSection, colorSection])
-    }
-}
-
 // swiftlint:enable trailing_closure unused_closure_parameter

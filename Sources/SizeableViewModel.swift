@@ -22,9 +22,7 @@ public protocol SizeableViewModel {
 
 extension SizeableViewModel {
     public func height<V: UIView & CellContainerViewProtocol>(in containerView: V) -> CGFloat {
-        if containerView is UITableView {
-            return 44
-        } else if containerView is UICollectionView {
+        if containerView is UICollectionView {
             return 150
         }
         preconditionFailure("Unknown container view type: \(containerView)")

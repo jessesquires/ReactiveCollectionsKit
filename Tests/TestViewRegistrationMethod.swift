@@ -27,13 +27,10 @@ final class TestViewRegistrationMethod: XCTestCase {
         let method1 = ViewRegistrationMethod.fromNib(name: "FakeNib", bundle: bundle)
         XCTAssertEqual(method1, method1)
 
-        let method2 = ViewRegistrationMethod.fromClass(FakeTableCell.self)
+        let method2 = ViewRegistrationMethod.fromClass(FakeCollectionCell.self)
         XCTAssertNotEqual(method1, method2)
 
-        let method3 = ViewRegistrationMethod.fromClass(FakeTableCell.self)
+        let method3 = ViewRegistrationMethod.fromClass(FakeCollectionCell.self)
         XCTAssertEqual(method2, method3)
-
-        let method4 = ViewRegistrationMethod.fromClass(FakeCollectionCell.self)
-        XCTAssertNotEqual(method2, method4)
     }
 }

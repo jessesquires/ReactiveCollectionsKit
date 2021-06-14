@@ -39,7 +39,7 @@ final class TestSectionViewModel: XCTestCase {
     func test_section_with_header_and_footer() {
         let header = TestHeaderFooterModel(title: "header", kind: .header)
         let footer = TestHeaderFooterModel(title: "footer", kind: .footer)
-        let cells = [TestCellModel(cellClassType: FakeTableCell.self)]
+        let cells = [TestCellModel(cellClassType: FakeCollectionCell.self)]
 
         let section = SectionViewModel(id: "name", cells: cells, header: header, footer: footer)
         XCTAssertEqual(section._headerTitle, header._title)

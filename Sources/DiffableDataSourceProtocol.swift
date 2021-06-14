@@ -31,9 +31,6 @@ extension _DiffableDataSourceProtocol {
 
 func _makeDiffableDataSource<View: UIView & CellContainerViewProtocol>(with view: View) -> _DiffableDataSourceProtocol {
     switch view {
-    case let tableView as UITableView:
-        return _TableDiffableDataSource(view: tableView)
-
     case let collectionView as UICollectionView:
         return _CollectionDiffableDataSource(view: collectionView)
 
@@ -51,18 +48,6 @@ extension _CollectionDiffableDataSource: _DiffableDataSourceProtocol {
     convenience init(view: UICollectionView) {
         self.init(collectionView: view) { _, _, _ -> UICollectionViewCell? in nil }
         self.supplementaryViewProvider = { _, _, _ -> UICollectionReusableView? in nil }
-    }
-}
-
-// MARK: _TableDiffableDataSource
-
-typealias _TableDiffableDataSource = UITableViewDiffableDataSource<String, String>
-
-extension _TableDiffableDataSource: _DiffableDataSourceProtocol {
-
-    convenience init(view: UITableView) {
-        self.init(tableView: view) { _, _, _ -> UITableViewCell? in nil }
-        self.defaultRowAnimation = .fade
     }
 }
 
