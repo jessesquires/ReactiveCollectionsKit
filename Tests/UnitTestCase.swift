@@ -27,8 +27,6 @@ struct TestCellModel: CellViewModel {
 
     let didSelect = CellActions.DidSelectNoOperation
 
-    func size<V: UIView & CellContainerViewProtocol>(in containerView: V) -> CGSize { .zero }
-
     func apply(to cell: Self.CellType) { }
 }
 

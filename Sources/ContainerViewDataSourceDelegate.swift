@@ -13,16 +13,16 @@
 
 import UIKit
 
-final class _ContainerViewDataSourceDelegate: NSObject {
+final class CollectionViewDataSourceDelegate: NSObject {
 
-    var viewModel: ContainerViewModel
+    var viewModel: CollectionViewModel
 
     // avoiding a strong reference to prevent a retain cycle.
-    // passed from the `ContainerViewDriver`, which the view controller must own.
+    // passed from the `CollectionViewDriver`, which the view controller must own.
     // thus, we know the controller must be alive so unowned is safe.
     unowned var controller: UIViewController
 
-    init(viewModel: ContainerViewModel, controller: UIViewController) {
+    init(viewModel: CollectionViewModel, controller: UIViewController) {
         self.viewModel = viewModel
         self.controller = controller
     }
@@ -38,7 +38,7 @@ final class _ContainerViewDataSourceDelegate: NSObject {
 
 // MARK: UICollectionViewDataSource
 
-extension _ContainerViewDataSourceDelegate: UICollectionViewDataSource {
+extension CollectionViewDataSourceDelegate: UICollectionViewDataSource {
     func numberOfSections(in collectionView: UICollectionView) -> Int {
         self.numberOfSections()
     }
@@ -60,38 +60,14 @@ extension _ContainerViewDataSourceDelegate: UICollectionViewDataSource {
     }
 }
 
-// MARK: UICollectionViewDelegateFlowLayout
+// MARK: UICollectionViewDelegate
 
-extension _ContainerViewDataSourceDelegate: UICollectionViewDelegateFlowLayout {
+extension CollectionViewDataSourceDelegate: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         self.viewModel[indexPath].didSelect(indexPath, collectionView, self.controller)
     }
 
     func collectionView(_ collectionView: UICollectionView, shouldHighlightItemAt indexPath: IndexPath) -> Bool {
         self.viewModel[indexPath].shouldHighlight
-    }
-
-    func collectionView(_ collectionView: UICollectionView,
-                        layout collectionViewLayout: UICollectionViewLayout,
-                        sizeForItemAt indexPath: IndexPath) -> CGSize {
-        self.viewModel[indexPath].size(in: collectionView)
-    }
-
-    func collectionView(_ collectionView: UICollectionView,
-                        layout collectionViewLayout: UICollectionViewLayout,
-                        referenceSizeForHeaderInSection section: Int) -> CGSize {
-        guard let header = self.viewModel.sections[section].headerViewModel else {
-            return .zero
-        }
-        return header.size(in: collectionView)
-    }
-
-    func collectionView(_ collectionView: UICollectionView,
-                        layout collectionViewLayout: UICollectionViewLayout,
-                        referenceSizeForFooterInSection section: Int) -> CGSize {
-        guard let footer = self.viewModel.sections[section].footerViewModel else {
-            return .zero
-        }
-        return footer.size(in: collectionView)
     }
 }

@@ -13,7 +13,7 @@
 
 import Foundation
 
-public struct ContainerViewModel {
+public struct CollectionViewModel {
 
     public let sections: [SectionViewModel]
 

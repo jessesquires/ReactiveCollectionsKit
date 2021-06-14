@@ -16,7 +16,7 @@ import UIKit
 
 final class GridViewController: UICollectionViewController {
 
-    var driver: ContainerViewDriver<UICollectionView>!
+    var driver: CollectionViewDriver!
 
     var model = Model()
 
@@ -24,7 +24,7 @@ final class GridViewController: UICollectionViewController {
         super.viewDidLoad()
 
         let viewModel = ViewModel.makeCollectionViewModel(model: self.model)
-        self.driver = ContainerViewDriver(
+        self.driver = CollectionViewDriver(
             view: self.collectionView,
             viewModel: viewModel,
             controller: self,
@@ -39,15 +39,5 @@ final class GridViewController: UICollectionViewController {
     func shuffle() {
         self.model = Model(shuffle: true)
         self.driver.viewModel = ViewModel.makeCollectionViewModel(model: self.model)
-    }
-}
-
-extension UICollectionView {
-    func uniformCellSize() -> CGSize {
-        let viewWidth = self.frame.size.width
-        let sectionInset = (collectionViewLayout as! UICollectionViewFlowLayout).sectionInset
-        let insets = (sectionInset.left + sectionInset.right) * 2
-        let size = (viewWidth - insets) / 2
-        return CGSize(width: size, height: size)
     }
 }

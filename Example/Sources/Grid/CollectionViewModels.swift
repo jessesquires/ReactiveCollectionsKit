@@ -24,11 +24,6 @@ struct PersonCollectionCellViewModel: CellViewModel {
                                                 nibName: "CollectionCell",
                                                 bundle: nil)
 
-    func size<V: UIView & CellContainerViewProtocol>(in containerView: V) -> CGSize {
-        let collection = containerView as! UICollectionView
-        return collection.uniformCellSize()
-    }
-
     func apply(to cell: Self.CellType) {
         let cell = cell as! PersonCollectionCell
         cell.titleLabel.text = self.person.name
@@ -47,10 +42,6 @@ struct ColorCollectionCellViewModel: CellViewModel {
     let didSelect = CellActions.DidSelectNoOperation
 
     let shouldHighlight = false
-
-    func size<V: UIView & CellContainerViewProtocol>(in containerView: V) -> CGSize {
-        CGSize(width: 100, height: 100)
-    }
 
     func apply(to cell: Self.CellType) {
         let cell = cell as! UICollectionViewCell

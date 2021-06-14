@@ -13,51 +13,27 @@
 
 import UIKit
 
-protocol _DiffableDataSourceProtocol: AnyObject {
-
-    typealias Completion = () -> Void
-
-    func apply(_ snapshot: _DiffableSnapshot, animatingDifferences: Bool, completion: Completion?)
-
-    func snapshot() -> _DiffableSnapshot
-}
-
-extension _DiffableDataSourceProtocol {
-    func apply(_ viewModel: ContainerViewModel, animated: Bool, completion: Completion?) {
-        let snapshot = _DiffableSnapshot(viewModel: viewModel)
-        self.apply(snapshot, animatingDifferences: animated, completion: completion)
-    }
-}
-
-func _makeDiffableDataSource<View: UIView & CellContainerViewProtocol>(with view: View) -> _DiffableDataSourceProtocol {
-    switch view {
-    case let collectionView as UICollectionView:
-        return _CollectionDiffableDataSource(view: collectionView)
-
-    default:
-        fatalError("Unsupported View type: \(view)")
-    }
-}
-
-// MARK: _CollectionDiffableDataSource
-
 typealias _CollectionDiffableDataSource = UICollectionViewDiffableDataSource<String, String>
 
-extension _CollectionDiffableDataSource: _DiffableDataSourceProtocol {
+extension _CollectionDiffableDataSource {
+    typealias Completion = () -> Void
 
     convenience init(view: UICollectionView) {
         self.init(collectionView: view) { _, _, _ -> UICollectionViewCell? in nil }
         self.supplementaryViewProvider = { _, _, _ -> UICollectionReusableView? in nil }
     }
-}
 
-// MARK: _DiffableSnapshot
+    func apply(_ viewModel: CollectionViewModel, animated: Bool, completion: Completion?) {
+        let snapshot = _DiffableSnapshot(viewModel: viewModel)
+        self.apply(snapshot, animatingDifferences: animated, completion: completion)
+    }
+}
 
 typealias _DiffableSnapshot = NSDiffableDataSourceSnapshot<String, String>
 
 extension _DiffableSnapshot {
 
-    init(viewModel: ContainerViewModel) {
+    init(viewModel: CollectionViewModel) {
         self.init()
 
         let allSectionIdentifiers = viewModel.sections.map { $0.id }

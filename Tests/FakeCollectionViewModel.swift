@@ -32,21 +32,17 @@ struct FakeCollectionCellViewModel: CellViewModel {
 
     let registration = ReusableViewRegistration(classType: FakeCollectionCell.self)
 
-    func size<V: UIView & CellContainerViewProtocol>(in containerView: V) -> CGSize {
-        Self.defaultSize
-    }
-
     func apply(to cell: Self.CellType) {
         self.applyExpectation?.fulfill()
     }
 }
 
 extension XCTestCase {
-    func makeCollectionViewModel(numSections: Int = 3, numCells: Int = 5, includeExpectations: Bool = false) -> ContainerViewModel {
+    func makeCollectionViewModel(numSections: Int = 3, numCells: Int = 5, includeExpectations: Bool = false) -> CollectionViewModel {
         let sections = (0..<numSections).map { _ in
             self.makeCollectionSectionViewModel(numCells: numCells, includeExpectations: includeExpectations)
         }
-        return ContainerViewModel(sections: sections)
+        return CollectionViewModel(sections: sections)
     }
 
     func makeCollectionSectionViewModel(name: String = .random, numCells: Int = 5, includeExpectations: Bool = false) -> SectionViewModel {

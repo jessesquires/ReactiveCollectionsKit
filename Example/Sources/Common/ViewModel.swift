@@ -19,7 +19,7 @@ import UIKit
 enum ViewModel { }
 
 extension ViewModel {
-    static func makeCollectionViewModel(model: Model) -> ContainerViewModel {
+    static func makeCollectionViewModel(model: Model) -> CollectionViewModel {
 
         let peopleCellViewModels = model.people.map { person in
             PersonCollectionCellViewModel(person: person, didSelect: { indexPath, container, controller in
@@ -35,7 +35,7 @@ extension ViewModel {
         let colorSection = SectionViewModel(id: "section_1_colors",
                                             cells: colorCellViewModels)
 
-        return ContainerViewModel(sections: [peopleSection, colorSection])
+        return CollectionViewModel(sections: [peopleSection, colorSection])
     }
 }
 

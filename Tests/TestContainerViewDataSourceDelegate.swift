@@ -25,7 +25,7 @@ final class TestContainerViewDataSourceDelegate: UnitTestCase {
         let viewModel = self.makeCollectionViewModel(numSections: sections, numCells: cells, includeExpectations: true)
         self.collectionView._register(viewModel: viewModel)
 
-        let dataSourceDelegate = _ContainerViewDataSourceDelegate(viewModel: viewModel,
+        let dataSourceDelegate = CollectionViewDataSourceDelegate(viewModel: viewModel,
                                                                   controller: self.controller)
 
         XCTAssertEqual(dataSourceDelegate.numberOfSections(in: self.collectionView), sections)
@@ -48,12 +48,6 @@ final class TestContainerViewDataSourceDelegate: UnitTestCase {
 
                 let shouldHighlight = dataSourceDelegate.collectionView(self.collectionView, shouldHighlightItemAt: indexPath)
                 XCTAssertTrue(shouldHighlight)
-
-                let size = dataSourceDelegate.collectionView(self.collectionView,
-                                                             layout: self.collectionView.collectionViewLayout,
-                                                             sizeForItemAt: indexPath)
-                let expectedSize = FakeCollectionCellViewModel.defaultSize
-                XCTAssertEqual(size, expectedSize)
             }
         }
 

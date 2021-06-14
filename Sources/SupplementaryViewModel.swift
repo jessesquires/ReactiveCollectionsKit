@@ -13,7 +13,7 @@
 
 import UIKit
 
-public protocol SupplementaryViewModel: DiffableViewModel, SizeableViewModel {
+public protocol SupplementaryViewModel: DiffableViewModel {
     var kind: SupplementaryViewKind { get }
 
     var style: SupplementaryViewStyle { get }

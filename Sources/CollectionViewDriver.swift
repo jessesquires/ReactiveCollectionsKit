@@ -13,15 +13,15 @@
 
 import UIKit
 
-public final class ContainerViewDriver<View: UIView & CellContainerViewProtocol> {
+public final class CollectionViewDriver {
 
     public typealias DidUpdate = () -> Void
 
-    public let view: View
+    public let view: UICollectionView
 
     public var animateUpdates: Bool
 
-    public var viewModel: ContainerViewModel {
+    public var viewModel: CollectionViewModel {
         get {
             self._viewModel
         }
@@ -32,22 +32,22 @@ public final class ContainerViewDriver<View: UIView & CellContainerViewProtocol>
         }
     }
 
-    private var _viewModel: ContainerViewModel {
+    private var _viewModel: CollectionViewModel {
         didSet {
             _assertMainThread()
             self._didSetModel()
         }
     }
 
-    private let _dataSourceDelegate: _ContainerViewDataSourceDelegate
-    private let _differ: _DiffableDataSourceProtocol
+    private let _dataSourceDelegate: CollectionViewDataSourceDelegate
+    private let _differ: _CollectionDiffableDataSource
     private let _diffingQueue: DispatchQueue?
     private let _didUpdate: DidUpdate?
 
     // MARK: Init
 
-    public init(view: View,
-                viewModel: ContainerViewModel,
+    public init(view: UICollectionView,
+                viewModel: CollectionViewModel,
                 controller: UIViewController,
                 animateUpdates: Bool = true,
                 diffingQueue: DispatchQueue? = nil,
@@ -57,10 +57,10 @@ public final class ContainerViewDriver<View: UIView & CellContainerViewProtocol>
         self.animateUpdates = animateUpdates
         self._diffingQueue = diffingQueue
         self._didUpdate = didUpdate
-        self._dataSourceDelegate = _ContainerViewDataSourceDelegate(viewModel: viewModel, controller: controller)
-        self._differ = _makeDiffableDataSource(with: view)
-        self.view.dataSource = self._dataSourceDelegate as? View.DataSource
-        self.view.delegate = self._dataSourceDelegate as? View.Delegate
+        self._dataSourceDelegate = CollectionViewDataSourceDelegate(viewModel: viewModel, controller: controller)
+        self._differ = _CollectionDiffableDataSource(view: view)
+        self.view.dataSource = self._dataSourceDelegate
+        self.view.delegate = self._dataSourceDelegate
         self._didSetModel()
         self._didUpdateModel(animated: false, completion: nil)
     }
