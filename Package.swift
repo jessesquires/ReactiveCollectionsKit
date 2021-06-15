@@ -19,7 +19,7 @@ let name = "ReactiveCollectionsKit"
 let package = Package(
     name: name,
     platforms: [
-        .iOS(.v13)
+        .iOS(.v14)
     ],
     products: [.library(name: name,
                         targets: [name])],
