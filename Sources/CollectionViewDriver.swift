@@ -44,7 +44,6 @@ public final class CollectionViewDriver: NSObject {
     private unowned var _controller: UIViewController
 
     private let _differ: _CollectionDiffableDataSource
-    private let _diffingQueue: DispatchQueue?
     private let _didUpdate: DidUpdate?
 
     // MARK: Init
@@ -53,13 +52,11 @@ public final class CollectionViewDriver: NSObject {
                 viewModel: CollectionViewModel,
                 controller: UIViewController,
                 animateUpdates: Bool = true,
-                diffingQueue: DispatchQueue? = nil,
                 didUpdate: DidUpdate? = nil) {
         self.view = view
         self._viewModel = viewModel
         self._controller = controller
         self.animateUpdates = animateUpdates
-        self._diffingQueue = diffingQueue
         self._didUpdate = didUpdate
         self._differ = _CollectionDiffableDataSource(view: view)
         super.init()
@@ -90,15 +87,7 @@ public final class CollectionViewDriver: NSObject {
     }
 
     private func _didUpdateModel(animated: Bool, completion: DidUpdate?) {
-        let applyDiff = {
-            self._differ.apply(self._viewModel, animated: animated, completion: completion)
-        }
-
-        if let queue = self._diffingQueue {
-            queue.async(execute: applyDiff)
-        } else {
-            applyDiff()
-        }
+        self._differ.apply(self._viewModel, animated: animated, completion: completion)
     }
 }
 

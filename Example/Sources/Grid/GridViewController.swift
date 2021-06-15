@@ -27,8 +27,7 @@ final class GridViewController: UICollectionViewController {
         self.driver = CollectionViewDriver(
             view: self.collectionView,
             viewModel: viewModel,
-            controller: self,
-            diffingQueue: .global(qos: .userInteractive)) {
+            controller: self) {
             print("collection finished update!")
         }
 
