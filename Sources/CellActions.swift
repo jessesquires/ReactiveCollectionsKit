@@ -19,9 +19,9 @@ public enum CellActions {
 
     /// Describes a "did select" action for a cell.
     /// - Parameter IndexPath: The index path of the cell.
-    /// - Parameter UIView: The container view for the cell.
-    /// - Parameter UIViewController: The container view controller.
-    public typealias DidSelect = (IndexPath, UIView, UIViewController) -> Void
+    /// - Parameter UICollectionView: The collection view for the cell.
+    /// - Parameter UIViewController: The containing view controller.
+    public typealias DidSelect = (IndexPath, UICollectionView, UIViewController) -> Void
 
     /// A "no-op" `DidSelect` implementation. It does nothing.
     /// You may use this in your `CellViewModel` conformance for cell view models that
