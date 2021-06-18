@@ -19,7 +19,7 @@ public enum CellActions {
 
     /// Describes a "did select" action for a cell.
     /// - Parameter IndexPath: The index path of the cell.
-    /// - Parameter UICollectionView: The collection view for the cell.
+    /// - Parameter UICollectionView: The cell's collection view.
     /// - Parameter UIViewController: The containing view controller.
     public typealias DidSelect = (IndexPath, UICollectionView, UIViewController) -> Void
 

@@ -14,8 +14,6 @@
 import UIKit
 import XCTest
 
-// swiftlint:disable type_contents_order
-
 final class FakeCollectionCell: UICollectionViewCell { }
 
 final class FakeCollectionHeaderView: UICollectionReusableView { }
@@ -75,5 +73,3 @@ final class FakeCollectionView: UICollectionView {
                        withReuseIdentifier: identifier)
     }
 }
-
-// swiftlint:enable type_contents_order

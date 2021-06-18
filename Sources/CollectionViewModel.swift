@@ -14,6 +14,7 @@
 import Foundation
 
 public struct CollectionViewModel {
+    // MARK: Properties
 
     public let sections: [SectionViewModel]
 
@@ -21,11 +22,16 @@ public struct CollectionViewModel {
         self.sections.isEmpty || !self.sections.contains { !$0.isEmpty }
     }
 
+    // MARK: Init
+
     public init(sections: [SectionViewModel]) {
         self.sections = sections
     }
 
-    public subscript (indexPath: IndexPath) -> CellViewModel {
+    // MARK: Subscripts
+
+    // TODO: should be optional if indexPath doesn't exist?
+    public subscript (indexPath: IndexPath) -> AnyCellViewModel {
         self.sections[indexPath.section].cellViewModels[indexPath.item]
     }
 }
