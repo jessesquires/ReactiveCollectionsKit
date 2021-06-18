@@ -11,12 +11,6 @@
 //  Copyright © 2019-present Jesse Squires
 //
 
-import ReactiveCollectionsKit
 import UIKit
 
-final class ListViewController: UICollectionViewController {
-
-    override func viewDidLoad() {
-        super.viewDidLoad()
-    }
-}
+final class GridColorCell: UICollectionViewCell { }

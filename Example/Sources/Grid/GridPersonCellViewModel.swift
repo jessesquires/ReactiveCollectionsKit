@@ -14,15 +14,15 @@
 import ReactiveCollectionsKit
 import UIKit
 
-struct PersonCellViewModel: CellViewModel {
+struct GridPersonCellViewModel: CellViewModel {
     let person: PersonModel
     let didSelect: CellActions.DidSelect
 
     var id: UniqueIdentifier { self.person.name }
 
-    let nib: UINib? = UINib(nibName: "CollectionCell", bundle: .main)
+    let nib: UINib? = UINib(nibName: "GridPersonCell", bundle: .main)
 
-    func configure(cell: PersonCollectionCell, at indexPath: IndexPath) {
+    func configure(cell: GridPersonCell, at indexPath: IndexPath) {
         cell.titleLabel.text = self.person.name
         cell.subtitleLabel.text = self.person.birthDateText
         cell.flagLabel.text = self.person.nationality

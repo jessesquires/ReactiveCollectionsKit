@@ -25,13 +25,17 @@ struct ColorModel {
 
 extension ColorModel {
     static var random: ColorModel {
-        let rand = { CGFloat((0..<256).randomElement()!) / 255 }
-        return ColorModel(red: rand(), green: rand(), blue: rand())
+        ColorModel(red: CGFloat.random256(), green: CGFloat.random256(), blue: CGFloat.random256())
     }
 }
 
+extension CGFloat {
+    static func random256() -> CGFloat {
+        CGFloat((0..<256).randomElement()!) / 255
+    }
+}
 extension ColorModel {
     static func makeColors() -> [ColorModel] {
-        (0...14).map { _ in ColorModel.random }
+        (0..<10).map { _ in ColorModel.random }
     }
 }

@@ -13,7 +13,7 @@
 
 import UIKit
 
-final class PersonCollectionCell: UICollectionViewCell {
+final class GridPersonCell: UICollectionViewCell {
 
     @IBOutlet weak var titleLabel: UILabel!
 

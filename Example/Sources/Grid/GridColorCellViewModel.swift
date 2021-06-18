@@ -14,7 +14,7 @@
 import ReactiveCollectionsKit
 import UIKit
 
-struct ColorCellViewModel: CellViewModel {
+struct GridColorCellViewModel: CellViewModel {
     let color: ColorModel
 
     var id: UniqueIdentifier { "\(self.color.red)_\(self.color.green)_\(self.color.blue)" }
@@ -23,11 +23,7 @@ struct ColorCellViewModel: CellViewModel {
 
     let shouldHighlight = false
 
-    func configure(cell: UICollectionViewListCell, at indexPath: IndexPath) {
-        var contentConfiguration = cell.defaultContentConfiguration()
-        contentConfiguration.text = "\(self.id)"
-        cell.contentConfiguration = contentConfiguration
-        cell.backgroundView = UIView()
-        cell.backgroundView?.backgroundColor = self.color.uiColor
+    func configure(cell: GridColorCell, at indexPath: IndexPath) {
+        cell.backgroundColor = self.color.uiColor
     }
 }
