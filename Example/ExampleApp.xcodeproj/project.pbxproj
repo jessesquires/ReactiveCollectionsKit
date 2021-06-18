@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0BC546F426792EAA00E36D30 /* PersonCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BC546F326792EAA00E36D30 /* PersonCellViewModel.swift */; };
 		0BD8E0052678073A004CFF13 /* ListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BD8E0042678073A004CFF13 /* ListViewController.swift */; };
 		88072130236258C000E34B61 /* CollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8807212E236258C000E34B61 /* CollectionCell.swift */; };
 		88072131236258C000E34B61 /* CollectionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8807212F236258C000E34B61 /* CollectionCell.xib */; };
@@ -24,7 +25,7 @@
 		8863DAC223636D0E0094182F /* PersonViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8863DAC023636D0E0094182F /* PersonViewController.xib */; };
 		8863DAC5236371D10094182F /* PersonModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88B4FEA5236244D500B284FB /* PersonModel.swift */; };
 		88B4FEAF23624B2500B284FB /* ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88B4FEAE23624B2500B284FB /* ViewModel.swift */; };
-		88B4FEB3236251C600B284FB /* CollectionViewModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88B4FEB2236251C600B284FB /* CollectionViewModels.swift */; };
+		88B4FEB3236251C600B284FB /* ColorCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88B4FEB2236251C600B284FB /* ColorCellViewModel.swift */; };
 		88FA491D2363A83E0061F8B2 /* ReactiveCollectionsKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 88FA491A2363A8130061F8B2 /* ReactiveCollectionsKit.framework */; };
 		88FA491E2363A83E0061F8B2 /* ReactiveCollectionsKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 88FA491A2363A8130061F8B2 /* ReactiveCollectionsKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		88FA49332363C2E00061F8B2 /* UIKit+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88FA49322363C2E00061F8B2 /* UIKit+Extensions.swift */; };
@@ -76,6 +77,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		0BC546F326792EAA00E36D30 /* PersonCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonCellViewModel.swift; sourceTree = "<group>"; };
 		0BD8E0042678073A004CFF13 /* ListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListViewController.swift; sourceTree = "<group>"; };
 		8807212E236258C000E34B61 /* CollectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionCell.swift; sourceTree = "<group>"; };
 		8807212F236258C000E34B61 /* CollectionCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CollectionCell.xib; sourceTree = "<group>"; };
@@ -99,7 +101,7 @@
 		8863DAC023636D0E0094182F /* PersonViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PersonViewController.xib; sourceTree = "<group>"; };
 		88B4FEA5236244D500B284FB /* PersonModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonModel.swift; sourceTree = "<group>"; };
 		88B4FEAE23624B2500B284FB /* ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModel.swift; sourceTree = "<group>"; };
-		88B4FEB2236251C600B284FB /* CollectionViewModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewModels.swift; sourceTree = "<group>"; };
+		88B4FEB2236251C600B284FB /* ColorCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorCellViewModel.swift; sourceTree = "<group>"; };
 		88FA49142363A8130061F8B2 /* ReactiveCollectionsKit.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = ReactiveCollectionsKit.xcodeproj; path = ../ReactiveCollectionsKit.xcodeproj; sourceTree = "<group>"; };
 		88FA49322363C2E00061F8B2 /* UIKit+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIKit+Extensions.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -130,6 +132,16 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0BC546F226792E7C00E36D30 /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				88B4FEAE23624B2500B284FB /* ViewModel.swift */,
+				88B4FEB2236251C600B284FB /* ColorCellViewModel.swift */,
+				0BC546F326792EAA00E36D30 /* PersonCellViewModel.swift */,
+			);
+			path = ViewModels;
+			sourceTree = "<group>";
+		};
 		0BD8E0032678072B004CFF13 /* List */ = {
 			isa = PBXGroup;
 			children = (
@@ -169,6 +181,7 @@
 				8829EA7D2361F4EB00604A43 /* Main.storyboard */,
 				0BD8E0032678072B004CFF13 /* List */,
 				88389EFC236DFE4E00DDECA5 /* Grid */,
+				0BC546F226792E7C00E36D30 /* ViewModels */,
 				88389EFF236DFF0F00DDECA5 /* Common */,
 				88389EFE236DFEAD00DDECA5 /* Main */,
 			);
@@ -199,7 +212,6 @@
 				8807212E236258C000E34B61 /* CollectionCell.swift */,
 				8807212F236258C000E34B61 /* CollectionCell.xib */,
 				8829EA7B2361F4EB00604A43 /* GridViewController.swift */,
-				88B4FEB2236251C600B284FB /* CollectionViewModels.swift */,
 			);
 			path = Grid;
 			sourceTree = "<group>";
@@ -218,11 +230,10 @@
 			isa = PBXGroup;
 			children = (
 				8847DEE2237172AC0075AAFE /* ColorModel.swift */,
+				8847DEE823717A940075AAFE /* Model.swift */,
 				88B4FEA5236244D500B284FB /* PersonModel.swift */,
 				8863DABF23636D0E0094182F /* PersonViewController.swift */,
 				8863DAC023636D0E0094182F /* PersonViewController.xib */,
-				88B4FEAE23624B2500B284FB /* ViewModel.swift */,
-				8847DEE823717A940075AAFE /* Model.swift */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -401,11 +412,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				8829EA7C2361F4EB00604A43 /* GridViewController.swift in Sources */,
-				88B4FEB3236251C600B284FB /* CollectionViewModels.swift in Sources */,
+				88B4FEB3236251C600B284FB /* ColorCellViewModel.swift in Sources */,
 				0BD8E0052678073A004CFF13 /* ListViewController.swift in Sources */,
 				88FA49332363C2E00061F8B2 /* UIKit+Extensions.swift in Sources */,
 				8863DAC5236371D10094182F /* PersonModel.swift in Sources */,
 				88072130236258C000E34B61 /* CollectionCell.swift in Sources */,
+				0BC546F426792EAA00E36D30 /* PersonCellViewModel.swift in Sources */,
 				8847DEE3237172AC0075AAFE /* ColorModel.swift in Sources */,
 				8847DEE923717A940075AAFE /* Model.swift in Sources */,
 				8829EA762361F4EB00604A43 /* AppDelegate.swift in Sources */,
@@ -517,7 +529,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -574,7 +586,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;

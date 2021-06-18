@@ -25,8 +25,9 @@ public protocol DiffableViewModel {
 
 extension DiffableViewModel {
 
-    /// Default implementation. Uses type name.
-    public var id: UniqueIdentifier {
+    /// A default identifier that uses the conforming type's name.
+    /// You may wish to use this in your `CellViewModel` if it is sufficient for your purposes.
+    public var defaultId: UniqueIdentifier {
         String(describing: Self.self)
     }
 }

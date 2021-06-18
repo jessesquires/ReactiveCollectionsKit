@@ -21,32 +21,24 @@ enum ReuseIdentifier: String {
 }
 
 struct TestCellModel: CellViewModel {
-    let cellClassType: AnyClass
-
-    var registration: ReusableViewRegistration { ReusableViewRegistration(classType: self.cellClassType) }
+    var id: UniqueIdentifier { self.defaultId }
 
     let didSelect = CellActions.DidSelectNoOperation
 
-    func apply(to cell: Self.CellType) { }
-}
-
-struct TestHeaderFooterModel: SupplementaryViewModel {
-    let title: String
-    let kind: SupplementaryViewKind
-
-    var style: SupplementaryViewStyle { .title(self.title) }
+    func configure(cell: FakeCollectionCell, at indexPath: IndexPath) { }
 }
 
 class UnitTestCase: XCTestCase {
 
     private static let frame = CGRect(x: 0, y: 0, width: 320, height: 600)
 
-    let collectionView = FakeCollectionView(frame: frame,
-                                            collectionViewLayout: FakeCollectionLayout())
+    let collectionView = FakeCollectionView(
+        frame: frame,
+        collectionViewLayout: FakeCollectionLayout()
+    )
 
     override func setUp() {
         super.setUp()
-
         self.collectionView.layoutSubviews()
         self.collectionView.reloadData()
     }

@@ -30,8 +30,9 @@ public struct CollectionViewModel {
 
     // MARK: Subscripts
 
-    // TODO: should be optional if indexPath doesn't exist?
     public subscript (indexPath: IndexPath) -> AnyCellViewModel {
-        self.sections[indexPath.section].cellViewModels[indexPath.item]
+        precondition(indexPath.section < self.sections.count)
+        precondition(indexPath.item < self.sections[indexPath.section].cellViewModels.count)
+        return self.sections[indexPath.section].cellViewModels[indexPath.item]
     }
 }

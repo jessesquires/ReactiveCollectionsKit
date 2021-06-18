@@ -17,35 +17,18 @@ public struct SectionViewModel: DiffableViewModel {
 
     public let id: UniqueIdentifier
 
-    public let cellViewModels: [CellViewModel]
-
-    public let headerViewModel: SupplementaryViewModel?
-
-    public let footerViewModel: SupplementaryViewModel?
+    public let cellViewModels: [AnyCellViewModel]
 
     public init(id: UniqueIdentifier,
-                cells: [CellViewModel],
-                header: SupplementaryViewModel? = nil,
-                footer: SupplementaryViewModel? = nil) {
+                cells: [AnyCellViewModel]) {
         self.id = id
         self.cellViewModels = cells
-        self.headerViewModel = header
-        self.footerViewModel = footer
     }
 }
 
-extension SectionViewModel {
-    var _headerTitle: String? {
-        self.headerViewModel?._title
-    }
-
-    var _footerTitle: String? {
-        self.footerViewModel?._title
-    }
-}
+// MARK: Collection, RandomAccessCollection
 
 extension SectionViewModel: Collection, RandomAccessCollection {
-
     /// :nodoc:
     public var count: Int {
         self.cellViewModels.count
@@ -67,7 +50,7 @@ extension SectionViewModel: Collection, RandomAccessCollection {
     }
 
     /// :nodoc:
-    public subscript(position: Int) -> CellViewModel {
+    public subscript(position: Int) -> AnyCellViewModel {
         self.cellViewModels[position]
     }
 

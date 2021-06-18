@@ -22,9 +22,6 @@ final class TestSectionViewModel: XCTestCase {
         let section = self.makeCollectionSectionViewModel(name: name, numCells: numCells)
         XCTAssertEqual(section.id, "section_name")
 
-        XCTAssertNil(section._headerTitle)
-        XCTAssertNil(section._footerTitle)
-
         XCTAssertEqual(section.count, numCells)
         XCTAssertFalse(section.isEmpty)
     }
@@ -34,16 +31,6 @@ final class TestSectionViewModel: XCTestCase {
 
         XCTAssertEqual(section.count, .zero)
         XCTAssertTrue(section.isEmpty)
-    }
-
-    func test_section_with_header_and_footer() {
-        let header = TestHeaderFooterModel(title: "header", kind: .header)
-        let footer = TestHeaderFooterModel(title: "footer", kind: .footer)
-        let cells = [TestCellModel(cellClassType: FakeCollectionCell.self)]
-
-        let section = SectionViewModel(id: "name", cells: cells, header: header, footer: footer)
-        XCTAssertEqual(section._headerTitle, header._title)
-        XCTAssertEqual(section._footerTitle, footer._title)
     }
 
     func test_RandomAccessCollection_conformance() {

@@ -18,6 +18,10 @@ public final class CollectionViewDriver: NSObject {
 
     public let view: UICollectionView
 
+    public var layout: UICollectionViewLayout {
+        view.collectionViewLayout
+    }
+
     public var animateUpdates: Bool
 
     public var viewModel: CollectionViewModel {
@@ -43,7 +47,7 @@ public final class CollectionViewDriver: NSObject {
     // thus, we know the controller must be alive so unowned is safe.
     private unowned var _controller: UIViewController
 
-    private let _differ: _CollectionDiffableDataSource
+    private let _dataSource: _DiffableDataSource
     private let _didUpdate: DidUpdate?
 
     // MARK: Init
@@ -58,9 +62,11 @@ public final class CollectionViewDriver: NSObject {
         self._controller = controller
         self.animateUpdates = animateUpdates
         self._didUpdate = didUpdate
-        self._differ = _CollectionDiffableDataSource(view: view)
+        self._dataSource = _DiffableDataSource(view: view, viewModel: viewModel)
+
         super.init()
-        self.view.dataSource = self
+
+        self.view.dataSource = self._dataSource
         self.view.delegate = self
         self._didSetModel()
         self._didUpdateModel(animated: false, completion: nil)
@@ -87,31 +93,7 @@ public final class CollectionViewDriver: NSObject {
     }
 
     private func _didUpdateModel(animated: Bool, completion: DidUpdate?) {
-        self._differ.apply(self._viewModel, animated: animated, completion: completion)
-    }
-}
-
-// MARK: UICollectionViewDataSource
-
-extension CollectionViewDriver: UICollectionViewDataSource {
-    public func numberOfSections(in collectionView: UICollectionView) -> Int {
-        self.numberOfSections()
-    }
-
-    public func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        self.numberOfItems(in: section)
-    }
-
-    public func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        collectionView._dequeueAndConfigureCell(for: self.viewModel, at: indexPath)
-    }
-
-    public func collectionView(_ collectionView: UICollectionView,
-                               viewForSupplementaryElementOfKind kind: String,
-                               at indexPath: IndexPath) -> UICollectionReusableView {
-        collectionView._dequeueAndConfigureSupplementaryView(for: SupplementaryViewKind(collectionElementKind: kind),
-                                                             model: self.viewModel,
-                                                             at: indexPath)!
+        self._dataSource.apply(self._viewModel, animated: animated, completion: completion)
     }
 }
 

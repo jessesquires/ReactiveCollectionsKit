@@ -13,24 +13,22 @@
 
 import Foundation
 
-private let _formatter: DateFormatter = {
-    let fm = DateFormatter()
-    fm.dateStyle = .long
-    fm.timeStyle = .none
-    return fm
-}()
-
 struct PersonModel {
     let name: String
-
     let birthdate: Date
-
     let nationality: String
 
     var birthDateText: String {
         _formatter.string(from: self.birthdate)
     }
 }
+
+private let _formatter: DateFormatter = {
+    let fm = DateFormatter()
+    fm.dateStyle = .long
+    fm.timeStyle = .none
+    return fm
+}()
 
 extension Date {
     init(year: Int, month: Int, day: Int) {

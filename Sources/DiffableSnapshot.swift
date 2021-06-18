@@ -13,22 +13,6 @@
 
 import UIKit
 
-typealias _CollectionDiffableDataSource = UICollectionViewDiffableDataSource<String, String>
-
-extension _CollectionDiffableDataSource {
-    typealias Completion = () -> Void
-
-    convenience init(view: UICollectionView) {
-        self.init(collectionView: view) { _, _, _ -> UICollectionViewCell? in nil }
-        self.supplementaryViewProvider = { _, _, _ -> UICollectionReusableView? in nil }
-    }
-
-    func apply(_ viewModel: CollectionViewModel, animated: Bool, completion: Completion?) {
-        let snapshot = _DiffableSnapshot(viewModel: viewModel)
-        self.apply(snapshot, animatingDifferences: animated, completion: completion)
-    }
-}
-
 typealias _DiffableSnapshot = NSDiffableDataSourceSnapshot<String, String>
 
 extension _DiffableSnapshot {

@@ -16,27 +16,4 @@ import UIKit
 
 final class GridViewController: UICollectionViewController {
 
-    var driver: CollectionViewDriver!
-
-    var model = Model()
-
-    override func viewDidLoad() {
-        super.viewDidLoad()
-
-        let viewModel = ViewModel.makeCollectionViewModel(model: self.model)
-        self.driver = CollectionViewDriver(
-            view: self.collectionView,
-            viewModel: viewModel,
-            controller: self) {
-            print("collection finished update!")
-        }
-
-        self.addShuffle(action: #selector(shuffle))
-    }
-
-    @objc
-    func shuffle() {
-        self.model = Model(shuffle: true)
-        self.driver.viewModel = ViewModel.makeCollectionViewModel(model: self.model)
-    }
 }
