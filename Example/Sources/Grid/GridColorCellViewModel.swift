@@ -23,7 +23,7 @@ struct GridColorCellViewModel: CellViewModel {
 
     let shouldHighlight = false
 
-    func configure(cell: GridColorCell, at indexPath: IndexPath) {
+    func configure(cell: GridColorCell) {
         cell.label.text = self.color.description
         cell.backgroundColor = self.color.uiColor
     }

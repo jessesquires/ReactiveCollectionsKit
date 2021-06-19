@@ -23,7 +23,7 @@ struct GridPersonCellViewModel: CellViewModel {
 
     let nib: UINib? = UINib(nibName: "GridPersonCell", bundle: .main)
 
-    func configure(cell: GridPersonCell, at indexPath: IndexPath) {
+    func configure(cell: GridPersonCell) {
         cell.titleLabel.text = self.person.name
         cell.subtitleLabel.text = self.person.birthDateText
         cell.flagLabel.text = self.person.nationality

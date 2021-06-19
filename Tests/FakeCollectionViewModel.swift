@@ -25,7 +25,7 @@ struct FakeCollectionCellViewModel: CellViewModel {
 
     var id: UniqueIdentifier { self.text }
 
-    func configure(cell: FakeCollectionCell, at indexPath: IndexPath) {
+    func configure(cell: FakeCollectionCell) {
         self.didConfigureExpectation?.fulfill()
     }
 

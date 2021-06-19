@@ -23,7 +23,7 @@ struct ListColorCellViewModel: CellViewModel {
 
     let shouldHighlight = false
 
-    func configure(cell: UICollectionViewListCell, at indexPath: IndexPath) {
+    func configure(cell: UICollectionViewListCell) {
         var contentConfiguration = cell.defaultContentConfiguration()
         contentConfiguration.text = self.color.description
         contentConfiguration.textProperties.color = self.color.uiColor

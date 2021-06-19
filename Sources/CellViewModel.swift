@@ -25,7 +25,7 @@ public protocol CellViewModel: DiffableViewModel {
 
     func registerWith(collectionView: UICollectionView)
 
-    func configure(cell: CellType, at indexPath: IndexPath)
+    func configure(cell: CellType)
 
     func didSelect(with controller: UIViewController)
 }
@@ -49,7 +49,7 @@ extension CellViewModel {
 
     public func dequeueAndConfigureCellFor(collectionView: UICollectionView, at indexPath: IndexPath) -> CellType {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: self.reuseIdentifier, for: indexPath) as! CellType
-        self.configure(cell: cell, at: indexPath)
+        self.configure(cell: cell)
         return cell
     }
 
@@ -80,8 +80,8 @@ public struct AnyCellViewModel: CellViewModel {
         self._registration(collectionView)
     }
 
-    public func configure(cell: UICollectionViewCell, at indexPath: IndexPath) {
-        self._configuration(cell, indexPath)
+    public func configure(cell: UICollectionViewCell) {
+        self._configuration(cell)
     }
 
     public func didSelect(with controller: UIViewController) {
@@ -95,7 +95,7 @@ public struct AnyCellViewModel: CellViewModel {
     private let _nib: UINib?
     private let _shouldHighlight: Bool
     private let _registration: (UICollectionView) -> Void
-    private let _configuration: (CellType, IndexPath) -> Void
+    private let _configuration: (CellType) -> Void
     private let _didSelect: (UIViewController) -> Void
 
     // MARK: Init
@@ -108,9 +108,9 @@ public struct AnyCellViewModel: CellViewModel {
         self._registration = { collectionView in
             viewModel.registerWith(collectionView: collectionView)
         }
-        self._configuration = { cell, indexPath in
+        self._configuration = { cell in
             precondition(cell is T.CellType, "Cell must be of type \(T.CellType.self). Found \(cell.self)")
-            viewModel.configure(cell: cell as! T.CellType, at: indexPath)
+            viewModel.configure(cell: cell as! T.CellType)
         }
         self._didSelect = { controller in
             viewModel.didSelect(with: controller)

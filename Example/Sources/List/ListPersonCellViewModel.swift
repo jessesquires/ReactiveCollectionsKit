@@ -21,7 +21,7 @@ struct ListPersonCellViewModel: CellViewModel {
 
     var id: UniqueIdentifier { self.person.name }
 
-    func configure(cell: UICollectionViewListCell, at indexPath: IndexPath) {
+    func configure(cell: UICollectionViewListCell) {
         var contentConfiguration = UIListContentConfiguration.subtitleCell()
         contentConfiguration.text = self.person.name
         contentConfiguration.secondaryText = self.person.birthDateText

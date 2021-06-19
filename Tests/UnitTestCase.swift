@@ -23,7 +23,7 @@ enum ReuseIdentifier: String {
 struct TestCellModel: CellViewModel {
     var id: UniqueIdentifier { self.defaultId }
 
-    func configure(cell: FakeCollectionCell, at indexPath: IndexPath) { }
+    func configure(cell: FakeCollectionCell) { }
 }
 
 class UnitTestCase: XCTestCase {
