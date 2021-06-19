@@ -41,14 +41,12 @@ final class ListViewController: UICollectionViewController {
 
     func makeViewModel(from model: Model) -> CollectionViewModel {
         let peopleCellViewModels = model.people.map { ListPersonCellViewModel(person: $0) }
-        let anyPeopleModels = peopleCellViewModels.map { $0.toAnyViewModel() }
         let peopleSection = SectionViewModel(id: "section_0_people",
-                                             cells: anyPeopleModels)
+                                             cells: peopleCellViewModels)
 
         let colorCellViewModels = model.colors.map { ListColorCellViewModel(color: $0) }
-        let anyColorModels = colorCellViewModels.map { $0.toAnyViewModel() }
         let colorSection = SectionViewModel(id: "section_1_colors",
-                                            cells: anyColorModels)
+                                            cells: colorCellViewModels)
 
         return CollectionViewModel(sections: [peopleSection, colorSection])
     }

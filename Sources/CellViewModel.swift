@@ -54,10 +54,6 @@ extension CellViewModel {
     }
 
     public func didSelect(with controller: UIViewController) { }
-
-    public func toAnyViewModel() -> AnyCellViewModel {
-        AnyCellViewModel(self)
-    }
 }
 
 /// A type-erased cell view model.

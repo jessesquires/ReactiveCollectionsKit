@@ -19,10 +19,9 @@ public struct SectionViewModel: DiffableViewModel {
 
     public let cellViewModels: [AnyCellViewModel]
 
-    public init(id: UniqueIdentifier,
-                cells: [AnyCellViewModel]) {
+    public init<T: CellViewModel>(id: UniqueIdentifier, cells: [T]) {
         self.id = id
-        self.cellViewModels = cells
+        self.cellViewModels = cells.map { AnyCellViewModel($0) }
     }
 }
 

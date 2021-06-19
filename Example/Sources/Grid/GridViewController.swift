@@ -57,14 +57,12 @@ final class GridViewController: UICollectionViewController {
 
     func makeViewModel(from model: Model) -> CollectionViewModel {
         let peopleCellViewModels = model.people.map { GridPersonCellViewModel(person: $0) }
-        let anyPeopleModels = peopleCellViewModels.map { $0.toAnyViewModel() }
         let peopleSection = SectionViewModel(id: "section_0_people",
-                                             cells: anyPeopleModels)
+                                             cells: peopleCellViewModels)
 
         let colorCellViewModels = model.colors.map { GridColorCellViewModel(color: $0) }
-        let anyColorModels = colorCellViewModels.map { $0.toAnyViewModel() }
         let colorSection = SectionViewModel(id: "section_1_colors",
-                                            cells: anyColorModels)
+                                            cells: colorCellViewModels)
 
         return CollectionViewModel(sections: [peopleSection, colorSection])
     }
