@@ -14,7 +14,7 @@
 import ReactiveCollectionsKit
 import UIKit
 
-struct GridPersonCellViewModel: CellViewModel {
+struct ListPersonCellViewModel: CellViewModel {
     let person: PersonModel
 
     // MARK: CellViewModel
@@ -23,11 +23,10 @@ struct GridPersonCellViewModel: CellViewModel {
 
     var id: UniqueIdentifier { self.person.name }
 
-    let nib: UINib? = UINib(nibName: "GridPersonCell", bundle: .main)
-
-    func configure(cell: GridPersonCell, at indexPath: IndexPath) {
-        cell.titleLabel.text = self.person.name
-        cell.subtitleLabel.text = self.person.birthDateText
-        cell.flagLabel.text = self.person.nationality
+    func configure(cell: UICollectionViewListCell, at indexPath: IndexPath) {
+        var contentConfiguration = UIListContentConfiguration.subtitleCell()
+        contentConfiguration.text = self.person.name
+        contentConfiguration.secondaryText = self.person.birthDateText
+        cell.contentConfiguration = contentConfiguration
     }
 }

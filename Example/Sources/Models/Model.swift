@@ -14,13 +14,12 @@
 import Foundation
 
 struct Model {
-    let people: [PersonModel]
-    let colors: [ColorModel]
+    private(set) var people = PersonModel.makePeople()
 
-    init(people: [PersonModel] = PersonModel.makePeople(),
-         colors: [ColorModel] = ColorModel.makeColors(),
-         shuffle: Bool = false) {
-        self.people = shuffle ? people.shuffled() : people
-        self.colors = shuffle ? colors.shuffled() : colors
+    private(set) var colors = ColorModel.makeColors()
+
+    mutating func shuffle() {
+        self.people.shuffle()
+        self.colors.shuffle()
     }
 }

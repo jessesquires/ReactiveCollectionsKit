@@ -13,13 +13,17 @@
 
 import UIKit
 
-struct ColorModel {
+struct ColorModel: Equatable, Hashable, CustomStringConvertible {
     let red: CGFloat
     let green: CGFloat
     let blue: CGFloat
 
     var uiColor: UIColor {
         UIColor(red: red, green: green, blue: blue, alpha: 1.0)
+    }
+
+    var description: String {
+        "(\(Int(red * 255)), \(Int(green * 255)), \(Int(blue * 255)))"
     }
 }
 
@@ -34,6 +38,7 @@ extension CGFloat {
         CGFloat((0..<256).randomElement()!) / 255
     }
 }
+
 extension ColorModel {
     static func makeColors() -> [ColorModel] {
         (0..<10).map { _ in ColorModel.random }

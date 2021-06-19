@@ -13,4 +13,26 @@
 
 import UIKit
 
-final class GridColorCell: UICollectionViewCell { }
+final class GridColorCell: UICollectionViewCell {
+    let label = UILabel()
+
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        self.translatesAutoresizingMaskIntoConstraints = false
+        self.label.translatesAutoresizingMaskIntoConstraints = false
+        self.label.numberOfLines = 0
+        self.label.textAlignment = .center
+        self.contentView.addSubview(self.label)
+        NSLayoutConstraint.activate([
+            self.label.topAnchor.constraint(equalTo: self.contentView.topAnchor),
+            self.label.bottomAnchor.constraint(equalTo: self.contentView.bottomAnchor),
+            self.label.leadingAnchor.constraint(equalTo: self.contentView.leadingAnchor),
+            self.label.trailingAnchor.constraint(equalTo: self.contentView.trailingAnchor)
+        ])
+    }
+
+    @available(*, unavailable)
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+}

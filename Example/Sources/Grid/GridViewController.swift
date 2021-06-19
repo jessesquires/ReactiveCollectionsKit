@@ -39,8 +39,8 @@ final class GridViewController: UICollectionViewController {
         // Section
         let section = NSCollectionLayoutSection(group: group)
         section.contentInsets = NSDirectionalEdgeInsets(top: inset, leading: inset, bottom: inset, trailing: inset)
-
-        collectionView.collectionViewLayout = UICollectionViewCompositionalLayout(section: section)
+        let layout = UICollectionViewCompositionalLayout(section: section)
+        collectionView.collectionViewLayout = layout
 
         let viewModel = self.makeViewModel(from: self.model)
 
@@ -49,7 +49,7 @@ final class GridViewController: UICollectionViewController {
             viewModel: viewModel,
             controller: self,
             animateUpdates: true) {
-            print("collection did update!")
+            print("grid did update!")
         }
 
         self.addShuffle(action: #selector(shuffle))
@@ -77,7 +77,7 @@ final class GridViewController: UICollectionViewController {
 
     @objc
     func shuffle() {
-        self.model = Model(shuffle: true)
+        self.model.shuffle()
         self.driver.viewModel = self.makeViewModel(from: self.model)
     }
 }

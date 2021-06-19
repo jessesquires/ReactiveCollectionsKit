@@ -13,7 +13,7 @@
 
 import Foundation
 
-struct PersonModel {
+struct PersonModel: Equatable, Hashable {
     let name: String
     let birthdate: Date
     let nationality: String

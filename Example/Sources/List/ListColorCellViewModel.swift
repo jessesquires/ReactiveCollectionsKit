@@ -14,7 +14,7 @@
 import ReactiveCollectionsKit
 import UIKit
 
-struct GridColorCellViewModel: CellViewModel {
+struct ListColorCellViewModel: CellViewModel {
     let color: ColorModel
 
     // MARK: CellViewModel
@@ -25,8 +25,10 @@ struct GridColorCellViewModel: CellViewModel {
 
     let shouldHighlight = false
 
-    func configure(cell: GridColorCell, at indexPath: IndexPath) {
-        cell.label.text = self.color.description
-        cell.backgroundColor = self.color.uiColor
+    func configure(cell: UICollectionViewListCell, at indexPath: IndexPath) {
+        var contentConfiguration = cell.defaultContentConfiguration()
+        contentConfiguration.text = self.color.description
+        contentConfiguration.textProperties.color = self.color.uiColor
+        cell.contentConfiguration = contentConfiguration
     }
 }

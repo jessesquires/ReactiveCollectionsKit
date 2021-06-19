@@ -16,9 +16,7 @@ import UIKit
 final class GridPersonCell: UICollectionViewCell {
 
     @IBOutlet weak var titleLabel: UILabel!
-
     @IBOutlet weak var subtitleLabel: UILabel!
-
     @IBOutlet weak var flagLabel: UILabel!
 
     override func awakeFromNib() {
