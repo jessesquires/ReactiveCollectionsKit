@@ -21,8 +21,6 @@ struct GridColorCellViewModel: CellViewModel {
 
     var id: UniqueIdentifier { self.color.description }
 
-    let didSelect = CellActions.DidSelectNoOperation
-
     let shouldHighlight = false
 
     func configure(cell: GridColorCell, at indexPath: IndexPath) {

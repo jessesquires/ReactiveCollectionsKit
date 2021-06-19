@@ -26,7 +26,6 @@
 		88FA49092363A7890061F8B2 /* CollectionViewDriver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88FA48FA2363A7880061F8B2 /* CollectionViewDriver.swift */; };
 		88FA490A2363A7890061F8B2 /* CellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88FA48FB2363A7880061F8B2 /* CellViewModel.swift */; };
 		88FA490C2363A7890061F8B2 /* SectionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88FA48FD2363A7880061F8B2 /* SectionViewModel.swift */; };
-		88FA49112363A7890061F8B2 /* CellActions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88FA49022363A7890061F8B2 /* CellActions.swift */; };
 		88FA49312363BC5F0061F8B2 /* DiffableViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88FA49302363BC5F0061F8B2 /* DiffableViewModel.swift */; };
 /* End PBXBuildFile section */
 
@@ -63,7 +62,6 @@
 		88FA48FA2363A7880061F8B2 /* CollectionViewDriver.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CollectionViewDriver.swift; sourceTree = "<group>"; };
 		88FA48FB2363A7880061F8B2 /* CellViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CellViewModel.swift; sourceTree = "<group>"; };
 		88FA48FD2363A7880061F8B2 /* SectionViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SectionViewModel.swift; sourceTree = "<group>"; };
-		88FA49022363A7890061F8B2 /* CellActions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CellActions.swift; sourceTree = "<group>"; };
 		88FA49302363BC5F0061F8B2 /* DiffableViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiffableViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -108,7 +106,6 @@
 			isa = PBXGroup;
 			children = (
 				88389EF5236DEE0A00DDECA5 /* Asserts.swift */,
-				88FA49022363A7890061F8B2 /* CellActions.swift */,
 				88FA48FB2363A7880061F8B2 /* CellViewModel.swift */,
 				88FA48FA2363A7880061F8B2 /* CollectionViewDriver.swift */,
 				88FA48F92363A7880061F8B2 /* CollectionViewModel.swift */,
@@ -273,7 +270,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				88FA49092363A7890061F8B2 /* CollectionViewDriver.swift in Sources */,
-				88FA49112363A7890061F8B2 /* CellActions.swift in Sources */,
 				88FA490C2363A7890061F8B2 /* SectionViewModel.swift in Sources */,
 				88389EF6236DEE0A00DDECA5 /* Asserts.swift in Sources */,
 				0B00BA60267C004B002DD5E5 /* UICollectionView+Extensions.swift in Sources */,

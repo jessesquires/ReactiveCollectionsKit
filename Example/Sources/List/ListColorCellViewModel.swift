@@ -21,8 +21,6 @@ struct ListColorCellViewModel: CellViewModel {
 
     var id: UniqueIdentifier { self.color.description }
 
-    let didSelect = CellActions.DidSelectNoOperation
-
     let shouldHighlight = false
 
     func configure(cell: UICollectionViewListCell, at indexPath: IndexPath) {

@@ -23,8 +23,6 @@ enum ReuseIdentifier: String {
 struct TestCellModel: CellViewModel {
     var id: UniqueIdentifier { self.defaultId }
 
-    let didSelect = CellActions.DidSelectNoOperation
-
     func configure(cell: FakeCollectionCell, at indexPath: IndexPath) { }
 }
 

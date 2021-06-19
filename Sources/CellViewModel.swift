@@ -23,11 +23,11 @@ public protocol CellViewModel: DiffableViewModel {
 
     var shouldHighlight: Bool { get }
 
-    var didSelect: CellActions.DidSelect { get }
+    func registerWith(collectionView: UICollectionView)
 
     func configure(cell: CellType, at indexPath: IndexPath)
 
-    func registerWith(collectionView: UICollectionView)
+    func didSelect(with controller: UIViewController)
 }
 
 extension CellViewModel {
@@ -53,6 +53,8 @@ extension CellViewModel {
         return cell
     }
 
+    public func didSelect(with controller: UIViewController) { }
+
     public func toAnyViewModel() -> AnyCellViewModel {
         AnyCellViewModel(self)
     }
@@ -74,14 +76,16 @@ public struct AnyCellViewModel: CellViewModel {
 
     public var shouldHighlight: Bool { self._shouldHighlight }
 
-    public var didSelect: CellActions.DidSelect { self._didSelect }
+    public func registerWith(collectionView: UICollectionView) {
+        self._registration(collectionView)
+    }
 
     public func configure(cell: UICollectionViewCell, at indexPath: IndexPath) {
         self._configuration(cell, indexPath)
     }
 
-    public func registerWith(collectionView: UICollectionView) {
-        self._registration(collectionView)
+    public func didSelect(with controller: UIViewController) {
+        self._didSelect(controller)
     }
 
     // MARK: Private
@@ -90,9 +94,9 @@ public struct AnyCellViewModel: CellViewModel {
     private let _reuseIdentifier: String
     private let _nib: UINib?
     private let _shouldHighlight: Bool
-    private let _didSelect: CellActions.DidSelect
-    private let _configuration: (CellType, IndexPath) -> Void
     private let _registration: (UICollectionView) -> Void
+    private let _configuration: (CellType, IndexPath) -> Void
+    private let _didSelect: (UIViewController) -> Void
 
     // MARK: Init
 
@@ -101,13 +105,15 @@ public struct AnyCellViewModel: CellViewModel {
         self._reuseIdentifier = viewModel.reuseIdentifier
         self._nib = viewModel.nib
         self._shouldHighlight = viewModel.shouldHighlight
-        self._didSelect = viewModel.didSelect
+        self._registration = { collectionView in
+            viewModel.registerWith(collectionView: collectionView)
+        }
         self._configuration = { cell, indexPath in
             precondition(cell is T.CellType, "Cell must be of type \(T.CellType.self). Found \(cell.self)")
             viewModel.configure(cell: cell as! T.CellType, at: indexPath)
         }
-        self._registration = { collectionView in
-            viewModel.registerWith(collectionView: collectionView)
+        self._didSelect = { controller in
+            viewModel.didSelect(with: controller)
         }
     }
 }

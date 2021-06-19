@@ -25,14 +25,12 @@ struct FakeCollectionCellViewModel: CellViewModel {
 
     var id: UniqueIdentifier { self.text }
 
-    var didSelect: CellActions.DidSelect {
-        { _, _, _ -> Void in
-            self.didSelectExpectation?.fulfill()
-        }
-    }
-
     func configure(cell: FakeCollectionCell, at indexPath: IndexPath) {
         self.didConfigureExpectation?.fulfill()
+    }
+
+    func didSelect(with controller: UIViewController) {
+        self.didSelectExpectation?.fulfill()
     }
 }
 

@@ -19,8 +19,6 @@ struct ListPersonCellViewModel: CellViewModel {
 
     // MARK: CellViewModel
 
-    let didSelect: CellActions.DidSelect
-
     var id: UniqueIdentifier { self.person.name }
 
     func configure(cell: UICollectionViewListCell, at indexPath: IndexPath) {
@@ -28,5 +26,10 @@ struct ListPersonCellViewModel: CellViewModel {
         contentConfiguration.text = self.person.name
         contentConfiguration.secondaryText = self.person.birthDateText
         cell.contentConfiguration = contentConfiguration
+    }
+
+    func didSelect(with controller: UIViewController) {
+        let personVC = PersonViewController(person: self.person)
+        controller.navigationController?.pushViewController(personVC, animated: true)
     }
 }

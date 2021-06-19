@@ -19,8 +19,6 @@ struct GridPersonCellViewModel: CellViewModel {
 
     // MARK: CellViewModel
 
-    let didSelect: CellActions.DidSelect
-
     var id: UniqueIdentifier { self.person.name }
 
     let nib: UINib? = UINib(nibName: "GridPersonCell", bundle: .main)
@@ -29,5 +27,10 @@ struct GridPersonCellViewModel: CellViewModel {
         cell.titleLabel.text = self.person.name
         cell.subtitleLabel.text = self.person.birthDateText
         cell.flagLabel.text = self.person.nationality
+    }
+
+    func didSelect(with controller: UIViewController) {
+        let personVC = PersonViewController(person: self.person)
+        controller.navigationController?.pushViewController(personVC, animated: true)
     }
 }

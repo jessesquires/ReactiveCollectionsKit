@@ -40,13 +40,7 @@ final class ListViewController: UICollectionViewController {
     }
 
     func makeViewModel(from model: Model) -> CollectionViewModel {
-        let peopleCellViewModels = model.people.map { person in
-            ListPersonCellViewModel(person: person) { _, _, controller in
-                let personVC = PersonViewController(person: person)
-                controller.navigationController?.pushViewController(personVC, animated: true)
-            }
-        }
-
+        let peopleCellViewModels = model.people.map { ListPersonCellViewModel(person: $0) }
         let anyPeopleModels = peopleCellViewModels.map { $0.toAnyViewModel() }
         let peopleSection = SectionViewModel(id: "section_0_people",
                                              cells: anyPeopleModels)
