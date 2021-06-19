@@ -77,11 +77,11 @@ public struct AnyCellViewModel: CellViewModel {
     public var shouldHighlight: Bool { self._shouldHighlight }
 
     public func registerWith(collectionView: UICollectionView) {
-        self._registration(collectionView)
+        self._register(collectionView)
     }
 
     public func configure(cell: UICollectionViewCell) {
-        self._configuration(cell)
+        self._configure(cell)
     }
 
     public func didSelect(with controller: UIViewController) {
@@ -94,8 +94,8 @@ public struct AnyCellViewModel: CellViewModel {
     private let _reuseIdentifier: String
     private let _nib: UINib?
     private let _shouldHighlight: Bool
-    private let _registration: (UICollectionView) -> Void
-    private let _configuration: (CellType) -> Void
+    private let _register: (UICollectionView) -> Void
+    private let _configure: (CellType) -> Void
     private let _didSelect: (UIViewController) -> Void
 
     // MARK: Init
@@ -105,10 +105,10 @@ public struct AnyCellViewModel: CellViewModel {
         self._reuseIdentifier = viewModel.reuseIdentifier
         self._nib = viewModel.nib
         self._shouldHighlight = viewModel.shouldHighlight
-        self._registration = { collectionView in
+        self._register = { collectionView in
             viewModel.registerWith(collectionView: collectionView)
         }
-        self._configuration = { cell in
+        self._configure = { cell in
             precondition(cell is T.CellType, "Cell must be of type \(T.CellType.self). Found \(cell.self)")
             viewModel.configure(cell: cell as! T.CellType)
         }
