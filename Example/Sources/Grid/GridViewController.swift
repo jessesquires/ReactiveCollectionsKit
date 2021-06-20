@@ -19,7 +19,7 @@ final class GridViewController: UICollectionViewController {
 
     var model = Model() {
         didSet {
-            self.driver.viewModel = ViewModel.createList(from: self.model)
+            self.driver.viewModel = ViewModel.createGrid(from: self.model)
         }
     }
 
