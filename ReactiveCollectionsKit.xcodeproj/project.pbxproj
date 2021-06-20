@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		0B00BA60267C004B002DD5E5 /* UICollectionView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B00BA5F267C004B002DD5E5 /* UICollectionView+Extensions.swift */; };
+		0B8C6CEC267ED08E0042DFE2 /* SupplementaryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B8C6CEB267ED08E0042DFE2 /* SupplementaryViewModel.swift */; };
 		0BC546EF267923BA00E36D30 /* DiffableSnapshot.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BC546EE267923BA00E36D30 /* DiffableSnapshot.swift */; };
 		881BD16D247C880100E8D23C /* IndexPath+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 881BD16C247C880100E8D23C /* IndexPath+Extensions.swift */; };
 		88389EF6236DEE0A00DDECA5 /* Asserts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88389EF5236DEE0A00DDECA5 /* Asserts.swift */; };
@@ -41,6 +42,7 @@
 
 /* Begin PBXFileReference section */
 		0B00BA5F267C004B002DD5E5 /* UICollectionView+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UICollectionView+Extensions.swift"; sourceTree = "<group>"; };
+		0B8C6CEB267ED08E0042DFE2 /* SupplementaryViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SupplementaryViewModel.swift; sourceTree = "<group>"; };
 		0BC546EE267923BA00E36D30 /* DiffableSnapshot.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiffableSnapshot.swift; sourceTree = "<group>"; };
 		881BD16C247C880100E8D23C /* IndexPath+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "IndexPath+Extensions.swift"; sourceTree = "<group>"; };
 		88389EF5236DEE0A00DDECA5 /* Asserts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Asserts.swift; sourceTree = "<group>"; };
@@ -115,6 +117,7 @@
 				881BD16C247C880100E8D23C /* IndexPath+Extensions.swift */,
 				88FA48DE2363A6160061F8B2 /* Info.plist */,
 				88FA48FD2363A7880061F8B2 /* SectionViewModel.swift */,
+				0B8C6CEB267ED08E0042DFE2 /* SupplementaryViewModel.swift */,
 				0B00BA5F267C004B002DD5E5 /* UICollectionView+Extensions.swift */,
 			);
 			path = Sources;
@@ -274,6 +277,7 @@
 				88389EF6236DEE0A00DDECA5 /* Asserts.swift in Sources */,
 				0B00BA60267C004B002DD5E5 /* UICollectionView+Extensions.swift in Sources */,
 				0BC546EF267923BA00E36D30 /* DiffableSnapshot.swift in Sources */,
+				0B8C6CEC267ED08E0042DFE2 /* SupplementaryViewModel.swift in Sources */,
 				88C02079236CBCB000B43713 /* DiffableDataSource.swift in Sources */,
 				881BD16D247C880100E8D23C /* IndexPath+Extensions.swift in Sources */,
 				88FA49312363BC5F0061F8B2 /* DiffableViewModel.swift in Sources */,

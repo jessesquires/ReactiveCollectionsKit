@@ -48,7 +48,7 @@ extension XCTestCase {
                                         numCells: Int = 5,
                                         includeExpectations: Bool = false) -> SectionViewModel {
         let cellModels = (0..<numCells).map { _ in
-            self.makeCollectionCellViewModel(includeExpectations: includeExpectations).toAnyViewModel()
+            self.makeCollectionCellViewModel(includeExpectations: includeExpectations)
         }
         return SectionViewModel(id: "section_\(name)", cells: cellModels)
     }

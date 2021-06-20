@@ -27,7 +27,7 @@ final class TestSectionViewModel: XCTestCase {
     }
 
     func test_empty_section() {
-        let section = SectionViewModel(id: "name", cells: [])
+        let section = SectionViewModel(id: "name")
 
         XCTAssertEqual(section.count, .zero)
         XCTAssertTrue(section.isEmpty)
