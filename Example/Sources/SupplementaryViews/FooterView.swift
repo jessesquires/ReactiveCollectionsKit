@@ -14,8 +14,6 @@
 import ReactiveCollectionsKit
 import UIKit
 
-// TODO: add to example
-
 struct FooterViewModel: SupplementaryViewModel {
     let text: String
 
@@ -23,7 +21,7 @@ struct FooterViewModel: SupplementaryViewModel {
 
     var id: UniqueIdentifier { self.text }
 
-    static let kind = UICollectionView.elementKindSectionFooter
+    let kind = SupplementaryViewKind.footer
 
     func configure(view: UICollectionViewListCell) {
         var config = UIListContentConfiguration.groupedFooter()

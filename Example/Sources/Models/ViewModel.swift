@@ -50,9 +50,10 @@ enum ViewModel {
             }
         }
         let peopleHeader = AnySupplementaryViewModel(HeaderViewModel(title: "People", style: style.headerStyle))
+        let peopleFooter = AnySupplementaryViewModel(FooterViewModel(text: "Footer text for the people section"))
         let peopleSection = SectionViewModel(id: "section_0_people",
                                              anyCells: peopleCellViewModels,
-                                             anySupplementaryViews: [peopleHeader])
+                                             anySupplementaryViews: [peopleHeader, peopleFooter])
 
         let colorCellViewModels: [AnyCellViewModel] = model.colors.map {
             switch style {
@@ -64,9 +65,10 @@ enum ViewModel {
             }
         }
         let colorHeader = AnySupplementaryViewModel(HeaderViewModel(title: "Colors", style: style.headerStyle))
+        let colorFooter = AnySupplementaryViewModel(FooterViewModel(text: "Footer text for the color section"))
         let colorSection = SectionViewModel(id: "section_1_colors",
                                             anyCells: colorCellViewModels,
-                                            anySupplementaryViews: [colorHeader])
+                                            anySupplementaryViews: [colorHeader, colorFooter])
 
         return CollectionViewModel(sections: [peopleSection, colorSection])
     }

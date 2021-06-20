@@ -25,6 +25,7 @@ final class ListViewController: UICollectionViewController {
         let layout = UICollectionViewCompositionalLayout { _, layoutEnvironment in
             var configuration = UICollectionLayoutListConfiguration(appearance: .insetGrouped)
             configuration.headerMode = .supplementary
+            configuration.footerMode = .supplementary
             let section = NSCollectionLayoutSection.list(using: configuration,
                                                          layoutEnvironment: layoutEnvironment)
             return section

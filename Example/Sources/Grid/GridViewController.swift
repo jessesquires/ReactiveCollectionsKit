@@ -36,20 +36,22 @@ final class GridViewController: UICollectionViewController {
                                                heightDimension: .fractionalWidth(fractionalWidth))
         let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitems: [item])
 
+        // Headers and Footers
+        let headerFooterSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0),
+                                                      heightDimension: .estimated(50))
+
+        let sectionHeader = NSCollectionLayoutBoundarySupplementaryItem(layoutSize: headerFooterSize,
+                                                                        elementKind: SupplementaryViewKind.header,
+                                                                        alignment: .top)
+        sectionHeader.pinToVisibleBounds = true
+        let sectionFooter = NSCollectionLayoutBoundarySupplementaryItem(layoutSize: headerFooterSize,
+                                                                        elementKind: SupplementaryViewKind.footer,
+                                                                        alignment: .bottom)
+
         // Section
         let section = NSCollectionLayoutSection(group: group)
-        section.contentInsets = NSDirectionalEdgeInsets(top: inset, leading: 0, bottom: inset, trailing: 0)
-
-        // Headers
-        let headerItemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1),
-                                                    heightDimension: .estimated(100))
-        let headerItem = NSCollectionLayoutBoundarySupplementaryItem(
-            layoutSize: headerItemSize,
-            elementKind: HeaderViewModel.kind,
-            alignment: .top
-        )
-        headerItem.pinToVisibleBounds = true
-        section.boundarySupplementaryItems = [headerItem]
+        section.contentInsets = NSDirectionalEdgeInsets(top: inset, leading: inset, bottom: inset, trailing: inset)
+        section.boundarySupplementaryItems = [sectionHeader, sectionFooter]
 
         let layout = UICollectionViewCompositionalLayout(section: section)
         collectionView.collectionViewLayout = layout

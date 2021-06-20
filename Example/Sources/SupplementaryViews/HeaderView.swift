@@ -27,7 +27,7 @@ struct HeaderViewModel: SupplementaryViewModel {
 
     var id: UniqueIdentifier { self.title }
 
-    static let kind = UICollectionView.elementKindSectionHeader
+    let kind = SupplementaryViewKind.header
 
     func configure(view: UICollectionViewListCell) {
         var config: UIListContentConfiguration
