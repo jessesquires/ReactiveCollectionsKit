@@ -14,14 +14,12 @@
 import ReactiveCollectionsKit
 import UIKit
 
-struct FooterViewModel: SupplementaryViewModel {
+struct FooterViewModel: SupplementaryFooterViewModel {
     let text: String
 
     // MARK: SupplementaryViewModel
 
     var id: UniqueIdentifier { self.text }
-
-    let kind = SupplementaryViewKind.footer
 
     func configure(view: UICollectionViewListCell) {
         var config = UIListContentConfiguration.groupedFooter()

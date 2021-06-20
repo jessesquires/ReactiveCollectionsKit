@@ -19,15 +19,13 @@ enum HeaderViewStyle {
     case small
 }
 
-struct HeaderViewModel: SupplementaryViewModel {
+struct HeaderViewModel: SupplementaryHeaderViewModel {
     let title: String
     let style: HeaderViewStyle
 
     // MARK: SupplementaryViewModel
 
     var id: UniqueIdentifier { self.title }
-
-    let kind = SupplementaryViewKind.header
 
     func configure(view: UICollectionViewListCell) {
         var config: UIListContentConfiguration

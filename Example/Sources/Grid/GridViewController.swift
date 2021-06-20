@@ -41,11 +41,11 @@ final class GridViewController: UICollectionViewController {
                                                       heightDimension: .estimated(50))
 
         let sectionHeader = NSCollectionLayoutBoundarySupplementaryItem(layoutSize: headerFooterSize,
-                                                                        elementKind: SupplementaryViewKind.header,
+                                                                        elementKind: HeaderViewModel.kind,
                                                                         alignment: .top)
         sectionHeader.pinToVisibleBounds = true
         let sectionFooter = NSCollectionLayoutBoundarySupplementaryItem(layoutSize: headerFooterSize,
-                                                                        elementKind: SupplementaryViewKind.footer,
+                                                                        elementKind: FooterViewModel.kind,
                                                                         alignment: .bottom)
 
         // Section

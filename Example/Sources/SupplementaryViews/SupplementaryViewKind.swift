@@ -14,12 +14,4 @@
 import Foundation
 import UIKit
 
-enum SupplementaryViewKind {
-    static var header: String {
-        UICollectionView.elementKindSectionHeader
-    }
-
-    static var footer: String {
-        UICollectionView.elementKindSectionFooter
-    }
-}
+enum ElementKind { }
