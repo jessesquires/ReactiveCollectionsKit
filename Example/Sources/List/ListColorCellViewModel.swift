@@ -30,8 +30,5 @@ struct ListColorCellViewModel: CellViewModel {
         cell.contentConfiguration = contentConfiguration
         cell.backgroundView = UIView()
         cell.backgroundView?.backgroundColor = self.color.uiColor
-        cell.accessories = [
-            .disclosureIndicator(options: .init(tintColor: .lightText))
-        ]
     }
 }

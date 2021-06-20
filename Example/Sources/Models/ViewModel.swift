@@ -17,6 +17,16 @@ import ReactiveCollectionsKit
 enum ViewModelStyle {
     case grid
     case list
+
+    var headerStyle: HeaderViewStyle {
+        switch self {
+        case .grid:
+            return .large
+
+        case .list:
+            return .small
+        }
+    }
 }
 
 enum ViewModel {
@@ -39,7 +49,7 @@ enum ViewModel {
                 return AnyCellViewModel(ListPersonCellViewModel(person: $0))
             }
         }
-        let peopleHeader = AnySupplementaryViewModel(HeaderViewModel(title: "People"))
+        let peopleHeader = AnySupplementaryViewModel(HeaderViewModel(title: "People", style: style.headerStyle))
         let peopleSection = SectionViewModel(id: "section_0_people",
                                              anyCells: peopleCellViewModels,
                                              anySupplementaryViews: [peopleHeader])
@@ -53,7 +63,7 @@ enum ViewModel {
                 return AnyCellViewModel(ListColorCellViewModel(color: $0))
             }
         }
-        let colorHeader = AnySupplementaryViewModel(HeaderViewModel(title: "Colors"))
+        let colorHeader = AnySupplementaryViewModel(HeaderViewModel(title: "Colors", style: style.headerStyle))
         let colorSection = SectionViewModel(id: "section_1_colors",
                                             anyCells: colorCellViewModels,
                                             anySupplementaryViews: [colorHeader])

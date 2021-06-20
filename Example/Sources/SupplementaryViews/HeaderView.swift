@@ -14,8 +14,14 @@
 import ReactiveCollectionsKit
 import UIKit
 
+enum HeaderViewStyle {
+    case large
+    case small
+}
+
 struct HeaderViewModel: SupplementaryViewModel {
     let title: String
+    let style: HeaderViewStyle
 
     // MARK: SupplementaryViewModel
 
@@ -24,8 +30,18 @@ struct HeaderViewModel: SupplementaryViewModel {
     static let kind = UICollectionView.elementKindSectionHeader
 
     func configure(view: UICollectionViewListCell) {
-        // TODO: custom for grid
-        var config = UIListContentConfiguration.groupedHeader()
+        var config: UIListContentConfiguration
+        switch self.style {
+        case .large:
+            if #available(iOS 15.0, *) {
+                config = .prominentInsetGroupedHeader()
+            } else {
+                config = .plainHeader()
+            }
+
+        case .small:
+            config = .groupedHeader()
+        }
         config.text = self.title
         view.contentConfiguration = config
     }

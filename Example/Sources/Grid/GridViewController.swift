@@ -23,7 +23,7 @@ final class GridViewController: UICollectionViewController {
         super.viewDidLoad()
 
         let fractionalWidth = CGFloat(0.5)
-        let inset = CGFloat(2.5)
+        let inset = CGFloat(4)
 
         // Item
         let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(fractionalWidth),
@@ -38,7 +38,7 @@ final class GridViewController: UICollectionViewController {
 
         // Section
         let section = NSCollectionLayoutSection(group: group)
-        section.contentInsets = NSDirectionalEdgeInsets(top: inset, leading: inset, bottom: inset, trailing: inset)
+        section.contentInsets = NSDirectionalEdgeInsets(top: inset, leading: 0, bottom: inset, trailing: 0)
 
         // Headers
         let headerItemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1),
@@ -48,6 +48,7 @@ final class GridViewController: UICollectionViewController {
             elementKind: HeaderViewModel.kind,
             alignment: .top
         )
+        headerItem.pinToVisibleBounds = true
         section.boundarySupplementaryItems = [headerItem]
 
         let layout = UICollectionViewCompositionalLayout(section: section)

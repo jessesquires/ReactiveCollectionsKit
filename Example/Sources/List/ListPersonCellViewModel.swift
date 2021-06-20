@@ -26,8 +26,14 @@ struct ListPersonCellViewModel: CellViewModel {
         contentConfiguration.text = self.person.name
         contentConfiguration.secondaryText = self.person.birthDateText
         cell.contentConfiguration = contentConfiguration
+
+        let label = UILabel()
+        label.text = self.person.nationality
+        let flagEmoji = UICellAccessory.customView(
+            configuration: .init(customView: label, placement: .leading())
+        )
         cell.accessories = [
-            UICellAccessory.label(text: self.person.nationality),
+            flagEmoji,
             .disclosureIndicator()
         ]
     }

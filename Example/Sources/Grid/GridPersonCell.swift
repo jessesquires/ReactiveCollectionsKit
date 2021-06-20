@@ -21,6 +21,7 @@ final class GridPersonCell: UICollectionViewCell {
 
     override func awakeFromNib() {
         super.awakeFromNib()
+        self.backgroundColor = .systemGray6
         self.selectedBackgroundView = UIView()
         self.selectedBackgroundView?.backgroundColor = .systemGray4
     }

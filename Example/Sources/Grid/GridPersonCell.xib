@@ -34,8 +34,8 @@
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="X" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ymu-Yp-GgX">
-                        <rect key="frame" x="188" y="12" width="30" height="22"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="X" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ymu-Yp-GgX">
+                        <rect key="frame" x="12" y="12" width="30" height="22"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="22" id="UQd-Cm-udF"/>
                             <constraint firstAttribute="width" constant="30" id="z4D-iw-INx"/>
@@ -52,7 +52,7 @@
                 <constraint firstItem="Orh-9T-sW6" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="20" id="6Dn-b6-Xg9"/>
                 <constraint firstItem="Orh-9T-sW6" firstAttribute="top" secondItem="hum-lv-jma" secondAttribute="bottom" constant="8" id="7n3-82-tY5"/>
                 <constraint firstAttribute="trailing" secondItem="Orh-9T-sW6" secondAttribute="trailing" constant="20" id="Icf-2x-5LG"/>
-                <constraint firstAttribute="trailing" secondItem="ymu-Yp-GgX" secondAttribute="trailing" constant="12" id="Vzc-sI-v1O"/>
+                <constraint firstAttribute="leading" secondItem="ymu-Yp-GgX" secondAttribute="leading" constant="-12" id="Vzc-sI-v1O"/>
                 <constraint firstItem="hum-lv-jma" firstAttribute="top" secondItem="ymu-Yp-GgX" secondAttribute="bottom" constant="20" id="WaR-Dg-f3v"/>
                 <constraint firstItem="ymu-Yp-GgX" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" constant="12" id="aEW-Zi-dDy"/>
                 <constraint firstItem="hum-lv-jma" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="20" id="soj-JX-17V"/>
