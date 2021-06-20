@@ -39,10 +39,21 @@ final class GridViewController: UICollectionViewController {
         // Section
         let section = NSCollectionLayoutSection(group: group)
         section.contentInsets = NSDirectionalEdgeInsets(top: inset, leading: inset, bottom: inset, trailing: inset)
+
+        // Headers
+        let headerItemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1),
+                                                    heightDimension: .estimated(100))
+        let headerItem = NSCollectionLayoutBoundarySupplementaryItem(
+            layoutSize: headerItemSize,
+            elementKind: HeaderViewModel.kind,
+            alignment: .top
+        )
+        section.boundarySupplementaryItems = [headerItem]
+
         let layout = UICollectionViewCompositionalLayout(section: section)
         collectionView.collectionViewLayout = layout
 
-        let viewModel = self.makeViewModel(from: self.model)
+        let viewModel = ViewModel.createGrid(from: self.model)
 
         self.driver = CollectionViewDriver(
             view: self.collectionView,
@@ -55,21 +66,9 @@ final class GridViewController: UICollectionViewController {
         self.addShuffle(action: #selector(shuffle))
     }
 
-    func makeViewModel(from model: Model) -> CollectionViewModel {
-        let peopleCellViewModels = model.people.map { GridPersonCellViewModel(person: $0) }
-        let peopleSection = SectionViewModel(id: "section_0_people",
-                                             cells: peopleCellViewModels)
-
-        let colorCellViewModels = model.colors.map { GridColorCellViewModel(color: $0) }
-        let colorSection = SectionViewModel(id: "section_1_colors",
-                                            cells: colorCellViewModels)
-
-        return CollectionViewModel(sections: [peopleSection, colorSection])
-    }
-
     @objc
     func shuffle() {
         self.model.shuffle()
-        self.driver.viewModel = self.makeViewModel(from: self.model)
+        self.driver.viewModel = ViewModel.createGrid(from: self.model)
     }
 }

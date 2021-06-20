@@ -101,10 +101,10 @@ public final class CollectionViewDriver: NSObject {
 
 extension CollectionViewDriver: UICollectionViewDelegate {
     public func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        self.viewModel[indexPath].didSelect(with: self._controller)
+        self.viewModel.cell(at: indexPath).didSelect(with: self._controller)
     }
 
     public func collectionView(_ collectionView: UICollectionView, shouldHighlightItemAt indexPath: IndexPath) -> Bool {
-        self.viewModel[indexPath].shouldHighlight
+        self.viewModel.cell(at: indexPath).shouldHighlight
     }
 }

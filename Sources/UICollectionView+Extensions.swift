@@ -24,5 +24,9 @@ extension UICollectionView {
         sectionViewModel.cellViewModels.forEach {
             $0.registerWith(collectionView: self)
         }
+
+        sectionViewModel.supplementaryViewModels.forEach {
+            $0.registerWith(collectionView: self)
+        }
     }
 }

@@ -20,8 +20,12 @@ extension _DiffableDataSource {
 
     convenience init(view: UICollectionView, viewModel: CollectionViewModel) {
         self.init(collectionView: view) { collectionView, indexPath, _ in
-            let cellViewModel = viewModel[indexPath]
-            return cellViewModel.dequeueAndConfigureCellFor(collectionView: collectionView, at: indexPath)
+            let cell = viewModel.cell(at: indexPath)
+            return cell.dequeueAndConfigureCellFor(collectionView: collectionView, at: indexPath)
+        }
+        self.supplementaryViewProvider = { collectionView, elementKind, indexPath in
+            let supplementaryView = viewModel.supplementaryView(ofKind: elementKind, at: indexPath)
+            return supplementaryView?.dequeueAndConfigureViewFor(collectionView: collectionView, at: indexPath)
         }
     }
 

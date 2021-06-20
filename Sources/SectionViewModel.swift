@@ -19,6 +19,11 @@ public struct SectionViewModel: DiffableViewModel {
 
     public let cellViewModels: [AnyCellViewModel]
 
+    // TODO: need to have header, footer, and then supplementaryViewModels
+    //
+    // in order to implement proper custom supplementary views, like badges
+    // cells need to return supplementary views...
+
     public let supplementaryViewModels: [AnySupplementaryViewModel]
 
     public init(id: UniqueIdentifier) {
@@ -42,9 +47,21 @@ public struct SectionViewModel: DiffableViewModel {
         cells: [T],
         supplementaryViews: [U]
     ) {
+        self.init(
+            id: id,
+            anyCells: cells.map { AnyCellViewModel($0) },
+            anySupplementaryViews: supplementaryViews.map { AnySupplementaryViewModel($0) }
+        )
+    }
+
+    public init(
+        id: UniqueIdentifier,
+        anyCells: [AnyCellViewModel],
+        anySupplementaryViews: [AnySupplementaryViewModel]
+    ) {
         self.id = id
-        self.cellViewModels = cells.map { AnyCellViewModel($0) }
-        self.supplementaryViewModels = supplementaryViews.map { AnySupplementaryViewModel($0) }
+        self.cellViewModels = anyCells
+        self.supplementaryViewModels = anySupplementaryViews
     }
 }
 

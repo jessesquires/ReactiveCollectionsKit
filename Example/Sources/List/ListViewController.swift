@@ -22,11 +22,16 @@ final class ListViewController: UICollectionViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        let configuration = UICollectionLayoutListConfiguration(appearance: .insetGrouped)
-        let layout = UICollectionViewCompositionalLayout.list(using: configuration)
+        let layout = UICollectionViewCompositionalLayout { _, layoutEnvironment in
+            var configuration = UICollectionLayoutListConfiguration(appearance: .insetGrouped)
+            configuration.headerMode = .supplementary
+            let section = NSCollectionLayoutSection.list(using: configuration,
+                                                         layoutEnvironment: layoutEnvironment)
+            return section
+        }
         collectionView.collectionViewLayout = layout
 
-        let viewModel = self.makeViewModel(from: self.model)
+        let viewModel = ViewModel.createList(from: self.model)
 
         self.driver = CollectionViewDriver(
             view: self.collectionView,
@@ -39,21 +44,9 @@ final class ListViewController: UICollectionViewController {
         self.addShuffle(action: #selector(shuffle))
     }
 
-    func makeViewModel(from model: Model) -> CollectionViewModel {
-        let peopleCellViewModels = model.people.map { ListPersonCellViewModel(person: $0) }
-        let peopleSection = SectionViewModel(id: "section_0_people",
-                                             cells: peopleCellViewModels)
-
-        let colorCellViewModels = model.colors.map { ListColorCellViewModel(color: $0) }
-        let colorSection = SectionViewModel(id: "section_1_colors",
-                                            cells: colorCellViewModels)
-
-        return CollectionViewModel(sections: [peopleSection, colorSection])
-    }
-
     @objc
     func shuffle() {
         self.model.shuffle()
-        self.driver.viewModel = self.makeViewModel(from: self.model)
+        self.driver.viewModel = ViewModel.createList(from: self.model)
     }
 }

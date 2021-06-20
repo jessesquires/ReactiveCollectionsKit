@@ -28,11 +28,23 @@ public struct CollectionViewModel {
         self.sections = sections
     }
 
-    // MARK: Subscripts
+    // MARK: Accessing Cells and Supplementary Views
 
-    public subscript (indexPath: IndexPath) -> AnyCellViewModel {
+    public func cell(at indexPath: IndexPath) -> AnyCellViewModel {
         precondition(indexPath.section < self.sections.count)
         precondition(indexPath.item < self.sections[indexPath.section].cellViewModels.count)
         return self.sections[indexPath.section].cellViewModels[indexPath.item]
+    }
+
+    public func supplementaryView(ofKind kind: String, at indexPath: IndexPath) -> AnySupplementaryViewModel? {
+        precondition(indexPath.section < self.sections.count)
+        return self.sections[indexPath.section].supplementaryViewModels.first { $0.kind == kind }
+    }
+
+    // MARK: Subscripts
+
+    public subscript (index: Int) -> SectionViewModel {
+        precondition(index < self.sections.count)
+        return self.sections[index]
     }
 }

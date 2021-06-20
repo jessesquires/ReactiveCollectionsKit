@@ -13,11 +13,13 @@
 
 import UIKit
 
+public typealias SupplementaryViewKind = String
+
 /// Defines a view model that describes and configures a supplementary view in the collection view.
 public protocol SupplementaryViewModel: DiffableViewModel {
     associatedtype ViewType: UICollectionReusableView
 
-    var kind: String { get }
+    static var kind: SupplementaryViewKind { get }
 
     var reuseIdentifier: String { get }
 
@@ -31,6 +33,8 @@ public protocol SupplementaryViewModel: DiffableViewModel {
 extension SupplementaryViewModel {
     public var viewClass: AnyClass { ViewType.self }
 
+    public var kind: SupplementaryViewKind { Self.kind }
+
     public var reuseIdentifier: String { "\(Self.self)" }
 
     public var nib: UINib? { nil }
@@ -39,13 +43,13 @@ extension SupplementaryViewModel {
         if let nib = self.nib {
             collectionView.register(
                 nib,
-                forSupplementaryViewOfKind: self.kind,
+                forSupplementaryViewOfKind: Self.kind,
                 withReuseIdentifier: self.reuseIdentifier
             )
         } else {
             collectionView.register(
                 self.viewClass,
-                forSupplementaryViewOfKind: self.kind,
+                forSupplementaryViewOfKind: Self.kind,
                 withReuseIdentifier: self.reuseIdentifier
             )
         }
@@ -53,7 +57,7 @@ extension SupplementaryViewModel {
 
     public func dequeueAndConfigureViewFor(collectionView: UICollectionView, at indexPath: IndexPath) -> ViewType {
         let view = collectionView.dequeueReusableSupplementaryView(
-            ofKind: self.kind,
+            ofKind: Self.kind,
             withReuseIdentifier: self.reuseIdentifier,
             for: indexPath
         ) as! ViewType
@@ -71,7 +75,7 @@ public struct AnySupplementaryViewModel: SupplementaryViewModel {
 
     public typealias ViewType = UICollectionReusableView
 
-    public var kind: String { self._kind }
+    public static var kind: SupplementaryViewKind { self._kind }
 
     public var reuseIdentifier: String { self._reuseIdentifier }
 
@@ -88,7 +92,7 @@ public struct AnySupplementaryViewModel: SupplementaryViewModel {
     // MARK: Private
 
     private let _id: UniqueIdentifier
-    private let _kind: String
+    private static var _kind = ""
     private let _reuseIdentifier: String
     private let _nib: UINib?
     private let _register: (UICollectionView) -> Void
@@ -98,7 +102,7 @@ public struct AnySupplementaryViewModel: SupplementaryViewModel {
 
     public init<T: SupplementaryViewModel>(_ viewModel: T) {
         self._id = viewModel.id
-        self._kind = viewModel.kind
+        Self._kind = T.kind
         self._reuseIdentifier = viewModel.reuseIdentifier
         self._nib = viewModel.nib
         self._register = { collectionView in
