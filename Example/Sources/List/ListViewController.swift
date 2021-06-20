@@ -17,7 +17,11 @@ import UIKit
 final class ListViewController: UICollectionViewController {
     var driver: CollectionViewDriver!
 
-    var model = Model()
+    var model = Model() {
+        didSet {
+            self.driver.viewModel = ViewModel.createList(from: self.model)
+        }
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -48,6 +52,5 @@ final class ListViewController: UICollectionViewController {
     @objc
     func shuffle() {
         self.model.shuffle()
-        self.driver.viewModel = ViewModel.createList(from: self.model)
     }
 }

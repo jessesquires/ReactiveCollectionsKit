@@ -19,14 +19,13 @@ struct ListColorCellViewModel: CellViewModel {
 
     // MARK: CellViewModel
 
-    var id: UniqueIdentifier { self.color.description }
+    var id: UniqueIdentifier { self.color.name }
 
     let shouldHighlight = false
 
     func configure(cell: UICollectionViewListCell) {
         var contentConfiguration = cell.defaultContentConfiguration()
-        contentConfiguration.text = self.color.description
-        contentConfiguration.textProperties.color = .lightText
+        contentConfiguration.text = self.color.name
         cell.contentConfiguration = contentConfiguration
         cell.backgroundView = UIView()
         cell.backgroundView?.backgroundColor = self.color.uiColor

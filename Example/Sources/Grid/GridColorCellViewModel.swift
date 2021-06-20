@@ -19,12 +19,12 @@ struct GridColorCellViewModel: CellViewModel {
 
     // MARK: CellViewModel
 
-    var id: UniqueIdentifier { self.color.description }
+    var id: UniqueIdentifier { self.color.name }
 
     let shouldHighlight = false
 
     func configure(cell: GridColorCell) {
-        cell.label.text = self.color.description
+        cell.label.text = self.color.name
         cell.backgroundColor = self.color.uiColor
     }
 }

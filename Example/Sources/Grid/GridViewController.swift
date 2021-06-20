@@ -17,7 +17,11 @@ import UIKit
 final class GridViewController: UICollectionViewController {
     var driver: CollectionViewDriver!
 
-    var model = Model()
+    var model = Model() {
+        didSet {
+            self.driver.viewModel = ViewModel.createList(from: self.model)
+        }
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -72,6 +76,5 @@ final class GridViewController: UICollectionViewController {
     @objc
     func shuffle() {
         self.model.shuffle()
-        self.driver.viewModel = ViewModel.createGrid(from: self.model)
     }
 }

@@ -13,34 +13,59 @@
 
 import UIKit
 
-struct ColorModel: Equatable, Hashable, CustomStringConvertible {
-    let red: CGFloat
-    let green: CGFloat
-    let blue: CGFloat
+enum ColorModel: String, Equatable, Hashable, CaseIterable {
+    case blue
+    case brown
+    case green
+    case indigo
+    case orange
+    case pink
+    case purple
+    case red
+    case teal
+    case yellow
+
+    var name: String {
+        self.rawValue
+    }
 
     var uiColor: UIColor {
-        UIColor(red: red, green: green, blue: blue, alpha: 1.0)
-    }
+        switch self {
+        case .blue:
+            return .systemBlue
 
-    var description: String {
-        "(\(Int(red * 255)), \(Int(green * 255)), \(Int(blue * 255)))"
-    }
-}
+        case .brown:
+            return .systemBrown
 
-extension ColorModel {
-    static var random: ColorModel {
-        ColorModel(red: CGFloat.random256(), green: CGFloat.random256(), blue: CGFloat.random256())
-    }
-}
+        case .green:
+            return .systemGreen
 
-extension CGFloat {
-    static func random256() -> CGFloat {
-        CGFloat((0..<256).randomElement()!) / 255
+        case .indigo:
+            return .systemIndigo
+
+        case .orange:
+            return .systemOrange
+
+        case .pink:
+            return .systemPink
+
+        case .purple:
+            return .systemPurple
+
+        case .red:
+            return .systemRed
+
+        case .teal:
+            return .systemTeal
+
+        case .yellow:
+            return .systemYellow
+        }
     }
 }
 
 extension ColorModel {
     static func makeColors() -> [ColorModel] {
-        (0..<10).map { _ in ColorModel.random }
+        ColorModel.allCases
     }
 }
