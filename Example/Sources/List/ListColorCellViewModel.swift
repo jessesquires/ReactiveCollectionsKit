@@ -26,7 +26,12 @@ struct ListColorCellViewModel: CellViewModel {
     func configure(cell: UICollectionViewListCell) {
         var contentConfiguration = cell.defaultContentConfiguration()
         contentConfiguration.text = self.color.description
-        contentConfiguration.textProperties.color = self.color.uiColor
+        contentConfiguration.textProperties.color = .lightText
         cell.contentConfiguration = contentConfiguration
+        cell.backgroundView = UIView()
+        cell.backgroundView?.backgroundColor = self.color.uiColor
+        cell.accessories = [
+            .disclosureIndicator(options: .init(tintColor: .lightText))
+        ]
     }
 }

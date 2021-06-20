@@ -26,6 +26,10 @@ struct ListPersonCellViewModel: CellViewModel {
         contentConfiguration.text = self.person.name
         contentConfiguration.secondaryText = self.person.birthDateText
         cell.contentConfiguration = contentConfiguration
+        cell.accessories = [
+            UICellAccessory.label(text: self.person.nationality),
+            .disclosureIndicator()
+        ]
     }
 
     func didSelect(with controller: UIViewController) {
