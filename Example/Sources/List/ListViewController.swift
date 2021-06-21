@@ -34,12 +34,12 @@ final class ListViewController: UICollectionViewController {
                                                          layoutEnvironment: layoutEnvironment)
             return section
         }
-        collectionView.collectionViewLayout = layout
 
         let viewModel = ViewModel.createList(from: self.model)
 
         self.driver = CollectionViewDriver(
             view: self.collectionView,
+            layout: layout,
             viewModel: viewModel,
             controller: self,
             animateUpdates: true) {

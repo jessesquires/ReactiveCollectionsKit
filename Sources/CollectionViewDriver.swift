@@ -18,8 +18,8 @@ public final class CollectionViewDriver: NSObject {
 
     public let view: UICollectionView
 
-    public var layout: UICollectionViewLayout {
-        view.collectionViewLayout
+    public var layout: UICollectionViewCompositionalLayout {
+        view.collectionViewLayout as! UICollectionViewCompositionalLayout
     }
 
     public var animateUpdates: Bool
@@ -44,11 +44,13 @@ public final class CollectionViewDriver: NSObject {
     // MARK: Init
 
     public init(view: UICollectionView,
+                layout: UICollectionViewCompositionalLayout,
                 viewModel: CollectionViewModel,
                 controller: UIViewController,
                 animateUpdates: Bool = true,
                 didUpdate: DidUpdate? = nil) {
         self.view = view
+        self.view.collectionViewLayout = layout
         self.viewModel = viewModel
         self._controller = controller
         self.animateUpdates = animateUpdates

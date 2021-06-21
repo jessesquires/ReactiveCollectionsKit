@@ -67,12 +67,12 @@ final class GridViewController: UICollectionViewController {
         section.boundarySupplementaryItems = [sectionHeader, sectionFooter]
 
         let layout = UICollectionViewCompositionalLayout(section: section)
-        collectionView.collectionViewLayout = layout
 
         let viewModel = ViewModel.createGrid(from: self.model)
 
         self.driver = CollectionViewDriver(
             view: self.collectionView,
+            layout: layout,
             viewModel: viewModel,
             controller: self,
             animateUpdates: true) {
