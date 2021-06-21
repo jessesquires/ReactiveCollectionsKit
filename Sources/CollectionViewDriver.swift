@@ -39,6 +39,7 @@ public final class CollectionViewDriver: NSObject {
 
     private let _dataSource: _DiffableDataSource
     private let _didUpdate: DidUpdate?
+    private var _cachedRegistrations = Set<ViewRegistration>()
 
     // MARK: Init
 
@@ -79,9 +80,12 @@ public final class CollectionViewDriver: NSObject {
     // MARK: Private
 
     private func _registerAllViews() {
-        self.viewModel.allRegistrations.forEach {
+        let allRegistrations = self.viewModel.allRegistrations
+        let newRegistrations = allRegistrations.subtracting(self._cachedRegistrations)
+        newRegistrations.forEach {
             $0.registerWith(collectionView: self.view)
         }
+        self._cachedRegistrations.formUnion(newRegistrations)
     }
 
     private func _didUpdateModel(animated: Bool, completion: DidUpdate?) {
