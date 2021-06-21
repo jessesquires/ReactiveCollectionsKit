@@ -14,6 +14,8 @@
 import ReactiveCollectionsKit
 import UIKit
 
+// TODO: implement favorites, swipe actions
+
 final class ListViewController: UICollectionViewController {
     var driver: CollectionViewDriver!
 

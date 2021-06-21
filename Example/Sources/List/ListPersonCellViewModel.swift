@@ -25,6 +25,7 @@ struct ListPersonCellViewModel: CellViewModel {
         var contentConfiguration = UIListContentConfiguration.subtitleCell()
         contentConfiguration.text = self.person.name
         contentConfiguration.secondaryText = self.person.birthDateText
+        contentConfiguration.directionalLayoutMargins = NSDirectionalEdgeInsets(top: 16, leading: 8, bottom: 16, trailing: 8)
         cell.contentConfiguration = contentConfiguration
 
         let label = UILabel()
