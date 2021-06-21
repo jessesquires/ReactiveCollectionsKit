@@ -14,16 +14,10 @@
 import UIKit
 
 /// Defines a view model that describes and configures a cell in the collection view.
-public protocol CellViewModel: DiffableViewModel {
+public protocol CellViewModel: DiffableViewModel, ViewRegistrationProvider {
     associatedtype CellType: UICollectionViewCell
 
-    var reuseIdentifier: String { get }
-
-    var nib: UINib? { get }
-
     var shouldHighlight: Bool { get }
-
-    func registerWith(collectionView: UICollectionView)
 
     func configure(cell: CellType)
 
@@ -33,22 +27,20 @@ public protocol CellViewModel: DiffableViewModel {
 extension CellViewModel {
     public var cellClass: AnyClass { CellType.self }
 
-    public var reuseIdentifier: String { "\(Self.self)" }
-
-    public var nib: UINib? { nil }
-
     public var shouldHighlight: Bool { true }
 
-    public func registerWith(collectionView: UICollectionView) {
-        if let nib = self.nib {
-            collectionView.register(nib, forCellWithReuseIdentifier: self.reuseIdentifier)
-        } else {
-            collectionView.register(self.cellClass, forCellWithReuseIdentifier: self.reuseIdentifier)
-        }
+    public var registration: ViewRegistration {
+        ViewRegistration(
+            viewClass: self.cellClass,
+            reuseIdentifier: self.reuseIdentifier,
+            nibName: self.nibName,
+            nibBundle: self.nibBundle,
+            type: .cell
+        )
     }
 
     public func dequeueAndConfigureCellFor(collectionView: UICollectionView, at indexPath: IndexPath) -> CellType {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: self.reuseIdentifier, for: indexPath) as! CellType
+        let cell = self.registration.dequeueViewFor(collectionView: collectionView, at: indexPath) as! CellType
         self.configure(cell: cell)
         return cell
     }
@@ -62,19 +54,15 @@ public struct AnyCellViewModel: CellViewModel {
 
     public var id: UniqueIdentifier { self._id }
 
+    // MARK: ViewRegistrationProvider
+
+    public var registration: ViewRegistration { self._registration }
+
     // MARK: CellViewModel
 
     public typealias CellType = UICollectionViewCell
 
-    public var reuseIdentifier: String { self._reuseIdentifier }
-
-    public var nib: UINib? { self._nib }
-
     public var shouldHighlight: Bool { self._shouldHighlight }
-
-    public func registerWith(collectionView: UICollectionView) {
-        self._register(collectionView)
-    }
 
     public func configure(cell: UICollectionViewCell) {
         self._configure(cell)
@@ -87,10 +75,8 @@ public struct AnyCellViewModel: CellViewModel {
     // MARK: Private
 
     private let _id: UniqueIdentifier
-    private let _reuseIdentifier: String
-    private let _nib: UINib?
+    private let _registration: ViewRegistration
     private let _shouldHighlight: Bool
-    private let _register: (UICollectionView) -> Void
     private let _configure: (CellType) -> Void
     private let _didSelect: (UIViewController) -> Void
 
@@ -98,12 +84,8 @@ public struct AnyCellViewModel: CellViewModel {
 
     public init<T: CellViewModel>(_ viewModel: T) {
         self._id = viewModel.id
-        self._reuseIdentifier = viewModel.reuseIdentifier
-        self._nib = viewModel.nib
+        self._registration = viewModel.registration
         self._shouldHighlight = viewModel.shouldHighlight
-        self._register = { collectionView in
-            viewModel.registerWith(collectionView: collectionView)
-        }
         self._configure = { cell in
             precondition(cell is T.CellType, "Cell must be of type \(T.CellType.self). Found \(cell.self)")
             viewModel.configure(cell: cell as! T.CellType)

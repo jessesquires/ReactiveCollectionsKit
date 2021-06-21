@@ -13,18 +13,33 @@
 
 import Foundation
 
+// TODO: need to have header, footer, and then supplementaryViewModels?
+//
+// in order to implement proper custom supplementary views, like badges
+// cells need to return supplementary views...
+
 public struct SectionViewModel: DiffableViewModel {
 
     public let id: UniqueIdentifier
 
     public let cellViewModels: [AnyCellViewModel]
 
-    // TODO: need to have header, footer, and then supplementaryViewModels
-    //
-    // in order to implement proper custom supplementary views, like badges
-    // cells need to return supplementary views...
-
     public let supplementaryViewModels: [AnySupplementaryViewModel]
+
+    public var cellRegistrations: Set<ViewRegistration> {
+        Set(self.cellViewModels.map { $0.registration })
+    }
+
+    public var supplementaryViewRegistrations: Set<ViewRegistration> {
+        Set(self.supplementaryViewModels.map { $0.registration })
+    }
+
+    public var allRegistrations: Set<ViewRegistration> {
+        let cells = self.cellRegistrations
+        let views = self.supplementaryViewRegistrations
+        let all = cells.union(views)
+        return all
+    }
 
     public init(id: UniqueIdentifier) {
         self.init(

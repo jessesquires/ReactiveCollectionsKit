@@ -7,10 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		0B00BA60267C004B002DD5E5 /* UICollectionView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B00BA5F267C004B002DD5E5 /* UICollectionView+Extensions.swift */; };
 		0B8C6CEC267ED08E0042DFE2 /* SupplementaryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B8C6CEB267ED08E0042DFE2 /* SupplementaryViewModel.swift */; };
 		0BC1EC28267FC37200FF774F /* SupplementaryHeaderViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BC1EC27267FC37200FF774F /* SupplementaryHeaderViewModel.swift */; };
 		0BC1EC2A267FC3A000FF774F /* SupplementaryFooterViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BC1EC29267FC3A000FF774F /* SupplementaryFooterViewModel.swift */; };
+		0BC1EC2C267FE71900FF774F /* ViewRegistrationProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BC1EC2B267FE71900FF774F /* ViewRegistrationProvider.swift */; };
+		0BC1EC2E267FF46E00FF774F /* ViewRegistration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BC1EC2D267FF46E00FF774F /* ViewRegistration.swift */; };
 		0BC546EF267923BA00E36D30 /* DiffableSnapshot.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BC546EE267923BA00E36D30 /* DiffableSnapshot.swift */; };
 		88389EF6236DEE0A00DDECA5 /* Asserts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88389EF5236DEE0A00DDECA5 /* Asserts.swift */; };
 		88462766238FA2C8005FB389 /* FakeNib.xib in Resources */ = {isa = PBXBuildFile; fileRef = 88462765238FA2C8005FB389 /* FakeNib.xib */; };
@@ -42,10 +43,11 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		0B00BA5F267C004B002DD5E5 /* UICollectionView+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UICollectionView+Extensions.swift"; sourceTree = "<group>"; };
 		0B8C6CEB267ED08E0042DFE2 /* SupplementaryViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SupplementaryViewModel.swift; sourceTree = "<group>"; };
 		0BC1EC27267FC37200FF774F /* SupplementaryHeaderViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SupplementaryHeaderViewModel.swift; sourceTree = "<group>"; };
 		0BC1EC29267FC3A000FF774F /* SupplementaryFooterViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SupplementaryFooterViewModel.swift; sourceTree = "<group>"; };
+		0BC1EC2B267FE71900FF774F /* ViewRegistrationProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewRegistrationProvider.swift; sourceTree = "<group>"; };
+		0BC1EC2D267FF46E00FF774F /* ViewRegistration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewRegistration.swift; sourceTree = "<group>"; };
 		0BC546EE267923BA00E36D30 /* DiffableSnapshot.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiffableSnapshot.swift; sourceTree = "<group>"; };
 		88389EF5236DEE0A00DDECA5 /* Asserts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Asserts.swift; sourceTree = "<group>"; };
 		88462765238FA2C8005FB389 /* FakeNib.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FakeNib.xib; sourceTree = "<group>"; };
@@ -121,7 +123,8 @@
 				0BC1EC29267FC3A000FF774F /* SupplementaryFooterViewModel.swift */,
 				0BC1EC27267FC37200FF774F /* SupplementaryHeaderViewModel.swift */,
 				0B8C6CEB267ED08E0042DFE2 /* SupplementaryViewModel.swift */,
-				0B00BA5F267C004B002DD5E5 /* UICollectionView+Extensions.swift */,
+				0BC1EC2D267FF46E00FF774F /* ViewRegistration.swift */,
+				0BC1EC2B267FE71900FF774F /* ViewRegistrationProvider.swift */,
 			);
 			path = Sources;
 			sourceTree = "<group>";
@@ -279,11 +282,12 @@
 				0BC1EC2A267FC3A000FF774F /* SupplementaryFooterViewModel.swift in Sources */,
 				88FA490C2363A7890061F8B2 /* SectionViewModel.swift in Sources */,
 				88389EF6236DEE0A00DDECA5 /* Asserts.swift in Sources */,
-				0B00BA60267C004B002DD5E5 /* UICollectionView+Extensions.swift in Sources */,
 				0BC546EF267923BA00E36D30 /* DiffableSnapshot.swift in Sources */,
 				0B8C6CEC267ED08E0042DFE2 /* SupplementaryViewModel.swift in Sources */,
 				88C02079236CBCB000B43713 /* DiffableDataSource.swift in Sources */,
 				88FA49312363BC5F0061F8B2 /* DiffableViewModel.swift in Sources */,
+				0BC1EC2E267FF46E00FF774F /* ViewRegistration.swift in Sources */,
+				0BC1EC2C267FE71900FF774F /* ViewRegistrationProvider.swift in Sources */,
 				88FA49082363A7890061F8B2 /* CollectionViewModel.swift in Sources */,
 				88FA490A2363A7890061F8B2 /* CellViewModel.swift in Sources */,
 				0BC1EC28267FC37200FF774F /* SupplementaryHeaderViewModel.swift in Sources */,

@@ -12,11 +12,20 @@
 //
 
 import Foundation
+import UIKit
 
 public struct CollectionViewModel {
     // MARK: Properties
 
     public let sections: [SectionViewModel]
+
+    public var allRegistrations: Set<ViewRegistration> {
+        var all = Set<ViewRegistration>()
+        self.sections.forEach {
+            all.formUnion($0.allRegistrations)
+        }
+        return all
+    }
 
     public var isEmpty: Bool {
         self.sections.isEmpty || !self.sections.contains { !$0.isEmpty }

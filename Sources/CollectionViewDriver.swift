@@ -25,20 +25,10 @@ public final class CollectionViewDriver: NSObject {
     public var animateUpdates: Bool
 
     public var viewModel: CollectionViewModel {
-        get {
-            self._viewModel
-        }
-        set {
-            _assertMainThread()
-            self._viewModel = newValue
-            self._didUpdateModel(animated: self.animateUpdates, completion: self._didUpdate)
-        }
-    }
-
-    private var _viewModel: CollectionViewModel {
         didSet {
             _assertMainThread()
-            self._didSetModel()
+            self._registerAllViews()
+            self._didUpdateModel(animated: self.animateUpdates, completion: self._didUpdate)
         }
     }
 
@@ -58,7 +48,7 @@ public final class CollectionViewDriver: NSObject {
                 animateUpdates: Bool = true,
                 didUpdate: DidUpdate? = nil) {
         self.view = view
-        self._viewModel = viewModel
+        self.viewModel = viewModel
         self._controller = controller
         self.animateUpdates = animateUpdates
         self._didUpdate = didUpdate
@@ -68,7 +58,7 @@ public final class CollectionViewDriver: NSObject {
 
         self.view.dataSource = self._dataSource
         self.view.delegate = self
-        self._didSetModel()
+        self._registerAllViews()
         self._didUpdateModel(animated: false, completion: nil)
     }
 
@@ -88,12 +78,14 @@ public final class CollectionViewDriver: NSObject {
 
     // MARK: Private
 
-    private func _didSetModel() {
-        self.view._register(viewModel: self._viewModel)
+    private func _registerAllViews() {
+        self.viewModel.allRegistrations.forEach {
+            $0.registerWith(collectionView: self.view)
+        }
     }
 
     private func _didUpdateModel(animated: Bool, completion: DidUpdate?) {
-        self._dataSource.apply(self._viewModel, animated: animated, completion: completion)
+        self._dataSource.apply(self.viewModel, animated: animated, completion: completion)
     }
 }
 

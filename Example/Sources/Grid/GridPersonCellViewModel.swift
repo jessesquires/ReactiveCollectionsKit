@@ -21,7 +21,7 @@ struct GridPersonCellViewModel: CellViewModel {
 
     var id: UniqueIdentifier { self.person.name }
 
-    let nib: UINib? = UINib(nibName: "GridPersonCell", bundle: .main)
+    var nibName: String? { "GridPersonCell" }
 
     func configure(cell: GridPersonCell) {
         cell.titleLabel.text = self.person.name
