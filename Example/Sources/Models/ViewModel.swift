@@ -40,6 +40,8 @@ enum ViewModel {
 
     private static func create(model: Model, style: ViewModelStyle) -> CollectionViewModel {
 
+        // MARK: People Section
+
         let peopleCellViewModels: [AnyCellViewModel] = model.people.map {
             switch style {
             case .grid:
@@ -49,11 +51,25 @@ enum ViewModel {
                 return AnyCellViewModel(ListPersonCellViewModel(person: $0))
             }
         }
+
         let peopleHeader = AnySupplementaryViewModel(HeaderViewModel(title: "People", style: style.headerStyle))
+
         let peopleFooter = AnySupplementaryViewModel(FooterViewModel(text: "Footer text for the people section"))
+
+        let peopleFavoriteBadges = model.people
+            .map { FavoriteBadgeViewModel(isHidden: false, id: $0.name + " badge") }
+            .map { AnySupplementaryViewModel($0) }
+
+        var peopleSupplementaryViews = [peopleHeader, peopleFooter]
+        if style == .grid {
+            peopleSupplementaryViews += peopleFavoriteBadges
+        }
+
         let peopleSection = SectionViewModel(id: "section_0_people",
                                              anyCells: peopleCellViewModels,
-                                             anySupplementaryViews: [peopleHeader, peopleFooter])
+                                             anySupplementaryViews: peopleSupplementaryViews)
+
+        // MARK: Color Section
 
         let colorCellViewModels: [AnyCellViewModel] = model.colors.map {
             switch style {
@@ -65,10 +81,21 @@ enum ViewModel {
             }
         }
         let colorHeader = AnySupplementaryViewModel(HeaderViewModel(title: "Colors", style: style.headerStyle))
+
         let colorFooter = AnySupplementaryViewModel(FooterViewModel(text: "Footer text for the color section"))
+
+        let colorFavoriteBadges = model.colors
+            .map { FavoriteBadgeViewModel(isHidden: false, id: $0.name + " badge") }
+            .map { AnySupplementaryViewModel($0) }
+
+        var colorSupplementaryViews = [colorHeader, colorFooter]
+        if style == .grid {
+            colorSupplementaryViews += colorFavoriteBadges
+        }
+
         let colorSection = SectionViewModel(id: "section_1_colors",
                                             anyCells: colorCellViewModels,
-                                            anySupplementaryViews: [colorHeader, colorFooter])
+                                            anySupplementaryViews: colorSupplementaryViews)
 
         return CollectionViewModel(sections: [peopleSection, colorSection])
     }

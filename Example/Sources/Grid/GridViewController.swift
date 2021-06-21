@@ -29,10 +29,19 @@ final class GridViewController: UICollectionViewController {
         let fractionalWidth = CGFloat(0.5)
         let inset = CGFloat(4)
 
+        // Supplementary Item
+        let offset = 0.15
+        let badgeAnchor = NSCollectionLayoutAnchor(edges: [.top, .trailing], fractionalOffset: CGPoint(x: offset, y: -offset))
+        let dimension = NSCollectionLayoutDimension.absolute(30)
+        let badgeSize = NSCollectionLayoutSize(widthDimension: dimension, heightDimension: dimension)
+        let badge = NSCollectionLayoutSupplementaryItem(layoutSize: badgeSize,
+                                                        elementKind: FavoriteBadgeViewModel.kind,
+                                                        containerAnchor: badgeAnchor)
+
         // Item
         let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(fractionalWidth),
                                               heightDimension: .fractionalHeight(1))
-        let item = NSCollectionLayoutItem(layoutSize: itemSize)
+        let item = NSCollectionLayoutItem(layoutSize: itemSize, supplementaryItems: [badge])
         item.contentInsets = NSDirectionalEdgeInsets(top: inset, leading: inset, bottom: inset, trailing: inset)
 
         // Group

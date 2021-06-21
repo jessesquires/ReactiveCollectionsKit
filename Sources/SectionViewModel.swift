@@ -13,11 +13,6 @@
 
 import Foundation
 
-// TODO: need to have header, footer, and then supplementaryViewModels?
-//
-// in order to implement proper custom supplementary views, like badges
-// cells need to return supplementary views...
-
 public struct SectionViewModel: DiffableViewModel {
 
     public let id: UniqueIdentifier
