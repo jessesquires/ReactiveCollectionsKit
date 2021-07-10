@@ -19,7 +19,7 @@ public final class CollectionViewDriver: NSObject {
     public let view: UICollectionView
 
     public var layout: UICollectionViewCompositionalLayout {
-        view.collectionViewLayout as! UICollectionViewCompositionalLayout
+        self.view.collectionViewLayout as! UICollectionViewCompositionalLayout
     }
 
     public var animateUpdates: Bool
@@ -33,8 +33,8 @@ public final class CollectionViewDriver: NSObject {
     }
 
     // avoiding a strong reference to prevent a retain cycle.
-    // this controller owns self.
-    // thus, we know the controller must be alive so unowned is safe.
+    // this controller owns `self`.
+    // thus, we know the controller must be alive so `unowned` is safe.
     private unowned var _controller: UIViewController
 
     private let _dataSource: _DiffableDataSource
@@ -68,7 +68,7 @@ public final class CollectionViewDriver: NSObject {
     // MARK: Public
 
     public func reloadData() {
-        self.view.reloadData()
+        self._dataSource.reload(self.viewModel, completion: self._didUpdate)
     }
 
     func numberOfSections() -> Int {
