@@ -13,7 +13,7 @@
 
 import UIKit
 
-typealias _DiffableSnapshot = NSDiffableDataSourceSnapshot<String, String>
+typealias _DiffableSnapshot = NSDiffableDataSourceSnapshot<AnyHashable, AnyHashable>
 
 extension _DiffableSnapshot {
 

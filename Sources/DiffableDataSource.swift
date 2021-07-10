@@ -13,7 +13,7 @@
 
 import UIKit
 
-typealias _DiffableDataSource = UICollectionViewDiffableDataSource<String, String>
+typealias _DiffableDataSource = UICollectionViewDiffableDataSource<AnyHashable, AnyHashable>
 
 extension _DiffableDataSource {
 

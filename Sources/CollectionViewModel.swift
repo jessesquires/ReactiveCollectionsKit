@@ -14,7 +14,7 @@
 import Foundation
 import UIKit
 
-public struct CollectionViewModel {
+public struct CollectionViewModel: Equatable, Hashable {
     // MARK: Properties
 
     public let sections: [SectionViewModel]

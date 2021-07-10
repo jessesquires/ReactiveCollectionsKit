@@ -74,6 +74,7 @@ public struct AnyCellViewModel: CellViewModel {
 
     // MARK: Private
 
+    private let _viewModel: AnyHashable
     private let _id: UniqueIdentifier
     private let _registration: ViewRegistration
     private let _shouldHighlight: Bool
@@ -83,6 +84,7 @@ public struct AnyCellViewModel: CellViewModel {
     // MARK: Init
 
     public init<T: CellViewModel>(_ viewModel: T) {
+        self._viewModel = viewModel
         self._id = viewModel.id
         self._registration = viewModel.registration
         self._shouldHighlight = viewModel.shouldHighlight
@@ -93,5 +95,17 @@ public struct AnyCellViewModel: CellViewModel {
         self._didSelect = { controller in
             viewModel.didSelect(with: controller)
         }
+    }
+}
+
+extension AnyCellViewModel: Equatable {
+    public static func == (left: AnyCellViewModel, right: AnyCellViewModel) -> Bool {
+        left._viewModel == right._viewModel
+    }
+}
+
+extension AnyCellViewModel: Hashable {
+    public func hash(into hasher: inout Hasher) {
+        self._viewModel.hash(into: &hasher)
     }
 }

@@ -65,6 +65,7 @@ public struct AnySupplementaryViewModel: SupplementaryViewModel {
 
     // MARK: Private
 
+    private let _viewModel: AnyHashable
     private let _id: UniqueIdentifier
     private let _registration: ViewRegistration
     private let _kind: SupplementaryViewKind
@@ -73,6 +74,7 @@ public struct AnySupplementaryViewModel: SupplementaryViewModel {
     // MARK: Init
 
     public init<T: SupplementaryViewModel>(_ viewModel: T) {
+        self._viewModel = viewModel
         self._id = viewModel.id
         self._registration = viewModel.registration
         self._kind = viewModel.kind
@@ -80,5 +82,17 @@ public struct AnySupplementaryViewModel: SupplementaryViewModel {
             precondition(view is T.ViewType, "View must be of type \(T.ViewType.self). Found \(view.self)")
             viewModel.configure(view: view as! T.ViewType)
         }
+    }
+}
+
+extension AnySupplementaryViewModel: Equatable {
+    public static func == (left: AnySupplementaryViewModel, right: AnySupplementaryViewModel) -> Bool {
+        left._viewModel == right._viewModel
+    }
+}
+
+extension AnySupplementaryViewModel: Hashable {
+    public func hash(into hasher: inout Hasher) {
+        self._viewModel.hash(into: &hasher)
     }
 }
