@@ -60,20 +60,31 @@ public struct CollectionViewModel: Equatable, Hashable {
 
 extension CollectionViewModel: CustomDebugStringConvertible {
     public var debugDescription: String {
-        var text = "<CollectionViewModel:\n"
+        var text = "<CollectionViewModel:\n sections:\n"
 
         for sectionIndex in 0..<self.sections.count {
             let section = self.sections[sectionIndex]
 
-            text.append("\tSection [\(sectionIndex)]\n")
-            text.append("\t id: \(section.id)\n")
+            text.append("\t[\(sectionIndex)]: \(section.id)\n")
+            text.append("\t isEmpty: \(section.isEmpty)\n")
             text.append("\t cells: \n")
-
             for cellIndex in 0..<section.count {
                 let cellId = String(describing: section[cellIndex].id)
                 text.append("\t\t[\(cellIndex)]: \(cellId) \n")
             }
+
+            text.append("\t supplementary views: \n")
+            for viewIndex in 0..<section.count {
+                let view = section.supplementaryViewModels[viewIndex]
+                text.append("\t\t[\(viewIndex)]: \(String(describing: view.id)) (\(String(describing: view.kind))) \n")
+            }
         }
+
+        text.append(" registrations: \n")
+        self.allRegistrations.forEach {
+            text.append("\t- \($0.reuseIdentifier)\n")
+        }
+        text.append(" isEmpty: \(self.isEmpty)\n")
         text.append(">")
         return text
     }
