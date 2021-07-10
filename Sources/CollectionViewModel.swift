@@ -27,8 +27,10 @@ public struct CollectionViewModel: Equatable, Hashable {
         return all
     }
 
-    public var isEmpty: Bool {
-        self.sections.isEmpty || !self.sections.contains { !$0.isEmpty }
+    public var allCellsByIdentifier: [UniqueIdentifier: AnyCellViewModel] {
+        let allCells = self.flatMap { $0.cellViewModels }
+        let tuples = allCells.map { ($0.id, $0) }
+        return Dictionary(uniqueKeysWithValues: tuples)
     }
 
     // MARK: Init
@@ -49,16 +51,44 @@ public struct CollectionViewModel: Equatable, Hashable {
         precondition(indexPath.section < self.sections.count)
         return self.sections[indexPath.section].supplementaryViewModels.first { $0.kind == kind }
     }
+}
 
-    // MARK: Subscripts
+// MARK: Collection, RandomAccessCollection
 
-    public subscript (index: Int) -> SectionViewModel {
-        precondition(index < self.sections.count)
-        return self.sections[index]
+extension CollectionViewModel: Collection, RandomAccessCollection {
+    /// :nodoc:
+    public var count: Int {
+        self.sections.count
+    }
+
+    /// :nodoc:
+    public var isEmpty: Bool {
+        self.sections.isEmpty
+    }
+
+    /// :nodoc:
+    public var startIndex: Int {
+        self.sections.startIndex
+    }
+
+    /// :nodoc:
+    public var endIndex: Int {
+        self.sections.endIndex
+    }
+
+    /// :nodoc:
+    public subscript(position: Int) -> SectionViewModel {
+        self.sections[position]
+    }
+
+    /// :nodoc:
+    public func index(after i: Int) -> Int {
+        self.sections.index(after: i)
     }
 }
 
 extension CollectionViewModel: CustomDebugStringConvertible {
+    /// :nodoc:
     public var debugDescription: String {
         var text = "<CollectionViewModel:\n sections:\n"
 
