@@ -24,7 +24,7 @@ extension _DiffableSnapshot {
         self.appendSections(allSectionIdentifiers)
 
         viewModel.sections.forEach {
-            let allCellIdentifiers = $0.cellViewModels.map { $0.id }
+            let allCellIdentifiers = $0.cells.map { $0.id }
             self.appendItems(allCellIdentifiers, toSection: $0.id)
         }
     }

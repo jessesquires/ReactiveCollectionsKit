@@ -17,16 +17,16 @@ public struct SectionViewModel: DiffableViewModel {
 
     public let id: UniqueIdentifier
 
-    public let cellViewModels: [AnyCellViewModel]
+    public let cells: [AnyCellViewModel]
 
-    public let supplementaryViewModels: [AnySupplementaryViewModel]
+    public let supplementaryViews: [AnySupplementaryViewModel]
 
     public var cellRegistrations: Set<ViewRegistration> {
-        Set(self.cellViewModels.map { $0.registration })
+        Set(self.cells.map { $0.registration })
     }
 
     public var supplementaryViewRegistrations: Set<ViewRegistration> {
-        Set(self.supplementaryViewModels.map { $0.registration })
+        Set(self.supplementaryViews.map { $0.registration })
     }
 
     public var allRegistrations: Set<ViewRegistration> {
@@ -70,8 +70,8 @@ public struct SectionViewModel: DiffableViewModel {
         anySupplementaryViews: [AnySupplementaryViewModel]
     ) {
         self.id = id
-        self.cellViewModels = anyCells
-        self.supplementaryViewModels = anySupplementaryViews
+        self.cells = anyCells
+        self.supplementaryViews = anySupplementaryViews
     }
 }
 
@@ -80,31 +80,31 @@ public struct SectionViewModel: DiffableViewModel {
 extension SectionViewModel: Collection, RandomAccessCollection {
     /// :nodoc:
     public var count: Int {
-        self.cellViewModels.count
+        self.cells.count
     }
 
     /// :nodoc:
     public var isEmpty: Bool {
-        self.cellViewModels.isEmpty
+        self.cells.isEmpty
     }
 
     /// :nodoc:
     public var startIndex: Int {
-        self.cellViewModels.startIndex
+        self.cells.startIndex
     }
 
     /// :nodoc:
     public var endIndex: Int {
-        self.cellViewModels.endIndex
+        self.cells.endIndex
     }
 
     /// :nodoc:
     public subscript(position: Int) -> AnyCellViewModel {
-        self.cellViewModels[position]
+        self.cells[position]
     }
 
     /// :nodoc:
     public func index(after i: Int) -> Int {
-        self.cellViewModels.index(after: i)
+        self.cells.index(after: i)
     }
 }

@@ -103,7 +103,7 @@ public final class CollectionViewDriver: NSObject {
     }
 
     func numberOfItems(in section: Int) -> Int {
-        self.viewModel.sections[section].cellViewModels.count
+        self.viewModel.sections[section].cells.count
     }
 
     // MARK: Private

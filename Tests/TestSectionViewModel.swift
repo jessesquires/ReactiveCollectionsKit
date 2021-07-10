@@ -37,10 +37,10 @@ final class TestSectionViewModel: XCTestCase {
         let numCells = 3
         let section = self.makeCollectionSectionViewModel(numCells: numCells)
 
-        XCTAssertEqual(section.count, section.cellViewModels.count)
-        XCTAssertEqual(section.isEmpty, section.cellViewModels.isEmpty)
-        XCTAssertEqual(section.startIndex, section.cellViewModels.startIndex)
-        XCTAssertEqual(section.endIndex, section.cellViewModels.endIndex)
-        XCTAssertEqual(section.index(after: 0), section.cellViewModels.index(after: 0))
+        XCTAssertEqual(section.count, section.cells.count)
+        XCTAssertEqual(section.isEmpty, section.cells.isEmpty)
+        XCTAssertEqual(section.startIndex, section.cells.startIndex)
+        XCTAssertEqual(section.endIndex, section.cells.endIndex)
+        XCTAssertEqual(section.index(after: 0), section.cells.index(after: 0))
     }
 }

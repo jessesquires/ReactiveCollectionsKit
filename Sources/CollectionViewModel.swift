@@ -28,7 +28,7 @@ public struct CollectionViewModel: Equatable, Hashable {
     }
 
     public var allCellsByIdentifier: [UniqueIdentifier: AnyCellViewModel] {
-        let allCells = self.flatMap { $0.cellViewModels }
+        let allCells = self.flatMap { $0.cells }
         let tuples = allCells.map { ($0.id, $0) }
         return Dictionary(uniqueKeysWithValues: tuples)
     }
@@ -43,13 +43,13 @@ public struct CollectionViewModel: Equatable, Hashable {
 
     public func cell(at indexPath: IndexPath) -> AnyCellViewModel {
         precondition(indexPath.section < self.count)
-        precondition(indexPath.item < self[indexPath.section].cellViewModels.count)
-        return self[indexPath.section].cellViewModels[indexPath.item]
+        precondition(indexPath.item < self[indexPath.section].cells.count)
+        return self[indexPath.section].cells[indexPath.item]
     }
 
     public func supplementaryView(ofKind kind: String, at indexPath: IndexPath) -> AnySupplementaryViewModel? {
         precondition(indexPath.section < self.count)
-        return self[indexPath.section].supplementaryViewModels.first { $0.kind == kind }
+        return self[indexPath.section].supplementaryViews.first { $0.kind == kind }
     }
 }
 
@@ -105,7 +105,7 @@ extension CollectionViewModel: CustomDebugStringConvertible {
 
             text.append("\t supplementary views: \n")
             for viewIndex in 0..<section.count {
-                let view = section.supplementaryViewModels[viewIndex]
+                let view = section.supplementaryViews[viewIndex]
                 text.append("\t\t[\(viewIndex)]: \(String(describing: view.id)) (\(String(describing: view.kind))) \n")
             }
         }
