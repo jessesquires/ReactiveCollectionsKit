@@ -27,16 +27,16 @@ public final class CollectionViewDriver: NSObject {
     public var viewModel: CollectionViewModel {
         didSet {
             _assertMainThread()
-            self._didUpdateModel()
+            self._didUpdateModel(from: oldValue, to: self.viewModel)
         }
     }
 
     // avoiding a strong reference to prevent a retain cycle.
-    // this controller owns `self`.
-    // thus, we know the controller must be alive so `unowned` is safe.
+    // this controller owns `self` (the driver).
+    // thus, we know the controller *must* be alive, meaning `unowned` is safe to use.
     private unowned var _controller: UIViewController
 
-    private let _dataSource: _DiffableDataSource
+    private(set) var _dataSource: _DiffableDataSource
     private let _didUpdate: DidUpdate?
     private var _cachedRegistrations = Set<ViewRegistration>()
 
@@ -54,13 +54,42 @@ public final class CollectionViewDriver: NSObject {
         self._controller = controller
         self.animateUpdates = animateUpdates
         self._didUpdate = didUpdate
-        self._dataSource = _DiffableDataSource(view: view, viewModel: viewModel)
+
+        // workaround for swift initialization rules.
+        // the "real" init is below.
+        self._dataSource = _DiffableDataSource(view: view)
 
         super.init()
 
+        // because view model is a value type, we cannot capture it directly.
+        // it is constantly updated, and a capture would prevent updates to the data source.
+        //
+        // thus, we must capture `self` (the driver), which is a reference type.
+        // then we can dequeue can configure cells from the latest `self.viewModel`.
+        //
+        // using `unowned` for each closure breaks a potential cycle, and is safe to use here.
+        // `self` owns the `_dataSource`, so we know that `self` will always exist.
+        self._dataSource = _DiffableDataSource(
+            view: view,
+            cellProvider: { [unowned self] view, indexPath, itemIdentifier in
+            self._cellProvider(
+                collectionView: view,
+                indexPath: indexPath,
+                identifier: itemIdentifier
+            )
+        },
+            supplementaryViewProvider: { [unowned self] view, elementKind, indexPath in
+            self._supplementaryViewProvider(
+                collectionView: view,
+                elementKind: elementKind,
+                indexPath: indexPath
+            )
+        })
+
         self.view.dataSource = self._dataSource
         self.view.delegate = self
-        self._didUpdateModel()
+        self._registerAllViews()
+        self._dataSource.reload(viewModel, completion: nil)
     }
 
     // MARK: Public
@@ -88,13 +117,30 @@ public final class CollectionViewDriver: NSObject {
         self._cachedRegistrations.formUnion(newRegistrations)
     }
 
-    private func _didUpdateModel() {
+    private func _didUpdateModel(from old: CollectionViewModel, to new: CollectionViewModel) {
         self._registerAllViews()
-        self._dataSource.apply(
-            self.viewModel,
+        self._dataSource.applySnapshot(
+            from: old,
+            to: new,
             animated: self.animateUpdates,
             completion: self._didUpdate
         )
+    }
+
+    private func _cellProvider(
+        collectionView: UICollectionView,
+        indexPath: IndexPath,
+        identifier: UniqueIdentifier) -> UICollectionViewCell {
+        let cell = self.viewModel.cell(at: indexPath)
+        return cell.dequeueAndConfigureCellFor(collectionView: collectionView, at: indexPath)
+    }
+
+    private func _supplementaryViewProvider(
+        collectionView: UICollectionView,
+        elementKind: String,
+        indexPath: IndexPath) -> UICollectionReusableView? {
+        let supplementaryView = self.viewModel.supplementaryView(ofKind: elementKind, at: indexPath)
+        return supplementaryView?.dequeueAndConfigureViewFor(collectionView: collectionView, at: indexPath)
     }
 }
 
