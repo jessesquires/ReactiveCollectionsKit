@@ -49,10 +49,17 @@ final class ListViewController: UICollectionViewController {
         }
 
         self.addShuffle(action: #selector(shuffle))
+        self.addReload(action: #selector(reload))
     }
 
     @objc
     func shuffle() {
-        self.model.shuffle()
+        let new = self.model.shuffled()
+        self.model = new
+    }
+
+    @objc
+    func reload() {
+        self.driver.reloadData()
     }
 }

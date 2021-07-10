@@ -18,8 +18,10 @@ struct Model {
 
     private(set) var colors = ColorModel.makeColors()
 
-    mutating func shuffle() {
-        self.people.shuffle()
-        self.colors.shuffle()
+    func shuffled() -> Model {
+        var new = Model()
+        new.people = self.people.shuffled()
+        new.colors = self.colors.shuffled()
+        return new
     }
 }

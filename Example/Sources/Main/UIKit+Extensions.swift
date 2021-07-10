@@ -23,9 +23,19 @@ extension UIBarButtonItem {
 }
 
 extension UIViewController {
-    func addShuffle(action: Selector?) {
+    func appendRightBarButton(_ item: UIBarButtonItem) {
         var items = self.navigationItem.rightBarButtonItems ?? []
-        items.append(UIBarButtonItem(systemImage: "shuffle", target: self, action: action))
+        items.append(item)
         self.navigationItem.rightBarButtonItems = items
+    }
+
+    func addShuffle(action: Selector?) {
+        let item = UIBarButtonItem(systemImage: "shuffle", target: self, action: action)
+        self.appendRightBarButton(item)
+    }
+
+    func addReload(action: Selector?) {
+        let item = UIBarButtonItem(systemImage: "arrow.clockwise", target: self, action: action)
+        self.appendRightBarButton(item)
     }
 }
