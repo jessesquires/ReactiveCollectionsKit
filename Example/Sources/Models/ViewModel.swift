@@ -54,7 +54,7 @@ enum ViewModel {
 
         let peopleHeader = AnySupplementaryViewModel(HeaderViewModel(title: "People", style: style.headerStyle))
 
-        let peopleFooter = AnySupplementaryViewModel(FooterViewModel(text: "Footer text for the people section"))
+        let peopleFooter = AnySupplementaryViewModel(FooterViewModel(text: "\(model.people.count) people"))
 
         let peopleFavoriteBadges = model.people
             .map { FavoriteBadgeViewModel(isHidden: !$0.isFavorite, id: $0.name + " badge") }
@@ -82,7 +82,7 @@ enum ViewModel {
         }
         let colorHeader = AnySupplementaryViewModel(HeaderViewModel(title: "Colors", style: style.headerStyle))
 
-        let colorFooter = AnySupplementaryViewModel(FooterViewModel(text: "Footer text for the color section"))
+        let colorFooter = AnySupplementaryViewModel(FooterViewModel(text: "\(model.colors.count) colors"))
 
         let colorFavoriteBadges = model.colors
             .map { FavoriteBadgeViewModel(isHidden: !$0.isFavorite, id: $0.name + " badge") }
