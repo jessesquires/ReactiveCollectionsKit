@@ -44,8 +44,9 @@ final class ListViewController: UICollectionViewController {
             layout: layout,
             viewModel: viewModel,
             controller: self,
-            animateUpdates: true) {
+            animateUpdates: true) { [unowned self] in
             print("list did update!")
+            print(self.driver.viewModel)
         }
 
         self.addShuffle(action: #selector(shuffle))
@@ -54,8 +55,7 @@ final class ListViewController: UICollectionViewController {
 
     @objc
     func shuffle() {
-        let new = self.model.shuffled()
-        self.model = new
+        self.model.shuffle()
     }
 
     @objc

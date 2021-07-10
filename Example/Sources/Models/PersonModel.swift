@@ -17,6 +17,7 @@ struct PersonModel: Equatable, Hashable {
     let name: String
     let birthdate: Date
     let nationality: String
+    var isFavorite = false
 
     var birthDateText: String {
         _formatter.string(from: self.birthdate)

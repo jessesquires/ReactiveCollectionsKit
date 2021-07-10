@@ -13,7 +13,7 @@
 
 import UIKit
 
-enum ColorModel: String, Equatable, Hashable, CaseIterable {
+enum Color: String, Equatable, Hashable, CaseIterable {
     case blue
     case brown
     case green
@@ -24,13 +24,18 @@ enum ColorModel: String, Equatable, Hashable, CaseIterable {
     case red
     case teal
     case yellow
+}
+
+struct ColorModel: Equatable, Hashable {
+    let color: Color
+    var isFavorite = false
 
     var name: String {
-        self.rawValue
+        self.color.rawValue
     }
 
     var uiColor: UIColor {
-        switch self {
+        switch self.color {
         case .blue:
             return .systemBlue
 
@@ -66,6 +71,6 @@ enum ColorModel: String, Equatable, Hashable, CaseIterable {
 
 extension ColorModel {
     static func makeColors() -> [ColorModel] {
-        ColorModel.allCases
+        Color.allCases.map { ColorModel(color: $0) }
     }
 }

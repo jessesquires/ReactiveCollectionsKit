@@ -77,6 +77,7 @@ final class GridViewController: UICollectionViewController {
             controller: self,
             animateUpdates: true) {
             print("grid did update!")
+            print(self.driver.viewModel)
         }
 
         self.addShuffle(action: #selector(shuffle))
@@ -85,8 +86,7 @@ final class GridViewController: UICollectionViewController {
 
     @objc
     func shuffle() {
-        let new = self.model.shuffled()
-        self.model = new
+        self.model.shuffle()
     }
 
     @objc
