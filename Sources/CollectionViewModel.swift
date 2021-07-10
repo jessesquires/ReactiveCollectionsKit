@@ -98,13 +98,13 @@ extension CollectionViewModel: CustomDebugStringConvertible {
             text.append("\t[\(sectionIndex)]: \(section.id)\n")
             text.append("\t isEmpty: \(section.isEmpty)\n")
             text.append("\t cells: \n")
-            for cellIndex in 0..<section.count {
+            for cellIndex in 0..<section.cells.count {
                 let cellId = String(describing: section[cellIndex].id)
                 text.append("\t\t[\(cellIndex)]: \(cellId) \n")
             }
 
             text.append("\t supplementary views: \n")
-            for viewIndex in 0..<section.count {
+            for viewIndex in 0..<section.supplementaryViews.count {
                 let view = section.supplementaryViews[viewIndex]
                 text.append("\t\t[\(viewIndex)]: \(String(describing: view.id)) (\(String(describing: view.kind))) \n")
             }
