@@ -42,14 +42,14 @@ public struct CollectionViewModel: Equatable, Hashable {
     // MARK: Accessing Cells and Supplementary Views
 
     public func cell(at indexPath: IndexPath) -> AnyCellViewModel {
-        precondition(indexPath.section < self.sections.count)
-        precondition(indexPath.item < self.sections[indexPath.section].cellViewModels.count)
-        return self.sections[indexPath.section].cellViewModels[indexPath.item]
+        precondition(indexPath.section < self.count)
+        precondition(indexPath.item < self[indexPath.section].cellViewModels.count)
+        return self[indexPath.section].cellViewModels[indexPath.item]
     }
 
     public func supplementaryView(ofKind kind: String, at indexPath: IndexPath) -> AnySupplementaryViewModel? {
-        precondition(indexPath.section < self.sections.count)
-        return self.sections[indexPath.section].supplementaryViewModels.first { $0.kind == kind }
+        precondition(indexPath.section < self.count)
+        return self[indexPath.section].supplementaryViewModels.first { $0.kind == kind }
     }
 }
 
@@ -92,8 +92,8 @@ extension CollectionViewModel: CustomDebugStringConvertible {
     public var debugDescription: String {
         var text = "<CollectionViewModel:\n sections:\n"
 
-        for sectionIndex in 0..<self.sections.count {
-            let section = self.sections[sectionIndex]
+        for sectionIndex in 0..<self.count {
+            let section = self[sectionIndex]
 
             text.append("\t[\(sectionIndex)]: \(section.id)\n")
             text.append("\t isEmpty: \(section.isEmpty)\n")
