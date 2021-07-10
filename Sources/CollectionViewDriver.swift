@@ -27,8 +27,7 @@ public final class CollectionViewDriver: NSObject {
     public var viewModel: CollectionViewModel {
         didSet {
             _assertMainThread()
-            self._registerAllViews()
-            self._didUpdateModel(animated: self.animateUpdates, completion: self._didUpdate)
+            self._didUpdateModel()
         }
     }
 
@@ -61,8 +60,7 @@ public final class CollectionViewDriver: NSObject {
 
         self.view.dataSource = self._dataSource
         self.view.delegate = self
-        self._registerAllViews()
-        self._didUpdateModel(animated: false, completion: nil)
+        self._didUpdateModel()
     }
 
     // MARK: Public
@@ -90,8 +88,13 @@ public final class CollectionViewDriver: NSObject {
         self._cachedRegistrations.formUnion(newRegistrations)
     }
 
-    private func _didUpdateModel(animated: Bool, completion: DidUpdate?) {
-        self._dataSource.apply(self.viewModel, animated: animated, completion: completion)
+    private func _didUpdateModel() {
+        self._registerAllViews()
+        self._dataSource.apply(
+            self.viewModel,
+            animated: self.animateUpdates,
+            completion: self._didUpdate
+        )
     }
 }
 
