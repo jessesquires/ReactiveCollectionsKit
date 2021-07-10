@@ -25,3 +25,17 @@ struct Model {
         return new
     }
 }
+
+extension Model: CustomDebugStringConvertible {
+    var debugDescription: String {
+        let peopleNames = self.people.map { $0.name }.joined(separator: "\n\t")
+        let colorNames = self.colors.map { $0.name }.joined(separator: "\n\t")
+        return """
+        People:
+            \(peopleNames)
+
+        Colors:
+            \(colorNames)
+        """
+    }
+}

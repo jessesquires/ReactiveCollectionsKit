@@ -57,3 +57,24 @@ public struct CollectionViewModel: Equatable, Hashable {
         return self.sections[index]
     }
 }
+
+extension CollectionViewModel: CustomDebugStringConvertible {
+    public var debugDescription: String {
+        var text = "<CollectionViewModel:\n"
+
+        for sectionIndex in 0..<self.sections.count {
+            let section = self.sections[sectionIndex]
+
+            text.append("\tSection [\(sectionIndex)]\n")
+            text.append("\t id: \(section.id)\n")
+            text.append("\t cells: \n")
+
+            for cellIndex in 0..<section.count {
+                let cellId = String(describing: section[cellIndex].id)
+                text.append("\t\t[\(cellIndex)]: \(cellId) \n")
+            }
+        }
+        text.append(">")
+        return text
+    }
+}
