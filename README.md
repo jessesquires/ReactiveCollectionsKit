@@ -41,16 +41,16 @@ You can read the [documentation here](https://jessesquires.github.io/ReactiveCol
 
 ## Additional Resources
 
+- [Advances in diffable data sources](https://developer.apple.com/videos/play/wwdc2020/10045/), WWDC20
+- [Advances in UICollectionView](https://developer.apple.com/videos/play/wwdc2020/10097/), WWDC20
+- [Building High-Performance Lists and Collection Views](https://developer.apple.com/documentation/uikit/uiimage/building_high-performance_lists_and_collection_views), Apple Sample Code
+- [Creating Lists with Collection View](https://useyourloaf.com/blog/creating-lists-with-collection-view/), Use Your Loaf
 - [Getting Started with `UICollectionViewCompositionalLayout`](https://lickability.com/blog/getting-started-with-uicollectionviewcompositionallayout/), Lickability
 - [Implementing Modern Collection Views](https://developer.apple.com/documentation/uikit/views_and_controls/collection_views/implementing_modern_collection_views), Apple Sample Code
-- [Building High-Performance Lists and Collection Views](https://developer.apple.com/documentation/uikit/uiimage/building_high-performance_lists_and_collection_views), Apple Sample Code
-- [Make blazing fast lists and collection views](https://developer.apple.com/videos/play/wwdc2021/10252/), WWDC21
-- [Advances in UICollectionView](https://developer.apple.com/videos/play/wwdc2020/10097/), WWDC20
-- [Advances in diffable data sources](https://developer.apple.com/videos/play/wwdc2020/10045/), WWDC20
-- [The Case for Lists in UICollectionView](https://pspdfkit.com/blog/2020/the-case-for-lists-in-uicollectionview/), PSPDFKit Blog
-- [Creating Lists with Collection View](https://useyourloaf.com/blog/creating-lists-with-collection-view/), Use Your Loaf
 - [Lists in UICollectionView](https://developer.apple.com/videos/play/wwdc2020/10026/), WWDC20
+- [Make blazing fast lists and collection views](https://developer.apple.com/videos/play/wwdc2021/10252/), WWDC21
 - [Modern cell configuration](https://developer.apple.com/videos/play/wwdc2020/10027/), WWDC20
+- [The Case for Lists in UICollectionView](https://pspdfkit.com/blog/2020/the-case-for-lists-in-uicollectionview/), PSPDFKit Blog
 
 ## Contributing
 
