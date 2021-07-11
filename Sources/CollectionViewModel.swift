@@ -116,6 +116,8 @@ extension CollectionViewModel: CustomDebugStringConvertible {
 
             text.append("\t[\(sectionIndex)]: \(section.id)\n")
             text.append("\t isEmpty: \(section.isEmpty)\n")
+            text.append("\t header: \(String(describing: section.header?.id))\n")
+            text.append("\t footer: \(String(describing: section.footer?.id))\n")
             text.append("\t cells: \n")
             for cellIndex in 0..<section.cells.count {
                 let cell = section[cellIndex]
