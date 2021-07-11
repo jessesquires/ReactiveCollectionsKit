@@ -132,6 +132,7 @@ public final class CollectionViewDriver: NSObject {
         indexPath: IndexPath,
         identifier: UniqueIdentifier) -> UICollectionViewCell {
         let cell = self.viewModel.cell(at: indexPath)
+        precondition(cell.id == identifier)
         return cell.dequeueAndConfigureCellFor(collectionView: collectionView, at: indexPath)
     }
 
