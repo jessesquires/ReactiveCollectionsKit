@@ -25,6 +25,14 @@ public protocol SupplementaryViewModel: DiffableViewModel, ViewRegistrationProvi
 }
 
 extension SupplementaryViewModel {
+    var _isHeader: Bool { self.kind == UICollectionView.elementKindSectionHeader }
+
+    var _isFooter: Bool { self.kind == UICollectionView.elementKindSectionFooter }
+
+    public var anyViewModel: AnySupplementaryViewModel {
+        AnySupplementaryViewModel(self)
+    }
+
     public var viewClass: AnyClass { ViewType.self }
 
     public var registration: ViewRegistration {

@@ -19,10 +19,18 @@ public struct SectionViewModel: DiffableViewModel {
 
     public let cells: [AnyCellViewModel]
 
+    public let header: AnySupplementaryViewModel?
+
+    public let footer: AnySupplementaryViewModel?
+
     public let supplementaryViews: [AnySupplementaryViewModel]
 
     public var cellRegistrations: Set<ViewRegistration> {
         Set(self.cells.map { $0.registration })
+    }
+
+    public var headerFooterRegistrations: Set<ViewRegistration> {
+        Set([self.header, self.footer].compactMap { $0?.registration })
     }
 
     public var supplementaryViewRegistrations: Set<ViewRegistration> {
@@ -31,46 +39,77 @@ public struct SectionViewModel: DiffableViewModel {
 
     public var allRegistrations: Set<ViewRegistration> {
         let cells = self.cellRegistrations
+        let headerFooter = self.headerFooterRegistrations
         let views = self.supplementaryViewRegistrations
-        let all = cells.union(views)
+        let all = cells.union(views).union(headerFooter)
         return all
     }
 
-    public init(id: UniqueIdentifier) {
-        self.init(
-            id: id,
-            cells: [] as! [AnyCellViewModel],
-            supplementaryViews: [] as! [AnySupplementaryViewModel]
-        )
-    }
-
-    public init<T: CellViewModel>(id: UniqueIdentifier, cells: [T]) {
-        self.init(
-            id: id,
-            cells: cells,
-            supplementaryViews: [] as! [AnySupplementaryViewModel]
-        )
-    }
-
-    public init<T: CellViewModel, U: SupplementaryViewModel>(
+    public init<Header: SupplementaryHeaderViewModel, Footer: SupplementaryFooterViewModel>(
         id: UniqueIdentifier,
-        cells: [T],
-        supplementaryViews: [U]
+        cells: [AnyCellViewModel] = [],
+        header: Header? = nil,
+        footer: Footer? = nil,
+        supplementaryViews: [AnySupplementaryViewModel] = []
     ) {
         self.init(
             id: id,
-            anyCells: cells.map { AnyCellViewModel($0) },
-            anySupplementaryViews: supplementaryViews.map { AnySupplementaryViewModel($0) }
+            anyCells: cells,
+            anyHeader: header?.anyViewModel,
+            anyFooter: footer?.anyViewModel,
+            anySupplementaryViews: supplementaryViews
         )
     }
 
-    public init(
+    public init<Cell: CellViewModel, Header: SupplementaryHeaderViewModel, Footer: SupplementaryFooterViewModel>(
+        id: UniqueIdentifier,
+        cells: [Cell] = [],
+        header: Header? = nil,
+        footer: Footer? = nil,
+        supplementaryViews: [AnySupplementaryViewModel] = []
+    ) {
+        self.init(
+            id: id,
+            anyCells: cells.map { $0.anyViewModel },
+            anyHeader: header?.anyViewModel,
+            anyFooter: footer?.anyViewModel,
+            anySupplementaryViews: supplementaryViews
+        )
+    }
+
+    public init<Cell: CellViewModel,
+                Header: SupplementaryHeaderViewModel,
+                Footer: SupplementaryFooterViewModel,
+                View: SupplementaryViewModel>(
+        id: UniqueIdentifier,
+        cells: [Cell],
+        header: Header?,
+        footer: Footer?,
+        supplementaryViews: [View]
+    ) {
+        self.init(
+            id: id,
+            anyCells: cells.map { $0.anyViewModel },
+            anyHeader: header?.anyViewModel,
+            anyFooter: footer?.anyViewModel,
+            anySupplementaryViews: supplementaryViews.map { $0.anyViewModel }
+        )
+    }
+
+    private init(
         id: UniqueIdentifier,
         anyCells: [AnyCellViewModel],
+        anyHeader: AnySupplementaryViewModel?,
+        anyFooter: AnySupplementaryViewModel?,
         anySupplementaryViews: [AnySupplementaryViewModel]
     ) {
+        if let anyHeader = anyHeader { precondition(anyHeader._isHeader) }
+        if let anyFooter = anyFooter { precondition(anyFooter._isFooter) }
+        precondition(anySupplementaryViews.allSatisfy { !$0._isHeader && !$0._isFooter })
         self.id = id
         self.cells = anyCells
+        self.header = anyHeader
+        self.footer = anyFooter
         self.supplementaryViews = anySupplementaryViews
     }
 }

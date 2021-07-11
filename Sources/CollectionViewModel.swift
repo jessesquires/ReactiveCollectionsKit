@@ -43,13 +43,32 @@ public struct CollectionViewModel: Equatable, Hashable {
 
     public func cell(at indexPath: IndexPath) -> AnyCellViewModel {
         precondition(indexPath.section < self.count)
-        precondition(indexPath.item < self[indexPath.section].cells.count)
-        return self[indexPath.section].cells[indexPath.item]
+        let section = self[indexPath.section]
+
+        let cells = section.cells
+        precondition(indexPath.item < cells.count)
+
+        return cells[indexPath.item]
     }
 
     public func supplementaryView(ofKind kind: String, at indexPath: IndexPath) -> AnySupplementaryViewModel? {
         precondition(indexPath.section < self.count)
-        return self[indexPath.section].supplementaryViews.first { $0.kind == kind }
+        let section = self[indexPath.section]
+
+        if kind == section.header?.kind {
+            return section.header
+        }
+
+        if kind == section.footer?.kind {
+            return section.footer
+        }
+
+        let supplementaryViews = section.supplementaryViews.filter { $0.kind == kind }
+        if indexPath.item < supplementaryViews.count {
+            return supplementaryViews[indexPath.item]
+        }
+
+        return nil
     }
 }
 
@@ -99,14 +118,18 @@ extension CollectionViewModel: CustomDebugStringConvertible {
             text.append("\t isEmpty: \(section.isEmpty)\n")
             text.append("\t cells: \n")
             for cellIndex in 0..<section.cells.count {
-                let cellId = String(describing: section[cellIndex].id)
-                text.append("\t\t[\(cellIndex)]: \(cellId) \n")
+                let cell = section[cellIndex]
+                let cellId = String(describing: cell.id)
+                let reuseId = String(describing: cell.registration.reuseIdentifier)
+                text.append("\t\t[\(cellIndex)]: \(cellId) (\(reuseId)) \n")
             }
 
             text.append("\t supplementary views: \n")
             for viewIndex in 0..<section.supplementaryViews.count {
                 let view = section.supplementaryViews[viewIndex]
-                text.append("\t\t[\(viewIndex)]: \(String(describing: view.id)) (\(String(describing: view.kind))) \n")
+                let viewId = String(describing: view.id)
+                let kind = String(describing: view.kind)
+                text.append("\t\t[\(viewIndex)]: \(viewId) (\(kind)) \n")
             }
         }
 

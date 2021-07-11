@@ -25,9 +25,18 @@ public protocol CellViewModel: DiffableViewModel, ViewRegistrationProvider {
 }
 
 extension CellViewModel {
-    public var cellClass: AnyClass { CellType.self }
 
     public var shouldHighlight: Bool { true }
+
+    public func didSelect(with controller: UIViewController) { }
+}
+
+extension CellViewModel {
+    public var cellClass: AnyClass { CellType.self }
+
+    public var anyViewModel: AnyCellViewModel {
+        AnyCellViewModel(self)
+    }
 
     public var registration: ViewRegistration {
         ViewRegistration(
@@ -44,8 +53,6 @@ extension CellViewModel {
         self.configure(cell: cell)
         return cell
     }
-
-    public func didSelect(with controller: UIViewController) { }
 }
 
 /// A type-erased cell view model.
