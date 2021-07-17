@@ -29,5 +29,14 @@ struct ListColorCellViewModel: CellViewModel {
         cell.contentConfiguration = contentConfiguration
         cell.backgroundView = UIView()
         cell.backgroundView?.backgroundColor = self.color.uiColor
+
+        if self.color.isFavorite {
+            let imageView = UIImageView(image: UIImage(systemName: "star.fill"))
+            imageView.tintColor = .label
+            let favorite = UICellAccessory.customView(
+                configuration: .init(customView: imageView, placement: .trailing())
+            )
+            cell.accessories = [favorite]
+        }
     }
 }

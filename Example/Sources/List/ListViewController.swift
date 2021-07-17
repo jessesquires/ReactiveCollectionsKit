@@ -14,8 +14,6 @@
 import ReactiveCollectionsKit
 import UIKit
 
-// TODO: implement favorites, swipe actions
-
 final class ListViewController: UICollectionViewController {
     var driver: CollectionViewDriver!
 
@@ -32,6 +30,25 @@ final class ListViewController: UICollectionViewController {
             var configuration = UICollectionLayoutListConfiguration(appearance: .insetGrouped)
             configuration.headerMode = .supplementary
             configuration.footerMode = .supplementary
+
+            configuration.trailingSwipeActionsConfigurationProvider = { [unowned self] indexPath in
+                let deleteAction = UIContextualAction(style: .destructive, title: "Delete") { _, _, completion in
+                    self.deleteAt(indexPath: indexPath)
+                    completion(true)
+                }
+                deleteAction.image = UIImage(systemName: "trash")
+                deleteAction.backgroundColor = .systemRed
+
+                let favoriteAction = UIContextualAction(style: .normal, title: "Favorite") { _, _, completion in
+                    self.toggleFavoriteAt(indexPath: indexPath)
+                    completion(true)
+                }
+                favoriteAction.image = UIImage(systemName: "star.fill")
+                favoriteAction.backgroundColor = .systemYellow
+
+                return UISwipeActionsConfiguration(actions: [favoriteAction, deleteAction])
+            }
+
             let section = NSCollectionLayoutSection.list(using: configuration,
                                                          layoutEnvironment: layoutEnvironment)
             return section
@@ -58,8 +75,17 @@ final class ListViewController: UICollectionViewController {
         self.model.shuffle()
     }
 
+    // TODO: reset and reload
     @objc
     func reload() {
         self.driver.reloadData()
+    }
+
+    func deleteAt(indexPath: IndexPath) {
+        self.model.deleteModelAt(indexPath: indexPath)
+    }
+
+    func toggleFavoriteAt(indexPath: IndexPath) {
+        self.model.toggleFavoriteAt(indexPath: indexPath)
     }
 }

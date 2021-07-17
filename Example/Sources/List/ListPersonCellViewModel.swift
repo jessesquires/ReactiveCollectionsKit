@@ -33,10 +33,18 @@ struct ListPersonCellViewModel: CellViewModel {
         let flagEmoji = UICellAccessory.customView(
             configuration: .init(customView: label, placement: .leading())
         )
-        cell.accessories = [
-            flagEmoji,
-            .disclosureIndicator()
-        ]
+        var accessories = [flagEmoji, .disclosureIndicator()]
+
+        if self.person.isFavorite {
+            let imageView = UIImageView(image: UIImage(systemName: "star.fill"))
+            imageView.tintColor = .systemYellow
+            let favorite = UICellAccessory.customView(
+                configuration: .init(customView: imageView, placement: .trailing())
+            )
+            accessories.append(favorite)
+        }
+
+        cell.accessories = accessories
     }
 
     func didSelect(with controller: UIViewController) {
