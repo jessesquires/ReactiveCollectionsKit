@@ -20,7 +20,6 @@ final class FavoriteBadgeView: UICollectionReusableView {
 
     override init(frame: CGRect) {
         super.init(frame: frame)
-        self.translatesAutoresizingMaskIntoConstraints = false
         self.imageView.translatesAutoresizingMaskIntoConstraints = false
         self.addSubview(self.imageView)
         let inset = 4.0

@@ -18,7 +18,6 @@ final class GridColorCell: UICollectionViewCell {
 
     override init(frame: CGRect) {
         super.init(frame: frame)
-        self.translatesAutoresizingMaskIntoConstraints = false
         self.label.translatesAutoresizingMaskIntoConstraints = false
         self.label.numberOfLines = 0
         self.label.textAlignment = .center
