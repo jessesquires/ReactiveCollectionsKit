@@ -35,9 +35,27 @@ extension _DiffableDataSource {
         to destination: CollectionViewModel,
         animated: Bool,
         completion: SnapshotCompletion?) {
-        // TODO: compare current and new snapshot, derive item changes and reconfigure/reload?
-        let destinationSnapshot = _DiffableSnapshot(viewModel: destination)
-        self.applySnapshot(destinationSnapshot, animated: animated, completion: completion)
+            let allSourceCells = source.allCellsByIdentifier
+            let allDestinationCells = destination.allCellsByIdentifier
+            var itemsToReload = [UniqueIdentifier]()
+
+            for (eachId, eachDestCell) in allDestinationCells {
+                // if this cell exist in the source, and it has changed
+                if let sourceCell = allSourceCells[eachId],
+                   eachDestCell != sourceCell {
+                    itemsToReload.append(eachId)
+                }
+            }
+
+            var destinationSnapshot = _DiffableSnapshot(viewModel: destination)
+
+            if #available(iOS 15.0, *) {
+                destinationSnapshot.reconfigureItems(itemsToReload)
+            } else {
+                destinationSnapshot.reloadItems(itemsToReload)
+            }
+
+            self.applySnapshot(destinationSnapshot, animated: animated, completion: completion)
     }
 
     func reload(_ viewModel: CollectionViewModel, completion: SnapshotCompletion?) {
