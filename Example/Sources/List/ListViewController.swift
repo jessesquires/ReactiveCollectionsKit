@@ -31,6 +31,17 @@ final class ListViewController: UICollectionViewController {
             configuration.headerMode = .supplementary
             configuration.footerMode = .supplementary
 
+            configuration.leadingSwipeActionsConfigurationProvider = { [unowned self] indexPath in
+                let favoriteAction = UIContextualAction(style: .normal, title: "Favorite") { _, _, completion in
+                    self.toggleFavoriteAt(indexPath: indexPath)
+                    completion(true)
+                }
+                favoriteAction.image = UIImage(systemName: "star.fill")
+                favoriteAction.backgroundColor = .systemYellow
+
+                return UISwipeActionsConfiguration(actions: [favoriteAction])
+            }
+
             configuration.trailingSwipeActionsConfigurationProvider = { [unowned self] indexPath in
                 let deleteAction = UIContextualAction(style: .destructive, title: "Delete") { _, _, completion in
                     self.deleteAt(indexPath: indexPath)
@@ -39,14 +50,7 @@ final class ListViewController: UICollectionViewController {
                 deleteAction.image = UIImage(systemName: "trash")
                 deleteAction.backgroundColor = .systemRed
 
-                let favoriteAction = UIContextualAction(style: .normal, title: "Favorite") { _, _, completion in
-                    self.toggleFavoriteAt(indexPath: indexPath)
-                    completion(true)
-                }
-                favoriteAction.image = UIImage(systemName: "star.fill")
-                favoriteAction.backgroundColor = .systemYellow
-
-                return UISwipeActionsConfiguration(actions: [favoriteAction, deleteAction])
+                return UISwipeActionsConfiguration(actions: [deleteAction])
             }
 
             let section = NSCollectionLayoutSection.list(using: configuration,
