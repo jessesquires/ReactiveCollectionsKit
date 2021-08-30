@@ -37,6 +37,8 @@ struct ListColorCellViewModel: CellViewModel {
                 configuration: .init(customView: imageView, placement: .trailing())
             )
             cell.accessories = [favorite]
+        } else {
+            cell.accessories = []
         }
     }
 }
