@@ -26,6 +26,7 @@ public final class CollectionViewDriver: NSObject {
 
     public var viewModel: CollectionViewModel {
         didSet {
+            // TODO: diff on bg queue?
             _assertMainThread()
             self._didUpdateModel(from: oldValue, to: self.viewModel)
         }
@@ -92,11 +93,7 @@ public final class CollectionViewDriver: NSObject {
         self._dataSource.reload(viewModel, completion: nil)
     }
 
-    // MARK: Public
-
-    public func reloadData() {
-        self._dataSource.reload(self.viewModel, completion: self._didUpdate)
-    }
+    // MARK: State information
 
     func numberOfSections() -> Int {
         self.viewModel.sections.count
@@ -105,6 +102,16 @@ public final class CollectionViewDriver: NSObject {
     func numberOfItems(in section: Int) -> Int {
         self.viewModel.sections[section].cells.count
     }
+
+    // MARK: Modifying data
+
+    public func reloadData() {
+        self._dataSource.reload(self.viewModel, completion: self._didUpdate)
+    }
+
+    // TODO:
+    // - reload with view model
+    // - update with view model, animated
 
     // MARK: Private
 
