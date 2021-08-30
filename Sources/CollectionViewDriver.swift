@@ -110,8 +110,8 @@ public final class CollectionViewDriver: NSObject {
     }
 
     // TODO:
-    // - reload with view model
-    // - update with view model, animated
+    // - reload with view model, layout (?)
+    // - update with view model, layout (?), animated
 
     // MARK: Private
 
