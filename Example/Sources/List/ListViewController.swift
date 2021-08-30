@@ -14,10 +14,9 @@
 import ReactiveCollectionsKit
 import UIKit
 
-final class ListViewController: UICollectionViewController {
-    var driver: CollectionViewDriver!
+final class ListViewController: ExampleCollectionViewController {
 
-    var model = Model() {
+    override var model: Model {
         didSet {
             self.driver.viewModel = ViewModel.createList(from: self.model)
         }
@@ -69,27 +68,5 @@ final class ListViewController: UICollectionViewController {
             print("list did update!")
             print(self.driver.viewModel)
         }
-
-        self.addShuffle(action: #selector(shuffle))
-        self.addReload(action: #selector(reload))
-    }
-
-    @objc
-    func shuffle() {
-        self.model.shuffle()
-    }
-
-    // TODO: reset and reload
-    @objc
-    func reload() {
-        self.driver.reloadData()
-    }
-
-    func deleteAt(indexPath: IndexPath) {
-        self.model.deleteModelAt(indexPath: indexPath)
-    }
-
-    func toggleFavoriteAt(indexPath: IndexPath) {
-        self.model.toggleFavoriteAt(indexPath: indexPath)
     }
 }

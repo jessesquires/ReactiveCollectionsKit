@@ -14,10 +14,9 @@
 import ReactiveCollectionsKit
 import UIKit
 
-final class GridViewController: UICollectionViewController {
-    var driver: CollectionViewDriver!
+final class GridViewController: ExampleCollectionViewController {
 
-    var model = Model() {
+    override var model: Model {
         didSet {
             self.driver.viewModel = ViewModel.createGrid(from: self.model)
         }
@@ -79,18 +78,5 @@ final class GridViewController: UICollectionViewController {
             print("grid did update!")
             print(self.driver.viewModel)
         }
-
-        self.addShuffle(action: #selector(shuffle))
-        self.addReload(action: #selector(reload))
-    }
-
-    @objc
-    func shuffle() {
-        self.model.shuffle()
-    }
-
-    @objc
-    func reload() {
-        self.driver.reloadData()
     }
 }

@@ -13,6 +13,7 @@
 		0B8C6CF1267ED7160042DFE2 /* HeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B8C6CF0267ED7160042DFE2 /* HeaderView.swift */; };
 		0B8C6CF3267ED7260042DFE2 /* FooterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B8C6CF2267ED7260042DFE2 /* FooterView.swift */; };
 		0B8C6CF5267EE6D30042DFE2 /* ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B8C6CF4267EE6D30042DFE2 /* ViewModel.swift */; };
+		0B9FD6F426DD717D0015EECC /* ExampleCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B9FD6F326DD717D0015EECC /* ExampleCollectionViewController.swift */; };
 		0BC1EC22267FBE0E00FF774F /* FavoriteBadgeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BC1EC21267FBE0E00FF774F /* FavoriteBadgeView.swift */; };
 		0BC546F426792EAA00E36D30 /* GridPersonCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BC546F326792EAA00E36D30 /* GridPersonCellViewModel.swift */; };
 		0BD8E0052678073A004CFF13 /* ListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BD8E0042678073A004CFF13 /* ListViewController.swift */; };
@@ -89,6 +90,7 @@
 		0B8C6CF0267ED7160042DFE2 /* HeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderView.swift; sourceTree = "<group>"; };
 		0B8C6CF2267ED7260042DFE2 /* FooterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FooterView.swift; sourceTree = "<group>"; };
 		0B8C6CF4267EE6D30042DFE2 /* ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModel.swift; sourceTree = "<group>"; };
+		0B9FD6F326DD717D0015EECC /* ExampleCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExampleCollectionViewController.swift; sourceTree = "<group>"; };
 		0BC1EC21267FBE0E00FF774F /* FavoriteBadgeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteBadgeView.swift; sourceTree = "<group>"; };
 		0BC546F326792EAA00E36D30 /* GridPersonCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GridPersonCellViewModel.swift; sourceTree = "<group>"; };
 		0BD8E0042678073A004CFF13 /* ListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListViewController.swift; sourceTree = "<group>"; };
@@ -237,6 +239,7 @@
 			isa = PBXGroup;
 			children = (
 				8829EA752361F4EB00604A43 /* AppDelegate.swift */,
+				0B9FD6F326DD717D0015EECC /* ExampleCollectionViewController.swift */,
 				8863DABF23636D0E0094182F /* PersonViewController.swift */,
 				8863DAC023636D0E0094182F /* PersonViewController.xib */,
 				8829EA772361F4EB00604A43 /* SceneDelegate.swift */,
@@ -432,6 +435,7 @@
 				0B568A8D267D82BF008B08F2 /* ListPersonCellViewModel.swift in Sources */,
 				8829EA7C2361F4EB00604A43 /* GridViewController.swift in Sources */,
 				88B4FEB3236251C600B284FB /* GridColorCellViewModel.swift in Sources */,
+				0B9FD6F426DD717D0015EECC /* ExampleCollectionViewController.swift in Sources */,
 				0B568A89267D829D008B08F2 /* ListColorCellViewModel.swift in Sources */,
 				0BD8E0052678073A004CFF13 /* ListViewController.swift in Sources */,
 				88FA49332363C2E00061F8B2 /* UIKit+Extensions.swift in Sources */,
