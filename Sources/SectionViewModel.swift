@@ -112,6 +112,40 @@ public struct SectionViewModel: DiffableViewModel {
         self.footer = anyFooter
         self.supplementaryViews = anySupplementaryViews
     }
+
+    func supplementaryViewsEqualTo(_ otherSection: SectionViewModel) -> Bool {
+        self.header == otherSection.header
+        && self.footer == otherSection.footer
+        && self.supplementaryViews == otherSection.supplementaryViews
+    }
+}
+
+// MARK: Equatable
+
+extension SectionViewModel: Equatable {
+
+    /// :nodoc:
+    public static func == (left: SectionViewModel, right: SectionViewModel) -> Bool {
+        left.id == right.id
+        && left.cells == right.cells
+        && left.header == right.header
+        && left.footer == right.footer
+        && left.supplementaryViews == right.supplementaryViews
+    }
+}
+
+// MARK: Hashable
+
+extension SectionViewModel: Hashable {
+
+    // :nodoc:
+    public func hash(into hasher: inout Hasher) {
+        hasher.combine(self.id)
+        hasher.combine(self.cells)
+        hasher.combine(self.header)
+        hasher.combine(self.footer)
+        hasher.combine(self.supplementaryViews)
+    }
 }
 
 // MARK: Collection, RandomAccessCollection

@@ -33,6 +33,11 @@ public struct CollectionViewModel: Equatable, Hashable {
         return Dictionary(uniqueKeysWithValues: tuples)
     }
 
+    public var allSectionsByIdentifier: [UniqueIdentifier: SectionViewModel] {
+        let tuples = self.sections.map { ($0.id, $0) }
+        return Dictionary(uniqueKeysWithValues: tuples)
+    }
+
     // MARK: Init
 
     public init(sections: [SectionViewModel]) {

@@ -35,6 +35,17 @@ extension _DiffableDataSource {
         to destination: CollectionViewModel,
         animated: Bool,
         completion: SnapshotCompletion?) {
+
+            // Apply item updates, then section updates.
+            // Reloading a section is required to properly reload headers, footers, and other supplementary views.
+            // This 2-step process is necessary to preserve collection view animations
+            // and prevent data source internal inconsistency exceptions.
+            //
+            // If we only reloaded a section, there are 2 problems:
+            // 1. item updates would not animate correctly. (because the whole section is reloaded)
+            // 2. item inserts/deletes could trigger an internal inconsistency exception in the data source.
+
+            // Find and perform item (cell) updates first
             let allSourceCells = source.allCellsByIdentifier
             let allDestinationCells = destination.allCellsByIdentifier
             var itemsToReload = [UniqueIdentifier]()
@@ -55,10 +66,37 @@ extension _DiffableDataSource {
                 destinationSnapshot.reloadItems(itemsToReload)
             }
 
-            // TODO: reload headers/footers and supplementary views?
-            // (gets out-of-sync when deleting items)
+            // Apply item updates
+            self.applySnapshot(destinationSnapshot, animated: animated) {
 
-            self.applySnapshot(destinationSnapshot, animated: animated, completion: completion)
+                // Once complete, find and apply section updates, if needed
+                let allSourceSections = source.allSectionsByIdentifier
+                let allDestinationSections = destination.allSectionsByIdentifier
+                var sectionsToReload = [UniqueIdentifier]()
+
+                for (eachId, eachDestSection) in allDestinationSections {
+                    // if this section exist in the source, and it has changed its SUPPLEMENTARY VIEWS ONLY
+                    // only reload the section if supplementary views have changed
+                    // cell changes are handled above
+                    if let sourceSection = allSourceSections[eachId],
+                       !eachDestSection.supplementaryViewsEqualTo(sourceSection) {
+                        sectionsToReload.append(eachId)
+                    }
+                }
+
+                // if no section changes, ignore and call completion
+                guard !sectionsToReload.isEmpty else {
+                    completion?()
+                    return
+                }
+
+                // TODO: delete empty sections
+
+                // otherwise, reload sections and apply snapshot
+                destinationSnapshot.reloadSections(sectionsToReload)
+
+                self.applySnapshot(destinationSnapshot, animated: animated, completion: completion)
+            }
     }
 
     func reload(_ viewModel: CollectionViewModel, completion: SnapshotCompletion?) {
