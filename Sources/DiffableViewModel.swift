@@ -23,6 +23,18 @@ public protocol DiffableViewModel: Hashable {
     var id: UniqueIdentifier { get }
 }
 
+// swiftlint:disable unavailable_function
+
 extension DiffableViewModel {
     public var id: UniqueIdentifier { self }
+
+    public static func == (left: Self, right: Self) -> Bool {
+        preconditionFailure("\(self) must implement Equatable \(#function)")
+    }
+
+    public func hash(into hasher: inout Hasher) {
+        preconditionFailure("\(self) must implement Hashable \(#function)")
+    }
 }
+
+// swiftlint:enable unavailable_function
