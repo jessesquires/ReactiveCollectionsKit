@@ -72,7 +72,7 @@ extension _DiffableDataSource {
                 // Once complete, find and apply section updates, if needed
                 let allSourceSections = source.allSectionsByIdentifier
                 let allDestinationSections = destination.allSectionsByIdentifier
-                var sectionsToReload = [UniqueIdentifier]()
+                var sectionsToReload = Set<UniqueIdentifier>()
 
                 for (eachId, eachDestSection) in allDestinationSections {
                     // if this section exist in the source, and it has changed its SUPPLEMENTARY VIEWS ONLY
@@ -80,7 +80,7 @@ extension _DiffableDataSource {
                     // cell changes are handled above
                     if let sourceSection = allSourceSections[eachId],
                        !eachDestSection.supplementaryViewsEqualTo(sourceSection) {
-                        sectionsToReload.append(eachId)
+                        sectionsToReload.insert(eachId)
                     }
                 }
 
@@ -90,10 +90,18 @@ extension _DiffableDataSource {
                     return
                 }
 
-                // TODO: delete empty sections
+                // delete empty sections
+                var sectionsToDelete = Set<UniqueIdentifier>()
+                for eachSectionId in sectionsToReload {
+                    if destinationSnapshot.numberOfItems(inSection: eachSectionId) == 0 {
+                        sectionsToDelete.insert(eachSectionId)
+                    }
+                }
+                sectionsToReload.subtract(sectionsToDelete)
 
-                // otherwise, reload sections and apply snapshot
-                destinationSnapshot.reloadSections(sectionsToReload)
+                // delete or reload sections and apply snapshot
+                destinationSnapshot.deleteSections(sectionsToDelete.toArray)
+                destinationSnapshot.reloadSections(sectionsToReload.toArray)
 
                 self.applySnapshot(destinationSnapshot, animated: animated, completion: completion)
             }
@@ -130,5 +138,12 @@ extension UICollectionViewDiffableDataSource {
                 }
             }
         }
+    }
+}
+
+extension Set {
+    fileprivate var toArray: [Self.Element] {
+        // swiftlint:disable:next syntactic_sugar
+        Array<Self.Element>(self)
     }
 }
