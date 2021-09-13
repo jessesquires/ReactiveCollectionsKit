@@ -35,6 +35,10 @@ struct ColorModel: Equatable, Hashable {
         self.color.rawValue
     }
 
+    var id: UniqueIdentifier {
+        self.color.rawValue
+    }
+
     var uiColor: UIColor {
         switch self.color {
         case .blue:
@@ -67,12 +71,6 @@ struct ColorModel: Equatable, Hashable {
         case .yellow:
             return .systemYellow
         }
-    }
-}
-
-extension ColorModel: DiffableViewModel {
-    var id: UniqueIdentifier {
-        self.name
     }
 }
 

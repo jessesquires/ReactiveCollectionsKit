@@ -12,7 +12,6 @@
 //
 
 import Foundation
-import ReactiveCollectionsKit
 import UIKit
 
 final class FavoriteBadgeView: UICollectionReusableView {
@@ -42,19 +41,5 @@ final class FavoriteBadgeView: UICollectionReusableView {
     @available(*, unavailable)
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
-    }
-}
-
-struct FavoriteBadgeViewModel: SupplementaryViewModel {
-    static let kind = "favorite-badge-view"
-
-    let isHidden: Bool
-
-    let id: UniqueIdentifier
-
-    var kind: SupplementaryViewKind { Self.kind }
-
-    func configure(view: FavoriteBadgeView) {
-        view.isHidden = self.isHidden
     }
 }

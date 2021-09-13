@@ -26,4 +26,10 @@ struct FooterViewModel: SupplementaryFooterViewModel {
         config.text = self.text
         view.contentConfiguration = config
     }
+
+    // MARK: Equatable
+
+    public static func == (left: FooterViewModel, right: FooterViewModel) -> Bool {
+        left.text == right.text
+    }
 }

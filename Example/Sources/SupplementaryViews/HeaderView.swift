@@ -43,4 +43,10 @@ struct HeaderViewModel: SupplementaryHeaderViewModel {
         config.text = self.title
         view.contentConfiguration = config
     }
+
+    // MARK: Equatable
+
+    public static func == (left: HeaderViewModel, right: HeaderViewModel) -> Bool {
+        left.title == right.title
+    }
 }

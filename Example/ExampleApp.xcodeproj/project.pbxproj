@@ -17,6 +17,7 @@
 		0BC1EC22267FBE0E00FF774F /* FavoriteBadgeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BC1EC21267FBE0E00FF774F /* FavoriteBadgeView.swift */; };
 		0BC546F426792EAA00E36D30 /* GridPersonCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BC546F326792EAA00E36D30 /* GridPersonCellViewModel.swift */; };
 		0BD8E0052678073A004CFF13 /* ListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BD8E0042678073A004CFF13 /* ListViewController.swift */; };
+		0BE2289726EF209500CDE1A6 /* FavoriteBadgeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BE2289626EF209500CDE1A6 /* FavoriteBadgeViewModel.swift */; };
 		88072130236258C000E34B61 /* GridPersonCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8807212E236258C000E34B61 /* GridPersonCell.swift */; };
 		88072131236258C000E34B61 /* GridPersonCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8807212F236258C000E34B61 /* GridPersonCell.xib */; };
 		8829EA762361F4EB00604A43 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8829EA752361F4EB00604A43 /* AppDelegate.swift */; };
@@ -94,6 +95,7 @@
 		0BC1EC21267FBE0E00FF774F /* FavoriteBadgeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteBadgeView.swift; sourceTree = "<group>"; };
 		0BC546F326792EAA00E36D30 /* GridPersonCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GridPersonCellViewModel.swift; sourceTree = "<group>"; };
 		0BD8E0042678073A004CFF13 /* ListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListViewController.swift; sourceTree = "<group>"; };
+		0BE2289626EF209500CDE1A6 /* FavoriteBadgeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteBadgeViewModel.swift; sourceTree = "<group>"; };
 		8807212E236258C000E34B61 /* GridPersonCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GridPersonCell.swift; sourceTree = "<group>"; };
 		8807212F236258C000E34B61 /* GridPersonCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GridPersonCell.xib; sourceTree = "<group>"; };
 		8829EA722361F4EB00604A43 /* ExampleApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ExampleApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -149,9 +151,10 @@
 		0B8C6CED267ED7030042DFE2 /* SupplementaryViews */ = {
 			isa = PBXGroup;
 			children = (
+				0BC1EC21267FBE0E00FF774F /* FavoriteBadgeView.swift */,
+				0BE2289626EF209500CDE1A6 /* FavoriteBadgeViewModel.swift */,
 				0B8C6CF2267ED7260042DFE2 /* FooterView.swift */,
 				0B8C6CF0267ED7160042DFE2 /* HeaderView.swift */,
-				0BC1EC21267FBE0E00FF774F /* FavoriteBadgeView.swift */,
 			);
 			path = SupplementaryViews;
 			sourceTree = "<group>";
@@ -451,6 +454,7 @@
 				0B00BA64267C2343002DD5E5 /* GridColorCell.swift in Sources */,
 				8829EA782361F4EB00604A43 /* SceneDelegate.swift in Sources */,
 				0B8C6CF1267ED7160042DFE2 /* HeaderView.swift in Sources */,
+				0BE2289726EF209500CDE1A6 /* FavoriteBadgeViewModel.swift in Sources */,
 				0B8C6CF3267ED7260042DFE2 /* FooterView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
