@@ -31,7 +31,7 @@ final class FavoriteBadgeView: UICollectionReusableView {
         ])
         self.imageView.image = UIImage(systemName: "star.fill")
         self.imageView.tintColor = .systemBackground
-        self.backgroundColor = .systemRed
+        self.backgroundColor = .systemYellow
     }
 
     override func layoutSubviews() {
