@@ -18,7 +18,7 @@ final class ListViewController: ExampleCollectionViewController {
 
     override var model: Model {
         didSet {
-            self.driver.viewModel = ViewModel.createList(from: self.model)
+            self.driver.viewModel = self.createCollectionViewModel(style: .list)
         }
     }
 
@@ -57,7 +57,7 @@ final class ListViewController: ExampleCollectionViewController {
             return section
         }
 
-        let viewModel = ViewModel.createList(from: self.model)
+        let viewModel = self.createCollectionViewModel(style: .list)
 
         self.driver = CollectionViewDriver(
             view: self.collectionView,

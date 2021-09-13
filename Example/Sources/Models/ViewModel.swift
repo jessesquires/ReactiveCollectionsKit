@@ -13,6 +13,7 @@
 
 import Foundation
 import ReactiveCollectionsKit
+import UIKit
 
 enum ViewModelStyle: String {
     case grid
@@ -30,25 +31,35 @@ enum ViewModelStyle: String {
 }
 
 enum ViewModel {
-    static func createGrid(from model: Model) -> CollectionViewModel {
-        self.create(model: model, style: .grid)
-    }
+    typealias ItemAction = (UniqueIdentifier) -> Void
 
-    static func createList(from model: Model) -> CollectionViewModel {
-        self.create(model: model, style: .list)
-    }
-
-    private static func create(model: Model, style: ViewModelStyle) -> CollectionViewModel {
+    static func create(
+        model: Model,
+        style: ViewModelStyle,
+        favoriteAction: @escaping ItemAction,
+        deleteAction: @escaping ItemAction) -> CollectionViewModel {
 
         // MARK: People Section
 
         let peopleCellViewModels: [AnyCellViewModel] = model.people.map {
+            let menuConfig = UIContextMenuConfiguration.configFor(
+                itemId: $0.id,
+                favoriteAction: favoriteAction,
+                deleteAction: deleteAction
+            )
+
             switch style {
             case .grid:
-                return GridPersonCellViewModel(person: $0).anyViewModel
+                return GridPersonCellViewModel(
+                    person: $0,
+                    contextMenuConfiguration: menuConfig
+                ).anyViewModel
 
             case .list:
-                return ListPersonCellViewModel(person: $0).anyViewModel
+                return ListPersonCellViewModel(
+                    person: $0,
+                    contextMenuConfiguration: menuConfig
+                ).anyViewModel
             }
         }
 
@@ -72,12 +83,24 @@ enum ViewModel {
         // MARK: Color Section
 
         let colorCellViewModels: [AnyCellViewModel] = model.colors.map {
+            let menuConfig = UIContextMenuConfiguration.configFor(
+                itemId: $0.id,
+                favoriteAction: favoriteAction,
+                deleteAction: deleteAction
+            )
+
             switch style {
             case .grid:
-                return GridColorCellViewModel(color: $0).anyViewModel
+                return GridColorCellViewModel(
+                    color: $0,
+                    contextMenuConfiguration: menuConfig
+                ).anyViewModel
 
             case .list:
-                return ListColorCellViewModel(color: $0).anyViewModel
+                return ListColorCellViewModel(
+                    color: $0,
+                    contextMenuConfiguration: menuConfig
+                ).anyViewModel
             }
         }
 

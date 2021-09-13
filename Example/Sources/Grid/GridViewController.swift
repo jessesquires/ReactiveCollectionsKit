@@ -18,7 +18,7 @@ final class GridViewController: ExampleCollectionViewController {
 
     override var model: Model {
         didSet {
-            self.driver.viewModel = ViewModel.createGrid(from: self.model)
+            self.driver.viewModel = self.createCollectionViewModel(style: .grid)
         }
     }
 
@@ -67,7 +67,7 @@ final class GridViewController: ExampleCollectionViewController {
 
         let layout = UICollectionViewCompositionalLayout(section: section)
 
-        let viewModel = ViewModel.createGrid(from: self.model)
+        let viewModel = self.createCollectionViewModel(style: .grid)
 
         self.driver = CollectionViewDriver(
             view: self.collectionView,

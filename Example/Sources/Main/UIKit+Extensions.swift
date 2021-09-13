@@ -11,6 +11,7 @@
 //  Copyright © 2019-present Jesse Squires
 //
 
+import ReactiveCollectionsKit
 import UIKit
 
 extension UIBarButtonItem {
@@ -19,5 +20,29 @@ extension UIBarButtonItem {
                   style: .plain,
                   target: target,
                   action: action)
+    }
+}
+
+extension UIContextMenuConfiguration {
+    typealias ItemAction = (UniqueIdentifier) -> Void
+
+    static func configFor(
+        itemId: UniqueIdentifier,
+        favoriteAction: @escaping ItemAction,
+        deleteAction: @escaping ItemAction) -> UIContextMenuConfiguration? {
+        UIContextMenuConfiguration(identifier: nil, previewProvider: nil) { _ in
+            let favorite = UIAction(title: "Favorite",
+                                    image: UIImage(systemName: "star.fill")) { _ in
+                favoriteAction(itemId)
+            }
+
+            let delete = UIAction(title: "Delete",
+                                  image: UIImage(systemName: "trash"),
+                                  attributes: .destructive) { _ in
+                deleteAction(itemId)
+            }
+
+            return UIMenu(children: [favorite, delete])
+        }
     }
 }

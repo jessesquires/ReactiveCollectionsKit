@@ -19,7 +19,9 @@ struct GridPersonCellViewModel: CellViewModel {
 
     // MARK: CellViewModel
 
-    var id: UniqueIdentifier { self.person.name }
+    var id: UniqueIdentifier { self.person.id }
+
+    let contextMenuConfiguration: UIContextMenuConfiguration?
 
     var nibName: String? { "GridPersonCell" }
 

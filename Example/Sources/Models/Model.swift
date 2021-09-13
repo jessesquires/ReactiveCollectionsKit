@@ -12,6 +12,7 @@
 //
 
 import Foundation
+import ReactiveCollectionsKit
 
 struct Model {
     private(set) var people = PersonModel.makePeople()
@@ -36,6 +37,15 @@ struct Model {
         }
     }
 
+    mutating func delete(id: UniqueIdentifier) {
+        if let index = self.people.firstIndex(where: { $0.id == id }) {
+            self.people.remove(at: index)
+        }
+        if let index = self.colors.firstIndex(where: { $0.id == id }) {
+            self.colors.remove(at: index)
+        }
+    }
+
     mutating func toggleFavoriteAt(indexPath: IndexPath) {
         switch indexPath.section {
         case 0:
@@ -46,6 +56,15 @@ struct Model {
 
         default:
             fatalError("invalid indexPath: \(indexPath)")
+        }
+    }
+
+    mutating func toggleFavorite(id: UniqueIdentifier) {
+        if let index = self.people.firstIndex(where: { $0.id == id }) {
+            self.people[index].isFavorite.toggle()
+        }
+        if let index = self.colors.firstIndex(where: { $0.id == id }) {
+            self.colors[index].isFavorite.toggle()
         }
     }
 }

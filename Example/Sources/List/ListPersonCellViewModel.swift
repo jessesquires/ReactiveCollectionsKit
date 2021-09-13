@@ -19,7 +19,9 @@ struct ListPersonCellViewModel: CellViewModel {
 
     // MARK: CellViewModel
 
-    var id: UniqueIdentifier { self.person.name }
+    var id: UniqueIdentifier { self.person.id }
+
+    let contextMenuConfiguration: UIContextMenuConfiguration?
 
     func configure(cell: UICollectionViewListCell) {
         var contentConfiguration = UIListContentConfiguration.subtitleCell()

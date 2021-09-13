@@ -43,6 +43,10 @@ class ExampleCollectionViewController: UICollectionViewController {
         self.model = Model()
     }
 
+    func deleteItem(id: UniqueIdentifier) {
+        self.model.delete(id: id)
+    }
+
     func deleteAt(indexPath: IndexPath) {
         self.model.deleteModelAt(indexPath: indexPath)
     }
@@ -51,7 +55,22 @@ class ExampleCollectionViewController: UICollectionViewController {
         self.model.toggleFavoriteAt(indexPath: indexPath)
     }
 
+    func toggleFavorite(id: UniqueIdentifier) {
+        self.model.toggleFavorite(id: id)
+    }
+
     // MARK: Helpers
+
+    func createCollectionViewModel(style: ViewModelStyle) -> CollectionViewModel {
+        ViewModel.create(
+            model: self.model,
+            style: style,
+            favoriteAction: { [unowned self] in
+                self.toggleFavorite(id: $0)
+            }, deleteAction: { [unowned self] in
+                self.deleteItem(id: $0)
+            })
+    }
 
     private func appendRightBarButton(_ item: UIBarButtonItem) {
         var items = self.navigationItem.rightBarButtonItems ?? []
