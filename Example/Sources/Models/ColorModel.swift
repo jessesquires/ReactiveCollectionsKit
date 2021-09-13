@@ -11,6 +11,7 @@
 //  Copyright © 2019-present Jesse Squires
 //
 
+import ReactiveCollectionsKit
 import UIKit
 
 enum Color: String, Equatable, Hashable, CaseIterable {
@@ -66,6 +67,12 @@ struct ColorModel: Equatable, Hashable {
         case .yellow:
             return .systemYellow
         }
+    }
+}
+
+extension ColorModel: DiffableViewModel {
+    var id: UniqueIdentifier {
+        self.name
     }
 }
 

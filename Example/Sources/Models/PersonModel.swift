@@ -12,6 +12,7 @@
 //
 
 import Foundation
+import ReactiveCollectionsKit
 
 struct PersonModel: Equatable, Hashable {
     let name: String
@@ -21,6 +22,12 @@ struct PersonModel: Equatable, Hashable {
 
     var birthDateText: String {
         _formatter.string(from: self.birthdate)
+    }
+}
+
+extension PersonModel: DiffableViewModel {
+    var id: UniqueIdentifier {
+        self.name
     }
 }
 
