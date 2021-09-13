@@ -155,11 +155,23 @@ public final class CollectionViewDriver: NSObject {
 // MARK: UICollectionViewDelegate
 
 extension CollectionViewDriver: UICollectionViewDelegate {
-    public func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+
+    /// :nodoc:
+    public func collectionView(_ collectionView: UICollectionView,
+                               didSelectItemAt indexPath: IndexPath) {
         self.viewModel.cell(at: indexPath).didSelect(with: self._controller)
     }
 
-    public func collectionView(_ collectionView: UICollectionView, shouldHighlightItemAt indexPath: IndexPath) -> Bool {
+    /// :nodoc:
+    public func collectionView(_ collectionView: UICollectionView,
+                               shouldHighlightItemAt indexPath: IndexPath) -> Bool {
         self.viewModel.cell(at: indexPath).shouldHighlight
+    }
+
+    /// :nodoc:
+    public func collectionView(_ collectionView: UICollectionView,
+                               contextMenuConfigurationForItemAt indexPath: IndexPath,
+                               point: CGPoint) -> UIContextMenuConfiguration? {
+        self.viewModel.cell(at: indexPath).contextMenuConfiguration
     }
 }
