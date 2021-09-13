@@ -55,6 +55,9 @@ extension _DiffableDataSource {
                 destinationSnapshot.reloadItems(itemsToReload)
             }
 
+            // TODO: reload headers/footers and supplementary views?
+            // (gets out-of-sync when deleting items)
+
             self.applySnapshot(destinationSnapshot, animated: animated, completion: completion)
     }
 

@@ -29,4 +29,10 @@ struct GridColorCellViewModel: CellViewModel {
         cell.label.text = self.color.name
         cell.backgroundColor = self.color.uiColor
     }
+
+    // MARK: Equatable
+
+    public static func == (left: GridColorCellViewModel, right: GridColorCellViewModel) -> Bool {
+        left.color == right.color
+    }
 }

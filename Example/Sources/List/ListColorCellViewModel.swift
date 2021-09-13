@@ -43,4 +43,10 @@ struct ListColorCellViewModel: CellViewModel {
             cell.accessories = []
         }
     }
+
+    // MARK: Equatable
+
+    public static func == (left: ListColorCellViewModel, right: ListColorCellViewModel) -> Bool {
+        left.color == right.color
+    }
 }

@@ -35,4 +35,10 @@ struct GridPersonCellViewModel: CellViewModel {
         let personVC = PersonViewController(person: self.person)
         controller.navigationController?.pushViewController(personVC, animated: true)
     }
+
+    // MARK: Equatable
+
+    public static func == (left: GridPersonCellViewModel, right: GridPersonCellViewModel) -> Bool {
+        left.person == right.person
+    }
 }

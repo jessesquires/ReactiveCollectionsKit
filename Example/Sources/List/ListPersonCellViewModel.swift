@@ -53,4 +53,10 @@ struct ListPersonCellViewModel: CellViewModel {
         let personVC = PersonViewController(person: self.person)
         controller.navigationController?.pushViewController(personVC, animated: true)
     }
+
+    // MARK: Equatable
+
+    public static func == (left: ListPersonCellViewModel, right: ListPersonCellViewModel) -> Bool {
+        left.person == right.person
+    }
 }
