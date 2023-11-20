@@ -6,7 +6,7 @@ gem 'synx'
 # ------------
 # Danger Setup
 # ------------
-gem 'danger', '~> 9.3'
+gem 'danger', '~> 9.4'
 
 # general
 gem 'danger-prose'
