@@ -31,11 +31,7 @@ struct HeaderViewModel: SupplementaryHeaderViewModel {
         var config: UIListContentConfiguration
         switch self.style {
         case .large:
-            if #available(iOS 15.0, *) {
-                config = .prominentInsetGroupedHeader()
-            } else {
-                config = .plainHeader()
-            }
+            config = .prominentInsetGroupedHeader()
 
         case .small:
             config = .groupedHeader()

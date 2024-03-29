@@ -61,12 +61,7 @@ extension _DiffableDataSource {
             }
 
             var destinationSnapshot = _DiffableSnapshot(viewModel: destination)
-
-            if #available(iOS 15.0, *) {
-                destinationSnapshot.reconfigureItems(itemsToReload)
-            } else {
-                destinationSnapshot.reloadItems(itemsToReload)
-            }
+            destinationSnapshot.reconfigureItems(itemsToReload)
 
             // Apply item updates
             self.applySnapshot(destinationSnapshot, animated: animated) {
@@ -111,7 +106,7 @@ extension _DiffableDataSource {
 
     func reload(_ viewModel: CollectionViewModel, completion: SnapshotCompletion?) {
         let snapshot = _DiffableSnapshot(viewModel: viewModel)
-        self.reloadData(using: snapshot, completion: completion)
+        self.applySnapshotUsingReloadData(snapshot, completion: completion)
     }
 }
 
@@ -120,26 +115,8 @@ extension UICollectionViewDiffableDataSource {
 
     typealias SnapshotCompletion = () -> Void
 
-    func reloadData(using snapshot: Snapshot, completion: SnapshotCompletion? = nil) {
-        if #available(iOS 15.0, *) {
-            self.applySnapshotUsingReloadData(snapshot, completion: completion)
-        } else {
-            self.apply(snapshot, animatingDifferences: false, completion: completion)
-        }
-    }
-
     func applySnapshot(_ snapshot: Snapshot, animated: Bool, completion: SnapshotCompletion? = nil) {
-        if #available(iOS 15.0, *) {
-            self.apply(snapshot, animatingDifferences: animated, completion: completion)
-        } else {
-            if animated {
-                self.apply(snapshot, animatingDifferences: true, completion: completion)
-            } else {
-                UIView.performWithoutAnimation {
-                    self.apply(snapshot, animatingDifferences: true, completion: completion)
-                }
-            }
-        }
+        self.apply(snapshot, animatingDifferences: animated, completion: completion)
     }
 }
 
