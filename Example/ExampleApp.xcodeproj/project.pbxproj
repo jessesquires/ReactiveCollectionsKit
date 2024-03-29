@@ -92,7 +92,9 @@
 		0B8C6CF2267ED7260042DFE2 /* FooterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FooterView.swift; sourceTree = "<group>"; };
 		0B8C6CF4267EE6D30042DFE2 /* ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModel.swift; sourceTree = "<group>"; };
 		0B9FD6F326DD717D0015EECC /* ExampleCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExampleCollectionViewController.swift; sourceTree = "<group>"; };
-		0BA7EE202BB7702100F30D1E /* ExampleApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ExampleApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		0BA7EE202BB7702100F30D1E /* ExampleApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; name = ExampleApp.app; path = "/Users/jsq/Developer/GitHub/ReactiveCollectionsKit/Example/build/Debug-iphoneos/ExampleApp.app"; sourceTree = "<absolute>"; };
+		0BA7EE242BB773D100F30D1E /* ExampleAppTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; name = ExampleAppTests.xctest; path = "/Users/jsq/Developer/GitHub/ReactiveCollectionsKit/Example/build/Debug-iphoneos/ExampleAppTests.xctest"; sourceTree = "<absolute>"; };
+		0BA7EE252BB773D100F30D1E /* ExampleAppUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; name = ExampleAppUITests.xctest; path = "/Users/jsq/Developer/GitHub/ReactiveCollectionsKit/Example/build/Debug-iphoneos/ExampleAppUITests.xctest"; sourceTree = "<absolute>"; };
 		0BC1EC21267FBE0E00FF774F /* FavoriteBadgeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteBadgeView.swift; sourceTree = "<group>"; };
 		0BC546F326792EAA00E36D30 /* GridPersonCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GridPersonCellViewModel.swift; sourceTree = "<group>"; };
 		0BD8E0042678073A004CFF13 /* ListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListViewController.swift; sourceTree = "<group>"; };
@@ -105,9 +107,7 @@
 		8829EA7E2361F4EB00604A43 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		8829EA802361F4ED00604A43 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		8829EA832361F4ED00604A43 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
-		8829EA8A2361F4ED00604A43 /* ExampleAppTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; name = ExampleAppTests.xctest; path = "/Users/jsq/Developer/GitHub/ReactiveCollectionsKit/Example/build/Debug-iphoneos/ExampleAppTests.xctest"; sourceTree = "<absolute>"; };
 		8829EA8E2361F4ED00604A43 /* ExampleTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExampleTests.swift; sourceTree = "<group>"; };
-		8829EA952361F4ED00604A43 /* ExampleAppUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; name = ExampleAppUITests.xctest; path = "/Users/jsq/Developer/GitHub/ReactiveCollectionsKit/Example/build/Debug-iphoneos/ExampleAppUITests.xctest"; sourceTree = "<absolute>"; };
 		8829EA992361F4ED00604A43 /* ExampleUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExampleUITests.swift; sourceTree = "<group>"; };
 		8847DEE2237172AC0075AAFE /* ColorModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorModel.swift; sourceTree = "<group>"; };
 		8847DEE823717A940075AAFE /* Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
@@ -173,7 +173,6 @@
 				8829EA8D2361F4ED00604A43 /* Tests */,
 				8829EA982361F4ED00604A43 /* UITests */,
 				88FA49142363A8130061F8B2 /* ReactiveCollectionsKit.xcodeproj */,
-				0BA7EE202BB7702100F30D1E /* ExampleApp.app */,
 			);
 			sourceTree = "<group>";
 		};
@@ -290,7 +289,7 @@
 			);
 			name = ExampleAppTests;
 			productName = ExampleTests;
-			productReference = 8829EA8A2361F4ED00604A43 /* ExampleAppTests.xctest */;
+			productReference = 0BA7EE242BB773D100F30D1E /* ExampleAppTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 		8829EA942361F4ED00604A43 /* ExampleAppUITests */ = {
@@ -308,7 +307,7 @@
 			);
 			name = ExampleAppUITests;
 			productName = ExampleUITests;
-			productReference = 8829EA952361F4ED00604A43 /* ExampleAppUITests.xctest */;
+			productReference = 0BA7EE252BB773D100F30D1E /* ExampleAppUITests.xctest */;
 			productType = "com.apple.product-type.bundle.ui-testing";
 		};
 /* End PBXNativeTarget section */
