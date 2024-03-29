@@ -1,4 +1,4 @@
-# ReactiveCollectionsKit [![Actions Status](https://github.com/jessesquires/ReactiveCollectionsKit/workflows/CI/badge.svg)](https://github.com/jessesquires/ReactiveCollectionsKit/actions)
+# ReactiveCollectionsKit [![CI](https://github.com/jessesquires/ReactiveCollectionsKit/actions/workflows/ci.yml/badge.svg)](https://github.com/jessesquires/ReactiveCollectionsKit/actions/workflows/ci.yml)
 
 *TODO: description*
 
