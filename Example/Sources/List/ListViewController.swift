@@ -52,8 +52,10 @@ final class ListViewController: ExampleCollectionViewController {
                 return UISwipeActionsConfiguration(actions: [deleteAction])
             }
 
-            return NSCollectionLayoutSection.list(using: configuration,
-                                                         layoutEnvironment: layoutEnvironment)
+            return NSCollectionLayoutSection.list(
+                using: configuration,
+                layoutEnvironment: layoutEnvironment
+            )
         }
 
         let viewModel = self.createCollectionViewModel(style: .list)

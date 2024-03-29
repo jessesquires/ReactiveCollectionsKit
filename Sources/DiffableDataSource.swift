@@ -94,9 +94,9 @@ extension _DiffableDataSource {
 
                 // delete empty sections
                 var sectionsToDelete = Set<UniqueIdentifier>()
-                for eachSectionId in sectionsToReload {
-                    if destinationSnapshot.numberOfItems(inSection: eachSectionId) == 0 {
-                        sectionsToDelete.insert(eachSectionId)
+                sectionsToReload.forEach {
+                    if destinationSnapshot.numberOfItems(inSection: $0) == 0 {
+                        sectionsToDelete.insert($0)
                     }
                 }
                 sectionsToReload.subtract(sectionsToDelete)
