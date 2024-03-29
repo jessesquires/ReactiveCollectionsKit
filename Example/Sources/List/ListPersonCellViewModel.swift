@@ -56,7 +56,7 @@ struct ListPersonCellViewModel: CellViewModel {
 
     // MARK: Equatable
 
-    public static func == (left: ListPersonCellViewModel, right: ListPersonCellViewModel) -> Bool {
+    static func == (left: Self, right: Self) -> Bool {
         left.person == right.person
     }
 }

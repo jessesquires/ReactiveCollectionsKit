@@ -46,7 +46,7 @@ struct HeaderViewModel: SupplementaryHeaderViewModel {
 
     // MARK: Equatable
 
-    public static func == (left: HeaderViewModel, right: HeaderViewModel) -> Bool {
+    static func == (left: Self, right: Self) -> Bool {
         left.title == right.title
     }
 }

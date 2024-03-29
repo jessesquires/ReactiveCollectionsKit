@@ -1,3 +1,7 @@
+# SwiftLint configuration
+# Rule directory: https://realm.github.io/SwiftLint/rule-directory.html
+# GitHub: https://github.com/realm/SwiftLint
+
 excluded:
   - Pods
   - docs
@@ -48,12 +52,19 @@ opt_in_rules:
   - no_space_in_method_call
   - discouraged_assert
   - legacy_objc_type
+  - file_name
   - file_name_no_space
+  - discouraged_none_name
+  - return_value_from_void_function
+  - prefer_zero_over_explicit_init
+  - shorthand_optional_binding
+  - xct_specific_matcher
+  - unneeded_synthesized_initializer
 
   # style
   - attributes
   - number_separator
-  # - operator_usage_whitespace
+  - operator_usage_whitespace
   - sorted_imports
   - vertical_parameter_alignment_on_call
   - void_return
@@ -66,25 +77,35 @@ opt_in_rules:
   - trailing_closure
   - unneeded_parentheses_in_closure_argument
   - vertical_whitespace_between_cases
+  - prefer_self_in_static_references
+  - comma_inheritance
+  - direct_return
+  - period_spacing
+  - superfluous_else
+  - sorted_enum_cases
+  - non_overridable_class_declaration
 
   # lint
   - overridden_super_call
   - override_in_extension
   - yoda_condition
-  - anyobject_protocol
   - array_init
   - empty_xctest_method
   - identical_operands
   - prohibited_super_call
-  - unused_capture_list
   - duplicate_enum_cases
   - legacy_multiple
+  - accessibility_label_for_image
+  - lower_acl_than_parent
+  - unhandled_throwing_task
+  - private_swiftui_state
 
 # Rules run by `swiftlint analyze` (experimental)
 analyzer_rules:
   - unused_import
   - unused_declaration
   - explicit_self
+  - capture_variable
 
 line_length: 200
 file_length: 600
@@ -99,3 +120,6 @@ nesting:
   function_level: 2
   check_nesting_in_closures_and_statements: true
   always_allow_one_type_in_functions: false
+
+identifier_name:
+  allowed_symbols: ['_']

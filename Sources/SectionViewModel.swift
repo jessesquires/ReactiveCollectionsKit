@@ -41,8 +41,7 @@ public struct SectionViewModel: DiffableViewModel {
         let cells = self.cellRegistrations
         let headerFooter = self.headerFooterRegistrations
         let views = self.supplementaryViewRegistrations
-        let all = cells.union(views).union(headerFooter)
-        return all
+        return cells.union(views).union(headerFooter)
     }
 
     public init<Header: SupplementaryHeaderViewModel, Footer: SupplementaryFooterViewModel>(
@@ -103,8 +102,8 @@ public struct SectionViewModel: DiffableViewModel {
         anyFooter: AnySupplementaryViewModel?,
         anySupplementaryViews: [AnySupplementaryViewModel]
     ) {
-        if let anyHeader = anyHeader { precondition(anyHeader._isHeader) }
-        if let anyFooter = anyFooter { precondition(anyFooter._isFooter) }
+        if let anyHeader { precondition(anyHeader._isHeader) }
+        if let anyFooter { precondition(anyFooter._isFooter) }
         precondition(anySupplementaryViews.allSatisfy { !$0._isHeader && !$0._isFooter })
         self.id = id
         self.cells = anyCells
@@ -113,7 +112,7 @@ public struct SectionViewModel: DiffableViewModel {
         self.supplementaryViews = anySupplementaryViews
     }
 
-    func supplementaryViewsEqualTo(_ otherSection: SectionViewModel) -> Bool {
+    func supplementaryViewsEqualTo(_ otherSection: Self) -> Bool {
         self.header == otherSection.header
         && self.footer == otherSection.footer
         && self.supplementaryViews == otherSection.supplementaryViews

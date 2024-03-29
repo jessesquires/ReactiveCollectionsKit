@@ -38,7 +38,7 @@ struct GridPersonCellViewModel: CellViewModel {
 
     // MARK: Equatable
 
-    public static func == (left: GridPersonCellViewModel, right: GridPersonCellViewModel) -> Bool {
+    static func == (left: Self, right: Self) -> Bool {
         left.person == right.person
     }
 }

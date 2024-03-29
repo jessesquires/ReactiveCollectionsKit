@@ -32,7 +32,7 @@ struct GridColorCellViewModel: CellViewModel {
 
     // MARK: Equatable
 
-    public static func == (left: GridColorCellViewModel, right: GridColorCellViewModel) -> Bool {
+    static func == (left: Self, right: Self) -> Bool {
         left.color == right.color
     }
 }

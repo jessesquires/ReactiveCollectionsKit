@@ -31,7 +31,7 @@ struct FavoriteBadgeViewModel: SupplementaryViewModel {
 
     // MARK: Equatable
 
-    public static func == (left: FavoriteBadgeViewModel, right: FavoriteBadgeViewModel) -> Bool {
+    static func == (left: Self, right: Self) -> Bool {
         left.isHidden == right.isHidden
     }
 }

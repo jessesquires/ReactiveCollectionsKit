@@ -16,8 +16,8 @@ import XCTest
 
 enum ReuseIdentifier: String {
     case cell
-    case headerView
     case footerView
+    case headerView
 }
 
 struct TestCellModel: CellViewModel {

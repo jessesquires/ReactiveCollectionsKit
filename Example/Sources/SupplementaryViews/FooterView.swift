@@ -29,7 +29,7 @@ struct FooterViewModel: SupplementaryFooterViewModel {
 
     // MARK: Equatable
 
-    public static func == (left: FooterViewModel, right: FooterViewModel) -> Bool {
+    static func == (left: Self, right: Self) -> Bool {
         left.text == right.text
     }
 }

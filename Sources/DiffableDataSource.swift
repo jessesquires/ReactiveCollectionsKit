@@ -18,7 +18,9 @@ typealias _DiffableDataSource = UICollectionViewDiffableDataSource<AnyHashable, 
 extension _DiffableDataSource {
 
     convenience init(view: UICollectionView) {
-        self.init(collectionView: view) { _, _, _ in return nil }
+        self.init(collectionView: view) { _, _, _ in
+            nil
+        }
     }
 
     convenience init(

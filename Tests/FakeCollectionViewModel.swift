@@ -58,7 +58,7 @@ extension XCTestCase {
         FakeCollectionCellViewModel(
             text: text,
             didSelectExpectation: includeExpectations ? self.expectation(description: "didSelect_\(text)") : nil,
-            didConfigureExpectation: includeExpectations ? self.expectation(description: "apply_\(text)"): nil
+            didConfigureExpectation: includeExpectations ? self.expectation(description: "apply_\(text)") : nil
         )
     }
 }
