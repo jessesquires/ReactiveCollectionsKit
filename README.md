@@ -19,12 +19,6 @@
 
 ## Installation
 
-### [CocoaPods](http://cocoapods.org)
-
-````ruby
-pod 'ReactiveCollectionsKit', '~> 0.1.0'
-````
-
 ### [Swift Package Manager](https://swift.org/package-manager/)
 
 ```swift
