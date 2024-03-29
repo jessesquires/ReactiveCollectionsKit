@@ -92,26 +92,23 @@
 		0B8C6CF2267ED7260042DFE2 /* FooterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FooterView.swift; sourceTree = "<group>"; };
 		0B8C6CF4267EE6D30042DFE2 /* ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModel.swift; sourceTree = "<group>"; };
 		0B9FD6F326DD717D0015EECC /* ExampleCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExampleCollectionViewController.swift; sourceTree = "<group>"; };
+		0BA7EE202BB7702100F30D1E /* ExampleApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ExampleApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0BC1EC21267FBE0E00FF774F /* FavoriteBadgeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteBadgeView.swift; sourceTree = "<group>"; };
 		0BC546F326792EAA00E36D30 /* GridPersonCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GridPersonCellViewModel.swift; sourceTree = "<group>"; };
 		0BD8E0042678073A004CFF13 /* ListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListViewController.swift; sourceTree = "<group>"; };
 		0BE2289626EF209500CDE1A6 /* FavoriteBadgeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteBadgeViewModel.swift; sourceTree = "<group>"; };
 		8807212E236258C000E34B61 /* GridPersonCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GridPersonCell.swift; sourceTree = "<group>"; };
 		8807212F236258C000E34B61 /* GridPersonCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GridPersonCell.xib; sourceTree = "<group>"; };
-		8829EA722361F4EB00604A43 /* ExampleApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ExampleApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8829EA752361F4EB00604A43 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		8829EA772361F4EB00604A43 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		8829EA7B2361F4EB00604A43 /* GridViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GridViewController.swift; sourceTree = "<group>"; };
 		8829EA7E2361F4EB00604A43 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		8829EA802361F4ED00604A43 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		8829EA832361F4ED00604A43 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
-		8829EA852361F4ED00604A43 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		8829EA8A2361F4ED00604A43 /* ExampleAppTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ExampleAppTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		8829EA8A2361F4ED00604A43 /* ExampleAppTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; name = ExampleAppTests.xctest; path = "/Users/jsq/Developer/GitHub/ReactiveCollectionsKit/Example/build/Debug-iphoneos/ExampleAppTests.xctest"; sourceTree = "<absolute>"; };
 		8829EA8E2361F4ED00604A43 /* ExampleTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExampleTests.swift; sourceTree = "<group>"; };
-		8829EA902361F4ED00604A43 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		8829EA952361F4ED00604A43 /* ExampleAppUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ExampleAppUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		8829EA952361F4ED00604A43 /* ExampleAppUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; name = ExampleAppUITests.xctest; path = "/Users/jsq/Developer/GitHub/ReactiveCollectionsKit/Example/build/Debug-iphoneos/ExampleAppUITests.xctest"; sourceTree = "<absolute>"; };
 		8829EA992361F4ED00604A43 /* ExampleUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExampleUITests.swift; sourceTree = "<group>"; };
-		8829EA9B2361F4ED00604A43 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8847DEE2237172AC0075AAFE /* ColorModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorModel.swift; sourceTree = "<group>"; };
 		8847DEE823717A940075AAFE /* Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
 		8863DABF23636D0E0094182F /* PersonViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonViewController.swift; sourceTree = "<group>"; };
@@ -175,27 +172,15 @@
 				8829EA742361F4EB00604A43 /* Sources */,
 				8829EA8D2361F4ED00604A43 /* Tests */,
 				8829EA982361F4ED00604A43 /* UITests */,
-				8829EA732361F4EB00604A43 /* Products */,
-				88B4FEA12362446000B284FB /* Frameworks */,
 				88FA49142363A8130061F8B2 /* ReactiveCollectionsKit.xcodeproj */,
+				0BA7EE202BB7702100F30D1E /* ExampleApp.app */,
 			);
-			sourceTree = "<group>";
-		};
-		8829EA732361F4EB00604A43 /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				8829EA722361F4EB00604A43 /* ExampleApp.app */,
-				8829EA8A2361F4ED00604A43 /* ExampleAppTests.xctest */,
-				8829EA952361F4ED00604A43 /* ExampleAppUITests.xctest */,
-			);
-			name = Products;
 			sourceTree = "<group>";
 		};
 		8829EA742361F4EB00604A43 /* Sources */ = {
 			isa = PBXGroup;
 			children = (
 				8829EA802361F4ED00604A43 /* Assets.xcassets */,
-				8829EA852361F4ED00604A43 /* Info.plist */,
 				8829EA822361F4ED00604A43 /* LaunchScreen.storyboard */,
 				8829EA7D2361F4EB00604A43 /* Main.storyboard */,
 				0BD8E0032678072B004CFF13 /* List */,
@@ -211,7 +196,6 @@
 			isa = PBXGroup;
 			children = (
 				8829EA8E2361F4ED00604A43 /* ExampleTests.swift */,
-				8829EA902361F4ED00604A43 /* Info.plist */,
 			);
 			path = Tests;
 			sourceTree = "<group>";
@@ -220,7 +204,6 @@
 			isa = PBXGroup;
 			children = (
 				8829EA992361F4ED00604A43 /* ExampleUITests.swift */,
-				8829EA9B2361F4ED00604A43 /* Info.plist */,
 			);
 			path = UITests;
 			sourceTree = "<group>";
@@ -262,13 +245,6 @@
 			path = Models;
 			sourceTree = "<group>";
 		};
-		88B4FEA12362446000B284FB /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			name = Frameworks;
-			sourceTree = "<group>";
-		};
 		88FA49152363A8130061F8B2 /* Products */ = {
 			isa = PBXGroup;
 			children = (
@@ -296,7 +272,7 @@
 			);
 			name = ExampleApp;
 			productName = Example;
-			productReference = 8829EA722361F4EB00604A43 /* ExampleApp.app */;
+			productReference = 0BA7EE202BB7702100F30D1E /* ExampleApp.app */;
 			productType = "com.apple.product-type.application";
 		};
 		8829EA892361F4ED00604A43 /* ExampleAppTests */ = {
@@ -341,8 +317,9 @@
 		8829EA6A2361F4EB00604A43 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				BuildIndependentTargetsInParallel = YES;
 				LastSwiftUpdateCheck = 1110;
-				LastUpgradeCheck = 1200;
+				LastUpgradeCheck = 1520;
 				ORGANIZATIONNAME = "Hexed Bits";
 				TargetAttributes = {
 					8829EA712361F4EB00604A43 = {
@@ -367,7 +344,7 @@
 				Base,
 			);
 			mainGroup = 8829EA692361F4EB00604A43;
-			productRefGroup = 8829EA732361F4EB00604A43 /* Products */;
+			productRefGroup = 8829EA692361F4EB00604A43;
 			projectDirPath = "";
 			projectReferences = (
 				{
@@ -514,6 +491,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
@@ -544,9 +522,11 @@
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -561,7 +541,10 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
+				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				MARKETING_VERSION = 1.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -577,6 +560,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
@@ -607,9 +591,11 @@
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
@@ -618,7 +604,10 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
+				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				MARKETING_VERSION = 1.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
@@ -637,7 +626,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = 5VRJU68BZ5;
-				INFOPLIST_FILE = Sources/Info.plist;
+				GENERATE_INFOPLIST_FILE = YES;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -656,7 +645,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = 5VRJU68BZ5;
-				INFOPLIST_FILE = Sources/Info.plist;
+				GENERATE_INFOPLIST_FILE = YES;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -676,7 +665,7 @@
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "-";
 				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = "";
-				INFOPLIST_FILE = Tests/Info.plist;
+				GENERATE_INFOPLIST_FILE = YES;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -698,7 +687,7 @@
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "-";
 				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = "";
-				INFOPLIST_FILE = Tests/Info.plist;
+				GENERATE_INFOPLIST_FILE = YES;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -720,7 +709,7 @@
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "-";
 				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = 5VRJU68BZ5;
-				INFOPLIST_FILE = UITests/Info.plist;
+				GENERATE_INFOPLIST_FILE = YES;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -742,7 +731,7 @@
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "-";
 				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = 5VRJU68BZ5;
-				INFOPLIST_FILE = UITests/Info.plist;
+				GENERATE_INFOPLIST_FILE = YES;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
