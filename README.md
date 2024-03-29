@@ -59,7 +59,7 @@ Also, consider [sponsoring this project](https://www.jessesquires.com/sponsor/) 
 
 ## Credits
 
-Created and maintained by [**@jesse_squires**](https://twitter.com/jesse_squires).
+Created and maintained by [**Jesse Squires**](https://www.jessesquires.com).
 
 ## License
 
