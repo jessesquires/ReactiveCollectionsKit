@@ -1,4 +1,7 @@
-// swift-tools-version:5.4
+// swift-tools-version:5.9
+// The swift-tools-version declares the minimum version
+// of Swift required to build this package.
+// ----------------------------------------------------
 //
 //  Created by Jesse Squires
 //  https://www.jessesquires.com
@@ -14,24 +17,25 @@
 
 import PackageDescription
 
-let name = "ReactiveCollectionsKit"
-
 let package = Package(
-    name: name,
+    name: "ReactiveCollectionsKit",
     platforms: [
-        .iOS(.v14)
+        .iOS(.v15)
     ],
-    products: [.library(name: name,
-                        targets: [name])],
+    products: [
+        .library(
+            name: "ReactiveCollectionsKit",
+            targets: ["ReactiveCollectionsKit"]
+        )
+    ],
     dependencies: [],
     targets: [
-        .target(name: name,
-                path: "Sources",
-                exclude: ["Info.plist"]),
-        .testTarget(name: "ReactiveCollectionsKitTests",
-                    dependencies: ["ReactiveCollectionsKit"],
-                    path: "Tests",
-                    exclude: ["Info.plist"])
+        .target(name: "ReactiveCollectionsKit", path: "Sources"),
+        .testTarget(
+            name: "ReactiveCollectionsKitTests",
+            dependencies: ["ReactiveCollectionsKit"],
+            path: "Tests"
+        )
     ],
     swiftLanguageVersions: [.v5]
 )
