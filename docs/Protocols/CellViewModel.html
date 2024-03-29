@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>CellViewModel Protocol Reference</title>
+    <link rel="stylesheet" type="text/css" href="../css/jazzy.css" />
+    <link rel="stylesheet" type="text/css" href="../css/highlight.css" />
+    <meta charset='utf-8'>
+    <script src="../js/jquery.min.js" defer></script>
+    <script src="../js/jazzy.js" defer></script>
+    
+    <script src="../js/lunr.min.js" defer></script>
+    <script src="../js/typeahead.jquery.js" defer></script>
+    <script src="../js/jazzy.search.js" defer></script>
+  </head>
+  <body>
+    <a name="//apple_ref/swift/Protocol/CellViewModel" class="dashAnchor"></a>
+    <a title="CellViewModel Protocol Reference"></a>
+    <header>
+      <div class="content-wrapper">
+        <p><a href="../index.html">ReactiveCollectionsKit Docs</a> (20% documented)</p>
+        <p class="header-right"><a href="https://github.com/jessesquires/ReactiveCollectionsKit"><img src="../img/gh.png" alt="GitHub"/>View on GitHub</a></p>
+        <div class="header-right">
+          <form role="search" action="../search.json">
+            <input type="text" placeholder="Search documentation" data-typeahead>
+          </form>
+        </div>
+      </div>
+    </header>
+    <div class="content-wrapper">
+      <p id="breadcrumbs">
+        <a href="../index.html">ReactiveCollectionsKit Reference</a>
+        <img id="carat" src="../img/carat.png" alt=""/>
+        CellViewModel Protocol Reference
+      </p>
+    </div>
+    <div class="content-wrapper">
+      <nav class="sidebar">
+        <ul class="nav-groups">
+          <li class="nav-group-name">
+            <a href="../Classes.html">Classes</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Classes/CollectionViewDriver.html">CollectionViewDriver</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../Enums.html">Enumerations</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Enums/ViewRegistrationType.html">ViewRegistrationType</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../Protocols.html">Protocols</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Protocols/CellViewModel.html">CellViewModel</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/DiffableViewModel.html">DiffableViewModel</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/SupplementaryFooterViewModel.html">SupplementaryFooterViewModel</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/SupplementaryHeaderViewModel.html">SupplementaryHeaderViewModel</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/SupplementaryViewModel.html">SupplementaryViewModel</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/ViewRegistrationProvider.html">ViewRegistrationProvider</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../Structs.html">Structures</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Structs/AnyCellViewModel.html">AnyCellViewModel</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/AnySupplementaryViewModel.html">AnySupplementaryViewModel</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/CollectionViewModel.html">CollectionViewModel</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/SectionViewModel.html">SectionViewModel</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/ViewRegistration.html">ViewRegistration</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../Typealiases.html">Type Aliases</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Typealiases.html#/s:22ReactiveCollectionsKit21SupplementaryViewKinda">SupplementaryViewKind</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Typealiases.html#/s:22ReactiveCollectionsKit16UniqueIdentifiera">UniqueIdentifier</a>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </nav>
+      <article class="main-content">
+        <section>
+          <section class="section">
+            <h1>CellViewModel</h1>
+              <div class="declaration">
+                <div class="language">
+                  
+                  <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">protocol</span> <span class="kt">CellViewModel</span> <span class="p">:</span> <span class="kt"><a href="../Protocols/DiffableViewModel.html">DiffableViewModel</a></span><span class="p">,</span> <span class="kt"><a href="../Protocols/ViewRegistrationProvider.html">ViewRegistrationProvider</a></span></code></pre>
+
+                </div>
+              </div>
+            <p>Defines a view model that describes and configures a cell in the collection view.</p>
+
+          </section>
+          <section class="section task-group-section">
+            <div class="task-group">
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:22ReactiveCollectionsKit13CellViewModelP0D4TypeQa"></a>
+                    <a name="//apple_ref/swift/Alias/CellType" class="dashAnchor"></a>
+                    <a class="token" href="#/s:22ReactiveCollectionsKit13CellViewModelP0D4TypeQa">CellType</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">associatedtype</span> <span class="kt">CellType</span> <span class="p">:</span> <span class="kt">UICollectionViewCell</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:22ReactiveCollectionsKit13CellViewModelP15shouldHighlightSbvp"></a>
+                    <a name="//apple_ref/swift/Property/shouldHighlight" class="dashAnchor"></a>
+                    <a class="token" href="#/s:22ReactiveCollectionsKit13CellViewModelP15shouldHighlightSbvp">shouldHighlight</a>
+                    </code>
+                      <span class="declaration-note">
+                        Default implementation
+                      </span>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <h4>Default Implementation</h4>
+                      <div class="default_impl abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="k">var</span> <span class="nv">shouldHighlight</span><span class="p">:</span> <span class="kt">Bool</span> <span class="p">{</span> <span class="k">get</span> <span class="p">}</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:22ReactiveCollectionsKit13CellViewModelP24contextMenuConfigurationSo09UIContexthI0CSgvp"></a>
+                    <a name="//apple_ref/swift/Property/contextMenuConfiguration" class="dashAnchor"></a>
+                    <a class="token" href="#/s:22ReactiveCollectionsKit13CellViewModelP24contextMenuConfigurationSo09UIContexthI0CSgvp">contextMenuConfiguration</a>
+                    </code>
+                      <span class="declaration-note">
+                        Default implementation
+                      </span>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <h4>Default Implementation</h4>
+                      <div class="default_impl abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="k">var</span> <span class="nv">contextMenuConfiguration</span><span class="p">:</span> <span class="kt">UIContextMenuConfiguration</span><span class="p">?</span> <span class="p">{</span> <span class="k">get</span> <span class="p">}</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:22ReactiveCollectionsKit13CellViewModelP9configure4celly0D4TypeQz_tF"></a>
+                    <a name="//apple_ref/swift/Method/configure(cell:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:22ReactiveCollectionsKit13CellViewModelP9configure4celly0D4TypeQz_tF">configure(cell:<wbr>)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">configure</span><span class="p">(</span><span class="nv">cell</span><span class="p">:</span> <span class="kt"><a href="../Protocols/CellViewModel.html#/s:22ReactiveCollectionsKit13CellViewModelP0D4TypeQa">CellType</a></span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:22ReactiveCollectionsKit13CellViewModelP9didSelect4withySo16UIViewControllerC_tF"></a>
+                    <a name="//apple_ref/swift/Method/didSelect(with:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:22ReactiveCollectionsKit13CellViewModelP9didSelect4withySo16UIViewControllerC_tF">didSelect(with:<wbr>)</a>
+                    </code>
+                      <span class="declaration-note">
+                        Default implementation
+                      </span>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <h4>Default Implementation</h4>
+                      <div class="default_impl abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">didSelect</span><span class="p">(</span><span class="n">with</span> <span class="nv">controller</span><span class="p">:</span> <span class="kt">UIViewController</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:22ReactiveCollectionsKit13CellViewModelPAAE9cellClassyXlXpvp"></a>
+                    <a name="//apple_ref/swift/Property/cellClass" class="dashAnchor"></a>
+                    <a class="token" href="#/s:22ReactiveCollectionsKit13CellViewModelPAAE9cellClassyXlXpvp">cellClass</a>
+                    </code>
+                      <span class="declaration-note">
+                        Extension method
+                      </span>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">cellClass</span><span class="p">:</span> <span class="kt">AnyClass</span> <span class="p">{</span> <span class="k">get</span> <span class="p">}</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:22ReactiveCollectionsKit13CellViewModelPAAE03anyeF0AA03AnydeF0Vvp"></a>
+                    <a name="//apple_ref/swift/Property/anyViewModel" class="dashAnchor"></a>
+                    <a class="token" href="#/s:22ReactiveCollectionsKit13CellViewModelPAAE03anyeF0AA03AnydeF0Vvp">anyViewModel</a>
+                    </code>
+                      <span class="declaration-note">
+                        Extension method
+                      </span>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">anyViewModel</span><span class="p">:</span> <span class="kt"><a href="../Structs/AnyCellViewModel.html">AnyCellViewModel</a></span> <span class="p">{</span> <span class="k">get</span> <span class="p">}</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:22ReactiveCollectionsKit13CellViewModelPAAE12registrationAA0E12RegistrationVvp"></a>
+                    <a name="//apple_ref/swift/Property/registration" class="dashAnchor"></a>
+                    <a class="token" href="#/s:22ReactiveCollectionsKit13CellViewModelPAAE12registrationAA0E12RegistrationVvp">registration</a>
+                    </code>
+                      <span class="declaration-note">
+                        Extension method
+                      </span>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">registration</span><span class="p">:</span> <span class="kt"><a href="../Structs/ViewRegistration.html">ViewRegistration</a></span> <span class="p">{</span> <span class="k">get</span> <span class="p">}</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:22ReactiveCollectionsKit13CellViewModelPAAE019dequeueAndConfigureD3For010collectionE02at0D4TypeQzSo012UICollectionE0C_10Foundation9IndexPathVtF"></a>
+                    <a name="//apple_ref/swift/Method/dequeueAndConfigureCellFor(collectionView:at:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:22ReactiveCollectionsKit13CellViewModelPAAE019dequeueAndConfigureD3For010collectionE02at0D4TypeQzSo012UICollectionE0C_10Foundation9IndexPathVtF">dequeueAndConfigureCellFor(collectionView:<wbr>at:<wbr>)</a>
+                    </code>
+                      <span class="declaration-note">
+                        Extension method
+                      </span>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">dequeueAndConfigureCellFor</span><span class="p">(</span><span class="nv">collectionView</span><span class="p">:</span> <span class="kt">UICollectionView</span><span class="p">,</span> <span class="n">at</span> <span class="nv">indexPath</span><span class="p">:</span> <span class="kt">IndexPath</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Protocols/CellViewModel.html#/s:22ReactiveCollectionsKit13CellViewModelP0D4TypeQa">CellType</a></span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </section>
+        </section>
+        <section id="footer">
+          <p>&copy; 2024 <a class="link" href="https://jessesquires.com" target="_blank" rel="external noopener">Jesse Squires</a>. All rights reserved. (Last updated: 2024-03-29)</p>
+          <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external noopener">jazzy ♪♫ v0.14.4</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external noopener">Realm</a> project.</p>
+        </section>
+      </article>
+    </div>
+  </body>
+</html>
