@@ -42,7 +42,7 @@ opt_in_rules:
   - discouraged_optional_boolean
   - discouraged_optional_collection
   - for_where
-  - function_default_parameter_at_end
+  # - function_default_parameter_at_end
   - legacy_random
   - no_extension_access_modifier
   - redundant_type_annotation

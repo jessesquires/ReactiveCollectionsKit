@@ -44,11 +44,34 @@ public struct SectionViewModel: DiffableViewModel {
         return cells.union(views).union(headerFooter)
     }
 
+    public init(id: UniqueIdentifier, cells: [AnyCellViewModel] = []) {
+        self.init(
+            id: id,
+            anyCells: cells,
+            anyHeader: nil,
+            anyFooter: nil,
+            anySupplementaryViews: []
+        )
+    }
+
+    public init<Cell: CellViewModel>(
+        id: UniqueIdentifier,
+        cells: [Cell]
+    ) {
+        self.init(
+            id: id,
+            anyCells: cells.map { $0.anyViewModel },
+            anyHeader: nil,
+            anyFooter: nil,
+            anySupplementaryViews: []
+        )
+    }
+
     public init<Header: SupplementaryHeaderViewModel, Footer: SupplementaryFooterViewModel>(
         id: UniqueIdentifier,
         cells: [AnyCellViewModel] = [],
-        header: Header? = nil,
-        footer: Footer? = nil,
+        header: Header?,
+        footer: Footer?,
         supplementaryViews: [AnySupplementaryViewModel] = []
     ) {
         self.init(
@@ -62,9 +85,9 @@ public struct SectionViewModel: DiffableViewModel {
 
     public init<Cell: CellViewModel, Header: SupplementaryHeaderViewModel, Footer: SupplementaryFooterViewModel>(
         id: UniqueIdentifier,
-        cells: [Cell] = [],
-        header: Header? = nil,
-        footer: Footer? = nil,
+        cells: [Cell],
+        header: Header?,
+        footer: Footer?,
         supplementaryViews: [AnySupplementaryViewModel] = []
     ) {
         self.init(
