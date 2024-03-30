@@ -11,12 +11,12 @@
 //  Copyright © 2019-present Jesse Squires
 //
 
+import Foundation
 import UIKit
 
-typealias _DiffableSnapshot = NSDiffableDataSourceSnapshot<AnyHashable, AnyHashable>
+typealias DiffableSnapshot = NSDiffableDataSourceSnapshot<AnyHashable, AnyHashable>
 
-extension _DiffableSnapshot {
-
+extension DiffableSnapshot {
     init(viewModel: CollectionViewModel) {
         self.init()
 

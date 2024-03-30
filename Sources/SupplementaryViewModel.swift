@@ -11,6 +11,7 @@
 //  Copyright © 2019-present Jesse Squires
 //
 
+import Foundation
 import UIKit
 
 public typealias SupplementaryViewKind = String

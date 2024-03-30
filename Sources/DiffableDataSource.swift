@@ -64,7 +64,7 @@ extension DiffableDataSource {
                 }
             }
 
-            var destinationSnapshot = _DiffableSnapshot(viewModel: destination)
+            var destinationSnapshot = DiffableSnapshot(viewModel: destination)
             destinationSnapshot.reconfigureItems(itemsToReload)
 
             // Apply item updates
@@ -113,7 +113,7 @@ extension DiffableDataSource {
     }
 
     func reload(_ viewModel: CollectionViewModel, completion: SnapshotCompletion?) {
-        let snapshot = _DiffableSnapshot(viewModel: viewModel)
+        let snapshot = DiffableSnapshot(viewModel: viewModel)
         self.applySnapshotUsingReloadData(snapshot, completion: completion)
     }
 }
