@@ -28,7 +28,7 @@ public final class CollectionViewDriver: NSObject {
     @Published public var viewModel: CollectionViewModel {
         didSet {
             // TODO: diff on bg queue?
-            _assertMainThread()
+            assertMainThread()
             self._didUpdateModel(from: oldValue, to: self.viewModel)
         }
     }

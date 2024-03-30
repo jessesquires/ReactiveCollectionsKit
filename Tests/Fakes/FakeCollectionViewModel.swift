@@ -62,9 +62,3 @@ extension XCTestCase {
         )
     }
 }
-
-extension String {
-    static var random: String {
-        String(UUID().uuidString.dropLast(28))
-    }
-}

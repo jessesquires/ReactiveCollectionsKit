@@ -13,8 +13,8 @@
 
 import Foundation
 
-/// Asserts that execution is on the main thread.
-/// - Parameter function: The calling function.
-func assertMainThread(_ function: String = #function) {
-    assert(Thread.isMainThread, "*** \(function) must be called on main thread only")
+extension String {
+    static var random: String {
+        String(UUID().uuidString.dropLast(28))
+    }
 }
