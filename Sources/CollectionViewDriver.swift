@@ -90,7 +90,7 @@ public final class CollectionViewDriver: NSObject {
 
         self.view.dataSource = self._dataSource
         self.view.delegate = self
-        self._registerAllViews()
+        self._registerAllViews(for: viewModel)
         self._dataSource.reload(viewModel, completion: nil)
     }
 
@@ -116,8 +116,8 @@ public final class CollectionViewDriver: NSObject {
 
     // MARK: Private
 
-    private func _registerAllViews() {
-        let allRegistrations = self.viewModel.allRegistrations
+    private func _registerAllViews(for viewModel: CollectionViewModel) {
+        let allRegistrations = viewModel.allRegistrations
         let newRegistrations = allRegistrations.subtracting(self._cachedRegistrations)
         newRegistrations.forEach {
             $0.registerWith(collectionView: self.view)
@@ -126,7 +126,7 @@ public final class CollectionViewDriver: NSObject {
     }
 
     private func _didUpdateModel(from old: CollectionViewModel, to new: CollectionViewModel) {
-        self._registerAllViews()
+        self._registerAllViews(for: new)
         self._dataSource.applySnapshot(
             from: old,
             to: new,
@@ -139,9 +139,9 @@ public final class CollectionViewDriver: NSObject {
         collectionView: UICollectionView,
         indexPath: IndexPath,
         identifier: UniqueIdentifier) -> UICollectionViewCell {
-        let cell = self.viewModel.cell(at: indexPath)
-        precondition(cell.id == identifier)
-        return cell.dequeueAndConfigureCellFor(collectionView: collectionView, at: indexPath)
+        let cell = self.viewModel.cellViewModel(for: identifier)
+        precondition(cell != nil, "Inconsistent state. Cell with identifier \(identifier) does not exist.")
+        return cell!.dequeueAndConfigureCellFor(collectionView: collectionView, at: indexPath)
     }
 
     private func _supplementaryViewProvider(

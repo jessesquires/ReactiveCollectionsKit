@@ -46,6 +46,11 @@ public struct CollectionViewModel: Equatable, Hashable {
 
     // MARK: Accessing Cells and Supplementary Views
 
+    public func cellViewModel(for id: UniqueIdentifier) -> AnyCellViewModel? {
+        self.allCellsByIdentifier[id]
+    }
+
+    // TODO: rename view model
     public func cell(at indexPath: IndexPath) -> AnyCellViewModel {
         precondition(indexPath.section < self.count)
         let section = self[indexPath.section]
@@ -56,6 +61,7 @@ public struct CollectionViewModel: Equatable, Hashable {
         return cells[indexPath.item]
     }
 
+    // TODO: rename view model
     public func supplementaryView(ofKind kind: String, at indexPath: IndexPath) -> AnySupplementaryViewModel? {
         precondition(indexPath.section < self.count)
         let section = self[indexPath.section]
