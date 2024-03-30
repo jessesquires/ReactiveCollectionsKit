@@ -122,7 +122,6 @@ extension UICollectionViewDiffableDataSource {
 
 extension Set {
     fileprivate var toArray: [Self.Element] {
-        // swiftlint:disable:next syntactic_sugar
-        Array<Self.Element>(self)
+        Array(self)
     }
 }
