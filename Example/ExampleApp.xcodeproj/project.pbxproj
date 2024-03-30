@@ -92,13 +92,13 @@
 		0B8C6CF2267ED7260042DFE2 /* FooterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FooterView.swift; sourceTree = "<group>"; };
 		0B8C6CF4267EE6D30042DFE2 /* ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModel.swift; sourceTree = "<group>"; };
 		0B9FD6F326DD717D0015EECC /* ExampleCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExampleCollectionViewController.swift; sourceTree = "<group>"; };
-		0BA7EE202BB7702100F30D1E /* ExampleApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; name = ExampleApp.app; path = "/Users/jsq/Developer/GitHub/ReactiveCollectionsKit/Example/build/Debug-iphoneos/ExampleApp.app"; sourceTree = "<absolute>"; };
-		0BA7EE242BB773D100F30D1E /* ExampleAppTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; name = ExampleAppTests.xctest; path = "/Users/jsq/Developer/GitHub/ReactiveCollectionsKit/Example/build/Debug-iphoneos/ExampleAppTests.xctest"; sourceTree = "<absolute>"; };
-		0BA7EE252BB773D100F30D1E /* ExampleAppUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; name = ExampleAppUITests.xctest; path = "/Users/jsq/Developer/GitHub/ReactiveCollectionsKit/Example/build/Debug-iphoneos/ExampleAppUITests.xctest"; sourceTree = "<absolute>"; };
 		0BC1EC21267FBE0E00FF774F /* FavoriteBadgeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteBadgeView.swift; sourceTree = "<group>"; };
 		0BC546F326792EAA00E36D30 /* GridPersonCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GridPersonCellViewModel.swift; sourceTree = "<group>"; };
 		0BD8E0042678073A004CFF13 /* ListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListViewController.swift; sourceTree = "<group>"; };
 		0BE2289626EF209500CDE1A6 /* FavoriteBadgeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteBadgeViewModel.swift; sourceTree = "<group>"; };
+		0BFA773C2BB8A325009B9C5B /* ExampleApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; name = ExampleApp.app; path = "/Users/jsq/Developer/GitHub/ReactiveCollectionsKit/Example/build/Debug-iphoneos/ExampleApp.app"; sourceTree = "<absolute>"; };
+		0BFA773D2BB8A325009B9C5B /* ExampleAppTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; name = ExampleAppTests.xctest; path = "/Users/jsq/Developer/GitHub/ReactiveCollectionsKit/Example/build/Debug-iphoneos/ExampleApp.app/PlugIns/ExampleAppTests.xctest"; sourceTree = "<absolute>"; };
+		0BFA773E2BB8A325009B9C5B /* ExampleAppUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; name = ExampleAppUITests.xctest; path = "/Users/jsq/Developer/GitHub/ReactiveCollectionsKit/Example/build/Debug-iphoneos/ExampleAppUITests-Runner.app/PlugIns/ExampleAppUITests.xctest"; sourceTree = "<absolute>"; };
 		8807212E236258C000E34B61 /* GridPersonCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GridPersonCell.swift; sourceTree = "<group>"; };
 		8807212F236258C000E34B61 /* GridPersonCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GridPersonCell.xib; sourceTree = "<group>"; };
 		8829EA752361F4EB00604A43 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -271,7 +271,7 @@
 			);
 			name = ExampleApp;
 			productName = Example;
-			productReference = 0BA7EE202BB7702100F30D1E /* ExampleApp.app */;
+			productReference = 0BFA773C2BB8A325009B9C5B /* ExampleApp.app */;
 			productType = "com.apple.product-type.application";
 		};
 		8829EA892361F4ED00604A43 /* ExampleAppTests */ = {
@@ -289,7 +289,7 @@
 			);
 			name = ExampleAppTests;
 			productName = ExampleTests;
-			productReference = 0BA7EE242BB773D100F30D1E /* ExampleAppTests.xctest */;
+			productReference = 0BFA773D2BB8A325009B9C5B /* ExampleAppTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 		8829EA942361F4ED00604A43 /* ExampleAppUITests */ = {
@@ -307,7 +307,7 @@
 			);
 			name = ExampleAppUITests;
 			productName = ExampleUITests;
-			productReference = 0BA7EE252BB773D100F30D1E /* ExampleAppUITests.xctest */;
+			productReference = 0BFA773E2BB8A325009B9C5B /* ExampleAppUITests.xctest */;
 			productType = "com.apple.product-type.bundle.ui-testing";
 		};
 /* End PBXNativeTarget section */

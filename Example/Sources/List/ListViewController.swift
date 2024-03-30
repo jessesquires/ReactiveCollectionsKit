@@ -11,10 +11,13 @@
 //  Copyright © 2019-present Jesse Squires
 //
 
+import Combine
 import ReactiveCollectionsKit
 import UIKit
 
 final class ListViewController: ExampleCollectionViewController {
+
+    var cancellables = [AnyCancellable]()
 
     override var model: Model {
         didSet {
@@ -69,5 +72,12 @@ final class ListViewController: ExampleCollectionViewController {
             print("list did update!")
             print(self.driver.viewModel)
         }
+
+        self.driver.$viewModel
+            .sink { _ in
+                print("did publish view model update")
+            }
+            .store(in: &self.cancellables)
+
     }
 }
