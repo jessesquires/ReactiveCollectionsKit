@@ -11,11 +11,15 @@
 //  Copyright © 2019-present Jesse Squires
 //
 
+import Foundation
 import UIKit
 
-typealias _DiffableDataSource = UICollectionViewDiffableDataSource<AnyHashable, AnyHashable>
+typealias DiffableDataSource = UICollectionViewDiffableDataSource<AnyHashable, AnyHashable>
 
-extension _DiffableDataSource {
+extension DiffableDataSource {
+    typealias Snapshot = NSDiffableDataSourceSnapshot<SectionIdentifierType, ItemIdentifierType>
+
+    typealias SnapshotCompletion = () -> Void
 
     convenience init(view: UICollectionView) {
         self.init(collectionView: view) { _, _, _ in
@@ -25,8 +29,8 @@ extension _DiffableDataSource {
 
     convenience init(
         view: UICollectionView,
-        cellProvider: @escaping _DiffableDataSource.CellProvider,
-        supplementaryViewProvider: @escaping _DiffableDataSource.SupplementaryViewProvider
+        cellProvider: @escaping DiffableDataSource.CellProvider,
+        supplementaryViewProvider: @escaping DiffableDataSource.SupplementaryViewProvider
     ) {
         self.init(collectionView: view, cellProvider: cellProvider)
         self.supplementaryViewProvider = supplementaryViewProvider
@@ -104,19 +108,13 @@ extension _DiffableDataSource {
             }
     }
 
+    func applySnapshot(_ snapshot: Snapshot, animated: Bool, completion: SnapshotCompletion? = nil) {
+        self.apply(snapshot, animatingDifferences: animated, completion: completion)
+    }
+
     func reload(_ viewModel: CollectionViewModel, completion: SnapshotCompletion?) {
         let snapshot = _DiffableSnapshot(viewModel: viewModel)
         self.applySnapshotUsingReloadData(snapshot, completion: completion)
-    }
-}
-
-extension UICollectionViewDiffableDataSource {
-    typealias Snapshot = NSDiffableDataSourceSnapshot<SectionIdentifierType, ItemIdentifierType>
-
-    typealias SnapshotCompletion = () -> Void
-
-    func applySnapshot(_ snapshot: Snapshot, animated: Bool, completion: SnapshotCompletion? = nil) {
-        self.apply(snapshot, animatingDifferences: animated, completion: completion)
     }
 }
 

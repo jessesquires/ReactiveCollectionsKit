@@ -11,6 +11,7 @@
 //  Copyright © 2019-present Jesse Squires
 //
 
+import Foundation
 import UIKit
 
 /// Defines a view model that describes and configures a cell in the collection view.
@@ -27,7 +28,6 @@ public protocol CellViewModel: DiffableViewModel, ViewRegistrationProvider {
 }
 
 extension CellViewModel {
-
     public var shouldHighlight: Bool { true }
 
     public var contextMenuConfiguration: UIContextMenuConfiguration? { nil }

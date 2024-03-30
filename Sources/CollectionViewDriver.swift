@@ -12,6 +12,7 @@
 //
 
 import Combine
+import Foundation
 import UIKit
 
 public final class CollectionViewDriver: NSObject {
@@ -38,8 +39,10 @@ public final class CollectionViewDriver: NSObject {
     // thus, we know the controller *must* be alive, meaning `unowned` is safe to use.
     private unowned var _controller: UIViewController
 
-    private(set) var _dataSource: _DiffableDataSource
+    private(set) var _dataSource: DiffableDataSource
+
     private let _didUpdate: DidUpdate?
+
     private var _cachedRegistrations = Set<ViewRegistration>()
 
     // MARK: Init
@@ -59,7 +62,7 @@ public final class CollectionViewDriver: NSObject {
 
         // workaround for swift initialization rules.
         // the "real" init is below.
-        self._dataSource = _DiffableDataSource(view: view)
+        self._dataSource = DiffableDataSource(view: view)
 
         super.init()
 
@@ -71,7 +74,7 @@ public final class CollectionViewDriver: NSObject {
         //
         // using `unowned` for each closure breaks a potential cycle, and is safe to use here.
         // `self` owns the `_dataSource`, so we know that `self` will always exist.
-        self._dataSource = _DiffableDataSource(
+        self._dataSource = DiffableDataSource(
             view: view,
             cellProvider: { [unowned self] view, indexPath, itemIdentifier in
             self._cellProvider(
@@ -148,7 +151,7 @@ public final class CollectionViewDriver: NSObject {
         collectionView: UICollectionView,
         elementKind: String,
         indexPath: IndexPath) -> UICollectionReusableView? {
-        let supplementaryView = self.viewModel.supplementaryView(ofKind: elementKind, at: indexPath)
+        let supplementaryView = self.viewModel.supplementaryViewModel(ofKind: elementKind, at: indexPath)
         return supplementaryView?.dequeueAndConfigureViewFor(collectionView: collectionView, at: indexPath)
     }
 }
@@ -156,23 +159,22 @@ public final class CollectionViewDriver: NSObject {
 // MARK: UICollectionViewDelegate
 
 extension CollectionViewDriver: UICollectionViewDelegate {
-
     /// :nodoc:
     public func collectionView(_ collectionView: UICollectionView,
                                didSelectItemAt indexPath: IndexPath) {
-        self.viewModel.cell(at: indexPath).didSelect(with: self._controller)
+        self.viewModel.cellViewModel(at: indexPath).didSelect(with: self._controller)
     }
 
     /// :nodoc:
     public func collectionView(_ collectionView: UICollectionView,
                                shouldHighlightItemAt indexPath: IndexPath) -> Bool {
-        self.viewModel.cell(at: indexPath).shouldHighlight
+        self.viewModel.cellViewModel(at: indexPath).shouldHighlight
     }
 
     /// :nodoc:
     public func collectionView(_ collectionView: UICollectionView,
                                contextMenuConfigurationForItemAt indexPath: IndexPath,
                                point: CGPoint) -> UIContextMenuConfiguration? {
-        self.viewModel.cell(at: indexPath).contextMenuConfiguration
+        self.viewModel.cellViewModel(at: indexPath).contextMenuConfiguration
     }
 }
