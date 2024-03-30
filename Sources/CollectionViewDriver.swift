@@ -11,6 +11,7 @@
 //  Copyright © 2019-present Jesse Squires
 //
 
+import Combine
 import UIKit
 
 public final class CollectionViewDriver: NSObject {
@@ -24,7 +25,7 @@ public final class CollectionViewDriver: NSObject {
 
     public var animateUpdates: Bool
 
-    public var viewModel: CollectionViewModel {
+    @Published public var viewModel: CollectionViewModel {
         didSet {
             // TODO: diff on bg queue?
             _assertMainThread()
