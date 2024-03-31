@@ -14,7 +14,7 @@
 import ReactiveCollectionsKit
 import UIKit
 
-enum HeaderViewStyle {
+enum HeaderViewStyle: Hashable {
     case large
     case small
 }
@@ -40,9 +40,15 @@ struct HeaderViewModel: SupplementaryHeaderViewModel {
         view.contentConfiguration = config
     }
 
-    // MARK: Equatable
+    // MARK: Hashable
+
+    func hash(into hasher: inout Hasher) {
+        hasher.combine(self.title)
+        hasher.combine(self.style)
+    }
 
     static func == (left: Self, right: Self) -> Bool {
         left.title == right.title
+        && left.style == right.style
     }
 }

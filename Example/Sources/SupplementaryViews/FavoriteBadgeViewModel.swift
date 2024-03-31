@@ -35,7 +35,11 @@ struct FavoriteBadgeViewModel: SupplementaryViewModel {
         view.isHidden = self.isHidden
     }
 
-    // MARK: Equatable
+    // MARK: Hashable
+
+    func hash(into hasher: inout Hasher) {
+        hasher.combine(self.isHidden)
+    }
 
     static func == (left: Self, right: Self) -> Bool {
         left.isHidden == right.isHidden

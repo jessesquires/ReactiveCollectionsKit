@@ -27,7 +27,11 @@ struct FooterViewModel: SupplementaryFooterViewModel {
         view.contentConfiguration = config
     }
 
-    // MARK: Equatable
+    // MARK: Hashable
+
+    func hash(into hasher: inout Hasher) {
+        hasher.combine(self.text)
+    }
 
     static func == (left: Self, right: Self) -> Bool {
         left.text == right.text

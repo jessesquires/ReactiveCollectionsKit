@@ -44,7 +44,11 @@ struct ListColorCellViewModel: CellViewModel {
         }
     }
 
-    // MARK: Equatable
+    // MARK: Hashable
+
+    func hash(into hasher: inout Hasher) {
+        hasher.combine(self.color)
+    }
 
     static func == (left: Self, right: Self) -> Bool {
         left.color == right.color

@@ -54,7 +54,11 @@ struct ListPersonCellViewModel: CellViewModel {
         controller.navigationController?.pushViewController(personVC, animated: true)
     }
 
-    // MARK: Equatable
+    // MARK: Hashable
+
+    func hash(into hasher: inout Hasher) {
+        hasher.combine(self.person)
+    }
 
     static func == (left: Self, right: Self) -> Bool {
         left.person == right.person

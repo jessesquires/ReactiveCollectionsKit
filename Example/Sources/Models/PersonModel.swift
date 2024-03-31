@@ -14,7 +14,7 @@
 import Foundation
 import ReactiveCollectionsKit
 
-struct PersonModel: Equatable, Hashable {
+struct PersonModel: Hashable {
     let name: String
     let birthdate: Date
     let nationality: String

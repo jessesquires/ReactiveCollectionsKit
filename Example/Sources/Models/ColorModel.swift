@@ -14,7 +14,7 @@
 import ReactiveCollectionsKit
 import UIKit
 
-enum Color: String, Equatable, Hashable, CaseIterable {
+enum Color: String, Hashable, CaseIterable {
     case blue
     case brown
     case green
@@ -27,7 +27,7 @@ enum Color: String, Equatable, Hashable, CaseIterable {
     case yellow
 }
 
-struct ColorModel: Equatable, Hashable {
+struct ColorModel: Hashable {
     let color: Color
     var isFavorite = false
 
