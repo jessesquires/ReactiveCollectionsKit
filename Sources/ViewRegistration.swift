@@ -11,33 +11,28 @@
 //  Copyright © 2019-present Jesse Squires
 //
 
+import Foundation
 import UIKit
 
-public enum ViewRegistrationType: Equatable, Hashable {
-    case cell
-    case supplementary(kind: String)
-}
+public struct ViewRegistration: Hashable {
+    public let reuseIdentifier: String
 
-public struct ViewRegistration {
-    let viewClass: AnyClass
+    public let viewType: ViewRegistrationViewType
 
-    let reuseIdentifier: String
+    public let method: ViewRegistrationMethod
 
-    let nibName: String?
-
-    let nibBundle: Bundle?
-
-    let type: ViewRegistrationType
-
-    public var nib: UINib? {
-        if let name = self.nibName {
-            return UINib(nibName: name, bundle: self.nibBundle)
-        }
-        return nil
+    public init(
+        reuseIdentifier: String,
+        viewType: ViewRegistrationViewType,
+        method: ViewRegistrationMethod
+    ) {
+        self.reuseIdentifier = reuseIdentifier
+        self.viewType = viewType
+        self.method = method
     }
 
     public func dequeueViewFor(collectionView: UICollectionView, at indexPath: IndexPath) -> UICollectionReusableView {
-        switch self.type {
+        switch self.viewType {
         case .cell:
             return self._dequeueCellFor(collectionView: collectionView, at: indexPath)
 
@@ -59,7 +54,7 @@ public struct ViewRegistration {
     }
 
     public func registerWith(collectionView: UICollectionView) {
-        switch self.type {
+        switch self.viewType {
         case .cell:
             self._registerCellWith(collectionView: collectionView)
 
@@ -69,23 +64,29 @@ public struct ViewRegistration {
     }
 
     private func _registerCellWith(collectionView: UICollectionView) {
-        if let nib = self.nib {
+        switch self.method {
+        case .viewClass(let anyClass):
+            collectionView.register(anyClass, forCellWithReuseIdentifier: self.reuseIdentifier)
+
+        case .nib(let name, let bundle):
+            let nib = UINib(nibName: name, bundle: bundle)
             collectionView.register(nib, forCellWithReuseIdentifier: self.reuseIdentifier)
-        } else {
-            collectionView.register(self.viewClass, forCellWithReuseIdentifier: self.reuseIdentifier)
         }
     }
 
     private func _registerSupplementaryView(kind: String, with collectionView: UICollectionView) {
-        if let nib = self.nib {
+        switch self.method {
+        case .viewClass(let anyClass):
             collectionView.register(
-                nib,
+                anyClass,
                 forSupplementaryViewOfKind: kind,
                 withReuseIdentifier: self.reuseIdentifier
             )
-        } else {
+
+        case .nib(let name, let bundle):
+            let nib = UINib(nibName: name, bundle: bundle)
             collectionView.register(
-                self.viewClass,
+                nib,
                 forSupplementaryViewOfKind: kind,
                 withReuseIdentifier: self.reuseIdentifier
             )
@@ -93,24 +94,36 @@ public struct ViewRegistration {
     }
 }
 
-extension ViewRegistration: Equatable, Hashable {
-    private var _viewClassName: String {
-        "\(self.viewClass)"
+extension ViewRegistration {
+    public init(reuseIdentifier: String, cellClass: AnyClass) {
+        self.init(
+            reuseIdentifier: reuseIdentifier,
+            viewType: .cell,
+            method: .viewClass(cellClass)
+        )
     }
 
-    public static func == (left: ViewRegistration, right: ViewRegistration) -> Bool {
-        left._viewClassName == right._viewClassName
-        && left.reuseIdentifier == right.reuseIdentifier
-        && left.nibName == right.nibName
-        && left.nibBundle == right.nibBundle
-        && left.type == right.type
+    public init(reuseIdentifier: String, cellNibName: String) {
+        self.init(
+            reuseIdentifier: reuseIdentifier,
+            viewType: .cell,
+            method: .nib(name: cellNibName, bundle: nil)
+        )
     }
 
-    public func hash(into hasher: inout Hasher) {
-        hasher.combine(self._viewClassName)
-        hasher.combine(self.reuseIdentifier)
-        hasher.combine(self.nibName)
-        hasher.combine(self.nibBundle)
-        hasher.combine(self.type)
+    public init(reuseIdentifier: String, supplementaryViewClass: AnyClass, kind: String) {
+        self.init(
+            reuseIdentifier: reuseIdentifier,
+            viewType: .supplementary(kind: kind),
+            method: .viewClass(supplementaryViewClass)
+        )
+    }
+
+    public init(reuseIdentifier: String, supplementaryViewNibName: String, kind: String) {
+        self.init(
+            reuseIdentifier: reuseIdentifier,
+            viewType: .supplementary(kind: kind),
+            method: .nib(name: supplementaryViewNibName, bundle: nil)
+        )
     }
 }

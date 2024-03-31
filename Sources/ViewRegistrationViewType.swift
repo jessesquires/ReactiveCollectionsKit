@@ -12,8 +12,15 @@
 //
 
 import Foundation
-import UIKit
 
-public protocol ViewRegistrationProvider {
-    var registration: ViewRegistration { get }
+public enum ViewRegistrationViewType: Hashable {
+    case cell
+    case supplementary(kind: String)
+
+    var kind: String? {
+        switch self {
+        case .cell: nil
+        case .supplementary(let kind): kind
+        }
+    }
 }

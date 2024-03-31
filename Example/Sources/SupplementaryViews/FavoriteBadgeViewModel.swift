@@ -23,7 +23,13 @@ struct FavoriteBadgeViewModel: SupplementaryViewModel {
 
     let id: UniqueIdentifier
 
-    var kind: SupplementaryViewKind { Self.kind }
+    var registration: ViewRegistration {
+        ViewRegistration(
+            reuseIdentifier: self.reuseIdentifier,
+            supplementaryViewClass: self.viewClass,
+            kind: Self.kind
+        )
+    }
 
     func configure(view: FavoriteBadgeView) {
         view.isHidden = self.isHidden

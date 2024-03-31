@@ -82,7 +82,7 @@ opt_in_rules:
   - direct_return
   - period_spacing
   - superfluous_else
-  - sorted_enum_cases
+  # - sorted_enum_cases
   - non_overridable_class_declaration
 
   # lint

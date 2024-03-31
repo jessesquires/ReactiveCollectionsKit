@@ -72,15 +72,15 @@ public struct CollectionViewModel: Equatable, Hashable {
         precondition(indexPath.section < self.count)
         let section = self[indexPath.section]
 
-        if kind == section.header?.kind {
+        if kind == section.header?._kind {
             return section.header
         }
 
-        if kind == section.footer?.kind {
+        if kind == section.footer?._kind {
             return section.footer
         }
 
-        let supplementaryViews = section.supplementaryViews.filter { $0.kind == kind }
+        let supplementaryViews = section.supplementaryViews.filter { $0._kind == kind }
         if indexPath.item < supplementaryViews.count {
             return supplementaryViews[indexPath.item]
         }
@@ -136,8 +136,19 @@ extension CollectionViewModel: CustomDebugStringConvertible {
 
             text.append("\t[\(sectionIndex)]: \(section.id)\n")
             text.append("\t isEmpty: \(section.isEmpty)\n")
-            text.append("\t header: \(String(describing: section.header?.id))\n")
-            text.append("\t footer: \(String(describing: section.footer?.id))\n")
+
+            if let header = section.header {
+                text.append("\t header: \(header.id) (\(header._kind))\n")
+            } else {
+                text.append("\t header: nil")
+            }
+
+            if let footer = section.footer {
+                text.append("\t footer: \(footer.id) (\(footer._kind))\n")
+            } else {
+                text.append("\t footer: nil")
+            }
+
             text.append("\t cells: \n")
             for cellIndex in 0..<section.cells.count {
                 let cell = section[cellIndex]
@@ -150,7 +161,7 @@ extension CollectionViewModel: CustomDebugStringConvertible {
             for viewIndex in 0..<section.supplementaryViews.count {
                 let view = section.supplementaryViews[viewIndex]
                 let viewId = String(describing: view.id)
-                let kind = String(describing: view.kind)
+                let kind = String(describing: view._kind)
                 text.append("\t\t[\(viewIndex)]: \(viewId) (\(kind)) \n")
             }
         }

@@ -16,6 +16,8 @@
 		0BFA77472BB8B6DB009B9C5B /* XCTestCase+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 884880DD238CF02F0056F669 /* XCTestCase+Extensions.swift */; };
 		0BFA77482BB8B6DB009B9C5B /* String+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BFA77442BB8B6AC009B9C5B /* String+Extensions.swift */; };
 		0BFA774C2BB8B717009B9C5B /* TestCellModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BFA774A2BB8B714009B9C5B /* TestCellModel.swift */; };
+		0BFA774E2BB92DC8009B9C5B /* ViewRegistrationViewType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BFA774D2BB92DC8009B9C5B /* ViewRegistrationViewType.swift */; };
+		0BFA77502BB92E36009B9C5B /* ViewRegistrationMethod.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BFA774F2BB92E36009B9C5B /* ViewRegistrationMethod.swift */; };
 		88389EF6236DEE0A00DDECA5 /* Asserts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88389EF5236DEE0A00DDECA5 /* Asserts.swift */; };
 		88462766238FA2C8005FB389 /* FakeNib.xib in Resources */ = {isa = PBXBuildFile; fileRef = 88462765238FA2C8005FB389 /* FakeNib.xib */; };
 		884880D7238CE9020056F669 /* UnitTestCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 884880D6238CE9020056F669 /* UnitTestCase.swift */; };
@@ -53,6 +55,8 @@
 		0BC546EE267923BA00E36D30 /* DiffableSnapshot.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiffableSnapshot.swift; sourceTree = "<group>"; };
 		0BFA77442BB8B6AC009B9C5B /* String+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extensions.swift"; sourceTree = "<group>"; };
 		0BFA774A2BB8B714009B9C5B /* TestCellModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestCellModel.swift; sourceTree = "<group>"; };
+		0BFA774D2BB92DC8009B9C5B /* ViewRegistrationViewType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewRegistrationViewType.swift; sourceTree = "<group>"; };
+		0BFA774F2BB92E36009B9C5B /* ViewRegistrationMethod.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewRegistrationMethod.swift; sourceTree = "<group>"; };
 		88389EF5236DEE0A00DDECA5 /* Asserts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Asserts.swift; sourceTree = "<group>"; };
 		88462765238FA2C8005FB389 /* FakeNib.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FakeNib.xib; sourceTree = "<group>"; };
 		884880D6238CE9020056F669 /* UnitTestCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnitTestCase.swift; sourceTree = "<group>"; };
@@ -153,7 +157,9 @@
 				0BC1EC27267FC37200FF774F /* SupplementaryHeaderViewModel.swift */,
 				0B8C6CEB267ED08E0042DFE2 /* SupplementaryViewModel.swift */,
 				0BC1EC2D267FF46E00FF774F /* ViewRegistration.swift */,
+				0BFA774F2BB92E36009B9C5B /* ViewRegistrationMethod.swift */,
 				0BC1EC2B267FE71900FF774F /* ViewRegistrationProvider.swift */,
+				0BFA774D2BB92DC8009B9C5B /* ViewRegistrationViewType.swift */,
 			);
 			path = Sources;
 			sourceTree = "<group>";
@@ -308,6 +314,7 @@
 			files = (
 				88FA49092363A7890061F8B2 /* CollectionViewDriver.swift in Sources */,
 				0BC1EC2A267FC3A000FF774F /* SupplementaryFooterViewModel.swift in Sources */,
+				0BFA77502BB92E36009B9C5B /* ViewRegistrationMethod.swift in Sources */,
 				88FA490C2363A7890061F8B2 /* SectionViewModel.swift in Sources */,
 				88389EF6236DEE0A00DDECA5 /* Asserts.swift in Sources */,
 				0BC546EF267923BA00E36D30 /* DiffableSnapshot.swift in Sources */,
@@ -317,6 +324,7 @@
 				0BC1EC2E267FF46E00FF774F /* ViewRegistration.swift in Sources */,
 				0BC1EC2C267FE71900FF774F /* ViewRegistrationProvider.swift in Sources */,
 				88FA49082363A7890061F8B2 /* CollectionViewModel.swift in Sources */,
+				0BFA774E2BB92DC8009B9C5B /* ViewRegistrationViewType.swift in Sources */,
 				88FA490A2363A7890061F8B2 /* CellViewModel.swift in Sources */,
 				0BC1EC28267FC37200FF774F /* SupplementaryHeaderViewModel.swift in Sources */,
 			);

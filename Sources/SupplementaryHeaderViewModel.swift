@@ -23,7 +23,11 @@ extension SupplementaryHeaderViewModel {
         UICollectionView.elementKindSectionHeader
     }
 
-    public var kind: SupplementaryViewKind {
-        Self.kind
+    public var registration: ViewRegistration {
+        ViewRegistration(
+            reuseIdentifier: self.reuseIdentifier,
+            supplementaryViewClass: self.viewClass,
+            kind: Self.kind
+        )
     }
 }

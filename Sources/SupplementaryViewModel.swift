@@ -20,30 +20,30 @@ public typealias SupplementaryViewKind = String
 public protocol SupplementaryViewModel: DiffableViewModel, ViewRegistrationProvider {
     associatedtype ViewType: UICollectionReusableView
 
-    var kind: SupplementaryViewKind { get }
-
     func configure(view: ViewType)
 }
 
 extension SupplementaryViewModel {
-    var _isHeader: Bool { self.kind == UICollectionView.elementKindSectionHeader }
+    public var viewClass: AnyClass { ViewType.self }
 
-    var _isFooter: Bool { self.kind == UICollectionView.elementKindSectionFooter }
+    public var reuseIdentifier: String { "\(Self.self)" }
+
+    var _kind: SupplementaryViewKind {
+        switch self.registration.viewType {
+        case .cell:
+            preconditionFailure("Expected ViewRegistrationViewType.supplementary. Found cell.")
+
+        case .supplementary(let kind):
+            kind
+        }
+    }
+
+    var _isHeader: Bool { self._kind == UICollectionView.elementKindSectionHeader }
+
+    var _isFooter: Bool { self._kind == UICollectionView.elementKindSectionFooter }
 
     public var anyViewModel: AnySupplementaryViewModel {
         AnySupplementaryViewModel(self)
-    }
-
-    public var viewClass: AnyClass { ViewType.self }
-
-    public var registration: ViewRegistration {
-        ViewRegistration(
-            viewClass: self.viewClass,
-            reuseIdentifier: self.reuseIdentifier,
-            nibName: self.nibName,
-            nibBundle: self.nibBundle,
-            type: .supplementary(kind: self.kind)
-        )
     }
 
     public func dequeueAndConfigureViewFor(collectionView: UICollectionView, at indexPath: IndexPath) -> ViewType {
@@ -66,8 +66,6 @@ public struct AnySupplementaryViewModel: SupplementaryViewModel {
 
     public typealias ViewType = UICollectionReusableView
 
-    public var kind: SupplementaryViewKind { self._kind }
-
     public func configure(view: ViewType) {
         self._configure(view)
     }
@@ -77,7 +75,6 @@ public struct AnySupplementaryViewModel: SupplementaryViewModel {
     private let _viewModel: AnyHashable
     private let _id: UniqueIdentifier
     private let _registration: ViewRegistration
-    private let _kind: SupplementaryViewKind
     private let _configure: (ViewType) -> Void
 
     // MARK: Init
@@ -86,7 +83,6 @@ public struct AnySupplementaryViewModel: SupplementaryViewModel {
         self._viewModel = viewModel
         self._id = viewModel.id
         self._registration = viewModel.registration
-        self._kind = viewModel.kind
         self._configure = { view in
             precondition(view is T.ViewType, "View must be of type \(T.ViewType.self). Found \(view.self)")
             viewModel.configure(view: view as! T.ViewType)

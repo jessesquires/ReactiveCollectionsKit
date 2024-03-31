@@ -38,18 +38,17 @@ extension CellViewModel {
 extension CellViewModel {
     public var cellClass: AnyClass { CellType.self }
 
-    public var anyViewModel: AnyCellViewModel {
-        AnyCellViewModel(self)
-    }
+    public var reuseIdentifier: String { "\(Self.self)" }
 
     public var registration: ViewRegistration {
         ViewRegistration(
-            viewClass: self.cellClass,
             reuseIdentifier: self.reuseIdentifier,
-            nibName: self.nibName,
-            nibBundle: self.nibBundle,
-            type: .cell
+            cellClass: self.cellClass
         )
+    }
+
+    public var anyViewModel: AnyCellViewModel {
+        AnyCellViewModel(self)
     }
 
     public func dequeueAndConfigureCellFor(collectionView: UICollectionView, at indexPath: IndexPath) -> CellType {

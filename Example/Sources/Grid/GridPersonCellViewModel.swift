@@ -21,9 +21,14 @@ struct GridPersonCellViewModel: CellViewModel {
 
     var id: UniqueIdentifier { self.person.id }
 
-    let contextMenuConfiguration: UIContextMenuConfiguration?
+    var registration: ViewRegistration {
+        ViewRegistration(
+            reuseIdentifier: self.reuseIdentifier,
+            cellNibName: "GridPersonCell"
+        )
+    }
 
-    var nibName: String? { "GridPersonCell" }
+    let contextMenuConfiguration: UIContextMenuConfiguration?
 
     func configure(cell: GridPersonCell) {
         cell.titleLabel.text = self.person.name
