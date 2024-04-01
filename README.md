@@ -1,6 +1,8 @@
 # ReactiveCollectionsKit [![CI](https://github.com/jessesquires/ReactiveCollectionsKit/actions/workflows/ci.yml/badge.svg)](https://github.com/jessesquires/ReactiveCollectionsKit/actions/workflows/ci.yml)
 
-*TODO: description*
+### ⚠️ Work-In-Progress ⚠️
+
+*Declarative, reactive*
 
 ## About
 
@@ -8,7 +10,50 @@
 
 ## Usage
 
-> TODO: example usage
+Here's an example of buliding a simple, static list from an array of data models.
+
+```swift
+final class MyViewController: UICollectionViewController {
+
+    var driver: CollectionViewDriver!
+
+    override func viewDidLoad() {
+        super.viewDidLoad()
+
+        let models = [/* array of some data models */]
+
+        // create cell view models from the data models
+        let cellViewModels = models.map {
+            MyCellViewModel($0)
+        }
+
+        // create your sections, and add cells
+        let section = SectionViewModel(id: "my_section", cells: cellViewModels)
+
+        // create the collection with all the sections
+        let collectionViewModel = CollectionViewModel(sections: [section])
+
+        // create your collection view layout
+        let layout = UICollectionViewCompositionalLayout.list(
+            using: .init(appearance: .insetGrouped)
+        )
+
+        // initialize the driver will all of the above
+        self.driver = CollectionViewDriver(
+            view: self.collectionView,
+            layout: layout,
+            viewModel: collectionViewModel,
+            controller: self
+        )
+
+        // the collection is updated and animated automatically
+
+        // later, you can update the model like so:
+        let updatedCollectionViewModel = CollectionViewModel(sections: [/* updated items and sections */])
+        self.driver.viewModel = updatedCollectionViewModel
+    }
+}
+```
 
 ## Requirements
 
