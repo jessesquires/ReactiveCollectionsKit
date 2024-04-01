@@ -14,6 +14,7 @@
 import Foundation
 import UIKit
 
+/// Represents a collection view with sections and items.
 public struct CollectionViewModel: Hashable {
     // MARK: Properties
 

@@ -17,7 +17,7 @@
     <a title="CollectionViewModel Structure Reference"></a>
     <header>
       <div class="content-wrapper">
-        <p><a href="../index.html">ReactiveCollectionsKit Docs</a> (20% documented)</p>
+        <p><a href="../index.html">ReactiveCollectionsKit Docs</a> (33% documented)</p>
         <p class="header-right"><a href="https://github.com/jessesquires/ReactiveCollectionsKit"><img src="../img/gh.png" alt="GitHub"/>View on GitHub</a></p>
         <div class="header-right">
           <form role="search" action="../search.json">
@@ -48,7 +48,10 @@
             <a href="../Enums.html">Enumerations</a>
             <ul class="nav-group-tasks">
               <li class="nav-group-task">
-                <a href="../Enums/ViewRegistrationType.html">ViewRegistrationType</a>
+                <a href="../Enums/ViewRegistrationMethod.html">ViewRegistrationMethod</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/ViewRegistrationViewType.html">ViewRegistrationViewType</a>
               </li>
             </ul>
           </li>
@@ -115,13 +118,13 @@
               <div class="declaration">
                 <div class="language">
                   
-                  <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">struct</span> <span class="kt">CollectionViewModel</span> <span class="p">:</span> <span class="kt">Equatable</span><span class="p">,</span> <span class="kt">Hashable</span></code></pre>
+                  <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">struct</span> <span class="kt">CollectionViewModel</span> <span class="p">:</span> <span class="kt">Hashable</span></code></pre>
 <pre class="highlight swift"><code><span class="kd">extension</span> <span class="kt">CollectionViewModel</span><span class="p">:</span> <span class="kt">Collection</span><span class="p">,</span> <span class="kt">RandomAccessCollection</span></code></pre>
 <pre class="highlight swift"><code><span class="kd">extension</span> <span class="kt">CollectionViewModel</span><span class="p">:</span> <span class="kt">CustomDebugStringConvertible</span></code></pre>
 
                 </div>
               </div>
-            <p>Undocumented</p>
+            <p>Represents a collection view with sections and items.</p>
 
           </section>
           <section class="section task-group-section">
@@ -288,11 +291,11 @@
             </div>
             <div class="task-group">
               <div class="task-name-container">
-                <a name="/Accessing%20Cells%20and%20Supplementary%20Views"></a>
-                <a name="//apple_ref/swift/Section/Accessing Cells and Supplementary Views" class="dashAnchor"></a>
+                <a name="/Accessing%20Sections"></a>
+                <a name="//apple_ref/swift/Section/Accessing Sections" class="dashAnchor"></a>
                 <div class="section-name-container">
-                  <a class="section-name-link" href="#/Accessing%20Cells%20and%20Supplementary%20Views"></a>
-                  <h3 class="section-name"><span>Accessing Cells and Supplementary Views</span>
+                  <a class="section-name-link" href="#/Accessing%20Sections"></a>
+                  <h3 class="section-name"><span>Accessing Sections</span>
 </h3>
                 </div>
               </div>
@@ -300,9 +303,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:22ReactiveCollectionsKit19CollectionViewModelV4cell2atAA07AnyCelleF0V10Foundation9IndexPathV_tF"></a>
-                    <a name="//apple_ref/swift/Method/cell(at:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:22ReactiveCollectionsKit19CollectionViewModelV4cell2atAA07AnyCelleF0V10Foundation9IndexPathV_tF">cell(at:<wbr>)</a>
+                    <a name="/s:22ReactiveCollectionsKit19CollectionViewModelV07sectioneF03forAA07SectioneF0VSgs11AnyHashableV_tF"></a>
+                    <a name="//apple_ref/swift/Method/sectionViewModel(for:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:22ReactiveCollectionsKit19CollectionViewModelV07sectioneF03forAA07SectioneF0VSgs11AnyHashableV_tF">sectionViewModel(for:<wbr>)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -317,7 +320,47 @@
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">cell</span><span class="p">(</span><span class="n">at</span> <span class="nv">indexPath</span><span class="p">:</span> <span class="kt">IndexPath</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Structs/AnyCellViewModel.html">AnyCellViewModel</a></span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">sectionViewModel</span><span class="p">(</span><span class="k">for</span> <span class="nv">id</span><span class="p">:</span> <span class="kt"><a href="../Typealiases.html#/s:22ReactiveCollectionsKit16UniqueIdentifiera">UniqueIdentifier</a></span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Structs/SectionViewModel.html">SectionViewModel</a></span><span class="p">?</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <div class="task-name-container">
+                <a name="/Accessing%20Cells"></a>
+                <a name="//apple_ref/swift/Section/Accessing Cells" class="dashAnchor"></a>
+                <div class="section-name-container">
+                  <a class="section-name-link" href="#/Accessing%20Cells"></a>
+                  <h3 class="section-name"><span>Accessing Cells</span>
+</h3>
+                </div>
+              </div>
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:22ReactiveCollectionsKit19CollectionViewModelV04celleF03forAA07AnyCelleF0VSgs0I8HashableV_tF"></a>
+                    <a name="//apple_ref/swift/Method/cellViewModel(for:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:22ReactiveCollectionsKit19CollectionViewModelV04celleF03forAA07AnyCelleF0VSgs0I8HashableV_tF">cellViewModel(for:<wbr>)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">cellViewModel</span><span class="p">(</span><span class="k">for</span> <span class="nv">id</span><span class="p">:</span> <span class="kt"><a href="../Typealiases.html#/s:22ReactiveCollectionsKit16UniqueIdentifiera">UniqueIdentifier</a></span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Structs/AnyCellViewModel.html">AnyCellViewModel</a></span><span class="p">?</span></code></pre>
 
                         </div>
                       </div>
@@ -327,9 +370,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:22ReactiveCollectionsKit19CollectionViewModelV013supplementaryE06ofKind2atAA016AnySupplementaryeF0VSgSS_10Foundation9IndexPathVtF"></a>
-                    <a name="//apple_ref/swift/Method/supplementaryView(ofKind:at:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:22ReactiveCollectionsKit19CollectionViewModelV013supplementaryE06ofKind2atAA016AnySupplementaryeF0VSgSS_10Foundation9IndexPathVtF">supplementaryView(ofKind:<wbr>at:<wbr>)</a>
+                    <a name="/s:22ReactiveCollectionsKit19CollectionViewModelV04celleF02atAA07AnyCelleF0V10Foundation9IndexPathV_tF"></a>
+                    <a name="//apple_ref/swift/Method/cellViewModel(at:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:22ReactiveCollectionsKit19CollectionViewModelV04celleF02atAA07AnyCelleF0V10Foundation9IndexPathV_tF">cellViewModel(at:<wbr>)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -344,7 +387,47 @@
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">supplementaryView</span><span class="p">(</span><span class="n">ofKind</span> <span class="nv">kind</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span> <span class="n">at</span> <span class="nv">indexPath</span><span class="p">:</span> <span class="kt">IndexPath</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Structs/AnySupplementaryViewModel.html">AnySupplementaryViewModel</a></span><span class="p">?</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">cellViewModel</span><span class="p">(</span><span class="n">at</span> <span class="nv">indexPath</span><span class="p">:</span> <span class="kt">IndexPath</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Structs/AnyCellViewModel.html">AnyCellViewModel</a></span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <div class="task-name-container">
+                <a name="/Accessing%20Supplementary%20Views"></a>
+                <a name="//apple_ref/swift/Section/Accessing Supplementary Views" class="dashAnchor"></a>
+                <div class="section-name-container">
+                  <a class="section-name-link" href="#/Accessing%20Supplementary%20Views"></a>
+                  <h3 class="section-name"><span>Accessing Supplementary Views</span>
+</h3>
+                </div>
+              </div>
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:22ReactiveCollectionsKit19CollectionViewModelV013supplementaryeF06ofKind2atAA016AnySupplementaryeF0VSgSS_10Foundation9IndexPathVtF"></a>
+                    <a name="//apple_ref/swift/Method/supplementaryViewModel(ofKind:at:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:22ReactiveCollectionsKit19CollectionViewModelV013supplementaryeF06ofKind2atAA016AnySupplementaryeF0VSgSS_10Foundation9IndexPathVtF">supplementaryViewModel(ofKind:<wbr>at:<wbr>)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">supplementaryViewModel</span><span class="p">(</span><span class="n">ofKind</span> <span class="nv">kind</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span> <span class="n">at</span> <span class="nv">indexPath</span><span class="p">:</span> <span class="kt">IndexPath</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Structs/AnySupplementaryViewModel.html">AnySupplementaryViewModel</a></span><span class="p">?</span></code></pre>
 
                         </div>
                       </div>
@@ -356,7 +439,7 @@
           </section>
         </section>
         <section id="footer">
-          <p>&copy; 2024 <a class="link" href="https://jessesquires.com" target="_blank" rel="external noopener">Jesse Squires</a>. All rights reserved. (Last updated: 2024-03-29)</p>
+          <p>&copy; 2024 <a class="link" href="https://jessesquires.com" target="_blank" rel="external noopener">Jesse Squires</a>. All rights reserved. (Last updated: 2024-03-31)</p>
           <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external noopener">jazzy ♪♫ v0.14.4</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external noopener">Realm</a> project.</p>
         </section>
       </article>

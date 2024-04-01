@@ -16,6 +16,7 @@ import UIKit
 
 /// Defines a view model that describes and configures a cell in the collection view.
 public protocol CellViewModel: DiffableViewModel, ViewRegistrationProvider {
+    /// The type of cell that this view model represents and configures.
     associatedtype CellType: UICollectionViewCell
 
     var shouldHighlight: Bool { get }
@@ -36,17 +37,23 @@ extension CellViewModel {
 }
 
 extension CellViewModel {
+    /// The cell class for this view model.
     public var cellClass: AnyClass { CellType.self }
 
+    /// A default reuse identifier for cell registration.
+    /// Value defaults to the name of the class implementing the `CellViewModel` protocol.
     public var reuseIdentifier: String { "\(Self.self)" }
-
+    
+    /// A default registration for this view model for class-based cells.
+    /// - Warning: Does not work for nib-based cells.
     public var registration: ViewRegistration {
         ViewRegistration(
             reuseIdentifier: self.reuseIdentifier,
             cellClass: self.cellClass
         )
     }
-
+    
+    /// Returns a type-erased version of this view model.
     public var anyViewModel: AnyCellViewModel {
         AnyCellViewModel(self)
     }

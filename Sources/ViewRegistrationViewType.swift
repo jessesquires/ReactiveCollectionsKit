@@ -13,8 +13,12 @@
 
 import Foundation
 
+/// Describes the type of view to be registered for reuse.
 public enum ViewRegistrationViewType: Hashable {
+    /// Describes a cell.
     case cell
+
+    /// Describes a supplementary view.
     case supplementary(kind: String)
 
     var kind: String? {

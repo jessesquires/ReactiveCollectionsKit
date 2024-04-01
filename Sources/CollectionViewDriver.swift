@@ -15,6 +15,9 @@ import Combine
 import Foundation
 import UIKit
 
+/// Represents the main entry-point to the underlying `UICollectionView`.
+/// A `CollectionViewDriver` is responsible for "driving" the collection view.
+/// It handles all layout, data source, delegate, and diffing operations.
 public final class CollectionViewDriver: NSObject {
     public typealias DidUpdate = () -> Void
 

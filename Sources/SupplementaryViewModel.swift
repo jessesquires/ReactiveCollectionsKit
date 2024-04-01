@@ -16,7 +16,7 @@ import UIKit
 
 public typealias SupplementaryViewKind = String
 
-/// Defines a view model that describes and configures a supplementary view in the collection view.
+/// Defines a view model that describes and configures a supplementary view in a collection.
 public protocol SupplementaryViewModel: DiffableViewModel, ViewRegistrationProvider {
     associatedtype ViewType: UICollectionReusableView
 

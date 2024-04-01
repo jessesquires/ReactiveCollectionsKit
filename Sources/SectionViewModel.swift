@@ -13,6 +13,7 @@
 
 import Foundation
 
+/// Represents a section of items in a collection or list.
 public struct SectionViewModel: DiffableViewModel {
 
     public let id: UniqueIdentifier

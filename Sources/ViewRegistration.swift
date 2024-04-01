@@ -14,6 +14,7 @@
 import Foundation
 import UIKit
 
+/// Describes all information needed to register a view for reuse with a `UICollectionView`.
 public struct ViewRegistration: Hashable {
     public let reuseIdentifier: String
 
