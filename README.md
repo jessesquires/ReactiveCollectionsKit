@@ -2,11 +2,25 @@
 
 ### ⚠️ Work-In-Progress ⚠️
 
-*Declarative, reactive*
+*Data-driven, declarative, reactive, diffable collections (and lists!) for iOS. A thoughtful and flexible wrapper for UICollectionView done right.*
 
 ## About
 
-> TODO: explain about
+This library is the culmination of everything I learned from building and maintaining [IGListKit](https://github.com/instagram/iglistkit), [ReactiveLists](https://github.com/plangrid/reactivelists), and [JSQDataSourcesKit](https://github.com/jessesquires/JSQDataSourcesKit). The 4th time's a charm! 🍀
+
+Improvements over the libraries above include:
+
+- All Swift and zero third-party dependencies
+- Generic view models to represent and configure cells
+- Mix multiple data types
+- Automatic registration for cells and supplementary views
+- Automatic diffing for items and sections
+- Simply `UICollectionView` and `UICollectionViewCompositionalLayout` at its core.
+- No `UITableView`. `UICollectionView` now has a [List Layout](https://developer.apple.com/documentation/uikit/uicollectionviewcompositionallayout/3600951-list).
+
+## Main Features
+
+### ⚠️ Work-In-Progress ⚠️
 
 ## Usage
 
