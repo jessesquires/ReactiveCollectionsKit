@@ -4,6 +4,13 @@
 
 *Data-driven, declarative, reactive, diffable collections (and lists!) for iOS. A thoughtful and flexible wrapper for UICollectionView done right.*
 
+## Project Status
+
+⚠️ This is still a **Work-In-Progress**, but it is close to finished. I started this a few years back, then got busy with other things. 
+I am now returning to the project to get the initial release complete. Hopefully. 🤞
+
+In any case, what's here now is worth sharing.
+
 ## About
 
 This library is the culmination of everything I learned from building and maintaining [IGListKit](https://github.com/instagram/iglistkit), [ReactiveLists](https://github.com/plangrid/reactivelists), and [JSQDataSourcesKit](https://github.com/jessesquires/JSQDataSourcesKit). The 4th time's a charm! 🍀
@@ -20,9 +27,15 @@ Improvements over the libraries above include:
 
 ## Main Features
 
-### ⚠️ Work-In-Progress ⚠️
+> TODO
+> 
+> ⚠️ Work-In-Progress ⚠️
 
 ## Usage
+
+> [!TIP]
+> 
+> Check out the extensive example project included in this repo.
 
 Here's an example of buliding a simple, static list from an array of data models.
 
