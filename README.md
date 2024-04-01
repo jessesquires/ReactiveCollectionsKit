@@ -1,10 +1,8 @@
 # ReactiveCollectionsKit [![CI](https://github.com/jessesquires/ReactiveCollectionsKit/actions/workflows/ci.yml/badge.svg)](https://github.com/jessesquires/ReactiveCollectionsKit/actions/workflows/ci.yml)
 
-### ⚠️ Work-In-Progress ⚠️
-
 *Data-driven, declarative, reactive, diffable collections (and lists!) for iOS. A thoughtful and flexible wrapper for UICollectionView done right.*
 
-## Project Status
+## Project Status: WIP ⚠️
 
 ⚠️ This is still a **Work-In-Progress**, but it is close to finished. I started this a few years back, then got busy with other things. 
 I am now returning to the project to get the initial release complete. Hopefully. 🤞
