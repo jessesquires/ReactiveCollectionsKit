@@ -42,7 +42,7 @@ public struct CollectionViewModel: Hashable {
     // MARK: Init
 
     public init(sections: [SectionViewModel]) {
-        self.sections = sections
+        self.sections = sections.filter { !$0.isEmpty }
     }
 
     // MARK: Accessing Sections

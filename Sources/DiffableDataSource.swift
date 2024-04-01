@@ -71,7 +71,10 @@ extension DiffableDataSource {
             // Apply final snapshot with item reconfigure updates
             self.applySnapshot(destinationSnapshot, animated: animated) {
 
-                // Once complete, find and apply section updates, if needed
+                // Once complete, find and apply section updates, if needed.
+                // This is necessary to update SUPPLEMENTARY VIEWS ONLY.
+                // Supplementary views do not get reloaded / reconfigured when they change.
+                // To trigger updates on supplementary views, the section must be reloaded.
                 let allSourceSections = source.allSectionsByIdentifier
                 let allDestinationSections = destination.allSectionsByIdentifier
                 var sectionsToReload = Set<UniqueIdentifier>()
@@ -92,17 +95,6 @@ extension DiffableDataSource {
                     return
                 }
 
-                // Delete empty sections
-                var sectionsToDelete = Set<UniqueIdentifier>()
-                sectionsToReload.forEach {
-                    if destinationSnapshot.numberOfItems(inSection: $0) == 0 {
-                        sectionsToDelete.insert($0)
-                    }
-                }
-                sectionsToReload.subtract(sectionsToDelete)
-
-                // Delete or reload sections and apply snapshot
-                destinationSnapshot.deleteSections(sectionsToDelete.toArray)
                 destinationSnapshot.reloadSections(sectionsToReload.toArray)
 
                 // Apply final section updates
