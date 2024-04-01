@@ -138,6 +138,9 @@ I am now returning to the project to get the initial release complete. Hopefully
 <li>Simply <code>UICollectionView</code> and <code>UICollectionViewCompositionalLayout</code> at its core.</li>
 <li>No <code>UITableView</code>. <code>UICollectionView</code> now has a <a href="https://developer.apple.com/documentation/uikit/uicollectionviewcompositionallayout/3600951-list">List Layout</a>.</li>
 </ul>
+<h3 id='what-about-swiftui' class='heading'>What about SwiftUI?</h3>
+
+<p>SwiftUI performance is still a significant issue, not to mention all the bugs and missing APIs. SwiftUI still does not provide a proper <code>UICollectionView</code> replacement. (Yes, <code>Grid</code> exists but it is nowhere close to a replacement for <code>UICollectionView</code> and <code>UICollectionViewLayout</code>.) While SwiftUI&rsquo;s <code>List</code> is pretty good, both <code>LazyVStack</code> and <code>LazyHStack</code> suffer from severe performance issues when you have large amounts of data.</p>
 <h2 id='main-features' class='heading'>Main Features</h2>
 
 <blockquote>
