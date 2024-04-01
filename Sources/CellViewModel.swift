@@ -43,7 +43,7 @@ extension CellViewModel {
     /// A default reuse identifier for cell registration.
     /// Value defaults to the name of the class implementing the `CellViewModel` protocol.
     public var reuseIdentifier: String { "\(Self.self)" }
-    
+
     /// A default registration for this view model for class-based cells.
     /// - Warning: Does not work for nib-based cells.
     public var registration: ViewRegistration {
@@ -52,7 +52,7 @@ extension CellViewModel {
             cellClass: self.cellClass
         )
     }
-    
+
     /// Returns a type-erased version of this view model.
     public var anyViewModel: AnyCellViewModel {
         AnyCellViewModel(self)

@@ -41,6 +41,8 @@ extension DiffableDataSource {
         to destination: CollectionViewModel,
         animated: Bool,
         completion: SnapshotCompletion?) {
+            // Build initial destination snapshot, then make adjustments (below)
+            var destinationSnapshot = DiffableSnapshot(viewModel: destination)
 
             // Apply item updates, then section updates.
             // Reloading a section is required to properly reload headers, footers, and other supplementary views.
@@ -64,10 +66,9 @@ extension DiffableDataSource {
                 }
             }
 
-            var destinationSnapshot = DiffableSnapshot(viewModel: destination)
             destinationSnapshot.reconfigureItems(itemsToReload)
 
-            // Apply item updates
+            // Apply final snapshot with item reconfigure updates
             self.applySnapshot(destinationSnapshot, animated: animated) {
 
                 // Once complete, find and apply section updates, if needed
@@ -76,8 +77,8 @@ extension DiffableDataSource {
                 var sectionsToReload = Set<UniqueIdentifier>()
 
                 for (eachId, eachDestSection) in allDestinationSections {
-                    // if this section exist in the source, and it has changed its SUPPLEMENTARY VIEWS ONLY
-                    // only reload the section if supplementary views have changed
+                    // If this section exist in the source, and it has changed its SUPPLEMENTARY VIEWS ONLY
+                    // then only reload the section if supplementary views have changed
                     // cell changes are handled above
                     if let sourceSection = allSourceSections[eachId],
                        !eachDestSection.supplementaryViewsEqualTo(sourceSection) {
@@ -85,13 +86,13 @@ extension DiffableDataSource {
                     }
                 }
 
-                // if no section changes, ignore and call completion
+                // If no section changes, ignore and call completion
                 guard !sectionsToReload.isEmpty else {
                     completion?()
                     return
                 }
 
-                // delete empty sections
+                // Delete empty sections
                 var sectionsToDelete = Set<UniqueIdentifier>()
                 sectionsToReload.forEach {
                     if destinationSnapshot.numberOfItems(inSection: $0) == 0 {
@@ -100,10 +101,11 @@ extension DiffableDataSource {
                 }
                 sectionsToReload.subtract(sectionsToDelete)
 
-                // delete or reload sections and apply snapshot
+                // Delete or reload sections and apply snapshot
                 destinationSnapshot.deleteSections(sectionsToDelete.toArray)
                 destinationSnapshot.reloadSections(sectionsToReload.toArray)
 
+                // Apply final section updates
                 self.applySnapshot(destinationSnapshot, animated: animated, completion: completion)
             }
     }
