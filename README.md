@@ -23,6 +23,10 @@ Improvements over the libraries above include:
 - Simply `UICollectionView` and `UICollectionViewCompositionalLayout` at its core.
 - No `UITableView`. `UICollectionView` now has a [List Layout](https://developer.apple.com/documentation/uikit/uicollectionviewcompositionallayout/3600951-list).
 
+### What about SwiftUI?
+
+SwiftUI performance is still a significant issue, not to mention all the bugs and missing APIs. SwiftUI still does not provide a proper `UICollectionView` replacement. (Yes, `Grid` exists but it is nowhere close to a replacement for `UICollectionView` and `UICollectionViewLayout`.) While SwiftUI's `List` is pretty good, both `LazyVStack` and `LazyHStack` suffer from severe performance issues when you have large amounts of data.
+
 ## Main Features
 
 > TODO
