@@ -95,11 +95,11 @@
 		0B9FD6F326DD717D0015EECC /* ExampleCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExampleCollectionViewController.swift; sourceTree = "<group>"; };
 		0BC1EC21267FBE0E00FF774F /* FavoriteBadgeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteBadgeView.swift; sourceTree = "<group>"; };
 		0BC546F326792EAA00E36D30 /* GridPersonCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GridPersonCellViewModel.swift; sourceTree = "<group>"; };
+		0BCEFCC52BBB272A002ADE0B /* ExampleApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ExampleApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		0BCEFCC62BBB272A002ADE0B /* ExampleAppTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ExampleAppTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		0BCEFCC72BBB272A002ADE0B /* ExampleAppUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ExampleAppUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		0BD8E0042678073A004CFF13 /* ListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListViewController.swift; sourceTree = "<group>"; };
 		0BE2289626EF209500CDE1A6 /* FavoriteBadgeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteBadgeViewModel.swift; sourceTree = "<group>"; };
-		0BF77E982BBA4776000DEFC4 /* ExampleApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; name = ExampleApp.app; path = "/Users/jsq/Developer/GitHub/ReactiveCollectionsKit/Example/build/Debug-iphoneos/ExampleApp.app"; sourceTree = "<absolute>"; };
-		0BF77E992BBA4776000DEFC4 /* ExampleAppTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; name = ExampleAppTests.xctest; path = "/Users/jsq/Developer/GitHub/ReactiveCollectionsKit/Example/build/Debug-iphoneos/ExampleApp.app/PlugIns/ExampleAppTests.xctest"; sourceTree = "<absolute>"; };
-		0BF77E9A2BBA4776000DEFC4 /* ExampleAppUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; name = ExampleAppUITests.xctest; path = "/Users/jsq/Developer/GitHub/ReactiveCollectionsKit/Example/build/Debug-iphoneos/ExampleAppUITests-Runner.app/PlugIns/ExampleAppUITests.xctest"; sourceTree = "<absolute>"; };
 		0BF77E9E2BBA4B42000DEFC4 /* SimpleStaticViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimpleStaticViewController.swift; sourceTree = "<group>"; };
 		8807212E236258C000E34B61 /* GridPersonCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GridPersonCell.swift; sourceTree = "<group>"; };
 		8807212F236258C000E34B61 /* GridPersonCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GridPersonCell.xib; sourceTree = "<group>"; };
@@ -182,6 +182,9 @@
 				8829EA742361F4EB00604A43 /* Sources */,
 				8829EA8D2361F4ED00604A43 /* Tests */,
 				8829EA982361F4ED00604A43 /* UITests */,
+				0BCEFCC52BBB272A002ADE0B /* ExampleApp.app */,
+				0BCEFCC62BBB272A002ADE0B /* ExampleAppTests.xctest */,
+				0BCEFCC72BBB272A002ADE0B /* ExampleAppUITests.xctest */,
 				88FA49142363A8130061F8B2 /* ReactiveCollectionsKit.xcodeproj */,
 			);
 			sourceTree = "<group>";
@@ -282,7 +285,7 @@
 			);
 			name = ExampleApp;
 			productName = Example;
-			productReference = 0BF77E982BBA4776000DEFC4 /* ExampleApp.app */;
+			productReference = 0BCEFCC52BBB272A002ADE0B /* ExampleApp.app */;
 			productType = "com.apple.product-type.application";
 		};
 		8829EA892361F4ED00604A43 /* ExampleAppTests */ = {
@@ -300,7 +303,7 @@
 			);
 			name = ExampleAppTests;
 			productName = ExampleTests;
-			productReference = 0BF77E992BBA4776000DEFC4 /* ExampleAppTests.xctest */;
+			productReference = 0BCEFCC62BBB272A002ADE0B /* ExampleAppTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 		8829EA942361F4ED00604A43 /* ExampleAppUITests */ = {
@@ -318,7 +321,7 @@
 			);
 			name = ExampleAppUITests;
 			productName = ExampleUITests;
-			productReference = 0BF77E9A2BBA4776000DEFC4 /* ExampleAppUITests.xctest */;
+			productReference = 0BCEFCC72BBB272A002ADE0B /* ExampleAppUITests.xctest */;
 			productType = "com.apple.product-type.bundle.ui-testing";
 		};
 /* End PBXNativeTarget section */
