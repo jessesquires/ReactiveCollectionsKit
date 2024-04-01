@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="19115.2" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="49e-Tb-3d3">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="32700.99.1234" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="49e-Tb-3d3">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19107.4"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22684"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -20,6 +20,7 @@
                     <connections>
                         <segue destination="kxI-T8-Dzz" kind="relationship" relationship="viewControllers" id="BnS-Yu-CIr"/>
                         <segue destination="eh4-PM-1gn" kind="relationship" relationship="viewControllers" id="dNp-ck-T0f"/>
+                        <segue destination="Fkn-kz-prk" kind="relationship" relationship="viewControllers" id="BtT-SB-Uhh"/>
                         <segue destination="9cP-oi-TGT" kind="relationship" relationship="viewControllers" id="wSB-tz-VFc"/>
                     </connections>
                 </tabBarController>
@@ -33,7 +34,7 @@
                 <navigationController id="eh4-PM-1gn" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="List" image="list.dash" catalog="system" id="QgN-3p-0wC"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="BzO-J5-kCC">
-                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                        <rect key="frame" x="0.0" y="48" width="414" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <connections>
@@ -44,13 +45,13 @@
             </objects>
             <point key="canvasLocation" x="893" y="357"/>
         </scene>
-        <!--Settings-->
+        <!--Demo Settings-->
         <scene sceneID="zS9-9B-nVL">
             <objects>
                 <navigationController id="9cP-oi-TGT" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Settings" image="gear" catalog="system" id="ep9-kr-S58"/>
+                    <tabBarItem key="tabBarItem" title="Demo Settings" image="gear" catalog="system" id="ep9-kr-S58"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="J73-ha-NFx">
-                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                        <rect key="frame" x="0.0" y="48" width="414" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <connections>
@@ -59,7 +60,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="rn6-rx-iEM" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="893" y="1016"/>
+            <point key="canvasLocation" x="893" y="1751"/>
         </scene>
         <!--Grid-->
         <scene sceneID="gFJ-kP-KOY">
@@ -67,7 +68,7 @@
                 <navigationController id="kxI-T8-Dzz" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Grid" image="square.grid.2x2.fill" catalog="system" id="aEl-2f-X1S"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="iWe-45-zku">
-                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                        <rect key="frame" x="0.0" y="48" width="414" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <connections>
@@ -154,11 +155,50 @@
                 </collectionViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iGf-wk-h7s" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1628" y="1016"/>
+            <point key="canvasLocation" x="1628" y="1751"/>
+        </scene>
+        <!--Simple Static-->
+        <scene sceneID="U6J-9k-ofd">
+            <objects>
+                <navigationController id="Fkn-kz-prk" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Simple Static" image="list.bullet.rectangle.portrait.fill" catalog="system" id="YRr-qt-Bpz"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="u0P-ap-M1h">
+                        <rect key="frame" x="0.0" y="48" width="414" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="h4U-ej-PMG" kind="relationship" relationship="rootViewController" id="VTj-3U-OVH"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="c5C-X1-qjK" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="893" y="1037"/>
+        </scene>
+        <!--Simple Static-->
+        <scene sceneID="dYv-Gx-ALf">
+            <objects>
+                <collectionViewController title="Simple Static" id="h4U-ej-PMG" customClass="SimpleStaticViewController" customModule="ExampleApp" customModuleProvider="target" sceneMemberID="viewController">
+                    <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="WSC-lL-oXJ">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <collectionViewLayout key="collectionViewLayout" id="ZhT-t2-TNW"/>
+                        <cells/>
+                        <connections>
+                            <outlet property="dataSource" destination="h4U-ej-PMG" id="wQ4-bG-e9z"/>
+                            <outlet property="delegate" destination="h4U-ej-PMG" id="icu-fO-Lzz"/>
+                        </connections>
+                    </collectionView>
+                    <navigationItem key="navigationItem" title="Simple Static" id="w1d-nU-SBJ"/>
+                </collectionViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="SvX-UA-nfP" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1628" y="1037"/>
         </scene>
     </scenes>
     <resources>
-        <image name="gear" catalog="system" width="128" height="119"/>
+        <image name="gear" catalog="system" width="128" height="122"/>
+        <image name="list.bullet.rectangle.portrait.fill" catalog="system" width="115" height="128"/>
         <image name="list.dash" catalog="system" width="128" height="85"/>
         <image name="square.grid.2x2.fill" catalog="system" width="128" height="114"/>
         <systemColor name="systemBackgroundColor">

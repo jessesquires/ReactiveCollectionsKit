@@ -18,6 +18,7 @@
 		0BC546F426792EAA00E36D30 /* GridPersonCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BC546F326792EAA00E36D30 /* GridPersonCellViewModel.swift */; };
 		0BD8E0052678073A004CFF13 /* ListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BD8E0042678073A004CFF13 /* ListViewController.swift */; };
 		0BE2289726EF209500CDE1A6 /* FavoriteBadgeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BE2289626EF209500CDE1A6 /* FavoriteBadgeViewModel.swift */; };
+		0BF77E9F2BBA4B42000DEFC4 /* SimpleStaticViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BF77E9E2BBA4B42000DEFC4 /* SimpleStaticViewController.swift */; };
 		88072130236258C000E34B61 /* GridPersonCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8807212E236258C000E34B61 /* GridPersonCell.swift */; };
 		88072131236258C000E34B61 /* GridPersonCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8807212F236258C000E34B61 /* GridPersonCell.xib */; };
 		8829EA762361F4EB00604A43 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8829EA752361F4EB00604A43 /* AppDelegate.swift */; };
@@ -96,9 +97,10 @@
 		0BC546F326792EAA00E36D30 /* GridPersonCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GridPersonCellViewModel.swift; sourceTree = "<group>"; };
 		0BD8E0042678073A004CFF13 /* ListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListViewController.swift; sourceTree = "<group>"; };
 		0BE2289626EF209500CDE1A6 /* FavoriteBadgeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteBadgeViewModel.swift; sourceTree = "<group>"; };
-		0BFA773C2BB8A325009B9C5B /* ExampleApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; name = ExampleApp.app; path = "/Users/jsq/Developer/GitHub/ReactiveCollectionsKit/Example/build/Debug-iphoneos/ExampleApp.app"; sourceTree = "<absolute>"; };
-		0BFA773D2BB8A325009B9C5B /* ExampleAppTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; name = ExampleAppTests.xctest; path = "/Users/jsq/Developer/GitHub/ReactiveCollectionsKit/Example/build/Debug-iphoneos/ExampleApp.app/PlugIns/ExampleAppTests.xctest"; sourceTree = "<absolute>"; };
-		0BFA773E2BB8A325009B9C5B /* ExampleAppUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; name = ExampleAppUITests.xctest; path = "/Users/jsq/Developer/GitHub/ReactiveCollectionsKit/Example/build/Debug-iphoneos/ExampleAppUITests-Runner.app/PlugIns/ExampleAppUITests.xctest"; sourceTree = "<absolute>"; };
+		0BF77E982BBA4776000DEFC4 /* ExampleApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; name = ExampleApp.app; path = "/Users/jsq/Developer/GitHub/ReactiveCollectionsKit/Example/build/Debug-iphoneos/ExampleApp.app"; sourceTree = "<absolute>"; };
+		0BF77E992BBA4776000DEFC4 /* ExampleAppTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; name = ExampleAppTests.xctest; path = "/Users/jsq/Developer/GitHub/ReactiveCollectionsKit/Example/build/Debug-iphoneos/ExampleApp.app/PlugIns/ExampleAppTests.xctest"; sourceTree = "<absolute>"; };
+		0BF77E9A2BBA4776000DEFC4 /* ExampleAppUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; name = ExampleAppUITests.xctest; path = "/Users/jsq/Developer/GitHub/ReactiveCollectionsKit/Example/build/Debug-iphoneos/ExampleAppUITests-Runner.app/PlugIns/ExampleAppUITests.xctest"; sourceTree = "<absolute>"; };
+		0BF77E9E2BBA4B42000DEFC4 /* SimpleStaticViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimpleStaticViewController.swift; sourceTree = "<group>"; };
 		8807212E236258C000E34B61 /* GridPersonCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GridPersonCell.swift; sourceTree = "<group>"; };
 		8807212F236258C000E34B61 /* GridPersonCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GridPersonCell.xib; sourceTree = "<group>"; };
 		8829EA752361F4EB00604A43 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -166,6 +168,14 @@
 			path = List;
 			sourceTree = "<group>";
 		};
+		0BF77E9D2BBA4B29000DEFC4 /* SimpleStatic */ = {
+			isa = PBXGroup;
+			children = (
+				0BF77E9E2BBA4B42000DEFC4 /* SimpleStaticViewController.swift */,
+			);
+			path = SimpleStatic;
+			sourceTree = "<group>";
+		};
 		8829EA692361F4EB00604A43 = {
 			isa = PBXGroup;
 			children = (
@@ -182,11 +192,12 @@
 				8829EA802361F4ED00604A43 /* Assets.xcassets */,
 				8829EA822361F4ED00604A43 /* LaunchScreen.storyboard */,
 				8829EA7D2361F4EB00604A43 /* Main.storyboard */,
-				0BD8E0032678072B004CFF13 /* List */,
 				88389EFC236DFE4E00DDECA5 /* Grid */,
-				0B8C6CED267ED7030042DFE2 /* SupplementaryViews */,
-				88389EFF236DFF0F00DDECA5 /* Models */,
+				0BD8E0032678072B004CFF13 /* List */,
 				88389EFE236DFEAD00DDECA5 /* Main */,
+				88389EFF236DFF0F00DDECA5 /* Models */,
+				0BF77E9D2BBA4B29000DEFC4 /* SimpleStatic */,
+				0B8C6CED267ED7030042DFE2 /* SupplementaryViews */,
 			);
 			path = Sources;
 			sourceTree = "<group>";
@@ -271,7 +282,7 @@
 			);
 			name = ExampleApp;
 			productName = Example;
-			productReference = 0BFA773C2BB8A325009B9C5B /* ExampleApp.app */;
+			productReference = 0BF77E982BBA4776000DEFC4 /* ExampleApp.app */;
 			productType = "com.apple.product-type.application";
 		};
 		8829EA892361F4ED00604A43 /* ExampleAppTests */ = {
@@ -289,7 +300,7 @@
 			);
 			name = ExampleAppTests;
 			productName = ExampleTests;
-			productReference = 0BFA773D2BB8A325009B9C5B /* ExampleAppTests.xctest */;
+			productReference = 0BF77E992BBA4776000DEFC4 /* ExampleAppTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 		8829EA942361F4ED00604A43 /* ExampleAppUITests */ = {
@@ -307,7 +318,7 @@
 			);
 			name = ExampleAppUITests;
 			productName = ExampleUITests;
-			productReference = 0BFA773E2BB8A325009B9C5B /* ExampleAppUITests.xctest */;
+			productReference = 0BF77E9A2BBA4776000DEFC4 /* ExampleAppUITests.xctest */;
 			productType = "com.apple.product-type.bundle.ui-testing";
 		};
 /* End PBXNativeTarget section */
@@ -415,6 +426,7 @@
 				8829EA7C2361F4EB00604A43 /* GridViewController.swift in Sources */,
 				88B4FEB3236251C600B284FB /* GridColorCellViewModel.swift in Sources */,
 				0B9FD6F426DD717D0015EECC /* ExampleCollectionViewController.swift in Sources */,
+				0BF77E9F2BBA4B42000DEFC4 /* SimpleStaticViewController.swift in Sources */,
 				0B568A89267D829D008B08F2 /* ListColorCellViewModel.swift in Sources */,
 				0BD8E0052678073A004CFF13 /* ListViewController.swift in Sources */,
 				88FA49332363C2E00061F8B2 /* UIKit+Extensions.swift in Sources */,
