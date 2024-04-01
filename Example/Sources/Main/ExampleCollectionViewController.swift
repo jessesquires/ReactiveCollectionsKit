@@ -24,8 +24,8 @@ class ExampleCollectionViewController: UICollectionViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        self.addShuffle()
-        self.addReload()
+        self.addShuffleButton()
+        self.addReloadButton()
     }
 
     // MARK: Actions
@@ -78,12 +78,12 @@ class ExampleCollectionViewController: UICollectionViewController {
         self.navigationItem.rightBarButtonItems = items
     }
 
-    private func addShuffle() {
+    private func addShuffleButton() {
         let item = UIBarButtonItem(systemImage: "shuffle", target: self, action: #selector(shuffle))
         self.appendRightBarButton(item)
     }
 
-    private func addReload() {
+    private func addReloadButton() {
         let reload = UIAction(title: "Reload") { [unowned self] _ in
             self.reload()
         }

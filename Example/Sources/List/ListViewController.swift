@@ -33,6 +33,7 @@ final class ListViewController: ExampleCollectionViewController {
             configuration.headerMode = .supplementary
             configuration.footerMode = .supplementary
 
+            // TODO: swipe actions broken. actually need to reference item identifier
             configuration.leadingSwipeActionsConfigurationProvider = { [unowned self] indexPath in
                 let favoriteAction = UIContextualAction(style: .normal, title: "Favorite") { _, _, completion in
                     self.toggleFavoriteAt(indexPath: indexPath)
