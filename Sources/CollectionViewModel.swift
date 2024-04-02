@@ -15,7 +15,11 @@ import Foundation
 import UIKit
 
 /// Represents a collection view with sections and items.
-public struct CollectionViewModel: Hashable {
+public struct CollectionViewModel: Hashable, DiffableViewModel {
+    // MARK: DiffableViewModel
+
+    public var id: UniqueIdentifier
+
     // MARK: Properties
 
     public let sections: [SectionViewModel]
@@ -41,7 +45,8 @@ public struct CollectionViewModel: Hashable {
 
     // MARK: Init
 
-    public init(sections: [SectionViewModel]) {
+    public init(id: UniqueIdentifier = UUID(), sections: [SectionViewModel]) {
+        self.id = id
         self.sections = sections.filter { !$0.isEmpty }
     }
 
@@ -130,7 +135,7 @@ extension CollectionViewModel: Collection, RandomAccessCollection {
 extension CollectionViewModel: CustomDebugStringConvertible {
     /// :nodoc:
     public var debugDescription: String {
-        var text = "<CollectionViewModel:\n sections:\n"
+        var text = "<CollectionViewModel:\n id: \(self.id)\n sections:\n"
 
         for sectionIndex in 0..<self.count {
             let section = self[sectionIndex]
