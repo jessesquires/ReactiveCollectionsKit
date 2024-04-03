@@ -45,7 +45,7 @@ public struct CollectionViewModel: Hashable, DiffableViewModel {
 
     // MARK: Init
 
-    public init(id: UniqueIdentifier = UUID(), sections: [SectionViewModel]) {
+    public init(id: UniqueIdentifier = UUID(), sections: [SectionViewModel] = []) {
         self.id = id
         self.sections = sections.filter { $0.isNotEmpty }
     }

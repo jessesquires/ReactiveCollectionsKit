@@ -52,7 +52,7 @@ public final class CollectionViewDriver: NSObject {
 
     public init(view: UICollectionView,
                 layout: UICollectionViewCompositionalLayout,
-                viewModel: CollectionViewModel,
+                viewModel: CollectionViewModel = CollectionViewModel(),
                 controller: UIViewController,
                 animateUpdates: Bool = true,
                 didUpdate: DidUpdate? = nil) {
