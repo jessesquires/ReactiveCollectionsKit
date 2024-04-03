@@ -56,19 +56,7 @@ extension DiffableDataSource {
         //   2. item inserts/deletes could trigger an internal inconsistency exception.
 
         // Find and perform item (cell) updates first.
-        let allSourceCells = source.allCellsByIdentifier
-        let allDestinationCells = destination.allCellsByIdentifier
-        var itemsToReload = [UniqueIdentifier]()
-
-        for (cellId, destinationCell) in allDestinationCells {
-            let sourceCell = allSourceCells[cellId]
-
-            // If this cell exist in the source, and it has changed, then reload it.
-            if destinationCell != sourceCell {
-                itemsToReload.append(cellId)
-            }
-        }
-
+        let itemsToReload = self.findItemsToReload(from: source, to: destination)
         destinationSnapshot.reconfigureItems(itemsToReload)
 
         // Apply snapshot with item reload updates.
@@ -147,6 +135,28 @@ extension DiffableDataSource {
             // Apply final section updates
             self.applySnapshot(destinationSnapshot, animated: animated, completion: completion)
         }
+    }
+
+    func findItemsToReload(
+        from source: CollectionViewModel,
+        to destination: CollectionViewModel
+    ) -> [UniqueIdentifier] {
+        // Determine which items need to be reloaded.
+        let allSourceCells = source.allCellsByIdentifier
+        let allDestinationCells = destination.allCellsByIdentifier
+        
+        var itemsToReload = [UniqueIdentifier]()
+
+        for (cellId, destinationCell) in allDestinationCells {
+            let sourceCell = allSourceCells[cellId]
+
+            // If this cell exist in the source, and it has changed, then reload it.
+            if destinationCell != sourceCell {
+                itemsToReload.append(cellId)
+            }
+        }
+
+        return itemsToReload
     }
 
     func applySnapshot(_ snapshot: Snapshot, animated: Bool, completion: SnapshotCompletion? = nil) {
