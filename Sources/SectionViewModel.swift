@@ -26,6 +26,17 @@ public struct SectionViewModel: DiffableViewModel {
 
     public let supplementaryViews: [AnySupplementaryViewModel]
 
+    public var allSupplementaryViewsByIdentifier: [UniqueIdentifier: AnySupplementaryViewModel] {
+        let tuples = self.supplementaryViews.map { ($0.id, $0) }
+        return Dictionary(uniqueKeysWithValues: tuples)
+    }
+
+    public var hasSupplementaryViews: Bool {
+        self.header != nil
+        || self.footer != nil
+        || self.supplementaryViews.isNotEmpty
+    }
+
     public var cellRegistrations: Set<ViewRegistration> {
         Set(self.cells.map { $0.registration })
     }
