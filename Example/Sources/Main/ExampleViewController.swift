@@ -22,13 +22,21 @@ class ExampleViewController: UICollectionViewController, CellEventCoordinator {
     // MARK: CellEventCoordinator
 
     func didSelectCell(viewModel: any CellViewModel) {
-        // TODO:
-        print("DID SELECT CELL = \(viewModel)")
+        print("\(#function): \(viewModel.id)")
 
         if let personVM = viewModel as? GridPersonCellViewModel {
             let personVC = PersonViewController(person: personVM.person)
             self.navigationController?.pushViewController(personVC, animated: true)
+            return
         }
+
+        if let colorVM = viewModel as? GridColorCellViewModel {
+            let colorVC = ColorViewController(color: colorVM.color)
+            self.navigationController?.pushViewController(colorVC, animated: true)
+            return
+        }
+
+        assertionFailure("unhandled cell selection")
     }
 
     // MARK: View Lifecycle

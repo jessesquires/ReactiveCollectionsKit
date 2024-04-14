@@ -21,8 +21,6 @@ struct GridColorCellViewModel: CellViewModel {
 
     var id: UniqueIdentifier { self.color.id }
 
-    let shouldHighlight = false
-
     let contextMenuConfiguration: UIContextMenuConfiguration?
 
     func configure(cell: GridColorCell) {

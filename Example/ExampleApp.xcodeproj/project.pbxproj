@@ -37,6 +37,7 @@
 		0B31B9AA2BCC6349006F2078 /* SimpleStaticViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B31B9912BCC6349006F2078 /* SimpleStaticViewController.swift */; };
 		0B31B9B52BCC63D4006F2078 /* ReactiveCollectionsKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0B31B9B12BCC63BE006F2078 /* ReactiveCollectionsKit.framework */; };
 		0B31B9B62BCC63D4006F2078 /* ReactiveCollectionsKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 0B31B9B12BCC63BE006F2078 /* ReactiveCollectionsKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		0B31B9BF2BCC6A24006F2078 /* ColorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B31B9BE2BCC6A24006F2078 /* ColorViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -117,6 +118,7 @@
 		0B31B98F2BCC6349006F2078 /* UIKit+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIKit+Extensions.swift"; sourceTree = "<group>"; };
 		0B31B9912BCC6349006F2078 /* SimpleStaticViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SimpleStaticViewController.swift; sourceTree = "<group>"; };
 		0B31B9AB2BCC63BE006F2078 /* ReactiveCollectionsKit.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = ReactiveCollectionsKit.xcodeproj; path = ../ReactiveCollectionsKit.xcodeproj; sourceTree = "<group>"; };
+		0B31B9BE2BCC6A24006F2078 /* ColorViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -292,6 +294,7 @@
 			isa = PBXGroup;
 			children = (
 				0B31B9752BCC6349006F2078 /* ColorModel.swift */,
+				0B31B9BE2BCC6A24006F2078 /* ColorViewController.swift */,
 			);
 			path = ColorModel;
 			sourceTree = "<group>";
@@ -473,6 +476,7 @@
 				0B31B99F2BCC6349006F2078 /* GridColorCellViewModel.swift in Sources */,
 				0B31B9942BCC6349006F2078 /* Model.swift in Sources */,
 				0B31B9A42BCC6349006F2078 /* AppDelegate.swift in Sources */,
+				0B31B9BF2BCC6A24006F2078 /* ColorViewController.swift in Sources */,
 				0B31B99A2BCC6349006F2078 /* HeaderView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
