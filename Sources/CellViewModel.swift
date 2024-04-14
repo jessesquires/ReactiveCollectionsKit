@@ -25,7 +25,7 @@ public protocol CellViewModel: DiffableViewModel, ViewRegistrationProvider {
 
     func configure(cell: CellType)
 
-    func didSelect(with controller: UIViewController)
+    func didSelect(with coordinator: CellEventCoordinator)
 }
 
 extension CellViewModel {
@@ -33,7 +33,9 @@ extension CellViewModel {
 
     public var contextMenuConfiguration: UIContextMenuConfiguration? { nil }
 
-    public func didSelect(with controller: UIViewController) { }
+    public func didSelect(with coordinator: CellEventCoordinator) {
+        coordinator.didSelectCell(viewModel: self)
+    }
 }
 
 extension CellViewModel {
@@ -87,8 +89,8 @@ public struct AnyCellViewModel: CellViewModel {
         self._configure(cell)
     }
 
-    public func didSelect(with controller: UIViewController) {
-        self._didSelect(controller)
+    public func didSelect(with coordinator: CellEventCoordinator) {
+        self._didSelect(coordinator)
     }
 
     // MARK: Private
@@ -99,7 +101,7 @@ public struct AnyCellViewModel: CellViewModel {
     private let _shouldHighlight: Bool
     private let _contextMenuConfiguration: UIContextMenuConfiguration?
     private let _configure: (CellType) -> Void
-    private let _didSelect: (UIViewController) -> Void
+    private let _didSelect: (CellEventCoordinator) -> Void
 
     // MARK: Init
 

@@ -68,7 +68,7 @@ final class ListViewController: ExampleCollectionViewController {
             view: self.collectionView,
             layout: layout,
             viewModel: viewModel,
-            controller: self,
+            cellEventCoordinator: self,
             animateUpdates: true) { [unowned self] in
             print("list did update!")
             print(self.driver.viewModel)

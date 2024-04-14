@@ -15,7 +15,7 @@ import Foundation
 import ReactiveCollectionsKit
 import UIKit
 
-final class SimpleStaticViewController: UICollectionViewController {
+final class SimpleStaticViewController: UICollectionViewController, CellEventCoordinator {
 
     var driver: CollectionViewDriver!
 
@@ -43,7 +43,13 @@ final class SimpleStaticViewController: UICollectionViewController {
             view: self.collectionView,
             layout: layout,
             viewModel: collectionViewModel,
-            controller: self
+            cellEventCoordinator: self
         )
+    }
+
+    // MARK: CellEventCoordinator
+
+    func didSelectCell(viewModel: any CellViewModel) {
+        // TODO:
     }
 }

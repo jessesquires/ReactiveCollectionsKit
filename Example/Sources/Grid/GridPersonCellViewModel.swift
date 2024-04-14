@@ -36,11 +36,6 @@ struct GridPersonCellViewModel: CellViewModel {
         cell.flagLabel.text = self.person.nationality
     }
 
-    func didSelect(with controller: UIViewController) {
-        let personVC = PersonViewController(person: self.person)
-        controller.navigationController?.pushViewController(personVC, animated: true)
-    }
-
     // MARK: Hashable
 
     func hash(into hasher: inout Hasher) {

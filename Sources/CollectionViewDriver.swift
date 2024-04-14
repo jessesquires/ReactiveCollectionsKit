@@ -38,9 +38,9 @@ public final class CollectionViewDriver: NSObject {
     }
 
     // avoiding a strong reference to prevent a retain cycle.
-    // this controller owns `self` (the driver).
-    // thus, we know the controller *must* be alive, meaning `unowned` is safe to use.
-    private unowned var _controller: UIViewController
+    // this is typically the view controller that owns `self` (the driver).
+    // the caller is responsible for retaining this object for the lifetime of the driver.
+    private unowned var _cellEventCoordinator: CellEventCoordinator
 
     private(set) var _dataSource: DiffableDataSource
 
@@ -50,16 +50,30 @@ public final class CollectionViewDriver: NSObject {
 
     // MARK: Init
 
+    /// Initializes a new `CollectionViewDriver`.
+    ///
+    /// - Parameters:
+    ///   - view: The collection view.
+    ///   - layout: The collection view layout.
+    ///   - viewModel: The collection view model.
+    ///   - cellEventCoordinator: The cell event coordinator. **This object is not retained by the driver.**
+    ///   - animateUpdates: Specifies whether or not to animate updates. Pass `true` to animate, `false` otherwise.
+    ///   - didUpdate: A closure to call when the driver finishes diffing and updating the collection view.
+    ///
+    /// - Warning: The driver **does not** retain the `cellEventCoordinator`,
+    /// because this object is typically the view controller that owns the driver.
+    /// Thus, the caller is responsible for retaining and keeping alive the `cellEventCoordinator`
+    /// for the entire lifetime of the driver.
     public init(view: UICollectionView,
                 layout: UICollectionViewCompositionalLayout,
                 viewModel: CollectionViewModel = CollectionViewModel(),
-                controller: UIViewController,
+                cellEventCoordinator: CellEventCoordinator,
                 animateUpdates: Bool = true,
                 didUpdate: DidUpdate? = nil) {
         self.view = view
         self.view.collectionViewLayout = layout
         self.viewModel = viewModel
-        self._controller = controller
+        self._cellEventCoordinator = cellEventCoordinator
         self.animateUpdates = animateUpdates
         self._didUpdate = didUpdate
 
@@ -165,7 +179,7 @@ extension CollectionViewDriver: UICollectionViewDelegate {
     /// :nodoc:
     public func collectionView(_ collectionView: UICollectionView,
                                didSelectItemAt indexPath: IndexPath) {
-        self.viewModel.cellViewModel(at: indexPath).didSelect(with: self._controller)
+        self.viewModel.cellViewModel(at: indexPath).didSelect(with: self._cellEventCoordinator)
     }
 
     /// :nodoc:

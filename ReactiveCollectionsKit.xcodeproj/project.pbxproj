@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		0B01476F2BBCF0330041D432 /* Collection+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B01476E2BBCF0330041D432 /* Collection+Extensions.swift */; };
+		0B31B9312BCC5B66006F2078 /* CellEventCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B31B9302BCC5B66006F2078 /* CellEventCoordinator.swift */; };
 		0B8C6CEC267ED08E0042DFE2 /* SupplementaryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B8C6CEB267ED08E0042DFE2 /* SupplementaryViewModel.swift */; };
 		0BC1EC28267FC37200FF774F /* SupplementaryHeaderViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BC1EC27267FC37200FF774F /* SupplementaryHeaderViewModel.swift */; };
 		0BC1EC2A267FC3A000FF774F /* SupplementaryFooterViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BC1EC29267FC3A000FF774F /* SupplementaryFooterViewModel.swift */; };
@@ -49,6 +50,7 @@
 
 /* Begin PBXFileReference section */
 		0B01476E2BBCF0330041D432 /* Collection+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Collection+Extensions.swift"; sourceTree = "<group>"; };
+		0B31B9302BCC5B66006F2078 /* CellEventCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CellEventCoordinator.swift; sourceTree = "<group>"; };
 		0B8C6CEB267ED08E0042DFE2 /* SupplementaryViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SupplementaryViewModel.swift; sourceTree = "<group>"; };
 		0BC1EC27267FC37200FF774F /* SupplementaryHeaderViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SupplementaryHeaderViewModel.swift; sourceTree = "<group>"; };
 		0BC1EC29267FC3A000FF774F /* SupplementaryFooterViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SupplementaryFooterViewModel.swift; sourceTree = "<group>"; };
@@ -148,6 +150,7 @@
 			isa = PBXGroup;
 			children = (
 				88389EF5236DEE0A00DDECA5 /* Asserts.swift */,
+				0B31B9302BCC5B66006F2078 /* CellEventCoordinator.swift */,
 				88FA48FB2363A7880061F8B2 /* CellViewModel.swift */,
 				0B01476E2BBCF0330041D432 /* Collection+Extensions.swift */,
 				88FA48FA2363A7880061F8B2 /* CollectionViewDriver.swift */,
@@ -323,6 +326,7 @@
 				0BC546EF267923BA00E36D30 /* DiffableSnapshot.swift in Sources */,
 				0B8C6CEC267ED08E0042DFE2 /* SupplementaryViewModel.swift in Sources */,
 				88C02079236CBCB000B43713 /* DiffableDataSource.swift in Sources */,
+				0B31B9312BCC5B66006F2078 /* CellEventCoordinator.swift in Sources */,
 				88FA49312363BC5F0061F8B2 /* DiffableViewModel.swift in Sources */,
 				0BC1EC2E267FF46E00FF774F /* ViewRegistration.swift in Sources */,
 				0BC1EC2C267FE71900FF774F /* ViewRegistrationProvider.swift in Sources */,

@@ -144,7 +144,7 @@ extension DiffableDataSource {
         // Determine which items need to be reloaded.
         let allSourceCells = source.allCellsByIdentifier
         let allDestinationCells = destination.allCellsByIdentifier
-        
+
         var itemsToReload = [UniqueIdentifier]()
 
         for (cellId, destinationCell) in allDestinationCells {

@@ -14,10 +14,22 @@
 import ReactiveCollectionsKit
 import UIKit
 
-class ExampleCollectionViewController: UICollectionViewController {
+class ExampleCollectionViewController: UICollectionViewController, CellEventCoordinator {
     var driver: CollectionViewDriver!
 
     var model = Model()
+
+    // MARK: CellEventCoordinator
+
+    func didSelectCell(viewModel: any CellViewModel) {
+        // TODO:
+        print("DID SELECT CELL = \(viewModel)")
+
+        if let personVM = viewModel as? GridPersonCellViewModel {
+            let personVC = PersonViewController(person: personVM.person)
+            self.navigationController?.pushViewController(personVC, animated: true)
+        }
+    }
 
     // MARK: View Lifecycle
 

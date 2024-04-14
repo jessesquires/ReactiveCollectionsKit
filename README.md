@@ -4,7 +4,7 @@
 
 ## Project Status: WIP ⚠️
 
-⚠️ This is still a **Work-In-Progress**, but it is close to finished. I started this a few years back, then got busy with other things. 
+⚠️ This is still a **Work-In-Progress**, but it is close to finished. I started this a few years back, then got busy with other things.
 I am now returning to the project to get the initial release complete. Hopefully. 🤞
 
 In any case, what's here now is worth sharing.
@@ -30,19 +30,19 @@ SwiftUI performance is still a significant issue, not to mention all the bugs an
 ## Main Features
 
 > TODO
-> 
+>
 > ⚠️ Work-In-Progress ⚠️
 
 ## Usage
 
 > [!TIP]
-> 
+>
 > Check out the extensive example project included in this repo.
 
 Here's an example of buliding a simple, static list from an array of data models.
 
 ```swift
-final class MyViewController: UICollectionViewController {
+class MyViewController: UICollectionViewController, CellEventCoordinator {
 
     var driver: CollectionViewDriver!
 
@@ -72,7 +72,7 @@ final class MyViewController: UICollectionViewController {
             view: self.collectionView,
             layout: layout,
             viewModel: collectionViewModel,
-            controller: self
+            cellEventCoordinator: self
         )
 
         // the collection is updated and animated automatically
@@ -80,6 +80,12 @@ final class MyViewController: UICollectionViewController {
         // later, you can update the model like so:
         let updatedCollectionViewModel = CollectionViewModel(sections: [/* updated items and sections */])
         self.driver.viewModel = updatedCollectionViewModel
+    }
+
+    // MARK: CellEventCoordinator
+
+    func didSelectCell(viewModel: any CellViewModel) {
+        // TODO: handle cell selection events
     }
 }
 ```

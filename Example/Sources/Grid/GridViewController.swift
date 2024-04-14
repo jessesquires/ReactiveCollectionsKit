@@ -73,7 +73,7 @@ final class GridViewController: ExampleCollectionViewController {
             view: self.collectionView,
             layout: layout,
             viewModel: viewModel,
-            controller: self,
+            cellEventCoordinator: self,
             animateUpdates: true) {
             print("grid did update!")
             print(self.driver.viewModel)
