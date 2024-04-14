@@ -30,10 +30,9 @@
 		0B31B9A22BCC6349006F2078 /* GridPersonCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B31B9872BCC6349006F2078 /* GridPersonCellViewModel.swift */; };
 		0B31B9A32BCC6349006F2078 /* GridViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B31B9882BCC6349006F2078 /* GridViewController.swift */; };
 		0B31B9A42BCC6349006F2078 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B31B98A2BCC6349006F2078 /* AppDelegate.swift */; };
-		0B31B9A52BCC6349006F2078 /* ExampleCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B31B98B2BCC6349006F2078 /* ExampleCollectionViewController.swift */; };
+		0B31B9A52BCC6349006F2078 /* ExampleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B31B98B2BCC6349006F2078 /* ExampleViewController.swift */; };
 		0B31B9A62BCC6349006F2078 /* PersonViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B31B98C2BCC6349006F2078 /* PersonViewController.swift */; };
 		0B31B9A72BCC6349006F2078 /* PersonViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0B31B98D2BCC6349006F2078 /* PersonViewController.xib */; };
-		0B31B9A82BCC6349006F2078 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B31B98E2BCC6349006F2078 /* SceneDelegate.swift */; };
 		0B31B9A92BCC6349006F2078 /* UIKit+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B31B98F2BCC6349006F2078 /* UIKit+Extensions.swift */; };
 		0B31B9AA2BCC6349006F2078 /* SimpleStaticViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B31B9912BCC6349006F2078 /* SimpleStaticViewController.swift */; };
 		0B31B9B52BCC63D4006F2078 /* ReactiveCollectionsKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0B31B9B12BCC63BE006F2078 /* ReactiveCollectionsKit.framework */; };
@@ -112,10 +111,9 @@
 		0B31B9872BCC6349006F2078 /* GridPersonCellViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GridPersonCellViewModel.swift; sourceTree = "<group>"; };
 		0B31B9882BCC6349006F2078 /* GridViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GridViewController.swift; sourceTree = "<group>"; };
 		0B31B98A2BCC6349006F2078 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		0B31B98B2BCC6349006F2078 /* ExampleCollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExampleCollectionViewController.swift; sourceTree = "<group>"; };
+		0B31B98B2BCC6349006F2078 /* ExampleViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExampleViewController.swift; sourceTree = "<group>"; };
 		0B31B98C2BCC6349006F2078 /* PersonViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PersonViewController.swift; sourceTree = "<group>"; };
 		0B31B98D2BCC6349006F2078 /* PersonViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PersonViewController.xib; sourceTree = "<group>"; };
-		0B31B98E2BCC6349006F2078 /* SceneDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		0B31B98F2BCC6349006F2078 /* UIKit+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIKit+Extensions.swift"; sourceTree = "<group>"; };
 		0B31B9912BCC6349006F2078 /* SimpleStaticViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SimpleStaticViewController.swift; sourceTree = "<group>"; };
 		0B31B9AB2BCC63BE006F2078 /* ReactiveCollectionsKit.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = ReactiveCollectionsKit.xcodeproj; path = ../ReactiveCollectionsKit.xcodeproj; sourceTree = "<group>"; };
@@ -175,11 +173,13 @@
 				0B31B9472BCC62A5006F2078 /* Assets.xcassets */,
 				0B31B9492BCC62A5006F2078 /* LaunchScreen.storyboard */,
 				0B31B9442BCC62A4006F2078 /* Main.storyboard */,
+				0B31B9902BCC6349006F2078 /* Main */,
+				0B31B9BD2BCC69A4006F2078 /* ColorModel */,
+				0B31B9BC2BCC6986006F2078 /* PersonModel */,
 				0B31B9892BCC6349006F2078 /* Grid */,
 				0B31B9822BCC6349006F2078 /* List */,
-				0B31B9902BCC6349006F2078 /* Main */,
-				0B31B9792BCC6349006F2078 /* Models */,
 				0B31B9922BCC6349006F2078 /* SimpleStatic */,
+				0B31B9792BCC6349006F2078 /* Models */,
 				0B31B97E2BCC6349006F2078 /* SupplementaryViews */,
 			);
 			path = Sources;
@@ -204,9 +204,7 @@
 		0B31B9792BCC6349006F2078 /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				0B31B9752BCC6349006F2078 /* ColorModel.swift */,
 				0B31B9762BCC6349006F2078 /* Model.swift */,
-				0B31B9772BCC6349006F2078 /* PersonModel.swift */,
 				0B31B9782BCC6349006F2078 /* ViewModel.swift */,
 			);
 			path = Models;
@@ -250,10 +248,7 @@
 			isa = PBXGroup;
 			children = (
 				0B31B98A2BCC6349006F2078 /* AppDelegate.swift */,
-				0B31B98B2BCC6349006F2078 /* ExampleCollectionViewController.swift */,
-				0B31B98C2BCC6349006F2078 /* PersonViewController.swift */,
-				0B31B98D2BCC6349006F2078 /* PersonViewController.xib */,
-				0B31B98E2BCC6349006F2078 /* SceneDelegate.swift */,
+				0B31B98B2BCC6349006F2078 /* ExampleViewController.swift */,
 				0B31B98F2BCC6349006F2078 /* UIKit+Extensions.swift */,
 			);
 			path = Main;
@@ -281,6 +276,24 @@
 			children = (
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		0B31B9BC2BCC6986006F2078 /* PersonModel */ = {
+			isa = PBXGroup;
+			children = (
+				0B31B9772BCC6349006F2078 /* PersonModel.swift */,
+				0B31B98C2BCC6349006F2078 /* PersonViewController.swift */,
+				0B31B98D2BCC6349006F2078 /* PersonViewController.xib */,
+			);
+			path = PersonModel;
+			sourceTree = "<group>";
+		};
+		0B31B9BD2BCC69A4006F2078 /* ColorModel */ = {
+			isa = PBXGroup;
+			children = (
+				0B31B9752BCC6349006F2078 /* ColorModel.swift */,
+			);
+			path = ColorModel;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -442,7 +455,7 @@
 			files = (
 				0B31B9A02BCC6349006F2078 /* GridPersonCell.swift in Sources */,
 				0B31B9A62BCC6349006F2078 /* PersonViewController.swift in Sources */,
-				0B31B9A52BCC6349006F2078 /* ExampleCollectionViewController.swift in Sources */,
+				0B31B9A52BCC6349006F2078 /* ExampleViewController.swift in Sources */,
 				0B31B9952BCC6349006F2078 /* PersonModel.swift in Sources */,
 				0B31B9AA2BCC6349006F2078 /* SimpleStaticViewController.swift in Sources */,
 				0B31B99C2BCC6349006F2078 /* ListPersonCellViewModel.swift in Sources */,
@@ -457,7 +470,6 @@
 				0B31B9962BCC6349006F2078 /* ViewModel.swift in Sources */,
 				0B31B9A92BCC6349006F2078 /* UIKit+Extensions.swift in Sources */,
 				0B31B9982BCC6349006F2078 /* FavoriteBadgeViewModel.swift in Sources */,
-				0B31B9A82BCC6349006F2078 /* SceneDelegate.swift in Sources */,
 				0B31B99F2BCC6349006F2078 /* GridColorCellViewModel.swift in Sources */,
 				0B31B9942BCC6349006F2078 /* Model.swift in Sources */,
 				0B31B9A42BCC6349006F2078 /* AppDelegate.swift in Sources */,

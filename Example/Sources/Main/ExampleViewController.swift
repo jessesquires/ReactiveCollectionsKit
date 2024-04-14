@@ -14,7 +14,7 @@
 import ReactiveCollectionsKit
 import UIKit
 
-class ExampleCollectionViewController: UICollectionViewController, CellEventCoordinator {
+class ExampleViewController: UICollectionViewController, CellEventCoordinator {
     var driver: CollectionViewDriver!
 
     var model = Model()

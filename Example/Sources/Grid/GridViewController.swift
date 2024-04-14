@@ -14,7 +14,7 @@
 import ReactiveCollectionsKit
 import UIKit
 
-final class GridViewController: ExampleCollectionViewController {
+final class GridViewController: ExampleViewController {
 
     override var model: Model {
         didSet {

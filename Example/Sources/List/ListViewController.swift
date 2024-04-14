@@ -15,7 +15,7 @@ import Combine
 import ReactiveCollectionsKit
 import UIKit
 
-final class ListViewController: ExampleCollectionViewController {
+final class ListViewController: ExampleViewController {
 
     var cancellables = [AnyCancellable]()
 
