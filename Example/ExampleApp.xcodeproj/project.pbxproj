@@ -15,7 +15,6 @@
 		0B31B9932BCC6349006F2078 /* ColorModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B31B9752BCC6349006F2078 /* ColorModel.swift */; };
 		0B31B9942BCC6349006F2078 /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B31B9762BCC6349006F2078 /* Model.swift */; };
 		0B31B9952BCC6349006F2078 /* PersonModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B31B9772BCC6349006F2078 /* PersonModel.swift */; };
-		0B31B9962BCC6349006F2078 /* ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B31B9782BCC6349006F2078 /* ViewModel.swift */; };
 		0B31B9972BCC6349006F2078 /* FavoriteBadgeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B31B97A2BCC6349006F2078 /* FavoriteBadgeView.swift */; };
 		0B31B9982BCC6349006F2078 /* FavoriteBadgeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B31B97B2BCC6349006F2078 /* FavoriteBadgeViewModel.swift */; };
 		0B31B9992BCC6349006F2078 /* FooterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B31B97C2BCC6349006F2078 /* FooterView.swift */; };
@@ -97,7 +96,6 @@
 		0B31B9752BCC6349006F2078 /* ColorModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ColorModel.swift; sourceTree = "<group>"; };
 		0B31B9762BCC6349006F2078 /* Model.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
 		0B31B9772BCC6349006F2078 /* PersonModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PersonModel.swift; sourceTree = "<group>"; };
-		0B31B9782BCC6349006F2078 /* ViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewModel.swift; sourceTree = "<group>"; };
 		0B31B97A2BCC6349006F2078 /* FavoriteBadgeView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FavoriteBadgeView.swift; sourceTree = "<group>"; };
 		0B31B97B2BCC6349006F2078 /* FavoriteBadgeViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FavoriteBadgeViewModel.swift; sourceTree = "<group>"; };
 		0B31B97C2BCC6349006F2078 /* FooterView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FooterView.swift; sourceTree = "<group>"; };
@@ -176,7 +174,6 @@
 				0B31B9492BCC62A5006F2078 /* LaunchScreen.storyboard */,
 				0B31B9442BCC62A4006F2078 /* Main.storyboard */,
 				0B31B9902BCC6349006F2078 /* Main */,
-				0B31B9792BCC6349006F2078 /* Models */,
 				0B31B9BD2BCC69A4006F2078 /* ColorModel */,
 				0B31B9BC2BCC6986006F2078 /* PersonModel */,
 				0B31B9892BCC6349006F2078 /* Grid */,
@@ -201,15 +198,6 @@
 				0B31B96E2BCC62F0006F2078 /* ExampleUITests.swift */,
 			);
 			path = UITests;
-			sourceTree = "<group>";
-		};
-		0B31B9792BCC6349006F2078 /* Models */ = {
-			isa = PBXGroup;
-			children = (
-				0B31B9762BCC6349006F2078 /* Model.swift */,
-				0B31B9782BCC6349006F2078 /* ViewModel.swift */,
-			);
-			path = Models;
 			sourceTree = "<group>";
 		};
 		0B31B97E2BCC6349006F2078 /* SupplementaryViews */ = {
@@ -247,6 +235,7 @@
 			children = (
 				0B31B98A2BCC6349006F2078 /* AppDelegate.swift */,
 				0B31B98B2BCC6349006F2078 /* ExampleViewController.swift */,
+				0B31B9762BCC6349006F2078 /* Model.swift */,
 				0B31B98F2BCC6349006F2078 /* UIKit+Extensions.swift */,
 			);
 			path = Main;
@@ -470,7 +459,6 @@
 				0B31B9A32BCC6349006F2078 /* GridViewController.swift in Sources */,
 				0B31B9A22BCC6349006F2078 /* PersonCellViewModelGrid.swift in Sources */,
 				0B31B99E2BCC6349006F2078 /* GridColorCell.swift in Sources */,
-				0B31B9962BCC6349006F2078 /* ViewModel.swift in Sources */,
 				0B31B9A92BCC6349006F2078 /* UIKit+Extensions.swift in Sources */,
 				0B31B9982BCC6349006F2078 /* FavoriteBadgeViewModel.swift in Sources */,
 				0B31B99F2BCC6349006F2078 /* ColorCellViewModelGrid.swift in Sources */,

@@ -14,17 +14,56 @@
 import ReactiveCollectionsKit
 import UIKit
 
-final class GridViewController: ExampleViewController {
+final class GridViewController: ExampleViewController, CellEventCoordinator {
 
     override var model: Model {
         didSet {
-            self.driver.viewModel = self.createCollectionViewModel(style: .grid)
+            // Every time the model updates, regenerate and set the view model
+            self.driver.viewModel = self.makeCollectionViewModel()
         }
     }
+
+    // MARK: CellEventCoordinator
+
+    func didSelectCell(viewModel: any CellViewModel) {
+        print("\(#function): \(viewModel.id)")
+
+        if let personVM = viewModel as? PersonCellViewModelGrid {
+            let personVC = PersonViewController(person: personVM.person)
+            self.navigationController?.pushViewController(personVC, animated: true)
+            return
+        }
+
+        if let colorVM = viewModel as? ColorCellViewModelGrid {
+            let colorVC = ColorViewController(color: colorVM.color)
+            self.navigationController?.pushViewController(colorVC, animated: true)
+            return
+        }
+
+        assertionFailure("unhandled cell selection")
+    }
+
+    // MARK: View Lifecycle
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        let layout = self.makeLayout()
+        let viewModel = self.makeCollectionViewModel()
+
+        self.driver = CollectionViewDriver(
+            view: self.collectionView,
+            layout: layout,
+            viewModel: viewModel,
+            cellEventCoordinator: self,
+            animateUpdates: true
+        ) { [unowned self] in
+            print("grid did update!")
+            print(self.driver.viewModel)
+        }
+    }
+
+    func makeLayout() -> UICollectionViewCompositionalLayout {
         let fractionalWidth = CGFloat(0.5)
         let inset = CGFloat(4)
 
@@ -65,18 +104,70 @@ final class GridViewController: ExampleViewController {
         section.contentInsets = NSDirectionalEdgeInsets(top: inset, leading: inset, bottom: inset, trailing: inset)
         section.boundarySupplementaryItems = [sectionHeader, sectionFooter]
 
-        let layout = UICollectionViewCompositionalLayout(section: section)
+        return UICollectionViewCompositionalLayout(section: section)
+    }
 
-        let viewModel = self.createCollectionViewModel(style: .grid)
+    func makeCollectionViewModel() -> CollectionViewModel {
+        // Create people section
+        let peopleCellViewModels = self.model.people.map {
+            let menuConfig = UIContextMenuConfiguration.configFor(
+                itemId: $0.id,
+                favoriteAction: { [unowned self] in
+                    self.toggleFavorite(id: $0)
+                },
+                deleteAction: { [unowned self] in
+                    self.deleteItem(id: $0)
+                }
+            )
 
-        self.driver = CollectionViewDriver(
-            view: self.collectionView,
-            layout: layout,
-            viewModel: viewModel,
-            cellEventCoordinator: self,
-            animateUpdates: true) {
-            print("grid did update!")
-            print(self.driver.viewModel)
+            return PersonCellViewModelGrid(
+                person: $0,
+                contextMenuConfiguration: menuConfig
+            ).anyViewModel
         }
+        let peopleHeader = HeaderViewModel(title: "People", style: .large)
+        let peopleFooter = FooterViewModel(text: "\(self.model.people.count) people")
+        let peopleFavoriteBadges = self.model.people.compactMap {
+            FavoriteBadgeViewModel(isHidden: !$0.isFavorite, id: $0.name + "_badge")
+        }
+        let peopleSection = SectionViewModel(
+            id: "section_people_grid",
+            cells: peopleCellViewModels,
+            header: peopleHeader,
+            footer: peopleFooter,
+            supplementaryViews: peopleFavoriteBadges
+        )
+
+        // Create color section
+        let colorCellViewModels = self.model.colors.map {
+            let menuConfig = UIContextMenuConfiguration.configFor(
+                itemId: $0.id,
+                favoriteAction: { [unowned self] in
+                    self.toggleFavorite(id: $0)
+                },
+                deleteAction: { [unowned self] in
+                    self.deleteItem(id: $0)
+                }
+            )
+            return ColorCellViewModelGrid(
+                color: $0,
+                contextMenuConfiguration: menuConfig
+            ).anyViewModel
+        }
+        let colorHeader = HeaderViewModel(title: "Colors", style: .large)
+        let colorFooter = FooterViewModel(text: "\(self.model.colors.count) colors")
+        let colorFavoriteBadges = self.model.colors.compactMap {
+            FavoriteBadgeViewModel(isHidden: !$0.isFavorite, id: $0.name + "_badge")
+        }
+        let colorSection = SectionViewModel(
+            id: "section_colors_grid",
+            cells: colorCellViewModels,
+            header: colorHeader,
+            footer: colorFooter,
+            supplementaryViews: colorFavoriteBadges
+        )
+
+        // Create final view model
+        return CollectionViewModel(sections: [peopleSection, colorSection])
     }
 }

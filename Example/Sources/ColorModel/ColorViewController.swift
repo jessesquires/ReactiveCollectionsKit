@@ -31,7 +31,6 @@ final class ColorViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.view.backgroundColor = .white
 
         self.label.font = UIFont.preferredFont(forTextStyle: .title1)
         self.label.textAlignment = .center

@@ -31,7 +31,7 @@ final class SimpleStaticViewController: UICollectionViewController {
             )
         }
 
-        let section = SectionViewModel(id: "section_1", cells: cellViewModels)
+        let section = SectionViewModel(id: "section", cells: cellViewModels)
 
         let collectionViewModel = CollectionViewModel(sections: [section])
 
