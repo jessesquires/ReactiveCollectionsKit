@@ -37,10 +37,10 @@ public final class CollectionViewDriver: NSObject {
         }
     }
 
-    // avoiding a strong reference to prevent a retain cycle.
-    // this is typically the view controller that owns `self` (the driver).
-    // the caller is responsible for retaining this object for the lifetime of the driver.
-    private unowned var _cellEventCoordinator: CellEventCoordinator
+    // Avoiding a strong reference to prevent a possible retain cycle.
+    // This is typically the view controller that owns `self` (the driver).
+    // The caller is responsible for retaining this object for the lifetime of the driver.
+    private weak var _cellEventCoordinator: CellEventCoordinator?
 
     private(set) var _dataSource: DiffableDataSource
 
@@ -56,8 +56,11 @@ public final class CollectionViewDriver: NSObject {
     ///   - view: The collection view.
     ///   - layout: The collection view layout.
     ///   - viewModel: The collection view model.
-    ///   - cellEventCoordinator: The cell event coordinator. **This object is not retained by the driver.**
-    ///   - animateUpdates: Specifies whether or not to animate updates. Pass `true` to animate, `false` otherwise.
+    ///   - cellEventCoordinator: The cell event coordinator,
+    ///                           if you wish to handle cell events outside of your cell view models.
+    ///                           **Note: This object is not retained by the driver.**
+    ///   - animateUpdates: Specifies whether or not to animate updates.
+    ///                     Pass `true` to animate, `false` otherwise.
     ///   - didUpdate: A closure to call when the driver finishes diffing and updating the collection view.
     ///
     /// - Warning: The driver **does not** retain the `cellEventCoordinator`,
@@ -67,7 +70,7 @@ public final class CollectionViewDriver: NSObject {
     public init(view: UICollectionView,
                 layout: UICollectionViewCompositionalLayout,
                 viewModel: CollectionViewModel = CollectionViewModel(),
-                cellEventCoordinator: CellEventCoordinator,
+                cellEventCoordinator: CellEventCoordinator?,
                 animateUpdates: Bool = true,
                 didUpdate: DidUpdate? = nil) {
         self.view = view
