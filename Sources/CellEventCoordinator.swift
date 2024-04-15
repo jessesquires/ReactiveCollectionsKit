@@ -16,4 +16,7 @@ import UIKit
 
 public protocol CellEventCoordinator: AnyObject {
     func didSelectCell(viewModel: any CellViewModel)
+
+    // TODO: provide underlying VC?
+    // var underlyingViewController: UIViewController? { get }
 }
