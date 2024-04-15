@@ -85,7 +85,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		0B31B93B2BCC62A4006F2078 /* RCK Example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "RCK Example.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		0B31B93B2BCC62A4006F2078 /* ExampleApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ExampleApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0B31B9452BCC62A4006F2078 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		0B31B9472BCC62A5006F2078 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		0B31B94A2BCC62A5006F2078 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -160,7 +160,7 @@
 		0B31B93C2BCC62A4006F2078 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				0B31B93B2BCC62A4006F2078 /* RCK Example.app */,
+				0B31B93B2BCC62A4006F2078 /* ExampleApp.app */,
 				0B31B9512BCC62A5006F2078 /* ExampleAppTests.xctest */,
 				0B31B95B2BCC62A5006F2078 /* ExampleAppUITests.xctest */,
 			);
@@ -306,7 +306,7 @@
 			);
 			name = ExampleApp;
 			productName = ExampleApp;
-			productReference = 0B31B93B2BCC62A4006F2078 /* RCK Example.app */;
+			productReference = 0B31B93B2BCC62A4006F2078 /* ExampleApp.app */;
 			productType = "com.apple.product-type.application";
 		};
 		0B31B9502BCC62A5006F2078 /* ExampleAppTests */ = {
@@ -657,6 +657,7 @@
 				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = "";
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = "RCK Example";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
@@ -667,7 +668,7 @@
 					"@executable_path/Frameworks",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.hexedbits.ExampleApp;
-				PRODUCT_NAME = "RCK Example";
+				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;
@@ -686,6 +687,7 @@
 				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = "";
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = "RCK Example";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
@@ -696,7 +698,7 @@
 					"@executable_path/Frameworks",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.hexedbits.ExampleApp;
-				PRODUCT_NAME = "RCK Example";
+				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;
@@ -711,7 +713,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = "";
 				GENERATE_INFOPLIST_FILE = YES;
@@ -724,7 +725,6 @@
 				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = NO;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/ExampleApp.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/ExampleApp";
 			};
 			name = Debug;
 		};
@@ -732,7 +732,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = "";
 				GENERATE_INFOPLIST_FILE = YES;
@@ -745,7 +744,6 @@
 				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = NO;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/ExampleApp.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/ExampleApp";
 			};
 			name = Release;
 		};
