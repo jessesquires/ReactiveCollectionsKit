@@ -29,7 +29,7 @@ struct FakeCollectionCellViewModel: CellViewModel {
         self.didConfigureExpectation?.fulfill()
     }
 
-    func didSelect(with controller: UIViewController) {
+    func didSelect(with coordinator: CellEventCoordinator?) {
         self.didSelectExpectation?.fulfill()
     }
 }
