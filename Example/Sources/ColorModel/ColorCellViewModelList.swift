@@ -14,7 +14,7 @@
 import ReactiveCollectionsKit
 import UIKit
 
-struct ListColorCellViewModel: CellViewModel {
+struct ColorCellViewModelList: CellViewModel {
     let color: ColorModel
 
     // MARK: CellViewModel

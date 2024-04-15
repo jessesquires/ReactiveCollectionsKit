@@ -25,7 +25,7 @@ final class SimpleStaticViewController: UICollectionViewController, CellEventCoo
         let models = ColorModel.makeColors()
 
         let cellViewModels = models.map {
-            ListColorCellViewModel(
+            ColorCellViewModelList(
                 color: $0,
                 contextMenuConfiguration: nil
             )

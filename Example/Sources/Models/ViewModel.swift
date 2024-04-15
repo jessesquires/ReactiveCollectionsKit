@@ -91,13 +91,13 @@ enum ViewModel {
 
             switch style {
             case .grid:
-                return GridColorCellViewModel(
+                return ColorCellViewModelGrid(
                     color: $0,
                     contextMenuConfiguration: menuConfig
                 ).anyViewModel
 
             case .list:
-                return ListColorCellViewModel(
+                return ColorCellViewModelList(
                     color: $0,
                     contextMenuConfiguration: menuConfig
                 ).anyViewModel

@@ -30,7 +30,7 @@ class ExampleViewController: UICollectionViewController, CellEventCoordinator {
             return
         }
 
-        if let colorVM = viewModel as? GridColorCellViewModel {
+        if let colorVM = viewModel as? ColorCellViewModelGrid {
             let colorVC = ColorViewController(color: colorVM.color)
             self.navigationController?.pushViewController(colorVC, animated: true)
             return
