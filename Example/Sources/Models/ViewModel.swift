@@ -50,13 +50,13 @@ enum ViewModel {
 
             switch style {
             case .grid:
-                return GridPersonCellViewModel(
+                return PersonCellViewModelGrid(
                     person: $0,
                     contextMenuConfiguration: menuConfig
                 ).anyViewModel
 
             case .list:
-                return ListPersonCellViewModel(
+                return PersonCellViewModelList(
                     person: $0,
                     contextMenuConfiguration: menuConfig
                 ).anyViewModel

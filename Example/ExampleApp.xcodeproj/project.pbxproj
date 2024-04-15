@@ -21,13 +21,13 @@
 		0B31B9992BCC6349006F2078 /* FooterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B31B97C2BCC6349006F2078 /* FooterView.swift */; };
 		0B31B99A2BCC6349006F2078 /* HeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B31B97D2BCC6349006F2078 /* HeaderView.swift */; };
 		0B31B99B2BCC6349006F2078 /* ListColorCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B31B97F2BCC6349006F2078 /* ListColorCellViewModel.swift */; };
-		0B31B99C2BCC6349006F2078 /* ListPersonCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B31B9802BCC6349006F2078 /* ListPersonCellViewModel.swift */; };
+		0B31B99C2BCC6349006F2078 /* PersonCellViewModelList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B31B9802BCC6349006F2078 /* PersonCellViewModelList.swift */; };
 		0B31B99D2BCC6349006F2078 /* ListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B31B9812BCC6349006F2078 /* ListViewController.swift */; };
 		0B31B99E2BCC6349006F2078 /* GridColorCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B31B9832BCC6349006F2078 /* GridColorCell.swift */; };
 		0B31B99F2BCC6349006F2078 /* GridColorCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B31B9842BCC6349006F2078 /* GridColorCellViewModel.swift */; };
 		0B31B9A02BCC6349006F2078 /* GridPersonCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B31B9852BCC6349006F2078 /* GridPersonCell.swift */; };
 		0B31B9A12BCC6349006F2078 /* GridPersonCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0B31B9862BCC6349006F2078 /* GridPersonCell.xib */; };
-		0B31B9A22BCC6349006F2078 /* GridPersonCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B31B9872BCC6349006F2078 /* GridPersonCellViewModel.swift */; };
+		0B31B9A22BCC6349006F2078 /* PersonCellViewModelGrid.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B31B9872BCC6349006F2078 /* PersonCellViewModelGrid.swift */; };
 		0B31B9A32BCC6349006F2078 /* GridViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B31B9882BCC6349006F2078 /* GridViewController.swift */; };
 		0B31B9A42BCC6349006F2078 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B31B98A2BCC6349006F2078 /* AppDelegate.swift */; };
 		0B31B9A52BCC6349006F2078 /* ExampleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B31B98B2BCC6349006F2078 /* ExampleViewController.swift */; };
@@ -103,13 +103,13 @@
 		0B31B97C2BCC6349006F2078 /* FooterView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FooterView.swift; sourceTree = "<group>"; };
 		0B31B97D2BCC6349006F2078 /* HeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HeaderView.swift; sourceTree = "<group>"; };
 		0B31B97F2BCC6349006F2078 /* ListColorCellViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListColorCellViewModel.swift; sourceTree = "<group>"; };
-		0B31B9802BCC6349006F2078 /* ListPersonCellViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListPersonCellViewModel.swift; sourceTree = "<group>"; };
+		0B31B9802BCC6349006F2078 /* PersonCellViewModelList.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PersonCellViewModelList.swift; sourceTree = "<group>"; };
 		0B31B9812BCC6349006F2078 /* ListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListViewController.swift; sourceTree = "<group>"; };
 		0B31B9832BCC6349006F2078 /* GridColorCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GridColorCell.swift; sourceTree = "<group>"; };
 		0B31B9842BCC6349006F2078 /* GridColorCellViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GridColorCellViewModel.swift; sourceTree = "<group>"; };
 		0B31B9852BCC6349006F2078 /* GridPersonCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GridPersonCell.swift; sourceTree = "<group>"; };
 		0B31B9862BCC6349006F2078 /* GridPersonCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GridPersonCell.xib; sourceTree = "<group>"; };
-		0B31B9872BCC6349006F2078 /* GridPersonCellViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GridPersonCellViewModel.swift; sourceTree = "<group>"; };
+		0B31B9872BCC6349006F2078 /* PersonCellViewModelGrid.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PersonCellViewModelGrid.swift; sourceTree = "<group>"; };
 		0B31B9882BCC6349006F2078 /* GridViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GridViewController.swift; sourceTree = "<group>"; };
 		0B31B98A2BCC6349006F2078 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		0B31B98B2BCC6349006F2078 /* ExampleViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExampleViewController.swift; sourceTree = "<group>"; };
@@ -227,7 +227,6 @@
 			isa = PBXGroup;
 			children = (
 				0B31B97F2BCC6349006F2078 /* ListColorCellViewModel.swift */,
-				0B31B9802BCC6349006F2078 /* ListPersonCellViewModel.swift */,
 				0B31B9812BCC6349006F2078 /* ListViewController.swift */,
 			);
 			path = List;
@@ -240,7 +239,6 @@
 				0B31B9842BCC6349006F2078 /* GridColorCellViewModel.swift */,
 				0B31B9852BCC6349006F2078 /* GridPersonCell.swift */,
 				0B31B9862BCC6349006F2078 /* GridPersonCell.xib */,
-				0B31B9872BCC6349006F2078 /* GridPersonCellViewModel.swift */,
 				0B31B9882BCC6349006F2078 /* GridViewController.swift */,
 			);
 			path = Grid;
@@ -283,6 +281,8 @@
 		0B31B9BC2BCC6986006F2078 /* PersonModel */ = {
 			isa = PBXGroup;
 			children = (
+				0B31B9872BCC6349006F2078 /* PersonCellViewModelGrid.swift */,
+				0B31B9802BCC6349006F2078 /* PersonCellViewModelList.swift */,
 				0B31B9772BCC6349006F2078 /* PersonModel.swift */,
 				0B31B98C2BCC6349006F2078 /* PersonViewController.swift */,
 				0B31B98D2BCC6349006F2078 /* PersonViewController.xib */,
@@ -461,14 +461,14 @@
 				0B31B9A52BCC6349006F2078 /* ExampleViewController.swift in Sources */,
 				0B31B9952BCC6349006F2078 /* PersonModel.swift in Sources */,
 				0B31B9AA2BCC6349006F2078 /* SimpleStaticViewController.swift in Sources */,
-				0B31B99C2BCC6349006F2078 /* ListPersonCellViewModel.swift in Sources */,
+				0B31B99C2BCC6349006F2078 /* PersonCellViewModelList.swift in Sources */,
 				0B31B9992BCC6349006F2078 /* FooterView.swift in Sources */,
 				0B31B99B2BCC6349006F2078 /* ListColorCellViewModel.swift in Sources */,
 				0B31B9932BCC6349006F2078 /* ColorModel.swift in Sources */,
 				0B31B99D2BCC6349006F2078 /* ListViewController.swift in Sources */,
 				0B31B9972BCC6349006F2078 /* FavoriteBadgeView.swift in Sources */,
 				0B31B9A32BCC6349006F2078 /* GridViewController.swift in Sources */,
-				0B31B9A22BCC6349006F2078 /* GridPersonCellViewModel.swift in Sources */,
+				0B31B9A22BCC6349006F2078 /* PersonCellViewModelGrid.swift in Sources */,
 				0B31B99E2BCC6349006F2078 /* GridColorCell.swift in Sources */,
 				0B31B9962BCC6349006F2078 /* ViewModel.swift in Sources */,
 				0B31B9A92BCC6349006F2078 /* UIKit+Extensions.swift in Sources */,

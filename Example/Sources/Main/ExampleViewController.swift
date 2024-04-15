@@ -24,7 +24,7 @@ class ExampleViewController: UICollectionViewController, CellEventCoordinator {
     func didSelectCell(viewModel: any CellViewModel) {
         print("\(#function): \(viewModel.id)")
 
-        if let personVM = viewModel as? GridPersonCellViewModel {
+        if let personVM = viewModel as? PersonCellViewModelGrid {
             let personVC = PersonViewController(person: personVM.person)
             self.navigationController?.pushViewController(personVC, animated: true)
             return

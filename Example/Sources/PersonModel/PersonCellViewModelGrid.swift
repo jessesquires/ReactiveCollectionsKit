@@ -14,7 +14,7 @@
 import ReactiveCollectionsKit
 import UIKit
 
-struct GridPersonCellViewModel: CellViewModel {
+struct PersonCellViewModelGrid: CellViewModel {
     let person: PersonModel
 
     // MARK: CellViewModel

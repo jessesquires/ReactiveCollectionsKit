@@ -14,7 +14,7 @@
 import ReactiveCollectionsKit
 import UIKit
 
-struct ListPersonCellViewModel: CellViewModel {
+struct PersonCellViewModelList: CellViewModel {
     let person: PersonModel
 
     // MARK: CellViewModel
@@ -47,11 +47,6 @@ struct ListPersonCellViewModel: CellViewModel {
         }
 
         cell.accessories = accessories
-    }
-
-    func didSelect(with controller: UIViewController) {
-        let personVC = PersonViewController(person: self.person)
-        controller.navigationController?.pushViewController(personVC, animated: true)
     }
 
     // MARK: Hashable
