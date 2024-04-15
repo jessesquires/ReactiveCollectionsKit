@@ -24,38 +24,12 @@ struct Model {
         self.colors.shuffle()
     }
 
-    mutating func deleteModelAt(indexPath: IndexPath) {
-        switch indexPath.section {
-        case 0:
-            self.people.remove(at: indexPath.row)
-
-        case 1:
-            self.colors.remove(at: indexPath.row)
-
-        default:
-            fatalError("invalid indexPath: \(indexPath)")
-        }
-    }
-
     mutating func delete(id: UniqueIdentifier) {
         if let index = self.people.firstIndex(where: { $0.id == id }) {
             self.people.remove(at: index)
         }
         if let index = self.colors.firstIndex(where: { $0.id == id }) {
             self.colors.remove(at: index)
-        }
-    }
-
-    mutating func toggleFavoriteAt(indexPath: IndexPath) {
-        switch indexPath.section {
-        case 0:
-            self.people[indexPath.row].isFavorite.toggle()
-
-        case 1:
-            self.colors[indexPath.row].isFavorite.toggle()
-
-        default:
-            fatalError("invalid indexPath: \(indexPath)")
         }
     }
 

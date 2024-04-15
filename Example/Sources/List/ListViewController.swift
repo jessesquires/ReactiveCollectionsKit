@@ -34,27 +34,27 @@ final class ListViewController: ExampleViewController {
             configuration.footerMode = .supplementary
 
             // TODO: swipe actions broken. actually need to reference item identifier
-            configuration.leadingSwipeActionsConfigurationProvider = { [unowned self] indexPath in
-                let favoriteAction = UIContextualAction(style: .normal, title: "Favorite") { _, _, completion in
-                    self.toggleFavoriteAt(indexPath: indexPath)
-                    completion(true)
-                }
-                favoriteAction.image = UIImage(systemName: "star.fill")
-                favoriteAction.backgroundColor = .systemYellow
-
-                return UISwipeActionsConfiguration(actions: [favoriteAction])
-            }
-
-            configuration.trailingSwipeActionsConfigurationProvider = { [unowned self] indexPath in
-                let deleteAction = UIContextualAction(style: .destructive, title: "Delete") { _, _, completion in
-                    self.deleteAt(indexPath: indexPath)
-                    completion(true)
-                }
-                deleteAction.image = UIImage(systemName: "trash")
-                deleteAction.backgroundColor = .systemRed
-
-                return UISwipeActionsConfiguration(actions: [deleteAction])
-            }
+//            configuration.leadingSwipeActionsConfigurationProvider = { [unowned self] indexPath in
+//                let favoriteAction = UIContextualAction(style: .normal, title: "Favorite") { _, _, completion in
+//                    // self.toggleFavoriteAt(indexPath: indexPath)
+//                    completion(true)
+//                }
+//                favoriteAction.image = UIImage(systemName: "star.fill")
+//                favoriteAction.backgroundColor = .systemYellow
+//
+//                return UISwipeActionsConfiguration(actions: [favoriteAction])
+//            }
+//
+//            configuration.trailingSwipeActionsConfigurationProvider = { [unowned self] indexPath in
+//                let deleteAction = UIContextualAction(style: .destructive, title: "Delete") { _, _, completion in
+//                    // self.deleteAt(indexPath: indexPath)
+//                    completion(true)
+//                }
+//                deleteAction.image = UIImage(systemName: "trash")
+//                deleteAction.backgroundColor = .systemRed
+//
+//                return UISwipeActionsConfiguration(actions: [deleteAction])
+//            }
 
             return NSCollectionLayoutSection.list(
                 using: configuration,

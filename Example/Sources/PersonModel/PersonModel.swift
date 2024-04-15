@@ -21,7 +21,7 @@ struct PersonModel: Hashable {
     var isFavorite = false
 
     var birthDateText: String {
-        _formatter.string(from: self.birthdate)
+        self.birthdate.formatted(date: .long, time: .omitted)
     }
 
     var id: UniqueIdentifier {
@@ -29,20 +29,15 @@ struct PersonModel: Hashable {
     }
 }
 
-private let _formatter: DateFormatter = {
-    let fm = DateFormatter()
-    fm.dateStyle = .long
-    fm.timeStyle = .none
-    return fm
-}()
-
 extension Date {
     init(year: Int, month: Int, day: Int) {
-        let components = DateComponents(calendar: .current,
-                                        timeZone: .current,
-                                        year: year,
-                                        month: month,
-                                        day: day)
+        let components = DateComponents(
+            calendar: .current,
+            timeZone: .current,
+            year: year,
+            month: month,
+            day: day
+        )
         self = components.date!
     }
 }

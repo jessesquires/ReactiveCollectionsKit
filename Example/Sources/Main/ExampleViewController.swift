@@ -67,14 +67,6 @@ class ExampleViewController: UICollectionViewController, CellEventCoordinator {
         self.model.delete(id: id)
     }
 
-    func deleteAt(indexPath: IndexPath) {
-        self.model.deleteModelAt(indexPath: indexPath)
-    }
-
-    func toggleFavoriteAt(indexPath: IndexPath) {
-        self.model.toggleFavoriteAt(indexPath: indexPath)
-    }
-
     func toggleFavorite(id: UniqueIdentifier) {
         self.model.toggleFavorite(id: id)
     }
