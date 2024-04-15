@@ -1,6 +1,20 @@
 {
   "warnings": [
     {
+      "file": "/Users/jsq/Developer/GitHub/ReactiveCollectionsKit/Sources/CellEventCoordinator.swift",
+      "line": 17,
+      "symbol": "CellEventCoordinator",
+      "symbol_kind": "source.lang.swift.decl.protocol",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/jsq/Developer/GitHub/ReactiveCollectionsKit/Sources/CellEventCoordinator.swift",
+      "line": 18,
+      "symbol": "CellEventCoordinator.didSelectCell(viewModel:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
       "file": "/Users/jsq/Developer/GitHub/ReactiveCollectionsKit/Sources/CellViewModel.swift",
       "line": 22,
       "symbol": "CellViewModel.shouldHighlight",
@@ -51,49 +65,49 @@
     },
     {
       "file": "/Users/jsq/Developer/GitHub/ReactiveCollectionsKit/Sources/CellViewModel.swift",
-      "line": 61,
+      "line": 63,
       "symbol": "CellViewModel.dequeueAndConfigureCellFor(collectionView:at:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/jsq/Developer/GitHub/ReactiveCollectionsKit/Sources/CellViewModel.swift",
-      "line": 76,
+      "line": 78,
       "symbol": "AnyCellViewModel.registration",
       "symbol_kind": "source.lang.swift.decl.var.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/jsq/Developer/GitHub/ReactiveCollectionsKit/Sources/CellViewModel.swift",
-      "line": 82,
+      "line": 84,
       "symbol": "AnyCellViewModel.shouldHighlight",
       "symbol_kind": "source.lang.swift.decl.var.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/jsq/Developer/GitHub/ReactiveCollectionsKit/Sources/CellViewModel.swift",
-      "line": 84,
+      "line": 86,
       "symbol": "AnyCellViewModel.contextMenuConfiguration",
       "symbol_kind": "source.lang.swift.decl.var.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/jsq/Developer/GitHub/ReactiveCollectionsKit/Sources/CellViewModel.swift",
-      "line": 86,
+      "line": 88,
       "symbol": "AnyCellViewModel.configure(cell:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/jsq/Developer/GitHub/ReactiveCollectionsKit/Sources/CellViewModel.swift",
-      "line": 90,
+      "line": 92,
       "symbol": "AnyCellViewModel.didSelect(with:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/jsq/Developer/GitHub/ReactiveCollectionsKit/Sources/CellViewModel.swift",
-      "line": 106,
+      "line": 108,
       "symbol": "AnyCellViewModel.init(_:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
@@ -135,77 +149,70 @@
     },
     {
       "file": "/Users/jsq/Developer/GitHub/ReactiveCollectionsKit/Sources/CollectionViewDriver.swift",
-      "line": 53,
-      "symbol": "CollectionViewDriver.init(view:layout:viewModel:controller:animateUpdates:didUpdate:)",
-      "symbol_kind": "source.lang.swift.decl.function.method.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/jsq/Developer/GitHub/ReactiveCollectionsKit/Sources/CollectionViewDriver.swift",
-      "line": 115,
+      "line": 132,
       "symbol": "CollectionViewDriver.reloadData()",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/jsq/Developer/GitHub/ReactiveCollectionsKit/Sources/CollectionViewModel.swift",
-      "line": 21,
+      "line": 25,
       "symbol": "CollectionViewModel.sections",
       "symbol_kind": "source.lang.swift.decl.var.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/jsq/Developer/GitHub/ReactiveCollectionsKit/Sources/CollectionViewModel.swift",
-      "line": 23,
+      "line": 27,
       "symbol": "CollectionViewModel.allRegistrations",
       "symbol_kind": "source.lang.swift.decl.var.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/jsq/Developer/GitHub/ReactiveCollectionsKit/Sources/CollectionViewModel.swift",
-      "line": 31,
+      "line": 35,
       "symbol": "CollectionViewModel.allCellsByIdentifier",
       "symbol_kind": "source.lang.swift.decl.var.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/jsq/Developer/GitHub/ReactiveCollectionsKit/Sources/CollectionViewModel.swift",
-      "line": 37,
+      "line": 41,
       "symbol": "CollectionViewModel.allSectionsByIdentifier",
       "symbol_kind": "source.lang.swift.decl.var.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/jsq/Developer/GitHub/ReactiveCollectionsKit/Sources/CollectionViewModel.swift",
-      "line": 44,
-      "symbol": "CollectionViewModel.init(sections:)",
+      "line": 48,
+      "symbol": "CollectionViewModel.init(id:sections:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/jsq/Developer/GitHub/ReactiveCollectionsKit/Sources/CollectionViewModel.swift",
-      "line": 50,
+      "line": 55,
       "symbol": "CollectionViewModel.sectionViewModel(for:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/jsq/Developer/GitHub/ReactiveCollectionsKit/Sources/CollectionViewModel.swift",
-      "line": 56,
+      "line": 61,
       "symbol": "CollectionViewModel.cellViewModel(for:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/jsq/Developer/GitHub/ReactiveCollectionsKit/Sources/CollectionViewModel.swift",
-      "line": 60,
+      "line": 65,
       "symbol": "CollectionViewModel.cellViewModel(at:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/jsq/Developer/GitHub/ReactiveCollectionsKit/Sources/CollectionViewModel.swift",
-      "line": 72,
+      "line": 77,
       "symbol": "CollectionViewModel.supplementaryViewModel(ofKind:at:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
@@ -241,62 +248,76 @@
     {
       "file": "/Users/jsq/Developer/GitHub/ReactiveCollectionsKit/Sources/SectionViewModel.swift",
       "line": 29,
+      "symbol": "SectionViewModel.allSupplementaryViewsByIdentifier",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/jsq/Developer/GitHub/ReactiveCollectionsKit/Sources/SectionViewModel.swift",
+      "line": 34,
+      "symbol": "SectionViewModel.hasSupplementaryViews",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/jsq/Developer/GitHub/ReactiveCollectionsKit/Sources/SectionViewModel.swift",
+      "line": 40,
       "symbol": "SectionViewModel.cellRegistrations",
       "symbol_kind": "source.lang.swift.decl.var.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/jsq/Developer/GitHub/ReactiveCollectionsKit/Sources/SectionViewModel.swift",
-      "line": 33,
+      "line": 44,
       "symbol": "SectionViewModel.headerFooterRegistrations",
       "symbol_kind": "source.lang.swift.decl.var.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/jsq/Developer/GitHub/ReactiveCollectionsKit/Sources/SectionViewModel.swift",
-      "line": 37,
+      "line": 48,
       "symbol": "SectionViewModel.supplementaryViewRegistrations",
       "symbol_kind": "source.lang.swift.decl.var.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/jsq/Developer/GitHub/ReactiveCollectionsKit/Sources/SectionViewModel.swift",
-      "line": 41,
+      "line": 52,
       "symbol": "SectionViewModel.allRegistrations",
       "symbol_kind": "source.lang.swift.decl.var.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/jsq/Developer/GitHub/ReactiveCollectionsKit/Sources/SectionViewModel.swift",
-      "line": 48,
+      "line": 59,
       "symbol": "SectionViewModel.init(id:cells:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/jsq/Developer/GitHub/ReactiveCollectionsKit/Sources/SectionViewModel.swift",
-      "line": 58,
+      "line": 69,
       "symbol": "SectionViewModel.init(id:cells:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/jsq/Developer/GitHub/ReactiveCollectionsKit/Sources/SectionViewModel.swift",
-      "line": 71,
+      "line": 82,
       "symbol": "SectionViewModel.init(id:cells:header:footer:supplementaryViews:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/jsq/Developer/GitHub/ReactiveCollectionsKit/Sources/SectionViewModel.swift",
-      "line": 87,
+      "line": 98,
       "symbol": "SectionViewModel.init(id:cells:header:footer:supplementaryViews:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/jsq/Developer/GitHub/ReactiveCollectionsKit/Sources/SectionViewModel.swift",
-      "line": 103,
+      "line": 114,
       "symbol": "SectionViewModel.init(id:cells:header:footer:supplementaryViews:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"

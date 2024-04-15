@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>DiffableViewModel Protocol Reference</title>
+    <title>CellEventCoordinator Protocol Reference</title>
     <link rel="stylesheet" type="text/css" href="../css/jazzy.css" />
     <link rel="stylesheet" type="text/css" href="../css/highlight.css" />
     <meta charset='utf-8'>
@@ -13,8 +13,8 @@
     <script src="../js/jazzy.search.js" defer></script>
   </head>
   <body>
-    <a name="//apple_ref/swift/Protocol/DiffableViewModel" class="dashAnchor"></a>
-    <a title="DiffableViewModel Protocol Reference"></a>
+    <a name="//apple_ref/swift/Protocol/CellEventCoordinator" class="dashAnchor"></a>
+    <a title="CellEventCoordinator Protocol Reference"></a>
     <header>
       <div class="content-wrapper">
         <p><a href="../index.html">ReactiveCollectionsKit Docs</a> (34% documented)</p>
@@ -30,7 +30,7 @@
       <p id="breadcrumbs">
         <a href="../index.html">ReactiveCollectionsKit Reference</a>
         <img id="carat" src="../img/carat.png" alt=""/>
-        DiffableViewModel Protocol Reference
+        CellEventCoordinator Protocol Reference
       </p>
     </div>
     <div class="content-wrapper">
@@ -117,15 +117,15 @@
       <article class="main-content">
         <section>
           <section class="section">
-            <h1>DiffableViewModel</h1>
+            <h1>CellEventCoordinator</h1>
               <div class="declaration">
                 <div class="language">
                   
-                  <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">protocol</span> <span class="kt">DiffableViewModel</span> <span class="p">:</span> <span class="kt">Hashable</span></code></pre>
+                  <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">protocol</span> <span class="kt">CellEventCoordinator</span> <span class="p">:</span> <span class="kt">AnyObject</span></code></pre>
 
                 </div>
               </div>
-            <p>Describes a view model that is diffable.</p>
+            <p>Undocumented</p>
 
           </section>
           <section class="section task-group-section">
@@ -134,9 +134,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:22ReactiveCollectionsKit17DiffableViewModelP2ids11AnyHashableVvp"></a>
-                    <a name="//apple_ref/swift/Property/id" class="dashAnchor"></a>
-                    <a class="token" href="#/s:22ReactiveCollectionsKit17DiffableViewModelP2ids11AnyHashableVvp">id</a>
+                    <a name="/s:22ReactiveCollectionsKit20CellEventCoordinatorP09didSelectD09viewModelyAA0d4ViewJ0_p_tF"></a>
+                    <a name="//apple_ref/swift/Method/didSelectCell(viewModel:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:22ReactiveCollectionsKit20CellEventCoordinatorP09didSelectD09viewModelyAA0d4ViewJ0_p_tF">didSelectCell(viewModel:<wbr>)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -144,14 +144,14 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>An identifier that uniquely identifies this instance.</p>
+                        <p>Undocumented</p>
 
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="k">var</span> <span class="nv">id</span><span class="p">:</span> <span class="kt"><a href="../Typealiases.html#/s:22ReactiveCollectionsKit16UniqueIdentifiera">UniqueIdentifier</a></span> <span class="p">{</span> <span class="k">get</span> <span class="p">}</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">didSelectCell</span><span class="p">(</span><span class="nv">viewModel</span><span class="p">:</span> <span class="kd">any</span> <span class="kt"><a href="../Protocols/CellViewModel.html">CellViewModel</a></span><span class="p">)</span></code></pre>
 
                         </div>
                       </div>

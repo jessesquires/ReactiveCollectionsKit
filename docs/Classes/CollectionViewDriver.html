@@ -17,7 +17,7 @@
     <a title="CollectionViewDriver Class Reference"></a>
     <header>
       <div class="content-wrapper">
-        <p><a href="../index.html">ReactiveCollectionsKit Docs</a> (33% documented)</p>
+        <p><a href="../index.html">ReactiveCollectionsKit Docs</a> (34% documented)</p>
         <p class="header-right"><a href="https://github.com/jessesquires/ReactiveCollectionsKit"><img src="../img/gh.png" alt="GitHub"/>View on GitHub</a></p>
         <div class="header-right">
           <form role="search" action="../search.json">
@@ -58,6 +58,9 @@
           <li class="nav-group-name">
             <a href="../Protocols.html">Protocols</a>
             <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Protocols/CellEventCoordinator.html">CellEventCoordinator</a>
+              </li>
               <li class="nav-group-task">
                 <a href="../Protocols/CellViewModel.html">CellViewModel</a>
               </li>
@@ -283,9 +286,9 @@ It handles all layout, data source, delegate, and diffing operations.</p>
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:22ReactiveCollectionsKit20CollectionViewDriverC4view6layout0G5Model10controller14animateUpdates9didUpdateACSo012UICollectionE0C_So0oE19CompositionalLayoutCAA0deI0VSo16UIViewControllerCSbyycSgtcfc"></a>
-                    <a name="//apple_ref/swift/Method/init(view:layout:viewModel:controller:animateUpdates:didUpdate:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:22ReactiveCollectionsKit20CollectionViewDriverC4view6layout0G5Model10controller14animateUpdates9didUpdateACSo012UICollectionE0C_So0oE19CompositionalLayoutCAA0deI0VSo16UIViewControllerCSbyycSgtcfc">init(view:<wbr>layout:<wbr>viewModel:<wbr>controller:<wbr>animateUpdates:<wbr>didUpdate:<wbr>)</a>
+                    <a name="/s:22ReactiveCollectionsKit20CollectionViewDriverC4view6layout0G5Model20cellEventCoordinator14animateUpdates9didUpdateACSo012UICollectionE0C_So0qE19CompositionalLayoutCAA0deI0VAA04CellkL0_pSgSbyycSgtcfc"></a>
+                    <a name="//apple_ref/swift/Method/init(view:layout:viewModel:cellEventCoordinator:animateUpdates:didUpdate:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:22ReactiveCollectionsKit20CollectionViewDriverC4view6layout0G5Model20cellEventCoordinator14animateUpdates9didUpdateACSo012UICollectionE0C_So0qE19CompositionalLayoutCAA0deI0VAA04CellkL0_pSgSbyycSgtcfc">init(view:<wbr>layout:<wbr>viewModel:<wbr>cellEventCoordinator:<wbr>animateUpdates:<wbr>didUpdate:<wbr>)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -293,7 +296,15 @@ It handles all layout, data source, delegate, and diffing operations.</p>
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>Initializes a new <code>CollectionViewDriver</code>.</p>
+<div class="aside aside-warning">
+    <p class="aside-title">Warning</p>
+    <p>The driver <strong>does not</strong> retain the <code>cellEventCoordinator</code>,
+because this object is typically the view controller that owns the driver.
+Thus, the caller is responsible for retaining and keeping alive the <code>cellEventCoordinator</code>
+for the entire lifetime of the driver.</p>
+
+</div>
 
                       </div>
                       <div class="declaration">
@@ -302,12 +313,94 @@ It handles all layout, data source, delegate, and diffing operations.</p>
                           <p class="aside-title">Swift</p>
                           <pre class="highlight swift"><code><span class="kd">public</span> <span class="nf">init</span><span class="p">(</span><span class="nv">view</span><span class="p">:</span> <span class="kt">UICollectionView</span><span class="p">,</span>
             <span class="nv">layout</span><span class="p">:</span> <span class="kt">UICollectionViewCompositionalLayout</span><span class="p">,</span>
-            <span class="nv">viewModel</span><span class="p">:</span> <span class="kt"><a href="../Structs/CollectionViewModel.html">CollectionViewModel</a></span><span class="p">,</span>
-            <span class="nv">controller</span><span class="p">:</span> <span class="kt">UIViewController</span><span class="p">,</span>
+            <span class="nv">viewModel</span><span class="p">:</span> <span class="kt"><a href="../Structs/CollectionViewModel.html">CollectionViewModel</a></span> <span class="o">=</span> <span class="kt"><a href="../Structs/CollectionViewModel.html">CollectionViewModel</a></span><span class="p">(),</span>
+            <span class="nv">cellEventCoordinator</span><span class="p">:</span> <span class="kt"><a href="../Protocols/CellEventCoordinator.html">CellEventCoordinator</a></span><span class="p">?,</span>
             <span class="nv">animateUpdates</span><span class="p">:</span> <span class="kt">Bool</span> <span class="o">=</span> <span class="kc">true</span><span class="p">,</span>
             <span class="nv">didUpdate</span><span class="p">:</span> <span class="kt"><a href="../Classes/CollectionViewDriver.html#/s:22ReactiveCollectionsKit20CollectionViewDriverC9DidUpdatea">DidUpdate</a></span><span class="p">?</span> <span class="o">=</span> <span class="kc">nil</span><span class="p">)</span></code></pre>
 
                         </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>view</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The collection view.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>layout</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The collection view layout.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>viewModel</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The collection view model.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>cellEventCoordinator</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The cell event coordinator,
+                  if you wish to handle cell events outside of your cell view models.
+                  <strong>Note: This object is not retained by the driver.</strong></p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>animateUpdates</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Specifies whether or not to animate updates.
+            Pass <code>true</code> to animate, <code>false</code> otherwise.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>didUpdate</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>A closure to call when the driver finishes diffing and updating the collection view.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
                       </div>
                     </section>
                   </div>
@@ -357,7 +450,7 @@ It handles all layout, data source, delegate, and diffing operations.</p>
           </section>
         </section>
         <section id="footer">
-          <p>&copy; 2024 <a class="link" href="https://jessesquires.com" target="_blank" rel="external noopener">Jesse Squires</a>. All rights reserved. (Last updated: 2024-03-31)</p>
+          <p>&copy; 2024 <a class="link" href="https://jessesquires.com" target="_blank" rel="external noopener">Jesse Squires</a>. All rights reserved. (Last updated: 2024-04-14)</p>
           <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external noopener">jazzy ♪♫ v0.14.4</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external noopener">Realm</a> project.</p>
         </section>
       </article>
