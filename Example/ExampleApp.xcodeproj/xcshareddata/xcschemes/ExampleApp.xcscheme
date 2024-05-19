@@ -15,7 +15,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "0B31B93A2BCC62A4006F2078"
-               BuildableName = "RCK Example.app"
+               BuildableName = "ExampleApp.app"
                BlueprintName = "ExampleApp"
                ReferencedContainer = "container:ExampleApp.xcodeproj">
             </BuildableReference>
@@ -66,7 +66,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "0B31B93A2BCC62A4006F2078"
-            BuildableName = "RCK Example.app"
+            BuildableName = "ExampleApp.app"
             BlueprintName = "ExampleApp"
             ReferencedContainer = "container:ExampleApp.xcodeproj">
          </BuildableReference>
@@ -83,7 +83,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "0B31B93A2BCC62A4006F2078"
-            BuildableName = "RCK Example.app"
+            BuildableName = "ExampleApp.app"
             BlueprintName = "ExampleApp"
             ReferencedContainer = "container:ExampleApp.xcodeproj">
          </BuildableReference>
