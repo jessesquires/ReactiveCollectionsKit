@@ -23,8 +23,8 @@ public final class CollectionViewDriver: NSObject {
 
     public let view: UICollectionView
 
-    public var layout: UICollectionViewCompositionalLayout {
-        self.view.collectionViewLayout as! UICollectionViewCompositionalLayout
+    public var layout: UICollectionViewLayout {
+        self.view.collectionViewLayout
     }
 
     public var animateUpdates: Bool
@@ -68,7 +68,7 @@ public final class CollectionViewDriver: NSObject {
     /// Thus, the caller is responsible for retaining and keeping alive the `cellEventCoordinator`
     /// for the entire lifetime of the driver.
     public init(view: UICollectionView,
-                layout: UICollectionViewCompositionalLayout,
+                layout: UICollectionViewLayout,
                 viewModel: CollectionViewModel = CollectionViewModel(),
                 cellEventCoordinator: CellEventCoordinator?,
                 animateUpdates: Bool = true,
