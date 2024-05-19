@@ -73,7 +73,7 @@ opt_in_rules:
   - modifier_order
   - multiline_arguments
   - multiline_parameters
-  - trailing_closure
+  # - trailing_closure
   - unneeded_parentheses_in_closure_argument
   - vertical_whitespace_between_cases
   - prefer_self_in_static_references
