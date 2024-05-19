@@ -183,7 +183,7 @@ extension SectionViewModel: Collection, RandomAccessCollection {
     }
 
     /// :nodoc:
-    public func index(after i: Int) -> Int {
-        self.cells.index(after: i)
+    public func index(after pos: Int) -> Int {
+        self.cells.index(after: pos)
     }
 }

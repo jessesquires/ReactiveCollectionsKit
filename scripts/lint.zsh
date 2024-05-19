@@ -15,7 +15,7 @@ export PATH="$PATH:/opt/homebrew/bin"
 PROJECT="ReactiveCollectionsKit.xcodeproj"
 SCHEME="ReactiveCollectionsKit"
 
-VERSION="0.54.0"
+VERSION="0.55.1"
 
 FOUND=$(swiftlint version)
 LINK="https://github.com/realm/SwiftLint"
