@@ -16,11 +16,32 @@ import UIKit
 
 final class GridViewController: ExampleViewController, CellEventCoordinator {
 
+    lazy var driver = CollectionViewDriver(
+        view: self.collectionView,
+        layout: self.makeLayout(),
+        cellEventCoordinator: self,
+        animateUpdates: true,
+        didUpdate: nil
+    )
+
     override var model: Model {
         didSet {
             // Every time the model updates, regenerate and set the view model
-            self.driver.viewModel = self.makeCollectionViewModel()
+            self.driver.viewModel = self.makeViewModel()
         }
+    }
+
+    // MARK: View lifecycle
+
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        self.driver.viewModel = self.makeViewModel()
+    }
+
+    // MARK: Actions
+
+    override func reload() {
+        self.driver.reloadData()
     }
 
     // MARK: CellEventCoordinator
@@ -43,27 +64,9 @@ final class GridViewController: ExampleViewController, CellEventCoordinator {
         assertionFailure("unhandled cell selection")
     }
 
-    // MARK: View Lifecycle
+    // MARK: Private
 
-    override func viewDidLoad() {
-        super.viewDidLoad()
-
-        let layout = self.makeLayout()
-        let viewModel = self.makeCollectionViewModel()
-
-        self.driver = CollectionViewDriver(
-            view: self.collectionView,
-            layout: layout,
-            viewModel: viewModel,
-            cellEventCoordinator: self,
-            animateUpdates: true
-        ) { [unowned self] in
-            print("grid did update!")
-            print(self.driver.viewModel)
-        }
-    }
-
-    func makeLayout() -> UICollectionViewCompositionalLayout {
+    private func makeLayout() -> UICollectionViewCompositionalLayout {
         let fractionalWidth = CGFloat(0.5)
         let inset = CGFloat(4)
 
@@ -107,7 +110,7 @@ final class GridViewController: ExampleViewController, CellEventCoordinator {
         return UICollectionViewCompositionalLayout(section: section)
     }
 
-    func makeCollectionViewModel() -> CollectionViewModel {
+    private func makeViewModel() -> CollectionViewModel {
         // Create people section
         let peopleCellViewModels = self.model.people.map {
             let menuConfig = UIContextMenuConfiguration.configFor(

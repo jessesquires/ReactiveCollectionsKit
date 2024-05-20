@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		0B31B9462BCC62A4006F2078 /* Base in Resources */ = {isa = PBXBuildFile; fileRef = 0B31B9452BCC62A4006F2078 /* Base */; };
 		0B31B9482BCC62A5006F2078 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0B31B9472BCC62A5006F2078 /* Assets.xcassets */; };
 		0B31B94B2BCC62A5006F2078 /* Base in Resources */ = {isa = PBXBuildFile; fileRef = 0B31B94A2BCC62A5006F2078 /* Base */; };
 		0B31B9722BCC6302006F2078 /* ExampleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B31B9702BCC62FD006F2078 /* ExampleTests.swift */; };
@@ -86,7 +85,6 @@
 
 /* Begin PBXFileReference section */
 		0B31B93B2BCC62A4006F2078 /* ExampleApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ExampleApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		0B31B9452BCC62A4006F2078 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		0B31B9472BCC62A5006F2078 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		0B31B94A2BCC62A5006F2078 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		0B31B9512BCC62A5006F2078 /* ExampleAppTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ExampleAppTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -172,7 +170,6 @@
 			children = (
 				0B31B9472BCC62A5006F2078 /* Assets.xcassets */,
 				0B31B9492BCC62A5006F2078 /* LaunchScreen.storyboard */,
-				0B31B9442BCC62A4006F2078 /* Main.storyboard */,
 				0B31B9902BCC6349006F2078 /* Main */,
 				0B31B9BD2BCC69A4006F2078 /* ColorModel */,
 				0B31B9BC2BCC6986006F2078 /* PersonModel */,
@@ -420,7 +417,6 @@
 				0B31B9A72BCC6349006F2078 /* PersonViewController.xib in Resources */,
 				0B31B9482BCC62A5006F2078 /* Assets.xcassets in Resources */,
 				0B31B94B2BCC62A5006F2078 /* Base in Resources */,
-				0B31B9462BCC62A4006F2078 /* Base in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -501,14 +497,6 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		0B31B9442BCC62A4006F2078 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				0B31B9452BCC62A4006F2078 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		0B31B9492BCC62A5006F2078 /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -660,7 +648,7 @@
 				INFOPLIST_KEY_CFBundleDisplayName = "RCK Example";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
+				INFOPLIST_KEY_UIMainStoryboardFile = "";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -690,7 +678,7 @@
 				INFOPLIST_KEY_CFBundleDisplayName = "RCK Example";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
+				INFOPLIST_KEY_UIMainStoryboardFile = "";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (

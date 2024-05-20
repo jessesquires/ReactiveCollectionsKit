@@ -14,15 +14,38 @@
 import ReactiveCollectionsKit
 import UIKit
 
-class ExampleViewController: UICollectionViewController {
-    var driver: CollectionViewDriver!
+class ExampleViewController: UIViewController {
+    let collectionView = UICollectionView(
+        frame: .zero,
+        collectionViewLayout: UICollectionViewFlowLayout()
+    )
 
     var model = Model()
+
+    init() {
+        super.init(nibName: nil, bundle: nil)
+    }
+
+    @available(*, unavailable)
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
 
     // MARK: View Lifecycle
 
     override func viewDidLoad() {
         super.viewDidLoad()
+
+        self.view.addSubview(self.collectionView)
+        self.collectionView.frame = self.view.frame
+        self.collectionView.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            self.collectionView.topAnchor.constraint(equalTo: self.view.topAnchor),
+            self.collectionView.bottomAnchor.constraint(equalTo: self.view.bottomAnchor),
+            self.collectionView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor),
+            self.collectionView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor)
+        ])
+
         self.addShuffleButton()
         self.addReloadButton()
     }
@@ -35,11 +58,15 @@ class ExampleViewController: UICollectionViewController {
     }
 
     func reload() {
-        self.driver.reloadData()
+        assertionFailure("override in subclass")
     }
 
     func reset() {
         self.model = Model()
+    }
+
+    func removeAll() {
+        self.model = Model(people: [], colors: [])
     }
 
     func deleteItem(id: UniqueIdentifier) {
@@ -72,7 +99,11 @@ class ExampleViewController: UICollectionViewController {
             self.reset()
         }
 
-        let menu = UIMenu(children: [reload, reset])
+        let removeAll = UIAction(title: "Remove All", attributes: .destructive) { [unowned self] _ in
+            self.removeAll()
+        }
+
+        let menu = UIMenu(children: [reload, reset, removeAll])
         let item = UIBarButtonItem(systemItem: .refresh, primaryAction: nil, menu: menu)
         self.appendRightBarButton(item)
     }
