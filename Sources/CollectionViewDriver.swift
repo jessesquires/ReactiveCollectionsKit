@@ -163,7 +163,8 @@ public final class CollectionViewDriver: NSObject {
     private func _cellProvider(
         collectionView: UICollectionView,
         indexPath: IndexPath,
-        identifier: UniqueIdentifier) -> UICollectionViewCell {
+        identifier: UniqueIdentifier
+    ) -> UICollectionViewCell {
         let cell = self.viewModel.cellViewModel(for: identifier)
         precondition(cell != nil, "Inconsistent state. Cell with identifier \(identifier) does not exist.")
         return cell!.dequeueAndConfigureCellFor(collectionView: collectionView, at: indexPath)
@@ -172,7 +173,8 @@ public final class CollectionViewDriver: NSObject {
     private func _supplementaryViewProvider(
         collectionView: UICollectionView,
         elementKind: String,
-        indexPath: IndexPath) -> UICollectionReusableView? {
+        indexPath: IndexPath
+    ) -> UICollectionReusableView? {
         let supplementaryView = self.viewModel.supplementaryViewModel(ofKind: elementKind, at: indexPath)
         return supplementaryView?.dequeueAndConfigureViewFor(collectionView: collectionView, at: indexPath)
     }

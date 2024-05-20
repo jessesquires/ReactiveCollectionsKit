@@ -40,7 +40,6 @@ final class ListViewController: ExampleViewController, CellEventCoordinator {
 
     // In this example, the cell view models handle cell selection and navigation themselves.
 
-
     // MARK: View lifecycle
 
     override func viewDidLoad() {

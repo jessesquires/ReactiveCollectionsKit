@@ -50,6 +50,11 @@ class ExampleViewController: UIViewController {
         self.addReloadButton()
     }
 
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.collectionView.deselectAllItems()
+    }
+
     // MARK: Actions
 
     @objc
