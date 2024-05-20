@@ -20,8 +20,8 @@ Improvements over the libraries above include:
 - Mix multiple data types
 - Automatic registration for cells and supplementary views
 - Automatic diffing for items and sections
-- Simply `UICollectionView` and `UICollectionViewCompositionalLayout` at its core.
-- No `UITableView`. `UICollectionView` now has a [List Layout](https://developer.apple.com/documentation/uikit/uicollectionviewcompositionallayout/3600951-list).
+- Simply `UICollectionView` and `UICollectionViewDiffableDataSource` at its core.
+- No `UITableView`. Only `UICollectionView`, which now has a [List Layout](https://developer.apple.com/documentation/uikit/uicollectionviewcompositionallayout/3600951-list).
 
 ### What about SwiftUI?
 
