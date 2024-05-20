@@ -19,7 +19,7 @@ import UIKit
 /// A `CollectionViewDriver` is responsible for "driving" the collection view.
 /// It handles all layout, data source, delegate, and diffing operations.
 public final class CollectionViewDriver: NSObject {
-    public typealias DidUpdate = () -> Void
+    public typealias DidUpdate = (CollectionViewDriver) -> Void
 
     public let view: UICollectionView
 
@@ -130,12 +130,10 @@ public final class CollectionViewDriver: NSObject {
     // MARK: Modifying data
 
     public func reloadData() {
-        self._dataSource.reload(self.viewModel, completion: self._didUpdate)
+        self._dataSource.reload(self.viewModel) { [unowned self] in
+            self._handleDidUpdate()
+        }
     }
-
-    // TODO:
-    // - reload with view model, layout (?)
-    // - update with view model, layout (?), animated
 
     // MARK: Private
 
@@ -153,9 +151,13 @@ public final class CollectionViewDriver: NSObject {
         self._dataSource.applySnapshot(
             from: old,
             to: new,
-            animated: self.animateUpdates,
-            completion: self._didUpdate
-        )
+            animated: self.animateUpdates) { [unowned self] in
+                self._handleDidUpdate()
+            }
+    }
+
+    private func _handleDidUpdate() {
+        self._didUpdate?(self)
     }
 
     private func _cellProvider(
