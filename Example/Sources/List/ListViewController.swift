@@ -38,23 +38,8 @@ final class ListViewController: ExampleViewController, CellEventCoordinator {
 
     // MARK: CellEventCoordinator
 
-    func didSelectCell(viewModel: any CellViewModel) {
-        print("\(#function): \(viewModel.id)")
+    // In this example, the cell view models handle cell selection and navigation themselves.
 
-        if let personVM = viewModel as? PersonCellViewModelList {
-            let personVC = PersonViewController(person: personVM.person)
-            self.navigationController?.pushViewController(personVC, animated: true)
-            return
-        }
-
-        if let colorVM = viewModel as? ColorCellViewModelList {
-            let colorVC = ColorViewController(color: colorVM.color)
-            self.navigationController?.pushViewController(colorVC, animated: true)
-            return
-        }
-
-        assertionFailure("unhandled cell selection")
-    }
 
     // MARK: View lifecycle
 

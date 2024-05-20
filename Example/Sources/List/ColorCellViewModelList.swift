@@ -42,6 +42,11 @@ struct ColorCellViewModelList: CellViewModel {
         }
     }
 
+    func didSelect(with coordinator: (any CellEventCoordinator)?) {
+        let colorVC = ColorViewController(color: self.color)
+        coordinator?.underlyingViewController?.navigationController?.pushViewController(colorVC, animated: true)
+    }
+
     // MARK: Hashable
 
     func hash(into hasher: inout Hasher) {
