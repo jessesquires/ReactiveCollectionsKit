@@ -211,6 +211,8 @@
 		0B31B9822BCC6349006F2078 /* List */ = {
 			isa = PBXGroup;
 			children = (
+				0B31B9802BCC6349006F2078 /* PersonCellViewModelList.swift */,
+				0B31B97F2BCC6349006F2078 /* ColorCellViewModelList.swift */,
 				0B31B9812BCC6349006F2078 /* ListViewController.swift */,
 			);
 			path = List;
@@ -219,10 +221,12 @@
 		0B31B9892BCC6349006F2078 /* Grid */ = {
 			isa = PBXGroup;
 			children = (
+				0B31B9842BCC6349006F2078 /* ColorCellViewModelGrid.swift */,
 				0B31B9832BCC6349006F2078 /* GridColorCell.swift */,
 				0B31B9852BCC6349006F2078 /* GridPersonCell.swift */,
 				0B31B9862BCC6349006F2078 /* GridPersonCell.xib */,
 				0B31B9882BCC6349006F2078 /* GridViewController.swift */,
+				0B31B9872BCC6349006F2078 /* PersonCellViewModelGrid.swift */,
 			);
 			path = Grid;
 			sourceTree = "<group>";
@@ -265,8 +269,6 @@
 		0B31B9BC2BCC6986006F2078 /* PersonModel */ = {
 			isa = PBXGroup;
 			children = (
-				0B31B9872BCC6349006F2078 /* PersonCellViewModelGrid.swift */,
-				0B31B9802BCC6349006F2078 /* PersonCellViewModelList.swift */,
 				0B31B9772BCC6349006F2078 /* PersonModel.swift */,
 				0B31B98C2BCC6349006F2078 /* PersonViewController.swift */,
 				0B31B98D2BCC6349006F2078 /* PersonViewController.xib */,
@@ -277,8 +279,6 @@
 		0B31B9BD2BCC69A4006F2078 /* ColorModel */ = {
 			isa = PBXGroup;
 			children = (
-				0B31B9842BCC6349006F2078 /* ColorCellViewModelGrid.swift */,
-				0B31B97F2BCC6349006F2078 /* ColorCellViewModelList.swift */,
 				0B31B9752BCC6349006F2078 /* ColorModel.swift */,
 				0B31B9BE2BCC6A24006F2078 /* ColorViewController.swift */,
 			);
