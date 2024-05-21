@@ -2,12 +2,10 @@
 
 *Data-driven, declarative, reactive, diffable collections (and lists!) for iOS. A thoughtful and flexible wrapper for UICollectionView done right.*
 
-## Project Status: WIP ⚠️
+## Project Status: initial release coming soon! ⚠️
 
-⚠️ This is still a **Work-In-Progress**, but it is close to finished. I started this a few years back, then got busy with other things.
-I am now returning to the project to get the initial release complete. Hopefully. 🤞
-
-In any case, what's here now is worth sharing.
+This project is close to finished for an initial release. I started this a few years back, then got busy with other things.
+I am now returning to the project to get the initial release complete. In any case, what's here now is worth sharing.
 
 ## About
 
