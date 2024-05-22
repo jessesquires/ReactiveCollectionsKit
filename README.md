@@ -18,7 +18,7 @@ Improvements over the libraries above include:
 - Mix multiple data types
 - Automatic registration for cells and supplementary views
 - Automatic diffing for items and sections
-- Simply `UICollectionView` and `UICollectionViewDiffableDataSource` at its core.
+- Simply `UICollectionView`, `UICollectionViewCompositionalLayout`, and `UICollectionViewDiffableDataSource` at its core.
 - No `UITableView`. Only `UICollectionView`, which now has a [List Layout](https://developer.apple.com/documentation/uikit/uicollectionviewcompositionallayout/3600951-list).
 
 ### What about SwiftUI?
@@ -37,7 +37,7 @@ SwiftUI performance is still a significant issue, not to mention all the bugs an
 >
 > Check out the extensive example project included in this repo.
 
-Here's an example of buliding a simple, static list from an array of data models.
+Here's an example of building a simple, static list from an array of data models.
 
 ```swift
 class MyViewController: UICollectionViewController, CellEventCoordinator {
