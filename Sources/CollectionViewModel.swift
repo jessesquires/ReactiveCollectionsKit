@@ -18,7 +18,7 @@ import UIKit
 public struct CollectionViewModel: Hashable, DiffableViewModel {
     // MARK: DiffableViewModel
 
-    public var id: UniqueIdentifier
+    public let id: UniqueIdentifier
 
     // MARK: Properties
 
