@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		0B01476F2BBCF0330041D432 /* Collection+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B01476E2BBCF0330041D432 /* Collection+Extensions.swift */; };
+		0B0B5AA32BFF0BDB0037BC02 /* EmptyViewProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B0B5AA22BFF0BDB0037BC02 /* EmptyViewProvider.swift */; };
 		0B25D73A2BFAD31C00EB3664 /* UICollectionView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B25D7392BFAD31C00EB3664 /* UICollectionView+Extensions.swift */; };
 		0B31B9312BCC5B66006F2078 /* CellEventCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B31B9302BCC5B66006F2078 /* CellEventCoordinator.swift */; };
 		0B8C6CEC267ED08E0042DFE2 /* SupplementaryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B8C6CEB267ED08E0042DFE2 /* SupplementaryViewModel.swift */; };
@@ -51,6 +52,7 @@
 
 /* Begin PBXFileReference section */
 		0B01476E2BBCF0330041D432 /* Collection+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Collection+Extensions.swift"; sourceTree = "<group>"; };
+		0B0B5AA22BFF0BDB0037BC02 /* EmptyViewProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyViewProvider.swift; sourceTree = "<group>"; };
 		0B25D7392BFAD31C00EB3664 /* UICollectionView+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UICollectionView+Extensions.swift"; sourceTree = "<group>"; };
 		0B31B9302BCC5B66006F2078 /* CellEventCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CellEventCoordinator.swift; sourceTree = "<group>"; };
 		0B8C6CEB267ED08E0042DFE2 /* SupplementaryViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SupplementaryViewModel.swift; sourceTree = "<group>"; };
@@ -160,6 +162,7 @@
 				88C02078236CBCB000B43713 /* DiffableDataSource.swift */,
 				0BC546EE267923BA00E36D30 /* DiffableSnapshot.swift */,
 				88FA49302363BC5F0061F8B2 /* DiffableViewModel.swift */,
+				0B0B5AA22BFF0BDB0037BC02 /* EmptyViewProvider.swift */,
 				88FA48FD2363A7880061F8B2 /* SectionViewModel.swift */,
 				0BC1EC29267FC3A000FF774F /* SupplementaryFooterViewModel.swift */,
 				0BC1EC27267FC37200FF774F /* SupplementaryHeaderViewModel.swift */,
@@ -330,6 +333,7 @@
 				0B8C6CEC267ED08E0042DFE2 /* SupplementaryViewModel.swift in Sources */,
 				88C02079236CBCB000B43713 /* DiffableDataSource.swift in Sources */,
 				0B31B9312BCC5B66006F2078 /* CellEventCoordinator.swift in Sources */,
+				0B0B5AA32BFF0BDB0037BC02 /* EmptyViewProvider.swift in Sources */,
 				88FA49312363BC5F0061F8B2 /* DiffableViewModel.swift in Sources */,
 				0BC1EC2E267FF46E00FF774F /* ViewRegistration.swift in Sources */,
 				0BC1EC2C267FE71900FF774F /* ViewRegistrationProvider.swift in Sources */,

@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0B0B5AA52BFF0FDB0037BC02 /* EmptyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B0B5AA42BFF0FDB0037BC02 /* EmptyView.swift */; };
 		0B31B9482BCC62A5006F2078 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0B31B9472BCC62A5006F2078 /* Assets.xcassets */; };
 		0B31B94B2BCC62A5006F2078 /* Base in Resources */ = {isa = PBXBuildFile; fileRef = 0B31B94A2BCC62A5006F2078 /* Base */; };
 		0B31B9722BCC6302006F2078 /* ExampleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B31B9702BCC62FD006F2078 /* ExampleTests.swift */; };
@@ -84,6 +85,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		0B0B5AA42BFF0FDB0037BC02 /* EmptyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyView.swift; sourceTree = "<group>"; };
 		0B31B93B2BCC62A4006F2078 /* ExampleApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ExampleApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0B31B9472BCC62A5006F2078 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		0B31B94A2BCC62A5006F2078 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -214,6 +216,7 @@
 				0B31B9802BCC6349006F2078 /* PersonCellViewModelList.swift */,
 				0B31B97F2BCC6349006F2078 /* ColorCellViewModelList.swift */,
 				0B31B9812BCC6349006F2078 /* ListViewController.swift */,
+				0B0B5AA42BFF0FDB0037BC02 /* EmptyView.swift */,
 			);
 			path = List;
 			sourceTree = "<group>";
@@ -450,6 +453,7 @@
 				0B31B9992BCC6349006F2078 /* FooterView.swift in Sources */,
 				0B31B99B2BCC6349006F2078 /* ColorCellViewModelList.swift in Sources */,
 				0B31B9932BCC6349006F2078 /* ColorModel.swift in Sources */,
+				0B0B5AA52BFF0FDB0037BC02 /* EmptyView.swift in Sources */,
 				0B31B99D2BCC6349006F2078 /* ListViewController.swift in Sources */,
 				0B31B9972BCC6349006F2078 /* FavoriteBadgeView.swift in Sources */,
 				0B31B9A32BCC6349006F2078 /* GridViewController.swift in Sources */,

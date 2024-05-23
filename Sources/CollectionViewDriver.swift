@@ -37,6 +37,10 @@ public final class CollectionViewDriver: NSObject {
         }
     }
 
+    private let _emptyViewProvider: EmptyViewProvider?
+
+    private var _currentEmptyView: UIView?
+
     // Avoiding a strong reference to prevent a possible retain cycle.
     // This is typically the view controller that owns `self` (the driver).
     // The caller is responsible for retaining this object for the lifetime of the driver.
@@ -51,18 +55,19 @@ public final class CollectionViewDriver: NSObject {
     // MARK: Init
 
     /// Initializes a new `CollectionViewDriver`.
-    ///
+    /// 
     /// - Parameters:
     ///   - view: The collection view.
     ///   - layout: The collection view layout.
     ///   - viewModel: The collection view model.
+    ///   - emptyViewProvider: An empty view provider.
     ///   - cellEventCoordinator: The cell event coordinator,
     ///                           if you wish to handle cell events outside of your cell view models.
     ///                           **Note: This object is not retained by the driver.**
     ///   - animateUpdates: Specifies whether or not to animate updates.
     ///                     Pass `true` to animate, `false` otherwise.
     ///   - didUpdate: A closure to call when the driver finishes diffing and updating the collection view.
-    ///
+    /// 
     /// - Warning: The driver **does not** retain the `cellEventCoordinator`,
     /// because this object is typically the view controller that owns the driver.
     /// Thus, the caller is responsible for retaining and keeping alive the `cellEventCoordinator`
@@ -70,12 +75,14 @@ public final class CollectionViewDriver: NSObject {
     public init(view: UICollectionView,
                 layout: UICollectionViewCompositionalLayout,
                 viewModel: CollectionViewModel = CollectionViewModel(),
+                emptyViewProvider: EmptyViewProvider? = nil,
                 cellEventCoordinator: CellEventCoordinator?,
                 animateUpdates: Bool = true,
                 didUpdate: DidUpdate? = nil) {
         self.view = view
         self.view.collectionViewLayout = layout
         self.viewModel = viewModel
+        self._emptyViewProvider = emptyViewProvider
         self._cellEventCoordinator = cellEventCoordinator
         self.animateUpdates = animateUpdates
         self._didUpdate = didUpdate
@@ -158,6 +165,50 @@ public final class CollectionViewDriver: NSObject {
 
     private func _handleDidUpdate() {
         self._didUpdate?(self)
+        self._displayEmptyViewIfNeeded()
+    }
+
+    private func _displayEmptyViewIfNeeded() {
+        if self.viewModel.isEmpty {
+            guard self._currentEmptyView == nil else { return }
+            guard let emptyView = self._emptyViewProvider?.view else { return }
+
+            emptyView.frame = self.view.frame
+            emptyView.translatesAutoresizingMaskIntoConstraints = false
+            emptyView.alpha = 0
+            self.view.superview?.addSubview(emptyView)
+            NSLayoutConstraint.activate([
+                emptyView.topAnchor.constraint(equalTo: self.view.superview!.topAnchor),
+                emptyView.bottomAnchor.constraint(equalTo: self.view.superview!.bottomAnchor),
+                emptyView.leadingAnchor.constraint(equalTo: self.view.superview!.leadingAnchor),
+                emptyView.trailingAnchor.constraint(equalTo: self.view.superview!.trailingAnchor)
+            ])
+            self._currentEmptyView = emptyView
+            self._animateEmptyView(isHidden: false)
+        } else {
+            self._animateEmptyView(isHidden: true)
+        }
+    }
+
+    private func _animateEmptyView(isHidden: Bool) {
+        guard self.animateUpdates else {
+            if isHidden {
+                self._currentEmptyView?.removeFromSuperview()
+                self._currentEmptyView = nil
+            } else {
+                self._currentEmptyView?.alpha = 1
+            }
+            return
+        }
+
+        UIView.animate(withDuration: 0.3, delay: 0, options: .curveEaseInOut) {
+            self._currentEmptyView?.alpha = isHidden ? 0 : 1
+        } completion: { _ in
+            if isHidden {
+                self._currentEmptyView?.removeFromSuperview()
+                self._currentEmptyView = nil
+            }
+        }
     }
 
     private func _cellProvider(

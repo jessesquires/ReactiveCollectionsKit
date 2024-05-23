@@ -20,6 +20,7 @@ final class ListViewController: ExampleViewController, CellEventCoordinator {
     lazy var driver = CollectionViewDriver(
         view: self.collectionView,
         layout: self.makeLayout(),
+        emptyViewProvider: sharedEmptyViewProvider,
         cellEventCoordinator: self,
         animateUpdates: true
     ) { [unowned self] driver in

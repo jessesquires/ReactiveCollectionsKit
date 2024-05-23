@@ -19,9 +19,8 @@ final class GridViewController: ExampleViewController, CellEventCoordinator {
     lazy var driver = CollectionViewDriver(
         view: self.collectionView,
         layout: self.makeLayout(),
-        cellEventCoordinator: self,
-        animateUpdates: true,
-        didUpdate: nil
+        emptyViewProvider: sharedEmptyViewProvider,
+        cellEventCoordinator: self
     )
 
     override var model: Model {
