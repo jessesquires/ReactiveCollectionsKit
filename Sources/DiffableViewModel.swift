@@ -18,7 +18,7 @@ public typealias UniqueIdentifier = AnyHashable
 
 /// Describes a view model that is diffable.
 @MainActor
-public protocol DiffableViewModel: Hashable {
+public protocol DiffableViewModel: Identifiable, Hashable {
 
     /// An identifier that uniquely identifies this instance.
     var id: UniqueIdentifier { get }

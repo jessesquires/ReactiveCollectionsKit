@@ -73,7 +73,7 @@ extension CellViewModel {
 public struct AnyCellViewModel: CellViewModel {
     // MARK: DiffableViewModel
 
-    public var id: UniqueIdentifier { self._id }
+    nonisolated public var id: UniqueIdentifier { self._id }
 
     // MARK: ViewRegistrationProvider
 
