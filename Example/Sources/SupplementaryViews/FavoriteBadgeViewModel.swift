@@ -34,14 +34,4 @@ struct FavoriteBadgeViewModel: SupplementaryViewModel {
     func configure(view: FavoriteBadgeView) {
         view.isHidden = self.isHidden
     }
-
-    // MARK: Hashable
-
-    func hash(into hasher: inout Hasher) {
-        hasher.combine(self.isHidden)
-    }
-
-    static func == (left: Self, right: Self) -> Bool {
-        left.isHidden == right.isHidden
-    }
 }
