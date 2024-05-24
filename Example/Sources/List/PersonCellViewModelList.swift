@@ -56,11 +56,11 @@ struct PersonCellViewModelList: CellViewModel {
 
     // MARK: Hashable
 
-    func hash(into hasher: inout Hasher) {
+    nonisolated func hash(into hasher: inout Hasher) {
         hasher.combine(self.person)
     }
 
-    static func == (left: Self, right: Self) -> Bool {
+    nonisolated static func == (left: Self, right: Self) -> Bool {
         left.person == right.person
     }
 }

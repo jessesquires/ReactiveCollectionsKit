@@ -49,11 +49,11 @@ struct ColorCellViewModelList: CellViewModel {
 
     // MARK: Hashable
 
-    func hash(into hasher: inout Hasher) {
+    nonisolated func hash(into hasher: inout Hasher) {
         hasher.combine(self.color)
     }
 
-    static func == (left: Self, right: Self) -> Bool {
+    nonisolated static func == (left: Self, right: Self) -> Bool {
         left.color == right.color
     }
 }
