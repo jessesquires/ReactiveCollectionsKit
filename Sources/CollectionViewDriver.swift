@@ -15,21 +15,32 @@ import Combine
 import Foundation
 import UIKit
 
-/// Represents the main entry-point to the underlying `UICollectionView`.
+/// Represents the main entry-point to the library, and underlying `UICollectionView` components.
 /// A `CollectionViewDriver` is responsible for "driving" the collection view.
 /// It handles all layout, data source, delegate, and diffing operations.
 @MainActor
 public final class CollectionViewDriver: NSObject {
+    /// A closure type used to notify callers of collection view updates.
     public typealias DidUpdate = (CollectionViewDriver) -> Void
 
+    /// The collection view.
     public let view: UICollectionView
 
+    /// The collection view compositional layout.
     public var layout: UICollectionViewCompositionalLayout {
         self.view.collectionViewLayout as! UICollectionViewCompositionalLayout
     }
 
-    public var animateUpdates: Bool
+    /// A set of options to customize behavior of the driver.
+    public let options: CollectionViewDriverOptions
 
+    /// The collection view model.
+    ///
+    /// - Note: Setting this property to a new value will trigger diffing and collection view updates.
+    ///
+    /// - Warning: If you provide a `viewModel` with an `id` different from the previous one,
+    /// this is considered a *replacement*. By default, the driver will animate the diff between the view models.
+    /// You can customize this behavior via the ``options`` for the driver.
     @Published public var viewModel: CollectionViewModel {
         didSet {
             self._didUpdateModel(from: oldValue, to: self.viewModel)
@@ -59,14 +70,11 @@ public final class CollectionViewDriver: NSObject {
     ///   - view: The collection view.
     ///   - layout: The collection view layout.
     ///   - viewModel: The collection view model.
+    ///   - options: A set of options to customize behavior of the driver.
     ///   - emptyViewProvider: An empty view provider.
     ///   - cellEventCoordinator: The cell event coordinator,
     ///                           if you wish to handle cell events outside of your cell view models.
     ///                           **Note: This object is not retained by the driver.**
-    ///   - animateUpdates: Specifies whether or not to animate updates.
-    ///                     Pass `true` to animate, `false` otherwise.
-    ///   - diffOnBackgroundQueue: Specifies whether or not to perform diffing on a background queue.
-    ///                            Pass `true` to diff in the background, `false` to diff on the main thread.
     ///   - didUpdate: A closure to call when the driver finishes diffing and updating the collection view.
     ///                The driver passes itself to the closure. This will always be called on the main thread.
     ///
@@ -76,23 +84,22 @@ public final class CollectionViewDriver: NSObject {
     /// for the entire lifetime of the driver.
     public init(view: UICollectionView,
                 layout: UICollectionViewCompositionalLayout,
-                viewModel: CollectionViewModel = CollectionViewModel(),
-                emptyViewProvider: EmptyViewProvider? = nil,
+                viewModel: CollectionViewModel = CollectionViewModel(id: UUID()),
+                options: CollectionViewDriverOptions = CollectionViewDriverOptions(),
+                emptyViewProvider: EmptyViewProvider?,
                 cellEventCoordinator: CellEventCoordinator?,
-                animateUpdates: Bool = true,
-                diffOnBackgroundQueue: Bool = false,
                 didUpdate: DidUpdate? = nil) {
         self.view = view
         self.view.collectionViewLayout = layout
         self.viewModel = viewModel
         self._emptyViewProvider = emptyViewProvider
         self._cellEventCoordinator = cellEventCoordinator
-        self.animateUpdates = animateUpdates
+        self.options = options
         self._didUpdate = didUpdate
 
         // workaround for swift initialization rules.
         // the "real" init is below.
-        self._dataSource = DiffableDataSource(view: view, diffOnBackgroundQueue: diffOnBackgroundQueue)
+        self._dataSource = DiffableDataSource(view: view, diffOnBackgroundQueue: false)
 
         super.init()
 
@@ -106,7 +113,7 @@ public final class CollectionViewDriver: NSObject {
         // `self` owns the `_dataSource`, so we know that `self` will always exist.
         self._dataSource = DiffableDataSource(
             view: view,
-            diffOnBackgroundQueue: diffOnBackgroundQueue,
+            diffOnBackgroundQueue: options.diffOnBackgroundQueue,
             cellProvider: { [unowned self] view, indexPath, itemIdentifier in
             self._cellProvider(
                 collectionView: view,
@@ -130,21 +137,16 @@ public final class CollectionViewDriver: NSObject {
 
     // MARK: State information
 
-    func numberOfSections() -> Int {
+    /// The number of sections displayed by the collection view.
+    var numberOfSections: Int {
         self.viewModel.sections.count
     }
 
+    /// Returns the count of items in the specified section.
+    /// - Parameter section: The index of the section for which you want a count of the items.
+    /// - Returns: The number of items in the specified section.
     func numberOfItems(in section: Int) -> Int {
         self.viewModel.sections[section].cells.count
-    }
-
-    // MARK: Modifying data
-
-    public func reloadData() {
-        self._dataSource.reload(self.viewModel) { [unowned self] in
-            // UIKit guarantees this closure is called on the main queue.
-            self._handleDidUpdate()
-        }
     }
 
     // MARK: Private
@@ -160,10 +162,22 @@ public final class CollectionViewDriver: NSObject {
 
     private func _didUpdateModel(from old: CollectionViewModel, to new: CollectionViewModel) {
         self._registerAllViews(for: new)
+
+        if self.options.reloadDataOnReplacingViewModel {
+            // if given a totally new model, simply reload instead of diff
+            guard new.id == old.id else {
+                self._dataSource.reload(self.viewModel) { [unowned self] in
+                    // UIKit guarantees this closure is called on the main queue.
+                    self._handleDidUpdate()
+                }
+                return
+            }
+        }
+
         self._dataSource.applySnapshot(
             from: old,
             to: new,
-            animated: self.animateUpdates
+            animated: self.options.animateUpdates
         ) { [unowned self] in
             // UIKit guarantees this closure is called on the main queue.
             self._handleDidUpdate()
@@ -198,7 +212,7 @@ public final class CollectionViewDriver: NSObject {
     }
 
     private func _animateEmptyView(isHidden: Bool) {
-        guard self.animateUpdates else {
+        guard self.options.animateUpdates else {
             if isHidden {
                 self._currentEmptyView?.removeFromSuperview()
                 self._currentEmptyView = nil
