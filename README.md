@@ -123,6 +123,8 @@ You can read the [documentation here](https://jessesquires.github.io/ReactiveCol
 - [Make blazing fast lists and collection views](https://developer.apple.com/videos/play/wwdc2021/10252/), WWDC21
 - [Modern cell configuration](https://developer.apple.com/videos/play/wwdc2020/10027/), WWDC20
 - [The Case for Lists in UICollectionView](https://pspdfkit.com/blog/2020/the-case-for-lists-in-uicollectionview/), PSPDFKit Blog
+- [Prefetching collection view data](https://developer.apple.com/documentation/uikit/uicollectionviewdatasourceprefetching/prefetching_collection_view_data), Apple Dev Docs
+- [Building High-Performance Lists and Collection Views](https://developer.apple.com/documentation/uikit/uiimage/building_high-performance_lists_and_collection_views), Apple Dev Docs
 
 ## Contributing
 
