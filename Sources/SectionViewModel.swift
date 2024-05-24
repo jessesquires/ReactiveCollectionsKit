@@ -73,7 +73,7 @@ public struct SectionViewModel: DiffableViewModel {
     ) {
         self.init(
             id: id,
-            anyCells: cells.map { $0.anyViewModel },
+            anyCells: cells.map { $0.eraseToAnyViewModel() },
             anyHeader: nil,
             anyFooter: nil,
             anySupplementaryViews: []
@@ -90,8 +90,8 @@ public struct SectionViewModel: DiffableViewModel {
         self.init(
             id: id,
             anyCells: cells,
-            anyHeader: header?.anyViewModel,
-            anyFooter: footer?.anyViewModel,
+            anyHeader: header?.eraseToAnyViewModel(),
+            anyFooter: footer?.eraseToAnyViewModel(),
             anySupplementaryViews: supplementaryViews
         )
     }
@@ -105,9 +105,9 @@ public struct SectionViewModel: DiffableViewModel {
     ) {
         self.init(
             id: id,
-            anyCells: cells.map { $0.anyViewModel },
-            anyHeader: header?.anyViewModel,
-            anyFooter: footer?.anyViewModel,
+            anyCells: cells.map { $0.eraseToAnyViewModel() },
+            anyHeader: header?.eraseToAnyViewModel(),
+            anyFooter: footer?.eraseToAnyViewModel(),
             anySupplementaryViews: supplementaryViews
         )
     }
@@ -124,10 +124,10 @@ public struct SectionViewModel: DiffableViewModel {
     ) {
         self.init(
             id: id,
-            anyCells: cells.map { $0.anyViewModel },
-            anyHeader: header?.anyViewModel,
-            anyFooter: footer?.anyViewModel,
-            anySupplementaryViews: supplementaryViews.map { $0.anyViewModel }
+            anyCells: cells.map { $0.eraseToAnyViewModel() },
+            anyHeader: header?.eraseToAnyViewModel(),
+            anyFooter: footer?.eraseToAnyViewModel(),
+            anySupplementaryViews: supplementaryViews.map { $0.eraseToAnyViewModel() }
         )
     }
 

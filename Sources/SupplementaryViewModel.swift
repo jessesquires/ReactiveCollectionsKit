@@ -43,7 +43,7 @@ extension SupplementaryViewModel {
 
     var _isFooter: Bool { self._kind == UICollectionView.elementKindSectionFooter }
 
-    public var anyViewModel: AnySupplementaryViewModel {
+    public func eraseToAnyViewModel() -> AnySupplementaryViewModel {
         AnySupplementaryViewModel(self)
     }
 

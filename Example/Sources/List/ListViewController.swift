@@ -91,7 +91,7 @@ final class ListViewController: ExampleViewController, CellEventCoordinator {
             return PersonCellViewModelList(
                 person: $0,
                 contextMenuConfiguration: menuConfig
-            ).anyViewModel
+            ).eraseToAnyViewModel()
         }
         let peopleHeader = HeaderViewModel(title: "People", style: .small)
         let peopleFooter = FooterViewModel(text: "\(self.model.people.count) people")
@@ -116,7 +116,7 @@ final class ListViewController: ExampleViewController, CellEventCoordinator {
             return ColorCellViewModelList(
                 color: $0,
                 contextMenuConfiguration: menuConfig
-            ).anyViewModel
+            ).eraseToAnyViewModel()
         }
         let colorHeader = HeaderViewModel(title: "Colors", style: .small)
         let colorFooter = FooterViewModel(text: "\(self.model.colors.count) colors")

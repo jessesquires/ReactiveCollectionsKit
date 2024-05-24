@@ -132,7 +132,7 @@ final class GridViewController: ExampleViewController, CellEventCoordinator {
             return PersonCellViewModelGrid(
                 person: $0,
                 contextMenuConfiguration: menuConfig
-            ).anyViewModel
+            ).eraseToAnyViewModel()
         }
         let peopleHeader = HeaderViewModel(title: "People", style: .large)
         let peopleFooter = FooterViewModel(text: "\(self.model.people.count) people")
@@ -161,7 +161,7 @@ final class GridViewController: ExampleViewController, CellEventCoordinator {
             return ColorCellViewModelGrid(
                 color: $0,
                 contextMenuConfiguration: menuConfig
-            ).anyViewModel
+            ).eraseToAnyViewModel()
         }
         let colorHeader = HeaderViewModel(title: "Colors", style: .large)
         let colorFooter = FooterViewModel(text: "\(self.model.colors.count) colors")

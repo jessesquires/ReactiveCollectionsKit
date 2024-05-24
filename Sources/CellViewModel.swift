@@ -57,7 +57,7 @@ extension CellViewModel {
     }
 
     /// Returns a type-erased version of this view model.
-    public var anyViewModel: AnyCellViewModel {
+    public func eraseToAnyViewModel() -> AnyCellViewModel {
         AnyCellViewModel(self)
     }
 
