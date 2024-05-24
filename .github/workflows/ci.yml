@@ -25,7 +25,7 @@ env:
 jobs:
   env-details:
     name: Environment details
-    runs-on: macos-14
+    runs-on: macos-14-large
     steps:
       - name: xcode version
         run: xcodebuild -version -sdk
@@ -37,7 +37,7 @@ jobs:
 
   test-iOS:
     name: iOS unit test
-    runs-on: macOS-14
+    runs-on: macOS-14-large
     steps:
       - name: git checkout
         uses: actions/checkout@v4
@@ -53,7 +53,7 @@ jobs:
 
   ui-test-iOS:
     name: iOS UI tests
-    runs-on: macos-14
+    runs-on: macos-14-large
     steps:
       - name: git checkout
         uses: actions/checkout@v4
