@@ -19,6 +19,10 @@ import UIKit
 public struct CollectionViewModel: Hashable, DiffableViewModel {
     // MARK: DiffableViewModel
 
+    /// A unique id for this model.
+    ///
+    /// - Note: Providing a view model with a different ``id`` to the ``CollectionViewDriver``
+    /// will trigger a hard reload data instead of performing a diff.
     public let id: UniqueIdentifier
 
     // MARK: Properties
