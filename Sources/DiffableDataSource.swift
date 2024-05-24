@@ -14,29 +14,65 @@
 import Foundation
 import UIKit
 
-typealias DiffableDataSource = UICollectionViewDiffableDataSource<AnyHashable, AnyHashable>
+extension AnyHashable: @unchecked Sendable { }
 
-extension DiffableDataSource {
-    typealias Snapshot = NSDiffableDataSourceSnapshot<SectionIdentifierType, ItemIdentifierType>
+final class DiffableDataSource: UICollectionViewDiffableDataSource<AnyHashable, AnyHashable> {
+    typealias Snapshot = NSDiffableDataSourceSnapshot<AnyHashable, AnyHashable>
 
     typealias SnapshotCompletion = () -> Void
 
-    convenience init(view: UICollectionView) {
-        self.init(collectionView: view) { _, _, _ in
-            nil
-        }
-    }
+    private let _diffOnBackgroundQueue: Bool
 
-    convenience init(
+    private lazy var _diffingQueue = DispatchQueue(
+        label: "com.jessesquires.ReactiveCollectionsKit",
+        qos: .userInteractive,
+        autoreleaseFrequency: .workItem
+    )
+
+    // MARK: Init
+
+    init(
         view: UICollectionView,
+        diffOnBackgroundQueue: Bool,
         cellProvider: @escaping DiffableDataSource.CellProvider,
         supplementaryViewProvider: @escaping DiffableDataSource.SupplementaryViewProvider
     ) {
-        self.init(collectionView: view, cellProvider: cellProvider)
+        self._diffOnBackgroundQueue = diffOnBackgroundQueue
+        super.init(collectionView: view, cellProvider: cellProvider)
         self.supplementaryViewProvider = supplementaryViewProvider
     }
 
+    convenience init(view: UICollectionView, diffOnBackgroundQueue: Bool) {
+        self.init(
+            view: view,
+            diffOnBackgroundQueue: diffOnBackgroundQueue,
+            cellProvider: { _, _, _ in nil },
+            supplementaryViewProvider: { _, _, _ in nil }
+        )
+    }
+
+    // MARK: Applying snapshots
+
+    func reload(_ viewModel: CollectionViewModel, completion: SnapshotCompletion?) {
+        self._performOnDiffingQueueIfNeeded {
+            let snapshot = DiffableSnapshot(viewModel: viewModel)
+            // UIKit guarantees `completion` is called on the main queue.
+            self.applySnapshotUsingReloadData(snapshot, completion: completion)
+        }
+    }
+
     func applySnapshot(
+        from source: CollectionViewModel,
+        to destination: CollectionViewModel,
+        animated: Bool,
+        completion: SnapshotCompletion?
+    ) {
+        self._performOnDiffingQueueIfNeeded {
+            self._applySnapshot(from: source, to: destination, animated: animated, completion: completion)
+        }
+    }
+
+    private func _applySnapshot(
         from source: CollectionViewModel,
         to destination: CollectionViewModel,
         animated: Bool,
@@ -56,11 +92,11 @@ extension DiffableDataSource {
         //   2. item inserts/deletes could trigger an internal inconsistency exception.
 
         // Find and perform item (cell) updates first.
-        let itemsToReload = self.findItemsToReload(from: source, to: destination)
+        let itemsToReload = self._findItemsToReload(from: source, to: destination)
         destinationSnapshot.reconfigureItems(itemsToReload)
 
         // Apply snapshot with item reload updates.
-        self.applySnapshot(destinationSnapshot, animated: animated) {
+        self._applySnapshot(destinationSnapshot, animated: animated) {
             // Once item reloads are complete, find and apply section reloads, if needed.
             // This is necessary to update SUPPLEMENTARY VIEWS ONLY.
             // Supplementary views do not get reloaded / reconfigured automatically when they change.
@@ -133,11 +169,11 @@ extension DiffableDataSource {
             destinationSnapshot.reloadSections(sectionsToReload.toArray)
 
             // Apply final section updates
-            self.applySnapshot(destinationSnapshot, animated: animated, completion: completion)
+            self._applySnapshot(destinationSnapshot, animated: animated, completion: completion)
         }
     }
 
-    func findItemsToReload(
+    private func _findItemsToReload(
         from source: CollectionViewModel,
         to destination: CollectionViewModel
     ) -> [UniqueIdentifier] {
@@ -159,13 +195,18 @@ extension DiffableDataSource {
         return itemsToReload
     }
 
-    func applySnapshot(_ snapshot: Snapshot, animated: Bool, completion: SnapshotCompletion? = nil) {
+    private func _applySnapshot(_ snapshot: Snapshot, animated: Bool, completion: SnapshotCompletion? = nil) {
+        // UIKit guarantees `completion` is called on the main queue.
         self.apply(snapshot, animatingDifferences: animated, completion: completion)
     }
 
-    func reload(_ viewModel: CollectionViewModel, completion: SnapshotCompletion?) {
-        let snapshot = DiffableSnapshot(viewModel: viewModel)
-        self.applySnapshotUsingReloadData(snapshot, completion: completion)
+    private func _performOnDiffingQueueIfNeeded(_ action: @escaping () -> Void) {
+        if self._diffOnBackgroundQueue {
+            self._diffingQueue.async(execute: action)
+        } else {
+            assertMainThread()
+            action()
+        }
     }
 }
 

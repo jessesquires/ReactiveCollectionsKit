@@ -31,8 +31,6 @@ public final class CollectionViewDriver: NSObject {
 
     @Published public var viewModel: CollectionViewModel {
         didSet {
-            // TODO: diff on bg queue?
-            assertMainThread()
             self._didUpdateModel(from: oldValue, to: self.viewModel)
         }
     }
@@ -55,7 +53,7 @@ public final class CollectionViewDriver: NSObject {
     // MARK: Init
 
     /// Initializes a new `CollectionViewDriver`.
-    /// 
+    ///  
     /// - Parameters:
     ///   - view: The collection view.
     ///   - layout: The collection view layout.
@@ -66,8 +64,10 @@ public final class CollectionViewDriver: NSObject {
     ///                           **Note: This object is not retained by the driver.**
     ///   - animateUpdates: Specifies whether or not to animate updates.
     ///                     Pass `true` to animate, `false` otherwise.
+    ///   - diffOnBackgroundQueue: Specifies whether or not to perform diffing on a background queue.
+    ///                            Pass `true` to diff in the background, `false` to diff on the main thread.
     ///   - didUpdate: A closure to call when the driver finishes diffing and updating the collection view.
-    /// 
+    ///  
     /// - Warning: The driver **does not** retain the `cellEventCoordinator`,
     /// because this object is typically the view controller that owns the driver.
     /// Thus, the caller is responsible for retaining and keeping alive the `cellEventCoordinator`
@@ -78,6 +78,7 @@ public final class CollectionViewDriver: NSObject {
                 emptyViewProvider: EmptyViewProvider? = nil,
                 cellEventCoordinator: CellEventCoordinator?,
                 animateUpdates: Bool = true,
+                diffOnBackgroundQueue: Bool = false,
                 didUpdate: DidUpdate? = nil) {
         self.view = view
         self.view.collectionViewLayout = layout
@@ -89,7 +90,7 @@ public final class CollectionViewDriver: NSObject {
 
         // workaround for swift initialization rules.
         // the "real" init is below.
-        self._dataSource = DiffableDataSource(view: view)
+        self._dataSource = DiffableDataSource(view: view, diffOnBackgroundQueue: diffOnBackgroundQueue)
 
         super.init()
 
@@ -103,6 +104,7 @@ public final class CollectionViewDriver: NSObject {
         // `self` owns the `_dataSource`, so we know that `self` will always exist.
         self._dataSource = DiffableDataSource(
             view: view,
+            diffOnBackgroundQueue: diffOnBackgroundQueue,
             cellProvider: { [unowned self] view, indexPath, itemIdentifier in
             self._cellProvider(
                 collectionView: view,
@@ -138,6 +140,7 @@ public final class CollectionViewDriver: NSObject {
 
     public func reloadData() {
         self._dataSource.reload(self.viewModel) { [unowned self] in
+            // UIKit guarantees this closure is called on the main queue.
             self._handleDidUpdate()
         }
     }
@@ -158,9 +161,11 @@ public final class CollectionViewDriver: NSObject {
         self._dataSource.applySnapshot(
             from: old,
             to: new,
-            animated: self.animateUpdates) { [unowned self] in
-                self._handleDidUpdate()
-            }
+            animated: self.animateUpdates
+        ) { [unowned self] in
+            // UIKit guarantees this closure is called on the main queue.
+            self._handleDidUpdate()
+        }
     }
 
     private func _handleDidUpdate() {
