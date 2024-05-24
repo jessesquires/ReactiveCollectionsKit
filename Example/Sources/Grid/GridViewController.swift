@@ -43,12 +43,6 @@ final class GridViewController: ExampleViewController, CellEventCoordinator {
         self.collectionView.deselectItem(at: IndexPath(item: 0, section: 0), animated: true)
     }
 
-    // MARK: Actions
-
-    override func reload() {
-        self.driver.reloadData()
-    }
-
     // MARK: CellEventCoordinator
     // In this example, the view controller handles cell selection and navigation.
 
@@ -177,6 +171,6 @@ final class GridViewController: ExampleViewController, CellEventCoordinator {
         )
 
         // Create final view model
-        return CollectionViewModel(sections: [peopleSection, colorSection])
+        return CollectionViewModel(id: "grid_view", sections: [peopleSection, colorSection])
     }
 }

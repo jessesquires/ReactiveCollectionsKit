@@ -21,8 +21,7 @@ final class ListViewController: ExampleViewController, CellEventCoordinator {
         view: self.collectionView,
         layout: self.makeLayout(),
         emptyViewProvider: sharedEmptyViewProvider,
-        cellEventCoordinator: self,
-        animateUpdates: true
+        cellEventCoordinator: self
     ) { [unowned self] driver in
         print("list did update!")
         print(driver.viewModel)
@@ -53,12 +52,6 @@ final class ListViewController: ExampleViewController, CellEventCoordinator {
                 print("did publish view model update")
             }
             .store(in: &self.cancellables)
-    }
-
-    // MARK: Actions
-
-    override func reload() {
-        self.driver.reloadData()
     }
 
     // MARK: Private
@@ -128,6 +121,6 @@ final class ListViewController: ExampleViewController, CellEventCoordinator {
         )
 
         // Create final view model
-        return CollectionViewModel(sections: [peopleSection, colorSection])
+        return CollectionViewModel(id: "list_view", sections: [peopleSection, colorSection])
     }
 }

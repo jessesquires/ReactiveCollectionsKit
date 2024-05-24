@@ -62,10 +62,6 @@ class ExampleViewController: UIViewController {
         self.model.shuffle()
     }
 
-    func reload() {
-        assertionFailure("override in subclass")
-    }
-
     func reset() {
         self.model = Model()
     }
@@ -96,11 +92,7 @@ class ExampleViewController: UIViewController {
     }
 
     private func addReloadButton() {
-        let reload = UIAction(title: "Reload") { [unowned self] _ in
-            self.reload()
-        }
-
-        let reset = UIAction(title: "Reset", attributes: .destructive) { [unowned self] _ in
+        let reset = UIAction(title: "Reset") { [unowned self] _ in
             self.reset()
         }
 
@@ -108,7 +100,7 @@ class ExampleViewController: UIViewController {
             self.removeAll()
         }
 
-        let menu = UIMenu(children: [reload, reset, removeAll])
+        let menu = UIMenu(children: [reset, removeAll])
         let item = UIBarButtonItem(systemItem: .refresh, primaryAction: nil, menu: menu)
         self.appendRightBarButton(item)
     }

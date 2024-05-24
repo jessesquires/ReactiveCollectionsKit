@@ -53,7 +53,7 @@ final class SimpleStaticViewController: UICollectionViewController {
 
         let section = SectionViewModel(id: "section", cells: cellViewModels)
 
-        let collectionViewModel = CollectionViewModel(sections: [section])
+        let collectionViewModel = CollectionViewModel(id: "static_view", sections: [section])
 
         self.driver.viewModel = collectionViewModel
     }
