@@ -9,6 +9,11 @@
 #
 #  Runs SwiftLint and checks for installation of correct version.
 
+if [[ "${GITHUB_ACTIONS}" ]]; then
+    exit
+fi
+
+
 set -e
 export PATH="$PATH:/opt/homebrew/bin"
 
