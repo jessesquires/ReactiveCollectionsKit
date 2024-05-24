@@ -97,78 +97,29 @@ final class DiffableDataSource: UICollectionViewDiffableDataSource<AnyHashable, 
 
         // Apply snapshot with item reload updates.
         self._applySnapshot(destinationSnapshot, animated: animated) {
-            // Once item reloads are complete, find and apply section reloads, if needed.
+
+            // Once the snapshot with item reloads is applied, find and apply section reloads, if needed.
             // This is necessary to update SUPPLEMENTARY VIEWS ONLY.
             // Supplementary views do not get reloaded / reconfigured automatically when they change.
             // To trigger updates on supplementary views, the section must be reloaded.
             // Yes, this kinda sucks.
+            //
+            // NOTE: this only matters if supplementary views are not static.
+            // That is, if they reflect data in the data source.
+            //
+            // For example, a header with a fixed title (e.g. "My Items") will NOT need to be reloaded.
+            // However, a header that displays changing data WILL need to be reloaded.
+            // (e.g. "My 10 Items")
+            let sectionsToReload = self._findSectionsToReload(from: source, to: destination)
 
-            let allSourceSections = source.allSectionsByIdentifier
-
-            // Only get sections that have supplementary views.
-            let allDestinationSections = destination.allSectionsByIdentifier.filter { _, value in
-                value.hasSupplementaryViews
-            }
-
-            // If no sections have supplementary views, there's nothing to do.
-            guard allDestinationSections.isNotEmpty else {
-                completion?()
-                return
-            }
-
-            var sectionsToReload = Set<UniqueIdentifier>()
-
-            // As soon as we find 1 supplementary view in a section that needs reloading,
-            // we can mark the whole section for reload and exit early.
-            for (sectionId, destinationSection) in allDestinationSections {
-                // If this section does not exist in the source, then it is newly inserted.
-                // Thus, nothing to do.
-                guard let sourceSection = allSourceSections[sectionId] else {
-                    continue
-                }
-
-                // If this section exist in the source,
-                // and it has changed its SUPPLEMENTARY VIEWS ONLY,
-                // then only reload the section.
-                // First, check headers and footers.
-                if destinationSection.header != sourceSection.header {
-                    sectionsToReload.insert(sectionId)
-                    continue
-                }
-
-                if destinationSection.footer != sourceSection.footer {
-                    sectionsToReload.insert(sectionId)
-                    continue
-                }
-
-                // Next, check all supplementary views.
-                let allSourceSectionSupplementaryViews = sourceSection.allSupplementaryViewsByIdentifier
-
-                for destinationView in destinationSection.supplementaryViews {
-                    // If this view does not exist in the source, then it is newly added.
-                    // Thus, nothing to do.
-                    guard let sourceView = allSourceSectionSupplementaryViews[destinationView.id] else {
-                        continue
-                    }
-
-                    // After finding one view that needs reloading, we can stop,
-                    // because we have to reload the whole section anyway.
-                    if destinationView != sourceView {
-                        sectionsToReload.insert(sectionId)
-                        break
-                    }
-                }
-            }
-
-            // If no section changes, ignore and call completion
+            // If no sections need reloading, we're done.
             guard sectionsToReload.isNotEmpty else {
                 completion?()
                 return
             }
 
-            destinationSnapshot.reloadSections(sectionsToReload.toArray)
-
             // Apply final section updates
+            destinationSnapshot.reloadSections(sectionsToReload)
             self._applySnapshot(destinationSnapshot, animated: animated, completion: completion)
         }
     }
@@ -193,6 +144,74 @@ final class DiffableDataSource: UICollectionViewDiffableDataSource<AnyHashable, 
         }
 
         return itemsToReload
+    }
+
+    private func _findSectionsToReload(
+        from source: CollectionViewModel,
+        to destination: CollectionViewModel
+    ) -> [UniqueIdentifier] {
+        let allSourceSections = source.allSectionsByIdentifier
+
+        // Only get sections that have supplementary views.
+        let allDestinationSections = destination.allSectionsByIdentifier.filter { _, value in
+            value.hasSupplementaryViews
+        }
+
+        // If no sections have supplementary views, there's nothing to do.
+        guard allDestinationSections.isNotEmpty else {
+            return []
+        }
+
+        var sectionsToReload = [UniqueIdentifier]()
+
+        // As soon as we find 1 supplementary view in a section that needs reloading,
+        // we can mark the whole section for reload and exit early.
+        for (sectionId, destinationSection) in allDestinationSections {
+            // If this section does not exist in the source, then it is newly inserted.
+            // Thus, nothing to do.
+            guard let sourceSection = allSourceSections[sectionId] else {
+                continue
+            }
+
+            // If this section exists in the source,
+            // and it has changed its SUPPLEMENTARY VIEWS ONLY,
+            // then reload the section.
+            // First, check headers and footers.
+            if destinationSection.header != sourceSection.header {
+                sectionsToReload.append(sectionId)
+                continue
+            }
+
+            if destinationSection.footer != sourceSection.footer {
+                sectionsToReload.append(sectionId)
+                continue
+            }
+
+            // Next, check all supplementary views.
+            let allSourceSectionSupplementaryViews = sourceSection.allSupplementaryViewsByIdentifier
+
+            for destinationView in destinationSection.supplementaryViews {
+                // If this view does not exist in the source, then it is newly added.
+                // Thus, nothing to do.
+                guard let sourceView = allSourceSectionSupplementaryViews[destinationView.id] else {
+                    continue
+                }
+
+                // After finding one view that needs reloading, we can stop,
+                // because we have to reload the whole section anyway.
+                if destinationView != sourceView {
+                    sectionsToReload.append(sectionId)
+                    break
+                }
+            }
+        }
+
+        // If no section changes, ignore and call completion
+        guard sectionsToReload.isNotEmpty else {
+            return []
+        }
+
+        return sectionsToReload
     }
 
     private func _applySnapshot(_ snapshot: Snapshot, animated: Bool, completion: SnapshotCompletion? = nil) {
