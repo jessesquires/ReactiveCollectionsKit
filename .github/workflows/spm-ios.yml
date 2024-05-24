@@ -13,7 +13,9 @@ on:
 
 env:
   DEVELOPER_DIR: /Applications/Xcode_15.4.app/Contents/Developer
-  IOS_DEST: "platform=iOS Simulator,name=iPhone 15,OS=latest"
+
+  IOS_DEST: "platform=iOS Simulator,name=iPhone 14,OS=latest"
+
   SCHEME: ReactiveCollectionsKit
 
 jobs:
