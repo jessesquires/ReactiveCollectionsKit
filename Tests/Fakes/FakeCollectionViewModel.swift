@@ -35,6 +35,7 @@ struct FakeCollectionCellViewModel: CellViewModel {
 }
 
 extension XCTestCase {
+    @MainActor
     func makeCollectionViewModel(numSections: Int = 3,
                                  numCells: Int = 5,
                                  includeExpectations: Bool = false) -> CollectionViewModel {
@@ -44,6 +45,7 @@ extension XCTestCase {
         return CollectionViewModel(sections: sections)
     }
 
+    @MainActor
     func makeCollectionSectionViewModel(name: String = .random,
                                         numCells: Int = 5,
                                         includeExpectations: Bool = false) -> SectionViewModel {
@@ -53,6 +55,7 @@ extension XCTestCase {
         return SectionViewModel(id: "section_\(name)", cells: cellModels)
     }
 
+    @MainActor
     func makeCollectionCellViewModel(text: String = .random,
                                      includeExpectations: Bool = false) -> FakeCollectionCellViewModel {
         FakeCollectionCellViewModel(

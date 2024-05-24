@@ -18,11 +18,12 @@ open class UnitTestCase: XCTestCase {
 
     private static let frame = CGRect(x: 0, y: 0, width: 320, height: 600)
 
-    let collectionView = FakeCollectionView(
+    @MainActor let collectionView = FakeCollectionView(
         frame: frame,
         collectionViewLayout: FakeCollectionLayout()
     )
 
+    @MainActor
     override open func setUp() {
         super.setUp()
         self.collectionView.layoutSubviews()

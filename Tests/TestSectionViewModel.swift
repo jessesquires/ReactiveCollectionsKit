@@ -16,6 +16,7 @@ import XCTest
 
 final class TestSectionViewModel: XCTestCase {
 
+    @MainActor
     func test_section_with_only_cells() {
         let numCells = 3
         let name = "name"
@@ -26,6 +27,7 @@ final class TestSectionViewModel: XCTestCase {
         XCTAssertFalse(section.isEmpty)
     }
 
+    @MainActor
     func test_empty_section() {
         let section = SectionViewModel(id: "name")
 
@@ -33,6 +35,7 @@ final class TestSectionViewModel: XCTestCase {
         XCTAssertTrue(section.isEmpty)
     }
 
+    @MainActor
     func test_RandomAccessCollection_conformance() {
         let numCells = 3
         let section = self.makeCollectionSectionViewModel(numCells: numCells)

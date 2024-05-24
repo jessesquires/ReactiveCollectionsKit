@@ -16,6 +16,7 @@ import XCTest
 
 final class TestCellViewModel: XCTestCase {
 
+    @MainActor
     func test_CellViewModel_protocol_default_values() {
         let viewModel = TestCellModel()
         XCTAssertTrue(viewModel.shouldHighlight)
