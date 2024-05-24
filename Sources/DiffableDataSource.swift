@@ -228,9 +228,3 @@ final class DiffableDataSource: UICollectionViewDiffableDataSource<AnyHashable, 
         }
     }
 }
-
-extension Set {
-    fileprivate var toArray: [Self.Element] {
-        Array(self)
-    }
-}
