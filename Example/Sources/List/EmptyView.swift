@@ -15,7 +15,7 @@ import Foundation
 import ReactiveCollectionsKit
 import UIKit
 
-let sharedEmptyViewProvider = EmptyViewProvider {
+@MainActor let sharedEmptyViewProvider = EmptyViewProvider {
     if #available(iOS 17.0, *) {
         var config = UIContentUnavailableConfiguration.empty()
         config.text = "No Content"

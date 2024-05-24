@@ -14,6 +14,7 @@
 import Foundation
 
 /// Represents a section of items in a collection or list.
+@MainActor
 public struct SectionViewModel: DiffableViewModel {
 
     public let id: UniqueIdentifier
@@ -158,32 +159,44 @@ public struct SectionViewModel: DiffableViewModel {
 
 extension SectionViewModel: Collection, RandomAccessCollection {
     /// :nodoc:
-    public var count: Int {
-        self.cells.count
+    nonisolated public var count: Int {
+        MainActor.assumeIsolated {
+            self.cells.count
+        }
     }
 
     /// :nodoc:
-    public var isEmpty: Bool {
-        self.cells.isEmpty
+    nonisolated public var isEmpty: Bool {
+        MainActor.assumeIsolated {
+            self.cells.isEmpty
+        }
     }
 
     /// :nodoc:
-    public var startIndex: Int {
-        self.cells.startIndex
+    nonisolated public var startIndex: Int {
+        MainActor.assumeIsolated {
+            self.cells.startIndex
+        }
     }
 
     /// :nodoc:
-    public var endIndex: Int {
-        self.cells.endIndex
+    nonisolated public var endIndex: Int {
+        MainActor.assumeIsolated {
+            self.cells.endIndex
+        }
     }
 
     /// :nodoc:
-    public subscript(position: Int) -> AnyCellViewModel {
-        self.cells[position]
+    nonisolated public subscript(position: Int) -> AnyCellViewModel {
+        MainActor.assumeIsolated {
+            self.cells[position]
+        }
     }
 
     /// :nodoc:
-    public func index(after pos: Int) -> Int {
-        self.cells.index(after: pos)
+    nonisolated public func index(after pos: Int) -> Int {
+        MainActor.assumeIsolated {
+            self.cells.index(after: pos)
+        }
     }
 }

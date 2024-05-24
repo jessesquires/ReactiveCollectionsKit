@@ -15,6 +15,7 @@ import Foundation
 import UIKit
 
 /// Conforming objects are responsible for handling various cell events.
+@MainActor
 public protocol CellEventCoordinator: AnyObject {
 
     /// Called when a cell is selected.

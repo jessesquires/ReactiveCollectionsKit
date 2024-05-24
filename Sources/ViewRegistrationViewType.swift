@@ -14,7 +14,7 @@
 import Foundation
 
 /// Describes the type of view to be registered for reuse.
-public enum ViewRegistrationViewType: Hashable {
+public enum ViewRegistrationViewType: Hashable, Sendable {
     /// Describes a cell.
     case cell
 

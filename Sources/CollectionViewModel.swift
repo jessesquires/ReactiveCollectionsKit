@@ -15,6 +15,7 @@ import Foundation
 import UIKit
 
 /// Represents a collection view with sections and items.
+@MainActor
 public struct CollectionViewModel: Hashable, DiffableViewModel {
     // MARK: DiffableViewModel
 
@@ -99,33 +100,45 @@ public struct CollectionViewModel: Hashable, DiffableViewModel {
 
 extension CollectionViewModel: Collection, RandomAccessCollection {
     /// :nodoc:
-    public var count: Int {
-        self.sections.count
+    nonisolated public var count: Int {
+        MainActor.assumeIsolated {
+            self.sections.count
+        }
     }
 
     /// :nodoc:
-    public var isEmpty: Bool {
-        self.sections.isEmpty
+    nonisolated public var isEmpty: Bool {
+        MainActor.assumeIsolated {
+            self.sections.isEmpty
+        }
     }
 
     /// :nodoc:
-    public var startIndex: Int {
-        self.sections.startIndex
+    nonisolated public var startIndex: Int {
+        MainActor.assumeIsolated {
+            self.sections.startIndex
+        }
     }
 
     /// :nodoc:
-    public var endIndex: Int {
-        self.sections.endIndex
+    nonisolated public var endIndex: Int {
+        MainActor.assumeIsolated {
+            self.sections.endIndex
+        }
     }
 
     /// :nodoc:
-    public subscript(position: Int) -> SectionViewModel {
-        self.sections[position]
+    nonisolated public subscript(position: Int) -> SectionViewModel {
+        MainActor.assumeIsolated {
+            self.sections[position]
+        }
     }
 
     /// :nodoc:
-    public func index(after pos: Int) -> Int {
-        self.sections.index(after: pos)
+    nonisolated public func index(after pos: Int) -> Int {
+        MainActor.assumeIsolated {
+            self.sections.index(after: pos)
+        }
     }
 }
 
@@ -134,50 +147,52 @@ extension CollectionViewModel: Collection, RandomAccessCollection {
 
 extension CollectionViewModel: CustomDebugStringConvertible {
     /// :nodoc:
-    public var debugDescription: String {
-        var text = "<CollectionViewModel:\n id: \(self.id)\n sections:\n"
+    nonisolated public var debugDescription: String {
+        MainActor.assumeIsolated {
+            var text = "<CollectionViewModel:\n id: \(self.id)\n sections:\n"
 
-        for sectionIndex in 0..<self.count {
-            let section = self[sectionIndex]
+            for sectionIndex in 0..<self.count {
+                let section = self[sectionIndex]
 
-            text.append("\t[\(sectionIndex)]: \(section.id)\n")
-            text.append("\t isEmpty: \(section.isEmpty)\n")
+                text.append("\t[\(sectionIndex)]: \(section.id)\n")
+                text.append("\t isEmpty: \(section.isEmpty)\n")
 
-            if let header = section.header {
-                text.append("\t header: \(header.id) (\(header._kind))\n")
-            } else {
-                text.append("\t header: nil")
+                if let header = section.header {
+                    text.append("\t header: \(header.id) (\(header._kind))\n")
+                } else {
+                    text.append("\t header: nil")
+                }
+
+                if let footer = section.footer {
+                    text.append("\t footer: \(footer.id) (\(footer._kind))\n")
+                } else {
+                    text.append("\t footer: nil")
+                }
+
+                text.append("\t cells: \n")
+                for cellIndex in 0..<section.cells.count {
+                    let cell = section[cellIndex]
+                    let cellId = String(describing: cell.id)
+                    let reuseId = String(describing: cell.registration.reuseIdentifier)
+                    text.append("\t\t[\(cellIndex)]: \(cellId) (\(reuseId)) \n")
+                }
+
+                text.append("\t supplementary views: \n")
+                for viewIndex in 0..<section.supplementaryViews.count {
+                    let view = section.supplementaryViews[viewIndex]
+                    let viewId = String(describing: view.id)
+                    let kind = String(describing: view._kind)
+                    text.append("\t\t[\(viewIndex)]: \(viewId) (\(kind)) \n")
+                }
             }
 
-            if let footer = section.footer {
-                text.append("\t footer: \(footer.id) (\(footer._kind))\n")
-            } else {
-                text.append("\t footer: nil")
+            text.append(" registrations: \n")
+            self.allRegistrations.forEach {
+                text.append("\t- \($0.reuseIdentifier)\n")
             }
-
-            text.append("\t cells: \n")
-            for cellIndex in 0..<section.cells.count {
-                let cell = section[cellIndex]
-                let cellId = String(describing: cell.id)
-                let reuseId = String(describing: cell.registration.reuseIdentifier)
-                text.append("\t\t[\(cellIndex)]: \(cellId) (\(reuseId)) \n")
-            }
-
-            text.append("\t supplementary views: \n")
-            for viewIndex in 0..<section.supplementaryViews.count {
-                let view = section.supplementaryViews[viewIndex]
-                let viewId = String(describing: view.id)
-                let kind = String(describing: view._kind)
-                text.append("\t\t[\(viewIndex)]: \(viewId) (\(kind)) \n")
-            }
+            text.append(" isEmpty: \(self.isEmpty)\n")
+            text.append(">")
+            return text
         }
-
-        text.append(" registrations: \n")
-        self.allRegistrations.forEach {
-            text.append("\t- \($0.reuseIdentifier)\n")
-        }
-        text.append(" isEmpty: \(self.isEmpty)\n")
-        text.append(">")
-        return text
     }
 }

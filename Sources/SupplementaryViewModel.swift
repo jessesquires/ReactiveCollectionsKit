@@ -17,6 +17,7 @@ import UIKit
 public typealias SupplementaryViewKind = String
 
 /// Defines a view model that describes and configures a supplementary view in a collection.
+@MainActor
 public protocol SupplementaryViewModel: DiffableViewModel, ViewRegistrationProvider {
     associatedtype ViewType: UICollectionReusableView
 
@@ -53,6 +54,7 @@ extension SupplementaryViewModel {
     }
 }
 
+@MainActor
 public struct AnySupplementaryViewModel: SupplementaryViewModel {
     // MARK: DiffableViewModel
 
@@ -91,13 +93,13 @@ public struct AnySupplementaryViewModel: SupplementaryViewModel {
 }
 
 extension AnySupplementaryViewModel: Equatable {
-    public static func == (left: AnySupplementaryViewModel, right: AnySupplementaryViewModel) -> Bool {
+    nonisolated public static func == (left: AnySupplementaryViewModel, right: AnySupplementaryViewModel) -> Bool {
         left._viewModel == right._viewModel
     }
 }
 
 extension AnySupplementaryViewModel: Hashable {
-    public func hash(into hasher: inout Hasher) {
+    nonisolated public func hash(into hasher: inout Hasher) {
         self._viewModel.hash(into: &hasher)
     }
 }

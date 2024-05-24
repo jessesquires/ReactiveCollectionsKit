@@ -18,6 +18,7 @@ import UIKit
 /// Represents the main entry-point to the underlying `UICollectionView`.
 /// A `CollectionViewDriver` is responsible for "driving" the collection view.
 /// It handles all layout, data source, delegate, and diffing operations.
+@MainActor
 public final class CollectionViewDriver: NSObject {
     public typealias DidUpdate = (CollectionViewDriver) -> Void
 
@@ -67,7 +68,8 @@ public final class CollectionViewDriver: NSObject {
     ///   - diffOnBackgroundQueue: Specifies whether or not to perform diffing on a background queue.
     ///                            Pass `true` to diff in the background, `false` to diff on the main thread.
     ///   - didUpdate: A closure to call when the driver finishes diffing and updating the collection view.
-    ///  
+    ///                The driver passes itself to the closure. This will always be called on the main thread.
+    ///
     /// - Warning: The driver **does not** retain the `cellEventCoordinator`,
     /// because this object is typically the view controller that owns the driver.
     /// Thus, the caller is responsible for retaining and keeping alive the `cellEventCoordinator`

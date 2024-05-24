@@ -17,6 +17,7 @@ import UIKit
 typealias DiffableSnapshot = NSDiffableDataSourceSnapshot<AnyHashable, AnyHashable>
 
 extension DiffableSnapshot {
+    @MainActor
     init(viewModel: CollectionViewModel) {
         self.init()
 

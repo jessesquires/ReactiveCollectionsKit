@@ -16,6 +16,7 @@ import UIKit
 
 /// Describes a type (like a cell view model) that provides
 /// registration information for a particular view.
+@MainActor
 public protocol ViewRegistrationProvider {
     var registration: ViewRegistration { get }
 }

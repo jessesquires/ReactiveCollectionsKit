@@ -15,6 +15,7 @@ import Foundation
 import UIKit
 
 /// Defines a view model that describes and configures a cell in the collection view.
+@MainActor
 public protocol CellViewModel: DiffableViewModel, ViewRegistrationProvider {
     /// The type of cell that this view model represents and configures.
     associatedtype CellType: UICollectionViewCell
@@ -68,6 +69,7 @@ extension CellViewModel {
 }
 
 /// A type-erased cell view model.
+@MainActor
 public struct AnyCellViewModel: CellViewModel {
     // MARK: DiffableViewModel
 
@@ -122,13 +124,13 @@ public struct AnyCellViewModel: CellViewModel {
 }
 
 extension AnyCellViewModel: Equatable {
-    public static func == (left: AnyCellViewModel, right: AnyCellViewModel) -> Bool {
+    nonisolated public static func == (left: AnyCellViewModel, right: AnyCellViewModel) -> Bool {
         left._viewModel == right._viewModel
     }
 }
 
 extension AnyCellViewModel: Hashable {
-    public func hash(into hasher: inout Hasher) {
+    nonisolated public func hash(into hasher: inout Hasher) {
         self._viewModel.hash(into: &hasher)
     }
 }

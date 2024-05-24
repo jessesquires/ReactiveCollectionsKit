@@ -14,6 +14,7 @@
 import Foundation
 import UIKit
 
+@MainActor
 public protocol SupplementaryFooterViewModel: SupplementaryViewModel {
     static var kind: SupplementaryViewKind { get }
 }

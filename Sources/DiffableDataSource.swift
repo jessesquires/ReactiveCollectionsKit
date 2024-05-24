@@ -16,6 +16,20 @@ import UIKit
 
 extension AnyHashable: @unchecked Sendable { }
 
+struct UncheckedCompletion: @unchecked Sendable {
+    typealias Block = () -> Void
+
+    let block: Block?
+
+    init(_ block: Block?) {
+        self.block = {
+            assertMainThread()
+            block?()
+        }
+    }
+}
+
+@MainActor
 final class DiffableDataSource: UICollectionViewDiffableDataSource<AnyHashable, AnyHashable> {
     typealias Snapshot = NSDiffableDataSourceSnapshot<AnyHashable, AnyHashable>
 
@@ -54,25 +68,11 @@ final class DiffableDataSource: UICollectionViewDiffableDataSource<AnyHashable, 
     // MARK: Applying snapshots
 
     func reload(_ viewModel: CollectionViewModel, completion: SnapshotCompletion?) {
-        self._performOnDiffingQueueIfNeeded {
-            let snapshot = DiffableSnapshot(viewModel: viewModel)
-            // UIKit guarantees `completion` is called on the main queue.
-            self.applySnapshotUsingReloadData(snapshot, completion: completion)
-        }
+        let snapshot = DiffableSnapshot(viewModel: viewModel)
+        self._applyReloadSnapshot(snapshot, completion: UncheckedCompletion(completion))
     }
 
     func applySnapshot(
-        from source: CollectionViewModel,
-        to destination: CollectionViewModel,
-        animated: Bool,
-        completion: SnapshotCompletion?
-    ) {
-        self._performOnDiffingQueueIfNeeded {
-            self._applySnapshot(from: source, to: destination, animated: animated, completion: completion)
-        }
-    }
-
-    private func _applySnapshot(
         from source: CollectionViewModel,
         to destination: CollectionViewModel,
         animated: Bool,
@@ -96,7 +96,7 @@ final class DiffableDataSource: UICollectionViewDiffableDataSource<AnyHashable, 
         destinationSnapshot.reconfigureItems(itemsToReload)
 
         // Apply snapshot with item reload updates.
-        self._applySnapshot(destinationSnapshot, animated: animated) {
+        self._applyDiffSnapshot(destinationSnapshot, animated: animated, completion: UncheckedCompletion {
 
             // Once the snapshot with item reloads is applied, find and apply section reloads, if needed.
             // This is necessary to update SUPPLEMENTARY VIEWS ONLY.
@@ -120,8 +120,8 @@ final class DiffableDataSource: UICollectionViewDiffableDataSource<AnyHashable, 
 
             // Apply final section updates
             destinationSnapshot.reloadSections(sectionsToReload)
-            self._applySnapshot(destinationSnapshot, animated: animated, completion: completion)
-        }
+            self._applyDiffSnapshot(destinationSnapshot, animated: animated, completion: UncheckedCompletion(completion))
+        })
     }
 
     private func _findItemsToReload(
@@ -214,12 +214,23 @@ final class DiffableDataSource: UICollectionViewDiffableDataSource<AnyHashable, 
         return sectionsToReload
     }
 
-    private func _applySnapshot(_ snapshot: Snapshot, animated: Bool, completion: SnapshotCompletion? = nil) {
-        // UIKit guarantees `completion` is called on the main queue.
-        self.apply(snapshot, animatingDifferences: animated, completion: completion)
+    // MARK: Diffing
+
+    private func _applyDiffSnapshot(_ snapshot: Snapshot, animated: Bool, completion: UncheckedCompletion) {
+        self._performOnDiffingQueueIfNeeded {
+            // UIKit guarantees `completion` is called on the main queue.
+            self.apply(snapshot, animatingDifferences: animated, completion: completion.block)
+        }
     }
 
-    private func _performOnDiffingQueueIfNeeded(_ action: @escaping () -> Void) {
+    func _applyReloadSnapshot(_ snapshot: Snapshot, completion: UncheckedCompletion) {
+        self._performOnDiffingQueueIfNeeded {
+            // UIKit guarantees `completion` is called on the main queue.
+            self.applySnapshotUsingReloadData(snapshot, completion: completion.block)
+        }
+    }
+
+    private func _performOnDiffingQueueIfNeeded(_ action: @Sendable @escaping () -> Void) {
         if self._diffOnBackgroundQueue {
             self._diffingQueue.async(execute: action)
         } else {

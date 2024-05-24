@@ -14,7 +14,7 @@
 import Foundation
 
 /// The method by which to register a view for reuse in a `UICollectionView`.
-public enum ViewRegistrationMethod: Hashable {
+public enum ViewRegistrationMethod: Hashable, Sendable {
     /// Registration for a class-based view.
     case viewClass(AnyClass)
 

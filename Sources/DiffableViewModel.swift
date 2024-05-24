@@ -17,6 +17,7 @@ import Foundation
 public typealias UniqueIdentifier = AnyHashable
 
 /// Describes a view model that is diffable.
+@MainActor
 public protocol DiffableViewModel: Hashable {
 
     /// An identifier that uniquely identifies this instance.
