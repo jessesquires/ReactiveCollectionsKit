@@ -39,9 +39,9 @@ jobs:
       - name: Build
         run: |
           set -o pipefail
-          xcodebuild build -scheme "$SCHEME" -destination "$IOS_DEST" | xcpretty -c
+          xcodebuild build -scheme "$SCHEME" -destination "$IOS_DEST" SWIFT_STRICT_CONCURRENCY=complete | xcpretty -c
 
       - name: Test
         run: |
           set -o pipefail
-          xcodebuild test -scheme "$SCHEME" -destination "$IOS_DEST" | xcpretty -c
+          xcodebuild test -scheme "$SCHEME" -destination "$IOS_DEST" SWIFT_STRICT_CONCURRENCY=complete | xcpretty -c
