@@ -14,7 +14,6 @@
 import XCTest
 
 final class ExampleUITests: XCTestCase {
-
     let app = XCUIApplication()
 
     override func setUp() {
@@ -23,7 +22,51 @@ final class ExampleUITests: XCTestCase {
         self.app.launch()
     }
 
-    func testExample() {
-        XCTAssert(true)
+    func test_grid_shuffle() {
+        let shuffleButton = self.app.navigationBars["Grid"].buttons["repeat"]
+
+        for _ in 1...20 {
+            shuffleButton.tap()
+        }
+    }
+
+    func test_grid_remove_reset() {
+        let shuffleButton = self.app.navigationBars["Grid"].buttons["repeat"]
+        shuffleButton.tap()
+
+        let resetButton = self.app.navigationBars["Grid"].buttons["Refresh"]
+        resetButton.tap()
+
+        let collectionViewsQuery = self.app.collectionViews
+        collectionViewsQuery.buttons["Remove All"].tap()
+
+        resetButton.tap()
+        collectionViewsQuery.buttons["Reset"].tap()
+    }
+
+    func test_list_shuffle() {
+        self.app.tabBars["Tab Bar"].buttons["List"].tap()
+
+        let shuffleButton = self.app.navigationBars["List"].buttons["repeat"]
+
+        for _ in 1...20 {
+            shuffleButton.tap()
+        }
+    }
+
+    func test_list_remove_reset() {
+        self.app.tabBars["Tab Bar"].buttons["List"].tap()
+
+        let shuffleButton = self.app.navigationBars["List"].buttons["repeat"]
+        shuffleButton.tap()
+
+        let resetButton = self.app.navigationBars["List"].buttons["Refresh"]
+        resetButton.tap()
+
+        let collectionViewsQuery = self.app.collectionViews
+        collectionViewsQuery.buttons["Remove All"].tap()
+
+        resetButton.tap()
+        collectionViewsQuery.buttons["Reset"].tap()
     }
 }
