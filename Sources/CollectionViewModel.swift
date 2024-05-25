@@ -24,9 +24,25 @@ public struct CollectionViewModel: Hashable, DiffableViewModel {
 
     // MARK: Properties
 
+    /// The sections in the collection.
     public let sections: [SectionViewModel]
 
-    public var allRegistrations: Set<ViewRegistration> {
+    // MARK: Init
+
+    /// Initializes a new ``CollectionViewModel``.
+    ///
+    /// - Parameters:
+    ///   - id: A unique identifier for the collection.
+    ///   - sections: The sections in the collection.
+    public init(id: UniqueIdentifier, sections: [SectionViewModel] = []) {
+        self.id = id
+        self.sections = sections.filter { $0.isNotEmpty }
+    }
+
+    // MARK: Accessing View Registration Info
+
+    /// Returns all the `ViewRegistration` objects for the collection.
+    public func allRegistrations() -> Set<ViewRegistration> {
         var all = Set<ViewRegistration>()
         self.sections.forEach {
             all.formUnion($0.allRegistrations)
@@ -34,36 +50,42 @@ public struct CollectionViewModel: Hashable, DiffableViewModel {
         return all
     }
 
-    public var allCellsByIdentifier: [UniqueIdentifier: AnyCellViewModel] {
+    // MARK: Accessing Sections
+
+    /// Returns a dictionary of all sections keyed by their `id`.
+    public func allSectionsByIdentifier() -> [UniqueIdentifier: SectionViewModel] {
+        let tuples = self.sections.map { ($0.id, $0) }
+        return Dictionary(uniqueKeysWithValues: tuples)
+    }
+
+    /// Returns the section for the specified `id`.
+    /// - Parameter id: The identifier for the section.
+    /// - Returns: The section, if it exists.
+    public func sectionViewModel(for id: UniqueIdentifier) -> SectionViewModel? {
+        self.allSectionsByIdentifier()[id]
+    }
+
+    // MARK: Accessing Cells
+
+    /// Returns a dictionary of all cells keyed by their `id`.
+    public func allCellsByIdentifier() -> [UniqueIdentifier: AnyCellViewModel] {
         let allCells = self.flatMap { $0.cells }
         let tuples = allCells.map { ($0.id, $0) }
         return Dictionary(uniqueKeysWithValues: tuples)
     }
 
-    public var allSectionsByIdentifier: [UniqueIdentifier: SectionViewModel] {
-        let tuples = self.sections.map { ($0.id, $0) }
-        return Dictionary(uniqueKeysWithValues: tuples)
-    }
-
-    // MARK: Init
-
-    public init(id: UniqueIdentifier, sections: [SectionViewModel] = []) {
-        self.id = id
-        self.sections = sections.filter { $0.isNotEmpty }
-    }
-
-    // MARK: Accessing Sections
-
-    public func sectionViewModel(for id: UniqueIdentifier) -> SectionViewModel? {
-        self.allSectionsByIdentifier[id]
-    }
-
-    // MARK: Accessing Cells
-
+    /// Returns the cell for the specified `id`.
+    /// - Parameter id: The identifier for the cell.
+    /// - Returns: The cell, if it exists.
     public func cellViewModel(for id: UniqueIdentifier) -> AnyCellViewModel? {
-        self.allCellsByIdentifier[id]
+        self.allCellsByIdentifier()[id]
     }
 
+    /// Returns the cell at the specified index path.
+    /// - Parameter indexPath: The index path for the cell.
+    /// - Returns: The cell at `indexPath`.
+    ///
+    /// - Precondition: The specified `indexPath` must be valid.
     public func cellViewModel(at indexPath: IndexPath) -> AnyCellViewModel {
         precondition(indexPath.section < self.count)
         let section = self[indexPath.section]
@@ -76,6 +98,13 @@ public struct CollectionViewModel: Hashable, DiffableViewModel {
 
     // MARK: Accessing Supplementary Views
 
+    /// Returns the supplementary view for the specified kind and index path.
+    /// - Parameters:
+    ///   - kind: The kind of the supplementary view.
+    ///   - indexPath: The index path for the view.
+    /// - Returns: The supplementary view.
+    ///
+    /// - Precondition: The specified `indexPath` must be valid.
     public func supplementaryViewModel(ofKind kind: String, at indexPath: IndexPath) -> AnySupplementaryViewModel? {
         precondition(indexPath.section < self.count)
         let section = self[indexPath.section]
@@ -188,7 +217,7 @@ extension CollectionViewModel: CustomDebugStringConvertible {
             }
 
             text.append(" registrations: \n")
-            self.allRegistrations.forEach {
+            self.allRegistrations().forEach {
                 text.append("\t- \($0.reuseIdentifier)\n")
             }
             text.append(" isEmpty: \(self.isEmpty)\n")

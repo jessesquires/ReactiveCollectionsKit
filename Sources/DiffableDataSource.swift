@@ -146,8 +146,8 @@ final class DiffableDataSource: UICollectionViewDiffableDataSource<AnyHashable, 
         from source: CollectionViewModel,
         to destination: CollectionViewModel
     ) -> [UniqueIdentifier] {
-        let allSourceCells = source.allCellsByIdentifier
-        let allDestinationCells = destination.allCellsByIdentifier
+        let allSourceCells = source.allCellsByIdentifier()
+        let allDestinationCells = destination.allCellsByIdentifier()
 
         var itemsToReconfigure = [UniqueIdentifier]()
 
@@ -167,7 +167,7 @@ final class DiffableDataSource: UICollectionViewDiffableDataSource<AnyHashable, 
         from source: CollectionViewModel,
         to destination: CollectionViewModel
     ) {
-        let allSourceSections = source.allSectionsByIdentifier
+        let allSourceSections = source.allSectionsByIdentifier()
 
         for sectionIndex in 0..<destination.sections.count {
             let destinationSection = destination.sections[sectionIndex]

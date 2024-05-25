@@ -152,7 +152,7 @@ public final class CollectionViewDriver: NSObject {
     // MARK: Private
 
     private func _registerAllViews(for viewModel: CollectionViewModel) {
-        let allRegistrations = viewModel.allRegistrations
+        let allRegistrations = viewModel.allRegistrations()
         let newRegistrations = allRegistrations.subtracting(self._cachedRegistrations)
         newRegistrations.forEach {
             $0.registerWith(collectionView: self.view)
