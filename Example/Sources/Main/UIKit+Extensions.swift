@@ -23,6 +23,22 @@ extension UIBarButtonItem {
     }
 }
 
+extension UIAction {
+    convenience init(
+        title: String,
+        systemImage: String,
+        attributes: UIMenuElement.Attributes = .init(),
+        handler: @escaping UIActionHandler
+    ) {
+        self.init(
+            title: title,
+            image: UIImage(systemName: systemImage),
+            attributes: attributes,
+            handler: handler
+        )
+    }
+}
+
 extension UIContextMenuConfiguration {
     typealias ItemAction = (UniqueIdentifier) -> Void
 

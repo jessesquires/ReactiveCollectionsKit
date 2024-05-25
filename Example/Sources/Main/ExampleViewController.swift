@@ -92,11 +92,18 @@ class ExampleViewController: UIViewController {
     }
 
     private func addReloadButton() {
-        let reset = UIAction(title: "Reset") { [unowned self] _ in
+        let reset = UIAction(
+            title: "Reset",
+            systemImage: "arrow.2.squarepath"
+        ) { [unowned self] _ in
             self.reset()
         }
 
-        let removeAll = UIAction(title: "Remove All", attributes: .destructive) { [unowned self] _ in
+        let removeAll = UIAction(
+            title: "Remove All",
+            systemImage: "trash",
+            attributes: .destructive
+        ) { [unowned self] _ in
             self.removeAll()
         }
 
