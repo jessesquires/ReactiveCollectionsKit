@@ -23,7 +23,7 @@ struct UncheckedCompletion: @unchecked Sendable {
 
     init(_ block: Block?) {
         self.block = {
-            assertMainThread()
+            dispatchPrecondition(condition: .onQueue(.main))
             block?()
         }
     }
@@ -259,7 +259,7 @@ final class DiffableDataSource: UICollectionViewDiffableDataSource<AnyHashable, 
         if self._diffOnBackgroundQueue {
             self._diffingQueue.async(execute: action)
         } else {
-            assertMainThread()
+            dispatchPrecondition(condition: .onQueue(.main))
             action()
         }
     }
