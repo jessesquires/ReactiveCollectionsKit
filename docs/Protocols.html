@@ -17,7 +17,7 @@
     <a title="Protocols  Reference"></a>
     <header>
       <div class="content-wrapper">
-        <p><a href="index.html">ReactiveCollectionsKit Docs</a> (34% documented)</p>
+        <p><a href="index.html">ReactiveCollectionsKit Docs</a> (100% documented)</p>
         <p class="header-right"><a href="https://github.com/jessesquires/ReactiveCollectionsKit"><img src="img/gh.png" alt="GitHub"/>View on GitHub</a></p>
         <div class="header-right">
           <form role="search" action="search.json">
@@ -52,6 +52,17 @@
               </li>
               <li class="nav-group-task">
                 <a href="Enums/ViewRegistrationViewType.html">ViewRegistrationViewType</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="Extensions.html">Extensions</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="Extensions.html#/s:s11AnyHashableV">AnyHashable</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Extensions/UICollectionView.html">UICollectionView</a>
               </li>
             </ul>
           </li>
@@ -91,7 +102,13 @@
                 <a href="Structs/AnySupplementaryViewModel.html">AnySupplementaryViewModel</a>
               </li>
               <li class="nav-group-task">
+                <a href="Structs/CollectionViewDriverOptions.html">CollectionViewDriverOptions</a>
+              </li>
+              <li class="nav-group-task">
                 <a href="Structs/CollectionViewModel.html">CollectionViewModel</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Structs/EmptyViewProvider.html">EmptyViewProvider</a>
               </li>
               <li class="nav-group-task">
                 <a href="Structs/SectionViewModel.html">SectionViewModel</a>
@@ -137,7 +154,7 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>Conforming objects are responsible for handling various cell events.</p>
 
                         <a href="Protocols/CellEventCoordinator.html" class="slightly-smaller">See more</a>
                       </div>
@@ -145,7 +162,8 @@
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">protocol</span> <span class="kt">CellEventCoordinator</span> <span class="p">:</span> <span class="kt">AnyObject</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">@MainActor</span>
+<span class="kd">public</span> <span class="kd">protocol</span> <span class="kt">CellEventCoordinator</span> <span class="p">:</span> <span class="kt">AnyObject</span></code></pre>
 
                         </div>
                       </div>
@@ -173,7 +191,8 @@
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">protocol</span> <span class="kt">CellViewModel</span> <span class="p">:</span> <span class="kt"><a href="Protocols/DiffableViewModel.html">DiffableViewModel</a></span><span class="p">,</span> <span class="kt"><a href="Protocols/ViewRegistrationProvider.html">ViewRegistrationProvider</a></span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">@MainActor</span>
+<span class="kd">public</span> <span class="kd">protocol</span> <span class="kt">CellViewModel</span> <span class="p">:</span> <span class="kt"><a href="Protocols/DiffableViewModel.html">DiffableViewModel</a></span><span class="p">,</span> <span class="kt"><a href="Protocols/ViewRegistrationProvider.html">ViewRegistrationProvider</a></span></code></pre>
 
                         </div>
                       </div>
@@ -193,7 +212,7 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Describes a view model that is diffable.</p>
+                        <p>Describes a view model that is uniquely identifiable and diffable.</p>
 
                         <a href="Protocols/DiffableViewModel.html" class="slightly-smaller">See more</a>
                       </div>
@@ -201,7 +220,8 @@
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">protocol</span> <span class="kt">DiffableViewModel</span> <span class="p">:</span> <span class="kt">Hashable</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">@MainActor</span>
+<span class="kd">public</span> <span class="kd">protocol</span> <span class="kt">DiffableViewModel</span> <span class="p">:</span> <span class="kt">Hashable</span><span class="p">,</span> <span class="kt">Identifiable</span></code></pre>
 
                         </div>
                       </div>
@@ -221,7 +241,8 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>Defines a view model that describes and configures a footer view
+for a section in the collection view.</p>
 
                         <a href="Protocols/SupplementaryFooterViewModel.html" class="slightly-smaller">See more</a>
                       </div>
@@ -229,7 +250,8 @@
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">protocol</span> <span class="kt">SupplementaryFooterViewModel</span> <span class="p">:</span> <span class="kt"><a href="Protocols/SupplementaryViewModel.html">SupplementaryViewModel</a></span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">@MainActor</span>
+<span class="kd">public</span> <span class="kd">protocol</span> <span class="kt">SupplementaryFooterViewModel</span> <span class="p">:</span> <span class="kt"><a href="Protocols/SupplementaryViewModel.html">SupplementaryViewModel</a></span></code></pre>
 
                         </div>
                       </div>
@@ -249,7 +271,8 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>Defines a view model that describes and configures a header view
+for a section in the collection view.</p>
 
                         <a href="Protocols/SupplementaryHeaderViewModel.html" class="slightly-smaller">See more</a>
                       </div>
@@ -257,7 +280,8 @@
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">protocol</span> <span class="kt">SupplementaryHeaderViewModel</span> <span class="p">:</span> <span class="kt"><a href="Protocols/SupplementaryViewModel.html">SupplementaryViewModel</a></span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">@MainActor</span>
+<span class="kd">public</span> <span class="kd">protocol</span> <span class="kt">SupplementaryHeaderViewModel</span> <span class="p">:</span> <span class="kt"><a href="Protocols/SupplementaryViewModel.html">SupplementaryViewModel</a></span></code></pre>
 
                         </div>
                       </div>
@@ -285,7 +309,8 @@
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">protocol</span> <span class="kt">SupplementaryViewModel</span> <span class="p">:</span> <span class="kt"><a href="Protocols/DiffableViewModel.html">DiffableViewModel</a></span><span class="p">,</span> <span class="kt"><a href="Protocols/ViewRegistrationProvider.html">ViewRegistrationProvider</a></span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">@MainActor</span>
+<span class="kd">public</span> <span class="kd">protocol</span> <span class="kt">SupplementaryViewModel</span> <span class="p">:</span> <span class="kt"><a href="Protocols/DiffableViewModel.html">DiffableViewModel</a></span><span class="p">,</span> <span class="kt"><a href="Protocols/ViewRegistrationProvider.html">ViewRegistrationProvider</a></span></code></pre>
 
                         </div>
                       </div>
@@ -305,8 +330,7 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Describes a type (like a cell view model) that provides
-registration information for a particular view.</p>
+                        <p>Provides registration information for a reusable view in a <code>UICollectionView</code>.</p>
 
                         <a href="Protocols/ViewRegistrationProvider.html" class="slightly-smaller">See more</a>
                       </div>
@@ -314,7 +338,8 @@ registration information for a particular view.</p>
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">protocol</span> <span class="kt">ViewRegistrationProvider</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">@MainActor</span>
+<span class="kd">public</span> <span class="kd">protocol</span> <span class="kt">ViewRegistrationProvider</span></code></pre>
 
                         </div>
                       </div>
@@ -326,7 +351,7 @@ registration information for a particular view.</p>
           </section>
         </section>
         <section id="footer">
-          <p>&copy; 2024 <a class="link" href="https://jessesquires.com" target="_blank" rel="external noopener">Jesse Squires</a>. All rights reserved. (Last updated: 2024-05-19)</p>
+          <p>&copy; 2024 <a class="link" href="https://jessesquires.com" target="_blank" rel="external noopener">Jesse Squires</a>. All rights reserved. (Last updated: 2024-05-24)</p>
           <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external noopener">jazzy ♪♫ v0.15.0</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external noopener">Realm</a> project.</p>
         </section>
       </article>

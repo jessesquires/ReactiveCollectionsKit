@@ -17,7 +17,7 @@
     <a title="CollectionViewDriver Class Reference"></a>
     <header>
       <div class="content-wrapper">
-        <p><a href="../index.html">ReactiveCollectionsKit Docs</a> (34% documented)</p>
+        <p><a href="../index.html">ReactiveCollectionsKit Docs</a> (100% documented)</p>
         <p class="header-right"><a href="https://github.com/jessesquires/ReactiveCollectionsKit"><img src="../img/gh.png" alt="GitHub"/>View on GitHub</a></p>
         <div class="header-right">
           <form role="search" action="../search.json">
@@ -58,6 +58,17 @@
             </ul>
           </li>
           <li class="nav-group-name">
+            <a href="../Extensions.html">Extensions</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Extensions.html#/s:s11AnyHashableV">AnyHashable</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Extensions/UICollectionView.html">UICollectionView</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
             <a href="../Protocols.html">Protocols</a>
             <ul class="nav-group-tasks">
               <li class="nav-group-task">
@@ -93,7 +104,13 @@
                 <a href="../Structs/AnySupplementaryViewModel.html">AnySupplementaryViewModel</a>
               </li>
               <li class="nav-group-task">
+                <a href="../Structs/CollectionViewDriverOptions.html">CollectionViewDriverOptions</a>
+              </li>
+              <li class="nav-group-task">
                 <a href="../Structs/CollectionViewModel.html">CollectionViewModel</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/EmptyViewProvider.html">EmptyViewProvider</a>
               </li>
               <li class="nav-group-task">
                 <a href="../Structs/SectionViewModel.html">SectionViewModel</a>
@@ -123,12 +140,13 @@
               <div class="declaration">
                 <div class="language">
                   
-                  <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">final</span> <span class="kd">class</span> <span class="kt">CollectionViewDriver</span> <span class="p">:</span> <span class="kt">NSObject</span></code></pre>
+                  <pre class="highlight swift"><code><span class="kd">@MainActor</span>
+<span class="kd">public</span> <span class="kd">final</span> <span class="kd">class</span> <span class="kt">CollectionViewDriver</span> <span class="p">:</span> <span class="kt">NSObject</span></code></pre>
 <pre class="highlight swift"><code><span class="kd">extension</span> <span class="kt">CollectionViewDriver</span><span class="p">:</span> <span class="kt">UICollectionViewDelegate</span></code></pre>
 
                 </div>
               </div>
-            <p>Represents the main entry-point to the underlying <code>UICollectionView</code>.
+            <p>Represents the main entry-point to the library, and underlying <code>UICollectionView</code> components.
 A <code>CollectionViewDriver</code> is responsible for &ldquo;driving&rdquo; the collection view.
 It handles all layout, data source, delegate, and diffing operations.</p>
 
@@ -149,14 +167,14 @@ It handles all layout, data source, delegate, and diffing operations.</p>
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>A closure type used to notify callers of collection view updates.</p>
 
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">typealias</span> <span class="kt">DidUpdate</span> <span class="o">=</span> <span class="p">()</span> <span class="o">-&gt;</span> <span class="kt">Void</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">typealias</span> <span class="kt">DidUpdate</span> <span class="o">=</span> <span class="p">(</span><span class="kt">CollectionViewDriver</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Void</span></code></pre>
 
                         </div>
                       </div>
@@ -176,7 +194,7 @@ It handles all layout, data source, delegate, and diffing operations.</p>
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>The collection view.</p>
 
                       </div>
                       <div class="declaration">
@@ -203,7 +221,7 @@ It handles all layout, data source, delegate, and diffing operations.</p>
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>The collection view compositional layout.</p>
 
                       </div>
                       <div class="declaration">
@@ -220,9 +238,9 @@ It handles all layout, data source, delegate, and diffing operations.</p>
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:22ReactiveCollectionsKit20CollectionViewDriverC14animateUpdatesSbvp"></a>
-                    <a name="//apple_ref/swift/Property/animateUpdates" class="dashAnchor"></a>
-                    <a class="token" href="#/s:22ReactiveCollectionsKit20CollectionViewDriverC14animateUpdatesSbvp">animateUpdates</a>
+                    <a name="/s:22ReactiveCollectionsKit20CollectionViewDriverC7optionsAA0deF7OptionsVvp"></a>
+                    <a name="//apple_ref/swift/Property/options" class="dashAnchor"></a>
+                    <a class="token" href="#/s:22ReactiveCollectionsKit20CollectionViewDriverC7optionsAA0deF7OptionsVvp">options</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -230,14 +248,14 @@ It handles all layout, data source, delegate, and diffing operations.</p>
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>A set of options to customize behavior of the driver.</p>
 
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">animateUpdates</span><span class="p">:</span> <span class="kt">Bool</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">let</span> <span class="nv">options</span><span class="p">:</span> <span class="kt"><a href="../Structs/CollectionViewDriverOptions.html">CollectionViewDriverOptions</a></span></code></pre>
 
                         </div>
                       </div>
@@ -257,7 +275,18 @@ It handles all layout, data source, delegate, and diffing operations.</p>
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>The collection view model.</p>
+<div class="aside aside-note">
+    <p class="aside-title">Note</p>
+    <p>Setting this property to a new value will trigger diffing and collection view updates.</p>
+
+</div><div class="aside aside-warning">
+    <p class="aside-title">Warning</p>
+    <p>If you provide a <code>viewModel</code> with an <code>id</code> different from the previous one,
+this is considered a <em>replacement</em>. By default, the driver will animate the diff between the view models.
+You can customize this behavior via the <code><a href="../Classes/CollectionViewDriver.html#/s:22ReactiveCollectionsKit20CollectionViewDriverC7optionsAA0deF7OptionsVvp">options</a></code> for the driver.</p>
+
+</div>
 
                       </div>
                       <div class="declaration">
@@ -288,9 +317,9 @@ It handles all layout, data source, delegate, and diffing operations.</p>
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:22ReactiveCollectionsKit20CollectionViewDriverC4view6layout0G5Model20cellEventCoordinator14animateUpdates9didUpdateACSo012UICollectionE0C_So0qE19CompositionalLayoutCAA0deI0VAA04CellkL0_pSgSbyycSgtcfc"></a>
-                    <a name="//apple_ref/swift/Method/init(view:layout:viewModel:cellEventCoordinator:animateUpdates:didUpdate:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:22ReactiveCollectionsKit20CollectionViewDriverC4view6layout0G5Model20cellEventCoordinator14animateUpdates9didUpdateACSo012UICollectionE0C_So0qE19CompositionalLayoutCAA0deI0VAA04CellkL0_pSgSbyycSgtcfc">init(view:<wbr>layout:<wbr>viewModel:<wbr>cellEventCoordinator:<wbr>animateUpdates:<wbr>didUpdate:<wbr>)</a>
+                    <a name="/s:22ReactiveCollectionsKit20CollectionViewDriverC4view6layout0G5Model7options05emptyE8Provider20cellEventCoordinator9didUpdateACSo012UICollectionE0C_So0rE19CompositionalLayoutCAA0deI0VAA0deF7OptionsVAA05EmptyeL0VSgAA04CellnO0_pSgyACcSgtcfc"></a>
+                    <a name="//apple_ref/swift/Method/init(view:layout:viewModel:options:emptyViewProvider:cellEventCoordinator:didUpdate:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:22ReactiveCollectionsKit20CollectionViewDriverC4view6layout0G5Model7options05emptyE8Provider20cellEventCoordinator9didUpdateACSo012UICollectionE0C_So0rE19CompositionalLayoutCAA0deI0VAA0deF7OptionsVAA05EmptyeL0VSgAA04CellnO0_pSgyACcSgtcfc">init(view:<wbr>layout:<wbr>viewModel:<wbr>options:<wbr>emptyViewProvider:<wbr>cellEventCoordinator:<wbr>didUpdate:<wbr>)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -315,9 +344,10 @@ for the entire lifetime of the driver.</p>
                           <p class="aside-title">Swift</p>
                           <pre class="highlight swift"><code><span class="kd">public</span> <span class="nf">init</span><span class="p">(</span><span class="nv">view</span><span class="p">:</span> <span class="kt">UICollectionView</span><span class="p">,</span>
             <span class="nv">layout</span><span class="p">:</span> <span class="kt">UICollectionViewCompositionalLayout</span><span class="p">,</span>
-            <span class="nv">viewModel</span><span class="p">:</span> <span class="kt"><a href="../Structs/CollectionViewModel.html">CollectionViewModel</a></span> <span class="o">=</span> <span class="kt"><a href="../Structs/CollectionViewModel.html">CollectionViewModel</a></span><span class="p">(),</span>
+            <span class="nv">viewModel</span><span class="p">:</span> <span class="kt"><a href="../Structs/CollectionViewModel.html">CollectionViewModel</a></span> <span class="o">=</span> <span class="kt"><a href="../Structs/CollectionViewModel.html">CollectionViewModel</a></span><span class="p">(</span><span class="nv">id</span><span class="p">:</span> <span class="kt">UUID</span><span class="p">()),</span>
+            <span class="nv">options</span><span class="p">:</span> <span class="kt"><a href="../Structs/CollectionViewDriverOptions.html">CollectionViewDriverOptions</a></span> <span class="o">=</span> <span class="kt"><a href="../Structs/CollectionViewDriverOptions.html">CollectionViewDriverOptions</a></span><span class="p">(),</span>
+            <span class="nv">emptyViewProvider</span><span class="p">:</span> <span class="kt"><a href="../Structs/EmptyViewProvider.html">EmptyViewProvider</a></span><span class="p">?,</span>
             <span class="nv">cellEventCoordinator</span><span class="p">:</span> <span class="kt"><a href="../Protocols/CellEventCoordinator.html">CellEventCoordinator</a></span><span class="p">?,</span>
-            <span class="nv">animateUpdates</span><span class="p">:</span> <span class="kt">Bool</span> <span class="o">=</span> <span class="kc">true</span><span class="p">,</span>
             <span class="nv">didUpdate</span><span class="p">:</span> <span class="kt"><a href="../Classes/CollectionViewDriver.html#/s:22ReactiveCollectionsKit20CollectionViewDriverC9DidUpdatea">DidUpdate</a></span><span class="p">?</span> <span class="o">=</span> <span class="kc">nil</span><span class="p">)</span></code></pre>
 
                         </div>
@@ -365,6 +395,30 @@ for the entire lifetime of the driver.</p>
                             <tr>
                               <td>
                                 <code>
+                                <em>options</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>A set of options to customize behavior of the driver.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>emptyViewProvider</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>An empty view provider.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
                                 <em>cellEventCoordinator</em>
                                 </code>
                               </td>
@@ -379,25 +433,13 @@ for the entire lifetime of the driver.</p>
                             <tr>
                               <td>
                                 <code>
-                                <em>animateUpdates</em>
-                                </code>
-                              </td>
-                              <td>
-                                <div>
-                                  <p>Specifies whether or not to animate updates.
-            Pass <code>true</code> to animate, <code>false</code> otherwise.</p>
-                                </div>
-                              </td>
-                            </tr>
-                            <tr>
-                              <td>
-                                <code>
                                 <em>didUpdate</em>
                                 </code>
                               </td>
                               <td>
                                 <div>
-                                  <p>A closure to call when the driver finishes diffing and updating the collection view.</p>
+                                  <p>A closure to call when the driver finishes diffing and updating the collection view.
+       The driver passes itself to the closure. This will always be called on the main thread.</p>
                                 </div>
                               </td>
                             </tr>
@@ -409,50 +451,10 @@ for the entire lifetime of the driver.</p>
                 </li>
               </ul>
             </div>
-            <div class="task-group">
-              <div class="task-name-container">
-                <a name="/Modifying%20data"></a>
-                <a name="//apple_ref/swift/Section/Modifying data" class="dashAnchor"></a>
-                <div class="section-name-container">
-                  <a class="section-name-link" href="#/Modifying%20data"></a>
-                  <h3 class="section-name"><span>Modifying data</span>
-</h3>
-                </div>
-              </div>
-              <ul>
-                <li class="item">
-                  <div>
-                    <code>
-                    <a name="/s:22ReactiveCollectionsKit20CollectionViewDriverC10reloadDatayyF"></a>
-                    <a name="//apple_ref/swift/Method/reloadData()" class="dashAnchor"></a>
-                    <a class="token" href="#/s:22ReactiveCollectionsKit20CollectionViewDriverC10reloadDatayyF">reloadData()</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        <p>Undocumented</p>
-
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-                        <div class="language">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">reloadData</span><span class="p">()</span></code></pre>
-
-                        </div>
-                      </div>
-                    </section>
-                  </div>
-                </li>
-              </ul>
-            </div>
           </section>
         </section>
         <section id="footer">
-          <p>&copy; 2024 <a class="link" href="https://jessesquires.com" target="_blank" rel="external noopener">Jesse Squires</a>. All rights reserved. (Last updated: 2024-05-19)</p>
+          <p>&copy; 2024 <a class="link" href="https://jessesquires.com" target="_blank" rel="external noopener">Jesse Squires</a>. All rights reserved. (Last updated: 2024-05-24)</p>
           <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external noopener">jazzy ♪♫ v0.15.0</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external noopener">Realm</a> project.</p>
         </section>
       </article>

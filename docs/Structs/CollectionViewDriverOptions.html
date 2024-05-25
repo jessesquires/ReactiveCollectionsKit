@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>CellEventCoordinator Protocol Reference</title>
+    <title>CollectionViewDriverOptions Structure Reference</title>
     <link rel="stylesheet" type="text/css" href="../css/jazzy.css" />
     <link rel="stylesheet" type="text/css" href="../css/highlight.css" />
     <meta charset='utf-8'>
@@ -13,8 +13,8 @@
     <script src="../js/jazzy.search.js" defer></script>
   </head>
   <body>
-    <a name="//apple_ref/swift/Protocol/CellEventCoordinator" class="dashAnchor"></a>
-    <a title="CellEventCoordinator Protocol Reference"></a>
+    <a name="//apple_ref/swift/Struct/CollectionViewDriverOptions" class="dashAnchor"></a>
+    <a title="CollectionViewDriverOptions Structure Reference"></a>
     <header>
       <div class="content-wrapper">
         <p><a href="../index.html">ReactiveCollectionsKit Docs</a> (100% documented)</p>
@@ -30,9 +30,9 @@
       <p id="breadcrumbs">
         <a href="../index.html">ReactiveCollectionsKit</a>
         <img id="carat" src="../img/carat.png" alt=""/>
-        <a href="../Protocols.html">Protocols</a>
+        <a href="../Structs.html">Structures</a>
         <img id="carat" src="../img/carat.png" alt=""/>
-        CellEventCoordinator Protocol Reference
+        CollectionViewDriverOptions Structure Reference
       </p>
     </div>
     <div class="content-wrapper">
@@ -136,16 +136,15 @@
       <article class="main-content">
         <section>
           <section class="section">
-            <h1>CellEventCoordinator</h1>
+            <h1>CollectionViewDriverOptions</h1>
               <div class="declaration">
                 <div class="language">
                   
-                  <pre class="highlight swift"><code><span class="kd">@MainActor</span>
-<span class="kd">public</span> <span class="kd">protocol</span> <span class="kt">CellEventCoordinator</span> <span class="p">:</span> <span class="kt">AnyObject</span></code></pre>
+                  <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">struct</span> <span class="kt">CollectionViewDriverOptions</span> <span class="p">:</span> <span class="kt">Hashable</span></code></pre>
 
                 </div>
               </div>
-            <p>Conforming objects are responsible for handling various cell events.</p>
+            <p>Defines various options to customize behavior of a <code><a href="../Classes/CollectionViewDriver.html">CollectionViewDriver</a></code>.</p>
 
           </section>
           <section class="section task-group-section">
@@ -154,32 +153,117 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:22ReactiveCollectionsKit20CellEventCoordinatorP09didSelectD09viewModelyAA0d4ViewJ0_p_tF"></a>
-                    <a name="//apple_ref/swift/Method/didSelectCell(viewModel:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:22ReactiveCollectionsKit20CellEventCoordinatorP09didSelectD09viewModelyAA0d4ViewJ0_p_tF">didSelectCell(viewModel:<wbr>)</a>
+                    <a name="/s:22ReactiveCollectionsKit27CollectionViewDriverOptionsV14animateUpdatesSbvp"></a>
+                    <a name="//apple_ref/swift/Property/animateUpdates" class="dashAnchor"></a>
+                    <a class="token" href="#/s:22ReactiveCollectionsKit27CollectionViewDriverOptionsV14animateUpdatesSbvp">animateUpdates</a>
                     </code>
-                      <span class="declaration-note">
-                        Default implementation
-                      </span>
                   </div>
                   <div class="height-container">
                     <div class="pointer-container"></div>
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Called when a cell is selected.</p>
-
-                      </div>
-                      <h4>Default Implementation</h4>
-                      <div class="default_impl abstract">
-                        <p>Default implementation. Does nothing.</p>
+                        <p>Returns whether or not to animate updates.
+Pass <code>true</code> to animate, <code>false</code> otherwise.</p>
 
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">didSelectCell</span><span class="p">(</span><span class="nv">viewModel</span><span class="p">:</span> <span class="kd">any</span> <span class="kt"><a href="../Protocols/CellViewModel.html">CellViewModel</a></span><span class="p">)</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">let</span> <span class="nv">animateUpdates</span><span class="p">:</span> <span class="kt">Bool</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:22ReactiveCollectionsKit27CollectionViewDriverOptionsV21diffOnBackgroundQueueSbvp"></a>
+                    <a name="//apple_ref/swift/Property/diffOnBackgroundQueue" class="dashAnchor"></a>
+                    <a class="token" href="#/s:22ReactiveCollectionsKit27CollectionViewDriverOptionsV21diffOnBackgroundQueueSbvp">diffOnBackgroundQueue</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Specifies whether or not to perform diffing on a background queue.
+Pass <code>true</code> to perform diffing in the background,
+pass <code>false</code> to perform diffing on the main thread.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">let</span> <span class="nv">diffOnBackgroundQueue</span><span class="p">:</span> <span class="kt">Bool</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:22ReactiveCollectionsKit27CollectionViewDriverOptionsV021reloadDataOnReplacingE5ModelSbvp"></a>
+                    <a name="//apple_ref/swift/Property/reloadDataOnReplacingViewModel" class="dashAnchor"></a>
+                    <a class="token" href="#/s:22ReactiveCollectionsKit27CollectionViewDriverOptionsV021reloadDataOnReplacingE5ModelSbvp">reloadDataOnReplacingViewModel</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Specifies whether or not the <code><a href="../Classes/CollectionViewDriver.html">CollectionViewDriver</a></code> should
+perform a hard <code>reloadData()</code> when replacing the <code><a href="../Structs/CollectionViewModel.html">CollectionViewModel</a></code> with
+a new one, or if it should always perform a diff.</p>
+
+<p>A replacement occurs when providing a new <code><a href="../Structs/CollectionViewModel.html">CollectionViewModel</a></code> to the
+<code><a href="../Classes/CollectionViewDriver.html">CollectionViewDriver</a></code> that has a <strong>different</strong> <code>id</code> than the previous model.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">let</span> <span class="nv">reloadDataOnReplacingViewModel</span><span class="p">:</span> <span class="kt">Bool</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:22ReactiveCollectionsKit27CollectionViewDriverOptionsV14animateUpdates21diffOnBackgroundQueue010reloadDatak9ReplacingE5ModelACSb_S2btcfc"></a>
+                    <a name="//apple_ref/swift/Method/init(animateUpdates:diffOnBackgroundQueue:reloadDataOnReplacingViewModel:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:22ReactiveCollectionsKit27CollectionViewDriverOptionsV14animateUpdates21diffOnBackgroundQueue010reloadDatak9ReplacingE5ModelACSb_S2btcfc">init(animateUpdates:<wbr>diffOnBackgroundQueue:<wbr>reloadDataOnReplacingViewModel:<wbr>)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Initializes a <code>CollectionViewDriverOptions</code> object.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="nf">init</span><span class="p">(</span>
+    <span class="nv">animateUpdates</span><span class="p">:</span> <span class="kt">Bool</span> <span class="o">=</span> <span class="kc">true</span><span class="p">,</span>
+    <span class="nv">diffOnBackgroundQueue</span><span class="p">:</span> <span class="kt">Bool</span> <span class="o">=</span> <span class="kc">false</span><span class="p">,</span>
+    <span class="nv">reloadDataOnReplacingViewModel</span><span class="p">:</span> <span class="kt">Bool</span> <span class="o">=</span> <span class="kc">false</span>
+<span class="p">)</span></code></pre>
 
                         </div>
                       </div>
@@ -190,102 +274,41 @@
                             <tr>
                               <td>
                                 <code>
-                                <em>viewModel</em>
+                                <em>animateUpdates</em>
                                 </code>
                               </td>
                               <td>
                                 <div>
-                                  <p>The cell view model that corresponds to the cell.</p>
+                                  <p>Whether or not to animate updates. Default is <code>true</code>.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>diffOnBackgroundQueue</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Whether or not to perform diffing on a background queue. Default is <code>false</code>.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>reloadDataOnReplacingViewModel</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Whether or not to reload or diff during replacement. Default is <code>false</code>.</p>
                                 </div>
                               </td>
                             </tr>
                           </tbody>
                         </table>
-                      </div>
-                    </section>
-                  </div>
-                </li>
-                <li class="item">
-                  <div>
-                    <code>
-                    <a name="/s:22ReactiveCollectionsKit20CellEventCoordinatorP24underlyingViewControllerSo06UIViewI0CSgvp"></a>
-                    <a name="//apple_ref/swift/Property/underlyingViewController" class="dashAnchor"></a>
-                    <a class="token" href="#/s:22ReactiveCollectionsKit20CellEventCoordinatorP24underlyingViewControllerSo06UIViewI0CSgvp">underlyingViewController</a>
-                    </code>
-                      <span class="declaration-note">
-                        Default implementation
-                      </span>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        <p>Returns the underlying view controller that owns the collection view for the cell.</p>
-
-<p>You may use this to optionally handle navigation within your cell view model.</p>
-
-                      </div>
-                      <h4>Default Implementation</h4>
-                      <div class="default_impl abstract">
-                        <p>Default implementation. Returns <code>nil</code>.</p>
-
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-                        <div class="language">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="k">var</span> <span class="nv">underlyingViewController</span><span class="p">:</span> <span class="kt">UIViewController</span><span class="p">?</span> <span class="p">{</span> <span class="k">get</span> <span class="p">}</span></code></pre>
-
-                        </div>
-                      </div>
-                    </section>
-                  </div>
-                </li>
-              </ul>
-            </div>
-            <div class="task-group">
-              <div class="task-name-container">
-                <a name="/Available%20where%20%60Self%60%3A%20%60UIViewController%60"></a>
-                <a name="//apple_ref/swift/Section/Available where `Self`: `UIViewController`" class="dashAnchor"></a>
-                <div class="section-name-container">
-                  <a class="section-name-link" href="#/Available%20where%20%60Self%60%3A%20%60UIViewController%60"></a>
-                  <h3 class="section-name"><span>Available where <code>Self</code>: <code>UIViewController</code></span>
-</h3>
-                </div>
-              </div>
-              <ul>
-                <li class="item">
-                  <div>
-                    <code>
-                    <a name="/s:22ReactiveCollectionsKit20CellEventCoordinatorPAASo16UIViewControllerCRbzrlE014underlyingViewH0AESgvp"></a>
-                    <a name="//apple_ref/swift/Property/underlyingViewController" class="dashAnchor"></a>
-                    <a class="token" href="#/s:22ReactiveCollectionsKit20CellEventCoordinatorPAASo16UIViewControllerCRbzrlE014underlyingViewH0AESgvp">underlyingViewController</a>
-                    </code>
-                      <span class="declaration-note">
-                        Default implementation
-                      </span>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        
-                      </div>
-                      <h4>Default Implementation</h4>
-                      <div class="default_impl abstract">
-                        <p>Default implementation if the conformer is a <code>UIViewController</code>.
-Returns <code>self</code>.</p>
-
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-                        <div class="language">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">underlyingViewController</span><span class="p">:</span> <span class="kt">UIViewController</span><span class="p">?</span> <span class="p">{</span> <span class="k">get</span> <span class="p">}</span></code></pre>
-
-                        </div>
                       </div>
                     </section>
                   </div>

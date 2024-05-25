@@ -16,7 +16,7 @@
     <a title="ReactiveCollectionsKit  Reference"></a>
     <header>
       <div class="content-wrapper">
-        <p><a href="index.html">ReactiveCollectionsKit Docs</a> (34% documented)</p>
+        <p><a href="index.html">ReactiveCollectionsKit Docs</a> (100% documented)</p>
         <p class="header-right"><a href="https://github.com/jessesquires/ReactiveCollectionsKit"><img src="img/gh.png" alt="GitHub"/>View on GitHub</a></p>
         <div class="header-right">
           <form role="search" action="search.json">
@@ -49,6 +49,17 @@
               </li>
               <li class="nav-group-task">
                 <a href="Enums/ViewRegistrationViewType.html">ViewRegistrationViewType</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="Extensions.html">Extensions</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="Extensions.html#/s:s11AnyHashableV">AnyHashable</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Extensions/UICollectionView.html">UICollectionView</a>
               </li>
             </ul>
           </li>
@@ -88,7 +99,13 @@
                 <a href="Structs/AnySupplementaryViewModel.html">AnySupplementaryViewModel</a>
               </li>
               <li class="nav-group-task">
+                <a href="Structs/CollectionViewDriverOptions.html">CollectionViewDriverOptions</a>
+              </li>
+              <li class="nav-group-task">
                 <a href="Structs/CollectionViewModel.html">CollectionViewModel</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Structs/EmptyViewProvider.html">EmptyViewProvider</a>
               </li>
               <li class="nav-group-task">
                 <a href="Structs/SectionViewModel.html">SectionViewModel</a>
@@ -118,12 +135,10 @@
             <h1 id='reactivecollectionskit-a-href-https-github-com-jessesquires-reactivecollectionskit-actions-workflows-ci-yml-img-src-https-github-com-jessesquires-reactivecollectionskit-actions-workflows-ci-yml-badge-svg-alt-ci-a' class='heading'>ReactiveCollectionsKit <a href="https://github.com/jessesquires/ReactiveCollectionsKit/actions/workflows/ci.yml"><img src="https://github.com/jessesquires/ReactiveCollectionsKit/actions/workflows/ci.yml/badge.svg" alt="CI"></a></h1>
 
 <p><em>Data-driven, declarative, reactive, diffable collections (and lists!) for iOS. A thoughtful and flexible wrapper for UICollectionView done right.</em></p>
-<h2 id='project-status-wip-️' class='heading'>Project Status: WIP ⚠️</h2>
+<h2 id='project-status-initial-release-coming-soon-️' class='heading'>Project Status: initial release coming soon! ⚠️</h2>
 
-<p>⚠️ This is still a <strong>Work-In-Progress</strong>, but it is close to finished. I started this a few years back, then got busy with other things.
-I am now returning to the project to get the initial release complete. Hopefully. 🤞</p>
-
-<p>In any case, what&rsquo;s here now is worth sharing.</p>
+<p>This project is close to finished for an initial release. I started this a few years back, then got busy with other things.
+I am now returning to the project to get the initial release complete. In any case, what&rsquo;s here now is worth sharing.</p>
 <h2 id='about' class='heading'>About</h2>
 
 <p>This library is the culmination of everything I learned from building and maintaining <a href="https://github.com/instagram/iglistkit">IGListKit</a>, <a href="https://github.com/plangrid/reactivelists">ReactiveLists</a>, and <a href="https://github.com/jessesquires/JSQDataSourcesKit">JSQDataSourcesKit</a>. The 4th time&rsquo;s a charm! 🍀</p>
@@ -136,8 +151,8 @@ I am now returning to the project to get the initial release complete. Hopefully
 <li>Mix multiple data types</li>
 <li>Automatic registration for cells and supplementary views</li>
 <li>Automatic diffing for items and sections</li>
-<li>Simply <code>UICollectionView</code> and <code>UICollectionViewCompositionalLayout</code> at its core.</li>
-<li>No <code>UITableView</code>. <code>UICollectionView</code> now has a <a href="https://developer.apple.com/documentation/uikit/uicollectionviewcompositionallayout/3600951-list">List Layout</a>.</li>
+<li>Simply <code>UICollectionView</code>, <code>UICollectionViewCompositionalLayout</code>, and <code>UICollectionViewDiffableDataSource</code> at its core.</li>
+<li>No <code>UITableView</code>. Only <code>UICollectionView</code>, which now has a <a href="https://developer.apple.com/documentation/uikit/uicollectionviewcompositionallayout/3600951-list">List Layout</a>.</li>
 </ul>
 <h3 id='what-about-swiftui' class='heading'>What about SwiftUI?</h3>
 
@@ -157,7 +172,7 @@ I am now returning to the project to get the initial release complete. Hopefully
 <p>Check out the extensive example project included in this repo.</p>
 </blockquote>
 
-<p>Here&rsquo;s an example of buliding a simple, static list from an array of data models.</p>
+<p>Here&rsquo;s an example of building a simple, static list from an array of data models.</p>
 <pre class="highlight swift"><code><span class="kd">class</span> <span class="kt">MyViewController</span><span class="p">:</span> <span class="kt">UICollectionViewController</span><span class="p">,</span> <span class="kt">CellEventCoordinator</span> <span class="p">{</span>
 
     <span class="k">var</span> <span class="nv">driver</span><span class="p">:</span> <span class="kt">CollectionViewDriver</span><span class="o">!</span>
@@ -227,16 +242,19 @@ I am now returning to the project to get the initial release complete. Hopefully
 <h2 id='additional-resources' class='heading'>Additional Resources</h2>
 
 <ul>
+<li><a href="https://developer.apple.com/documentation/uikit/views_and_controls/collection_views/implementing_modern_collection_views">Implementing Modern Collection Views</a>, Apple Dev Docs</li>
+<li><a href="https://developer.apple.com/documentation/uikit/views_and_controls/collection_views/updating_collection_views_using_diffable_data_sources">Updating Collection Views Using Diffable Data Sources</a>, Apple Dev Docs</li>
+<li><a href="https://developer.apple.com/documentation/uikit/uicollectionviewdatasourceprefetching/prefetching_collection_view_data">Prefetching collection view data</a>, Apple Dev Docs</li>
+<li><a href="https://developer.apple.com/documentation/uikit/uiimage/building_high-performance_lists_and_collection_views">Building High-Performance Lists and Collection Views</a>, Apple Dev Docs</li>
+<li><a href="https://developer.apple.com/videos/play/wwdc2021/10252/">Make blazing fast lists and collection views</a>, WWDC21</li>
 <li><a href="https://developer.apple.com/videos/play/wwdc2020/10045/">Advances in diffable data sources</a>, WWDC20</li>
 <li><a href="https://developer.apple.com/videos/play/wwdc2020/10097/">Advances in UICollectionView</a>, WWDC20</li>
-<li><a href="https://developer.apple.com/documentation/uikit/uiimage/building_high-performance_lists_and_collection_views">Building High-Performance Lists and Collection Views</a>, Apple Sample Code</li>
+<li><a href="https://developer.apple.com/videos/play/wwdc2020/10026/">Lists in UICollectionView</a>, WWDC20</li>
+<li><a href="https://developer.apple.com/videos/play/wwdc2020/10027/">Modern cell configuration</a>, WWDC20</li>
 <li><a href="https://useyourloaf.com/blog/creating-lists-with-collection-view/">Creating Lists with Collection View</a>, Use Your Loaf</li>
 <li><a href="https://lickability.com/blog/getting-started-with-uicollectionviewcompositionallayout/">Getting Started with <code>UICollectionViewCompositionalLayout</code></a>, Lickability</li>
-<li><a href="https://developer.apple.com/documentation/uikit/views_and_controls/collection_views/implementing_modern_collection_views">Implementing Modern Collection Views</a>, Apple Sample Code</li>
-<li><a href="https://developer.apple.com/videos/play/wwdc2020/10026/">Lists in UICollectionView</a>, WWDC20</li>
-<li><a href="https://developer.apple.com/videos/play/wwdc2021/10252/">Make blazing fast lists and collection views</a>, WWDC21</li>
-<li><a href="https://developer.apple.com/videos/play/wwdc2020/10027/">Modern cell configuration</a>, WWDC20</li>
 <li><a href="https://pspdfkit.com/blog/2020/the-case-for-lists-in-uicollectionview/">The Case for Lists in UICollectionView</a>, PSPDFKit Blog</li>
+<li><a href="https://github.com/nemecek-filip/CompositionalDiffablePlayground.ios">CompositionalDiffablePlayground</a>, Filip Němeček</li>
 </ul>
 <h2 id='contributing' class='heading'>Contributing</h2>
 
@@ -264,7 +282,7 @@ I am now returning to the project to get the initial release complete. Hopefully
           </section>
         </section>
         <section id="footer">
-          <p>&copy; 2024 <a class="link" href="https://jessesquires.com" target="_blank" rel="external noopener">Jesse Squires</a>. All rights reserved. (Last updated: 2024-05-19)</p>
+          <p>&copy; 2024 <a class="link" href="https://jessesquires.com" target="_blank" rel="external noopener">Jesse Squires</a>. All rights reserved. (Last updated: 2024-05-24)</p>
           <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external noopener">jazzy ♪♫ v0.15.0</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external noopener">Realm</a> project.</p>
         </section>
       </article>

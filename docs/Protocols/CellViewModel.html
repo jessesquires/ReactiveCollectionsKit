@@ -17,7 +17,7 @@
     <a title="CellViewModel Protocol Reference"></a>
     <header>
       <div class="content-wrapper">
-        <p><a href="../index.html">ReactiveCollectionsKit Docs</a> (34% documented)</p>
+        <p><a href="../index.html">ReactiveCollectionsKit Docs</a> (100% documented)</p>
         <p class="header-right"><a href="https://github.com/jessesquires/ReactiveCollectionsKit"><img src="../img/gh.png" alt="GitHub"/>View on GitHub</a></p>
         <div class="header-right">
           <form role="search" action="../search.json">
@@ -58,6 +58,17 @@
             </ul>
           </li>
           <li class="nav-group-name">
+            <a href="../Extensions.html">Extensions</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Extensions.html#/s:s11AnyHashableV">AnyHashable</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Extensions/UICollectionView.html">UICollectionView</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
             <a href="../Protocols.html">Protocols</a>
             <ul class="nav-group-tasks">
               <li class="nav-group-task">
@@ -93,7 +104,13 @@
                 <a href="../Structs/AnySupplementaryViewModel.html">AnySupplementaryViewModel</a>
               </li>
               <li class="nav-group-task">
+                <a href="../Structs/CollectionViewDriverOptions.html">CollectionViewDriverOptions</a>
+              </li>
+              <li class="nav-group-task">
                 <a href="../Structs/CollectionViewModel.html">CollectionViewModel</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/EmptyViewProvider.html">EmptyViewProvider</a>
               </li>
               <li class="nav-group-task">
                 <a href="../Structs/SectionViewModel.html">SectionViewModel</a>
@@ -123,7 +140,8 @@
               <div class="declaration">
                 <div class="language">
                   
-                  <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">protocol</span> <span class="kt">CellViewModel</span> <span class="p">:</span> <span class="kt"><a href="../Protocols/DiffableViewModel.html">DiffableViewModel</a></span><span class="p">,</span> <span class="kt"><a href="../Protocols/ViewRegistrationProvider.html">ViewRegistrationProvider</a></span></code></pre>
+                  <pre class="highlight swift"><code><span class="kd">@MainActor</span>
+<span class="kd">public</span> <span class="kd">protocol</span> <span class="kt">CellViewModel</span> <span class="p">:</span> <span class="kt"><a href="../Protocols/DiffableViewModel.html">DiffableViewModel</a></span><span class="p">,</span> <span class="kt"><a href="../Protocols/ViewRegistrationProvider.html">ViewRegistrationProvider</a></span></code></pre>
 
                 </div>
               </div>
@@ -176,12 +194,14 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>Returns whether or not the cell should get highlighted.
+This corresponds to the delegate method <code>collectionView(_:shouldHighlightItemAt:)</code>.
+The default implementation returns <code>true</code>.</p>
 
                       </div>
                       <h4>Default Implementation</h4>
                       <div class="default_impl abstract">
-                        <p>Undocumented</p>
+                        <p>Default implementation. Returns <code>true</code>.</p>
 
                       </div>
                       <div class="declaration">
@@ -211,12 +231,13 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>Returns a context menu configuration for the cell.
+This corresponds to the delegate method <code>collectionView(_:contextMenuConfigurationForItemAt:point:)</code>.</p>
 
                       </div>
                       <h4>Default Implementation</h4>
                       <div class="default_impl abstract">
-                        <p>Undocumented</p>
+                        <p>Default implementation. Returns <code>nil</code>.</p>
 
                       </div>
                       <div class="declaration">
@@ -243,7 +264,7 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>Configures the provided cell for display in the collection.</p>
 
                       </div>
                       <div class="declaration">
@@ -253,6 +274,25 @@
                           <pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">configure</span><span class="p">(</span><span class="nv">cell</span><span class="p">:</span> <span class="kt"><a href="../Protocols/CellViewModel.html#/s:22ReactiveCollectionsKit13CellViewModelP0D4TypeQa">CellType</a></span><span class="p">)</span></code></pre>
 
                         </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>cell</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The cell to configure.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
                       </div>
                     </section>
                   </div>
@@ -273,12 +313,14 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>Handles the selection event for this cell, optionally using the provided <code>coordinator</code>.</p>
 
                       </div>
                       <h4>Default Implementation</h4>
                       <div class="default_impl abstract">
-                        <p>Undocumented</p>
+                        <p>Default implementation.
+Calls <code>didSelectCell(viewModel:)</code> on the <code>coordinator</code>,
+passing <code>self</code> to the <code>viewModel</code> parameter.</p>
 
                       </div>
                       <div class="declaration">
@@ -288,6 +330,25 @@
                           <pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">didSelect</span><span class="p">(</span><span class="n">with</span> <span class="nv">coordinator</span><span class="p">:</span> <span class="kt"><a href="../Protocols/CellEventCoordinator.html">CellEventCoordinator</a></span><span class="p">?)</span></code></pre>
 
                         </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>coordinator</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>An event coordinator object, if one was provided to the <code><a href="../Classes/CollectionViewDriver.html">CollectionViewDriver</a></code>.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
                       </div>
                     </section>
                   </div>
@@ -339,7 +400,7 @@
                       <div class="pointer"></div>
                       <div class="abstract">
                         <p>A default reuse identifier for cell registration.
-Value defaults to the name of the class implementing the <code>CellViewModel</code> protocol.</p>
+Returns the name of the class implementing the <code>CellViewModel</code> protocol.</p>
 
                       </div>
                       <div class="declaration">
@@ -391,9 +452,9 @@ Value defaults to the name of the class implementing the <code>CellViewModel</co
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:22ReactiveCollectionsKit13CellViewModelPAAE03anyeF0AA03AnydeF0Vvp"></a>
-                    <a name="//apple_ref/swift/Property/anyViewModel" class="dashAnchor"></a>
-                    <a class="token" href="#/s:22ReactiveCollectionsKit13CellViewModelPAAE03anyeF0AA03AnydeF0Vvp">anyViewModel</a>
+                    <a name="/s:22ReactiveCollectionsKit13CellViewModelPAAE010eraseToAnyeF0AA0ideF0VyF"></a>
+                    <a name="//apple_ref/swift/Method/eraseToAnyViewModel()" class="dashAnchor"></a>
+                    <a class="token" href="#/s:22ReactiveCollectionsKit13CellViewModelPAAE010eraseToAnyeF0AA0ideF0VyF">eraseToAnyViewModel()</a>
                     </code>
                       <span class="declaration-note">
                         Extension method
@@ -411,37 +472,7 @@ Value defaults to the name of the class implementing the <code>CellViewModel</co
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">anyViewModel</span><span class="p">:</span> <span class="kt"><a href="../Structs/AnyCellViewModel.html">AnyCellViewModel</a></span> <span class="p">{</span> <span class="k">get</span> <span class="p">}</span></code></pre>
-
-                        </div>
-                      </div>
-                    </section>
-                  </div>
-                </li>
-                <li class="item">
-                  <div>
-                    <code>
-                    <a name="/s:22ReactiveCollectionsKit13CellViewModelPAAE019dequeueAndConfigureD3For010collectionE02at0D4TypeQzSo012UICollectionE0C_10Foundation9IndexPathVtF"></a>
-                    <a name="//apple_ref/swift/Method/dequeueAndConfigureCellFor(collectionView:at:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:22ReactiveCollectionsKit13CellViewModelPAAE019dequeueAndConfigureD3For010collectionE02at0D4TypeQzSo012UICollectionE0C_10Foundation9IndexPathVtF">dequeueAndConfigureCellFor(collectionView:<wbr>at:<wbr>)</a>
-                    </code>
-                      <span class="declaration-note">
-                        Extension method
-                      </span>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        <p>Undocumented</p>
-
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-                        <div class="language">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">dequeueAndConfigureCellFor</span><span class="p">(</span><span class="nv">collectionView</span><span class="p">:</span> <span class="kt">UICollectionView</span><span class="p">,</span> <span class="n">at</span> <span class="nv">indexPath</span><span class="p">:</span> <span class="kt">IndexPath</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Protocols/CellViewModel.html#/s:22ReactiveCollectionsKit13CellViewModelP0D4TypeQa">CellType</a></span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">eraseToAnyViewModel</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Structs/AnyCellViewModel.html">AnyCellViewModel</a></span></code></pre>
 
                         </div>
                       </div>
@@ -453,7 +484,7 @@ Value defaults to the name of the class implementing the <code>CellViewModel</co
           </section>
         </section>
         <section id="footer">
-          <p>&copy; 2024 <a class="link" href="https://jessesquires.com" target="_blank" rel="external noopener">Jesse Squires</a>. All rights reserved. (Last updated: 2024-05-19)</p>
+          <p>&copy; 2024 <a class="link" href="https://jessesquires.com" target="_blank" rel="external noopener">Jesse Squires</a>. All rights reserved. (Last updated: 2024-05-24)</p>
           <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external noopener">jazzy ♪♫ v0.15.0</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external noopener">Realm</a> project.</p>
         </section>
       </article>
