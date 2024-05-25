@@ -20,7 +20,7 @@
 		0BC546EF267923BA00E36D30 /* DiffableSnapshot.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BC546EE267923BA00E36D30 /* DiffableSnapshot.swift */; };
 		0BFA77472BB8B6DB009B9C5B /* XCTestCase+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 884880DD238CF02F0056F669 /* XCTestCase+Extensions.swift */; };
 		0BFA77482BB8B6DB009B9C5B /* String+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BFA77442BB8B6AC009B9C5B /* String+Extensions.swift */; };
-		0BFA774C2BB8B717009B9C5B /* TestCellModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BFA774A2BB8B714009B9C5B /* TestCellModel.swift */; };
+		0BFA774C2BB8B717009B9C5B /* FakeCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BFA774A2BB8B714009B9C5B /* FakeCellViewModel.swift */; };
 		0BFA774E2BB92DC8009B9C5B /* ViewRegistrationViewType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BFA774D2BB92DC8009B9C5B /* ViewRegistrationViewType.swift */; };
 		0BFA77502BB92E36009B9C5B /* ViewRegistrationMethod.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BFA774F2BB92E36009B9C5B /* ViewRegistrationMethod.swift */; };
 		88462766238FA2C8005FB389 /* FakeNib.xib in Resources */ = {isa = PBXBuildFile; fileRef = 88462765238FA2C8005FB389 /* FakeNib.xib */; };
@@ -63,7 +63,7 @@
 		0BC1EC2D267FF46E00FF774F /* ViewRegistration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewRegistration.swift; sourceTree = "<group>"; };
 		0BC546EE267923BA00E36D30 /* DiffableSnapshot.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiffableSnapshot.swift; sourceTree = "<group>"; };
 		0BFA77442BB8B6AC009B9C5B /* String+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extensions.swift"; sourceTree = "<group>"; };
-		0BFA774A2BB8B714009B9C5B /* TestCellModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestCellModel.swift; sourceTree = "<group>"; };
+		0BFA774A2BB8B714009B9C5B /* FakeCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FakeCellViewModel.swift; sourceTree = "<group>"; };
 		0BFA774D2BB92DC8009B9C5B /* ViewRegistrationViewType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewRegistrationViewType.swift; sourceTree = "<group>"; };
 		0BFA774F2BB92E36009B9C5B /* ViewRegistrationMethod.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewRegistrationMethod.swift; sourceTree = "<group>"; };
 		88462765238FA2C8005FB389 /* FakeNib.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FakeNib.xib; sourceTree = "<group>"; };
@@ -107,6 +107,7 @@
 		0BFA77422BB8B678009B9C5B /* Fakes */ = {
 			isa = PBXGroup;
 			children = (
+				0BFA774A2BB8B714009B9C5B /* FakeCellViewModel.swift */,
 				884880D8238CE9BF0056F669 /* FakeCollectionView.swift */,
 				88BD6D19238D124300FB1846 /* FakeCollectionViewModel.swift */,
 				88462765238FA2C8005FB389 /* FakeNib.xib */,
@@ -114,22 +115,14 @@
 			path = Fakes;
 			sourceTree = "<group>";
 		};
-		0BFA77432BB8B69C009B9C5B /* TestUtils */ = {
+		0BFA77432BB8B69C009B9C5B /* Utils */ = {
 			isa = PBXGroup;
 			children = (
 				0BFA77442BB8B6AC009B9C5B /* String+Extensions.swift */,
 				884880D6238CE9020056F669 /* UnitTestCase.swift */,
 				884880DD238CF02F0056F669 /* XCTestCase+Extensions.swift */,
 			);
-			path = TestUtils;
-			sourceTree = "<group>";
-		};
-		0BFA77492BB8B706009B9C5B /* Fixtures */ = {
-			isa = PBXGroup;
-			children = (
-				0BFA774A2BB8B714009B9C5B /* TestCellModel.swift */,
-			);
-			path = Fixtures;
+			path = Utils;
 			sourceTree = "<group>";
 		};
 		88FA48D02363A6160061F8B2 = {
@@ -180,12 +173,11 @@
 			isa = PBXGroup;
 			children = (
 				0BFA77422BB8B678009B9C5B /* Fakes */,
-				0BFA77492BB8B706009B9C5B /* Fixtures */,
 				88BD6D15238D03F100FB1846 /* TestCellViewModel.swift */,
 				8872DE94238D18D5005774EA /* TestContainerViewDataSourceDelegate.swift */,
 				8872DE97238D2769005774EA /* TestDiffableViewModel.swift */,
 				8872DE99238D28BE005774EA /* TestSectionViewModel.swift */,
-				0BFA77432BB8B69C009B9C5B /* TestUtils */,
+				0BFA77432BB8B69C009B9C5B /* Utils */,
 			);
 			path = Tests;
 			sourceTree = "<group>";
@@ -353,7 +345,7 @@
 				8872DE9A238D28BE005774EA /* TestSectionViewModel.swift in Sources */,
 				8872DE95238D18D5005774EA /* TestContainerViewDataSourceDelegate.swift in Sources */,
 				88BD6D16238D03F100FB1846 /* TestCellViewModel.swift in Sources */,
-				0BFA774C2BB8B717009B9C5B /* TestCellModel.swift in Sources */,
+				0BFA774C2BB8B717009B9C5B /* FakeCellViewModel.swift in Sources */,
 				88BD6D1B238D127700FB1846 /* FakeCollectionViewModel.swift in Sources */,
 				0BFA77472BB8B6DB009B9C5B /* XCTestCase+Extensions.swift in Sources */,
 				0BFA77482BB8B6DB009B9C5B /* String+Extensions.swift in Sources */,

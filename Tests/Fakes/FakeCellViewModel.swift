@@ -14,13 +14,13 @@
 import Foundation
 @testable import ReactiveCollectionsKit
 
-enum TestReuseIdentifier: String {
+enum FakeReuseIdentifier: String {
     case cell
     case footerView
     case headerView
 }
 
-struct TestCellModel: CellViewModel {
+struct FakeCellViewModel: CellViewModel {
     nonisolated var id: UniqueIdentifier { "\(Self.self)" }
 
     func configure(cell: FakeCollectionCell) { }
