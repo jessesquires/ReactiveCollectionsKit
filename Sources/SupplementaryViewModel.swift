@@ -103,3 +103,12 @@ extension AnySupplementaryViewModel: Hashable {
         self._viewModel.hash(into: &hasher)
     }
 }
+
+extension AnySupplementaryViewModel: CustomDebugStringConvertible {
+    /// :nodoc:
+    nonisolated public var debugDescription: String {
+        MainActor.assumeIsolated {
+            "\(self._viewModel)"
+        }
+    }
+}

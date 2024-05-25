@@ -172,9 +172,6 @@ extension CollectionViewModel: Collection, RandomAccessCollection {
     }
 }
 
-// TODO: implement CustomDebugStringConvertible for Section, AnyCell, AnySupplementary etc.
-// If _viewModel conforms, use that implementation
-
 extension CollectionViewModel: CustomDebugStringConvertible {
     /// :nodoc:
     nonisolated public var debugDescription: String {

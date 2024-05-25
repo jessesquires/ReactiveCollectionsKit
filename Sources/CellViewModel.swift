@@ -163,3 +163,12 @@ extension AnyCellViewModel: Hashable {
         self._viewModel.hash(into: &hasher)
     }
 }
+
+extension AnyCellViewModel: CustomDebugStringConvertible {
+    /// :nodoc:
+    nonisolated public var debugDescription: String {
+        MainActor.assumeIsolated {
+            "\(self._viewModel)"
+        }
+    }
+}
