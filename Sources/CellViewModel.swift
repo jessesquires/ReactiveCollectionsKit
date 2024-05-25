@@ -75,6 +75,8 @@ extension CellViewModel {
         AnyCellViewModel(self)
     }
 
+    // MARK: Internal
+
     func dequeueAndConfigureCellFor(collectionView: UICollectionView, at indexPath: IndexPath) -> CellType {
         let cell = self.registration.dequeueViewFor(collectionView: collectionView, at: indexPath) as! CellType
         self.configure(cell: cell)
@@ -131,7 +133,7 @@ public struct AnyCellViewModel: CellViewModel {
 
     // MARK: Init
 
-    /// Initialize an `AnyCellViewModel` from the provided cell view model.
+    /// Initializes an `AnyCellViewModel` from the provided cell view model.
     ///
     /// - Parameter viewModel: The view model to type-erase.
     public init<T: CellViewModel>(_ viewModel: T) {

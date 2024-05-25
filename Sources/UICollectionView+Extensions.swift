@@ -15,6 +15,8 @@ import Foundation
 import UIKit
 
 extension UICollectionView {
+    /// Deselects all items that are selected.
+    /// - Parameter animated: Whether or not to animate the deselection.
     public func deselectAllItems(animated: Bool = true) {
         self.indexPathsForSelectedItems?.forEach {
             self.deselectItem(at: $0, animated: animated)
