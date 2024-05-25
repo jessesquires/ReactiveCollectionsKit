@@ -14,10 +14,9 @@
 import Foundation
 import UIKit
 
-/// Provides an "empty state" or "no content" view for a collection view.
+/// Provides an "empty state" or "no content" view for the collection view.
 @MainActor
 public struct EmptyViewProvider {
-
     /// A closure that returns the view.
     public let viewBuilder: () -> UIView
 

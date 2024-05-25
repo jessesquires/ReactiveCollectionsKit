@@ -39,56 +39,45 @@ public struct CollectionViewModel: Hashable, DiffableViewModel {
         self.sections = sections.filter { $0.isNotEmpty }
     }
 
-    // MARK: Accessing View Registration Info
-
-    /// Returns all the `ViewRegistration` objects for the collection.
-    public func allRegistrations() -> Set<ViewRegistration> {
-        var all = Set<ViewRegistration>()
-        self.sections.forEach {
-            all.formUnion($0.allRegistrations)
-        }
-        return all
-    }
-
     // MARK: Accessing Sections
-
-    /// Returns a dictionary of all sections keyed by their `id`.
-    public func allSectionsByIdentifier() -> [UniqueIdentifier: SectionViewModel] {
-        let tuples = self.sections.map { ($0.id, $0) }
-        return Dictionary(uniqueKeysWithValues: tuples)
-    }
 
     /// Returns the section for the specified `id`.
     /// - Parameter id: The identifier for the section.
     /// - Returns: The section, if it exists.
     public func sectionViewModel(for id: UniqueIdentifier) -> SectionViewModel? {
-        self.allSectionsByIdentifier()[id]
+        self.sections.first { $0.id == id }
+    }
+
+    ///  Returns the section at the specified index.
+    ///
+    /// - Parameter index: The index of the section.
+    /// - Returns: The section at `index`.
+    ///
+    /// - Precondition: The specified `index` must be valid.
+    public func sectionViewModel(at index: Int) -> SectionViewModel {
+        precondition(index < self.count)
+        return self.sections[index]
     }
 
     // MARK: Accessing Cells
 
-    /// Returns a dictionary of all cells keyed by their `id`.
-    public func allCellsByIdentifier() -> [UniqueIdentifier: AnyCellViewModel] {
-        let allCells = self.flatMap { $0.cells }
-        let tuples = allCells.map { ($0.id, $0) }
-        return Dictionary(uniqueKeysWithValues: tuples)
-    }
-
     /// Returns the cell for the specified `id`.
+    ///
     /// - Parameter id: The identifier for the cell.
     /// - Returns: The cell, if it exists.
     public func cellViewModel(for id: UniqueIdentifier) -> AnyCellViewModel? {
-        self.allCellsByIdentifier()[id]
+        self.flatMap { $0.cells }.first { $0.id == id }
     }
 
     /// Returns the cell at the specified index path.
-    /// - Parameter indexPath: The index path for the cell.
+    ///
+    /// - Parameter indexPath: The index path of the cell.
     /// - Returns: The cell at `indexPath`.
     ///
     /// - Precondition: The specified `indexPath` must be valid.
     public func cellViewModel(at indexPath: IndexPath) -> AnyCellViewModel {
         precondition(indexPath.section < self.count)
-        let section = self[indexPath.section]
+        let section = self.sectionViewModel(at: indexPath.section)
 
         let cells = section.cells
         precondition(indexPath.item < cells.count)
@@ -97,6 +86,14 @@ public struct CollectionViewModel: Hashable, DiffableViewModel {
     }
 
     // MARK: Accessing Supplementary Views
+
+    /// Returns the supplementary view for the specified `id`.
+    ///
+    /// - Parameter id: The identifier for the supplementary view.
+    /// - Returns: The supplementary view, if it exists.
+    public func supplementaryViewModel(for id: UniqueIdentifier) -> AnySupplementaryViewModel? {
+        self.flatMap { $0.supplementaryViews }.first { $0.id == id }
+    }
 
     /// Returns the supplementary view for the specified kind and index path.
     /// - Parameters:
@@ -107,7 +104,7 @@ public struct CollectionViewModel: Hashable, DiffableViewModel {
     /// - Precondition: The specified `indexPath` must be valid.
     public func supplementaryViewModel(ofKind kind: String, at indexPath: IndexPath) -> AnySupplementaryViewModel? {
         precondition(indexPath.section < self.count)
-        let section = self[indexPath.section]
+        let section = self.sectionViewModel(at: indexPath.section)
 
         if kind == section.header?._kind {
             return section.header
@@ -123,6 +120,27 @@ public struct CollectionViewModel: Hashable, DiffableViewModel {
         }
 
         return nil
+    }
+
+    // MARK: Internal
+
+    func allRegistrations() -> Set<ViewRegistration> {
+        var all = Set<ViewRegistration>()
+        self.sections.forEach {
+            all.formUnion($0.allRegistrations())
+        }
+        return all
+    }
+
+    func allSectionsByIdentifier() -> [UniqueIdentifier: SectionViewModel] {
+        let tuples = self.sections.map { ($0.id, $0) }
+        return Dictionary(uniqueKeysWithValues: tuples)
+    }
+
+    func allCellsByIdentifier() -> [UniqueIdentifier: AnyCellViewModel] {
+        let allCells = self.flatMap { $0.cells }
+        let tuples = allCells.map { ($0.id, $0) }
+        return Dictionary(uniqueKeysWithValues: tuples)
     }
 }
 

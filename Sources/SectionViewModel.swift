@@ -13,50 +13,42 @@
 
 import Foundation
 
-/// Represents a section of items in a collection or list.
+/// Represents a section of items in a collection.
 @MainActor
 public struct SectionViewModel: DiffableViewModel {
+    // MARK: DiffableViewModel
 
+    /// A unique id for this model.
     public let id: UniqueIdentifier
 
+    // MARK: Properties
+
+    /// The cells in the section.
     public let cells: [AnyCellViewModel]
 
+    /// The header for the section.
     public let header: AnySupplementaryViewModel?
 
+    /// The footer for the section.
     public let footer: AnySupplementaryViewModel?
 
+    /// The supplementary views in the section.
     public let supplementaryViews: [AnySupplementaryViewModel]
 
-    public var allSupplementaryViewsByIdentifier: [UniqueIdentifier: AnySupplementaryViewModel] {
-        let tuples = self.supplementaryViews.map { ($0.id, $0) }
-        return Dictionary(uniqueKeysWithValues: tuples)
-    }
-
+    /// Returns `true` if the section has supplementary views, `false` otherwise.
     public var hasSupplementaryViews: Bool {
         self.header != nil
         || self.footer != nil
         || self.supplementaryViews.isNotEmpty
     }
 
-    public var cellRegistrations: Set<ViewRegistration> {
-        Set(self.cells.map { $0.registration })
-    }
+    // MARK: Init
 
-    public var headerFooterRegistrations: Set<ViewRegistration> {
-        Set([self.header, self.footer].compactMap { $0?.registration })
-    }
-
-    public var supplementaryViewRegistrations: Set<ViewRegistration> {
-        Set(self.supplementaryViews.map { $0.registration })
-    }
-
-    public var allRegistrations: Set<ViewRegistration> {
-        let cells = self.cellRegistrations
-        let headerFooter = self.headerFooterRegistrations
-        let views = self.supplementaryViewRegistrations
-        return cells.union(views).union(headerFooter)
-    }
-
+    /// Initializes a section.
+    ///
+    /// - Parameters:
+    ///   - id: A unique identifier for the section.
+    ///   - cells: The cells in the section.
     public init(id: UniqueIdentifier, cells: [AnyCellViewModel] = []) {
         self.init(
             id: id,
@@ -67,6 +59,11 @@ public struct SectionViewModel: DiffableViewModel {
         )
     }
 
+    /// Initializes a section.
+    ///
+    /// - Parameters:
+    ///   - id: A unique identifier for the section.
+    ///   - cells: The cells in the section.
     public init<Cell: CellViewModel>(
         id: UniqueIdentifier,
         cells: [Cell]
@@ -80,6 +77,14 @@ public struct SectionViewModel: DiffableViewModel {
         )
     }
 
+    /// Initializes a section.
+    ///
+    /// - Parameters:
+    ///   - id: A unique identifier for the section.
+    ///   - cells: The cells in the section.
+    ///   - header: The header for the section.
+    ///   - footer: The footer for the section.
+    ///   - supplementaryViews: The supplementary views in the section.
     public init<Header: SupplementaryHeaderViewModel, Footer: SupplementaryFooterViewModel>(
         id: UniqueIdentifier,
         cells: [AnyCellViewModel] = [],
@@ -96,6 +101,14 @@ public struct SectionViewModel: DiffableViewModel {
         )
     }
 
+    /// Initializes a section.
+    ///
+    /// - Parameters:
+    ///   - id: A unique identifier for the section.
+    ///   - cells: The cells in the section.
+    ///   - header: The header for the section.
+    ///   - footer: The footer for the section.
+    ///   - supplementaryViews: The supplementary views in the section.
     public init<Cell: CellViewModel, Header: SupplementaryHeaderViewModel, Footer: SupplementaryFooterViewModel>(
         id: UniqueIdentifier,
         cells: [Cell],
@@ -112,24 +125,34 @@ public struct SectionViewModel: DiffableViewModel {
         )
     }
 
-    public init<Cell: CellViewModel,
-                Header: SupplementaryHeaderViewModel,
-                Footer: SupplementaryFooterViewModel,
-                View: SupplementaryViewModel>(
-                    id: UniqueIdentifier,
-                    cells: [Cell],
-                    header: Header?,
-                    footer: Footer?,
-                    supplementaryViews: [View]
-                ) {
-                    self.init(
-                        id: id,
-                        anyCells: cells.map { $0.eraseToAnyViewModel() },
-                        anyHeader: header?.eraseToAnyViewModel(),
-                        anyFooter: footer?.eraseToAnyViewModel(),
-                        anySupplementaryViews: supplementaryViews.map { $0.eraseToAnyViewModel() }
-                    )
-                }
+    /// Initializes a section.
+    ///
+    /// - Parameters:
+    ///   - id: A unique identifier for the section.
+    ///   - cells: The cells in the section.
+    ///   - header: The header for the section.
+    ///   - footer: The footer for the section.
+    ///   - supplementaryViews: The supplementary views in the section.
+    public init<
+        Cell: CellViewModel,
+        Header: SupplementaryHeaderViewModel,
+        Footer: SupplementaryFooterViewModel,
+        View: SupplementaryViewModel>
+    (
+        id: UniqueIdentifier,
+        cells: [Cell],
+        header: Header?,
+        footer: Footer?,
+        supplementaryViews: [View]
+    ) {
+        self.init(
+            id: id,
+            anyCells: cells.map { $0.eraseToAnyViewModel() },
+            anyHeader: header?.eraseToAnyViewModel(),
+            anyFooter: footer?.eraseToAnyViewModel(),
+            anySupplementaryViews: supplementaryViews.map { $0.eraseToAnyViewModel() }
+        )
+    }
 
     private init(
         id: UniqueIdentifier,
@@ -148,10 +171,30 @@ public struct SectionViewModel: DiffableViewModel {
         self.supplementaryViews = anySupplementaryViews
     }
 
-    func supplementaryViewsEqualTo(_ otherSection: Self) -> Bool {
-        self.header == otherSection.header
-        && self.footer == otherSection.footer
-        && self.supplementaryViews == otherSection.supplementaryViews
+    // MARK: Internal
+
+    func cellRegistrations() -> Set<ViewRegistration> {
+        Set(self.cells.map { $0.registration })
+    }
+
+    func headerFooterRegistrations() -> Set<ViewRegistration> {
+        Set([self.header, self.footer].compactMap { $0?.registration })
+    }
+
+    func supplementaryViewRegistrations() -> Set<ViewRegistration> {
+        Set(self.supplementaryViews.map { $0.registration })
+    }
+
+    func allRegistrations() -> Set<ViewRegistration> {
+        let cells = self.cellRegistrations()
+        let headerFooter = self.headerFooterRegistrations()
+        let views = self.supplementaryViewRegistrations()
+        return cells.union(views).union(headerFooter)
+    }
+
+    func allSupplementaryViewsByIdentifier() -> [UniqueIdentifier: AnySupplementaryViewModel] {
+        let tuples = self.supplementaryViews.map { ($0.id, $0) }
+        return Dictionary(uniqueKeysWithValues: tuples)
     }
 }
 
@@ -241,7 +284,7 @@ extension SectionViewModel: CustomDebugStringConvertible {
             }
 
             text.append(" registrations: \n")
-            self.allRegistrations.forEach {
+            self.allRegistrations().forEach {
                 text.append("\t- \($0.reuseIdentifier) (\($0.viewType.kind))\n")
             }
             text.append(" isEmpty: \(self.isEmpty)\n")

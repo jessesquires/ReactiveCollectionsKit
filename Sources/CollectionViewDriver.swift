@@ -135,7 +135,7 @@ public final class CollectionViewDriver: NSObject {
         self._dataSource.reload(viewModel, completion: nil)
     }
 
-    // MARK: State information
+    // MARK: State Information
 
     /// The number of sections displayed by the collection view.
     var numberOfSections: Int {

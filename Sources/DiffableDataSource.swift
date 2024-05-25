@@ -209,7 +209,7 @@ final class DiffableDataSource: UICollectionViewDiffableDataSource<AnyHashable, 
             }
 
             // Third, check all supplementary views.
-            let allSourceSectionSupplementaryViews = sourceSection.allSupplementaryViewsByIdentifier
+            let allSourceSectionSupplementaryViews = sourceSection.allSupplementaryViewsByIdentifier()
 
             for viewIndex in 0..<destinationSection.supplementaryViews.count {
                 let destinationView = destinationSection.supplementaryViews[viewIndex]
