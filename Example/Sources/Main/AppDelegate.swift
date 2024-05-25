@@ -15,7 +15,7 @@ import UIKit
 
 @main
 final class AppDelegate: UIResponder, UIApplicationDelegate {
-    let window = UIWindow()
+    var window: UIWindow?
 
     func application(
         _ application: UIApplication,
@@ -41,8 +41,9 @@ final class AppDelegate: UIResponder, UIApplicationDelegate {
             UINavigationController(rootViewController: simple)
         ]
 
-        self.window.rootViewController = tabBar
-        self.window.makeKeyAndVisible()
+        self.window = UIWindow()
+        self.window?.rootViewController = tabBar
+        self.window?.makeKeyAndVisible()
         return true
     }
 }
