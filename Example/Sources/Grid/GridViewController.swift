@@ -21,7 +21,10 @@ final class GridViewController: ExampleViewController, CellEventCoordinator {
         layout: self.makeLayout(),
         emptyViewProvider: sharedEmptyViewProvider,
         cellEventCoordinator: self
-    )
+    ) { [unowned self] driver in
+        print("grid did update!")
+        print(driver.viewModel)
+    }
 
     override var model: Model {
         didSet {

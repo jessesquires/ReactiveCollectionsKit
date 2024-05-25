@@ -21,9 +21,9 @@ public enum ViewRegistrationViewType: Hashable, Sendable {
     /// Describes a supplementary view.
     case supplementary(kind: String)
 
-    var kind: String? {
+    var kind: String {
         switch self {
-        case .cell: nil
+        case .cell: "cell"
         case .supplementary(let kind): kind
         }
     }

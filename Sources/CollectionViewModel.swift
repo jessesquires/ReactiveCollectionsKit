@@ -208,6 +208,10 @@ extension CollectionViewModel: CustomDebugStringConvertible {
                 }
 
                 text.append("\t supplementary views: \n")
+                if section.supplementaryViews.isEmpty {
+                    text.append("\t\tnone \n")
+                }
+
                 for viewIndex in 0..<section.supplementaryViews.count {
                     let view = section.supplementaryViews[viewIndex]
                     let viewId = String(describing: view.id)
@@ -218,7 +222,7 @@ extension CollectionViewModel: CustomDebugStringConvertible {
 
             text.append(" registrations: \n")
             self.allRegistrations().forEach {
-                text.append("\t- \($0.reuseIdentifier)\n")
+                text.append("\t- \($0.reuseIdentifier) (\($0.viewType.kind))\n")
             }
             text.append(" isEmpty: \(self.isEmpty)\n")
             text.append(">")
