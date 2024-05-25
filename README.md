@@ -14,20 +14,21 @@ SwiftUI performance is still a significant issue, not to mention all the bugs, m
 
 ## Main Features
 
-|         | Main Features  |
-----------|-----------------
+|  | Main Features |
+---|----------------
 🏛️ | Declarative, data-driven architecture with reusable components
 🔐 | Immutable, uni-directional data flow
 🤖 | Automatic diffing for cells, sections, and supplementary views
-📝 | Automatic registration for cells and supplementary views
+🎟️ | Automatic registration and dequeuing for cells and supplementary views
+📏 | Automatic self-sizing cells and supplementary views
 🔠 | Create collections with mixed data types, powered by protocols and generics
 🔎 | Fine-grained control over diffing behavior for your models
 🚀 | Sensible defaults via protocol extensions
 🛠️ | Extendable API, customizable via protocols
 📱 | Simply `UICollectionView` and `UICollectionViewDiffableDataSource` at its core
-🚫 | Never call `apply(_ snapshot:)`, `reloadData()`, or `performBatchUpdates()` again
-🚫 | Never call `register(_:forCellWithReuseIdentifier:)` again
-🚫 | Never implement `DataSource` and `Delegate` methods again
+🙅 | Never call `apply(_ snapshot:)`, `reloadData()`, or `performBatchUpdates()` again
+🙅 | Never call `register(_:forCellWithReuseIdentifier:)` or `dequeueReusableCell(withReuseIdentifier:for:)` again
+🙅 | Never implement `DataSource` and `Delegate` methods again
 🏎️ | All Swift and zero third-party dependencies
 ✅ | Fully unit tested
 
@@ -103,11 +104,15 @@ You can read the [documentation here](https://jessesquires.github.io/ReactiveCol
 
 Below are some high-level notes on architecture and core concepts in this library.
 
-### Immutability and data flow
+### Immutability and uni-directional data flow
 
 > TODO:
 
 ### Diffing
+
+> TODO:
+
+### The `CellViewModel` protocol
 
 > TODO:
 
