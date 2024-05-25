@@ -21,7 +21,7 @@ enum TestReuseIdentifier: String {
 }
 
 struct TestCellModel: CellViewModel {
-    var id: UniqueIdentifier { "\(Self.self)" }
+    nonisolated var id: UniqueIdentifier { "\(Self.self)" }
 
     func configure(cell: FakeCollectionCell) { }
 }

@@ -23,7 +23,7 @@ struct FakeCollectionCellViewModel: CellViewModel {
 
     // MARK: CellViewModel
 
-    var id: UniqueIdentifier { self.text }
+    nonisolated var id: UniqueIdentifier { self.text }
 
     func configure(cell: FakeCollectionCell) {
         self.didConfigureExpectation?.fulfill()
@@ -42,7 +42,7 @@ extension XCTestCase {
         let sections = (0..<numSections).map { _ in
             self.makeCollectionSectionViewModel(numCells: numCells, includeExpectations: includeExpectations)
         }
-        return CollectionViewModel(sections: sections)
+        return CollectionViewModel(id: "test_model", sections: sections)
     }
 
     @MainActor
