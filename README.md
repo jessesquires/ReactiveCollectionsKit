@@ -6,11 +6,11 @@
 
 This library is the culmination of everything I learned from building and maintaining [`IGListKit`][0], [`ReactiveLists`][1], and [`JSQDataSourcesKit`][2]. The 4th time's a charm! 🍀
 
-This library contains a number of improvements, optimizations, and refinements over the aforementioned libraries. I have incorporated what I think are the best ideas and architecture design elements from each of these libraries, while eschewing (or improving upon) the details that I think were not so good. Importantly, this library uses modern `UICollectionView` APIs — namely, `UICollectionViewDiffableDataSource` and `UICollectionViewCompositionalLayout`, both of which were unavailable when the previous libraries were written. This library has no third-party dependencies and is written in Swift.
+This library contains a number of improvements, optimizations, and refinements over the aforementioned libraries. I have incorporated what I think are the best ideas and architecture design elements from each of these libraries, while eliminating or improving upon the shortcomings. Importantly, this library uses modern [`UICollectionView`](https://developer.apple.com/documentation/uikit/uicollectionview) APIs — namely, [`UICollectionViewDiffableDataSource`](https://developer.apple.com/documentation/uikit/uicollectionviewdiffabledatasource) and [`UICollectionViewCompositionalLayout`](https://developer.apple.com/documentation/uikit/uicollectionviewcompositionallayout), both of which were unavailable when the previous libraries were written. This library has no third-party dependencies and is written in Swift.
 
 ### What about SwiftUI?
 
-SwiftUI performance is still a significant issue, not to mention all the bugs, missing APIs, and lack of back-porting APIs to older OS versions. SwiftUI still does not provide a proper `UICollectionView` replacement. Yes, `Grid` exists but it is nowhere close to a replacement for `UICollectionView` and `UICollectionViewLayout`. While SwiftUI's `List` is pretty good much of the time, both `LazyVStack` and `LazyHStack` suffer from severe performance issues when you have large amounts of data.
+`SwiftUI` performance is still a significant issue, not to mention all the bugs, missing APIs, and lack of back-porting APIs to older OS versions. `SwiftUI` still does not provide a proper `UICollectionView` replacement. Yes, `Grid` exists but it is nowhere close to a replacement for `UICollectionView` and `UICollectionViewLayout`. While `SwiftUI`'s `List` is pretty good much of the time, both `LazyVStack` and `LazyHStack` suffer from severe performance issues when you have large amounts of data.
 
 ## Main Features
 
@@ -20,7 +20,7 @@ SwiftUI performance is still a significant issue, not to mention all the bugs, m
 🔐 | Immutable, uni-directional data flow
 🤖 | Automatic diffing for cells, sections, and supplementary views
 🎟️ | Automatic registration and dequeuing for cells and supplementary views
-📏 | Automatic self-sizing cells and supplementary views
+📐 | Automatic self-sizing cells and supplementary views
 🔠 | Create collections with mixed data types, powered by protocols and generics
 🔎 | Fine-grained control over diffing behavior for your models
 🚀 | Sensible defaults via protocol extensions
@@ -144,7 +144,7 @@ protocol DiffableViewModel: Identifiable, Hashable {
 
 **Equality** concerns itself with **ephemeral** _traits_ or _properties_ of a single unique object that _change_ over time. Equality answers the question _"which of these objects with the same `id` is the most up-to-date?"_ For example, a person is a unique entity, but they can change their hairstyle, they can wear different clothes, and can generally change any aspect of their physical appearance. While we can uniquely identify a person using their passport on any day, their physical appearance changes day-to-day or year-to-year. Equality is captured by the `Hashable` (and `Equatable`) protocol and the corresponding `==` and `hash(into:)` functions.
 
-Using this example, consider constructing a list of people to display in a collection. We can uniquely identify each person (using `id`) in the collection. This allows us to determine (1) if they are present, (2) their precise position, (3) if they have been delete/moved/added. Next, we can determine when they have changed (using `==`). This allows us to determine when a unique person in the collection needs to be reloaded or refreshed.
+Using this example, consider constructing a list of people to display in a collection. We can uniquely identify each person (using `id`) in the collection. This allows us to determine (1) if they are present, (2) their precise position, (3) if they have been deleted/moved/added. Next, we can determine if they have changed (using `==`) since we last saw them. This allows us to determine when a unique person in the collection needs to be reloaded or refreshed.
 
 Both [`IGListKit`][0] and [`ReactiveLists`][1] got this correct, but their implementations are more cumbersome and manual. `ReactiveCollectionsKit` improves upon both of these implementations with the `DiffableViewModel` protocol above (and Swift's type system). Identifiers can be _anything_ that is hashable, but typically this is only a `String`. Because Swift can automatically synthesize conformances to `Hashable`, most clients will get all of that functionality for free. If you need to optimize your `Hashable` implementation, you can manually implement the protocol:
 
