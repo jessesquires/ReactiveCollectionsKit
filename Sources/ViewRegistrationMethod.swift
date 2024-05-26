@@ -21,21 +21,23 @@ public enum ViewRegistrationMethod: Hashable, Sendable {
     /// Registration for a nib-based view.
     case nib(name: String, bundle: Bundle?)
 
-    private var _viewClassName: String? {
+    // MARK: Internal
+
+    var _viewClassName: String? {
         switch self {
         case .viewClass(let anyClass): "\(anyClass)"
         case .nib: nil
         }
     }
 
-    private var _nibName: String? {
+    var _nibName: String? {
         switch self {
         case .viewClass: nil
         case .nib(let name, _): name
         }
     }
 
-    private var _nibBundle: Bundle? {
+    var _nibBundle: Bundle? {
         switch self {
         case .viewClass: nil
         case .nib(_, let bundle): bundle
