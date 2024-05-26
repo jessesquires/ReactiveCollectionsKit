@@ -134,91 +134,127 @@
             
             <h1 id='reactivecollectionskit-a-href-https-github-com-jessesquires-reactivecollectionskit-actions-workflows-ci-yml-img-src-https-github-com-jessesquires-reactivecollectionskit-actions-workflows-ci-yml-badge-svg-alt-ci-a' class='heading'>ReactiveCollectionsKit <a href="https://github.com/jessesquires/ReactiveCollectionsKit/actions/workflows/ci.yml"><img src="https://github.com/jessesquires/ReactiveCollectionsKit/actions/workflows/ci.yml/badge.svg" alt="CI"></a></h1>
 
-<p><em>Data-driven, declarative, reactive, diffable collections (and lists!) for iOS. A thoughtful and flexible wrapper for UICollectionView done right.</em></p>
-<h2 id='project-status-initial-release-coming-soon-️' class='heading'>Project Status: initial release coming soon! ⚠️</h2>
-
-<p>This project is close to finished for an initial release. I started this a few years back, then got busy with other things.
-I am now returning to the project to get the initial release complete. In any case, what&rsquo;s here now is worth sharing.</p>
+<p><em>Data-driven, declarative, reactive, diffable collections (and lists!) for iOS. A modern, fast, and flexible library for <code>UICollectionView</code> done right.</em></p>
 <h2 id='about' class='heading'>About</h2>
 
-<p>This library is the culmination of everything I learned from building and maintaining <a href="https://github.com/instagram/iglistkit">IGListKit</a>, <a href="https://github.com/plangrid/reactivelists">ReactiveLists</a>, and <a href="https://github.com/jessesquires/JSQDataSourcesKit">JSQDataSourcesKit</a>. The 4th time&rsquo;s a charm! 🍀</p>
+<p>This library is the culmination of everything I learned from building and maintaining <a href="https://github.com/instagram/iglistkit"><code>IGListKit</code></a>, <a href="https://github.com/plangrid/reactivelists"><code>ReactiveLists</code></a>, and <a href="https://github.com/jessesquires/JSQDataSourcesKit"><code>JSQDataSourcesKit</code></a>. The 4th time&rsquo;s a charm! 🍀</p>
 
-<p>Improvements over the libraries above include:</p>
-
-<ul>
-<li>All Swift and zero third-party dependencies</li>
-<li>Generic view models to represent and configure cells</li>
-<li>Mix multiple data types</li>
-<li>Automatic registration for cells and supplementary views</li>
-<li>Automatic diffing for items and sections</li>
-<li>Simply <code>UICollectionView</code>, <code>UICollectionViewCompositionalLayout</code>, and <code>UICollectionViewDiffableDataSource</code> at its core.</li>
-<li>No <code>UITableView</code>. Only <code>UICollectionView</code>, which now has a <a href="https://developer.apple.com/documentation/uikit/uicollectionviewcompositionallayout/3600951-list">List Layout</a>.</li>
-</ul>
+<p>This library contains a number of improvements, optimizations, and refinements over the aforementioned libraries. I have incorporated what I think are the best ideas and architecture design elements from each of these libraries, while eliminating or improving upon the shortcomings. Importantly, this library uses modern <a href="https://developer.apple.com/documentation/uikit/uicollectionview"><code>UICollectionView</code></a> APIs — namely, <a href="https://developer.apple.com/documentation/uikit/uicollectionviewdiffabledatasource"><code>UICollectionViewDiffableDataSource</code></a> and <a href="https://developer.apple.com/documentation/uikit/uicollectionviewcompositionallayout"><code>UICollectionViewCompositionalLayout</code></a>, both of which were unavailable when the previous libraries were written. This library has no third-party dependencies and is written in Swift.</p>
 <h3 id='what-about-swiftui' class='heading'>What about SwiftUI?</h3>
 
-<p>SwiftUI performance is still a significant issue, not to mention all the bugs and missing APIs. SwiftUI still does not provide a proper <code>UICollectionView</code> replacement. (Yes, <code>Grid</code> exists but it is nowhere close to a replacement for <code>UICollectionView</code> and <code>UICollectionViewLayout</code>.) While SwiftUI&rsquo;s <code>List</code> is pretty good, both <code>LazyVStack</code> and <code>LazyHStack</code> suffer from severe performance issues when you have large amounts of data.</p>
+<p><code>SwiftUI</code> performance is still a significant issue, not to mention all the bugs, missing APIs, and lack of back-porting APIs to older OS versions. <code>SwiftUI</code> still does not provide a proper <code>UICollectionView</code> replacement. Yes, <code>Grid</code> exists but it is nowhere close to a replacement for <code>UICollectionView</code> and <code>UICollectionViewLayout</code>. While <code>SwiftUI</code>&lsquo;s <code>List</code> is pretty good much of the time, both <code>LazyVStack</code> and <code>LazyHStack</code> suffer from severe performance issues when you have large amounts of data.</p>
 <h2 id='main-features' class='heading'>Main Features</h2>
 
-<blockquote>
-<p>TODO</p>
+<table><thead>
+<tr>
+<th></th>
+<th>Main Features</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>🏛️</td>
+<td>Declarative, data-driven architecture with reusable components</td>
+</tr>
+<tr>
+<td>🔐</td>
+<td>Immutable, uni-directional data flow</td>
+</tr>
+<tr>
+<td>🤖</td>
+<td>Automatic diffing for cells, sections, and supplementary views</td>
+</tr>
+<tr>
+<td>🎟️</td>
+<td>Automatic registration and dequeuing for cells and supplementary views</td>
+</tr>
+<tr>
+<td>📐</td>
+<td>Automatic self-sizing cells and supplementary views</td>
+</tr>
+<tr>
+<td>🔠</td>
+<td>Create collections with mixed data types, powered by protocols and generics</td>
+</tr>
+<tr>
+<td>🔎</td>
+<td>Fine-grained control over diffing behavior for your models</td>
+</tr>
+<tr>
+<td>🚀</td>
+<td>Sensible defaults via protocol extensions</td>
+</tr>
+<tr>
+<td>🛠️</td>
+<td>Extendable API, customizable via protocols</td>
+</tr>
+<tr>
+<td>📱</td>
+<td>Simply <code>UICollectionView</code> and <code>UICollectionViewDiffableDataSource</code> at its core</td>
+</tr>
+<tr>
+<td>🙅</td>
+<td>Never call <code>apply(_ snapshot:)</code>, <code>reloadData()</code>, or <code>performBatchUpdates()</code> again</td>
+</tr>
+<tr>
+<td>🙅</td>
+<td>Never call <code>register(_:forCellWithReuseIdentifier:)</code> or <code>dequeueReusableCell(withReuseIdentifier:for:)</code> again</td>
+</tr>
+<tr>
+<td>🙅</td>
+<td>Never implement <code>DataSource</code> and <code>Delegate</code> methods again</td>
+</tr>
+<tr>
+<td>🏎️</td>
+<td>All Swift and zero third-party dependencies</td>
+</tr>
+<tr>
+<td>✅</td>
+<td>Fully unit tested</td>
+</tr>
+</tbody></table>
 
-<p>⚠️ Work-In-Progress ⚠️</p>
-</blockquote>
-<h2 id='usage' class='heading'>Usage</h2>
+<p>Notably, this library consolidates and centers on <code>UICollectionView</code>. There is <strong>no</strong> <code>UITableView</code> support because <code>UICollectionView</code> now has a <a href="https://developer.apple.com/documentation/uikit/uicollectionviewcompositionallayout/3600951-list">List Layout</a> that obviates the need for <code>UITableView</code> entirely.</p>
+<h2 id='getting-started' class='heading'>Getting Started</h2>
 
 <blockquote>
 <p>[!TIP]</p>
 
-<p>Check out the extensive example project included in this repo.</p>
+<p>Check out the extensive <a href="https://github.com/jessesquires/ReactiveCollectionsKit/tree/main/Example">example project</a> included in this repo.</p>
 </blockquote>
 
-<p>Here&rsquo;s an example of building a simple, static list from an array of data models.</p>
-<pre class="highlight swift"><code><span class="kd">class</span> <span class="kt">MyViewController</span><span class="p">:</span> <span class="kt">UICollectionViewController</span><span class="p">,</span> <span class="kt">CellEventCoordinator</span> <span class="p">{</span>
+<p>Here&rsquo;s a brief example of building a simple, static list from an array of data models.</p>
+<pre class="highlight swift"><code><span class="k">let</span> <span class="nv">models</span> <span class="o">=</span> <span class="p">[</span><span class="cm">/* array of some data models */</span><span class="p">]</span>
 
-    <span class="k">var</span> <span class="nv">driver</span><span class="p">:</span> <span class="kt">CollectionViewDriver</span><span class="o">!</span>
-
-    <span class="k">override</span> <span class="kd">func</span> <span class="nf">viewDidLoad</span><span class="p">()</span> <span class="p">{</span>
-        <span class="k">super</span><span class="o">.</span><span class="nf">viewDidLoad</span><span class="p">()</span>
-
-        <span class="k">let</span> <span class="nv">models</span> <span class="o">=</span> <span class="p">[</span><span class="cm">/* array of some data models */</span><span class="p">]</span>
-
-        <span class="c1">// create cell view models from the data models</span>
-        <span class="k">let</span> <span class="nv">cellViewModels</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">map</span> <span class="p">{</span>
-            <span class="kt">MyCellViewModel</span><span class="p">(</span><span class="nv">$0</span><span class="p">)</span>
-        <span class="p">}</span>
-
-        <span class="c1">// create your sections, and add cells</span>
-        <span class="k">let</span> <span class="nv">section</span> <span class="o">=</span> <span class="kt">SectionViewModel</span><span class="p">(</span><span class="nv">id</span><span class="p">:</span> <span class="s">"my_section"</span><span class="p">,</span> <span class="nv">cells</span><span class="p">:</span> <span class="n">cellViewModels</span><span class="p">)</span>
-
-        <span class="c1">// create the collection with all the sections</span>
-        <span class="k">let</span> <span class="nv">collectionViewModel</span> <span class="o">=</span> <span class="kt">CollectionViewModel</span><span class="p">(</span><span class="nv">sections</span><span class="p">:</span> <span class="p">[</span><span class="n">section</span><span class="p">])</span>
-
-        <span class="c1">// create your collection view layout</span>
-        <span class="k">let</span> <span class="nv">layout</span> <span class="o">=</span> <span class="kt">UICollectionViewCompositionalLayout</span><span class="o">.</span><span class="nf">list</span><span class="p">(</span>
-            <span class="nv">using</span><span class="p">:</span> <span class="o">.</span><span class="nf">init</span><span class="p">(</span><span class="nv">appearance</span><span class="p">:</span> <span class="o">.</span><span class="n">insetGrouped</span><span class="p">)</span>
-        <span class="p">)</span>
-
-        <span class="c1">// initialize the driver will all of the above</span>
-        <span class="k">self</span><span class="o">.</span><span class="n">driver</span> <span class="o">=</span> <span class="kt">CollectionViewDriver</span><span class="p">(</span>
-            <span class="nv">view</span><span class="p">:</span> <span class="k">self</span><span class="o">.</span><span class="n">collectionView</span><span class="p">,</span>
-            <span class="nv">layout</span><span class="p">:</span> <span class="n">layout</span><span class="p">,</span>
-            <span class="nv">viewModel</span><span class="p">:</span> <span class="n">collectionViewModel</span><span class="p">,</span>
-            <span class="nv">cellEventCoordinator</span><span class="p">:</span> <span class="k">self</span>
-        <span class="p">)</span>
-
-        <span class="c1">// the collection is updated and animated automatically</span>
-
-        <span class="c1">// later, you can update the model like so:</span>
-        <span class="k">let</span> <span class="nv">updatedCollectionViewModel</span> <span class="o">=</span> <span class="kt">CollectionViewModel</span><span class="p">(</span><span class="nv">sections</span><span class="p">:</span> <span class="p">[</span><span class="cm">/* updated items and sections */</span><span class="p">])</span>
-        <span class="k">self</span><span class="o">.</span><span class="n">driver</span><span class="o">.</span><span class="n">viewModel</span> <span class="o">=</span> <span class="n">updatedCollectionViewModel</span>
-    <span class="p">}</span>
-
-    <span class="c1">// MARK: CellEventCoordinator</span>
-
-    <span class="kd">func</span> <span class="nf">didSelectCell</span><span class="p">(</span><span class="nv">viewModel</span><span class="p">:</span> <span class="kd">any</span> <span class="kt">CellViewModel</span><span class="p">)</span> <span class="p">{</span>
-        <span class="c1">// TODO: handle cell selection events</span>
-    <span class="p">}</span>
+<span class="c1">// create cell view models from the data models</span>
+<span class="k">let</span> <span class="nv">cellViewModels</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">map</span> <span class="p">{</span>
+    <span class="kt">MyCellViewModel</span><span class="p">(</span><span class="nv">$0</span><span class="p">)</span>
 <span class="p">}</span>
+
+<span class="c1">// create the sections with cells</span>
+<span class="k">let</span> <span class="nv">section</span> <span class="o">=</span> <span class="kt">SectionViewModel</span><span class="p">(</span><span class="nv">id</span><span class="p">:</span> <span class="s">"my_section"</span><span class="p">,</span> <span class="nv">cells</span><span class="p">:</span> <span class="n">cellViewModels</span><span class="p">)</span>
+
+<span class="c1">// create the collection with sections</span>
+<span class="k">let</span> <span class="nv">collectionViewModel</span> <span class="o">=</span> <span class="kt">CollectionViewModel</span><span class="p">(</span><span class="nv">sections</span><span class="p">:</span> <span class="p">[</span><span class="n">section</span><span class="p">])</span>
+
+<span class="c1">// create the layout</span>
+<span class="k">let</span> <span class="nv">layout</span> <span class="o">=</span> <span class="kt">UICollectionViewCompositionalLayout</span><span class="o">.</span><span class="nf">list</span><span class="p">(</span>
+    <span class="nv">using</span><span class="p">:</span> <span class="o">.</span><span class="nf">init</span><span class="p">(</span><span class="nv">appearance</span><span class="p">:</span> <span class="o">.</span><span class="n">insetGrouped</span><span class="p">)</span>
+<span class="p">)</span>
+
+<span class="c1">// initialize the driver with the view model and other components</span>
+<span class="k">let</span> <span class="nv">driver</span> <span class="o">=</span> <span class="kt">CollectionViewDriver</span><span class="p">(</span>
+    <span class="nv">view</span><span class="p">:</span> <span class="n">collectionView</span><span class="p">,</span>
+    <span class="nv">layout</span><span class="p">:</span> <span class="n">layout</span><span class="p">,</span>
+    <span class="nv">viewModel</span><span class="p">:</span> <span class="n">collectionViewModel</span><span class="p">,</span>
+    <span class="nv">emptyViewProvider</span><span class="p">:</span> <span class="n">provider</span><span class="p">,</span>
+    <span class="nv">cellEventCoordinator</span><span class="p">:</span> <span class="n">coordinator</span>
+<span class="p">)</span>
+
+<span class="c1">// the collection view is updated and animated automatically</span>
+
+<span class="c1">// when the models change, generate a new view model (like above)</span>
+<span class="k">let</span> <span class="nv">updatedCollectionViewModel</span> <span class="o">=</span> <span class="kt">CollectionViewModel</span><span class="p">(</span><span class="nv">sections</span><span class="p">:</span> <span class="p">[</span><span class="cm">/* updated items and sections */</span><span class="p">])</span>
+<span class="n">driver</span><span class="o">.</span><span class="n">viewModel</span> <span class="o">=</span> <span class="n">updatedCollectionViewModel</span>
 </code></pre>
 <h2 id='requirements' class='heading'>Requirements</h2>
 
@@ -239,6 +275,98 @@ I am now returning to the project to get the initial release complete. In any ca
 <h2 id='documentation' class='heading'>Documentation</h2>
 
 <p>You can read the <a href="https://jessesquires.github.io/ReactiveCollectionsKit">documentation here</a>. Generated with <a href="https://github.com/realm/jazzy">jazzy</a>. Hosted by <a href="https://pages.github.com">GitHub Pages</a>.</p>
+<h2 id='notes-on-library-architecture' class='heading'>Notes on library architecture</h2>
+
+<p>Below are some high-level notes on architecture and core concepts in this library, along with comparisons to the other libraries I have worked on —  <a href="https://github.com/instagram/iglistkit"><code>IGListKit</code></a>, <a href="https://github.com/plangrid/reactivelists"><code>ReactiveLists</code></a>, and <a href="https://github.com/jessesquires/JSQDataSourcesKit"><code>JSQDataSourcesKit</code></a>.</p>
+<h3 id='overview' class='heading'>Overview</h3>
+
+<p>The main shortcomings of <a href="https://github.com/instagram/iglistkit"><code>IGListKit</code></a> are the lack of expressivity in Objective-C&rsquo;s type system, some boilerplate set up, mutability, and using sections as the base/fundamental component. While it is general-purpose, much of the design is informed by what we needed specifically at Instagram. What <code>IGListKit</code> got right was diffing — in fact, we pioneered that entire idea. The APIs in <code>UIKit</code> <em>came after</em> we released <code>IGListKit</code> and were heavily influenced by what we did.</p>
+
+<p>The main shortcomings of <a href="https://github.com/plangrid/reactivelists"><code>ReactiveLists</code></a> are that it uses older <code>UIKit</code> APIs and a custom, third-party diffing library. It maintains entirely separate infrastructure for tables and collections, which duplicates a lot of functionality. There&rsquo;s a <code>TableViewModel</code> and a <code><a href="Structs/CollectionViewModel.html">CollectionViewModel</a></code>, etc. for use with <code>UITableView</code> and <code>UICollectionView</code>. It is also a bit incomplete as we only implemented what we needed at PlanGrid. It pre-dates the modern collection view APIs for diffing and list layouts. What <code>ReactiveLists</code> got right was a declarative API, using a cell as the base/fundamental component, and uni-directional data flow.</p>
+
+<p><a href="https://github.com/jessesquires/JSQDataSourcesKit"><code>JSQDataSourcesKit</code></a> in some sense was always kind of experimental and academic. It doesn&rsquo;t do any diffing and also has separate infrastructure for tables and collections, as it pre-dated those modern collection view APIs. It was primarily concerned with constructing type-safe data sources that eliminated the boilerplate associated with <code>UITableViewDataSource</code> and <code>UICollectionViewDataSource</code>. Ultimately, the generics were too unwieldy. See my post, <em><a href="https://www.jessesquires.com/blog/2020/04/14/deprecating-jsqdatasourceskit/">Deprecating JSQDataSourcesKit</a></em>, for more details. What <code>JSQDataSourcesKit</code> got right was the idea of using generics to provide type-safety, though it was not executed well.</p>
+
+<p>All of this experience and knowledge has culminated in me writing this library, <code>ReactiveCollectionsKit</code>, which aims to <em>keep</em> all the good ideas and designs from the libraries above, while also addressing their shortcomings. I wrote or maintained all of them, so hopefully I&rsquo;ll get it right this time! :)</p>
+<h3 id='immutability-and-uni-directional-data-flow' class='heading'>Immutability and uni-directional data flow</h3>
+
+<p>Details that <a href="https://github.com/plangrid/reactivelists"><code>ReactiveLists</code></a> got right are immutability, a declarative API, and uni-directional data flow. With <code>ReactiveLists</code>, you declaratively define your entire collection view model and regenerate it whenever your underlying data model changes.</p>
+
+<p>Meanwhile, <a href="https://github.com/instagram/iglistkit"><code>IGListKit</code></a> is very imperative and mutable. With <code>IGListKit</code>, after you hook-up your <code>IGListAdapter</code> and <code>IGListSectionController</code> objects, you update sections in-place. <code>IGListKit</code> encourages immutable data models but this is not enforceable in Objective-C, nor is it enforced in the API. <code>IGListKit</code> does have uni-directional data flow in some sense, but you provide your data imperatively via <code>IGListAdapterDataSource</code> which also requires you to manually manage a mapping of your data model objects to their corresponding <code>IGListSectionController</code> objects.</p>
+
+<p><code>ReactiveCollectionsKit</code> improves upon the approach taken by both <code>ReactiveLists</code> and <code>IGListKit</code>, and removes or consolidates the boilerplate required by <code>IGListKit</code>.</p>
+
+<p>The <a href="https://jessesquires.github.io/ReactiveCollectionsKit/Protocols/CellViewModel.html"><code><a href="Protocols/CellViewModel.html">CellViewModel</a></code></a> is the fundamental or &ldquo;atomic&rdquo; component in the library. It encapsulates all data, configuration, interaction, and registration for a single cell. This is similar to <code>ReactiveLists</code>. In <code>IGListKit</code>, this component corresponds to <code>IGListSectionController</code>. A shortcoming of <code>IGListKit</code> is that the &ldquo;atomic&rdquo; component is an entire section of multiple items — a section could have a single item and this scenario it more closely resembles <code><a href="Protocols/CellViewModel.html">CellViewModel</a></code>.</p>
+
+<p>The <a href="https://jessesquires.github.io/ReactiveCollectionsKit/Structs/CollectionViewModel.html"><code><a href="Structs/CollectionViewModel.html">CollectionViewModel</a></code></a> defines the entire structure of the collection. It is an immutable representation of your collection of data models, which can be anything. The &ldquo;driver&rdquo; terminology is borrowed from <code>ReactiveLists</code>. This component is more or less equivalent to the <code>IGListAdapter</code> found in <code>IGListKit</code>.</p>
+
+<p>Together, these two core components allow for uni-directional data flow. The general workflow is: (1) fetch or update your data models, (2) from that data, generate your <code><a href="Protocols/CellViewModel.html">CellViewModel</a></code> objects and complete <code><a href="Structs/CollectionViewModel.html">CollectionViewModel</a></code>, (3) set the view model on the <code><a href="Classes/CollectionViewDriver.html">CollectionViewDriver</a></code>, which will then perform a diff using the previously set model and update the <code>UICollectionView</code>.</p>
+<h3 id='diffing-identity-and-equality' class='heading'>Diffing: identity and equality</h3>
+
+<p>Understanding diffing requires understanding two core concepts: <strong>identity</strong> and <strong>equality</strong>. In <code>ReactiveCollectionsKit</code>, these concepts are modeled by <code><a href="Protocols/DiffableViewModel.html">DiffableViewModel</a></code>.</p>
+<pre class="highlight swift"><code><span class="kd">typealias</span> <span class="kt">UniqueIdentifier</span> <span class="o">=</span> <span class="kt">AnyHashable</span>
+
+<span class="kd">protocol</span> <span class="kt">DiffableViewModel</span><span class="p">:</span> <span class="kt">Identifiable</span><span class="p">,</span> <span class="kt">Hashable</span> <span class="p">{</span>
+    <span class="k">var</span> <span class="nv">id</span><span class="p">:</span> <span class="kt">UniqueIdentifier</span> <span class="p">{</span> <span class="k">get</span> <span class="p">}</span>
+<span class="p">}</span>
+</code></pre>
+
+<p><strong>Identity</strong> concerns itself with <strong>permanently</strong> and <strong>uniquely</strong> identifying a single instance of an object. An identity <em>never</em> changes. Identity answers the question <em>&ldquo;who is this?&rdquo;</em> For example, a passport encapsulates the concept of <em>identity</em> for a person. A passport permanently and uniquely identifies and corresponds to a single person. Identity is captured by the <code>Identifiable</code> protocol and the corresponding <code>id</code> property.</p>
+
+<p><strong>Equality</strong> concerns itself with <strong>ephemeral</strong> <em>traits</em> or <em>properties</em> of a single unique object that <em>change</em> over time. Equality answers the question <em>&ldquo;which of these objects with the same <code>id</code> is the most up-to-date?&rdquo;</em> For example, a person is a unique entity, but they can change their hairstyle, they can wear different clothes, and can generally change any aspect of their physical appearance. While we can uniquely identify a person using their passport on any day, their physical appearance changes day-to-day or year-to-year. Equality is captured by the <code>Hashable</code> (and <code>Equatable</code>) protocol and the corresponding <code>==</code> and <code>hash(into:)</code> functions.</p>
+
+<p>Using this example, consider constructing a list of people to display in a collection. We can uniquely identify each person (using <code>id</code>) in the collection. This allows us to determine (1) if they are present, (2) their precise position, (3) if they have been deleted/moved/added. Next, we can determine if they have changed (using <code>==</code>) since we last saw them. This allows us to determine when a unique person in the collection needs to be reloaded or refreshed.</p>
+
+<p>Both <a href="https://github.com/instagram/iglistkit"><code>IGListKit</code></a> and <a href="https://github.com/plangrid/reactivelists"><code>ReactiveLists</code></a> got this correct, but their implementations are more cumbersome and manual. <code>ReactiveCollectionsKit</code> improves upon both of these implementations with the <code><a href="Protocols/DiffableViewModel.html">DiffableViewModel</a></code> protocol above (and Swift&rsquo;s type system). Identifiers can be <em>anything</em> that is hashable, but typically this is only a <code>String</code>. Because Swift can automatically synthesize conformances to <code>Hashable</code>, most clients will get all of that functionality for free. If you need to optimize your <code>Hashable</code> implementation, you can manually implement the protocol:</p>
+<pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">hash</span><span class="p">(</span><span class="n">into</span> <span class="nv">hasher</span><span class="p">:</span> <span class="k">inout</span> <span class="kt">Hasher</span><span class="p">)</span>
+
+<span class="kd">static</span> <span class="kd">func</span> <span class="o">==</span> <span class="p">(</span><span class="nv">left</span><span class="p">:</span> <span class="k">Self</span><span class="p">,</span> <span class="nv">right</span><span class="p">:</span> <span class="k">Self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Bool</span>
+</code></pre>
+
+<blockquote>
+<p>[!IMPORTANT]</p>
+
+<p>The collection view APIs in UIKit <strong>do not handle <em>equality</em></strong>. <a href="https://developer.apple.com/documentation/uikit/uicollectionviewdiffabledatasource"><code>UICollectionViewDiffableDataSource</code></a> <strong>only concerns itself with <em>identity</em></strong> — it handles the structure (inserts/deletes/moves) for you, but you must handle reload (or reconfigure) for item property changes. (See: <a href="https://mobile.twitter.com/smileyborg/status/1402164265897758720">Tyler Fox</a>.)</p>
+
+<p>This is one of the primary motivations for this library, and the reason why a library like this is necessary. When using <code>UICollectionViewDiffableDataSource</code>, you must track property changes for all items in the collection on your own, and then reload/reconfigure accordingly.</p>
+</blockquote>
+<h3 id='the-code-cellviewmodel-code-protocol' class='heading'>The <code><a href="Protocols/CellViewModel.html">CellViewModel</a></code> protocol</h3>
+
+<p>As mentioned above, <a href="https://jessesquires.github.io/ReactiveCollectionsKit/Protocols/CellViewModel.html"><code><a href="Protocols/CellViewModel.html">CellViewModel</a></code></a> is the &ldquo;base&rdquo; or &ldquo;atomic&rdquo; component of this library. This is &ldquo;where the magic happens.&rdquo; A <code><a href="Protocols/CellViewModel.html">CellViewModel</a></code> declaratively defines everything needed for a cell to be displayed, diffed, and interacted with. It should encapsulate all data it needs to do configure a cell and handle interaction events. The model also includes a declarative definition of how to register the cell with the collection view for reuse.</p>
+
+<p>The <code><a href="Protocols/CellViewModel.html">CellViewModel</a></code> protocol inherits from <a href="https://jessesquires.github.io/ReactiveCollectionsKit/Protocols/DiffableViewModel.html"><code><a href="Protocols/DiffableViewModel.html">DiffableViewModel</a></code></a> and <a href="https://jessesquires.github.io/ReactiveCollectionsKit/Protocols/ViewRegistrationProvider.html"><code><a href="Protocols/ViewRegistrationProvider.html">ViewRegistrationProvider</a></code></a> to accomplish these tasks. This allows for automatic and customizable diffing and automatic view registration. Because of Swift&rsquo;s default implementations via protocol extensions, you can get a lot of default behavior for free. As mentioned above, you can get <code>Equatable</code> and <code>Hashable</code> conformances for free via synthesized definitions from the compiler. For <code><a href="Protocols/ViewRegistrationProvider.html">ViewRegistrationProvider</a></code>, you get a default class-based registration for free. This is functionality similar to <code>ReactiveLists</code>. <code>IGListKit</code> also offers automatic registration, but it is very implicit.</p>
+
+<p>Essentially, all data source and delegate methods from the collection view are forwarded to each instance of <code><a href="Protocols/CellViewModel.html">CellViewModel</a></code>.</p>
+
+<p>For headers, footers, and supplementary views there is a similar <a href="https://jessesquires.github.io/ReactiveCollectionsKit/Protocols/SupplementaryViewModel.html"><code><a href="Protocols/SupplementaryViewModel.html">SupplementaryViewModel</a></code></a>.</p>
+<h3 id='generics-and-type-erasure' class='heading'>Generics and type-erasure</h3>
+
+<p><a href="https://github.com/instagram/iglistkit"><code>IGListKit</code></a>, despite some Swift refinements, suffers from the lack of expressivity in Objective-C&rsquo;s type system. <a href="https://github.com/plangrid/reactivelists"><code>ReactiveLists</code></a> handles this better, but it pre-dates the modern improvements to Swift&rsquo;s generics and existentials. In <code>ReactiveLists</code>, configuring a cell requires force-casting from <code>UITableViewCell</code> or <code>UICollectionViewCell</code> to the specific cell type for the view model. In <code>ReactiveCollectionsKit</code>, this is solved with generics and associated types.</p>
+<pre class="highlight swift"><code><span class="kd">protocol</span> <span class="kt">CellViewModel</span><span class="p">:</span> <span class="kt">DiffableViewModel</span><span class="p">,</span> <span class="kt">ViewRegistrationProvider</span> <span class="p">{</span>
+    <span class="kd">associatedtype</span> <span class="kt">CellType</span><span class="p">:</span> <span class="kt">UICollectionViewCell</span>
+
+    <span class="kd">func</span> <span class="nf">configure</span><span class="p">(</span><span class="nv">cell</span><span class="p">:</span> <span class="kt">CellType</span><span class="p">)</span>
+
+    <span class="c1">// other members...</span>
+<span class="p">}</span>
+</code></pre>
+
+<p>Using generics was something that <a href="https://github.com/jessesquires/JSQDataSourcesKit"><code>JSQDataSourcesKit</code></a> got right, sort of. While it was nice to avoid casting view types in <code>JSQDataSourcesKit</code>, the generics proliferated all the way to the data source layer, which resulted in poor API ergonomics and extreme difficulty regarding displaying mixed data types. You also could not mix supplementary view types. You could work around the limitations for cells with an <code>enum</code>, but it was not very practical.</p>
+
+<p>To mitigate those shortcomings experienced in <code>JSQDataSourcesKit</code> and handle the heterogenous types downstream when constructing a section (via <a href="https://jessesquires.github.io/ReactiveCollectionsKit/Structs/SectionViewModel.html"><code><a href="Structs/SectionViewModel.html">SectionViewModel</a></code></a>), you must erase the cell types. This functionality is provided via an extension method on <code><a href="Protocols/CellViewModel.html">CellViewModel</a></code>.</p>
+<pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">eraseToAnyViewModel</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kt">AnyCellViewModel</span>
+</code></pre>
+
+<p><code><a href="Protocols/SupplementaryViewModel.html">SupplementaryViewModel</a></code> follows a similar design, allowing you to mix types for supplementary views as well.</p>
+
+<p>In practice, this means when using mixed data types, you&rsquo;ll need to eventually convert your specific cell view models to <code><a href="Structs/AnyCellViewModel.html">AnyCellViewModel</a></code>.</p>
+<pre class="highlight swift"><code><span class="k">let</span> <span class="nv">people</span> <span class="o">=</span> <span class="p">[</span><span class="kt">Person</span><span class="p">]()</span>
+
+<span class="k">let</span> <span class="nv">cellViewModels</span> <span class="o">=</span> <span class="n">people</span><span class="o">.</span><span class="n">map</span> <span class="p">{</span>
+    <span class="kt">PersonCellViewModel</span><span class="p">(</span><span class="nv">$0</span><span class="p">)</span><span class="o">.</span><span class="nf">eraseToAnyViewModel</span><span class="p">()</span>
+<span class="p">}</span>
+</code></pre>
+
+<p>However, because of Swift, you&rsquo;ll notice that <a href="https://jessesquires.github.io/ReactiveCollectionsKit/Structs/SectionViewModel.html"><code><a href="Structs/SectionViewModel.html">SectionViewModel</a></code></a> provides a number of convenience initializers using generics. In the scenarios where you <em>do not have mixed data types</em>, the generic initializers allow you ignore this implementation detail and handle the type-erasure for you.</p>
 <h2 id='additional-resources' class='heading'>Additional Resources</h2>
 
 <ul>
@@ -279,10 +407,12 @@ I am now returning to the project to get the initial release complete. In any ca
 <p><strong>Copyright &copy; 2019-present Jesse Squires.</strong></p>
 </blockquote>
 
+<!-- links -->
+
           </section>
         </section>
         <section id="footer">
-          <p>&copy; 2024 <a class="link" href="https://jessesquires.com" target="_blank" rel="external noopener">Jesse Squires</a>. All rights reserved. (Last updated: 2024-05-24)</p>
+          <p>&copy; 2024 <a class="link" href="https://jessesquires.com" target="_blank" rel="external noopener">Jesse Squires</a>. All rights reserved. (Last updated: 2024-05-25)</p>
           <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external noopener">jazzy ♪♫ v0.15.0</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external noopener">Realm</a> project.</p>
         </section>
       </article>
