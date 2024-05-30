@@ -42,8 +42,7 @@ let package = Package(
 
 // TODO: Remove this when it stops being broken. Xcode 16? Swift 6?
 let swiftSettings = [
-    SwiftSetting.enableExperimentalFeature("StrictConcurrency"),
-    SwiftSetting.enableExperimentalFeature("IsolatedDefaultArguments")
+    SwiftSetting.enableExperimentalFeature("StrictConcurrency")
 ]
 
 for target in package.targets {
