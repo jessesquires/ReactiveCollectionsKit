@@ -39,3 +39,15 @@ let package = Package(
     ],
     swiftLanguageVersions: [.v5]
 )
+
+// TODO: Remove this when it stops being broken. Xcode 16? Swift 6?
+let swiftSettings = [
+    SwiftSetting.enableExperimentalFeature("StrictConcurrency"),
+    SwiftSetting.enableExperimentalFeature("IsolatedDefaultArguments")
+]
+
+for target in package.targets {
+    var settings = target.swiftSettings ?? []
+    settings.append(contentsOf: swiftSettings)
+    target.swiftSettings = settings
+}

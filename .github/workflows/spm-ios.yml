@@ -32,16 +32,11 @@ jobs:
           xcrun simctl delete unavailable
           xcrun simctl list
 
-      # Only if needed. If repo contains an Xcode project, delete it.
+      # delete Xcode project to force using Package.swift
       - name: delete xcodeproj
         run: rm -rf ReactiveCollectionsKit.xcodeproj
-
-      - name: Build
-        run: |
-          set -o pipefail
-          xcodebuild build -scheme "$SCHEME" -destination "$IOS_DEST" SWIFT_STRICT_CONCURRENCY=complete | xcpretty -c
 
       - name: Test
         run: |
           set -o pipefail
-          xcodebuild test -scheme "$SCHEME" -destination "$IOS_DEST" SWIFT_STRICT_CONCURRENCY=complete | xcpretty -c
+          xcodebuild test -scheme "$SCHEME" -destination "$IOS_DEST" | xcpretty -c
