@@ -22,9 +22,13 @@ struct UncheckedCompletion: @unchecked Sendable {
     let block: Block?
 
     init(_ block: Block?) {
-        self.block = {
-            dispatchPrecondition(condition: .onQueue(.main))
-            block?()
+        if let block {
+            self.block = {
+                dispatchPrecondition(condition: .onQueue(.main))
+                block()
+            }
+        } else {
+            self.block = nil
         }
     }
 }
