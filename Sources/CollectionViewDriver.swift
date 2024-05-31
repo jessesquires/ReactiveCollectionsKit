@@ -54,7 +54,6 @@ public final class CollectionViewDriver: NSObject {
     ///
     /// - Parameters:
     ///   - view: The collection view.
-    ///   - layout: The collection view layout.
     ///   - viewModel: The collection view model.
     ///   - cellEventCoordinator: The cell event coordinator,
     ///                           if you wish to handle cell events outside of your cell view models.
@@ -68,13 +67,12 @@ public final class CollectionViewDriver: NSObject {
     /// Thus, the caller is responsible for retaining and keeping alive the `cellEventCoordinator`
     /// for the entire lifetime of the driver.
     public init(view: UICollectionView,
-                layout: UICollectionViewCompositionalLayout,
                 viewModel: CollectionViewModel = CollectionViewModel(),
                 cellEventCoordinator: CellEventCoordinator?,
                 animateUpdates: Bool = true,
                 didUpdate: DidUpdate? = nil) {
         self.view = view
-        self.view.collectionViewLayout = layout
+        self.view.collectionViewLayout = view.collectionViewLayout
         self.viewModel = viewModel
         self._cellEventCoordinator = cellEventCoordinator
         self.animateUpdates = animateUpdates
