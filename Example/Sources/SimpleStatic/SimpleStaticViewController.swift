@@ -19,7 +19,6 @@ final class SimpleStaticViewController: UICollectionViewController {
 
     lazy var driver = CollectionViewDriver(
         view: self.collectionView,
-        layout: self.collectionViewLayout as! UICollectionViewCompositionalLayout,
         emptyViewProvider: nil,
         cellEventCoordinator: nil
     )

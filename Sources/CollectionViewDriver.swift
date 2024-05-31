@@ -68,7 +68,6 @@ public final class CollectionViewDriver: NSObject {
     ///  
     /// - Parameters:
     ///   - view: The collection view.
-    ///   - layout: The collection view layout.
     ///   - viewModel: The collection view model.
     ///   - options: A set of options to customize behavior of the driver.
     ///   - emptyViewProvider: An empty view provider.
@@ -83,14 +82,12 @@ public final class CollectionViewDriver: NSObject {
     /// Thus, the caller is responsible for retaining and keeping alive the `cellEventCoordinator`
     /// for the entire lifetime of the driver.
     public init(view: UICollectionView,
-                layout: UICollectionViewCompositionalLayout,
                 viewModel: CollectionViewModel = CollectionViewModel(id: UUID()),
                 options: CollectionViewDriverOptions = CollectionViewDriverOptions(),
                 emptyViewProvider: EmptyViewProvider?,
                 cellEventCoordinator: CellEventCoordinator?,
                 didUpdate: DidUpdate? = nil) {
         self.view = view
-        self.view.collectionViewLayout = layout
         self.viewModel = viewModel
         self._emptyViewProvider = emptyViewProvider
         self._cellEventCoordinator = cellEventCoordinator

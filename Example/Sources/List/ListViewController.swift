@@ -19,7 +19,6 @@ final class ListViewController: ExampleViewController, CellEventCoordinator {
 
     lazy var driver = CollectionViewDriver(
         view: self.collectionView,
-        layout: self.makeLayout(),
         emptyViewProvider: sharedEmptyViewProvider,
         cellEventCoordinator: self
     ) { [unowned self] driver in
@@ -41,6 +40,10 @@ final class ListViewController: ExampleViewController, CellEventCoordinator {
     // In this example, the cell view models handle cell selection and navigation themselves.
 
     // MARK: View lifecycle
+    
+    convenience init() {
+        self.init(collectionViewLayout: Self.makeLayout())
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -56,7 +59,7 @@ final class ListViewController: ExampleViewController, CellEventCoordinator {
 
     // MARK: Private
 
-    private func makeLayout() -> UICollectionViewCompositionalLayout {
+    private static func makeLayout() -> UICollectionViewCompositionalLayout {
         UICollectionViewCompositionalLayout { _, layoutEnvironment in
             var configuration = UICollectionLayoutListConfiguration(appearance: .insetGrouped)
             configuration.headerMode = .supplementary

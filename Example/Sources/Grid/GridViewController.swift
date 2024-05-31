@@ -18,7 +18,6 @@ final class GridViewController: ExampleViewController, CellEventCoordinator {
 
     lazy var driver = CollectionViewDriver(
         view: self.collectionView,
-        layout: self.makeLayout(),
         emptyViewProvider: sharedEmptyViewProvider,
         cellEventCoordinator: self
     ) { [unowned self] driver in
@@ -34,6 +33,10 @@ final class GridViewController: ExampleViewController, CellEventCoordinator {
     }
 
     // MARK: View lifecycle
+
+    convenience init() {
+        self.init(collectionViewLayout: Self.makeLayout())
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -69,7 +72,7 @@ final class GridViewController: ExampleViewController, CellEventCoordinator {
 
     // MARK: Private
 
-    private func makeLayout() -> UICollectionViewCompositionalLayout {
+    private static func makeLayout() -> UICollectionViewCompositionalLayout {
         let fractionalWidth = CGFloat(0.5)
         let inset = CGFloat(4)
 

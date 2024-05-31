@@ -15,14 +15,15 @@ import ReactiveCollectionsKit
 import UIKit
 
 class ExampleViewController: UIViewController {
-    let collectionView = UICollectionView(
-        frame: .zero,
-        collectionViewLayout: UICollectionViewFlowLayout()
-    )
+    let collectionView: UICollectionView
 
     var model = Model()
 
-    init() {
+    init(collectionViewLayout: UICollectionViewCompositionalLayout) {
+        collectionView = UICollectionView(
+            frame: .zero,
+            collectionViewLayout: collectionViewLayout
+        )
         super.init(nibName: nil, bundle: nil)
     }
 
