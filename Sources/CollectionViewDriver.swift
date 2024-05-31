@@ -26,11 +26,6 @@ public final class CollectionViewDriver: NSObject {
     /// The collection view.
     public let view: UICollectionView
 
-    /// The collection view compositional layout.
-    public var layout: UICollectionViewCompositionalLayout {
-        self.view.collectionViewLayout as! UICollectionViewCompositionalLayout
-    }
-
     /// A set of options to customize behavior of the driver.
     public let options: CollectionViewDriverOptions
 
@@ -89,9 +84,9 @@ public final class CollectionViewDriver: NSObject {
                 didUpdate: DidUpdate? = nil) {
         self.view = view
         self.viewModel = viewModel
+        self.options = options
         self._emptyViewProvider = emptyViewProvider
         self._cellEventCoordinator = cellEventCoordinator
-        self.options = options
         self._didUpdate = didUpdate
 
         // workaround for swift initialization rules.

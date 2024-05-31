@@ -19,8 +19,8 @@ class ExampleViewController: UIViewController {
 
     var model = Model()
 
-    init(collectionViewLayout: UICollectionViewCompositionalLayout) {
-        collectionView = UICollectionView(
+    init(collectionViewLayout: UICollectionViewLayout) {
+        self.collectionView = UICollectionView(
             frame: .zero,
             collectionViewLayout: collectionViewLayout
         )

@@ -20,9 +20,9 @@ final class GridViewController: ExampleViewController, CellEventCoordinator {
         view: self.collectionView,
         emptyViewProvider: sharedEmptyViewProvider,
         cellEventCoordinator: self
-    ) { [unowned self] driver in
+    ) {
         print("grid did update!")
-        print(driver.viewModel)
+        print($0.viewModel)
     }
 
     override var model: Model {
@@ -32,11 +32,13 @@ final class GridViewController: ExampleViewController, CellEventCoordinator {
         }
     }
 
-    // MARK: View lifecycle
+    // MARK: Init
 
-    convenience init() {
-        self.init(collectionViewLayout: Self.makeLayout())
+    init() {
+        super.init(collectionViewLayout: Self.makeLayout())
     }
+
+    // MARK: View lifecycle
 
     override func viewDidLoad() {
         super.viewDidLoad()

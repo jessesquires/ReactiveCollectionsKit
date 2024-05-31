@@ -21,9 +21,9 @@ final class ListViewController: ExampleViewController, CellEventCoordinator {
         view: self.collectionView,
         emptyViewProvider: sharedEmptyViewProvider,
         cellEventCoordinator: self
-    ) { [unowned self] driver in
+    ) {
         print("list did update!")
-        print(driver.viewModel)
+        print($0.viewModel)
     }
 
     override var model: Model {
@@ -35,15 +35,26 @@ final class ListViewController: ExampleViewController, CellEventCoordinator {
 
     private var cancellables = [AnyCancellable]()
 
+    // MARK: Init
+
+    init() {
+        let layout = UICollectionViewCompositionalLayout { _, layoutEnvironment in
+            var configuration = UICollectionLayoutListConfiguration(appearance: .insetGrouped)
+            configuration.headerMode = .supplementary
+            configuration.footerMode = .supplementary
+            return NSCollectionLayoutSection.list(
+                using: configuration,
+                layoutEnvironment: layoutEnvironment
+            )
+        }
+        super.init(collectionViewLayout: layout)
+    }
+
     // MARK: CellEventCoordinator
 
     // In this example, the cell view models handle cell selection and navigation themselves.
 
     // MARK: View lifecycle
-    
-    convenience init() {
-        self.init(collectionViewLayout: Self.makeLayout())
-    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -58,18 +69,6 @@ final class ListViewController: ExampleViewController, CellEventCoordinator {
     }
 
     // MARK: Private
-
-    private static func makeLayout() -> UICollectionViewCompositionalLayout {
-        UICollectionViewCompositionalLayout { _, layoutEnvironment in
-            var configuration = UICollectionLayoutListConfiguration(appearance: .insetGrouped)
-            configuration.headerMode = .supplementary
-            configuration.footerMode = .supplementary
-            return NSCollectionLayoutSection.list(
-                using: configuration,
-                layoutEnvironment: layoutEnvironment
-            )
-        }
-    }
 
     private func makeViewModel() -> CollectionViewModel {
         // Create People Section
