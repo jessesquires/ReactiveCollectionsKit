@@ -17,7 +17,28 @@ import UIKit
 
 final class SimpleStaticViewController: UICollectionViewController {
 
-    var driver: CollectionViewDriver!
+    lazy var driver = CollectionViewDriver(
+        view: self.collectionView,
+        layout: self.collectionViewLayout as! UICollectionViewCompositionalLayout,
+        emptyViewProvider: nil,
+        cellEventCoordinator: nil
+    )
+
+    // MARK: Init
+
+    init() {
+        let layout = UICollectionViewCompositionalLayout.list(
+            using: .init(appearance: .insetGrouped)
+        )
+        super.init(collectionViewLayout: layout)
+    }
+
+    @available(*, unavailable)
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+
+    // MARK: View lifecycle
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -33,17 +54,8 @@ final class SimpleStaticViewController: UICollectionViewController {
 
         let section = SectionViewModel(id: "section", cells: cellViewModels)
 
-        let collectionViewModel = CollectionViewModel(sections: [section])
+        let collectionViewModel = CollectionViewModel(id: "static_view", sections: [section])
 
-        let layout = UICollectionViewCompositionalLayout.list(
-            using: .init(appearance: .insetGrouped)
-        )
-
-        self.driver = CollectionViewDriver(
-            view: self.collectionView,
-            layout: layout,
-            viewModel: collectionViewModel,
-            cellEventCoordinator: nil
-        )
+        self.driver.viewModel = collectionViewModel
     }
 }

@@ -39,16 +39,4 @@ struct HeaderViewModel: SupplementaryHeaderViewModel {
         config.text = self.title
         view.contentConfiguration = config
     }
-
-    // MARK: Hashable
-
-    func hash(into hasher: inout Hasher) {
-        hasher.combine(self.title)
-        hasher.combine(self.style)
-    }
-
-    static func == (left: Self, right: Self) -> Bool {
-        left.title == right.title
-        && left.style == right.style
-    }
 }

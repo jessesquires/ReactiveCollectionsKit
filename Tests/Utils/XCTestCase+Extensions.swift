@@ -15,8 +15,9 @@ import Foundation
 import XCTest
 
 extension XCTestCase {
-    var defaultTimeout: TimeInterval { TimeInterval(10) }
+    var defaultTimeout: TimeInterval { TimeInterval(5) }
 
+    @MainActor
     func waitForExpectations() {
         self.waitForExpectations(timeout: self.defaultTimeout, handler: nil)
     }

@@ -42,13 +42,18 @@ struct ColorCellViewModelList: CellViewModel {
         }
     }
 
+    func didSelect(with coordinator: (any CellEventCoordinator)?) {
+        let colorVC = ColorViewController(color: self.color)
+        coordinator?.underlyingViewController?.navigationController?.pushViewController(colorVC, animated: true)
+    }
+
     // MARK: Hashable
 
-    func hash(into hasher: inout Hasher) {
+    nonisolated func hash(into hasher: inout Hasher) {
         hasher.combine(self.color)
     }
 
-    static func == (left: Self, right: Self) -> Bool {
+    nonisolated static func == (left: Self, right: Self) -> Bool {
         left.color == right.color
     }
 }

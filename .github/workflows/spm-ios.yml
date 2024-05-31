@@ -12,14 +12,14 @@ on:
       - main
 
 env:
-  DEVELOPER_DIR: /Applications/Xcode_15.2.app/Contents/Developer
+  DEVELOPER_DIR: /Applications/Xcode_15.4.app/Contents/Developer
   IOS_DEST: "platform=iOS Simulator,name=iPhone 15,OS=latest"
   SCHEME: ReactiveCollectionsKit
 
 jobs:
   main:
     name: SwiftPM Build
-    runs-on: macos-13
+    runs-on: macos-14
     steps:
       - name: git checkout
         uses: actions/checkout@v4
@@ -32,14 +32,9 @@ jobs:
           xcrun simctl delete unavailable
           xcrun simctl list
 
-      # Only if needed. If repo contains an Xcode project, delete it.
+      # delete Xcode project to force using Package.swift
       - name: delete xcodeproj
         run: rm -rf ReactiveCollectionsKit.xcodeproj
-
-      - name: Build
-        run: |
-          set -o pipefail
-          xcodebuild build -scheme "$SCHEME" -destination "$IOS_DEST" | xcpretty -c
 
       - name: Test
         run: |

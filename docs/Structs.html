@@ -17,7 +17,7 @@
     <a title="Structures  Reference"></a>
     <header>
       <div class="content-wrapper">
-        <p><a href="index.html">ReactiveCollectionsKit Docs</a> (34% documented)</p>
+        <p><a href="index.html">ReactiveCollectionsKit Docs</a> (100% documented)</p>
         <p class="header-right"><a href="https://github.com/jessesquires/ReactiveCollectionsKit"><img src="img/gh.png" alt="GitHub"/>View on GitHub</a></p>
         <div class="header-right">
           <form role="search" action="search.json">
@@ -28,7 +28,7 @@
     </header>
     <div class="content-wrapper">
       <p id="breadcrumbs">
-        <a href="index.html">ReactiveCollectionsKit Reference</a>
+        <a href="index.html">ReactiveCollectionsKit</a>
         <img id="carat" src="img/carat.png" alt=""/>
         Structures  Reference
       </p>
@@ -52,6 +52,17 @@
               </li>
               <li class="nav-group-task">
                 <a href="Enums/ViewRegistrationViewType.html">ViewRegistrationViewType</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="Extensions.html">Extensions</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="Extensions.html#/s:s11AnyHashableV">AnyHashable</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Extensions/UICollectionView.html">UICollectionView</a>
               </li>
             </ul>
           </li>
@@ -91,7 +102,13 @@
                 <a href="Structs/AnySupplementaryViewModel.html">AnySupplementaryViewModel</a>
               </li>
               <li class="nav-group-task">
+                <a href="Structs/CollectionViewDriverOptions.html">CollectionViewDriverOptions</a>
+              </li>
+              <li class="nav-group-task">
                 <a href="Structs/CollectionViewModel.html">CollectionViewModel</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Structs/EmptyViewProvider.html">EmptyViewProvider</a>
               </li>
               <li class="nav-group-task">
                 <a href="Structs/SectionViewModel.html">SectionViewModel</a>
@@ -138,6 +155,12 @@
                       <div class="pointer"></div>
                       <div class="abstract">
                         <p>A type-erased cell view model.</p>
+<div class="aside aside-note">
+    <p class="aside-title">Note</p>
+    When providing cells with mixed data types to a <code><a href="Structs/SectionViewModel.html">SectionViewModel</a></code>,
+it is necessary to convert them to <code>AnyCellViewModel</code>.
+
+</div>
 
                         <a href="Structs/AnyCellViewModel.html" class="slightly-smaller">See more</a>
                       </div>
@@ -145,9 +168,39 @@
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">struct</span> <span class="kt">AnyCellViewModel</span> <span class="p">:</span> <span class="kt"><a href="Protocols/CellViewModel.html">CellViewModel</a></span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">@MainActor</span>
+<span class="kd">public</span> <span class="kd">struct</span> <span class="kt">AnyCellViewModel</span> <span class="p">:</span> <span class="kt"><a href="Protocols/CellViewModel.html">CellViewModel</a></span></code></pre>
 <pre class="highlight swift"><code><span class="kd">extension</span> <span class="kt">AnyCellViewModel</span><span class="p">:</span> <span class="kt">Equatable</span></code></pre>
 <pre class="highlight swift"><code><span class="kd">extension</span> <span class="kt">AnyCellViewModel</span><span class="p">:</span> <span class="kt">Hashable</span></code></pre>
+<pre class="highlight swift"><code><span class="kd">extension</span> <span class="kt">AnyCellViewModel</span><span class="p">:</span> <span class="kt">CustomDebugStringConvertible</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:22ReactiveCollectionsKit27CollectionViewDriverOptionsV"></a>
+                    <a name="//apple_ref/swift/Struct/CollectionViewDriverOptions" class="dashAnchor"></a>
+                    <a class="token" href="#/s:22ReactiveCollectionsKit27CollectionViewDriverOptionsV">CollectionViewDriverOptions</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Defines various options to customize behavior of a <code><a href="Classes/CollectionViewDriver.html">CollectionViewDriver</a></code>.</p>
+
+                        <a href="Structs/CollectionViewDriverOptions.html" class="slightly-smaller">See more</a>
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">struct</span> <span class="kt">CollectionViewDriverOptions</span> <span class="p">:</span> <span class="kt">Hashable</span></code></pre>
 
                         </div>
                       </div>
@@ -175,9 +228,39 @@
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">struct</span> <span class="kt">CollectionViewModel</span> <span class="p">:</span> <span class="kt">Hashable</span><span class="p">,</span> <span class="kt"><a href="Protocols/DiffableViewModel.html">DiffableViewModel</a></span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">@MainActor</span>
+<span class="kd">public</span> <span class="kd">struct</span> <span class="kt">CollectionViewModel</span> <span class="p">:</span> <span class="kt">Hashable</span><span class="p">,</span> <span class="kt"><a href="Protocols/DiffableViewModel.html">DiffableViewModel</a></span></code></pre>
 <pre class="highlight swift"><code><span class="kd">extension</span> <span class="kt">CollectionViewModel</span><span class="p">:</span> <span class="kt">Collection</span><span class="p">,</span> <span class="kt">RandomAccessCollection</span></code></pre>
 <pre class="highlight swift"><code><span class="kd">extension</span> <span class="kt">CollectionViewModel</span><span class="p">:</span> <span class="kt">CustomDebugStringConvertible</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:22ReactiveCollectionsKit17EmptyViewProviderV"></a>
+                    <a name="//apple_ref/swift/Struct/EmptyViewProvider" class="dashAnchor"></a>
+                    <a class="token" href="#/s:22ReactiveCollectionsKit17EmptyViewProviderV">EmptyViewProvider</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Provides an &ldquo;empty state&rdquo; or &ldquo;no content&rdquo; view for the collection view.</p>
+
+                        <a href="Structs/EmptyViewProvider.html" class="slightly-smaller">See more</a>
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">@MainActor</span>
+<span class="kd">public</span> <span class="kd">struct</span> <span class="kt">EmptyViewProvider</span></code></pre>
 
                         </div>
                       </div>
@@ -197,7 +280,7 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Represents a section of items in a collection or list.</p>
+                        <p>Represents a section of items in a collection.</p>
 
                         <a href="Structs/SectionViewModel.html" class="slightly-smaller">See more</a>
                       </div>
@@ -205,8 +288,10 @@
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">struct</span> <span class="kt">SectionViewModel</span> <span class="p">:</span> <span class="kt"><a href="Protocols/DiffableViewModel.html">DiffableViewModel</a></span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">@MainActor</span>
+<span class="kd">public</span> <span class="kd">struct</span> <span class="kt">SectionViewModel</span> <span class="p">:</span> <span class="kt"><a href="Protocols/DiffableViewModel.html">DiffableViewModel</a></span></code></pre>
 <pre class="highlight swift"><code><span class="kd">extension</span> <span class="kt">SectionViewModel</span><span class="p">:</span> <span class="kt">Collection</span><span class="p">,</span> <span class="kt">RandomAccessCollection</span></code></pre>
+<pre class="highlight swift"><code><span class="kd">extension</span> <span class="kt">SectionViewModel</span><span class="p">:</span> <span class="kt">CustomDebugStringConvertible</span></code></pre>
 
                         </div>
                       </div>
@@ -226,7 +311,13 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>A type-erased supplementary view model.</p>
+<div class="aside aside-note">
+    <p class="aside-title">Note</p>
+    When providing supplementary views with mixed data types to a <code><a href="Structs/SectionViewModel.html">SectionViewModel</a></code>,
+it is necessary to convert them to <code>AnySupplementaryViewModel</code>.
+
+</div>
 
                         <a href="Structs/AnySupplementaryViewModel.html" class="slightly-smaller">See more</a>
                       </div>
@@ -234,9 +325,11 @@
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">struct</span> <span class="kt">AnySupplementaryViewModel</span> <span class="p">:</span> <span class="kt"><a href="Protocols/SupplementaryViewModel.html">SupplementaryViewModel</a></span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">@MainActor</span>
+<span class="kd">public</span> <span class="kd">struct</span> <span class="kt">AnySupplementaryViewModel</span> <span class="p">:</span> <span class="kt"><a href="Protocols/SupplementaryViewModel.html">SupplementaryViewModel</a></span></code></pre>
 <pre class="highlight swift"><code><span class="kd">extension</span> <span class="kt">AnySupplementaryViewModel</span><span class="p">:</span> <span class="kt">Equatable</span></code></pre>
 <pre class="highlight swift"><code><span class="kd">extension</span> <span class="kt">AnySupplementaryViewModel</span><span class="p">:</span> <span class="kt">Hashable</span></code></pre>
+<pre class="highlight swift"><code><span class="kd">extension</span> <span class="kt">AnySupplementaryViewModel</span><span class="p">:</span> <span class="kt">CustomDebugStringConvertible</span></code></pre>
 
                         </div>
                       </div>
@@ -264,7 +357,8 @@
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">struct</span> <span class="kt">ViewRegistration</span> <span class="p">:</span> <span class="kt">Hashable</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">@MainActor</span>
+<span class="kd">public</span> <span class="kd">struct</span> <span class="kt">ViewRegistration</span> <span class="p">:</span> <span class="kt">Hashable</span></code></pre>
 
                         </div>
                       </div>
@@ -276,8 +370,8 @@
           </section>
         </section>
         <section id="footer">
-          <p>&copy; 2024 <a class="link" href="https://jessesquires.com" target="_blank" rel="external noopener">Jesse Squires</a>. All rights reserved. (Last updated: 2024-04-14)</p>
-          <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external noopener">jazzy ♪♫ v0.14.4</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external noopener">Realm</a> project.</p>
+          <p>&copy; 2024 <a class="link" href="https://jessesquires.com" target="_blank" rel="external noopener">Jesse Squires</a>. All rights reserved. (Last updated: 2024-05-25)</p>
+          <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external noopener">jazzy ♪♫ v0.15.0</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external noopener">Realm</a> project.</p>
         </section>
       </article>
     </div>

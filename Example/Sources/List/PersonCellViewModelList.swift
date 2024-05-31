@@ -49,13 +49,18 @@ struct PersonCellViewModelList: CellViewModel {
         cell.accessories = accessories
     }
 
+    func didSelect(with coordinator: (any CellEventCoordinator)?) {
+        let personVC = PersonViewController(person: self.person)
+        coordinator?.underlyingViewController?.navigationController?.pushViewController(personVC, animated: true)
+    }
+
     // MARK: Hashable
 
-    func hash(into hasher: inout Hasher) {
+    nonisolated func hash(into hasher: inout Hasher) {
         hasher.combine(self.person)
     }
 
-    static func == (left: Self, right: Self) -> Bool {
+    nonisolated static func == (left: Self, right: Self) -> Bool {
         left.person == right.person
     }
 }

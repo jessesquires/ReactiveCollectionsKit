@@ -12,9 +12,16 @@
 //
 
 import Foundation
+@testable import ReactiveCollectionsKit
 
-/// Asserts that execution is on the main thread.
-/// - Parameter function: The calling function.
-func assertMainThread(_ function: String = #function) {
-    assert(Thread.isMainThread, "*** \(function) must be called on main thread only")
+enum FakeReuseIdentifier: String {
+    case cell
+    case footerView
+    case headerView
+}
+
+struct FakeCellViewModel: CellViewModel {
+    nonisolated var id: UniqueIdentifier { "\(Self.self)" }
+
+    func configure(cell: FakeCollectionCell) { }
 }

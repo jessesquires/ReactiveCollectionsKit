@@ -16,14 +16,38 @@ import UIKit
 
 final class GridViewController: ExampleViewController, CellEventCoordinator {
 
+    lazy var driver = CollectionViewDriver(
+        view: self.collectionView,
+        layout: self.makeLayout(),
+        emptyViewProvider: sharedEmptyViewProvider,
+        cellEventCoordinator: self
+    ) { [unowned self] driver in
+        print("grid did update!")
+        print(driver.viewModel)
+    }
+
     override var model: Model {
         didSet {
             // Every time the model updates, regenerate and set the view model
-            self.driver.viewModel = self.makeCollectionViewModel()
+            self.driver.viewModel = self.makeViewModel()
         }
     }
 
+    // MARK: View lifecycle
+
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        self.driver.viewModel = self.makeViewModel()
+    }
+
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+
+        self.collectionView.deselectItem(at: IndexPath(item: 0, section: 0), animated: true)
+    }
+
     // MARK: CellEventCoordinator
+    // In this example, the view controller handles cell selection and navigation.
 
     func didSelectCell(viewModel: any CellViewModel) {
         print("\(#function): \(viewModel.id)")
@@ -43,27 +67,9 @@ final class GridViewController: ExampleViewController, CellEventCoordinator {
         assertionFailure("unhandled cell selection")
     }
 
-    // MARK: View Lifecycle
+    // MARK: Private
 
-    override func viewDidLoad() {
-        super.viewDidLoad()
-
-        let layout = self.makeLayout()
-        let viewModel = self.makeCollectionViewModel()
-
-        self.driver = CollectionViewDriver(
-            view: self.collectionView,
-            layout: layout,
-            viewModel: viewModel,
-            cellEventCoordinator: self,
-            animateUpdates: true
-        ) { [unowned self] in
-            print("grid did update!")
-            print(self.driver.viewModel)
-        }
-    }
-
-    func makeLayout() -> UICollectionViewCompositionalLayout {
+    private func makeLayout() -> UICollectionViewCompositionalLayout {
         let fractionalWidth = CGFloat(0.5)
         let inset = CGFloat(4)
 
@@ -107,7 +113,7 @@ final class GridViewController: ExampleViewController, CellEventCoordinator {
         return UICollectionViewCompositionalLayout(section: section)
     }
 
-    func makeCollectionViewModel() -> CollectionViewModel {
+    private func makeViewModel() -> CollectionViewModel {
         // Create people section
         let peopleCellViewModels = self.model.people.map {
             let menuConfig = UIContextMenuConfiguration.configFor(
@@ -123,7 +129,7 @@ final class GridViewController: ExampleViewController, CellEventCoordinator {
             return PersonCellViewModelGrid(
                 person: $0,
                 contextMenuConfiguration: menuConfig
-            ).anyViewModel
+            ).eraseToAnyViewModel()
         }
         let peopleHeader = HeaderViewModel(title: "People", style: .large)
         let peopleFooter = FooterViewModel(text: "\(self.model.people.count) people")
@@ -152,7 +158,7 @@ final class GridViewController: ExampleViewController, CellEventCoordinator {
             return ColorCellViewModelGrid(
                 color: $0,
                 contextMenuConfiguration: menuConfig
-            ).anyViewModel
+            ).eraseToAnyViewModel()
         }
         let colorHeader = HeaderViewModel(title: "Colors", style: .large)
         let colorFooter = FooterViewModel(text: "\(self.model.colors.count) colors")
@@ -168,6 +174,6 @@ final class GridViewController: ExampleViewController, CellEventCoordinator {
         )
 
         // Create final view model
-        return CollectionViewModel(sections: [peopleSection, colorSection])
+        return CollectionViewModel(id: "grid_view", sections: [peopleSection, colorSection])
     }
 }

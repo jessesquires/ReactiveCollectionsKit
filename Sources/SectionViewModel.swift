@@ -13,49 +13,42 @@
 
 import Foundation
 
-/// Represents a section of items in a collection or list.
+/// Represents a section of items in a collection.
+@MainActor
 public struct SectionViewModel: DiffableViewModel {
+    // MARK: DiffableViewModel
 
+    /// A unique id for this model.
     public let id: UniqueIdentifier
 
+    // MARK: Properties
+
+    /// The cells in the section.
     public let cells: [AnyCellViewModel]
 
+    /// The header for the section.
     public let header: AnySupplementaryViewModel?
 
+    /// The footer for the section.
     public let footer: AnySupplementaryViewModel?
 
+    /// The supplementary views in the section.
     public let supplementaryViews: [AnySupplementaryViewModel]
 
-    public var allSupplementaryViewsByIdentifier: [UniqueIdentifier: AnySupplementaryViewModel] {
-        let tuples = self.supplementaryViews.map { ($0.id, $0) }
-        return Dictionary(uniqueKeysWithValues: tuples)
-    }
-
+    /// Returns `true` if the section has supplementary views, `false` otherwise.
     public var hasSupplementaryViews: Bool {
         self.header != nil
         || self.footer != nil
         || self.supplementaryViews.isNotEmpty
     }
 
-    public var cellRegistrations: Set<ViewRegistration> {
-        Set(self.cells.map { $0.registration })
-    }
+    // MARK: Init
 
-    public var headerFooterRegistrations: Set<ViewRegistration> {
-        Set([self.header, self.footer].compactMap { $0?.registration })
-    }
-
-    public var supplementaryViewRegistrations: Set<ViewRegistration> {
-        Set(self.supplementaryViews.map { $0.registration })
-    }
-
-    public var allRegistrations: Set<ViewRegistration> {
-        let cells = self.cellRegistrations
-        let headerFooter = self.headerFooterRegistrations
-        let views = self.supplementaryViewRegistrations
-        return cells.union(views).union(headerFooter)
-    }
-
+    /// Initializes a section.
+    ///
+    /// - Parameters:
+    ///   - id: A unique identifier for the section.
+    ///   - cells: The cells in the section.
     public init(id: UniqueIdentifier, cells: [AnyCellViewModel] = []) {
         self.init(
             id: id,
@@ -66,19 +59,32 @@ public struct SectionViewModel: DiffableViewModel {
         )
     }
 
+    /// Initializes a section.
+    ///
+    /// - Parameters:
+    ///   - id: A unique identifier for the section.
+    ///   - cells: The cells in the section.
     public init<Cell: CellViewModel>(
         id: UniqueIdentifier,
         cells: [Cell]
     ) {
         self.init(
             id: id,
-            anyCells: cells.map { $0.anyViewModel },
+            anyCells: cells.map { $0.eraseToAnyViewModel() },
             anyHeader: nil,
             anyFooter: nil,
             anySupplementaryViews: []
         )
     }
 
+    /// Initializes a section.
+    ///
+    /// - Parameters:
+    ///   - id: A unique identifier for the section.
+    ///   - cells: The cells in the section.
+    ///   - header: The header for the section.
+    ///   - footer: The footer for the section.
+    ///   - supplementaryViews: The supplementary views in the section.
     public init<Header: SupplementaryHeaderViewModel, Footer: SupplementaryFooterViewModel>(
         id: UniqueIdentifier,
         cells: [AnyCellViewModel] = [],
@@ -89,12 +95,20 @@ public struct SectionViewModel: DiffableViewModel {
         self.init(
             id: id,
             anyCells: cells,
-            anyHeader: header?.anyViewModel,
-            anyFooter: footer?.anyViewModel,
+            anyHeader: header?.eraseToAnyViewModel(),
+            anyFooter: footer?.eraseToAnyViewModel(),
             anySupplementaryViews: supplementaryViews
         )
     }
 
+    /// Initializes a section.
+    ///
+    /// - Parameters:
+    ///   - id: A unique identifier for the section.
+    ///   - cells: The cells in the section.
+    ///   - header: The header for the section.
+    ///   - footer: The footer for the section.
+    ///   - supplementaryViews: The supplementary views in the section.
     public init<Cell: CellViewModel, Header: SupplementaryHeaderViewModel, Footer: SupplementaryFooterViewModel>(
         id: UniqueIdentifier,
         cells: [Cell],
@@ -104,17 +118,27 @@ public struct SectionViewModel: DiffableViewModel {
     ) {
         self.init(
             id: id,
-            anyCells: cells.map { $0.anyViewModel },
-            anyHeader: header?.anyViewModel,
-            anyFooter: footer?.anyViewModel,
+            anyCells: cells.map { $0.eraseToAnyViewModel() },
+            anyHeader: header?.eraseToAnyViewModel(),
+            anyFooter: footer?.eraseToAnyViewModel(),
             anySupplementaryViews: supplementaryViews
         )
     }
 
-    public init<Cell: CellViewModel,
-                Header: SupplementaryHeaderViewModel,
-                Footer: SupplementaryFooterViewModel,
-                View: SupplementaryViewModel>(
+    /// Initializes a section.
+    ///
+    /// - Parameters:
+    ///   - id: A unique identifier for the section.
+    ///   - cells: The cells in the section.
+    ///   - header: The header for the section.
+    ///   - footer: The footer for the section.
+    ///   - supplementaryViews: The supplementary views in the section.
+    public init<
+        Cell: CellViewModel,
+        Header: SupplementaryHeaderViewModel,
+        Footer: SupplementaryFooterViewModel,
+        View: SupplementaryViewModel>
+    (
         id: UniqueIdentifier,
         cells: [Cell],
         header: Header?,
@@ -123,10 +147,10 @@ public struct SectionViewModel: DiffableViewModel {
     ) {
         self.init(
             id: id,
-            anyCells: cells.map { $0.anyViewModel },
-            anyHeader: header?.anyViewModel,
-            anyFooter: footer?.anyViewModel,
-            anySupplementaryViews: supplementaryViews.map { $0.anyViewModel }
+            anyCells: cells.map { $0.eraseToAnyViewModel() },
+            anyHeader: header?.eraseToAnyViewModel(),
+            anyFooter: footer?.eraseToAnyViewModel(),
+            anySupplementaryViews: supplementaryViews.map { $0.eraseToAnyViewModel() }
         )
     }
 
@@ -147,10 +171,30 @@ public struct SectionViewModel: DiffableViewModel {
         self.supplementaryViews = anySupplementaryViews
     }
 
-    func supplementaryViewsEqualTo(_ otherSection: Self) -> Bool {
-        self.header == otherSection.header
-        && self.footer == otherSection.footer
-        && self.supplementaryViews == otherSection.supplementaryViews
+    // MARK: Internal
+
+    func cellRegistrations() -> Set<ViewRegistration> {
+        Set(self.cells.map { $0.registration })
+    }
+
+    func headerFooterRegistrations() -> Set<ViewRegistration> {
+        Set([self.header, self.footer].compactMap { $0?.registration })
+    }
+
+    func supplementaryViewRegistrations() -> Set<ViewRegistration> {
+        Set(self.supplementaryViews.map { $0.registration })
+    }
+
+    func allRegistrations() -> Set<ViewRegistration> {
+        let cells = self.cellRegistrations()
+        let headerFooter = self.headerFooterRegistrations()
+        let views = self.supplementaryViewRegistrations()
+        return cells.union(views).union(headerFooter)
+    }
+
+    func allSupplementaryViewsByIdentifier() -> [UniqueIdentifier: AnySupplementaryViewModel] {
+        let tuples = self.supplementaryViews.map { ($0.id, $0) }
+        return Dictionary(uniqueKeysWithValues: tuples)
     }
 }
 
@@ -158,32 +202,94 @@ public struct SectionViewModel: DiffableViewModel {
 
 extension SectionViewModel: Collection, RandomAccessCollection {
     /// :nodoc:
-    public var count: Int {
-        self.cells.count
+    nonisolated public var count: Int {
+        MainActor.assumeIsolated {
+            self.cells.count
+        }
     }
 
     /// :nodoc:
-    public var isEmpty: Bool {
-        self.cells.isEmpty
+    nonisolated public var isEmpty: Bool {
+        MainActor.assumeIsolated {
+            self.cells.isEmpty
+        }
     }
 
     /// :nodoc:
-    public var startIndex: Int {
-        self.cells.startIndex
+    nonisolated public var startIndex: Int {
+        MainActor.assumeIsolated {
+            self.cells.startIndex
+        }
     }
 
     /// :nodoc:
-    public var endIndex: Int {
-        self.cells.endIndex
+    nonisolated public var endIndex: Int {
+        MainActor.assumeIsolated {
+            self.cells.endIndex
+        }
     }
 
     /// :nodoc:
-    public subscript(position: Int) -> AnyCellViewModel {
-        self.cells[position]
+    nonisolated public subscript(position: Int) -> AnyCellViewModel {
+        MainActor.assumeIsolated {
+            self.cells[position]
+        }
     }
 
     /// :nodoc:
-    public func index(after i: Int) -> Int {
-        self.cells.index(after: i)
+    nonisolated public func index(after pos: Int) -> Int {
+        MainActor.assumeIsolated {
+            self.cells.index(after: pos)
+        }
+    }
+}
+
+extension SectionViewModel: CustomDebugStringConvertible {
+    /// :nodoc:
+    nonisolated public var debugDescription: String {
+        MainActor.assumeIsolated {
+            var text = "<SectionViewModel:\n id: \(self.id)"
+
+            if let header = self.header {
+                text.append("\n header: \(header.id) (\(header._kind))")
+            } else {
+                text.append("\n header: nil")
+            }
+
+            if let footer = self.footer {
+                text.append("\n footer: \(footer.id) (\(footer._kind))")
+            } else {
+                text.append("\n footer: nil")
+            }
+
+            text.append("\n cells: \n")
+
+            for cellIndex in 0..<self.count {
+                let cell = self[cellIndex]
+                let cellId = String(describing: cell.id)
+                let reuseId = String(describing: cell.registration.reuseIdentifier)
+                text.append("\t[\(cellIndex)]: \(cellId) (\(reuseId)) \n")
+            }
+
+            text.append(" supplementary views: \n")
+            if self.supplementaryViews.isEmpty {
+                text.append("\tnone \n")
+            }
+
+            for viewIndex in 0..<self.supplementaryViews.count {
+                let view = self.supplementaryViews[viewIndex]
+                let viewId = String(describing: view.id)
+                let kind = String(describing: view._kind)
+                text.append("\t[\(viewIndex)]: \(viewId) (\(kind)) \n")
+            }
+
+            text.append(" registrations: \n")
+            self.allRegistrations().forEach {
+                text.append("\t- \($0.reuseIdentifier) (\($0.viewType.kind))\n")
+            }
+            text.append(" isEmpty: \(self.isEmpty)\n")
+            text.append(">")
+            return text
+        }
     }
 }

@@ -9,13 +9,17 @@
 #
 #  Runs SwiftLint and checks for installation of correct version.
 
+if [[ "${GITHUB_ACTIONS}" ]]; then
+    exit 0
+fi
+
 set -e
 export PATH="$PATH:/opt/homebrew/bin"
 
 PROJECT="ReactiveCollectionsKit.xcodeproj"
 SCHEME="ReactiveCollectionsKit"
 
-VERSION="0.54.0"
+VERSION="0.55.1"
 
 FOUND=$(swiftlint version)
 LINK="https://github.com/realm/SwiftLint"

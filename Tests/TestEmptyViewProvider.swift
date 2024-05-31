@@ -11,17 +11,20 @@
 //  Copyright © 2019-present Jesse Squires
 //
 
-import Foundation
 @testable import ReactiveCollectionsKit
+import XCTest
 
-enum TestReuseIdentifier: String {
-    case cell
-    case footerView
-    case headerView
-}
+final class TestEmptyViewProvider: XCTestCase {
 
-struct TestCellModel: CellViewModel {
-    var id: UniqueIdentifier { "\(Self.self)" }
+    @MainActor
+    func test_view() {
+        let view = UILabel()
+        view.text = "text"
 
-    func configure(cell: FakeCollectionCell) { }
+        let provider = EmptyViewProvider {
+            view
+        }
+
+        XCTAssertIdentical(provider.view, view)
+    }
 }

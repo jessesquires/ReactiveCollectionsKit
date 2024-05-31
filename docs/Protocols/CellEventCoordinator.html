@@ -17,7 +17,7 @@
     <a title="CellEventCoordinator Protocol Reference"></a>
     <header>
       <div class="content-wrapper">
-        <p><a href="../index.html">ReactiveCollectionsKit Docs</a> (34% documented)</p>
+        <p><a href="../index.html">ReactiveCollectionsKit Docs</a> (100% documented)</p>
         <p class="header-right"><a href="https://github.com/jessesquires/ReactiveCollectionsKit"><img src="../img/gh.png" alt="GitHub"/>View on GitHub</a></p>
         <div class="header-right">
           <form role="search" action="../search.json">
@@ -28,7 +28,9 @@
     </header>
     <div class="content-wrapper">
       <p id="breadcrumbs">
-        <a href="../index.html">ReactiveCollectionsKit Reference</a>
+        <a href="../index.html">ReactiveCollectionsKit</a>
+        <img id="carat" src="../img/carat.png" alt=""/>
+        <a href="../Protocols.html">Protocols</a>
         <img id="carat" src="../img/carat.png" alt=""/>
         CellEventCoordinator Protocol Reference
       </p>
@@ -52,6 +54,17 @@
               </li>
               <li class="nav-group-task">
                 <a href="../Enums/ViewRegistrationViewType.html">ViewRegistrationViewType</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../Extensions.html">Extensions</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Extensions.html#/s:s11AnyHashableV">AnyHashable</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Extensions/UICollectionView.html">UICollectionView</a>
               </li>
             </ul>
           </li>
@@ -91,7 +104,13 @@
                 <a href="../Structs/AnySupplementaryViewModel.html">AnySupplementaryViewModel</a>
               </li>
               <li class="nav-group-task">
+                <a href="../Structs/CollectionViewDriverOptions.html">CollectionViewDriverOptions</a>
+              </li>
+              <li class="nav-group-task">
                 <a href="../Structs/CollectionViewModel.html">CollectionViewModel</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/EmptyViewProvider.html">EmptyViewProvider</a>
               </li>
               <li class="nav-group-task">
                 <a href="../Structs/SectionViewModel.html">SectionViewModel</a>
@@ -121,11 +140,12 @@
               <div class="declaration">
                 <div class="language">
                   
-                  <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">protocol</span> <span class="kt">CellEventCoordinator</span> <span class="p">:</span> <span class="kt">AnyObject</span></code></pre>
+                  <pre class="highlight swift"><code><span class="kd">@MainActor</span>
+<span class="kd">public</span> <span class="kd">protocol</span> <span class="kt">CellEventCoordinator</span> <span class="p">:</span> <span class="kt">AnyObject</span></code></pre>
 
                 </div>
               </div>
-            <p>Undocumented</p>
+            <p>Conforming objects are responsible for handling various cell events.</p>
 
           </section>
           <section class="section task-group-section">
@@ -138,13 +158,21 @@
                     <a name="//apple_ref/swift/Method/didSelectCell(viewModel:)" class="dashAnchor"></a>
                     <a class="token" href="#/s:22ReactiveCollectionsKit20CellEventCoordinatorP09didSelectD09viewModelyAA0d4ViewJ0_p_tF">didSelectCell(viewModel:<wbr>)</a>
                     </code>
+                      <span class="declaration-note">
+                        Default implementation
+                      </span>
                   </div>
                   <div class="height-container">
                     <div class="pointer-container"></div>
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>Called when a cell is selected.</p>
+
+                      </div>
+                      <h4>Default Implementation</h4>
+                      <div class="default_impl abstract">
+                        <p>Default implementation. Does nothing.</p>
 
                       </div>
                       <div class="declaration">
@@ -152,6 +180,110 @@
                         <div class="language">
                           <p class="aside-title">Swift</p>
                           <pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">didSelectCell</span><span class="p">(</span><span class="nv">viewModel</span><span class="p">:</span> <span class="kd">any</span> <span class="kt"><a href="../Protocols/CellViewModel.html">CellViewModel</a></span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>viewModel</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The cell view model that corresponds to the cell.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:22ReactiveCollectionsKit20CellEventCoordinatorP24underlyingViewControllerSo06UIViewI0CSgvp"></a>
+                    <a name="//apple_ref/swift/Property/underlyingViewController" class="dashAnchor"></a>
+                    <a class="token" href="#/s:22ReactiveCollectionsKit20CellEventCoordinatorP24underlyingViewControllerSo06UIViewI0CSgvp">underlyingViewController</a>
+                    </code>
+                      <span class="declaration-note">
+                        Default implementation
+                      </span>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Returns the underlying view controller that owns the collection view for the cell.</p>
+
+<p>You may use this to optionally handle navigation within your cell view model.</p>
+
+                      </div>
+                      <h4>Default Implementation</h4>
+                      <div class="default_impl abstract">
+                        <p>Default implementation. Returns <code>nil</code>.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="k">var</span> <span class="nv">underlyingViewController</span><span class="p">:</span> <span class="kt">UIViewController</span><span class="p">?</span> <span class="p">{</span> <span class="k">get</span> <span class="p">}</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <div class="task-name-container">
+                <a name="/Available%20where%20%60Self%60%3A%20%60UIViewController%60"></a>
+                <a name="//apple_ref/swift/Section/Available where `Self`: `UIViewController`" class="dashAnchor"></a>
+                <div class="section-name-container">
+                  <a class="section-name-link" href="#/Available%20where%20%60Self%60%3A%20%60UIViewController%60"></a>
+                  <h3 class="section-name"><span>Available where <code>Self</code>: <code>UIViewController</code></span>
+</h3>
+                </div>
+              </div>
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:22ReactiveCollectionsKit20CellEventCoordinatorPAASo16UIViewControllerCRbzrlE014underlyingViewH0AESgvp"></a>
+                    <a name="//apple_ref/swift/Property/underlyingViewController" class="dashAnchor"></a>
+                    <a class="token" href="#/s:22ReactiveCollectionsKit20CellEventCoordinatorPAASo16UIViewControllerCRbzrlE014underlyingViewH0AESgvp">underlyingViewController</a>
+                    </code>
+                      <span class="declaration-note">
+                        Default implementation
+                      </span>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        
+                      </div>
+                      <h4>Default Implementation</h4>
+                      <div class="default_impl abstract">
+                        <p>Default implementation if the conformer is a <code>UIViewController</code>.
+Returns <code>self</code>.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">underlyingViewController</span><span class="p">:</span> <span class="kt">UIViewController</span><span class="p">?</span> <span class="p">{</span> <span class="k">get</span> <span class="p">}</span></code></pre>
 
                         </div>
                       </div>
@@ -163,8 +295,8 @@
           </section>
         </section>
         <section id="footer">
-          <p>&copy; 2024 <a class="link" href="https://jessesquires.com" target="_blank" rel="external noopener">Jesse Squires</a>. All rights reserved. (Last updated: 2024-04-14)</p>
-          <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external noopener">jazzy ♪♫ v0.14.4</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external noopener">Realm</a> project.</p>
+          <p>&copy; 2024 <a class="link" href="https://jessesquires.com" target="_blank" rel="external noopener">Jesse Squires</a>. All rights reserved. (Last updated: 2024-05-25)</p>
+          <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external noopener">jazzy ♪♫ v0.15.0</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external noopener">Realm</a> project.</p>
         </section>
       </article>
     </div>

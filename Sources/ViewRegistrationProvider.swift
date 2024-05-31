@@ -14,8 +14,9 @@
 import Foundation
 import UIKit
 
-/// Describes a type (like a cell view model) that provides
-/// registration information for a particular view.
+/// Provides registration information for a reusable view in a `UICollectionView`.
+@MainActor
 public protocol ViewRegistrationProvider {
+    /// The view registration information.
     var registration: ViewRegistration { get }
 }

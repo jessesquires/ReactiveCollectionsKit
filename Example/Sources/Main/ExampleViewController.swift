@@ -14,17 +14,45 @@
 import ReactiveCollectionsKit
 import UIKit
 
-class ExampleViewController: UICollectionViewController {
-    var driver: CollectionViewDriver!
+class ExampleViewController: UIViewController {
+    let collectionView = UICollectionView(
+        frame: .zero,
+        collectionViewLayout: UICollectionViewFlowLayout()
+    )
 
     var model = Model()
+
+    init() {
+        super.init(nibName: nil, bundle: nil)
+    }
+
+    @available(*, unavailable)
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
 
     // MARK: View Lifecycle
 
     override func viewDidLoad() {
         super.viewDidLoad()
+
+        self.view.addSubview(self.collectionView)
+        self.collectionView.frame = self.view.frame
+        self.collectionView.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            self.collectionView.topAnchor.constraint(equalTo: self.view.topAnchor),
+            self.collectionView.bottomAnchor.constraint(equalTo: self.view.bottomAnchor),
+            self.collectionView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor),
+            self.collectionView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor)
+        ])
+
         self.addShuffleButton()
         self.addReloadButton()
+    }
+
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.collectionView.deselectAllItems()
     }
 
     // MARK: Actions
@@ -34,12 +62,12 @@ class ExampleViewController: UICollectionViewController {
         self.model.shuffle()
     }
 
-    func reload() {
-        self.driver.reloadData()
-    }
-
     func reset() {
         self.model = Model()
+    }
+
+    func removeAll() {
+        self.model = Model(people: [], colors: [])
     }
 
     func deleteItem(id: UniqueIdentifier) {
@@ -64,15 +92,22 @@ class ExampleViewController: UICollectionViewController {
     }
 
     private func addReloadButton() {
-        let reload = UIAction(title: "Reload") { [unowned self] _ in
-            self.reload()
-        }
-
-        let reset = UIAction(title: "Reset", attributes: .destructive) { [unowned self] _ in
+        let reset = UIAction(
+            title: "Reset",
+            systemImage: "arrow.2.squarepath"
+        ) { [unowned self] _ in
             self.reset()
         }
 
-        let menu = UIMenu(children: [reload, reset])
+        let removeAll = UIAction(
+            title: "Remove All",
+            systemImage: "trash",
+            attributes: .destructive
+        ) { [unowned self] _ in
+            self.removeAll()
+        }
+
+        let menu = UIMenu(children: [reset, removeAll])
         let item = UIBarButtonItem(systemItem: .refresh, primaryAction: nil, menu: menu)
         self.appendRightBarButton(item)
     }

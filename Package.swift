@@ -1,4 +1,4 @@
-// swift-tools-version:5.9
+// swift-tools-version:5.10
 // The swift-tools-version declares the minimum version
 // of Swift required to build this package.
 // ----------------------------------------------------
@@ -39,3 +39,14 @@ let package = Package(
     ],
     swiftLanguageVersions: [.v5]
 )
+
+// TODO: Remove this when it stops being broken. Xcode 16? Swift 6?
+let swiftSettings = [
+    SwiftSetting.enableExperimentalFeature("StrictConcurrency")
+]
+
+for target in package.targets {
+    var settings = target.swiftSettings ?? []
+    settings.append(contentsOf: swiftSettings)
+    target.swiftSettings = settings
+}

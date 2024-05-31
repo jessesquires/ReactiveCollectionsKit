@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>CollectionViewDriverOptions Structure Reference</title>
+    <link rel="stylesheet" type="text/css" href="../css/jazzy.css" />
+    <link rel="stylesheet" type="text/css" href="../css/highlight.css" />
+    <meta charset='utf-8'>
+    <script src="../js/jquery.min.js" defer></script>
+    <script src="../js/jazzy.js" defer></script>
+    
+    <script src="../js/lunr.min.js" defer></script>
+    <script src="../js/typeahead.jquery.js" defer></script>
+    <script src="../js/jazzy.search.js" defer></script>
+  </head>
+  <body>
+    <a name="//apple_ref/swift/Struct/CollectionViewDriverOptions" class="dashAnchor"></a>
+    <a title="CollectionViewDriverOptions Structure Reference"></a>
+    <header>
+      <div class="content-wrapper">
+        <p><a href="../index.html">ReactiveCollectionsKit Docs</a> (100% documented)</p>
+        <p class="header-right"><a href="https://github.com/jessesquires/ReactiveCollectionsKit"><img src="../img/gh.png" alt="GitHub"/>View on GitHub</a></p>
+        <div class="header-right">
+          <form role="search" action="../search.json">
+            <input type="text" placeholder="Search documentation" data-typeahead>
+          </form>
+        </div>
+      </div>
+    </header>
+    <div class="content-wrapper">
+      <p id="breadcrumbs">
+        <a href="../index.html">ReactiveCollectionsKit</a>
+        <img id="carat" src="../img/carat.png" alt=""/>
+        <a href="../Structs.html">Structures</a>
+        <img id="carat" src="../img/carat.png" alt=""/>
+        CollectionViewDriverOptions Structure Reference
+      </p>
+    </div>
+    <div class="content-wrapper">
+      <nav class="sidebar">
+        <ul class="nav-groups">
+          <li class="nav-group-name">
+            <a href="../Classes.html">Classes</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Classes/CollectionViewDriver.html">CollectionViewDriver</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../Enums.html">Enumerations</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Enums/ViewRegistrationMethod.html">ViewRegistrationMethod</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/ViewRegistrationViewType.html">ViewRegistrationViewType</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../Extensions.html">Extensions</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Extensions.html#/s:s11AnyHashableV">AnyHashable</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Extensions/UICollectionView.html">UICollectionView</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../Protocols.html">Protocols</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Protocols/CellEventCoordinator.html">CellEventCoordinator</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/CellViewModel.html">CellViewModel</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/DiffableViewModel.html">DiffableViewModel</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/SupplementaryFooterViewModel.html">SupplementaryFooterViewModel</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/SupplementaryHeaderViewModel.html">SupplementaryHeaderViewModel</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/SupplementaryViewModel.html">SupplementaryViewModel</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/ViewRegistrationProvider.html">ViewRegistrationProvider</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../Structs.html">Structures</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Structs/AnyCellViewModel.html">AnyCellViewModel</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/AnySupplementaryViewModel.html">AnySupplementaryViewModel</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/CollectionViewDriverOptions.html">CollectionViewDriverOptions</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/CollectionViewModel.html">CollectionViewModel</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/EmptyViewProvider.html">EmptyViewProvider</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/SectionViewModel.html">SectionViewModel</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/ViewRegistration.html">ViewRegistration</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../Typealiases.html">Type Aliases</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Typealiases.html#/s:22ReactiveCollectionsKit21SupplementaryViewKinda">SupplementaryViewKind</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Typealiases.html#/s:22ReactiveCollectionsKit16UniqueIdentifiera">UniqueIdentifier</a>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </nav>
+      <article class="main-content">
+        <section>
+          <section class="section">
+            <h1>CollectionViewDriverOptions</h1>
+              <div class="declaration">
+                <div class="language">
+                  
+                  <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">struct</span> <span class="kt">CollectionViewDriverOptions</span> <span class="p">:</span> <span class="kt">Hashable</span></code></pre>
+
+                </div>
+              </div>
+            <p>Defines various options to customize behavior of a <code><a href="../Classes/CollectionViewDriver.html">CollectionViewDriver</a></code>.</p>
+
+          </section>
+          <section class="section task-group-section">
+            <div class="task-group">
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:22ReactiveCollectionsKit27CollectionViewDriverOptionsV14animateUpdatesSbvp"></a>
+                    <a name="//apple_ref/swift/Property/animateUpdates" class="dashAnchor"></a>
+                    <a class="token" href="#/s:22ReactiveCollectionsKit27CollectionViewDriverOptionsV14animateUpdatesSbvp">animateUpdates</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Returns whether or not to animate updates.
+Pass <code>true</code> to animate, <code>false</code> otherwise.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">let</span> <span class="nv">animateUpdates</span><span class="p">:</span> <span class="kt">Bool</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:22ReactiveCollectionsKit27CollectionViewDriverOptionsV21diffOnBackgroundQueueSbvp"></a>
+                    <a name="//apple_ref/swift/Property/diffOnBackgroundQueue" class="dashAnchor"></a>
+                    <a class="token" href="#/s:22ReactiveCollectionsKit27CollectionViewDriverOptionsV21diffOnBackgroundQueueSbvp">diffOnBackgroundQueue</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Specifies whether or not to perform diffing on a background queue.
+Pass <code>true</code> to perform diffing in the background,
+pass <code>false</code> to perform diffing on the main thread.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">let</span> <span class="nv">diffOnBackgroundQueue</span><span class="p">:</span> <span class="kt">Bool</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:22ReactiveCollectionsKit27CollectionViewDriverOptionsV021reloadDataOnReplacingE5ModelSbvp"></a>
+                    <a name="//apple_ref/swift/Property/reloadDataOnReplacingViewModel" class="dashAnchor"></a>
+                    <a class="token" href="#/s:22ReactiveCollectionsKit27CollectionViewDriverOptionsV021reloadDataOnReplacingE5ModelSbvp">reloadDataOnReplacingViewModel</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Specifies whether or not the <code><a href="../Classes/CollectionViewDriver.html">CollectionViewDriver</a></code> should
+perform a hard <code>reloadData()</code> when replacing the <code><a href="../Structs/CollectionViewModel.html">CollectionViewModel</a></code> with
+a new one, or if it should always perform a diff.</p>
+
+<p>A replacement occurs when providing a new <code><a href="../Structs/CollectionViewModel.html">CollectionViewModel</a></code> to the
+<code><a href="../Classes/CollectionViewDriver.html">CollectionViewDriver</a></code> that has a <strong>different</strong> <code>id</code> than the previous model.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">let</span> <span class="nv">reloadDataOnReplacingViewModel</span><span class="p">:</span> <span class="kt">Bool</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:22ReactiveCollectionsKit27CollectionViewDriverOptionsV14animateUpdates21diffOnBackgroundQueue010reloadDatak9ReplacingE5ModelACSb_S2btcfc"></a>
+                    <a name="//apple_ref/swift/Method/init(animateUpdates:diffOnBackgroundQueue:reloadDataOnReplacingViewModel:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:22ReactiveCollectionsKit27CollectionViewDriverOptionsV14animateUpdates21diffOnBackgroundQueue010reloadDatak9ReplacingE5ModelACSb_S2btcfc">init(animateUpdates:<wbr>diffOnBackgroundQueue:<wbr>reloadDataOnReplacingViewModel:<wbr>)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Initializes a <code>CollectionViewDriverOptions</code> object.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="nf">init</span><span class="p">(</span>
+    <span class="nv">animateUpdates</span><span class="p">:</span> <span class="kt">Bool</span> <span class="o">=</span> <span class="kc">true</span><span class="p">,</span>
+    <span class="nv">diffOnBackgroundQueue</span><span class="p">:</span> <span class="kt">Bool</span> <span class="o">=</span> <span class="kc">false</span><span class="p">,</span>
+    <span class="nv">reloadDataOnReplacingViewModel</span><span class="p">:</span> <span class="kt">Bool</span> <span class="o">=</span> <span class="kc">false</span>
+<span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>animateUpdates</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Whether or not to animate updates. Default is <code>true</code>.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>diffOnBackgroundQueue</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Whether or not to perform diffing on a background queue. Default is <code>false</code>.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>reloadDataOnReplacingViewModel</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Whether or not to reload or diff during replacement. Default is <code>false</code>.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </section>
+        </section>
+        <section id="footer">
+          <p>&copy; 2024 <a class="link" href="https://jessesquires.com" target="_blank" rel="external noopener">Jesse Squires</a>. All rights reserved. (Last updated: 2024-05-25)</p>
+          <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external noopener">jazzy ♪♫ v0.15.0</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external noopener">Realm</a> project.</p>
+        </section>
+      </article>
+    </div>
+  </body>
+</html>

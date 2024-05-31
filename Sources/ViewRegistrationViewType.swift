@@ -14,17 +14,33 @@
 import Foundation
 
 /// Describes the type of view to be registered for reuse.
-public enum ViewRegistrationViewType: Hashable {
+public enum ViewRegistrationViewType: Hashable, Sendable {
     /// Describes a cell.
     case cell
 
     /// Describes a supplementary view.
     case supplementary(kind: String)
 
-    var kind: String? {
+    // MARK: Internal
+
+    var kind: String {
         switch self {
-        case .cell: nil
+        case .cell: "cell"
         case .supplementary(let kind): kind
+        }
+    }
+
+    var isCell: Bool {
+        switch self {
+        case .cell: true
+        case .supplementary: false
+        }
+    }
+
+    var isSupplementary: Bool {
+        switch self {
+        case .cell: false
+        case .supplementary: true
         }
     }
 }

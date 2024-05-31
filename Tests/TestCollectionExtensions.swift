@@ -11,19 +11,12 @@
 //  Copyright © 2019-present Jesse Squires
 //
 
+@testable import ReactiveCollectionsKit
 import XCTest
 
-final class ExampleUITests: XCTestCase {
-
-    let app = XCUIApplication()
-
-    override func setUp() {
-        super.setUp()
-        self.continueAfterFailure = false
-        self.app.launch()
-    }
-
-    func testExample() {
-        XCTAssert(true)
+final class TestCollectionExtensions: XCTestCase {
+    func test_isNotEmpty() {
+        XCTAssertTrue([1, 2, 3].isNotEmpty)
+        XCTAssertFalse([].isNotEmpty)
     }
 }
