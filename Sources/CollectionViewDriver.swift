@@ -77,8 +77,8 @@ public final class CollectionViewDriver: NSObject {
     /// Thus, the caller is responsible for retaining and keeping alive the `cellEventCoordinator`
     /// for the entire lifetime of the driver.
     public init(view: UICollectionView,
-                viewModel: CollectionViewModel = CollectionViewModel(id: UUID()),
-                options: CollectionViewDriverOptions = CollectionViewDriverOptions(),
+                viewModel: CollectionViewModel = .init(id: UUID()),
+                options: CollectionViewDriverOptions = .init(),
                 emptyViewProvider: EmptyViewProvider?,
                 cellEventCoordinator: CellEventCoordinator?,
                 didUpdate: DidUpdate? = nil) {
