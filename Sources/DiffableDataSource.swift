@@ -16,7 +16,13 @@ import UIKit
 
 extension AnyHashable: @unchecked Sendable { }
 
-struct UncheckedCompletion: @unchecked Sendable {
+/// This is a workaround for the concurrency warning:
+///    _"Capture of 'completion' with non-sendable type in a `@Sendable` closure"_
+///
+/// Used below when applying snapshots.
+/// This is safe because we know the completion block
+/// will always be called on the main thread by UIKit.
+private struct UncheckedCompletion: @unchecked Sendable {
     typealias Block = () -> Void
 
     let block: Block?
@@ -37,7 +43,7 @@ struct UncheckedCompletion: @unchecked Sendable {
 final class DiffableDataSource: UICollectionViewDiffableDataSource<AnyHashable, AnyHashable> {
     typealias Snapshot = NSDiffableDataSourceSnapshot<AnyHashable, AnyHashable>
 
-    typealias SnapshotCompletion = () -> Void
+    typealias SnapshotCompletion = @MainActor () -> Void
 
     // Avoid retaining the collection view, we know it is owned and kept alive by the driver.
     // Thus, unowned is safe here.
@@ -252,7 +258,7 @@ final class DiffableDataSource: UICollectionViewDiffableDataSource<AnyHashable, 
         }
     }
 
-    func _applyReloadSnapshot(_ snapshot: Snapshot, completion: UncheckedCompletion) {
+    private func _applyReloadSnapshot(_ snapshot: Snapshot, completion: UncheckedCompletion) {
         self._performOnDiffingQueueIfNeeded {
             // UIKit guarantees `completion` is called on the main queue.
             self.applySnapshotUsingReloadData(snapshot, completion: completion.block)

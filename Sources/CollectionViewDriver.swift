@@ -21,7 +21,7 @@ import UIKit
 @MainActor
 public final class CollectionViewDriver: NSObject {
     /// A closure type used to notify callers of collection view updates.
-    public typealias DidUpdate = (CollectionViewDriver) -> Void
+    public typealias DidUpdate = @MainActor (CollectionViewDriver) -> Void
 
     /// The collection view.
     public let view: UICollectionView
