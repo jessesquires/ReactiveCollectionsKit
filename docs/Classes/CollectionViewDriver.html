@@ -174,7 +174,7 @@ It handles all layout, data source, delegate, and diffing operations.</p>
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">typealias</span> <span class="kt">DidUpdate</span> <span class="o">=</span> <span class="p">(</span><span class="kt">CollectionViewDriver</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Void</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">typealias</span> <span class="kt">DidUpdate</span> <span class="o">=</span> <span class="kd">@MainActor</span> <span class="p">(</span><span class="kt">CollectionViewDriver</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Void</span></code></pre>
 
                         </div>
                       </div>
@@ -202,33 +202,6 @@ It handles all layout, data source, delegate, and diffing operations.</p>
                         <div class="language">
                           <p class="aside-title">Swift</p>
                           <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">let</span> <span class="nv">view</span><span class="p">:</span> <span class="kt">UICollectionView</span></code></pre>
-
-                        </div>
-                      </div>
-                    </section>
-                  </div>
-                </li>
-                <li class="item">
-                  <div>
-                    <code>
-                    <a name="/s:22ReactiveCollectionsKit20CollectionViewDriverC6layoutSo012UICollectionE19CompositionalLayoutCvp"></a>
-                    <a name="//apple_ref/swift/Property/layout" class="dashAnchor"></a>
-                    <a class="token" href="#/s:22ReactiveCollectionsKit20CollectionViewDriverC6layoutSo012UICollectionE19CompositionalLayoutCvp">layout</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        <p>The collection view compositional layout.</p>
-
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-                        <div class="language">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">layout</span><span class="p">:</span> <span class="kt">UICollectionViewCompositionalLayout</span> <span class="p">{</span> <span class="k">get</span> <span class="p">}</span></code></pre>
 
                         </div>
                       </div>
@@ -317,9 +290,9 @@ You can customize this behavior via the <code><a href="../Classes/CollectionView
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:22ReactiveCollectionsKit20CollectionViewDriverC4view6layout0G5Model7options05emptyE8Provider20cellEventCoordinator9didUpdateACSo012UICollectionE0C_So0rE19CompositionalLayoutCAA0deI0VAA0deF7OptionsVAA05EmptyeL0VSgAA04CellnO0_pSgyACcSgtcfc"></a>
-                    <a name="//apple_ref/swift/Method/init(view:layout:viewModel:options:emptyViewProvider:cellEventCoordinator:didUpdate:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:22ReactiveCollectionsKit20CollectionViewDriverC4view6layout0G5Model7options05emptyE8Provider20cellEventCoordinator9didUpdateACSo012UICollectionE0C_So0rE19CompositionalLayoutCAA0deI0VAA0deF7OptionsVAA05EmptyeL0VSgAA04CellnO0_pSgyACcSgtcfc">init(view:<wbr>layout:<wbr>viewModel:<wbr>options:<wbr>emptyViewProvider:<wbr>cellEventCoordinator:<wbr>didUpdate:<wbr>)</a>
+                    <a name="/s:22ReactiveCollectionsKit20CollectionViewDriverC4view0G5Model7options05emptyE8Provider20cellEventCoordinator9didUpdateACSo012UICollectionE0C_AA0deH0VAA0deF7OptionsVAA05EmptyeK0VSgAA04CellmN0_pSgyACScMYccSgtcfc"></a>
+                    <a name="//apple_ref/swift/Method/init(view:viewModel:options:emptyViewProvider:cellEventCoordinator:didUpdate:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:22ReactiveCollectionsKit20CollectionViewDriverC4view0G5Model7options05emptyE8Provider20cellEventCoordinator9didUpdateACSo012UICollectionE0C_AA0deH0VAA0deF7OptionsVAA05EmptyeK0VSgAA04CellmN0_pSgyACScMYccSgtcfc">init(view:<wbr>viewModel:<wbr>options:<wbr>emptyViewProvider:<wbr>cellEventCoordinator:<wbr>didUpdate:<wbr>)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -343,9 +316,8 @@ for the entire lifetime of the driver.</p>
                         <div class="language">
                           <p class="aside-title">Swift</p>
                           <pre class="highlight swift"><code><span class="kd">public</span> <span class="nf">init</span><span class="p">(</span><span class="nv">view</span><span class="p">:</span> <span class="kt">UICollectionView</span><span class="p">,</span>
-            <span class="nv">layout</span><span class="p">:</span> <span class="kt">UICollectionViewCompositionalLayout</span><span class="p">,</span>
-            <span class="nv">viewModel</span><span class="p">:</span> <span class="kt"><a href="../Structs/CollectionViewModel.html">CollectionViewModel</a></span> <span class="o">=</span> <span class="kt"><a href="../Structs/CollectionViewModel.html">CollectionViewModel</a></span><span class="p">(</span><span class="nv">id</span><span class="p">:</span> <span class="kt">UUID</span><span class="p">()),</span>
-            <span class="nv">options</span><span class="p">:</span> <span class="kt"><a href="../Structs/CollectionViewDriverOptions.html">CollectionViewDriverOptions</a></span> <span class="o">=</span> <span class="kt"><a href="../Structs/CollectionViewDriverOptions.html">CollectionViewDriverOptions</a></span><span class="p">(),</span>
+            <span class="nv">viewModel</span><span class="p">:</span> <span class="kt"><a href="../Structs/CollectionViewModel.html">CollectionViewModel</a></span> <span class="o">=</span> <span class="o">.</span><span class="nf">init</span><span class="p">(</span><span class="nv">id</span><span class="p">:</span> <span class="kt">UUID</span><span class="p">()),</span>
+            <span class="nv">options</span><span class="p">:</span> <span class="kt"><a href="../Structs/CollectionViewDriverOptions.html">CollectionViewDriverOptions</a></span> <span class="o">=</span> <span class="o">.</span><span class="nf">init</span><span class="p">(),</span>
             <span class="nv">emptyViewProvider</span><span class="p">:</span> <span class="kt"><a href="../Structs/EmptyViewProvider.html">EmptyViewProvider</a></span><span class="p">?,</span>
             <span class="nv">cellEventCoordinator</span><span class="p">:</span> <span class="kt"><a href="../Protocols/CellEventCoordinator.html">CellEventCoordinator</a></span><span class="p">?,</span>
             <span class="nv">didUpdate</span><span class="p">:</span> <span class="kt"><a href="../Classes/CollectionViewDriver.html#/s:22ReactiveCollectionsKit20CollectionViewDriverC9DidUpdatea">DidUpdate</a></span><span class="p">?</span> <span class="o">=</span> <span class="kc">nil</span><span class="p">)</span></code></pre>
@@ -365,18 +337,6 @@ for the entire lifetime of the driver.</p>
                               <td>
                                 <div>
                                   <p>The collection view.</p>
-                                </div>
-                              </td>
-                            </tr>
-                            <tr>
-                              <td>
-                                <code>
-                                <em>layout</em>
-                                </code>
-                              </td>
-                              <td>
-                                <div>
-                                  <p>The collection view layout.</p>
                                 </div>
                               </td>
                             </tr>
@@ -454,7 +414,7 @@ for the entire lifetime of the driver.</p>
           </section>
         </section>
         <section id="footer">
-          <p>&copy; 2024 <a class="link" href="https://jessesquires.com" target="_blank" rel="external noopener">Jesse Squires</a>. All rights reserved. (Last updated: 2024-05-25)</p>
+          <p>&copy; 2024 <a class="link" href="https://jessesquires.com" target="_blank" rel="external noopener">Jesse Squires</a>. All rights reserved. (Last updated: 2024-05-31)</p>
           <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external noopener">jazzy ♪♫ v0.15.0</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external noopener">Realm</a> project.</p>
         </section>
       </article>
