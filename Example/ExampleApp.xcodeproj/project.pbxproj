@@ -222,7 +222,6 @@
 				0B31B9802BCC6349006F2078 /* PersonCellViewModelList.swift */,
 				0B31B97F2BCC6349006F2078 /* ColorCellViewModelList.swift */,
 				0B31B9812BCC6349006F2078 /* ListViewController.swift */,
-				0B0B5AA42BFF0FDB0037BC02 /* EmptyView.swift */,
 			);
 			path = List;
 			sourceTree = "<group>";
@@ -244,6 +243,7 @@
 			isa = PBXGroup;
 			children = (
 				0B31B98A2BCC6349006F2078 /* AppDelegate.swift */,
+				0B0B5AA42BFF0FDB0037BC02 /* EmptyView.swift */,
 				0B31B98B2BCC6349006F2078 /* ExampleViewController.swift */,
 				0B31B9762BCC6349006F2078 /* Model.swift */,
 				0B31B98F2BCC6349006F2078 /* UIKit+Extensions.swift */,
