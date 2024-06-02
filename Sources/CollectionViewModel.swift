@@ -205,13 +205,13 @@ extension CollectionViewModel: CustomDebugStringConvertible {
                 if let header = section.header {
                     text.append("\t header: \(header.id) (\(header._kind))\n")
                 } else {
-                    text.append("\t header: nil")
+                    text.append("\t header: nil\n")
                 }
 
                 if let footer = section.footer {
                     text.append("\t footer: \(footer.id) (\(footer._kind))\n")
                 } else {
-                    text.append("\t footer: nil")
+                    text.append("\t footer: nil\n")
                 }
 
                 text.append("\t cells: \n")

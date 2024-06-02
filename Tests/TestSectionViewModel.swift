@@ -20,7 +20,7 @@ final class TestSectionViewModel: XCTestCase {
     func test_section_with_only_cells() {
         let numCells = 3
         let name = "name"
-        let section = self.makeCollectionSectionViewModel(name: name, numCells: numCells)
+        let section = self.fakeSectionViewModel(id: name, numCells: numCells)
         XCTAssertEqual(section.id, "section_name")
 
         XCTAssertEqual(section.count, numCells)
@@ -38,7 +38,7 @@ final class TestSectionViewModel: XCTestCase {
     @MainActor
     func test_RandomAccessCollection_conformance() {
         let numCells = 3
-        let section = self.makeCollectionSectionViewModel(numCells: numCells)
+        let section = self.fakeSectionViewModel(numCells: numCells)
 
         XCTAssertEqual(section.count, section.cells.count)
         XCTAssertEqual(section.isEmpty, section.cells.isEmpty)

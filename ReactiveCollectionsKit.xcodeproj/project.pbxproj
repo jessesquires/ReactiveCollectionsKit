@@ -29,7 +29,6 @@
 		0BFA774C2BB8B717009B9C5B /* FakeCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BFA774A2BB8B714009B9C5B /* FakeCellViewModel.swift */; };
 		0BFA774E2BB92DC8009B9C5B /* ViewRegistrationViewType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BFA774D2BB92DC8009B9C5B /* ViewRegistrationViewType.swift */; };
 		0BFA77502BB92E36009B9C5B /* ViewRegistrationMethod.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BFA774F2BB92E36009B9C5B /* ViewRegistrationMethod.swift */; };
-		0BFBB2E62C0BF842000842B6 /* Int+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BFBB2E52C0BF842000842B6 /* Int+Extensions.swift */; };
 		0BFBB2E82C0BF8AC000842B6 /* NumberModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BFBB2E72C0BF8AC000842B6 /* NumberModel.swift */; };
 		0BFBB2EA2C0BF8B8000842B6 /* TextModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BFBB2E92C0BF8B8000842B6 /* TextModel.swift */; };
 		0BFBB2EC2C0BFD1B000842B6 /* FakeCellEventCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BFBB2EB2C0BFD1B000842B6 /* FakeCellEventCoordinator.swift */; };
@@ -38,7 +37,6 @@
 		884880D7238CE9020056F669 /* UnitTestCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 884880D6238CE9020056F669 /* UnitTestCase.swift */; };
 		884880DA238CEA1A0056F669 /* FakeCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 884880D8238CE9BF0056F669 /* FakeCollectionView.swift */; };
 		8872DE95238D18D5005774EA /* TestCollectionViewDriver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8872DE94238D18D5005774EA /* TestCollectionViewDriver.swift */; };
-		8872DE98238D2769005774EA /* TestDiffableViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8872DE97238D2769005774EA /* TestDiffableViewModel.swift */; };
 		8872DE9A238D28BE005774EA /* TestSectionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8872DE99238D28BE005774EA /* TestSectionViewModel.swift */; };
 		88BD6D16238D03F100FB1846 /* TestCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88BD6D15238D03F100FB1846 /* TestCellViewModel.swift */; };
 		88BD6D1B238D127700FB1846 /* FakeCollectionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88BD6D19238D124300FB1846 /* FakeCollectionViewModel.swift */; };
@@ -83,7 +81,6 @@
 		0BFA774A2BB8B714009B9C5B /* FakeCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FakeCellViewModel.swift; sourceTree = "<group>"; };
 		0BFA774D2BB92DC8009B9C5B /* ViewRegistrationViewType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewRegistrationViewType.swift; sourceTree = "<group>"; };
 		0BFA774F2BB92E36009B9C5B /* ViewRegistrationMethod.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewRegistrationMethod.swift; sourceTree = "<group>"; };
-		0BFBB2E52C0BF842000842B6 /* Int+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Int+Extensions.swift"; sourceTree = "<group>"; };
 		0BFBB2E72C0BF8AC000842B6 /* NumberModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NumberModel.swift; sourceTree = "<group>"; };
 		0BFBB2E92C0BF8B8000842B6 /* TextModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextModel.swift; sourceTree = "<group>"; };
 		0BFBB2EB2C0BFD1B000842B6 /* FakeCellEventCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FakeCellEventCoordinator.swift; sourceTree = "<group>"; };
@@ -93,7 +90,6 @@
 		884880D8238CE9BF0056F669 /* FakeCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FakeCollectionView.swift; sourceTree = "<group>"; };
 		884880DD238CF02F0056F669 /* XCTestCase+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "XCTestCase+Extensions.swift"; sourceTree = "<group>"; };
 		8872DE94238D18D5005774EA /* TestCollectionViewDriver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestCollectionViewDriver.swift; sourceTree = "<group>"; };
-		8872DE97238D2769005774EA /* TestDiffableViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestDiffableViewModel.swift; sourceTree = "<group>"; };
 		8872DE99238D28BE005774EA /* TestSectionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestSectionViewModel.swift; sourceTree = "<group>"; };
 		88BD6D15238D03F100FB1846 /* TestCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestCellViewModel.swift; sourceTree = "<group>"; };
 		88BD6D19238D124300FB1846 /* FakeCollectionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FakeCollectionViewModel.swift; sourceTree = "<group>"; };
@@ -143,7 +139,6 @@
 		0BFA77432BB8B69C009B9C5B /* Utils */ = {
 			isa = PBXGroup;
 			children = (
-				0BFBB2E52C0BF842000842B6 /* Int+Extensions.swift */,
 				0BFA77442BB8B6AC009B9C5B /* String+Extensions.swift */,
 				884880D6238CE9020056F669 /* UnitTestCase.swift */,
 				884880DD238CF02F0056F669 /* XCTestCase+Extensions.swift */,
@@ -204,7 +199,6 @@
 				0BA0E2C92C0303DC001FB5AA /* TestCollectionExtensions.swift */,
 				8872DE94238D18D5005774EA /* TestCollectionViewDriver.swift */,
 				0BA0E2CB2C030445001FB5AA /* TestCollectionViewDriverOptions.swift */,
-				8872DE97238D2769005774EA /* TestDiffableViewModel.swift */,
 				0BA0E2CD2C0304B4001FB5AA /* TestEmptyViewProvider.swift */,
 				8872DE99238D28BE005774EA /* TestSectionViewModel.swift */,
 				0BA0E2CF2C03056D001FB5AA /* TestViewRegistration.swift */,
@@ -381,7 +375,6 @@
 				8872DE95238D18D5005774EA /* TestCollectionViewDriver.swift in Sources */,
 				0BFBB2EE2C0C3C36000842B6 /* TestCellEventCoordinator.swift in Sources */,
 				0BFBB2EA2C0BF8B8000842B6 /* TextModel.swift in Sources */,
-				0BFBB2E62C0BF842000842B6 /* Int+Extensions.swift in Sources */,
 				88BD6D16238D03F100FB1846 /* TestCellViewModel.swift in Sources */,
 				0BA0E2D02C03056D001FB5AA /* TestViewRegistration.swift in Sources */,
 				0BA0E2D22C030849001FB5AA /* TestViewRegistrationMethod.swift in Sources */,
@@ -395,7 +388,6 @@
 				884880D7238CE9020056F669 /* UnitTestCase.swift in Sources */,
 				884880DA238CEA1A0056F669 /* FakeCollectionView.swift in Sources */,
 				0BA0E2CA2C0303DC001FB5AA /* TestCollectionExtensions.swift in Sources */,
-				8872DE98238D2769005774EA /* TestDiffableViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

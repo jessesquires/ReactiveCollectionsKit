@@ -13,12 +13,7 @@
 
 import Foundation
 @testable import ReactiveCollectionsKit
-
-enum FakeReuseIdentifier: String {
-    case cell
-    case footerView
-    case headerView
-}
+import XCTest
 
 struct FakeCellViewModel: CellViewModel {
     nonisolated var id: UniqueIdentifier { "\(Self.self)" }

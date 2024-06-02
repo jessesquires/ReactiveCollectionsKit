@@ -17,28 +17,29 @@ import UIKit
 import XCTest
 
 struct NumberModel: Hashable {
-    let number = Int.random
+    let number = Int.random(in: 0...1_000_000)
+    let id = String.random
 }
 
 struct NumberCellViewModel: CellViewModel {
     let model = NumberModel()
 
     nonisolated var id: UniqueIdentifier {
-        self.model.number
+        self.model.id
     }
 
     var shouldHighlight = true
 
     var contextMenuConfiguration: UIContextMenuConfiguration?
 
-    var expectationConfigure: XCTestExpectation?
+    var expectationConfigureCell: XCTestExpectation?
     func configure(cell: NumberCollectionCell) {
-        self.expectationConfigure?.fulfill()
+        self.expectationConfigureCell?.fulfill()
     }
 
-    var expectationSelect: XCTestExpectation?
+    var expectationDidSelect: XCTestExpectation?
     func didSelect(with coordinator: (any CellEventCoordinator)?) {
-        self.expectationSelect?.fulfill()
+        self.expectationDidSelect?.fulfill()
     }
 
     nonisolated static func == (left: Self, right: Self) -> Bool {

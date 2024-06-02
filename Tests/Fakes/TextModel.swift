@@ -31,14 +31,14 @@ struct TextCellViewModel: CellViewModel {
 
     var contextMenuConfiguration: UIContextMenuConfiguration?
 
-    var expectationConfigure: XCTestExpectation?
+    var expectationConfigureCell: XCTestExpectation?
     func configure(cell: TextCollectionCell) {
-        self.expectationConfigure?.fulfill()
+        self.expectationConfigureCell?.fulfill()
     }
 
-    var expectationSelect: XCTestExpectation?
+    var expectationDidSelect: XCTestExpectation?
     func didSelect(with coordinator: (any CellEventCoordinator)?) {
-        self.expectationSelect?.fulfill()
+        self.expectationDidSelect?.fulfill()
     }
 
     nonisolated static func == (left: Self, right: Self) -> Bool {
