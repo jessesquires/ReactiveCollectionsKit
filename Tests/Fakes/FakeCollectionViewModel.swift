@@ -50,13 +50,13 @@ extension XCTestCase {
         includeExpectations: Bool = false
     ) -> AnyCellViewModel {
         if index.isMultiple(of: 2) {
-            var viewModel = NumberCellViewModel()
+            var viewModel = FakeNumberCellViewModel()
             viewModel.expectationDidSelect = includeExpectations ? self.expectation(description: "didSelect_\(viewModel.id)") : nil
             viewModel.expectationConfigureCell = includeExpectations ? self.expectation(description: "apply_\(viewModel.id)") : nil
             return viewModel.eraseToAnyViewModel()
         }
 
-        var viewModel = TextCellViewModel()
+        var viewModel = FakeTextCellViewModel()
         viewModel.expectationDidSelect = includeExpectations ? self.expectation(description: "didSelect_\(viewModel.id)") : nil
         viewModel.expectationConfigureCell = includeExpectations ? self.expectation(description: "apply_\(viewModel.id)") : nil
         return viewModel.eraseToAnyViewModel()

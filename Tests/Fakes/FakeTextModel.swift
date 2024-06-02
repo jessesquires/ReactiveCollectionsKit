@@ -16,16 +16,15 @@ import ReactiveCollectionsKit
 import UIKit
 import XCTest
 
-struct NumberModel: Hashable {
-    let number = Int.random(in: 0...1_000_000)
-    let id = String.random
+struct FakeTextModel: Hashable {
+    let text = String.random
 }
 
-struct NumberCellViewModel: CellViewModel {
-    let model = NumberModel()
+struct FakeTextCellViewModel: CellViewModel {
+    let model = FakeTextModel()
 
     nonisolated var id: UniqueIdentifier {
-        self.model.id
+        self.model.text
     }
 
     var shouldHighlight = true
@@ -33,7 +32,7 @@ struct NumberCellViewModel: CellViewModel {
     var contextMenuConfiguration: UIContextMenuConfiguration?
 
     var expectationConfigureCell: XCTestExpectation?
-    func configure(cell: NumberCollectionCell) {
+    func configure(cell: FakeTextCollectionCell) {
         self.expectationConfigureCell?.fulfill()
     }
 
@@ -51,4 +50,4 @@ struct NumberCellViewModel: CellViewModel {
     }
 }
 
-final class NumberCollectionCell: UICollectionViewCell { }
+final class FakeTextCollectionCell: UICollectionViewCell { }

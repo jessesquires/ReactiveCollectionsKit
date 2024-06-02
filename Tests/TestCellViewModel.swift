@@ -40,7 +40,7 @@ final class TestCellViewModel: XCTestCase {
 
     @MainActor
     func test_eraseToAnyViewModel() {
-        var viewModel = TextCellViewModel()
+        var viewModel = FakeTextCellViewModel()
         viewModel.expectationConfigureCell = self.expectation(description: "configure-cell")
         viewModel.expectationDidSelect = self.expectation(description: "did-select")
 
@@ -55,7 +55,7 @@ final class TestCellViewModel: XCTestCase {
         XCTAssertTrue(erased.cellClass == viewModel.cellClass)
         XCTAssertEqual(erased.reuseIdentifier, viewModel.reuseIdentifier)
 
-        erased.configure(cell: TextCollectionCell())
+        erased.configure(cell: FakeTextCollectionCell())
         erased.didSelect(with: nil)
         self.waitForExpectations()
 

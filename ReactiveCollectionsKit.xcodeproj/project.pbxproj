@@ -29,8 +29,8 @@
 		0BFA774C2BB8B717009B9C5B /* FakeCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BFA774A2BB8B714009B9C5B /* FakeCellViewModel.swift */; };
 		0BFA774E2BB92DC8009B9C5B /* ViewRegistrationViewType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BFA774D2BB92DC8009B9C5B /* ViewRegistrationViewType.swift */; };
 		0BFA77502BB92E36009B9C5B /* ViewRegistrationMethod.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BFA774F2BB92E36009B9C5B /* ViewRegistrationMethod.swift */; };
-		0BFBB2E82C0BF8AC000842B6 /* NumberModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BFBB2E72C0BF8AC000842B6 /* NumberModel.swift */; };
-		0BFBB2EA2C0BF8B8000842B6 /* TextModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BFBB2E92C0BF8B8000842B6 /* TextModel.swift */; };
+		0BFBB2E82C0BF8AC000842B6 /* FakeNumberModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BFBB2E72C0BF8AC000842B6 /* FakeNumberModel.swift */; };
+		0BFBB2EA2C0BF8B8000842B6 /* FakeTextModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BFBB2E92C0BF8B8000842B6 /* FakeTextModel.swift */; };
 		0BFBB2EC2C0BFD1B000842B6 /* FakeCellEventCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BFBB2EB2C0BFD1B000842B6 /* FakeCellEventCoordinator.swift */; };
 		0BFBB2EE2C0C3C36000842B6 /* TestCellEventCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BFBB2ED2C0C3C36000842B6 /* TestCellEventCoordinator.swift */; };
 		88462766238FA2C8005FB389 /* FakeNib.xib in Resources */ = {isa = PBXBuildFile; fileRef = 88462765238FA2C8005FB389 /* FakeNib.xib */; };
@@ -81,8 +81,8 @@
 		0BFA774A2BB8B714009B9C5B /* FakeCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FakeCellViewModel.swift; sourceTree = "<group>"; };
 		0BFA774D2BB92DC8009B9C5B /* ViewRegistrationViewType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewRegistrationViewType.swift; sourceTree = "<group>"; };
 		0BFA774F2BB92E36009B9C5B /* ViewRegistrationMethod.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewRegistrationMethod.swift; sourceTree = "<group>"; };
-		0BFBB2E72C0BF8AC000842B6 /* NumberModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NumberModel.swift; sourceTree = "<group>"; };
-		0BFBB2E92C0BF8B8000842B6 /* TextModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextModel.swift; sourceTree = "<group>"; };
+		0BFBB2E72C0BF8AC000842B6 /* FakeNumberModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FakeNumberModel.swift; sourceTree = "<group>"; };
+		0BFBB2E92C0BF8B8000842B6 /* FakeTextModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FakeTextModel.swift; sourceTree = "<group>"; };
 		0BFBB2EB2C0BFD1B000842B6 /* FakeCellEventCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FakeCellEventCoordinator.swift; sourceTree = "<group>"; };
 		0BFBB2ED2C0C3C36000842B6 /* TestCellEventCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestCellEventCoordinator.swift; sourceTree = "<group>"; };
 		88462765238FA2C8005FB389 /* FakeNib.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FakeNib.xib; sourceTree = "<group>"; };
@@ -130,8 +130,8 @@
 				884880D8238CE9BF0056F669 /* FakeCollectionView.swift */,
 				88BD6D19238D124300FB1846 /* FakeCollectionViewModel.swift */,
 				88462765238FA2C8005FB389 /* FakeNib.xib */,
-				0BFBB2E72C0BF8AC000842B6 /* NumberModel.swift */,
-				0BFBB2E92C0BF8B8000842B6 /* TextModel.swift */,
+				0BFBB2E72C0BF8AC000842B6 /* FakeNumberModel.swift */,
+				0BFBB2E92C0BF8B8000842B6 /* FakeTextModel.swift */,
 			);
 			path = Fakes;
 			sourceTree = "<group>";
@@ -371,10 +371,10 @@
 			files = (
 				0BA0E2D42C030AC7001FB5AA /* TestViewRegistrationViewType.swift in Sources */,
 				8872DE9A238D28BE005774EA /* TestSectionViewModel.swift in Sources */,
-				0BFBB2E82C0BF8AC000842B6 /* NumberModel.swift in Sources */,
+				0BFBB2E82C0BF8AC000842B6 /* FakeNumberModel.swift in Sources */,
 				8872DE95238D18D5005774EA /* TestCollectionViewDriver.swift in Sources */,
 				0BFBB2EE2C0C3C36000842B6 /* TestCellEventCoordinator.swift in Sources */,
-				0BFBB2EA2C0BF8B8000842B6 /* TextModel.swift in Sources */,
+				0BFBB2EA2C0BF8B8000842B6 /* FakeTextModel.swift in Sources */,
 				88BD6D16238D03F100FB1846 /* TestCellViewModel.swift in Sources */,
 				0BA0E2D02C03056D001FB5AA /* TestViewRegistration.swift in Sources */,
 				0BA0E2D22C030849001FB5AA /* TestViewRegistrationMethod.swift in Sources */,
