@@ -23,10 +23,23 @@ open class UnitTestCase: XCTestCase {
         collectionViewLayout: FakeCollectionLayout()
     )
 
+    @MainActor let window = UIWindow()
+
+    @MainActor let viewController = FakeCollectionViewController()
+
     @MainActor
     override open func setUp() {
         super.setUp()
         self.collectionView.layoutSubviews()
         self.collectionView.reloadData()
+    }
+
+    @MainActor
+    func simulateViewControllerAppearance() {
+        self.window.frame = Self.frame
+        self.window.rootViewController = self.viewController
+        self.window.makeKeyAndVisible()
+        self.viewController.beginAppearanceTransition(true, animated: false)
+        self.viewController.endAppearanceTransition()
     }
 }

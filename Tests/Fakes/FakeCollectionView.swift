@@ -27,19 +27,19 @@ final class FakeCollectionView: UICollectionView {
     var dequeueCellExpectation: XCTestExpectation?
     override func dequeueReusableCell(withReuseIdentifier identifier: String,
                                       for indexPath: IndexPath) -> UICollectionViewCell {
-        self.dequeueCellExpectation?.fulfill()
+        self.dequeueCellExpectation?.fulfillAndLog()
         return super.dequeueReusableCell(withReuseIdentifier: identifier, for: indexPath)
     }
 
     var registerCellClassExpectation: XCTestExpectation?
     override func register(_ cellClass: AnyClass?, forCellWithReuseIdentifier identifier: String) {
-        self.registerCellClassExpectation?.fulfill()
+        self.registerCellClassExpectation?.fulfillAndLog()
         super.register(cellClass, forCellWithReuseIdentifier: identifier)
     }
 
     var registerCellNibExpectation: XCTestExpectation?
     override func register(_ nib: UINib?, forCellWithReuseIdentifier identifier: String) {
-        self.registerCellNibExpectation?.fulfill()
+        self.registerCellNibExpectation?.fulfillAndLog()
         super.register(nib, forCellWithReuseIdentifier: identifier)
     }
 
@@ -47,7 +47,7 @@ final class FakeCollectionView: UICollectionView {
     override func dequeueReusableSupplementaryView(ofKind elementKind: String,
                                                    withReuseIdentifier identifier: String,
                                                    for indexPath: IndexPath) -> UICollectionReusableView {
-        self.dequeueHeaderFooterExpectation?.fulfill()
+        self.dequeueHeaderFooterExpectation?.fulfillAndLog()
         return super.dequeueReusableSupplementaryView(ofKind: elementKind,
                                                       withReuseIdentifier: identifier,
                                                       for: indexPath)
@@ -57,7 +57,7 @@ final class FakeCollectionView: UICollectionView {
     override func register(_ viewClass: AnyClass?,
                            forSupplementaryViewOfKind elementKind: String,
                            withReuseIdentifier identifier: String) {
-        self.registerHeaderFooterClassExpectation?.fulfill()
+        self.registerHeaderFooterClassExpectation?.fulfillAndLog()
         super.register(viewClass,
                        forSupplementaryViewOfKind: elementKind,
                        withReuseIdentifier: identifier)
@@ -67,9 +67,20 @@ final class FakeCollectionView: UICollectionView {
     override func register(_ nib: UINib?,
                            forSupplementaryViewOfKind kind: String,
                            withReuseIdentifier identifier: String) {
-        self.registerHeaderFooterNibExpectation?.fulfill()
+        self.registerHeaderFooterNibExpectation?.fulfillAndLog()
         super.register(nib,
                        forSupplementaryViewOfKind: kind,
                        withReuseIdentifier: identifier)
+    }
+}
+
+final class FakeCollectionViewController: UICollectionViewController {
+    init() {
+        super.init(collectionViewLayout: UICollectionViewFlowLayout())
+    }
+
+    @available(*, unavailable)
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
     }
 }

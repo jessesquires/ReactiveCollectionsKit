@@ -19,7 +19,7 @@ import XCTest
 final class FakeCellEventCoordinator: CellEventCoordinator {
     var expectationDidSelect: XCTestExpectation?
     func didSelectCell(viewModel: any CellViewModel) {
-        self.expectationDidSelect?.fulfill()
+        self.expectationDidSelect?.fulfillAndLog()
     }
 
     var underlyingViewController: UIViewController? { nil }

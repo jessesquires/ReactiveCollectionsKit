@@ -33,12 +33,12 @@ struct FakeTextCellViewModel: CellViewModel {
 
     var expectationConfigureCell: XCTestExpectation?
     func configure(cell: FakeTextCollectionCell) {
-        self.expectationConfigureCell?.fulfill()
+        self.expectationConfigureCell?.fulfillAndLog()
     }
 
     var expectationDidSelect: XCTestExpectation?
     func didSelect(with coordinator: (any CellEventCoordinator)?) {
-        self.expectationDidSelect?.fulfill()
+        self.expectationDidSelect?.fulfillAndLog()
     }
 
     nonisolated static func == (left: Self, right: Self) -> Bool {

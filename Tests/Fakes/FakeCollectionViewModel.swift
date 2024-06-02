@@ -20,12 +20,17 @@ extension XCTestCase {
     @MainActor
     func fakeCollectionViewModel(
         id: String = .random,
-        numSections: Int = Int.random(in: 1...10),
-        numCells: Int = Int.random(in: 1...10),
-        includeExpectations: Bool = false
+        numSections: Int = Int.random(in: 2...15),
+        numCells: Int = Int.random(in: 3...20),
+        expectDidSelectCell: Bool = false,
+        expectConfigureCell: Bool = false
     ) -> CollectionViewModel {
         let sections = (0..<numSections).map { _ in
-            self.fakeSectionViewModel(numCells: numCells, includeExpectations: includeExpectations)
+            self.fakeSectionViewModel(
+                numCells: numCells,
+                expectDidSelectCell: expectDidSelectCell,
+                expectConfigureCell: expectConfigureCell
+            )
         }
         return CollectionViewModel(id: "collection_\(id)", sections: sections)
     }
@@ -33,12 +38,17 @@ extension XCTestCase {
     @MainActor
     func fakeSectionViewModel(
         id: String = .random,
-        numCells: Int = Int.random(in: 1...10),
-        includeExpectations: Bool = false
+        numCells: Int = Int.random(in: 1...20),
+        expectDidSelectCell: Bool = false,
+        expectConfigureCell: Bool = false
     ) -> SectionViewModel {
         var cellModels = [AnyCellViewModel]()
         for index in 0..<numCells {
-            let model = self.fakeCellViewModel(index: index, includeExpectations: includeExpectations)
+            let model = self.fakeCellViewModel(
+                index: index,
+                expectDidSelectCell: expectDidSelectCell,
+                expectConfigureCell: expectConfigureCell
+            )
             cellModels.append(model)
         }
         return SectionViewModel(id: "section_\(id)", cells: cellModels)
@@ -47,18 +57,19 @@ extension XCTestCase {
     @MainActor
     func fakeCellViewModel(
         index: Int,
-        includeExpectations: Bool = false
+        expectDidSelectCell: Bool = false,
+        expectConfigureCell: Bool = false
     ) -> AnyCellViewModel {
         if index.isMultiple(of: 2) {
             var viewModel = FakeNumberCellViewModel()
-            viewModel.expectationDidSelect = includeExpectations ? self.expectation(description: "didSelect_\(viewModel.id)") : nil
-            viewModel.expectationConfigureCell = includeExpectations ? self.expectation(description: "apply_\(viewModel.id)") : nil
+            viewModel.expectationDidSelect = expectDidSelectCell ? self.expectation(description: "didSelect_\(viewModel.id)") : nil
+            viewModel.expectationConfigureCell = expectConfigureCell ? self.expectation(description: "configureCell_\(viewModel.id)") : nil
             return viewModel.eraseToAnyViewModel()
         }
 
         var viewModel = FakeTextCellViewModel()
-        viewModel.expectationDidSelect = includeExpectations ? self.expectation(description: "didSelect_\(viewModel.id)") : nil
-        viewModel.expectationConfigureCell = includeExpectations ? self.expectation(description: "apply_\(viewModel.id)") : nil
+        viewModel.expectationDidSelect = expectDidSelectCell ? self.expectation(description: "didSelect_\(viewModel.id)") : nil
+        viewModel.expectationConfigureCell = expectConfigureCell ? self.expectation(description: "configureCell_\(viewModel.id)") : nil
         return viewModel.eraseToAnyViewModel()
 
     }
