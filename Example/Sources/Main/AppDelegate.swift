@@ -34,11 +34,16 @@ final class AppDelegate: UIResponder, UIApplicationDelegate {
         simple.title = "Simple Static"
         simple.tabBarItem.image = UIImage(systemName: "list.bullet.rectangle.portrait.fill")
 
+        let flow = SimpleFlowLayoutViewController()
+        flow.title = "Flow Layout"
+        flow.tabBarItem.image = UIImage(systemName: "square.grid.3x3.square")
+
         let tabBar = UITabBarController()
         tabBar.viewControllers = [
             UINavigationController(rootViewController: grid),
             UINavigationController(rootViewController: list),
-            UINavigationController(rootViewController: simple)
+            UINavigationController(rootViewController: simple),
+            UINavigationController(rootViewController: flow)
         ]
 
         self.window = UIWindow()
