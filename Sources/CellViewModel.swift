@@ -121,6 +121,12 @@ public struct AnyCellViewModel: CellViewModel {
         self._didSelect(coordinator)
     }
 
+    /// :nodoc: "override" extension
+    public let cellClass: AnyClass
+
+    /// :nodoc: "override" extension
+    public let reuseIdentifier: String
+
     // MARK: Private
 
     private let _viewModel: AnyHashable
@@ -146,9 +152,11 @@ public struct AnyCellViewModel: CellViewModel {
             precondition(cell is T.CellType, "Cell must be of type \(T.CellType.self). Found \(cell.self)")
             viewModel.configure(cell: cell as! T.CellType)
         }
-        self._didSelect = { controller in
-            viewModel.didSelect(with: controller)
+        self._didSelect = { coordinator in
+            viewModel.didSelect(with: coordinator)
         }
+        self.cellClass = viewModel.cellClass
+        self.reuseIdentifier = viewModel.reuseIdentifier
     }
 }
 

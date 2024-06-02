@@ -40,7 +40,7 @@ let package = Package(
     swiftLanguageVersions: [.v5]
 )
 
-// TODO: Remove this when it stops being broken. Xcode 16? Swift 6?
+#warning("Remove this when it stops being broken. Xcode 16? Swift 6?")
 let swiftSettings = [
     SwiftSetting.enableExperimentalFeature("StrictConcurrency")
 ]

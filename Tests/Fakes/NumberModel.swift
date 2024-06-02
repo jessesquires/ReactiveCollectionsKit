@@ -32,7 +32,7 @@ struct NumberCellViewModel: CellViewModel {
     var contextMenuConfiguration: UIContextMenuConfiguration?
 
     var expectationConfigure: XCTestExpectation?
-    func configure(cell: UICollectionViewCell) {
+    func configure(cell: NumberCollectionCell) {
         self.expectationConfigure?.fulfill()
     }
 
@@ -49,3 +49,5 @@ struct NumberCellViewModel: CellViewModel {
         self.model.hash(into: &hasher)
     }
 }
+
+final class NumberCollectionCell: UICollectionViewCell { }
