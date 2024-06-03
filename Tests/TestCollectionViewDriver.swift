@@ -160,4 +160,51 @@ final class TestCollectionViewDriver: UnitTestCase {
 
         self.keepDriverAlive(driver)
     }
+
+    @MainActor
+    func test_dataSource_supplementaryViewAt_calls_supplementaryViewModel_configure() {
+        let cells = [FakeNumberCellViewModel(), FakeNumberCellViewModel(), FakeNumberCellViewModel()]
+
+        var header = FakeHeaderViewModel()
+        header.expectationConfigureView = self.expectation(description: "configure_header")
+
+        var footer = FakeFooterViewModel()
+        footer.expectationConfigureView = self.expectation(description: "configure_footer")
+
+        let views = (1...3).map { _ in
+            var view = FakeSupplementaryViewModel()
+            view.expectationConfigureView = self.expectation(description: "configure_view_\(view.title)")
+            return view
+        }
+
+        let section = SectionViewModel(
+            id: "section",
+            cells: cells,
+            header: header,
+            footer: footer,
+            supplementaryViews: views
+        )
+
+        let collection = CollectionViewModel(id: "id", sections: [section])
+
+        let viewController = self.viewController
+        viewController.collectionView.setCollectionViewLayout(
+            UICollectionViewCompositionalLayout.fakeLayout(),
+            animated: false
+        )
+
+        let driver = CollectionViewDriver(
+            view: viewController.collectionView,
+            viewModel: collection,
+            options: .test(),
+            emptyViewProvider: nil,
+            cellEventCoordinator: nil,
+            didUpdate: nil
+        )
+        self.simulateViewControllerAppearance()
+
+        self.waitForExpectations()
+
+        self.keepDriverAlive(driver)
+    }
 }

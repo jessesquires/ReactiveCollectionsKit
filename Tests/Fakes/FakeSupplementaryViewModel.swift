@@ -45,17 +45,43 @@ struct FakeSupplementaryViewModel: SupplementaryViewModel {
 final class FakeSupplementaryView: UICollectionViewCell { }
 
 struct FakeHeaderViewModel: SupplementaryHeaderViewModel {
+    let title = String.random
+
     nonisolated var id: UniqueIdentifier { "\(Self.self)" }
 
-    func configure(view: FakeCollectionHeaderView) { }
+    var expectationConfigureView: XCTestExpectation?
+    func configure(view: FakeCollectionHeaderView) {
+        self.expectationConfigureView?.fulfillAndLog()
+    }
+
+    nonisolated static func == (left: Self, right: Self) -> Bool {
+        left.title == right.title
+    }
+
+    nonisolated func hash(into hasher: inout Hasher) {
+        self.title.hash(into: &hasher)
+    }
 }
 
 final class FakeCollectionHeaderView: UICollectionReusableView { }
 
 struct FakeFooterViewModel: SupplementaryFooterViewModel {
+    let title = String.random
+
     nonisolated var id: UniqueIdentifier { "\(Self.self)" }
 
-    func configure(view: FakeCollectionFooterView) { }
+    var expectationConfigureView: XCTestExpectation?
+    func configure(view: FakeCollectionFooterView) {
+        self.expectationConfigureView?.fulfillAndLog()
+    }
+
+    nonisolated static func == (left: Self, right: Self) -> Bool {
+        left.title == right.title
+    }
+
+    nonisolated func hash(into hasher: inout Hasher) {
+        self.title.hash(into: &hasher)
+    }
 }
 
 final class FakeCollectionFooterView: UICollectionReusableView { }
