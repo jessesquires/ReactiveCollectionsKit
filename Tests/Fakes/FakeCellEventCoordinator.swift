@@ -21,6 +21,4 @@ final class FakeCellEventCoordinator: CellEventCoordinator {
     func didSelectCell(viewModel: any CellViewModel) {
         self.expectationDidSelect?.fulfillAndLog()
     }
-
-    var underlyingViewController: UIViewController? { nil }
 }

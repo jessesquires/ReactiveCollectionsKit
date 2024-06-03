@@ -16,6 +16,8 @@ import Foundation
 import XCTest
 
 struct FakeSupplementaryViewModel: SupplementaryViewModel {
+    static let kind = "FakeKind"
+
     let title = String.random
 
     nonisolated var id: UniqueIdentifier { "\(Self.self)" }
@@ -23,7 +25,7 @@ struct FakeSupplementaryViewModel: SupplementaryViewModel {
     let registration = ViewRegistration(
         reuseIdentifier: "view",
         supplementaryViewClass: FakeSupplementaryView.self,
-        kind: "kind"
+        kind: Self.kind
     )
 
     var expectationConfigureView: XCTestExpectation?
