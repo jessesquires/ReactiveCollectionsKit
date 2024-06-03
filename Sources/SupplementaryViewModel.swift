@@ -24,7 +24,7 @@ public protocol SupplementaryViewModel: DiffableViewModel, ViewRegistrationProvi
     associatedtype ViewType: UICollectionReusableView
 
     /// Configures the provided view for display in the collection.
-    /// - Parameter cell: The view to configure.
+    /// - Parameter view: The view to configure.
     func configure(view: ViewType)
 }
 
@@ -88,6 +88,12 @@ public struct AnySupplementaryViewModel: SupplementaryViewModel {
         self._configure(view)
     }
 
+    /// :nodoc: "override" extension
+    public let viewClass: AnyClass
+
+    /// :nodoc: "override" extension
+    public let reuseIdentifier: String
+
     // MARK: Private
 
     private let _viewModel: AnyHashable
@@ -108,6 +114,8 @@ public struct AnySupplementaryViewModel: SupplementaryViewModel {
             precondition(view is T.ViewType, "View must be of type \(T.ViewType.self). Found \(view.self)")
             viewModel.configure(view: view as! T.ViewType)
         }
+        self.viewClass = viewModel.viewClass
+        self.reuseIdentifier = viewModel.reuseIdentifier
     }
 }
 

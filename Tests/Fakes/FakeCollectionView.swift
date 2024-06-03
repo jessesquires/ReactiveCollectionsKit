@@ -16,10 +16,6 @@ import XCTest
 
 final class FakeCollectionCell: UICollectionViewCell { }
 
-final class FakeCollectionHeaderView: UICollectionReusableView { }
-
-final class FakeCollectionFooterView: UICollectionReusableView { }
-
 final class FakeCollectionLayout: UICollectionViewFlowLayout { }
 
 final class FakeCollectionView: UICollectionView {

@@ -35,6 +35,8 @@
 		0BFBB2EE2C0C3C36000842B6 /* TestCellEventCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BFBB2ED2C0C3C36000842B6 /* TestCellEventCoordinator.swift */; };
 		0BFBB2F02C0D3C92000842B6 /* XCTestExpectation+Expectations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BFBB2EF2C0D3C92000842B6 /* XCTestExpectation+Expectations.swift */; };
 		0BFBB2F22C0D4985000842B6 /* CollectionViewDriverOptions+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BFBB2F12C0D4985000842B6 /* CollectionViewDriverOptions+Extensions.swift */; };
+		0BFBB2F92C0D4BC7000842B6 /* TestSupplementaryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BFBB2F82C0D4BC7000842B6 /* TestSupplementaryViewModel.swift */; };
+		0BFBB2FB2C0D4C34000842B6 /* FakeSupplementaryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BFBB2FA2C0D4C34000842B6 /* FakeSupplementaryViewModel.swift */; };
 		88462766238FA2C8005FB389 /* FakeNib.xib in Resources */ = {isa = PBXBuildFile; fileRef = 88462765238FA2C8005FB389 /* FakeNib.xib */; };
 		884880D7238CE9020056F669 /* UnitTestCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 884880D6238CE9020056F669 /* UnitTestCase.swift */; };
 		884880DA238CEA1A0056F669 /* FakeCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 884880D8238CE9BF0056F669 /* FakeCollectionView.swift */; };
@@ -90,6 +92,8 @@
 		0BFBB2EF2C0D3C92000842B6 /* XCTestExpectation+Expectations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "XCTestExpectation+Expectations.swift"; sourceTree = "<group>"; };
 		0BFBB2F12C0D4985000842B6 /* CollectionViewDriverOptions+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CollectionViewDriverOptions+Extensions.swift"; sourceTree = "<group>"; };
 		0BFBB2F72C0D4ADE000842B6 /* UnitTests.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; path = UnitTests.xctestplan; sourceTree = "<group>"; };
+		0BFBB2F82C0D4BC7000842B6 /* TestSupplementaryViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestSupplementaryViewModel.swift; sourceTree = "<group>"; };
+		0BFBB2FA2C0D4C34000842B6 /* FakeSupplementaryViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FakeSupplementaryViewModel.swift; sourceTree = "<group>"; };
 		88462765238FA2C8005FB389 /* FakeNib.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FakeNib.xib; sourceTree = "<group>"; };
 		884880D6238CE9020056F669 /* UnitTestCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnitTestCase.swift; sourceTree = "<group>"; };
 		884880D8238CE9BF0056F669 /* FakeCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FakeCollectionView.swift; sourceTree = "<group>"; };
@@ -136,6 +140,7 @@
 				88BD6D19238D124300FB1846 /* FakeCollectionViewModel.swift */,
 				88462765238FA2C8005FB389 /* FakeNib.xib */,
 				0BFBB2E72C0BF8AC000842B6 /* FakeNumberModel.swift */,
+				0BFBB2FA2C0D4C34000842B6 /* FakeSupplementaryViewModel.swift */,
 				0BFBB2E92C0BF8B8000842B6 /* FakeTextModel.swift */,
 			);
 			path = Fakes;
@@ -208,19 +213,20 @@
 		88FA48E72363A6160061F8B2 /* Tests */ = {
 			isa = PBXGroup;
 			children = (
-				0BFBB2F62C0D4A91000842B6 /* TestPlans */,
 				0BFA77422BB8B678009B9C5B /* Fakes */,
-				0BFA77432BB8B69C009B9C5B /* Utils */,
 				0BFBB2ED2C0C3C36000842B6 /* TestCellEventCoordinator.swift */,
 				88BD6D15238D03F100FB1846 /* TestCellViewModel.swift */,
 				0BA0E2C92C0303DC001FB5AA /* TestCollectionExtensions.swift */,
 				8872DE94238D18D5005774EA /* TestCollectionViewDriver.swift */,
 				0BA0E2CB2C030445001FB5AA /* TestCollectionViewDriverOptions.swift */,
 				0BA0E2CD2C0304B4001FB5AA /* TestEmptyView.swift */,
+				0BFBB2F62C0D4A91000842B6 /* TestPlans */,
 				8872DE99238D28BE005774EA /* TestSectionViewModel.swift */,
+				0BFBB2F82C0D4BC7000842B6 /* TestSupplementaryViewModel.swift */,
 				0BA0E2CF2C03056D001FB5AA /* TestViewRegistration.swift */,
 				0BA0E2D12C030849001FB5AA /* TestViewRegistrationMethod.swift */,
 				0BA0E2D32C030AC7001FB5AA /* TestViewRegistrationViewType.swift */,
+				0BFA77432BB8B69C009B9C5B /* Utils */,
 			);
 			path = Tests;
 			sourceTree = "<group>";
@@ -389,11 +395,13 @@
 				0BFBB2F22C0D4985000842B6 /* CollectionViewDriverOptions+Extensions.swift in Sources */,
 				8872DE9A238D28BE005774EA /* TestSectionViewModel.swift in Sources */,
 				0BFBB2E82C0BF8AC000842B6 /* FakeNumberModel.swift in Sources */,
+				0BFBB2F92C0D4BC7000842B6 /* TestSupplementaryViewModel.swift in Sources */,
 				8872DE95238D18D5005774EA /* TestCollectionViewDriver.swift in Sources */,
 				0BFBB2EE2C0C3C36000842B6 /* TestCellEventCoordinator.swift in Sources */,
 				0BFBB2EA2C0BF8B8000842B6 /* FakeTextModel.swift in Sources */,
 				88BD6D16238D03F100FB1846 /* TestCellViewModel.swift in Sources */,
 				0BA0E2D02C03056D001FB5AA /* TestViewRegistration.swift in Sources */,
+				0BFBB2FB2C0D4C34000842B6 /* FakeSupplementaryViewModel.swift in Sources */,
 				0BA0E2D22C030849001FB5AA /* TestViewRegistrationMethod.swift in Sources */,
 				0BA0E2CC2C030445001FB5AA /* TestCollectionViewDriverOptions.swift in Sources */,
 				0BFBB2EC2C0BFD1B000842B6 /* FakeCellEventCoordinator.swift in Sources */,
