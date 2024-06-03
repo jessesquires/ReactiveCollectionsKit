@@ -1,0 +1,37 @@
+{
+  "configurations" : [
+    {
+      "id" : "C9B16F27-B6EF-4110-8C39-2889F7D56870",
+      "name" : "Default",
+      "options" : {
+
+      }
+    }
+  ],
+  "defaultOptions" : {
+    "codeCoverage" : {
+      "targets" : [
+        {
+          "containerPath" : "container:ReactiveCollectionsKit.xcodeproj",
+          "identifier" : "88FA48D92363A6160061F8B2",
+          "name" : "ReactiveCollectionsKit"
+        }
+      ]
+    },
+    "testExecutionOrdering" : "random",
+    "testRepetitionMode" : "retryOnFailure",
+    "testTimeoutsEnabled" : true,
+    "threadSanitizerEnabled" : true,
+    "undefinedBehaviorSanitizerEnabled" : true
+  },
+  "testTargets" : [
+    {
+      "target" : {
+        "containerPath" : "container:ReactiveCollectionsKit.xcodeproj",
+        "identifier" : "88FA48E22363A6160061F8B2",
+        "name" : "ReactiveCollectionsKitTests"
+      }
+    }
+  ],
+  "version" : 1
+}

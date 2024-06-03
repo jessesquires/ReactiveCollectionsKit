@@ -89,6 +89,7 @@
 		0BFBB2ED2C0C3C36000842B6 /* TestCellEventCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestCellEventCoordinator.swift; sourceTree = "<group>"; };
 		0BFBB2EF2C0D3C92000842B6 /* XCTestExpectation+Expectations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "XCTestExpectation+Expectations.swift"; sourceTree = "<group>"; };
 		0BFBB2F12C0D4985000842B6 /* CollectionViewDriverOptions+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CollectionViewDriverOptions+Extensions.swift"; sourceTree = "<group>"; };
+		0BFBB2F72C0D4ADE000842B6 /* UnitTests.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; path = UnitTests.xctestplan; sourceTree = "<group>"; };
 		88462765238FA2C8005FB389 /* FakeNib.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FakeNib.xib; sourceTree = "<group>"; };
 		884880D6238CE9020056F669 /* UnitTestCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnitTestCase.swift; sourceTree = "<group>"; };
 		884880D8238CE9BF0056F669 /* FakeCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FakeCollectionView.swift; sourceTree = "<group>"; };
@@ -152,6 +153,14 @@
 			path = Utils;
 			sourceTree = "<group>";
 		};
+		0BFBB2F62C0D4A91000842B6 /* TestPlans */ = {
+			isa = PBXGroup;
+			children = (
+				0BFBB2F72C0D4ADE000842B6 /* UnitTests.xctestplan */,
+			);
+			path = TestPlans;
+			sourceTree = "<group>";
+		};
 		88FA48D02363A6160061F8B2 = {
 			isa = PBXGroup;
 			children = (
@@ -199,7 +208,9 @@
 		88FA48E72363A6160061F8B2 /* Tests */ = {
 			isa = PBXGroup;
 			children = (
+				0BFBB2F62C0D4A91000842B6 /* TestPlans */,
 				0BFA77422BB8B678009B9C5B /* Fakes */,
+				0BFA77432BB8B69C009B9C5B /* Utils */,
 				0BFBB2ED2C0C3C36000842B6 /* TestCellEventCoordinator.swift */,
 				88BD6D15238D03F100FB1846 /* TestCellViewModel.swift */,
 				0BA0E2C92C0303DC001FB5AA /* TestCollectionExtensions.swift */,
@@ -210,7 +221,6 @@
 				0BA0E2CF2C03056D001FB5AA /* TestViewRegistration.swift */,
 				0BA0E2D12C030849001FB5AA /* TestViewRegistrationMethod.swift */,
 				0BA0E2D32C030AC7001FB5AA /* TestViewRegistrationViewType.swift */,
-				0BFA77432BB8B69C009B9C5B /* Utils */,
 			);
 			path = Tests;
 			sourceTree = "<group>";
