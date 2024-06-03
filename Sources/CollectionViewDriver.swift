@@ -125,6 +125,7 @@ public final class CollectionViewDriver: NSObject {
         self.view.delegate = self
         self._registerAllViews(for: viewModel)
         self._dataSource.reload(viewModel, completion: nil)
+        self._displayEmptyViewIfNeeded()
     }
 
     // MARK: State Information
@@ -189,7 +190,7 @@ public final class CollectionViewDriver: NSObject {
             emptyView.frame = self.view.frame
             emptyView.translatesAutoresizingMaskIntoConstraints = false
             emptyView.alpha = 0
-            self.view.superview?.addSubview(emptyView)
+            self.view.addSubview(emptyView)
             NSLayoutConstraint.activate([
                 emptyView.topAnchor.constraint(equalTo: self.view.superview!.topAnchor),
                 emptyView.bottomAnchor.constraint(equalTo: self.view.superview!.bottomAnchor),
@@ -198,8 +199,10 @@ public final class CollectionViewDriver: NSObject {
             ])
             self._currentEmptyView = emptyView
             self._animateEmptyView(isHidden: false)
+            self.view.isScrollEnabled = false
         } else {
             self._animateEmptyView(isHidden: true)
+            self.view.isScrollEnabled = true
         }
     }
 

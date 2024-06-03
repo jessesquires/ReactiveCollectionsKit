@@ -15,7 +15,7 @@
 		0B8C6CEC267ED08E0042DFE2 /* SupplementaryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B8C6CEB267ED08E0042DFE2 /* SupplementaryViewModel.swift */; };
 		0BA0E2CA2C0303DC001FB5AA /* TestCollectionExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BA0E2C92C0303DC001FB5AA /* TestCollectionExtensions.swift */; };
 		0BA0E2CC2C030445001FB5AA /* TestCollectionViewDriverOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BA0E2CB2C030445001FB5AA /* TestCollectionViewDriverOptions.swift */; };
-		0BA0E2CE2C0304B4001FB5AA /* TestEmptyViewProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BA0E2CD2C0304B4001FB5AA /* TestEmptyViewProvider.swift */; };
+		0BA0E2CE2C0304B4001FB5AA /* TestEmptyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BA0E2CD2C0304B4001FB5AA /* TestEmptyView.swift */; };
 		0BA0E2D02C03056D001FB5AA /* TestViewRegistration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BA0E2CF2C03056D001FB5AA /* TestViewRegistration.swift */; };
 		0BA0E2D22C030849001FB5AA /* TestViewRegistrationMethod.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BA0E2D12C030849001FB5AA /* TestViewRegistrationMethod.swift */; };
 		0BA0E2D42C030AC7001FB5AA /* TestViewRegistrationViewType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BA0E2D32C030AC7001FB5AA /* TestViewRegistrationViewType.swift */; };
@@ -69,7 +69,7 @@
 		0B8C6CEB267ED08E0042DFE2 /* SupplementaryViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SupplementaryViewModel.swift; sourceTree = "<group>"; };
 		0BA0E2C92C0303DC001FB5AA /* TestCollectionExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestCollectionExtensions.swift; sourceTree = "<group>"; };
 		0BA0E2CB2C030445001FB5AA /* TestCollectionViewDriverOptions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestCollectionViewDriverOptions.swift; sourceTree = "<group>"; };
-		0BA0E2CD2C0304B4001FB5AA /* TestEmptyViewProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestEmptyViewProvider.swift; sourceTree = "<group>"; };
+		0BA0E2CD2C0304B4001FB5AA /* TestEmptyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestEmptyView.swift; sourceTree = "<group>"; };
 		0BA0E2CF2C03056D001FB5AA /* TestViewRegistration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestViewRegistration.swift; sourceTree = "<group>"; };
 		0BA0E2D12C030849001FB5AA /* TestViewRegistrationMethod.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestViewRegistrationMethod.swift; sourceTree = "<group>"; };
 		0BA0E2D32C030AC7001FB5AA /* TestViewRegistrationViewType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestViewRegistrationViewType.swift; sourceTree = "<group>"; };
@@ -202,7 +202,7 @@
 				0BA0E2C92C0303DC001FB5AA /* TestCollectionExtensions.swift */,
 				8872DE94238D18D5005774EA /* TestCollectionViewDriver.swift */,
 				0BA0E2CB2C030445001FB5AA /* TestCollectionViewDriverOptions.swift */,
-				0BA0E2CD2C0304B4001FB5AA /* TestEmptyViewProvider.swift */,
+				0BA0E2CD2C0304B4001FB5AA /* TestEmptyView.swift */,
 				8872DE99238D28BE005774EA /* TestSectionViewModel.swift */,
 				0BA0E2CF2C03056D001FB5AA /* TestViewRegistration.swift */,
 				0BA0E2D12C030849001FB5AA /* TestViewRegistrationMethod.swift */,
@@ -388,7 +388,7 @@
 				88BD6D1B238D127700FB1846 /* FakeCollectionViewModel.swift in Sources */,
 				0BFA77472BB8B6DB009B9C5B /* XCTestCase+Extensions.swift in Sources */,
 				0BFA77482BB8B6DB009B9C5B /* String+Extensions.swift in Sources */,
-				0BA0E2CE2C0304B4001FB5AA /* TestEmptyViewProvider.swift in Sources */,
+				0BA0E2CE2C0304B4001FB5AA /* TestEmptyView.swift in Sources */,
 				884880D7238CE9020056F669 /* UnitTestCase.swift in Sources */,
 				884880DA238CEA1A0056F669 /* FakeCollectionView.swift in Sources */,
 				0BA0E2CA2C0303DC001FB5AA /* TestCollectionExtensions.swift in Sources */,
