@@ -27,11 +27,14 @@ open class UnitTestCase: XCTestCase {
 
     @MainActor let viewController = FakeCollectionViewController()
 
+    @MainActor var keepAliveDrivers = [CollectionViewDriver]()
+
     @MainActor
     override open func setUp() {
         super.setUp()
         self.collectionView.layoutSubviews()
         self.collectionView.reloadData()
+        self.keepAliveDrivers.removeAll()
     }
 
     @MainActor
@@ -41,5 +44,10 @@ open class UnitTestCase: XCTestCase {
         self.window.makeKeyAndVisible()
         self.viewController.beginAppearanceTransition(true, animated: false)
         self.viewController.endAppearanceTransition()
+    }
+
+    @MainActor
+    func keepDriverAlive(_ driver: CollectionViewDriver) {
+        self.keepAliveDrivers.append(driver)
     }
 }

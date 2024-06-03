@@ -24,6 +24,7 @@ final class TestCollectionViewDriver: UnitTestCase {
         let driver = CollectionViewDriver(
             view: self.collectionView,
             viewModel: model,
+            options: .test(),
             emptyViewProvider: nil,
             cellEventCoordinator: nil,
             didUpdate: nil
@@ -34,18 +35,23 @@ final class TestCollectionViewDriver: UnitTestCase {
         for index in 0..<sections {
             XCTAssertEqual(driver.numberOfItems(in: index), cells)
         }
+
+        self.keepDriverAlive(driver)
     }
 
     @MainActor
     func test_numberOfSections_isEmpty() {
         let driver = CollectionViewDriver(
             view: self.collectionView,
+            options: .test(),
             emptyViewProvider: nil,
             cellEventCoordinator: nil,
             didUpdate: nil
         )
 
         XCTAssertEqual(driver.numberOfSections, .zero)
+
+        self.keepDriverAlive(driver)
     }
 
     @MainActor
@@ -56,6 +62,7 @@ final class TestCollectionViewDriver: UnitTestCase {
         let driver = CollectionViewDriver(
             view: self.collectionView,
             viewModel: model,
+            options: .test(),
             emptyViewProvider: nil,
             cellEventCoordinator: nil,
             didUpdate: nil
@@ -69,6 +76,8 @@ final class TestCollectionViewDriver: UnitTestCase {
         }
 
         self.waitForExpectations()
+
+        self.keepDriverAlive(driver)
     }
 
     @MainActor
@@ -81,6 +90,7 @@ final class TestCollectionViewDriver: UnitTestCase {
         let driver = CollectionViewDriver(
             view: self.collectionView,
             viewModel: collection,
+            options: .test(),
             emptyViewProvider: nil,
             cellEventCoordinator: nil,
             didUpdate: nil
@@ -91,6 +101,8 @@ final class TestCollectionViewDriver: UnitTestCase {
 
         let highlight2 = driver.collectionView(self.collectionView, shouldHighlightItemAt: .init(item: 1, section: 0))
         XCTAssertEqual(highlight2, cell2.shouldHighlight)
+
+        self.keepDriverAlive(driver)
     }
 
     @MainActor
@@ -104,6 +116,7 @@ final class TestCollectionViewDriver: UnitTestCase {
         let driver = CollectionViewDriver(
             view: self.collectionView,
             viewModel: collection,
+            options: .test(),
             emptyViewProvider: nil,
             cellEventCoordinator: nil,
             didUpdate: nil
@@ -122,6 +135,8 @@ final class TestCollectionViewDriver: UnitTestCase {
             point: .zero
         )
         XCTAssertEqual(menu2, cell2.contextMenuConfiguration)
+
+        self.keepDriverAlive(driver)
     }
 
     @MainActor
@@ -134,14 +149,15 @@ final class TestCollectionViewDriver: UnitTestCase {
         let driver = CollectionViewDriver(
             view: viewController.collectionView,
             viewModel: model,
+            options: .test(),
             emptyViewProvider: nil,
             cellEventCoordinator: nil,
             didUpdate: nil
         )
-        _ = driver
-
         self.simulateViewControllerAppearance()
 
         self.waitForExpectations()
+
+        self.keepDriverAlive(driver)
     }
 }

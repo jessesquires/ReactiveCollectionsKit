@@ -34,6 +34,7 @@
 		0BFBB2EC2C0BFD1B000842B6 /* FakeCellEventCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BFBB2EB2C0BFD1B000842B6 /* FakeCellEventCoordinator.swift */; };
 		0BFBB2EE2C0C3C36000842B6 /* TestCellEventCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BFBB2ED2C0C3C36000842B6 /* TestCellEventCoordinator.swift */; };
 		0BFBB2F02C0D3C92000842B6 /* XCTestExpectation+Expectations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BFBB2EF2C0D3C92000842B6 /* XCTestExpectation+Expectations.swift */; };
+		0BFBB2F22C0D4985000842B6 /* CollectionViewDriverOptions+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BFBB2F12C0D4985000842B6 /* CollectionViewDriverOptions+Extensions.swift */; };
 		88462766238FA2C8005FB389 /* FakeNib.xib in Resources */ = {isa = PBXBuildFile; fileRef = 88462765238FA2C8005FB389 /* FakeNib.xib */; };
 		884880D7238CE9020056F669 /* UnitTestCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 884880D6238CE9020056F669 /* UnitTestCase.swift */; };
 		884880DA238CEA1A0056F669 /* FakeCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 884880D8238CE9BF0056F669 /* FakeCollectionView.swift */; };
@@ -87,6 +88,7 @@
 		0BFBB2EB2C0BFD1B000842B6 /* FakeCellEventCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FakeCellEventCoordinator.swift; sourceTree = "<group>"; };
 		0BFBB2ED2C0C3C36000842B6 /* TestCellEventCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestCellEventCoordinator.swift; sourceTree = "<group>"; };
 		0BFBB2EF2C0D3C92000842B6 /* XCTestExpectation+Expectations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "XCTestExpectation+Expectations.swift"; sourceTree = "<group>"; };
+		0BFBB2F12C0D4985000842B6 /* CollectionViewDriverOptions+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CollectionViewDriverOptions+Extensions.swift"; sourceTree = "<group>"; };
 		88462765238FA2C8005FB389 /* FakeNib.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FakeNib.xib; sourceTree = "<group>"; };
 		884880D6238CE9020056F669 /* UnitTestCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnitTestCase.swift; sourceTree = "<group>"; };
 		884880D8238CE9BF0056F669 /* FakeCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FakeCollectionView.swift; sourceTree = "<group>"; };
@@ -145,6 +147,7 @@
 				884880D6238CE9020056F669 /* UnitTestCase.swift */,
 				884880DD238CF02F0056F669 /* XCTestCase+Extensions.swift */,
 				0BFBB2EF2C0D3C92000842B6 /* XCTestExpectation+Expectations.swift */,
+				0BFBB2F12C0D4985000842B6 /* CollectionViewDriverOptions+Extensions.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -373,6 +376,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				0BA0E2D42C030AC7001FB5AA /* TestViewRegistrationViewType.swift in Sources */,
+				0BFBB2F22C0D4985000842B6 /* CollectionViewDriverOptions+Extensions.swift in Sources */,
 				8872DE9A238D28BE005774EA /* TestSectionViewModel.swift in Sources */,
 				0BFBB2E82C0BF8AC000842B6 /* FakeNumberModel.swift in Sources */,
 				8872DE95238D18D5005774EA /* TestCollectionViewDriver.swift in Sources */,

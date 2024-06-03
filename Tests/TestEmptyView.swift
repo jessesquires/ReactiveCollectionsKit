@@ -38,11 +38,12 @@ final class TestEmptyView: UnitTestCase {
         let viewController = self.viewController
         let driver = CollectionViewDriver(
             view: viewController.collectionView,
-            options: .init(animateUpdates: false, reloadDataOnReplacingViewModel: true),
+            options: .test(),
             emptyViewProvider: provider,
             cellEventCoordinator: nil,
             didUpdate: nil
         )
+
         XCTAssertTrue(driver.viewModel.isEmpty)
 
         self.simulateViewControllerAppearance()
@@ -57,6 +58,6 @@ final class TestEmptyView: UnitTestCase {
         XCTAssertTrue(driver.viewModel.isEmpty)
         XCTAssertTrue(driver.view.subviews.contains(where: { $0 === emptyView }))
 
-        _ = driver
+        self.keepDriverAlive(driver)
     }
 }
