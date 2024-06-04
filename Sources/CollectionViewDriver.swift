@@ -30,17 +30,7 @@ public final class CollectionViewDriver: NSObject {
     public let options: CollectionViewDriverOptions
 
     /// The collection view model.
-    ///
-    /// - Note: Setting this property to a new value will trigger diffing and collection view updates.
-    ///
-    /// - Warning: If you provide a `viewModel` with an `id` different from the previous one,
-    /// this is considered a *replacement*. By default, the driver will animate the diff between the view models.
-    /// You can customize this behavior via the ``options`` for the driver.
-    @Published public var viewModel: CollectionViewModel {
-        didSet {
-            self._didUpdateModel(from: oldValue, to: self.viewModel)
-        }
-    }
+    @Published public private(set) var viewModel: CollectionViewModel
 
     private let _emptyViewProvider: EmptyViewProvider?
 
@@ -52,8 +42,6 @@ public final class CollectionViewDriver: NSObject {
     private weak var _cellEventCoordinator: CellEventCoordinator?
 
     private(set) var _dataSource: DiffableDataSource
-
-    private let _didUpdate: DidUpdate?
 
     private var _cachedRegistrations = Set<ViewRegistration>()
 
@@ -69,8 +57,6 @@ public final class CollectionViewDriver: NSObject {
     ///   - cellEventCoordinator: The cell event coordinator,
     ///                           if you wish to handle cell events outside of your cell view models.
     ///                           **Note: This object is not retained by the driver.**
-    ///   - didUpdate: A closure to call when the driver finishes diffing and updating the collection view.
-    ///                The driver passes itself to the closure. This will always be called on the main thread.
     ///
     /// - Warning: The driver **does not** retain the `cellEventCoordinator`,
     /// because this object is typically the view controller that owns the driver.
@@ -80,14 +66,12 @@ public final class CollectionViewDriver: NSObject {
                 viewModel: CollectionViewModel = .empty,
                 options: CollectionViewDriverOptions = .init(),
                 emptyViewProvider: EmptyViewProvider?,
-                cellEventCoordinator: CellEventCoordinator?,
-                didUpdate: DidUpdate? = nil) {
+                cellEventCoordinator: CellEventCoordinator?) {
         self.view = view
         self.viewModel = viewModel
         self.options = options
         self._emptyViewProvider = emptyViewProvider
         self._cellEventCoordinator = cellEventCoordinator
-        self._didUpdate = didUpdate
 
         // workaround for swift initialization rules.
         // the "real" init is below.
@@ -123,7 +107,7 @@ public final class CollectionViewDriver: NSObject {
 
         self.view.dataSource = self._dataSource
         self.view.delegate = self
-        self._didUpdateModel(from: .empty, to: viewModel)
+        self._updateViewModel(from: .empty, to: viewModel, animated: false, completion: nil)
     }
 
     // MARK: State Information
@@ -140,6 +124,29 @@ public final class CollectionViewDriver: NSObject {
         self.viewModel.sections[section].cells.count
     }
 
+    // MARK: Applying Updates
+
+    /// Updates the collection with the provided `viewModel`.
+    /// This method will trigger a diff between the previous view model and the newly provided view model.
+    ///
+    /// - Parameters:
+    ///   - viewModel: The new collection view model.
+    ///   - animated: Whether or not to animate updates.
+    ///   - completion: A closure to call when the driver finishes diffing and updating the collection view.
+    ///                 The driver passes itself to the closure. It is always called on the main thread.
+    ///
+    /// - Warning: If you provide a `viewModel` with an `id` different from the previous one,
+    /// this is considered a *replacement*. By default, the driver will animate the diff between the view models.
+    /// You can customize this behavior via the ``options`` for the driver.
+    public func update(viewModel new: CollectionViewModel, animated: Bool = true, completion: DidUpdate? = nil) {
+        self._updateViewModel(
+            from: self.viewModel,
+            to: new,
+            animated: animated,
+            completion: completion
+        )
+    }
+
     // MARK: Private
 
     private func _registerAllViews(for viewModel: CollectionViewModel) {
@@ -151,7 +158,13 @@ public final class CollectionViewDriver: NSObject {
         self._cachedRegistrations.formUnion(newRegistrations)
     }
 
-    private func _didUpdateModel(from old: CollectionViewModel, to new: CollectionViewModel) {
+    private func _updateViewModel(
+        from old: CollectionViewModel,
+        to new: CollectionViewModel,
+        animated: Bool,
+        completion: DidUpdate?
+    ) {
+        self.viewModel = new
         self._registerAllViews(for: new)
 
         if self.options.reloadDataOnReplacingViewModel {
@@ -159,7 +172,7 @@ public final class CollectionViewDriver: NSObject {
             guard new.id == old.id else {
                 self._dataSource.reload(self.viewModel) { [unowned self] in
                     // UIKit guarantees this closure is called on the main queue.
-                    self._handleDidUpdate()
+                    self._displayEmptyViewIfNeeded(animated: animated, completion: completion)
                 }
                 return
             }
@@ -168,22 +181,26 @@ public final class CollectionViewDriver: NSObject {
         self._dataSource.applySnapshot(
             from: old,
             to: new,
-            animated: self.options.animateUpdates
+            animated: animated
         ) { [unowned self] in
             // UIKit guarantees this closure is called on the main queue.
-            self._handleDidUpdate()
+            self._displayEmptyViewIfNeeded(animated: animated, completion: completion)
         }
     }
 
-    private func _handleDidUpdate() {
-        self._didUpdate?(self)
-        self._displayEmptyViewIfNeeded()
-    }
-
-    private func _displayEmptyViewIfNeeded() {
+    private func _displayEmptyViewIfNeeded(animated: Bool, completion: DidUpdate?) {
         if self.viewModel.isEmpty {
-            guard self._currentEmptyView == nil else { return }
-            guard let emptyView = self._emptyViewProvider?.view else { return }
+            // view model is empty, but we are already displaying the empty state view
+            guard self._currentEmptyView == nil else {
+                completion?(self)
+                return
+            }
+
+            // empty state view was not provided
+            guard let emptyView = self._emptyViewProvider?.view else {
+                completion?(self)
+                return
+            }
 
             emptyView.frame = self.view.frame
             emptyView.translatesAutoresizingMaskIntoConstraints = false
@@ -196,22 +213,23 @@ public final class CollectionViewDriver: NSObject {
                 emptyView.trailingAnchor.constraint(equalTo: self.view.superview!.trailingAnchor)
             ])
             self._currentEmptyView = emptyView
-            self._animateEmptyView(isHidden: false)
+            self._animateEmptyView(isHidden: false, animated: animated, completion: completion)
             self.view.isScrollEnabled = false
         } else {
-            self._animateEmptyView(isHidden: true)
+            self._animateEmptyView(isHidden: true, animated: animated, completion: completion)
             self.view.isScrollEnabled = true
         }
     }
 
-    private func _animateEmptyView(isHidden: Bool) {
-        guard self.options.animateUpdates else {
+    private func _animateEmptyView(isHidden: Bool, animated: Bool, completion: DidUpdate?) {
+        guard animated else {
             if isHidden {
                 self._currentEmptyView?.removeFromSuperview()
                 self._currentEmptyView = nil
             } else {
                 self._currentEmptyView?.alpha = 1
             }
+            completion?(self)
             return
         }
 
@@ -222,6 +240,7 @@ public final class CollectionViewDriver: NSObject {
                 self._currentEmptyView?.removeFromSuperview()
                 self._currentEmptyView = nil
             }
+            completion?(self)
         }
     }
 

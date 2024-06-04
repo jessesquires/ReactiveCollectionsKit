@@ -18,7 +18,6 @@ final class TestCollectionViewDriverOptions: XCTestCase {
 
     func test_defaultValues() {
         let options = CollectionViewDriverOptions()
-        XCTAssertTrue(options.animateUpdates)
         XCTAssertFalse(options.diffOnBackgroundQueue)
         XCTAssertFalse(options.reloadDataOnReplacingViewModel)
     }

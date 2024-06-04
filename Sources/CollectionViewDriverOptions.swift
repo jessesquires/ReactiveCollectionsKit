@@ -15,11 +15,6 @@ import Foundation
 
 /// Defines various options to customize behavior of a ``CollectionViewDriver``.
 public struct CollectionViewDriverOptions: Hashable {
-
-    /// Returns whether or not to animate updates.
-    /// Pass `true` to animate, `false` otherwise.
-    public let animateUpdates: Bool
-
     /// Specifies whether or not to perform diffing on a background queue.
     /// Pass `true` to perform diffing in the background,
     /// pass `false` to perform diffing on the main thread.
@@ -36,15 +31,12 @@ public struct CollectionViewDriverOptions: Hashable {
     /// Initializes a `CollectionViewDriverOptions` object.
     ///
     /// - Parameters:
-    ///   - animateUpdates: Whether or not to animate updates. Default is `true`.
     ///   - diffOnBackgroundQueue: Whether or not to perform diffing on a background queue. Default is `false`.
     ///   - reloadDataOnReplacingViewModel: Whether or not to reload or diff during replacement. Default is `false`.
     public init(
-        animateUpdates: Bool = true,
         diffOnBackgroundQueue: Bool = false,
         reloadDataOnReplacingViewModel: Bool = false
     ) {
-        self.animateUpdates = animateUpdates
         self.diffOnBackgroundQueue = diffOnBackgroundQueue
         self.reloadDataOnReplacingViewModel = reloadDataOnReplacingViewModel
     }

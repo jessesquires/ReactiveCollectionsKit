@@ -26,8 +26,7 @@ final class TestCollectionViewDriver: UnitTestCase {
             viewModel: model,
             options: .test(),
             emptyViewProvider: nil,
-            cellEventCoordinator: nil,
-            didUpdate: nil
+            cellEventCoordinator: nil
         )
 
         XCTAssertEqual(driver.numberOfSections, sections)
@@ -45,8 +44,7 @@ final class TestCollectionViewDriver: UnitTestCase {
             view: self.collectionView,
             options: .test(),
             emptyViewProvider: nil,
-            cellEventCoordinator: nil,
-            didUpdate: nil
+            cellEventCoordinator: nil
         )
 
         XCTAssertEqual(driver.numberOfSections, .zero)
@@ -64,8 +62,7 @@ final class TestCollectionViewDriver: UnitTestCase {
             viewModel: model,
             options: .test(),
             emptyViewProvider: nil,
-            cellEventCoordinator: nil,
-            didUpdate: nil
+            cellEventCoordinator: nil
         )
 
         for section in 0..<sections {
@@ -92,8 +89,7 @@ final class TestCollectionViewDriver: UnitTestCase {
             viewModel: collection,
             options: .test(),
             emptyViewProvider: nil,
-            cellEventCoordinator: nil,
-            didUpdate: nil
+            cellEventCoordinator: nil
         )
 
         let highlight1 = driver.collectionView(self.collectionView, shouldHighlightItemAt: .init(item: 0, section: 0))
@@ -118,8 +114,7 @@ final class TestCollectionViewDriver: UnitTestCase {
             viewModel: collection,
             options: .test(),
             emptyViewProvider: nil,
-            cellEventCoordinator: nil,
-            didUpdate: nil
+            cellEventCoordinator: nil
         )
 
         let menu1 = driver.collectionView(
@@ -151,8 +146,7 @@ final class TestCollectionViewDriver: UnitTestCase {
             viewModel: model,
             options: .test(),
             emptyViewProvider: nil,
-            cellEventCoordinator: nil,
-            didUpdate: nil
+            cellEventCoordinator: nil
         )
         self.simulateViewControllerAppearance()
 
@@ -198,8 +192,7 @@ final class TestCollectionViewDriver: UnitTestCase {
             viewModel: collection,
             options: .test(),
             emptyViewProvider: nil,
-            cellEventCoordinator: nil,
-            didUpdate: nil
+            cellEventCoordinator: nil
         )
         self.simulateViewControllerAppearance()
 
