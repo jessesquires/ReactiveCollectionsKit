@@ -65,8 +65,8 @@ public final class CollectionViewDriver: NSObject {
     public init(view: UICollectionView,
                 viewModel: CollectionViewModel = .empty,
                 options: CollectionViewDriverOptions = .init(),
-                emptyViewProvider: EmptyViewProvider?,
-                cellEventCoordinator: CellEventCoordinator?) {
+                emptyViewProvider: EmptyViewProvider? = nil,
+                cellEventCoordinator: CellEventCoordinator? = nil) {
         self.view = view
         self.viewModel = viewModel
         self.options = options

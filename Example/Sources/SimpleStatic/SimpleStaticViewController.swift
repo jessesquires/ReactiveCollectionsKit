@@ -17,11 +17,7 @@ import UIKit
 
 final class SimpleStaticViewController: UICollectionViewController {
 
-    lazy var driver = CollectionViewDriver(
-        view: self.collectionView,
-        emptyViewProvider: nil,
-        cellEventCoordinator: nil
-    )
+    lazy var driver = CollectionViewDriver(view: self.collectionView)
 
     // MARK: Init
 

@@ -24,9 +24,7 @@ final class TestCollectionViewDriver: UnitTestCase {
         let driver = CollectionViewDriver(
             view: self.collectionView,
             viewModel: model,
-            options: .test(),
-            emptyViewProvider: nil,
-            cellEventCoordinator: nil
+            options: .test()
         )
 
         XCTAssertEqual(driver.numberOfSections, sections)
@@ -42,9 +40,7 @@ final class TestCollectionViewDriver: UnitTestCase {
     func test_numberOfSections_isEmpty() {
         let driver = CollectionViewDriver(
             view: self.collectionView,
-            options: .test(),
-            emptyViewProvider: nil,
-            cellEventCoordinator: nil
+            options: .test()
         )
 
         XCTAssertEqual(driver.numberOfSections, .zero)
@@ -60,9 +56,7 @@ final class TestCollectionViewDriver: UnitTestCase {
         let driver = CollectionViewDriver(
             view: self.collectionView,
             viewModel: model,
-            options: .test(),
-            emptyViewProvider: nil,
-            cellEventCoordinator: nil
+            options: .test()
         )
 
         for section in 0..<sections {
@@ -87,9 +81,7 @@ final class TestCollectionViewDriver: UnitTestCase {
         let driver = CollectionViewDriver(
             view: self.collectionView,
             viewModel: collection,
-            options: .test(),
-            emptyViewProvider: nil,
-            cellEventCoordinator: nil
+            options: .test()
         )
 
         let highlight1 = driver.collectionView(self.collectionView, shouldHighlightItemAt: .init(item: 0, section: 0))
@@ -112,9 +104,7 @@ final class TestCollectionViewDriver: UnitTestCase {
         let driver = CollectionViewDriver(
             view: self.collectionView,
             viewModel: collection,
-            options: .test(),
-            emptyViewProvider: nil,
-            cellEventCoordinator: nil
+            options: .test()
         )
 
         let menu1 = driver.collectionView(
@@ -144,9 +134,7 @@ final class TestCollectionViewDriver: UnitTestCase {
         let driver = CollectionViewDriver(
             view: viewController.collectionView,
             viewModel: model,
-            options: .test(),
-            emptyViewProvider: nil,
-            cellEventCoordinator: nil
+            options: .test()
         )
         self.simulateViewControllerAppearance()
 
@@ -190,9 +178,7 @@ final class TestCollectionViewDriver: UnitTestCase {
         let driver = CollectionViewDriver(
             view: viewController.collectionView,
             viewModel: collection,
-            options: .test(),
-            emptyViewProvider: nil,
-            cellEventCoordinator: nil
+            options: .test()
         )
         self.simulateViewControllerAppearance()
 

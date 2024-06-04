@@ -39,8 +39,7 @@ final class TestEmptyView: UnitTestCase {
         let driver = CollectionViewDriver(
             view: viewController.collectionView,
             options: .test(),
-            emptyViewProvider: provider,
-            cellEventCoordinator: nil
+            emptyViewProvider: provider
         )
 
         XCTAssertTrue(driver.viewModel.isEmpty)
