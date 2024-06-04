@@ -56,15 +56,9 @@ let section = SectionViewModel(id: "my_section", cells: cellViewModels)
 // create the collection with sections
 let collectionViewModel = CollectionViewModel(sections: [section])
 
-// create the layout
-let layout = UICollectionViewCompositionalLayout.list(
-    using: .init(appearance: .insetGrouped)
-)
-
 // initialize the driver with the view model and other components
 let driver = CollectionViewDriver(
     view: collectionView,
-    layout: layout,
     viewModel: collectionViewModel,
     emptyViewProvider: provider,
     cellEventCoordinator: coordinator
@@ -73,8 +67,8 @@ let driver = CollectionViewDriver(
 // the collection view is updated and animated automatically
 
 // when the models change, generate a new view model (like above)
-let updatedCollectionViewModel = CollectionViewModel(sections: [/* updated items and sections */])
-driver.viewModel = updatedCollectionViewModel
+let updated = CollectionViewModel(sections: [/* updated items and sections */])
+driver.update(viewModel: updated)
 ```
 
 ## Requirements

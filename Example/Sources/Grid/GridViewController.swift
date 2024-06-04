@@ -20,15 +20,16 @@ final class GridViewController: ExampleViewController, CellEventCoordinator {
         view: self.collectionView,
         emptyViewProvider: sharedEmptyViewProvider,
         cellEventCoordinator: self
-    ) {
-        print("grid did update!")
-        print($0.viewModel)
-    }
+    )
 
     override var model: Model {
         didSet {
             // Every time the model updates, regenerate and set the view model
-            self.driver.viewModel = self.makeViewModel()
+            let viewModel = self.makeViewModel()
+            self.driver.update(viewModel: viewModel, animated: true) {
+                print("grid did update!")
+                print($0.viewModel)
+            }
         }
     }
 
@@ -42,7 +43,8 @@ final class GridViewController: ExampleViewController, CellEventCoordinator {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.driver.viewModel = self.makeViewModel()
+        let viewModel = self.makeViewModel()
+        self.driver.update(viewModel: viewModel)
     }
 
     override func viewDidAppear(_ animated: Bool) {

@@ -40,8 +40,7 @@ final class TestEmptyView: UnitTestCase {
             view: viewController.collectionView,
             options: .test(),
             emptyViewProvider: provider,
-            cellEventCoordinator: nil,
-            didUpdate: nil
+            cellEventCoordinator: nil
         )
 
         XCTAssertTrue(driver.viewModel.isEmpty)
@@ -50,11 +49,11 @@ final class TestEmptyView: UnitTestCase {
         XCTAssertTrue(driver.view.subviews.contains(where: { $0 === emptyView }))
 
         let model = self.fakeCollectionViewModel()
-        driver.viewModel = model
+        driver.update(viewModel: model, animated: false)
         XCTAssertTrue(driver.viewModel.isNotEmpty)
         XCTAssertFalse(driver.view.subviews.contains(where: { $0 === emptyView }))
 
-        driver.viewModel = CollectionViewModel(id: "new_empty")
+        driver.update(viewModel: CollectionViewModel(id: "new_empty"), animated: false)
         XCTAssertTrue(driver.viewModel.isEmpty)
         XCTAssertTrue(driver.view.subviews.contains(where: { $0 === emptyView }))
 

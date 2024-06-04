@@ -55,6 +55,6 @@ final class SimpleStaticViewController: UICollectionViewController {
 
         let collectionViewModel = CollectionViewModel(id: "static_view", sections: [section])
 
-        self.driver.viewModel = collectionViewModel
+        self.driver.update(viewModel: collectionViewModel)
     }
 }

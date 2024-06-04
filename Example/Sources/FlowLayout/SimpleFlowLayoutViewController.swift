@@ -62,6 +62,6 @@ final class SimpleFlowLayoutViewController: UICollectionViewController {
 
         let collectionViewModel = CollectionViewModel(id: "static_flow_layout", sections: [section])
 
-        self.driver.viewModel = collectionViewModel
+        self.driver.update(viewModel: collectionViewModel)
     }
 }
