@@ -182,9 +182,9 @@ public final class CollectionViewDriver: NSObject {
             from: old,
             to: new,
             animated: animated
-        ) { [unowned self] in
+        ) { [weak self] in
             // UIKit guarantees this closure is called on the main queue.
-            self._displayEmptyViewIfNeeded(animated: animated, completion: completion)
+            self?._displayEmptyViewIfNeeded(animated: animated, completion: completion)
         }
     }
 
