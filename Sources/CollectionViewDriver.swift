@@ -170,9 +170,9 @@ public final class CollectionViewDriver: NSObject {
         if self.options.reloadDataOnReplacingViewModel {
             // if given a totally new model, simply reload instead of diff
             guard new.id == old.id else {
-                self._dataSource.reload(self.viewModel) { [unowned self] in
-                    // UIKit guarantees this closure is called on the main queue.
-                    self._displayEmptyViewIfNeeded(animated: animated, completion: completion)
+                self._dataSource.reload(self.viewModel) { [weak self] in
+                    // Note: UIKit guarantees this closure is called on the main queue.
+                    self?._displayEmptyViewIfNeeded(animated: animated, completion: completion)
                 }
                 return
             }
@@ -182,9 +182,9 @@ public final class CollectionViewDriver: NSObject {
             from: old,
             to: new,
             animated: animated
-        ) { [unowned self] in
-            // UIKit guarantees this closure is called on the main queue.
-            self._displayEmptyViewIfNeeded(animated: animated, completion: completion)
+        ) { [weak self] in
+            // Note: UIKit guarantees this closure is called on the main queue.
+            self?._displayEmptyViewIfNeeded(animated: animated, completion: completion)
         }
     }
 
