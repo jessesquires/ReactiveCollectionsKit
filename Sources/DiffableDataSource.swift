@@ -16,34 +16,11 @@ import UIKit
 
 extension AnyHashable: @unchecked Sendable { }
 
-/// This is a workaround for the concurrency warning:
-///    _"Capture of 'completion' with non-sendable type in a `@Sendable` closure"_
-///
-/// Used below when applying snapshots.
-/// This is safe because we know the completion block
-/// will always be called on the main thread by UIKit.
-private struct UncheckedCompletion: @unchecked Sendable {
-    typealias Block = () -> Void
-
-    let block: Block?
-
-    init(_ block: Block?) {
-        if let block {
-            self.block = {
-                dispatchPrecondition(condition: .onQueue(.main))
-                block()
-            }
-        } else {
-            self.block = nil
-        }
-    }
-}
-
 @MainActor
 final class DiffableDataSource: UICollectionViewDiffableDataSource<AnyHashable, AnyHashable> {
     typealias Snapshot = NSDiffableDataSourceSnapshot<AnyHashable, AnyHashable>
 
-    typealias SnapshotCompletion = @MainActor () -> Void
+    typealias SnapshotCompletion = @Sendable @MainActor () -> Void
 
     // Avoid retaining the collection view, we know it is owned and kept alive by the driver.
     // Thus, unowned is safe here.
@@ -84,7 +61,7 @@ final class DiffableDataSource: UICollectionViewDiffableDataSource<AnyHashable, 
 
     func reload(_ viewModel: CollectionViewModel, completion: SnapshotCompletion?) {
         let snapshot = DiffableSnapshot(viewModel: viewModel)
-        self._applyReloadSnapshot(snapshot, completion: UncheckedCompletion(completion))
+        self._applyReloadSnapshot(snapshot, completion: completion)
     }
 
     func applySnapshot(
@@ -118,7 +95,7 @@ final class DiffableDataSource: UICollectionViewDiffableDataSource<AnyHashable, 
         destinationSnapshot.reconfigureItems(itemsToReconfigure)
 
         // Apply the snapshot with item reconfigure updates.
-        self._applyDiffSnapshot(destinationSnapshot, animated: animated, completion: UncheckedCompletion {
+        self._applyDiffSnapshot(destinationSnapshot, animated: animated) {
 
             // Once the snapshot with item reconfigures is applied,
             // we need to find and apply supplementary view reconfigures, if needed.
@@ -149,7 +126,7 @@ final class DiffableDataSource: UICollectionViewDiffableDataSource<AnyHashable, 
 
             // Finally, we're done and can call completion.
             completion?()
-        })
+        }
     }
 
     private func _findItemsToReconfigure(
@@ -251,17 +228,27 @@ final class DiffableDataSource: UICollectionViewDiffableDataSource<AnyHashable, 
 
     // MARK: Diffing
 
-    private func _applyDiffSnapshot(_ snapshot: Snapshot, animated: Bool, completion: UncheckedCompletion) {
+    private func _applyDiffSnapshot(_ snapshot: Snapshot, animated: Bool, completion: SnapshotCompletion?) {
         self._performOnDiffingQueueIfNeeded {
-            // UIKit guarantees `completion` is called on the main queue.
-            self.apply(snapshot, animatingDifferences: animated, completion: completion.block)
+            self.apply(snapshot, animatingDifferences: animated) {
+                // UIKit guarantees `completion` is called on the main queue.
+                dispatchPrecondition(condition: .onQueue(.main))
+                MainActor.assumeIsolated {
+                    completion?()
+                }
+            }
         }
     }
 
-    private func _applyReloadSnapshot(_ snapshot: Snapshot, completion: UncheckedCompletion) {
+    private func _applyReloadSnapshot(_ snapshot: Snapshot, completion: SnapshotCompletion?) {
         self._performOnDiffingQueueIfNeeded {
-            // UIKit guarantees `completion` is called on the main queue.
-            self.applySnapshotUsingReloadData(snapshot, completion: completion.block)
+            self.applySnapshotUsingReloadData(snapshot) {
+                // UIKit guarantees `completion` is called on the main queue.
+                dispatchPrecondition(condition: .onQueue(.main))
+                MainActor.assumeIsolated {
+                    completion?()
+                }
+            }
         }
     }
 
