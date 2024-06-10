@@ -71,6 +71,18 @@ let updated = CollectionViewModel(sections: [/* updated items and sections */])
 driver.update(viewModel: updated)
 ```
 
+> [!IMPORTANT]
+>
+> When using this library, you should avoid calling the following `UICollectionView` APIs:
+>
+> - `reloadData()`
+> - `reconfigureItems(at:)`
+> - `reloadSections(_:)`
+> - `reloadItems(at:)`
+> - `performBatchUpdates(_:completion:)`
+> - All `UICollectionViewDataSource` methods
+> - All `UICollectionViewDelegate` methods
+
 ## Requirements
 
 - iOS 15.0+
