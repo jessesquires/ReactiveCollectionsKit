@@ -47,7 +47,7 @@ struct FakeNumberCellViewModel: CellViewModel {
     }
 
     nonisolated func hash(into hasher: inout Hasher) {
-        self.model.hash(into: &hasher)
+        hasher.combine(self.model)
     }
 }
 

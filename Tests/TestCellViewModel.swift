@@ -42,9 +42,13 @@ final class TestCellViewModel: XCTestCase {
     func test_eraseToAnyViewModel() {
         var viewModel = FakeTextCellViewModel()
         viewModel.expectationConfigureCell = self.expectation(description: "configure-cell")
+        viewModel.expectationConfigureCell?.expectedFulfillmentCount = 2
+
         viewModel.expectationDidSelect = self.expectation(description: "did-select")
+        viewModel.expectationDidSelect?.expectedFulfillmentCount = 2
 
         let erased = viewModel.eraseToAnyViewModel()
+        XCTAssertEqual(viewModel.hashValue, erased.hashValue)
 
         XCTAssertEqual(erased.id, viewModel.id)
         XCTAssertEqual(erased.registration, viewModel.registration)
@@ -55,13 +59,19 @@ final class TestCellViewModel: XCTestCase {
         XCTAssertTrue(erased.cellClass == viewModel.cellClass)
         XCTAssertEqual(erased.reuseIdentifier, viewModel.reuseIdentifier)
 
+        viewModel.configure(cell: FakeTextCollectionCell())
+        viewModel.didSelect(with: nil)
+
         erased.configure(cell: FakeTextCollectionCell())
         erased.didSelect(with: nil)
+
         self.waitForExpectations()
 
         let erased2 = viewModel.eraseToAnyViewModel()
         XCTAssertEqual(erased, erased2)
+        XCTAssertEqual(erased.hashValue, erased2.hashValue)
 
         XCTAssertNotEqual(erased, FakeCellViewModel().eraseToAnyViewModel())
+        XCTAssertNotEqual(erased.hashValue, FakeCellViewModel().eraseToAnyViewModel().hashValue)
     }
 }

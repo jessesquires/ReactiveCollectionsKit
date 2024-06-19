@@ -38,7 +38,7 @@ struct FakeSupplementaryViewModel: SupplementaryViewModel {
     }
 
     nonisolated func hash(into hasher: inout Hasher) {
-        self.title.hash(into: &hasher)
+        hasher.combine(self.title)
     }
 }
 
@@ -59,7 +59,7 @@ struct FakeHeaderViewModel: SupplementaryHeaderViewModel {
     }
 
     nonisolated func hash(into hasher: inout Hasher) {
-        self.title.hash(into: &hasher)
+        hasher.combine(self.title)
     }
 }
 
@@ -80,7 +80,7 @@ struct FakeFooterViewModel: SupplementaryFooterViewModel {
     }
 
     nonisolated func hash(into hasher: inout Hasher) {
-        self.title.hash(into: &hasher)
+        hasher.combine(self.title)
     }
 }
 
