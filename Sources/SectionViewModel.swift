@@ -49,13 +49,22 @@ public struct SectionViewModel: DiffableViewModel {
     /// - Parameters:
     ///   - id: A unique identifier for the section.
     ///   - cells: The cells in the section.
-    public init(id: UniqueIdentifier, cells: [AnyCellViewModel] = []) {
+    ///   - header: The header for the section.
+    ///   - footer: The footer for the section.
+    ///   - supplementaryViews: The supplementary views in the section.
+    public init(
+        id: UniqueIdentifier,
+        cells: [AnyCellViewModel] = [],
+        header: AnySupplementaryViewModel? = nil,
+        footer: AnySupplementaryViewModel? = nil,
+        supplementaryViews: [AnySupplementaryViewModel] = []
+    ) {
         self.init(
             id: id,
             anyCells: cells,
-            anyHeader: nil,
-            anyFooter: nil,
-            anySupplementaryViews: []
+            anyHeader: header,
+            anyFooter: footer,
+            anySupplementaryViews: supplementaryViews
         )
     }
 
@@ -122,6 +131,30 @@ public struct SectionViewModel: DiffableViewModel {
             anyHeader: header?.eraseToAnyViewModel(),
             anyFooter: footer?.eraseToAnyViewModel(),
             anySupplementaryViews: supplementaryViews
+        )
+    }
+
+    /// Initializes a section.
+    ///
+    /// - Parameters:
+    ///   - id: A unique identifier for the section.
+    ///   - cells: The cells in the section.
+    ///   - header: The header for the section.
+    ///   - footer: The footer for the section.
+    ///   - supplementaryViews: The supplementary views in the section.
+    public init<Cell: CellViewModel, View: SupplementaryViewModel>(
+        id: UniqueIdentifier,
+        cells: [Cell],
+        header: AnySupplementaryViewModel? = nil,
+        footer: AnySupplementaryViewModel? = nil,
+        supplementaryViews: [View]
+    ) {
+        self.init(
+            id: id,
+            anyCells: cells.map { $0.eraseToAnyViewModel() },
+            anyHeader: header,
+            anyFooter: footer,
+            anySupplementaryViews: supplementaryViews.map { $0.eraseToAnyViewModel() }
         )
     }
 

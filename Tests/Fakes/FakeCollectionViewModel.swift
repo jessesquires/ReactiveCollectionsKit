@@ -39,6 +39,8 @@ extension XCTestCase {
     func fakeSectionViewModel(
         id: String = .random,
         numCells: Int = Int.random(in: 1...20),
+        includeHeader: Bool = false,
+        includeFooter: Bool = false,
         expectDidSelectCell: Bool = false,
         expectConfigureCell: Bool = false
     ) -> SectionViewModel {
@@ -51,7 +53,14 @@ extension XCTestCase {
             )
             cellModels.append(model)
         }
-        return SectionViewModel(id: "section_\(id)", cells: cellModels)
+        let header = includeHeader ? FakeHeaderViewModel() : nil
+        let footer = includeFooter ? FakeFooterViewModel() : nil
+        return SectionViewModel(
+            id: "section_\(id)",
+            cells: cellModels,
+            header: header,
+            footer: footer
+        )
     }
 
     @MainActor

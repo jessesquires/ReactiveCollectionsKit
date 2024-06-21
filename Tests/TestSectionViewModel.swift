@@ -17,6 +17,14 @@ import XCTest
 final class TestSectionViewModel: XCTestCase {
 
     @MainActor
+    func test_empty_section() {
+        let section = SectionViewModel(id: "name")
+
+        XCTAssertEqual(section.count, .zero)
+        XCTAssertTrue(section.isEmpty)
+    }
+
+    @MainActor
     func test_section_with_only_cells() {
         let numCells = 3
         let name = "name"
@@ -28,11 +36,106 @@ final class TestSectionViewModel: XCTestCase {
     }
 
     @MainActor
-    func test_empty_section() {
-        let section = SectionViewModel(id: "name")
+    func test_hasSupplementaryViews() {
+        let section1 = SectionViewModel(id: "name")
+        XCTAssertFalse(section1.hasSupplementaryViews)
 
-        XCTAssertEqual(section.count, .zero)
-        XCTAssertTrue(section.isEmpty)
+        let section2 = self.fakeSectionViewModel(id: name, numCells: 3)
+        XCTAssertFalse(section2.hasSupplementaryViews)
+
+        let section3 = self.fakeSectionViewModel(id: name, numCells: 3, includeHeader: true)
+        XCTAssertTrue(section3.hasSupplementaryViews)
+
+        let section4 = self.fakeSectionViewModel(id: name, numCells: 3, includeFooter: true)
+        XCTAssertTrue(section4.hasSupplementaryViews)
+
+        let section5 = SectionViewModel(
+            id: "id",
+            cells: [FakeCellViewModel(), FakeCellViewModel()],
+            supplementaryViews: [FakeSupplementaryViewModel(), FakeSupplementaryViewModel()]
+        )
+        XCTAssertTrue(section5.hasSupplementaryViews)
+    }
+
+    @MainActor
+    func test_cell_registrations() {
+        let cells1 = [FakeTextCellViewModel(), FakeTextCellViewModel(), FakeTextCellViewModel()].map { $0.eraseToAnyViewModel() }
+        let cells2 = [FakeNumberCellViewModel(), FakeNumberCellViewModel(), FakeNumberCellViewModel()].map { $0.eraseToAnyViewModel() }
+        let section = SectionViewModel(
+            id: "id",
+            cells: cells1 + cells2
+        )
+
+        let cellRegistrations = section.cellRegistrations()
+        XCTAssertEqual(cellRegistrations.count, 2)
+        XCTAssertTrue(cellRegistrations.contains(FakeTextCellViewModel().registration))
+        XCTAssertTrue(cellRegistrations.contains(FakeNumberCellViewModel().registration))
+
+        let section1 = SectionViewModel(id: "id", cells: cells1)
+        XCTAssertEqual(section1.cellRegistrations().count, 1)
+
+        let section2 = SectionViewModel(id: "id", cells: cells2)
+        XCTAssertEqual(section2.cellRegistrations().count, 1)
+    }
+
+    @MainActor
+    func test_header_footer_registrations() {
+        let cells1 = [FakeTextCellViewModel(), FakeTextCellViewModel(), FakeTextCellViewModel()].map { $0.eraseToAnyViewModel() }
+        let cells2 = [FakeNumberCellViewModel(), FakeNumberCellViewModel(), FakeNumberCellViewModel()].map { $0.eraseToAnyViewModel() }
+        let header = FakeHeaderViewModel()
+        let footer = FakeFooterViewModel()
+        let section = SectionViewModel(
+            id: "id",
+            cells: cells1 + cells2,
+            header: header,
+            footer: footer
+        )
+
+        let headerFooterRegistrations = section.headerFooterRegistrations()
+        XCTAssertEqual(headerFooterRegistrations.count, 2)
+        XCTAssertTrue(headerFooterRegistrations.contains(FakeHeaderViewModel().registration))
+        XCTAssertTrue(headerFooterRegistrations.contains(FakeFooterViewModel().registration))
+    }
+
+    @MainActor
+    func test_supplementary_registrations() {
+        let cells1 = [FakeTextCellViewModel(), FakeTextCellViewModel(), FakeTextCellViewModel()].map { $0.eraseToAnyViewModel() }
+        let cells2 = [FakeNumberCellViewModel(), FakeNumberCellViewModel(), FakeNumberCellViewModel()].map { $0.eraseToAnyViewModel() }
+        let views = [FakeSupplementaryViewModel(), FakeSupplementaryViewModel(), FakeSupplementaryViewModel()]
+        let section = SectionViewModel(
+            id: "id",
+            cells: cells1 + cells2,
+            supplementaryViews: views
+        )
+
+        let supplementaryViewRegistrations = section.supplementaryViewRegistrations()
+        XCTAssertEqual(supplementaryViewRegistrations.count, 1)
+        XCTAssertTrue(supplementaryViewRegistrations.contains(FakeSupplementaryViewModel().registration))
+    }
+
+    @MainActor
+    func test_all_registrations() {
+        let cells1 = [FakeTextCellViewModel(), FakeTextCellViewModel(), FakeTextCellViewModel()].map { $0.eraseToAnyViewModel() }
+        let cells2 = [FakeNumberCellViewModel(), FakeNumberCellViewModel(), FakeNumberCellViewModel()].map { $0.eraseToAnyViewModel() }
+        let header = FakeHeaderViewModel()
+        let footer = FakeFooterViewModel()
+        let views = [FakeSupplementaryViewModel(), FakeSupplementaryViewModel(), FakeSupplementaryViewModel()]
+        let section = SectionViewModel(
+            id: "id",
+            cells: cells1 + cells2,
+            header: header,
+            footer: footer,
+            supplementaryViews: views
+        )
+
+        let allRegistrations = section.allRegistrations()
+        XCTAssertEqual(allRegistrations.count, 5)
+
+        XCTAssertTrue(allRegistrations.contains(FakeTextCellViewModel().registration))
+        XCTAssertTrue(allRegistrations.contains(FakeNumberCellViewModel().registration))
+        XCTAssertTrue(allRegistrations.contains(FakeHeaderViewModel().registration))
+        XCTAssertTrue(allRegistrations.contains(FakeFooterViewModel().registration))
+        XCTAssertTrue(allRegistrations.contains(FakeSupplementaryViewModel().registration))
     }
 
     @MainActor
