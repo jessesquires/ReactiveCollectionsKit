@@ -19,6 +19,13 @@ final class TestCollectionViewModel: XCTestCase {
     #warning("TODO: more tests")
 
     @MainActor
+    func test_emptyViewModel() {
+        let viewModel = CollectionViewModel.empty
+        XCTAssertTrue(viewModel.isEmpty)
+        XCTAssertTrue(viewModel.sections.isEmpty)
+    }
+
+    @MainActor
     func test_debugDescription() {
         let viewModel = self.fakeCollectionViewModel()
         print(viewModel.debugDescription)
