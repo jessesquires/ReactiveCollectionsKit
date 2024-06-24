@@ -130,6 +130,8 @@ final class TestCollectionViewDriver: UnitTestCase {
         let cells = 5
         let model = self.fakeCollectionViewModel(numSections: sections, numCells: cells, expectConfigureCell: true)
 
+        #warning("TODO: add nib-based cell")
+
         let viewController = self.viewController
         let driver = CollectionViewDriver(
             view: viewController.collectionView,
@@ -158,6 +160,8 @@ final class TestCollectionViewDriver: UnitTestCase {
             view.expectationConfigureView = self.expectation(description: "configure_view_\(view.title)")
             return view
         }
+
+        #warning("TODO: add nib-based supplementary view")
 
         let section = SectionViewModel(
             id: "section",

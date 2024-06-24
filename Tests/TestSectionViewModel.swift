@@ -139,14 +139,52 @@ final class TestSectionViewModel: XCTestCase {
     }
 
     @MainActor
+    func test_allSupplementaryViewsByIdentifier() {
+        let cells = [FakeTextCellViewModel(), FakeTextCellViewModel(), FakeTextCellViewModel()]
+        let originalViews = [FakeSupplementaryViewModel(), FakeSupplementaryViewModel(), FakeSupplementaryViewModel()]
+        let section = SectionViewModel(id: "id", cells: cells, supplementaryViews: originalViews)
+
+        let allViews = section.allSupplementaryViewsByIdentifier()
+        XCTAssertEqual(allViews.count, 3)
+
+        allViews.forEach { key, _ in
+            let expected = originalViews.first { $0.id == key }
+            XCTAssertEqual(allViews[key], expected?.eraseToAnyViewModel())
+        }
+    }
+
+    @MainActor
     func test_RandomAccessCollection_conformance() {
-        let numCells = 3
-        let section = self.fakeSectionViewModel(numCells: numCells)
+        let cells = [FakeTextCellViewModel(), FakeTextCellViewModel(), FakeTextCellViewModel()]
+        let header = FakeHeaderViewModel()
+        let footer = FakeFooterViewModel()
+        let section = SectionViewModel(id: "id", cells: cells, header: header, footer: footer)
 
         XCTAssertEqual(section.count, section.cells.count)
         XCTAssertEqual(section.isEmpty, section.cells.isEmpty)
         XCTAssertEqual(section.startIndex, section.cells.startIndex)
         XCTAssertEqual(section.endIndex, section.cells.endIndex)
         XCTAssertEqual(section.index(after: 0), section.cells.index(after: 0))
+        XCTAssertEqual(section[0], cells[0].eraseToAnyViewModel())
+        XCTAssertEqual(section[1], cells[1].eraseToAnyViewModel())
+        XCTAssertEqual(section[2], cells[2].eraseToAnyViewModel())
+    }
+
+    @MainActor
+    func test_debugDescription() {
+        let cells1 = [FakeTextCellViewModel(), FakeTextCellViewModel(), FakeTextCellViewModel()].map { $0.eraseToAnyViewModel() }
+        let cells2 = [FakeNumberCellViewModel(), FakeNumberCellViewModel(), FakeNumberCellViewModel()].map { $0.eraseToAnyViewModel() }
+        let header = FakeHeaderViewModel()
+        let footer = FakeFooterViewModel()
+        let views = [FakeSupplementaryViewModel(), FakeSupplementaryViewModel(), FakeSupplementaryViewModel()]
+        let section = SectionViewModel(
+            id: "id",
+            cells: cells1 + cells2,
+            header: header,
+            footer: footer,
+            supplementaryViews: views
+        )
+
+        print(section.debugDescription)
     }
 }

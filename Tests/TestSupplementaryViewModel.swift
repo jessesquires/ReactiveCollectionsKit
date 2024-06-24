@@ -80,4 +80,10 @@ final class TestSupplementaryViewModel: XCTestCase {
         )
         XCTAssertEqual(viewModel.registration, expected)
     }
+
+    @MainActor
+    func test_debugDescription() {
+        let cell = FakeSupplementaryViewModel().eraseToAnyViewModel()
+        print(cell.debugDescription)
+    }
 }

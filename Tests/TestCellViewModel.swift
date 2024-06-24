@@ -74,4 +74,10 @@ final class TestCellViewModel: XCTestCase {
         XCTAssertNotEqual(erased, FakeCellViewModel().eraseToAnyViewModel())
         XCTAssertNotEqual(erased.hashValue, FakeCellViewModel().eraseToAnyViewModel().hashValue)
     }
+
+    @MainActor
+    func test_debugDescription() {
+        let cell = FakeTextCellViewModel().eraseToAnyViewModel()
+        print(cell.debugDescription)
+    }
 }
