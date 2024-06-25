@@ -186,4 +186,40 @@ final class TestCollectionViewDriver: UnitTestCase {
 
         self.keepDriverAlive(driver)
     }
+
+    @MainActor
+    func test_dataSource_supplementaryViewAt_calls_supplementaryViewModel_configure_usingNibs() {
+        let cells = [FakeNumberCellViewModel(), FakeNumberCellViewModel(), FakeNumberCellViewModel()]
+
+        let views = (1...3).map { _ in
+            var view = FakeSupplementaryNibViewModel()
+            view.expectationConfigureView = self.expectation(description: "configure_nib_view_\(view.id)")
+            return view
+        }
+
+        let section = SectionViewModel(
+            id: "section",
+            cells: cells,
+            header: FakeHeaderViewModel(),
+            footer: FakeFooterViewModel(),
+            supplementaryViews: views
+        )
+        let model = CollectionViewModel(id: "id", sections: [section])
+
+        let viewController = FakeCollectionViewController()
+        viewController.collectionView.setCollectionViewLayout(
+            UICollectionViewCompositionalLayout.fakeLayout(useNibViews: true),
+            animated: false
+        )
+        let driver = CollectionViewDriver(
+            view: viewController.collectionView,
+            viewModel: model,
+            options: .test()
+        )
+        self.simulateAppearance(viewController: viewController)
+
+        self.waitForExpectations()
+
+        self.keepDriverAlive(driver)
+    }
 }
