@@ -47,12 +47,6 @@ final class GridViewController: ExampleViewController, CellEventCoordinator {
         self.driver.update(viewModel: viewModel)
     }
 
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-
-        self.collectionView.deselectItem(at: IndexPath(item: 0, section: 0), animated: true)
-    }
-
     // MARK: CellEventCoordinator
     // In this example, the view controller handles cell selection and navigation.
 
