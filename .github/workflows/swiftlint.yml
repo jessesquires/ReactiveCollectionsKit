@@ -1,0 +1,26 @@
+# GitHub Actions Virtual Environments
+# https://github.com/actions/virtual-environments/
+name: SwiftLint
+
+on:
+  pull_request:
+    paths:
+      - '.github/workflows/swiftlint.yml'
+      - '.swiftlint.yml'
+      - '**/*.swift'
+
+env:
+  DEVELOPER_DIR: /Applications/Xcode_15.4.app/Contents/Developer
+
+jobs:
+  SwiftLint:
+    runs-on: macos-14
+    steps:
+      - name: git checkout
+        uses: actions/checkout@v4
+
+      # https://github.com/norio-nomura/action-swiftlint
+      - name: Run SwiftLint
+        uses: norio-nomura/action-swiftlint@3.2.1
+        with:
+          args: --strict
