@@ -58,6 +58,33 @@ final class TestSectionViewModel: XCTestCase {
     }
 
     @MainActor
+    func test_cellViewModel_forId() {
+        let cells = self.fakeCellViewModels(count: 10)
+        let expected = cells.first!
+
+        let section = SectionViewModel(id: "id", cells: cells.shuffled())
+
+        XCTAssertEqual(section.cellViewModel(for: expected.id), expected)
+
+        XCTAssertNil(section.cellViewModel(for: "nonexistent"))
+    }
+
+    @MainActor
+    func test_supplementaryViewModel_forId() {
+        let expected = FakeSupplementaryViewModel()
+
+        let section = SectionViewModel(
+            id: "id",
+            cells: [FakeCellViewModel(), FakeCellViewModel(), FakeCellViewModel()],
+            supplementaryViews: [FakeSupplementaryViewModel(), expected, FakeSupplementaryViewModel()].shuffled()
+        )
+
+        XCTAssertEqual(section.supplementaryViewModel(for: expected.id), expected.eraseToAnyViewModel())
+
+        XCTAssertNil(section.supplementaryViewModel(for: "nonexistent"))
+    }
+
+    @MainActor
     func test_cell_registrations() {
         let cells1 = [FakeTextCellViewModel(), FakeTextCellViewModel(), FakeTextCellViewModel()].map { $0.eraseToAnyViewModel() }
         let cells2 = [FakeNumberCellViewModel(), FakeNumberCellViewModel(), FakeNumberCellViewModel()].map { $0.eraseToAnyViewModel() }

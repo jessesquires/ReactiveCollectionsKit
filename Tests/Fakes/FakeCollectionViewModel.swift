@@ -44,58 +44,72 @@ extension XCTestCase {
         expectDidSelectCell: Bool = false,
         expectConfigureCell: Bool = false
     ) -> SectionViewModel {
-        var cellModels = [AnyCellViewModel]()
-        for index in 0..<numCells {
-            let model = self.fakeCellViewModel(
-                index: index,
-                expectDidSelectCell: expectDidSelectCell,
-                expectConfigureCell: expectConfigureCell
-            )
-            cellModels.append(model)
-        }
+        let cells = self.fakeCellViewModels(
+            count: numCells,
+            expectDidSelectCell: expectDidSelectCell,
+            expectConfigureCell: expectConfigureCell
+        )
         let header = includeHeader ? FakeHeaderViewModel() : nil
         let footer = includeFooter ? FakeFooterViewModel() : nil
         return SectionViewModel(
             id: "section_\(id)",
-            cells: cellModels,
+            cells: cells,
             header: header,
             footer: footer
         )
     }
 
     @MainActor
-    func fakeCellViewModel(
+    func fakeCellViewModels(
+        count: Int = Int.random(in: 3...20),
+        expectDidSelectCell: Bool = false,
+        expectConfigureCell: Bool = false
+    ) -> [AnyCellViewModel] {
+        var cells = [AnyCellViewModel]()
+        for index in 0..<count {
+            let model = self._fakeCellViewModel(
+                index: index,
+                expectDidSelectCell: expectDidSelectCell,
+                expectConfigureCell: expectConfigureCell
+            )
+            cells.append(model)
+        }
+        return cells
+    }
+
+    @MainActor
+    private func _fakeCellViewModel(
         index: Int,
         expectDidSelectCell: Bool = false,
         expectConfigureCell: Bool = false
     ) -> AnyCellViewModel {
         if index.isMultiple(of: 2) {
             var viewModel = FakeNumberCellViewModel()
-            viewModel.expectationDidSelect = self.cellDidSelectExpectation(expect: expectDidSelectCell, id: viewModel.id)
-            viewModel.expectationConfigureCell = self.cellConfigureExpectation(expect: expectConfigureCell, id: viewModel.id)
+            viewModel.expectationDidSelect = self._cellDidSelectExpectation(expect: expectDidSelectCell, id: viewModel.id)
+            viewModel.expectationConfigureCell = self._cellConfigureExpectation(expect: expectConfigureCell, id: viewModel.id)
             return viewModel.eraseToAnyViewModel()
         }
 
         if index.isMultiple(of: 3) {
             var viewModel = FakeCellNibViewModel()
-            viewModel.expectationDidSelect = self.cellDidSelectExpectation(expect: expectDidSelectCell, id: viewModel.id)
-            viewModel.expectationConfigureCell = self.cellConfigureExpectation(expect: expectConfigureCell, id: viewModel.id)
+            viewModel.expectationDidSelect = self._cellDidSelectExpectation(expect: expectDidSelectCell, id: viewModel.id)
+            viewModel.expectationConfigureCell = self._cellConfigureExpectation(expect: expectConfigureCell, id: viewModel.id)
             return viewModel.eraseToAnyViewModel()
         }
 
         var viewModel = FakeTextCellViewModel()
-        viewModel.expectationDidSelect = self.cellDidSelectExpectation(expect: expectDidSelectCell, id: viewModel.id)
-        viewModel.expectationConfigureCell = self.cellConfigureExpectation(expect: expectConfigureCell, id: viewModel.id)
+        viewModel.expectationDidSelect = self._cellDidSelectExpectation(expect: expectDidSelectCell, id: viewModel.id)
+        viewModel.expectationConfigureCell = self._cellConfigureExpectation(expect: expectConfigureCell, id: viewModel.id)
         return viewModel.eraseToAnyViewModel()
     }
 
     @MainActor
-    private func cellDidSelectExpectation(expect: Bool, id: UniqueIdentifier) -> XCTestExpectation? {
+    private func _cellDidSelectExpectation(expect: Bool, id: UniqueIdentifier) -> XCTestExpectation? {
         expect ? self.expectation(description: "didSelect_\(id)") : nil
     }
 
     @MainActor
-    private func cellConfigureExpectation(expect: Bool, id: UniqueIdentifier) -> XCTestExpectation? {
+    private func _cellConfigureExpectation(expect: Bool, id: UniqueIdentifier) -> XCTestExpectation? {
         expect ? self.expectation(description: "configureCell_\(id)") : nil
     }
 }

@@ -204,6 +204,24 @@ public struct SectionViewModel: DiffableViewModel {
         self.supplementaryViews = anySupplementaryViews
     }
 
+    // MARK: Accessing Cells and Supplementary Views
+
+    /// Returns the cell for the specified `id`.
+    ///
+    /// - Parameter id: The identifier for the cell.
+    /// - Returns: The cell, if it exists.
+    public func cellViewModel(for id: UniqueIdentifier) -> AnyCellViewModel? {
+        self.cells.first { $0.id == id }
+    }
+
+    /// Returns the supplementary view for the specified `id`.
+    ///
+    /// - Parameter id: The identifier for the supplementary view.
+    /// - Returns: The supplementary view, if it exists.
+    public func supplementaryViewModel(for id: UniqueIdentifier) -> AnySupplementaryViewModel? {
+        self.supplementaryViews.first { $0.id == id }
+    }
+
     // MARK: Internal
 
     func cellRegistrations() -> Set<ViewRegistration> {
