@@ -31,7 +31,7 @@ struct FakeSupplementaryNibViewModel: SupplementaryViewModel {
             viewType: .supplementary(kind: Self.kind),
             method: .nib(
                 name: "FakeSupplementaryNib",
-                bundle: Bundle(for: FakeSupplementaryNibView.self)
+                bundle: .testBundle
             )
         )
     }

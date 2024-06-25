@@ -34,7 +34,11 @@ let package = Package(
         .testTarget(
             name: "ReactiveCollectionsKitTests",
             dependencies: ["ReactiveCollectionsKit"],
-            path: "Tests"
+            path: "Tests",
+            resources: [
+                .process("Fakes/FakeCellNib.xib"),
+                .process("Fakes/FakeSupplementaryNib.xib")
+            ]
         )
     ],
     swiftLanguageVersions: [.v5]

@@ -29,7 +29,7 @@ struct FakeCellNibViewModel: CellViewModel {
             viewType: .cell,
             method: .nib(
                 name: "FakeCellNib",
-                bundle: Bundle(for: FakeCellNibView.self)
+                bundle: .testBundle
             )
         )
     }
