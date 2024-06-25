@@ -36,7 +36,7 @@ jobs:
       - name: delete xcodeproj
         run: rm -rf ReactiveCollectionsKit.xcodeproj
 
-      - name: Test
+      - name: Build
         run: |
           set -o pipefail
-          xcodebuild test -scheme "$SCHEME" -destination "$IOS_DEST" | xcpretty -c
+          xcodebuild build -scheme "$SCHEME" -destination "$IOS_DEST" | xcpretty -c
