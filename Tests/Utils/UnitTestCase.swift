@@ -18,32 +18,38 @@ open class UnitTestCase: XCTestCase {
 
     private static let frame = CGRect(x: 0, y: 0, width: 320, height: 600)
 
-    @MainActor let collectionView = FakeCollectionView(
-        frame: frame,
-        collectionViewLayout: FakeCollectionLayout()
-    )
-
-    @MainActor let window = UIWindow()
-
-    @MainActor let viewController = FakeCollectionViewController()
+    @MainActor var collectionView: FakeCollectionView {
+        FakeCollectionView(
+            frame: Self.frame,
+            collectionViewLayout: FakeCollectionLayout()
+        )
+    }
 
     @MainActor var keepAliveDrivers = [CollectionViewDriver]()
+
+    @MainActor var keepAliveWindows = [UIWindow]()
 
     @MainActor
     override open func setUp() {
         super.setUp()
         self.collectionView.layoutSubviews()
         self.collectionView.reloadData()
+
         self.keepAliveDrivers.removeAll()
+        self.keepAliveWindows.removeAll()
     }
 
     @MainActor
-    func simulateViewControllerAppearance() {
-        self.window.frame = Self.frame
-        self.window.rootViewController = self.viewController
-        self.window.makeKeyAndVisible()
-        self.viewController.beginAppearanceTransition(true, animated: false)
-        self.viewController.endAppearanceTransition()
+    func simulateAppearance(viewController: UIViewController) {
+        viewController.beginAppearanceTransition(true, animated: false)
+        viewController.endAppearanceTransition()
+
+        let window = UIWindow()
+        window.frame = Self.frame
+        window.rootViewController = viewController
+        window.makeKeyAndVisible()
+
+        self.keepAliveWindows.append(window)
     }
 
     @MainActor

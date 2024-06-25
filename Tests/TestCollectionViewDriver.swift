@@ -130,15 +130,13 @@ final class TestCollectionViewDriver: UnitTestCase {
         let cells = 5
         let model = self.fakeCollectionViewModel(numSections: sections, numCells: cells, expectConfigureCell: true)
 
-        #warning("TODO: add nib-based cell")
-
-        let viewController = self.viewController
+        let viewController = FakeCollectionViewController()
         let driver = CollectionViewDriver(
             view: viewController.collectionView,
             viewModel: model,
             options: .test()
         )
-        self.simulateViewControllerAppearance()
+        self.simulateAppearance(viewController: viewController)
 
         self.waitForExpectations()
 
@@ -161,8 +159,6 @@ final class TestCollectionViewDriver: UnitTestCase {
             return view
         }
 
-        #warning("TODO: add nib-based supplementary view")
-
         let section = SectionViewModel(
             id: "section",
             cells: cells,
@@ -171,9 +167,9 @@ final class TestCollectionViewDriver: UnitTestCase {
             supplementaryViews: views
         )
 
-        let collection = CollectionViewModel(id: "id", sections: [section])
+        let model = CollectionViewModel(id: "id", sections: [section])
 
-        let viewController = self.viewController
+        let viewController = FakeCollectionViewController()
         viewController.collectionView.setCollectionViewLayout(
             UICollectionViewCompositionalLayout.fakeLayout(),
             animated: false
@@ -181,10 +177,10 @@ final class TestCollectionViewDriver: UnitTestCase {
 
         let driver = CollectionViewDriver(
             view: viewController.collectionView,
-            viewModel: collection,
+            viewModel: model,
             options: .test()
         )
-        self.simulateViewControllerAppearance()
+        self.simulateAppearance(viewController: viewController)
 
         self.waitForExpectations()
 

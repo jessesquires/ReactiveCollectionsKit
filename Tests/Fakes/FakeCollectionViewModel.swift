@@ -71,15 +71,31 @@ extension XCTestCase {
     ) -> AnyCellViewModel {
         if index.isMultiple(of: 2) {
             var viewModel = FakeNumberCellViewModel()
-            viewModel.expectationDidSelect = expectDidSelectCell ? self.expectation(description: "didSelect_\(viewModel.id)") : nil
-            viewModel.expectationConfigureCell = expectConfigureCell ? self.expectation(description: "configureCell_\(viewModel.id)") : nil
+            viewModel.expectationDidSelect = self.cellDidSelectExpectation(expect: expectDidSelectCell, id: viewModel.id)
+            viewModel.expectationConfigureCell = self.cellConfigureExpectation(expect: expectConfigureCell, id: viewModel.id)
+            return viewModel.eraseToAnyViewModel()
+        }
+
+        if index.isMultiple(of: 3) {
+            var viewModel = FakeCellNibViewModel()
+            viewModel.expectationDidSelect = self.cellDidSelectExpectation(expect: expectDidSelectCell, id: viewModel.id)
+            viewModel.expectationConfigureCell = self.cellConfigureExpectation(expect: expectConfigureCell, id: viewModel.id)
             return viewModel.eraseToAnyViewModel()
         }
 
         var viewModel = FakeTextCellViewModel()
-        viewModel.expectationDidSelect = expectDidSelectCell ? self.expectation(description: "didSelect_\(viewModel.id)") : nil
-        viewModel.expectationConfigureCell = expectConfigureCell ? self.expectation(description: "configureCell_\(viewModel.id)") : nil
+        viewModel.expectationDidSelect = self.cellDidSelectExpectation(expect: expectDidSelectCell, id: viewModel.id)
+        viewModel.expectationConfigureCell = self.cellConfigureExpectation(expect: expectConfigureCell, id: viewModel.id)
         return viewModel.eraseToAnyViewModel()
+    }
 
+    @MainActor
+    private func cellDidSelectExpectation(expect: Bool, id: UniqueIdentifier) -> XCTestExpectation? {
+        expect ? self.expectation(description: "didSelect_\(id)") : nil
+    }
+
+    @MainActor
+    private func cellConfigureExpectation(expect: Bool, id: UniqueIdentifier) -> XCTestExpectation? {
+        expect ? self.expectation(description: "configureCell_\(id)") : nil
     }
 }

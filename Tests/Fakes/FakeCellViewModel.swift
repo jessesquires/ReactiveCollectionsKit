@@ -16,7 +16,7 @@ import Foundation
 import XCTest
 
 struct FakeCellViewModel: CellViewModel {
-    nonisolated var id: UniqueIdentifier { "\(Self.self)" }
+    let id: UniqueIdentifier = String.random
 
     func configure(cell: FakeCollectionCell) { }
 }

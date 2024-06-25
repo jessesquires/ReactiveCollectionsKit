@@ -22,11 +22,13 @@ struct FakeSupplementaryViewModel: SupplementaryViewModel {
 
     nonisolated var id: UniqueIdentifier { self.title }
 
-    let registration = ViewRegistration(
-        reuseIdentifier: "view",
-        supplementaryViewClass: FakeSupplementaryView.self,
-        kind: Self.kind
-    )
+    var registration: ViewRegistration {
+        ViewRegistration(
+            reuseIdentifier: self.reuseIdentifier,
+            supplementaryViewClass: FakeSupplementaryView.self,
+            kind: Self.kind
+        )
+    }
 
     var expectationConfigureView: XCTestExpectation?
     func configure(view: FakeSupplementaryView) {

@@ -16,15 +16,23 @@ import Foundation
 import UIKit
 
 extension UICollectionViewCompositionalLayout {
-    static func fakeLayout() -> UICollectionViewCompositionalLayout {
+    static func fakeLayout(useNibViews: Bool = false) -> UICollectionViewCompositionalLayout {
         let fractionalWidth = CGFloat(0.5)
 
         // Supplementary Item
         let viewSize = NSCollectionLayoutSize(widthDimension: .absolute(50),
                                               heightDimension: .absolute(50))
-        let view = NSCollectionLayoutSupplementaryItem(layoutSize: viewSize,
+
+        let view: NSCollectionLayoutSupplementaryItem
+        if useNibViews {
+            view = NSCollectionLayoutSupplementaryItem(layoutSize: viewSize,
+                                                       elementKind: FakeSupplementaryNibViewModel.kind,
+                                                       containerAnchor: .init(edges: .top))
+        } else {
+            view = NSCollectionLayoutSupplementaryItem(layoutSize: viewSize,
                                                        elementKind: FakeSupplementaryViewModel.kind,
                                                        containerAnchor: .init(edges: .top))
+        }
 
         // Item
         let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(fractionalWidth),

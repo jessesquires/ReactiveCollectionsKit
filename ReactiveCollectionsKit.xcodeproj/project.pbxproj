@@ -13,6 +13,9 @@
 		0B31B9312BCC5B66006F2078 /* CellEventCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B31B9302BCC5B66006F2078 /* CellEventCoordinator.swift */; };
 		0B4245DA2C014F4B00DBEC2F /* CollectionViewDriverOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B4245D92C014F4B00DBEC2F /* CollectionViewDriverOptions.swift */; };
 		0B7A18EC2C2A17A700E59C35 /* TestCollectionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B7A18EB2C2A17A700E59C35 /* TestCollectionViewModel.swift */; };
+		0B7A18EF2C2A4DE300E59C35 /* FakeSupplementaryNib.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0B7A18EE2C2A4DE300E59C35 /* FakeSupplementaryNib.xib */; };
+		0B7A18F12C2A4E1A00E59C35 /* FakeCellNibView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B7A18F02C2A4E1A00E59C35 /* FakeCellNibView.swift */; };
+		0B7A18F32C2A4E4500E59C35 /* FakeSupplementaryNibView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B7A18F22C2A4E4500E59C35 /* FakeSupplementaryNibView.swift */; };
 		0B8C6CEC267ED08E0042DFE2 /* SupplementaryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B8C6CEB267ED08E0042DFE2 /* SupplementaryViewModel.swift */; };
 		0BA0E2CA2C0303DC001FB5AA /* TestCollectionExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BA0E2C92C0303DC001FB5AA /* TestCollectionExtensions.swift */; };
 		0BA0E2CC2C030445001FB5AA /* TestCollectionViewDriverOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BA0E2CB2C030445001FB5AA /* TestCollectionViewDriverOptions.swift */; };
@@ -39,7 +42,7 @@
 		0BFBB2F92C0D4BC7000842B6 /* TestSupplementaryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BFBB2F82C0D4BC7000842B6 /* TestSupplementaryViewModel.swift */; };
 		0BFBB2FB2C0D4C34000842B6 /* FakeSupplementaryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BFBB2FA2C0D4C34000842B6 /* FakeSupplementaryViewModel.swift */; };
 		0BFBB2FE2C0DA0A7000842B6 /* FakeLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BFBB2FD2C0DA0A7000842B6 /* FakeLayout.swift */; };
-		88462766238FA2C8005FB389 /* FakeNib.xib in Resources */ = {isa = PBXBuildFile; fileRef = 88462765238FA2C8005FB389 /* FakeNib.xib */; };
+		88462766238FA2C8005FB389 /* FakeCellNib.xib in Resources */ = {isa = PBXBuildFile; fileRef = 88462765238FA2C8005FB389 /* FakeCellNib.xib */; };
 		884880D7238CE9020056F669 /* UnitTestCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 884880D6238CE9020056F669 /* UnitTestCase.swift */; };
 		884880DA238CEA1A0056F669 /* FakeCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 884880D8238CE9BF0056F669 /* FakeCollectionView.swift */; };
 		8872DE95238D18D5005774EA /* TestCollectionViewDriver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8872DE94238D18D5005774EA /* TestCollectionViewDriver.swift */; };
@@ -72,6 +75,9 @@
 		0B31B9302BCC5B66006F2078 /* CellEventCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CellEventCoordinator.swift; sourceTree = "<group>"; };
 		0B4245D92C014F4B00DBEC2F /* CollectionViewDriverOptions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewDriverOptions.swift; sourceTree = "<group>"; };
 		0B7A18EB2C2A17A700E59C35 /* TestCollectionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestCollectionViewModel.swift; sourceTree = "<group>"; };
+		0B7A18EE2C2A4DE300E59C35 /* FakeSupplementaryNib.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FakeSupplementaryNib.xib; sourceTree = "<group>"; };
+		0B7A18F02C2A4E1A00E59C35 /* FakeCellNibView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FakeCellNibView.swift; sourceTree = "<group>"; };
+		0B7A18F22C2A4E4500E59C35 /* FakeSupplementaryNibView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FakeSupplementaryNibView.swift; sourceTree = "<group>"; };
 		0B8C6CEB267ED08E0042DFE2 /* SupplementaryViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SupplementaryViewModel.swift; sourceTree = "<group>"; };
 		0BA0E2C92C0303DC001FB5AA /* TestCollectionExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestCollectionExtensions.swift; sourceTree = "<group>"; };
 		0BA0E2CB2C030445001FB5AA /* TestCollectionViewDriverOptions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestCollectionViewDriverOptions.swift; sourceTree = "<group>"; };
@@ -98,7 +104,7 @@
 		0BFBB2F82C0D4BC7000842B6 /* TestSupplementaryViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestSupplementaryViewModel.swift; sourceTree = "<group>"; };
 		0BFBB2FA2C0D4C34000842B6 /* FakeSupplementaryViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FakeSupplementaryViewModel.swift; sourceTree = "<group>"; };
 		0BFBB2FD2C0DA0A7000842B6 /* FakeLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FakeLayout.swift; sourceTree = "<group>"; };
-		88462765238FA2C8005FB389 /* FakeNib.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FakeNib.xib; sourceTree = "<group>"; };
+		88462765238FA2C8005FB389 /* FakeCellNib.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FakeCellNib.xib; sourceTree = "<group>"; };
 		884880D6238CE9020056F669 /* UnitTestCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnitTestCase.swift; sourceTree = "<group>"; };
 		884880D8238CE9BF0056F669 /* FakeCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FakeCollectionView.swift; sourceTree = "<group>"; };
 		884880DD238CF02F0056F669 /* XCTestCase+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "XCTestCase+Extensions.swift"; sourceTree = "<group>"; };
@@ -139,12 +145,15 @@
 			isa = PBXGroup;
 			children = (
 				0BFBB2EB2C0BFD1B000842B6 /* FakeCellEventCoordinator.swift */,
+				88462765238FA2C8005FB389 /* FakeCellNib.xib */,
+				0B7A18F02C2A4E1A00E59C35 /* FakeCellNibView.swift */,
 				0BFA774A2BB8B714009B9C5B /* FakeCellViewModel.swift */,
 				884880D8238CE9BF0056F669 /* FakeCollectionView.swift */,
 				88BD6D19238D124300FB1846 /* FakeCollectionViewModel.swift */,
 				0BFBB2FD2C0DA0A7000842B6 /* FakeLayout.swift */,
-				88462765238FA2C8005FB389 /* FakeNib.xib */,
 				0BFBB2E72C0BF8AC000842B6 /* FakeNumberModel.swift */,
+				0B7A18EE2C2A4DE300E59C35 /* FakeSupplementaryNib.xib */,
+				0B7A18F22C2A4E4500E59C35 /* FakeSupplementaryNibView.swift */,
 				0BFBB2FA2C0D4C34000842B6 /* FakeSupplementaryViewModel.swift */,
 				0BFBB2E92C0BF8B8000842B6 /* FakeTextModel.swift */,
 			);
@@ -338,7 +347,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				88462766238FA2C8005FB389 /* FakeNib.xib in Resources */,
+				0B7A18EF2C2A4DE300E59C35 /* FakeSupplementaryNib.xib in Resources */,
+				88462766238FA2C8005FB389 /* FakeCellNib.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -413,11 +423,13 @@
 				0BA0E2CC2C030445001FB5AA /* TestCollectionViewDriverOptions.swift in Sources */,
 				0BFBB2EC2C0BFD1B000842B6 /* FakeCellEventCoordinator.swift in Sources */,
 				0BFA774C2BB8B717009B9C5B /* FakeCellViewModel.swift in Sources */,
+				0B7A18F32C2A4E4500E59C35 /* FakeSupplementaryNibView.swift in Sources */,
 				0BFBB2F02C0D3C92000842B6 /* XCTestExpectation+Expectations.swift in Sources */,
 				0BFBB2FE2C0DA0A7000842B6 /* FakeLayout.swift in Sources */,
 				88BD6D1B238D127700FB1846 /* FakeCollectionViewModel.swift in Sources */,
 				0BFA77472BB8B6DB009B9C5B /* XCTestCase+Extensions.swift in Sources */,
 				0BFA77482BB8B6DB009B9C5B /* String+Extensions.swift in Sources */,
+				0B7A18F12C2A4E1A00E59C35 /* FakeCellNibView.swift in Sources */,
 				0BA0E2CE2C0304B4001FB5AA /* TestEmptyView.swift in Sources */,
 				884880D7238CE9020056F669 /* UnitTestCase.swift in Sources */,
 				884880DA238CEA1A0056F669 /* FakeCollectionView.swift in Sources */,

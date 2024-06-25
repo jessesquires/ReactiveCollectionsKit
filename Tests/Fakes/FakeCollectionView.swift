@@ -18,6 +18,8 @@ final class FakeCollectionCell: UICollectionViewCell { }
 
 final class FakeCollectionLayout: UICollectionViewFlowLayout { }
 
+#warning("TODO: collection view tests")
+
 final class FakeCollectionView: UICollectionView {
 
     var dequeueCellExpectation: XCTestExpectation?
@@ -39,31 +41,31 @@ final class FakeCollectionView: UICollectionView {
         super.register(nib, forCellWithReuseIdentifier: identifier)
     }
 
-    var dequeueHeaderFooterExpectation: XCTestExpectation?
+    var dequeueSupplementaryViewExpectation: XCTestExpectation?
     override func dequeueReusableSupplementaryView(ofKind elementKind: String,
                                                    withReuseIdentifier identifier: String,
                                                    for indexPath: IndexPath) -> UICollectionReusableView {
-        self.dequeueHeaderFooterExpectation?.fulfillAndLog()
+        self.dequeueSupplementaryViewExpectation?.fulfillAndLog()
         return super.dequeueReusableSupplementaryView(ofKind: elementKind,
                                                       withReuseIdentifier: identifier,
                                                       for: indexPath)
     }
 
-    var registerHeaderFooterClassExpectation: XCTestExpectation?
+    var registerSupplementaryViewExpectation: XCTestExpectation?
     override func register(_ viewClass: AnyClass?,
                            forSupplementaryViewOfKind elementKind: String,
                            withReuseIdentifier identifier: String) {
-        self.registerHeaderFooterClassExpectation?.fulfillAndLog()
+        self.registerSupplementaryViewExpectation?.fulfillAndLog()
         super.register(viewClass,
                        forSupplementaryViewOfKind: elementKind,
                        withReuseIdentifier: identifier)
     }
 
-    var registerHeaderFooterNibExpectation: XCTestExpectation?
+    var registerSupplementaryNibExpectation: XCTestExpectation?
     override func register(_ nib: UINib?,
                            forSupplementaryViewOfKind kind: String,
                            withReuseIdentifier identifier: String) {
-        self.registerHeaderFooterNibExpectation?.fulfillAndLog()
+        self.registerSupplementaryNibExpectation?.fulfillAndLog()
         super.register(nib,
                        forSupplementaryViewOfKind: kind,
                        withReuseIdentifier: identifier)

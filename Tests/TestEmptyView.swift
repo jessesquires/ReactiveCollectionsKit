@@ -35,7 +35,7 @@ final class TestEmptyView: UnitTestCase {
             emptyView
         }
 
-        let viewController = self.viewController
+        let viewController = FakeCollectionViewController()
         let driver = CollectionViewDriver(
             view: viewController.collectionView,
             options: .test(),
@@ -44,7 +44,7 @@ final class TestEmptyView: UnitTestCase {
 
         XCTAssertTrue(driver.viewModel.isEmpty)
 
-        self.simulateViewControllerAppearance()
+        self.simulateAppearance(viewController: viewController)
         XCTAssertTrue(driver.view.subviews.contains(where: { $0 === emptyView }))
 
         let model = self.fakeCollectionViewModel()
