@@ -127,6 +127,29 @@ public struct CollectionViewModel: Hashable, DiffableViewModel {
         return nil
     }
 
+    // MARK: Subscript
+
+    /// Returns the cell at the specified index path.
+    ///
+    /// - Parameter indexPath: The index path of the cell.
+    /// - Returns: The cell at `indexPath`.
+    ///
+    /// - Precondition: The specified `indexPath` must be valid.
+    public subscript(indexPath: IndexPath) -> AnyCellViewModel {
+        self.sections[indexPath.section][indexPath.item]
+    }
+
+    /// Returns the cell at the specified indexes.
+    ///
+    /// - Parameter item: The item index of the cell.
+    /// - Parameter section: The section index of the cell.
+    /// - Returns: The cell at `item` and `section`.
+    ///
+    /// - Precondition: The specified indexes must be valid.
+    public subscript(item: Int, section: Int) -> AnyCellViewModel {
+        self.sections[section][item]
+    }
+
     // MARK: Internal
 
     func allRegistrations() -> Set<ViewRegistration> {

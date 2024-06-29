@@ -158,6 +158,104 @@ final class TestCollectionViewModel: XCTestCase {
     }
 
     @MainActor
+    func test_allRegistrations() {
+        let cells = (1...3).map { _ in FakeNumberCellViewModel() }
+        let header = FakeHeaderViewModel()
+        let footer = FakeFooterViewModel()
+        let views = (1...3).map { _ in FakeSupplementaryViewModel() }
+        let section = SectionViewModel(
+            id: "section",
+            cells: cells,
+            header: header,
+            footer: footer,
+            supplementaryViews: views
+        )
+        let model = CollectionViewModel(id: "id", sections: [section])
+
+        let allRegistrations = model.allRegistrations()
+        XCTAssertEqual(allRegistrations.count, 4)
+
+        XCTAssertTrue(allRegistrations.contains(cells.first!.registration))
+        XCTAssertTrue(allRegistrations.contains(header.registration))
+        XCTAssertTrue(allRegistrations.contains(footer.registration))
+        XCTAssertTrue(allRegistrations.contains(views.first!.registration))
+
+        XCTAssertTrue(CollectionViewModel.empty.allRegistrations().isEmpty)
+    }
+
+    @MainActor
+    func test_allSectionsByIdentifier() {
+        let count = 3
+        let section1 = self.fakeSectionViewModel(id: "1")
+        let section2 = self.fakeSectionViewModel(id: "2")
+        let section3 = self.fakeSectionViewModel(id: "3")
+        let model = CollectionViewModel(id: "id", sections: [section1, section2, section3])
+        let ids = model.sections.map { $0.id }
+        XCTAssertEqual(ids.count, count)
+
+        let sectionsById = model.allSectionsByIdentifier()
+        XCTAssertEqual(sectionsById.count, count)
+
+        XCTAssertEqual(sectionsById[section1.id], section1)
+        XCTAssertEqual(sectionsById[section2.id], section2)
+        XCTAssertEqual(sectionsById[section3.id], section3)
+
+        XCTAssertTrue(CollectionViewModel.empty.allSectionsByIdentifier().isEmpty)
+    }
+
+    @MainActor
+    func test_allCellsByIdentifier() {
+        let model = self.fakeCollectionViewModel()
+        let expectedIds = Set(model.sections.flatMap { $0.cells }.map { $0.id })
+
+        let cellIds = Set(model.allCellsByIdentifier().keys)
+        XCTAssertEqual(cellIds, expectedIds)
+
+        XCTAssertTrue(CollectionViewModel.empty.allCellsByIdentifier().isEmpty)
+
+        let cell1 = FakeNumberCellViewModel()
+        let cell2 = FakeNumberCellViewModel()
+        let cell3 = FakeNumberCellViewModel()
+        let section = SectionViewModel(id: "section", cells: [cell1, cell2, cell3])
+        let collection = CollectionViewModel(id: "id", sections: [section])
+        let cellsById = collection.allCellsByIdentifier()
+        XCTAssertEqual(cellsById[cell1.id], cell1.eraseToAnyViewModel())
+        XCTAssertEqual(cellsById[cell2.id], cell2.eraseToAnyViewModel())
+        XCTAssertEqual(cellsById[cell3.id], cell3.eraseToAnyViewModel())
+    }
+
+    @MainActor
+    func test_RandomAccessCollection_conformance() {
+        let sectionCount = Int.random(in: 5...15)
+        let cellCount = Int.random(in: 5...10)
+        let model = self.fakeCollectionViewModel(numSections: sectionCount, numCells: cellCount)
+
+        XCTAssertEqual(model.count, model.sections.count)
+        XCTAssertEqual(model.isEmpty, model.sections.isEmpty)
+        XCTAssertEqual(model.startIndex, model.sections.startIndex)
+        XCTAssertEqual(model.endIndex, model.sections.endIndex)
+        XCTAssertEqual(model.index(after: 0), model.sections.index(after: 0))
+
+        for index in 0..<sectionCount {
+            XCTAssertEqual(model[index], model.sections[index])
+        }
+    }
+
+    @MainActor
+    func test_subscript_indexPath() {
+        let cell1 = FakeNumberCellViewModel().eraseToAnyViewModel()
+        let cell2 = FakeNumberCellViewModel().eraseToAnyViewModel()
+        let cell3 = FakeNumberCellViewModel().eraseToAnyViewModel()
+        let cells = [cell1, cell2, cell3]
+        let section = SectionViewModel(id: "section", cells: cells)
+        let model = CollectionViewModel(id: "id", sections: [section])
+
+        XCTAssertEqual(model[IndexPath(item: 0, section: 0)], cell1)
+        XCTAssertEqual(model[.init(item: 1, section: 0)], cell2)
+        XCTAssertEqual(model[2, 0], cell3)
+    }
+
+    @MainActor
     func test_debugDescription() {
         let viewModel = self.fakeCollectionViewModel()
         print(viewModel.debugDescription)

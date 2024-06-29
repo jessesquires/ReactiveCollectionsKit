@@ -21,13 +21,13 @@ extension XCTestCase {
     func fakeCollectionViewModel(
         id: String = .random,
         numSections: Int = Int.random(in: 2...15),
-        numCells: Int = Int.random(in: 3...20),
+        numCells: Int? = nil,
         expectDidSelectCell: Bool = false,
         expectConfigureCell: Bool = false
     ) -> CollectionViewModel {
         let sections = (0..<numSections).map { _ in
             self.fakeSectionViewModel(
-                numCells: numCells,
+                numCells: numCells ?? Int.random(in: 3...20),
                 expectDidSelectCell: expectDidSelectCell,
                 expectConfigureCell: expectConfigureCell
             )

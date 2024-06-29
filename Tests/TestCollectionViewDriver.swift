@@ -145,7 +145,7 @@ final class TestCollectionViewDriver: UnitTestCase {
 
     @MainActor
     func test_dataSource_supplementaryViewAt_calls_supplementaryViewModel_configure() {
-        let cells = [FakeNumberCellViewModel(), FakeNumberCellViewModel(), FakeNumberCellViewModel()]
+        let cells = (1...3).map { _ in FakeNumberCellViewModel() }
 
         var header = FakeHeaderViewModel()
         header.expectationConfigureView = self.expectation(description: "configure_header")
@@ -189,7 +189,7 @@ final class TestCollectionViewDriver: UnitTestCase {
 
     @MainActor
     func test_dataSource_supplementaryViewAt_calls_supplementaryViewModel_configure_usingNibs() {
-        let cells = [FakeNumberCellViewModel(), FakeNumberCellViewModel(), FakeNumberCellViewModel()]
+        let cells = (1...3).map { _ in FakeNumberCellViewModel() }
 
         let views = (1...3).map { _ in
             var view = FakeSupplementaryNibViewModel()
@@ -222,4 +222,6 @@ final class TestCollectionViewDriver: UnitTestCase {
 
         self.keepDriverAlive(driver)
     }
+
+    #warning("More tests")
 }
