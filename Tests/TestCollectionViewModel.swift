@@ -253,7 +253,7 @@ final class TestCollectionViewModel: XCTestCase {
 
         XCTAssertEqual(model[IndexPath(item: 0, section: 0)], cell1)
         XCTAssertEqual(model[.init(item: 1, section: 0)], cell2)
-        XCTAssertEqual(model[2, 0], cell3)
+        XCTAssertEqual(model[item: 2, section: 0], cell3)
     }
 
     @MainActor

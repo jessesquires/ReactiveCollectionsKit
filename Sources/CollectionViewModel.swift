@@ -146,7 +146,7 @@ public struct CollectionViewModel: Hashable, DiffableViewModel {
     /// - Returns: The cell at `item` and `section`.
     ///
     /// - Precondition: The specified indexes must be valid.
-    public subscript(item: Int, section: Int) -> AnyCellViewModel {
+    public subscript(item item: Int, section section: Int) -> AnyCellViewModel {
         self.sections[section][item]
     }
 
