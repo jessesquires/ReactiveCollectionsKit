@@ -11,6 +11,7 @@
 //  Copyright © 2019-present Jesse Squires
 //
 
+import Foundation
 @testable import ReactiveCollectionsKit
 import XCTest
 

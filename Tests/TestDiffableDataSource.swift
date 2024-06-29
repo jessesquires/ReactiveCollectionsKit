@@ -15,11 +15,10 @@ import Foundation
 @testable import ReactiveCollectionsKit
 import XCTest
 
-final class TestCollectionViewDriverOptions: XCTestCase {
+final class TestDiffableDataSource: UnitTestCase {
 
-    func test_defaultValues() {
-        let options = CollectionViewDriverOptions()
-        XCTAssertFalse(options.diffOnBackgroundQueue)
-        XCTAssertFalse(options.reloadDataOnReplacingViewModel)
+    @MainActor
+    func test() {
+        #warning("More tests")
     }
 }
