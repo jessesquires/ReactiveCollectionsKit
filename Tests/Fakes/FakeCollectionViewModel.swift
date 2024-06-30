@@ -22,12 +22,14 @@ extension XCTestCase {
         id: String = .random,
         numSections: Int = Int.random(in: 2...15),
         numCells: Int? = nil,
+        useCellNibs: Bool = false,
         expectDidSelectCell: Bool = false,
         expectConfigureCell: Bool = false
     ) -> CollectionViewModel {
         let sections = (0..<numSections).map { _ in
             self.fakeSectionViewModel(
                 numCells: numCells ?? Int.random(in: 3...20),
+                useCellNibs: useCellNibs,
                 expectDidSelectCell: expectDidSelectCell,
                 expectConfigureCell: expectConfigureCell
             )
@@ -39,6 +41,7 @@ extension XCTestCase {
     func fakeSectionViewModel(
         id: String = .random,
         numCells: Int = Int.random(in: 1...20),
+        useCellNibs: Bool = false,
         includeHeader: Bool = false,
         includeFooter: Bool = false,
         expectDidSelectCell: Bool = false,
@@ -46,6 +49,7 @@ extension XCTestCase {
     ) -> SectionViewModel {
         let cells = self.fakeCellViewModels(
             count: numCells,
+            useNibs: useCellNibs,
             expectDidSelectCell: expectDidSelectCell,
             expectConfigureCell: expectConfigureCell
         )
@@ -62,6 +66,7 @@ extension XCTestCase {
     @MainActor
     func fakeCellViewModels(
         count: Int = Int.random(in: 3...20),
+        useNibs: Bool = false,
         expectDidSelectCell: Bool = false,
         expectConfigureCell: Bool = false
     ) -> [AnyCellViewModel] {
@@ -69,6 +74,7 @@ extension XCTestCase {
         for index in 0..<count {
             let model = self._fakeCellViewModel(
                 index: index,
+                useNibs: useNibs,
                 expectDidSelectCell: expectDidSelectCell,
                 expectConfigureCell: expectConfigureCell
             )
@@ -80,18 +86,19 @@ extension XCTestCase {
     @MainActor
     private func _fakeCellViewModel(
         index: Int,
-        expectDidSelectCell: Bool = false,
-        expectConfigureCell: Bool = false
+        useNibs: Bool,
+        expectDidSelectCell: Bool,
+        expectConfigureCell: Bool
     ) -> AnyCellViewModel {
-        if index.isMultiple(of: 2) {
-            var viewModel = FakeNumberCellViewModel()
+        if useNibs {
+            var viewModel = FakeCellNibViewModel()
             viewModel.expectationDidSelect = self._cellDidSelectExpectation(expect: expectDidSelectCell, id: viewModel.id)
             viewModel.expectationConfigureCell = self._cellConfigureExpectation(expect: expectConfigureCell, id: viewModel.id)
             return viewModel.eraseToAnyViewModel()
         }
 
-        if index.isMultiple(of: 3) {
-            var viewModel = FakeCellNibViewModel()
+        if index.isMultiple(of: 2) {
+            var viewModel = FakeNumberCellViewModel()
             viewModel.expectationDidSelect = self._cellDidSelectExpectation(expect: expectDidSelectCell, id: viewModel.id)
             viewModel.expectationConfigureCell = self._cellConfigureExpectation(expect: expectConfigureCell, id: viewModel.id)
             return viewModel.eraseToAnyViewModel()

@@ -132,6 +132,50 @@ final class TestCollectionViewDriver: UnitTestCase {
         let model = self.fakeCollectionViewModel(numSections: sections, numCells: cells, expectConfigureCell: true)
 
         let viewController = FakeCollectionViewController()
+
+        // Should only be called for the total number of unique registrations
+        let cellRegistrationCount = model.allCellRegistrations().count
+        viewController.collectionView.registerCellClassExpectation = self.expectation(name: "register_cell")
+        viewController.collectionView.registerCellClassExpectation?.expectedFulfillmentCount = cellRegistrationCount
+
+        // Should be called for every cell
+        viewController.collectionView.dequeueCellExpectation = self.expectation(name: "dequeue_cell")
+        viewController.collectionView.dequeueCellExpectation?.expectedFulfillmentCount = sections * cells
+
+        let driver = CollectionViewDriver(
+            view: viewController.collectionView,
+            viewModel: model,
+            options: .test()
+        )
+        self.simulateAppearance(viewController: viewController)
+
+        self.waitForExpectations()
+
+        self.keepDriverAlive(driver)
+    }
+
+    @MainActor
+    func test_dataSource_cellForItemAt_calls_cellViewModel_configure_usingNibs() {
+        let sections = 2
+        let cells = 5
+        let model = self.fakeCollectionViewModel(
+            numSections: sections,
+            numCells: cells,
+            useCellNibs: true,
+            expectConfigureCell: true
+        )
+
+        let viewController = FakeCollectionViewController()
+
+        // Should only be called for the total number of unique registrations
+        let cellRegistrationCount = model.allCellRegistrations().count
+        viewController.collectionView.registerCellNibExpectation = self.expectation(name: "register_cell")
+        viewController.collectionView.registerCellNibExpectation?.expectedFulfillmentCount = cellRegistrationCount
+
+        // Should be called for every cell
+        viewController.collectionView.dequeueCellExpectation = self.expectation(name: "dequeue_cell")
+        viewController.collectionView.dequeueCellExpectation?.expectedFulfillmentCount = sections * cells
+
         let driver = CollectionViewDriver(
             view: viewController.collectionView,
             viewModel: model,
@@ -146,17 +190,18 @@ final class TestCollectionViewDriver: UnitTestCase {
 
     @MainActor
     func test_dataSource_supplementaryViewAt_calls_supplementaryViewModel_configure() {
-        let cells = (1...3).map { _ in FakeNumberCellViewModel() }
+        let count = 3
+        let cells = (1...count).map { _ in FakeNumberCellViewModel() }
 
         var header = FakeHeaderViewModel()
-        header.expectationConfigureView = self.expectation(description: "configure_header")
+        header.expectationConfigureView = self.expectation(name: "configure_header")
 
         var footer = FakeFooterViewModel()
-        footer.expectationConfigureView = self.expectation(description: "configure_footer")
+        footer.expectationConfigureView = self.expectation(name: "configure_footer")
 
-        let views = (1...3).map { _ in
+        let views = (1...count).map { _ in
             var view = FakeSupplementaryViewModel()
-            view.expectationConfigureView = self.expectation(description: "configure_view_\(view.title)")
+            view.expectationConfigureView = self.expectation(name: "configure_view_\(view.title)")
             return view
         }
 
@@ -171,6 +216,18 @@ final class TestCollectionViewDriver: UnitTestCase {
         let model = CollectionViewModel(id: "id", sections: [section])
 
         let viewController = FakeCollectionViewController()
+
+        // Should only be called for the total number of unique registrations
+        let supplementaryCount = model.allSupplementaryViewRegistrations().count
+        let headerFooterCount = model.allHeaderFooterRegistrations().count
+        let viewRegistrationCount = supplementaryCount + headerFooterCount
+        viewController.collectionView.registerSupplementaryViewExpectation = self.expectation(name: "register_view")
+        viewController.collectionView.registerSupplementaryViewExpectation?.expectedFulfillmentCount = viewRegistrationCount
+
+        // Should be called for every view (plus header and footer)
+        viewController.collectionView.dequeueSupplementaryViewExpectation = self.expectation(name: "dequeue_view")
+        viewController.collectionView.dequeueSupplementaryViewExpectation?.expectedFulfillmentCount = count + 2
+
         viewController.collectionView.setCollectionViewLayout(
             UICollectionViewCompositionalLayout.fakeLayout(),
             animated: false
@@ -190,11 +247,12 @@ final class TestCollectionViewDriver: UnitTestCase {
 
     @MainActor
     func test_dataSource_supplementaryViewAt_calls_supplementaryViewModel_configure_usingNibs() {
-        let cells = (1...3).map { _ in FakeNumberCellViewModel() }
+        let count = 3
+        let cells = (1...count).map { _ in FakeNumberCellViewModel() }
 
-        let views = (1...3).map { _ in
+        let views = (1...count).map { _ in
             var view = FakeSupplementaryNibViewModel()
-            view.expectationConfigureView = self.expectation(description: "configure_nib_view_\(view.id)")
+            view.expectationConfigureView = self.expectation(name: "configure_nib_view_\(view.id)")
             return view
         }
 
@@ -208,6 +266,16 @@ final class TestCollectionViewDriver: UnitTestCase {
         let model = CollectionViewModel(id: "id", sections: [section])
 
         let viewController = FakeCollectionViewController()
+
+        // Should only be called for the total number of unique registrations
+        let supplementaryCount = model.allSupplementaryViewRegistrations().count
+        viewController.collectionView.registerSupplementaryNibExpectation = self.expectation(name: "register_view")
+        viewController.collectionView.registerSupplementaryNibExpectation?.expectedFulfillmentCount = supplementaryCount
+
+        // Should be called for every view (plus header and footer)
+        viewController.collectionView.dequeueSupplementaryViewExpectation = self.expectation(name: "dequeue_view")
+        viewController.collectionView.dequeueSupplementaryViewExpectation?.expectedFulfillmentCount = count + 2
+
         viewController.collectionView.setCollectionViewLayout(
             UICollectionViewCompositionalLayout.fakeLayout(useNibViews: true),
             animated: false

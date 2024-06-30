@@ -27,7 +27,7 @@ final class TestSupplementaryViewModel: XCTestCase {
     @MainActor
     func test_eraseToAnyViewModel() {
         var viewModel = FakeSupplementaryViewModel()
-        viewModel.expectationConfigureView = self.expectation(description: "configure-view")
+        viewModel.expectationConfigureView = self.expectation(name: "configure_view")
         viewModel.expectationConfigureView?.expectedFulfillmentCount = 2
 
         let erased = viewModel.eraseToAnyViewModel()

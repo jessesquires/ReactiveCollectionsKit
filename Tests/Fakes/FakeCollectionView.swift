@@ -11,14 +11,13 @@
 //  Copyright © 2019-present Jesse Squires
 //
 
+import Foundation
 import UIKit
 import XCTest
 
 final class FakeCollectionCell: UICollectionViewCell { }
 
 final class FakeCollectionLayout: UICollectionViewFlowLayout { }
-
-#warning("TODO: collection view tests")
 
 final class FakeCollectionView: UICollectionView {
 
@@ -69,16 +68,5 @@ final class FakeCollectionView: UICollectionView {
         super.register(nib,
                        forSupplementaryViewOfKind: kind,
                        withReuseIdentifier: identifier)
-    }
-}
-
-final class FakeCollectionViewController: UICollectionViewController {
-    init() {
-        super.init(collectionViewLayout: UICollectionViewFlowLayout())
-    }
-
-    @available(*, unavailable)
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
     }
 }

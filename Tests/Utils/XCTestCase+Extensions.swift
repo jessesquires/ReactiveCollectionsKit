@@ -22,7 +22,7 @@ extension XCTestCase {
         self.waitForExpectations(timeout: self.defaultTimeout, handler: nil)
     }
 
-    func expectation(function: String = #function) -> XCTestExpectation {
-        self.expectation(description: function)
+    func expectation(function: String = #function, name: String = "") -> XCTestExpectation {
+        self.expectation(description: function + "-" + name)
     }
 }

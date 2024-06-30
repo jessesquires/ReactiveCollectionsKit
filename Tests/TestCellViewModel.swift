@@ -42,10 +42,10 @@ final class TestCellViewModel: XCTestCase {
     @MainActor
     func test_eraseToAnyViewModel() {
         var viewModel = FakeTextCellViewModel()
-        viewModel.expectationConfigureCell = self.expectation(description: "configure-cell")
+        viewModel.expectationConfigureCell = self.expectation(name: "configure-cell")
         viewModel.expectationConfigureCell?.expectedFulfillmentCount = 2
 
-        viewModel.expectationDidSelect = self.expectation(description: "did-select")
+        viewModel.expectationDidSelect = self.expectation(name: "did-select")
         viewModel.expectationDidSelect?.expectedFulfillmentCount = 2
 
         let erased = viewModel.eraseToAnyViewModel()

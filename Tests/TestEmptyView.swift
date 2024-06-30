@@ -49,7 +49,7 @@ final class TestEmptyView: UnitTestCase {
         XCTAssertTrue(driver.view.subviews.contains(where: { $0 === emptyView }))
 
         // Update to non-empty model
-        let nonEmptyExpectation = self.expectation(description: #function + "-nonEmptyExpectation")
+        let nonEmptyExpectation = self.expectation(name: "non_empty")
         let model = self.fakeCollectionViewModel()
         driver.update(viewModel: model, animated: true) { _ in
             nonEmptyExpectation.fulfillAndLog()
@@ -59,7 +59,7 @@ final class TestEmptyView: UnitTestCase {
         XCTAssertFalse(driver.view.subviews.contains(where: { $0 === emptyView }))
 
         // Update to empty model
-        let animationExpectation = self.expectation(description: #function + "-animationExpectation")
+        let animationExpectation = self.expectation(name: "animation")
         driver.update(viewModel: .empty, animated: true) { _ in
             animationExpectation.fulfillAndLog()
         }
@@ -70,7 +70,7 @@ final class TestEmptyView: UnitTestCase {
         // Update to empty model "again"
         // already displaying empty view, should return early
         // also test completion block
-        let completionExpectation = self.expectation(description: #function + "-completionExpectation")
+        let completionExpectation = self.expectation(name: "completion")
         driver.update(viewModel: .empty, animated: false) { _ in
             completionExpectation.fulfillAndLog()
         }

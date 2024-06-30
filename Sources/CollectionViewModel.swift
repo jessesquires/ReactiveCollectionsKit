@@ -160,6 +160,30 @@ public struct CollectionViewModel: Hashable, DiffableViewModel {
         return all
     }
 
+    func allCellRegistrations() -> Set<ViewRegistration> {
+        var all = Set<ViewRegistration>()
+        self.sections.forEach {
+            all.formUnion($0.cellRegistrations())
+        }
+        return all
+    }
+
+    func allHeaderFooterRegistrations() -> Set<ViewRegistration> {
+        var all = Set<ViewRegistration>()
+        self.sections.forEach {
+            all.formUnion($0.headerFooterRegistrations())
+        }
+        return all
+    }
+
+    func allSupplementaryViewRegistrations() -> Set<ViewRegistration> {
+        var all = Set<ViewRegistration>()
+        self.sections.forEach {
+            all.formUnion($0.supplementaryViewRegistrations())
+        }
+        return all
+    }
+
     func allSectionsByIdentifier() -> [UniqueIdentifier: SectionViewModel] {
         let tuples = self.sections.map { ($0.id, $0) }
         return Dictionary(uniqueKeysWithValues: tuples)
