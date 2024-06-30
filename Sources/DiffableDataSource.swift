@@ -71,6 +71,8 @@ final class DiffableDataSource: UICollectionViewDiffableDataSource<AnyHashable, 
         completion: SnapshotCompletion?
     ) {
         // Build initial destination snapshot, then make adjustments below.
+        // This takes care of newly added items and newly added sections,
+        // which will trigger the whole dequeue and configure flow for each.
         var destinationSnapshot = DiffableSnapshot(viewModel: destination)
 
         // Apply item reconfigures, then supplementary view reconfigures.
@@ -135,19 +137,41 @@ final class DiffableDataSource: UICollectionViewDiffableDataSource<AnyHashable, 
     ) -> [UniqueIdentifier] {
         let allSourceCells = source.allCellsByIdentifier()
         let allDestinationCells = destination.allCellsByIdentifier()
+        let visibleItemIdentifiers = self._visibleItemIdentifiers()
 
         var itemsToReconfigure = [UniqueIdentifier]()
 
-        for (cellId, destinationCell) in allDestinationCells {
-            let sourceCell = allSourceCells[cellId]
+        for cellId in visibleItemIdentifiers {
+            // If this cell does not exist in the destination, skip it.
+            guard let destinationCell = allDestinationCells[cellId] else {
+                continue
+            }
 
-            // If this cell exist in the source, and it has changed, then reload it.
+            // If this cell does not exist in the source,
+            // then it was newly inserted and will be configured for the first time,
+            // skip it.
+            guard let sourceCell = allSourceCells[cellId] else {
+                continue
+            }
+
+            // If this cell has changed, then reload it.
             if destinationCell != sourceCell {
                 itemsToReconfigure.append(cellId)
             }
         }
 
         return itemsToReconfigure
+    }
+
+    private func _visibleItemIdentifiers() -> Set<UniqueIdentifier> {
+        let visibleIndexPaths = self._collectionView.indexPathsForVisibleItems
+        // These are the current, existing (that is, "source") item identifiers.
+        let visibleSourceItemIdentifiers = visibleIndexPaths.compactMap { self.itemIdentifier(for: $0) }
+        // This is ok, because in terms of needing to "reload" items,
+        // we only need to know what remained visible from the source snapshot.
+        // Anything that has been newly inserted (from the "destination") will
+        // be getting configured for the first time.
+        return Set(visibleSourceItemIdentifiers)
     }
 
     private func _reconfigureSupplementaryViewsIfNeeded(
