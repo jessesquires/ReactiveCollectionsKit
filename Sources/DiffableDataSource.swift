@@ -180,8 +180,15 @@ final class DiffableDataSource: UICollectionViewDiffableDataSource<AnyHashable, 
     ) {
         let allSourceSections = source.allSectionsByIdentifier()
 
+        let visibleSectionIds = self._visibleSectionIdentifiersFrom(destination: destination)
+
         for sectionIndex in 0..<destination.sections.count {
             let destinationSection = destination.sections[sectionIndex]
+
+            // If this section is not visible, skip it.
+            guard visibleSectionIds.contains(destinationSection.id) else {
+                continue
+            }
 
             // If this section does not have any supplementary views, skip it.
             guard destinationSection.hasSupplementaryViews else {
@@ -241,6 +248,27 @@ final class DiffableDataSource: UICollectionViewDiffableDataSource<AnyHashable, 
                 }
             }
         }
+    }
+
+    private func _visibleSectionIdentifiersFrom(destination: CollectionViewModel) -> Set<UniqueIdentifier> {
+        // Using supplementary views as a proxy for the sections that are visible.
+        // Limitations in the APIs require this.
+        // Unfortunately, we cannot do the same thing as `_visibleItemIdentifiers()` above,
+        // because we cannot query directly for supplementary view items.
+        let allKinds = destination.allSupplementaryViewKinds()
+        let visibleIndexPaths = allKinds.flatMap {
+            self._collectionView.indexPathsForVisibleSupplementaryElements(ofKind: $0)
+        }
+        let visibleSections = visibleIndexPaths.map { $0.section }
+
+        // These are the current, existing (that is, "source") section identifiers.
+        let visibleSourceSectionIdentifiers = visibleSections.compactMap { self.sectionIdentifier(for: $0) }
+
+        // This is ok, because in terms of needing to "reload" supplementary views,
+        // we only need to know what remained visible from the source snapshot.
+        // Anything that has been newly inserted (from the "destination") will
+        // be getting configured for the first time.
+        return Set(visibleSourceSectionIdentifiers)
     }
 
     private func _reconfigureSupplementaryView(model: AnySupplementaryViewModel, item: Int, section: Int) {

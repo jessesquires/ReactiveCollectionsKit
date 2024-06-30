@@ -194,6 +194,22 @@ public struct CollectionViewModel: Hashable, DiffableViewModel {
         let tuples = allCells.map { ($0.id, $0) }
         return Dictionary(uniqueKeysWithValues: tuples)
     }
+
+    func allSupplementaryViewKinds() -> Set<String> {
+        var allKinds = Set<String>()
+        self.sections.forEach {
+            if let header = $0.header {
+                allKinds.insert(header.registration.viewType.kind)
+            }
+            if let footer = $0.footer {
+                allKinds.insert(footer.registration.viewType.kind)
+            }
+            $0.supplementaryViews.forEach {
+                allKinds.insert($0.registration.viewType.kind)
+            }
+        }
+        return allKinds
+    }
 }
 
 // MARK: Collection, RandomAccessCollection
