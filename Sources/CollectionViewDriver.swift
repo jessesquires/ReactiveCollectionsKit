@@ -113,14 +113,14 @@ public final class CollectionViewDriver: NSObject {
     // MARK: State Information
 
     /// The number of sections displayed by the collection view.
-    var numberOfSections: Int {
+    public var numberOfSections: Int {
         self.viewModel.sections.count
     }
 
     /// Returns the count of items in the specified section.
     /// - Parameter section: The index of the section for which you want a count of the items.
     /// - Returns: The number of items in the specified section.
-    func numberOfItems(in section: Int) -> Int {
+    public func numberOfItems(in section: Int) -> Int {
         self.viewModel.sections[section].cells.count
     }
 
