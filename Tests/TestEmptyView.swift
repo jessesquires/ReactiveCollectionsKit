@@ -37,7 +37,6 @@ final class TestEmptyView: UnitTestCase {
         let viewController = FakeCollectionViewController()
         let driver = CollectionViewDriver(
             view: viewController.collectionView,
-            options: .test(),
             emptyViewProvider: provider
         )
 

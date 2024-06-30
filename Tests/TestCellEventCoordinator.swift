@@ -15,7 +15,7 @@ import Foundation
 @testable import ReactiveCollectionsKit
 import XCTest
 
-final class TestCellEventCoordinator: XCTestCase {
+final class TestCellEventCoordinator: UnitTestCase {
 
     @MainActor
     func test_underlyingViewController() {
@@ -25,5 +25,29 @@ final class TestCellEventCoordinator: XCTestCase {
 
         let coordinator = FakeCellEventCoordinator()
         XCTAssertNil(coordinator.underlyingViewController)
+    }
+
+    @MainActor
+    func test_didSelectCell_getsCalled() {
+        let cell = FakeCellViewModel()
+        let section = SectionViewModel(id: "id", cells: [cell])
+        let model = CollectionViewModel(id: "id", sections: [section])
+
+        let coordinator = FakeCellEventCoordinator()
+        coordinator.expectationDidSelect = self.expectation()
+
+        let driver = CollectionViewDriver(
+            view: self.collectionView,
+            viewModel: model,
+            options: .test(),
+            cellEventCoordinator: coordinator
+        )
+
+        let indexPath = IndexPath(item: 0, section: 0)
+        driver.collectionView(self.collectionView, didSelectItemAt: indexPath)
+
+        self.waitForExpectations()
+
+        self.keepDriverAlive(driver)
     }
 }

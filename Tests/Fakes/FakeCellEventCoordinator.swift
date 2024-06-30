@@ -17,8 +17,10 @@ import UIKit
 import XCTest
 
 final class FakeCellEventCoordinator: CellEventCoordinator {
+    var selectedCell: (any CellViewModel)?
     var expectationDidSelect: XCTestExpectation?
     func didSelectCell(viewModel: any CellViewModel) {
+        self.selectedCell = viewModel
         self.expectationDidSelect?.fulfillAndLog()
     }
 }
