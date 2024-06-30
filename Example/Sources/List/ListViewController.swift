@@ -19,6 +19,7 @@ final class ListViewController: ExampleViewController, CellEventCoordinator {
 
     lazy var driver = CollectionViewDriver(
         view: self.collectionView,
+        options: .init(diffOnBackgroundQueue: true),
         emptyViewProvider: sharedEmptyViewProvider,
         cellEventCoordinator: self
     )
@@ -27,9 +28,11 @@ final class ListViewController: ExampleViewController, CellEventCoordinator {
         didSet {
             // Every time the model updates, regenerate and set the view model
             let viewModel = self.makeViewModel()
-            self.driver.update(viewModel: viewModel, animated: true) {
-                print("list did update!")
-                print($0.viewModel)
+
+            Task { @MainActor in
+                await self.driver.update(viewModel: viewModel)
+                print("list did update! async")
+                print(viewModel)
             }
         }
     }

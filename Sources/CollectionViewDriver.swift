@@ -147,6 +147,25 @@ public final class CollectionViewDriver: NSObject {
         )
     }
 
+    /// An async version of ``update(viewModel:animated:completion:)``.
+    ///
+    /// Updates the collection with the provided `viewModel`.
+    /// This method will trigger a diff between the previous view model and the newly provided view model.
+    ///
+    /// - Parameters:
+    ///   - viewModel: The new collection view model.
+    ///   - animated: Whether or not to animate updates.
+    ///
+    /// - Warning: If you provide a `viewModel` with an `id` different from the previous one,
+    /// this is considered a *replacement*. By default, the driver will animate the diff between the view models.
+    /// You can customize this behavior via the ``options`` for the driver.
+    public func update(viewModel new: CollectionViewModel, animated: Bool = true) async {
+        await withCheckedContinuation { continuation in
+            self.update(viewModel: new, animated: animated)
+            continuation.resume()
+        }
+    }
+
     // MARK: Private
 
     private func _registerAllViews(for viewModel: CollectionViewModel) {
