@@ -27,6 +27,7 @@
 		0BA0E2D42C030AC7001FB5AA /* TestViewRegistrationViewType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BA0E2D32C030AC7001FB5AA /* TestViewRegistrationViewType.swift */; };
 		0BBB8A442C31F09D00200477 /* FakeEmptyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BBB8A432C31F09D00200477 /* FakeEmptyView.swift */; };
 		0BBB8A462C31F56000200477 /* FakeCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BBB8A452C31F56000200477 /* FakeCollectionViewController.swift */; };
+		0BBB8A492C32309800200477 /* TestCollectionViewDriverReconfigure.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BBB8A482C32309800200477 /* TestCollectionViewDriverReconfigure.swift */; };
 		0BC1EC28267FC37200FF774F /* SupplementaryHeaderViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BC1EC27267FC37200FF774F /* SupplementaryHeaderViewModel.swift */; };
 		0BC1EC2A267FC3A000FF774F /* SupplementaryFooterViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BC1EC29267FC3A000FF774F /* SupplementaryFooterViewModel.swift */; };
 		0BC1EC2C267FE71900FF774F /* ViewRegistrationProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BC1EC2B267FE71900FF774F /* ViewRegistrationProvider.swift */; };
@@ -93,6 +94,7 @@
 		0BA0E2D32C030AC7001FB5AA /* TestViewRegistrationViewType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestViewRegistrationViewType.swift; sourceTree = "<group>"; };
 		0BBB8A432C31F09D00200477 /* FakeEmptyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FakeEmptyView.swift; sourceTree = "<group>"; };
 		0BBB8A452C31F56000200477 /* FakeCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FakeCollectionViewController.swift; sourceTree = "<group>"; };
+		0BBB8A482C32309800200477 /* TestCollectionViewDriverReconfigure.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestCollectionViewDriverReconfigure.swift; sourceTree = "<group>"; };
 		0BC1EC27267FC37200FF774F /* SupplementaryHeaderViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SupplementaryHeaderViewModel.swift; sourceTree = "<group>"; };
 		0BC1EC29267FC3A000FF774F /* SupplementaryFooterViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SupplementaryFooterViewModel.swift; sourceTree = "<group>"; };
 		0BC1EC2B267FE71900FF774F /* ViewRegistrationProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewRegistrationProvider.swift; sourceTree = "<group>"; };
@@ -244,6 +246,7 @@
 				0BA0E2C92C0303DC001FB5AA /* TestCollectionExtensions.swift */,
 				8872DE94238D18D5005774EA /* TestCollectionViewDriver.swift */,
 				0BA0E2CB2C030445001FB5AA /* TestCollectionViewDriverOptions.swift */,
+				0BBB8A482C32309800200477 /* TestCollectionViewDriverReconfigure.swift */,
 				0B7A18EB2C2A17A700E59C35 /* TestCollectionViewModel.swift */,
 				0B0433252C2FE25C0083C8DB /* TestDiffableSnapshot.swift */,
 				0BA0E2CD2C0304B4001FB5AA /* TestEmptyView.swift */,
@@ -435,6 +438,7 @@
 				0BA0E2D22C030849001FB5AA /* TestViewRegistrationMethod.swift in Sources */,
 				0B8F50452C2B46A20081C0D2 /* TestBundle.swift in Sources */,
 				0BA0E2CC2C030445001FB5AA /* TestCollectionViewDriverOptions.swift in Sources */,
+				0BBB8A492C32309800200477 /* TestCollectionViewDriverReconfigure.swift in Sources */,
 				0BFBB2EC2C0BFD1B000842B6 /* FakeCellEventCoordinator.swift in Sources */,
 				0BFA774C2BB8B717009B9C5B /* FakeCellViewModel.swift in Sources */,
 				0B7A18F32C2A4E4500E59C35 /* FakeSupplementaryNibView.swift in Sources */,
