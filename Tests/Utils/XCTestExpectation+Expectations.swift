@@ -15,6 +15,11 @@ import Foundation
 import XCTest
 
 extension XCTestExpectation {
+    func setInvertedAndLog() {
+        self.isInverted = true
+        print("Inverted expectation: \(self.expectationDescription)")
+    }
+
     func fulfillAndLog() {
         self.fulfill()
         print("Fulfilled expectation: \(self.expectationDescription)")

@@ -146,7 +146,14 @@ final class TestCollectionViewDriver: UnitTestCase {
         self.simulateAppearance(viewController: viewController)
 
         await driver.update(viewModel: model)
+        self.waitForExpectations()
 
+        // Apply exact same model, expectations should not trigger
+        viewController.collectionView.registerCellClassExpectation = self.expectation(name: "register_cell_noop")
+        viewController.collectionView.registerCellClassExpectation?.setInvertedAndLog()
+        viewController.collectionView.dequeueCellExpectation = self.expectation(name: "dequeue_cell_noop")
+        viewController.collectionView.dequeueCellExpectation?.setInvertedAndLog()
+        await driver.update(viewModel: model)
         self.waitForExpectations()
 
         self.keepDriverAlive(driver)
@@ -233,9 +240,15 @@ final class TestCollectionViewDriver: UnitTestCase {
         viewController.collectionView.dequeueSupplementaryViewExpectation?.expectedFulfillmentCount = count + 2
 
         await driver.update(viewModel: model)
-
         self.simulateAppearance(viewController: viewController)
+        self.waitForExpectations()
 
+        // Apply exact same model, expectations should not trigger
+        viewController.collectionView.registerSupplementaryViewExpectation = self.expectation(name: "register_view_noop")
+        viewController.collectionView.registerSupplementaryViewExpectation?.setInvertedAndLog()
+        viewController.collectionView.dequeueSupplementaryViewExpectation = self.expectation(name: "dequeue_view_noop")
+        viewController.collectionView.dequeueSupplementaryViewExpectation?.setInvertedAndLog()
+        await driver.update(viewModel: model)
         self.waitForExpectations()
 
         self.keepDriverAlive(driver)
