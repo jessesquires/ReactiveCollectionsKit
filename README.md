@@ -20,6 +20,7 @@ This library contains a number of improvements, optimizations, and refinements o
 ---|----------------
 🏛️ | Declarative, data-driven architecture with reusable components
 🔐 | Immutable, uni-directional data flow
+🔀 | Safe from data races with Swift 6 strict concurrency checking
 🤖 | Automatic diffing for cells, sections, and supplementary views
 🎟️ | Automatic registration and dequeuing for cells and supplementary views
 📐 | Automatic self-sizing cells and supplementary views
@@ -88,8 +89,8 @@ driver.update(viewModel: updated)
 ## Requirements
 
 - iOS 15.0+
-- Swift 5.9+
-- Xcode 15.0+
+- Swift 5.10+
+- Xcode 15.4+
 - [SwiftLint](https://github.com/realm/SwiftLint)
 
 ## Installation
