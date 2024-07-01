@@ -126,12 +126,13 @@ final class TestCollectionViewDriver: UnitTestCase {
     }
 
     @MainActor
-    func test_dataSource_cellForItemAt_calls_cellViewModel_configure() {
+    func test_dataSource_cellForItemAt_calls_cellViewModel_configure() async {
+        let viewController = FakeCollectionViewController()
+        let driver = CollectionViewDriver(view: viewController.collectionView)
+
         let sections = 2
         let cells = 5
         let model = self.fakeCollectionViewModel(numSections: sections, numCells: cells, expectConfigureCell: true)
-
-        let viewController = FakeCollectionViewController()
 
         // Should only be called for the total number of unique registrations
         let cellRegistrationCount = model.allCellRegistrations().count
@@ -142,12 +143,9 @@ final class TestCollectionViewDriver: UnitTestCase {
         viewController.collectionView.dequeueCellExpectation = self.expectation(name: "dequeue_cell")
         viewController.collectionView.dequeueCellExpectation?.expectedFulfillmentCount = sections * cells
 
-        let driver = CollectionViewDriver(
-            view: viewController.collectionView,
-            viewModel: model,
-            options: .test()
-        )
         self.simulateAppearance(viewController: viewController)
+
+        await driver.update(viewModel: model)
 
         self.waitForExpectations()
 
@@ -189,7 +187,15 @@ final class TestCollectionViewDriver: UnitTestCase {
     }
 
     @MainActor
-    func test_dataSource_supplementaryViewAt_calls_supplementaryViewModel_configure() {
+    func test_dataSource_supplementaryViewAt_calls_supplementaryViewModel_configure() async {
+        let viewController = FakeCollectionViewController()
+        viewController.collectionView.setCollectionViewLayout(
+            UICollectionViewCompositionalLayout.fakeLayout(),
+            animated: false
+        )
+
+        let driver = CollectionViewDriver(view: viewController.collectionView)
+
         let count = 3
         let cells = (1...count).map { _ in FakeNumberCellViewModel() }
 
@@ -215,8 +221,6 @@ final class TestCollectionViewDriver: UnitTestCase {
 
         let model = CollectionViewModel(id: "id", sections: [section])
 
-        let viewController = FakeCollectionViewController()
-
         // Should only be called for the total number of unique registrations
         let supplementaryCount = model.allSupplementaryViewRegistrations().count
         let headerFooterCount = model.allHeaderFooterRegistrations().count
@@ -228,16 +232,8 @@ final class TestCollectionViewDriver: UnitTestCase {
         viewController.collectionView.dequeueSupplementaryViewExpectation = self.expectation(name: "dequeue_view")
         viewController.collectionView.dequeueSupplementaryViewExpectation?.expectedFulfillmentCount = count + 2
 
-        viewController.collectionView.setCollectionViewLayout(
-            UICollectionViewCompositionalLayout.fakeLayout(),
-            animated: false
-        )
+        await driver.update(viewModel: model)
 
-        let driver = CollectionViewDriver(
-            view: viewController.collectionView,
-            viewModel: model,
-            options: .test()
-        )
         self.simulateAppearance(viewController: viewController)
 
         self.waitForExpectations()
