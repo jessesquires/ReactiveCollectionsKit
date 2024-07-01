@@ -49,7 +49,7 @@ final class FakeSupplementaryView: UICollectionViewCell { }
 struct FakeHeaderViewModel: SupplementaryHeaderViewModel {
     let title = String.random
 
-    nonisolated var id: UniqueIdentifier { self.title }
+    nonisolated var id: UniqueIdentifier { "Header" }
 
     var expectationConfigureView: XCTestExpectation?
     func configure(view: FakeCollectionHeaderView) {
@@ -70,7 +70,7 @@ final class FakeCollectionHeaderView: UICollectionReusableView { }
 struct FakeFooterViewModel: SupplementaryFooterViewModel {
     let title = String.random
 
-    nonisolated var id: UniqueIdentifier { self.title }
+    nonisolated var id: UniqueIdentifier { "Footer" }
 
     var expectationConfigureView: XCTestExpectation?
     func configure(view: FakeCollectionFooterView) {

@@ -16,7 +16,8 @@ import Foundation
 import UIKit
 
 extension UICollectionViewCompositionalLayout {
-    static func fakeLayout(useNibViews: Bool = false) -> UICollectionViewCompositionalLayout {
+    static func fakeLayout(addSupplementaryViews: Bool = true,
+                           useNibViews: Bool = false) -> UICollectionViewCompositionalLayout {
         let fractionalWidth = CGFloat(0.5)
 
         // Supplementary Item
@@ -37,7 +38,10 @@ extension UICollectionViewCompositionalLayout {
         // Item
         let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(fractionalWidth),
                                               heightDimension: .fractionalHeight(1))
-        let item = NSCollectionLayoutItem(layoutSize: itemSize, supplementaryItems: [view])
+        let item = NSCollectionLayoutItem(
+            layoutSize: itemSize,
+            supplementaryItems: addSupplementaryViews ? [view] : []
+        )
 
         // Group
         let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1),

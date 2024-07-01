@@ -48,6 +48,39 @@ final class TestCollectionViewDriverReconfigure: UnitTestCase {
 
         self.keepDriverAlive(driver)
     }
+
+    @MainActor
+    func test_reconfigure_header_footer() {
+        let viewController = FakeCollectionViewController()
+        viewController.collectionView.setCollectionViewLayout(
+            UICollectionViewCompositionalLayout.fakeLayout(addSupplementaryViews: false),
+            animated: false
+        )
+
+        let driver = CollectionViewDriver(view: viewController.collectionView, options: .test())
+
+        // Initial header and footer
+        let header = FakeHeaderViewModel(expectationConfigureView: self.expectation(name: "initial_header"))
+        let footer = FakeFooterViewModel(expectationConfigureView: self.expectation(name: "initial_footer"))
+        let cells = [FakeNumberCellViewModel()]
+        let section = SectionViewModel(id: "id", cells: cells, header: header, footer: footer)
+        let model = CollectionViewModel(id: "id", sections: [section])
+
+        driver.update(viewModel: model)
+        self.simulateAppearance(viewController: viewController)
+        self.waitForExpectations()
+
+        // Update header and footer to be reconfigured
+        let updatedHeader = FakeHeaderViewModel(expectationConfigureView: self.expectation(name: "updated_header"))
+        let updatedFooter = FakeFooterViewModel(expectationConfigureView: self.expectation(name: "updated_footer"))
+        let updatedSection = SectionViewModel(id: "id", cells: cells, header: updatedHeader, footer: updatedFooter)
+        let updatedModel = CollectionViewModel(id: "id", sections: [updatedSection])
+
+        driver.update(viewModel: updatedModel)
+        self.waitForExpectations()
+
+        self.keepDriverAlive(driver)
+    }
 }
 
 private struct MyStaticCellViewModel: CellViewModel {
