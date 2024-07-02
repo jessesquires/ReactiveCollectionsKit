@@ -14,7 +14,7 @@
 import Foundation
 import UIKit
 
-extension AnyHashable: @unchecked Sendable { }
+extension AnyHashable: @unchecked @retroactive Sendable { }
 
 @MainActor
 final class DiffableDataSource: UICollectionViewDiffableDataSource<AnyHashable, AnyHashable> {
