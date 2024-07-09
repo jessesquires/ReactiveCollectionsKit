@@ -9,66 +9,65 @@
 #
 #  Runs SwiftLint and checks for installation of correct version.
 
+set -e
+export PATH="$PATH:/opt/homebrew/bin"
+
 if [[ "${GITHUB_ACTIONS}" ]]; then
     exit 0
 fi
 
-set -e
-export PATH="$PATH:/opt/homebrew/bin"
-
-PROJECT="ReactiveCollectionsKit.xcodeproj"
-SCHEME="ReactiveCollectionsKit"
-
-VERSION="0.55.1"
-
-FOUND=$(swiftlint version)
 LINK="https://github.com/realm/SwiftLint"
 INSTALL="brew install swiftlint"
 
-CONFIG="./.swiftlint.yml"
-
-if which swiftlint >/dev/null; then
-    echo "Running swiftlint..."
-    echo ""
-
-    # no arguments, just lint without fixing
-    if [[ $# -eq 0 ]]; then
-        swiftlint --config $CONFIG
-        echo ""
-    fi
-
-    for argval in "$@"
-    do
-        # run --fix
-        if [[ "$argval" == "fix" ]]; then
-            echo "Auto-correcting lint errors..."
-            echo ""
-            swiftlint --fix --progress --config $CONFIG && swiftlint --config $CONFIG
-            echo ""
-        # run analyze
-        elif [[ "$argval" == "analyze" ]]; then
-            LOG="xcodebuild.log"
-            echo "Running anaylze..."
-            echo ""
-            xcodebuild -scheme $SCHEME -project $PROJECT clean build-for-testing > $LOG
-            swiftlint analyze --fix --progress --format --strict --config $CONFIG --compiler-log-path $LOG
-            rm $LOG
-            echo ""
-        else
-            echo "Error: invalid arguments."
-            echo "Usage: $0 [fix] [analyze]"
-            echo ""
-        fi
-    done
-else
+if ! which swiftlint >/dev/null; then
     echo "
     Error: SwiftLint not installed!
 
     Download: $LINK
     Install: $INSTALL
     "
-    exit
+    exit 0
 fi
+
+PROJECT="ReactiveCollectionsKit.xcodeproj"
+SCHEME="ReactiveCollectionsKit"
+
+VERSION="0.55.1"
+FOUND=$(swiftlint version)
+CONFIG="./.swiftlint.yml"
+
+echo "Running swiftlint..."
+echo ""
+
+# no arguments, just lint without fixing
+if [[ $# -eq 0 ]]; then
+    swiftlint --config $CONFIG
+    echo ""
+fi
+
+for argval in "$@"
+do
+    # run --fix
+    if [[ "$argval" == "fix" ]]; then
+        echo "Auto-correcting lint errors..."
+        echo ""
+        swiftlint --fix --progress --config $CONFIG && swiftlint --config $CONFIG
+        echo ""
+    # run analyze
+    elif [[ "$argval" == "analyze" ]]; then
+        LOG="xcodebuild.log"
+        echo "Running anaylze..."
+        echo ""
+        xcodebuild -scheme $SCHEME -project $PROJECT clean build-for-testing > $LOG
+        swiftlint analyze --fix --progress --format --strict --config $CONFIG --compiler-log-path $LOG
+        rm $LOG
+        echo ""
+    else
+        echo "Error: invalid arguments."
+        echo "Usage: $0 [fix] [analyze]"
+        echo ""
+    fi
+done
 
 if [ $FOUND != $VERSION ]; then
     echo "
@@ -81,4 +80,4 @@ if [ $FOUND != $VERSION ]; then
     "
 fi
 
-exit
+exit 0
