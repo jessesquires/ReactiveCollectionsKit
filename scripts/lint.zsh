@@ -13,6 +13,7 @@ set -e
 export PATH="$PATH:/opt/homebrew/bin"
 
 if [[ "${GITHUB_ACTIONS}" ]]; then
+    # ignore on GitHub Actions
     exit 0
 fi
 
