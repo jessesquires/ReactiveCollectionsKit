@@ -72,6 +72,10 @@ final class TestCellViewModel: XCTestCase {
         XCTAssertEqual(erased, erased2)
         XCTAssertEqual(erased.hashValue, erased2.hashValue)
 
+        let erased3 = viewModel.eraseToAnyViewModel().eraseToAnyViewModel()
+        XCTAssertEqual(erased, erased3)
+        XCTAssertEqual(erased.hashValue, erased3.hashValue)
+
         XCTAssertNotEqual(erased, FakeCellViewModel().eraseToAnyViewModel())
         XCTAssertNotEqual(erased.hashValue, FakeCellViewModel().eraseToAnyViewModel().hashValue)
     }
