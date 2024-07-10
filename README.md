@@ -1,8 +1,10 @@
 # ReactiveCollectionsKit [![CI](https://github.com/jessesquires/ReactiveCollectionsKit/actions/workflows/ci.yml/badge.svg)](https://github.com/jessesquires/ReactiveCollectionsKit/actions/workflows/ci.yml)
 
-[![](https://img.shields.io/endpoint?url=https%3A%2F%2Fswiftpackageindex.com%2Fapi%2Fpackages%2Fjessesquires%2FReactiveCollectionsKit%2Fbadge%3Ftype%3Dswift-versions)](https://swiftpackageindex.com/jessesquires/ReactiveCollectionsKit) [![](https://img.shields.io/endpoint?url=https%3A%2F%2Fswiftpackageindex.com%2Fapi%2Fpackages%2Fjessesquires%2FReactiveCollectionsKit%2Fbadge%3Ftype%3Dplatforms)](https://swiftpackageindex.com/jessesquires/ReactiveCollectionsKit)
-
 *Data-driven, declarative, reactive, diffable collections (and lists!) for iOS. A modern, fast, and flexible library for `UICollectionView` done right.*
+
+[![](https://img.shields.io/endpoint?url=https%3A%2F%2Fswiftpackageindex.com%2Fapi%2Fpackages%2Fjessesquires%2FReactiveCollectionsKit%2Fbadge%3Ftype%3Dswift-versions)](https://swiftpackageindex.com/jessesquires/ReactiveCollectionsKit)
+
+[![](https://img.shields.io/endpoint?url=https%3A%2F%2Fswiftpackageindex.com%2Fapi%2Fpackages%2Fjessesquires%2FReactiveCollectionsKit%2Fbadge%3Ftype%3Dplatforms)](https://swiftpackageindex.com/jessesquires/ReactiveCollectionsKit)
 
 ## About
 
