@@ -120,6 +120,7 @@
 		0B31B9BE2BCC6A24006F2078 /* ColorViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorViewController.swift; sourceTree = "<group>"; };
 		0B4245DB2C01B67500DBEC2F /* GridUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GridUITests.swift; sourceTree = "<group>"; };
 		0B4245DF2C01B68000DBEC2F /* ListUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListUITests.swift; sourceTree = "<group>"; };
+		0B7452562C3F170500BA4EB6 /* TestPlan.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; path = TestPlan.xctestplan; sourceTree = "<group>"; };
 		0BFBB2E32C0BF293000842B6 /* SimpleFlowLayoutViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimpleFlowLayoutViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -296,6 +297,7 @@
 		0B7452552C3F169500BA4EB6 /* Tests */ = {
 			isa = PBXGroup;
 			children = (
+				0B7452562C3F170500BA4EB6 /* TestPlan.xctestplan */,
 				0B31B9542BCC62A5006F2078 /* UnitTests */,
 				0B31B95E2BCC62A5006F2078 /* UITests */,
 			);

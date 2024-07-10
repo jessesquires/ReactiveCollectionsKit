@@ -1,0 +1,42 @@
+{
+  "configurations" : [
+    {
+      "id" : "0E9265EF-7B03-4584-B369-B6A39E270B34",
+      "name" : "Test Scheme Action",
+      "options" : {
+
+      }
+    }
+  ],
+  "defaultOptions" : {
+    "codeCoverage" : false,
+    "defaultTestExecutionTimeAllowance" : 600,
+    "maximumTestRepetitions" : 3,
+    "repeatInNewRunnerProcess" : true,
+    "targetForVariableExpansion" : {
+      "containerPath" : "container:ExampleApp.xcodeproj",
+      "identifier" : "0B31B93A2BCC62A4006F2078",
+      "name" : "ExampleApp"
+    },
+    "testExecutionOrdering" : "random",
+    "testRepetitionMode" : "retryOnFailure",
+    "testTimeoutsEnabled" : true
+  },
+  "testTargets" : [
+    {
+      "target" : {
+        "containerPath" : "container:ExampleApp.xcodeproj",
+        "identifier" : "0B31B9502BCC62A5006F2078",
+        "name" : "ExampleAppTests"
+      }
+    },
+    {
+      "target" : {
+        "containerPath" : "container:ExampleApp.xcodeproj",
+        "identifier" : "0B31B95A2BCC62A5006F2078",
+        "name" : "ExampleAppUITests"
+      }
+    }
+  ],
+  "version" : 1
+}
