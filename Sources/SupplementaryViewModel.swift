@@ -38,7 +38,11 @@ extension SupplementaryViewModel {
 
     /// Returns a type-erased version of this view model.
     public func eraseToAnyViewModel() -> AnySupplementaryViewModel {
-        AnySupplementaryViewModel(self)
+        if let erasedViewModel = self as? AnySupplementaryViewModel {
+            return erasedViewModel
+        } else {
+            return AnySupplementaryViewModel(self)
+        }
     }
 
     // MARK: Internal

@@ -72,7 +72,11 @@ extension CellViewModel {
 
     /// Returns a type-erased version of this view model.
     public func eraseToAnyViewModel() -> AnyCellViewModel {
-        AnyCellViewModel(self)
+        if let erasedViewModel = self as? AnyCellViewModel {
+            return erasedViewModel
+        } else {
+            return AnyCellViewModel(self)
+        }
     }
 
     // MARK: Internal
