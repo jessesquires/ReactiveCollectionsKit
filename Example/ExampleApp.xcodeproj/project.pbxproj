@@ -153,8 +153,7 @@
 			isa = PBXGroup;
 			children = (
 				0B31B93D2BCC62A4006F2078 /* Sources */,
-				0B31B9542BCC62A5006F2078 /* Tests */,
-				0B31B95E2BCC62A5006F2078 /* UITests */,
+				0B7452552C3F169500BA4EB6 /* Tests */,
 				0B31B93C2BCC62A4006F2078 /* Products */,
 				0B31B9B42BCC63D4006F2078 /* Frameworks */,
 				0B31B9AB2BCC63BE006F2078 /* ReactiveCollectionsKit.xcodeproj */,
@@ -188,12 +187,12 @@
 			path = Sources;
 			sourceTree = "<group>";
 		};
-		0B31B9542BCC62A5006F2078 /* Tests */ = {
+		0B31B9542BCC62A5006F2078 /* UnitTests */ = {
 			isa = PBXGroup;
 			children = (
 				0B31B9702BCC62FD006F2078 /* ExampleModelTests.swift */,
 			);
-			path = Tests;
+			path = UnitTests;
 			sourceTree = "<group>";
 		};
 		0B31B95E2BCC62A5006F2078 /* UITests */ = {
@@ -292,6 +291,15 @@
 				0B31B9BE2BCC6A24006F2078 /* ColorViewController.swift */,
 			);
 			path = ColorModel;
+			sourceTree = "<group>";
+		};
+		0B7452552C3F169500BA4EB6 /* Tests */ = {
+			isa = PBXGroup;
+			children = (
+				0B31B9542BCC62A5006F2078 /* UnitTests */,
+				0B31B95E2BCC62A5006F2078 /* UITests */,
+			);
+			path = Tests;
 			sourceTree = "<group>";
 		};
 		0BFBB2E02C0BF278000842B6 /* FlowLayout */ = {
