@@ -14,14 +14,16 @@
 import XCTest
 
 final class GridUITests: XCTestCase {
-    var app: XCUIApplication { XCUIApplication() }
+    @MainActor var app: XCUIApplication { XCUIApplication() }
 
+    @MainActor
     override func setUp() {
         super.setUp()
         self.continueAfterFailure = false
         self.app.launch()
     }
 
+    @MainActor
     func test_grid_shuffle() {
         self.app.activate()
 
@@ -32,6 +34,7 @@ final class GridUITests: XCTestCase {
         }
     }
 
+    @MainActor
     func test_grid_remove_reset() {
         self.app.activate()
 

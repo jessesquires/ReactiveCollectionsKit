@@ -19,7 +19,7 @@ struct PersonCellViewModelGrid: CellViewModel {
 
     // MARK: CellViewModel
 
-    var id: UniqueIdentifier { self.person.id }
+    nonisolated var id: UniqueIdentifier { self.person.id }
 
     var registration: ViewRegistration {
         ViewRegistration(

@@ -25,7 +25,7 @@ struct HeaderViewModel: SupplementaryHeaderViewModel {
 
     // MARK: SupplementaryViewModel
 
-    var id: UniqueIdentifier { self.title }
+    nonisolated var id: UniqueIdentifier { self.title }
 
     func configure(view: UICollectionViewListCell) {
         var config: UIListContentConfiguration

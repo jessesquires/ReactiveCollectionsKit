@@ -19,7 +19,7 @@ struct ColorCellViewModelList: CellViewModel {
 
     // MARK: CellViewModel
 
-    var id: UniqueIdentifier { self.color.id }
+    nonisolated var id: UniqueIdentifier { self.color.id }
 
     let contextMenuConfiguration: UIContextMenuConfiguration?
 

@@ -19,7 +19,7 @@ struct PersonCellViewModelList: CellViewModel {
 
     // MARK: CellViewModel
 
-    var id: UniqueIdentifier { self.person.id }
+    nonisolated var id: UniqueIdentifier { self.person.id }
 
     let contextMenuConfiguration: UIContextMenuConfiguration?
 

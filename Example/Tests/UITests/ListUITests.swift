@@ -14,14 +14,16 @@
 import XCTest
 
 final class ListUITests: XCTestCase {
-    var app: XCUIApplication { XCUIApplication() }
+    @MainActor var app: XCUIApplication { XCUIApplication() }
 
+    @MainActor
     override func setUp() {
         super.setUp()
         self.continueAfterFailure = false
         self.app.launch()
     }
 
+    @MainActor
     func test_list_shuffle() {
         self.app.activate()
 
@@ -34,6 +36,7 @@ final class ListUITests: XCTestCase {
         }
     }
 
+    @MainActor
     func test_list_remove_reset() {
         self.app.activate()
 
