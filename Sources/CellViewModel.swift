@@ -72,7 +72,11 @@ extension CellViewModel {
 
     /// Returns a type-erased version of this view model.
     public func eraseToAnyViewModel() -> AnyCellViewModel {
-        AnyCellViewModel(self)
+        if let erasedViewModel = self as? AnyCellViewModel {
+            return erasedViewModel
+        } else {
+            return AnyCellViewModel(self)
+        }
     }
 
     // MARK: Internal
@@ -143,6 +147,10 @@ public struct AnyCellViewModel: CellViewModel {
     ///
     /// - Parameter viewModel: The view model to type-erase.
     public init<T: CellViewModel>(_ viewModel: T) {
+        if let erasedViewModel = viewModel as? AnyCellViewModel {
+            self = erasedViewModel
+            return
+        }
         self._viewModel = viewModel
         self._id = viewModel.id
         self._registration = viewModel.registration

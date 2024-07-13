@@ -50,6 +50,26 @@ final class TestSupplementaryViewModel: XCTestCase {
 
         XCTAssertNotEqual(erased, FakeSupplementaryViewModel().eraseToAnyViewModel())
         XCTAssertNotEqual(erased.hashValue, FakeSupplementaryViewModel().eraseToAnyViewModel().hashValue)
+
+        let erased3 = viewModel.eraseToAnyViewModel().eraseToAnyViewModel()
+        XCTAssertEqual(erased, erased3)
+        XCTAssertEqual(erased.hashValue, erased3.hashValue)
+
+        let erased4 = (viewModel.eraseToAnyViewModel() as (any SupplementaryViewModel)).eraseToAnyViewModel()
+        XCTAssertEqual(erased, erased4)
+        XCTAssertEqual(erased.hashValue, erased4.hashValue)
+
+        let anyViewModel5 = AnySupplementaryViewModel(erased2)
+        XCTAssertEqual(erased, anyViewModel5)
+        XCTAssertEqual(erased.hashValue, anyViewModel5.hashValue)
+
+        let anyViewModel6 = AnySupplementaryViewModel(erased3)
+        XCTAssertEqual(erased, anyViewModel6)
+        XCTAssertEqual(erased.hashValue, anyViewModel6.hashValue)
+
+        let anyViewModel7 = AnySupplementaryViewModel(erased4)
+        XCTAssertEqual(erased, anyViewModel7)
+        XCTAssertEqual(erased.hashValue, anyViewModel7.hashValue)
     }
 
     @MainActor
