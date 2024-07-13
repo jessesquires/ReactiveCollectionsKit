@@ -74,9 +74,8 @@ extension CellViewModel {
     public func eraseToAnyViewModel() -> AnyCellViewModel {
         if let erasedViewModel = self as? AnyCellViewModel {
             return erasedViewModel
-        } else {
-            return AnyCellViewModel(self)
         }
+        return AnyCellViewModel(self)
     }
 
     // MARK: Internal
@@ -147,7 +146,7 @@ public struct AnyCellViewModel: CellViewModel {
     ///
     /// - Parameter viewModel: The view model to type-erase.
     public init<T: CellViewModel>(_ viewModel: T) {
-        if let erasedViewModel = viewModel as? AnyCellViewModel {
+        if let erasedViewModel = viewModel as? Self {
             self = erasedViewModel
             return
         }

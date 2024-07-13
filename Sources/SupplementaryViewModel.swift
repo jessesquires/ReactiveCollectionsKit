@@ -40,9 +40,8 @@ extension SupplementaryViewModel {
     public func eraseToAnyViewModel() -> AnySupplementaryViewModel {
         if let erasedViewModel = self as? AnySupplementaryViewModel {
             return erasedViewModel
-        } else {
-            return AnySupplementaryViewModel(self)
         }
+        return AnySupplementaryViewModel(self)
     }
 
     // MARK: Internal
@@ -111,7 +110,7 @@ public struct AnySupplementaryViewModel: SupplementaryViewModel {
     ///
     /// - Parameter viewModel: The view model to type-erase.
     public init<T: SupplementaryViewModel>(_ viewModel: T) {
-        if let erasedViewModel = viewModel as? AnySupplementaryViewModel {
+        if let erasedViewModel = viewModel as? Self {
             self = erasedViewModel
             return
         }
