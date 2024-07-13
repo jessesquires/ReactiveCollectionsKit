@@ -14,7 +14,7 @@
 import XCTest
 
 final class GridUITests: XCTestCase {
-    let app = XCUIApplication()
+    var app: XCUIApplication { XCUIApplication() }
 
     override func setUp() {
         super.setUp()
@@ -23,6 +23,8 @@ final class GridUITests: XCTestCase {
     }
 
     func test_grid_shuffle() {
+        self.app.activate()
+
         let shuffleButton = self.app.navigationBars["Grid"].buttons["repeat"]
 
         for _ in 1...20 {
@@ -31,6 +33,8 @@ final class GridUITests: XCTestCase {
     }
 
     func test_grid_remove_reset() {
+        self.app.activate()
+
         let shuffleButton = self.app.navigationBars["Grid"].buttons["repeat"]
         shuffleButton.tap()
 

@@ -14,7 +14,7 @@
 import XCTest
 
 final class ListUITests: XCTestCase {
-    let app = XCUIApplication()
+    var app: XCUIApplication { XCUIApplication() }
 
     override func setUp() {
         super.setUp()
@@ -23,6 +23,8 @@ final class ListUITests: XCTestCase {
     }
 
     func test_list_shuffle() {
+        self.app.activate()
+
         self.app.tabBars["Tab Bar"].buttons["List"].tap()
 
         let shuffleButton = self.app.navigationBars["List"].buttons["repeat"]
@@ -33,6 +35,8 @@ final class ListUITests: XCTestCase {
     }
 
     func test_list_remove_reset() {
+        self.app.activate()
+
         self.app.tabBars["Tab Bar"].buttons["List"].tap()
 
         let shuffleButton = self.app.navigationBars["List"].buttons["repeat"]
