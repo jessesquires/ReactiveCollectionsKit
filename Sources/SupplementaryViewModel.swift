@@ -111,6 +111,10 @@ public struct AnySupplementaryViewModel: SupplementaryViewModel {
     ///
     /// - Parameter viewModel: The view model to type-erase.
     public init<T: SupplementaryViewModel>(_ viewModel: T) {
+        if let erasedViewModel = viewModel as? AnySupplementaryViewModel {
+            self = erasedViewModel
+            return
+        }
         self._viewModel = viewModel
         self._id = viewModel.id
         self._registration = viewModel.registration
