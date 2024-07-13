@@ -24,6 +24,7 @@ final class TestSupplementaryViewModel: XCTestCase {
         XCTAssertEqual(viewModel.reuseIdentifier, "FakeSupplementaryViewModel")
     }
 
+    // swiftlint:disable xct_specific_matcher
     @MainActor
     func test_eraseToAnyViewModel() {
         var viewModel = FakeSupplementaryViewModel()
@@ -31,12 +32,9 @@ final class TestSupplementaryViewModel: XCTestCase {
         viewModel.expectationConfigureView?.expectedFulfillmentCount = 2
 
         let erased = viewModel.eraseToAnyViewModel()
-        XCTAssertEqual(viewModel.hashValue, erased.hashValue)
-
         XCTAssertEqual(erased.id, viewModel.id)
+        XCTAssertEqual(erased.hashValue, viewModel.hashValue)
         XCTAssertEqual(erased.registration, viewModel.registration)
-
-        // swiftlint:disable:next xct_specific_matcher
         XCTAssertTrue(erased.viewClass == viewModel.viewClass)
         XCTAssertEqual(erased.reuseIdentifier, viewModel.reuseIdentifier)
 
@@ -52,12 +50,22 @@ final class TestSupplementaryViewModel: XCTestCase {
         XCTAssertNotEqual(erased.hashValue, FakeSupplementaryViewModel().eraseToAnyViewModel().hashValue)
 
         let erased3 = viewModel.eraseToAnyViewModel().eraseToAnyViewModel()
-        XCTAssertEqual(erased, erased3)
-        XCTAssertEqual(erased.hashValue, erased3.hashValue)
+        XCTAssertEqual(erased3, erased)
+        XCTAssertEqual(erased3.hashValue, erased.hashValue)
+        XCTAssertEqual(erased3.id, viewModel.id)
+        XCTAssertEqual(erased3.hashValue, viewModel.hashValue)
+        XCTAssertEqual(erased3.registration, viewModel.registration)
+        XCTAssertTrue(erased3.viewClass == viewModel.viewClass)
+        XCTAssertEqual(erased3.reuseIdentifier, viewModel.reuseIdentifier)
 
         let erased4 = (viewModel.eraseToAnyViewModel() as (any SupplementaryViewModel)).eraseToAnyViewModel()
-        XCTAssertEqual(erased, erased4)
-        XCTAssertEqual(erased.hashValue, erased4.hashValue)
+        XCTAssertEqual(erased4, erased)
+        XCTAssertEqual(erased4.hashValue, erased.hashValue)
+        XCTAssertEqual(erased4.id, viewModel.id)
+        XCTAssertEqual(erased4.hashValue, viewModel.hashValue)
+        XCTAssertEqual(erased4.registration, viewModel.registration)
+        XCTAssertTrue(erased4.viewClass == viewModel.viewClass)
+        XCTAssertEqual(erased4.reuseIdentifier, viewModel.reuseIdentifier)
 
         let anyViewModel5 = AnySupplementaryViewModel(erased2)
         XCTAssertEqual(erased, anyViewModel5)
@@ -71,6 +79,7 @@ final class TestSupplementaryViewModel: XCTestCase {
         XCTAssertEqual(erased, anyViewModel7)
         XCTAssertEqual(erased.hashValue, anyViewModel7.hashValue)
     }
+    // swiftlint:enable xct_specific_matcher
 
     @MainActor
     func test_header() {

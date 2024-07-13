@@ -39,6 +39,7 @@ final class TestCellViewModel: XCTestCase {
         XCTAssertEqual(viewModel.registration, expected)
     }
 
+    // swiftlint:disable xct_specific_matcher
     @MainActor
     func test_eraseToAnyViewModel() {
         var viewModel = FakeTextCellViewModel()
@@ -55,8 +56,6 @@ final class TestCellViewModel: XCTestCase {
         XCTAssertEqual(erased.registration, viewModel.registration)
         XCTAssertEqual(erased.shouldHighlight, viewModel.shouldHighlight)
         XCTAssertIdentical(erased.contextMenuConfiguration, viewModel.contextMenuConfiguration)
-
-        // swiftlint:disable:next xct_specific_matcher
         XCTAssertTrue(erased.cellClass == viewModel.cellClass)
         XCTAssertEqual(erased.reuseIdentifier, viewModel.reuseIdentifier)
 
@@ -76,12 +75,30 @@ final class TestCellViewModel: XCTestCase {
         XCTAssertNotEqual(erased.hashValue, FakeCellViewModel().eraseToAnyViewModel().hashValue)
 
         let erased3 = viewModel.eraseToAnyViewModel().eraseToAnyViewModel()
-        XCTAssertEqual(erased, erased3)
-        XCTAssertEqual(erased.hashValue, erased3.hashValue)
+        XCTAssertEqual(erased3, erased)
+        XCTAssertEqual(erased3.hashValue, erased.hashValue)
+
+        XCTAssertEqual(erased3, viewModel.eraseToAnyViewModel())
+        XCTAssertEqual(erased3.hashValue, viewModel.hashValue)
+        XCTAssertEqual(erased3.id, viewModel.id)
+        XCTAssertEqual(erased3.registration, viewModel.registration)
+        XCTAssertEqual(erased3.shouldHighlight, viewModel.shouldHighlight)
+        XCTAssertIdentical(erased3.contextMenuConfiguration, viewModel.contextMenuConfiguration)
+        XCTAssertTrue(erased3.cellClass == viewModel.cellClass)
+        XCTAssertEqual(erased3.reuseIdentifier, viewModel.reuseIdentifier)
 
         let erased4 = (viewModel.eraseToAnyViewModel() as (any CellViewModel)).eraseToAnyViewModel()
-        XCTAssertEqual(erased, erased4)
-        XCTAssertEqual(erased.hashValue, erased4.hashValue)
+        XCTAssertEqual(erased4, erased)
+        XCTAssertEqual(erased4.hashValue, erased.hashValue)
+
+        XCTAssertEqual(erased4, viewModel.eraseToAnyViewModel())
+        XCTAssertEqual(erased4.hashValue, viewModel.hashValue)
+        XCTAssertEqual(erased4.id, viewModel.id)
+        XCTAssertEqual(erased4.registration, viewModel.registration)
+        XCTAssertEqual(erased4.shouldHighlight, viewModel.shouldHighlight)
+        XCTAssertIdentical(erased4.contextMenuConfiguration, viewModel.contextMenuConfiguration)
+        XCTAssertTrue(erased4.cellClass == viewModel.cellClass)
+        XCTAssertEqual(erased4.reuseIdentifier, viewModel.reuseIdentifier)
 
         let anyViewModel5 = AnyCellViewModel(erased2)
         XCTAssertEqual(erased, anyViewModel5)
@@ -95,6 +112,7 @@ final class TestCellViewModel: XCTestCase {
         XCTAssertEqual(erased, anyViewModel7)
         XCTAssertEqual(erased.hashValue, anyViewModel7.hashValue)
     }
+    // swiftlint:enable xct_specific_matcher
 
     @MainActor
     func test_debugDescription() {
