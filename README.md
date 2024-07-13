@@ -111,6 +111,8 @@ Alternatively, you can add the package [directly via Xcode](https://developer.ap
 
 You can read the [documentation here](https://jessesquires.github.io/ReactiveCollectionsKit). Generated with [jazzy](https://github.com/realm/jazzy). Hosted by [GitHub Pages](https://pages.github.com).
 
+Documentation is also available on the [Swift Package Index](https://swiftpackageindex.com/jessesquires/ReactiveCollectionsKit/documentation).
+
 ## Notes on library architecture
 
 Below are some high-level notes on architecture and core concepts in this library, along with comparisons to the other libraries I have worked on —  [`IGListKit`][0], [`ReactiveLists`][1], and [`JSQDataSourcesKit`][2].
