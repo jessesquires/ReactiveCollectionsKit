@@ -299,48 +299,7 @@ extension SectionViewModel: CustomDebugStringConvertible {
     /// :nodoc:
     nonisolated public var debugDescription: String {
         MainActor.assumeIsolated {
-            var text = "<SectionViewModel:\n id: \(self.id)"
-
-            if let header = self.header {
-                text.append("\n header: \(header.id) (\(header._kind))")
-            } else {
-                text.append("\n header: nil")
-            }
-
-            if let footer = self.footer {
-                text.append("\n footer: \(footer.id) (\(footer._kind))")
-            } else {
-                text.append("\n footer: nil")
-            }
-
-            text.append("\n cells: \n")
-
-            for cellIndex in 0..<self.count {
-                let cell = self[cellIndex]
-                let cellId = String(describing: cell.id)
-                let reuseId = String(describing: cell.registration.reuseIdentifier)
-                text.append("\t[\(cellIndex)]: \(cellId) (\(reuseId)) \n")
-            }
-
-            text.append(" supplementary views: \n")
-            if self.supplementaryViews.isEmpty {
-                text.append("\tnone \n")
-            }
-
-            for viewIndex in 0..<self.supplementaryViews.count {
-                let view = self.supplementaryViews[viewIndex]
-                let viewId = String(describing: view.id)
-                let kind = String(describing: view._kind)
-                text.append("\t[\(viewIndex)]: \(viewId) (\(kind)) \n")
-            }
-
-            text.append(" registrations: \n")
-            self.allRegistrations().forEach {
-                text.append("\t- \($0.reuseIdentifier) (\($0.viewType.kind))\n")
-            }
-            text.append(" isEmpty: \(self.isEmpty)\n")
-            text.append(">")
-            return text
+            sectionDescription(for: self)
         }
     }
 }
