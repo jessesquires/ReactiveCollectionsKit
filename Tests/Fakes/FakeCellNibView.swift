@@ -21,7 +21,7 @@ final class FakeCellNibView: UICollectionViewCell {
 }
 
 struct FakeCellNibViewModel: CellViewModel {
-    let id: UniqueIdentifier = String.random
+    let id: UniqueIdentifier
 
     var registration: ViewRegistration {
         ViewRegistration(
@@ -42,6 +42,16 @@ struct FakeCellNibViewModel: CellViewModel {
     var expectationDidSelect: XCTestExpectation?
     func didSelect(with coordinator: (any CellEventCoordinator)?) {
         self.expectationDidSelect?.fulfillAndLog()
+    }
+
+    init(
+        id: UniqueIdentifier = String.random,
+        expectationConfigureCell: XCTestExpectation? = nil,
+        expectationDidSelect: XCTestExpectation? = nil
+    ) {
+        self.id = id
+        self.expectationConfigureCell = expectationConfigureCell
+        self.expectationDidSelect = expectationDidSelect
     }
 
     nonisolated static func == (left: Self, right: Self) -> Bool {
