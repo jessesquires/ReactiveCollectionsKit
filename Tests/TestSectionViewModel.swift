@@ -200,19 +200,255 @@ final class TestSectionViewModel: XCTestCase {
 
     @MainActor
     func test_debugDescription() {
-        let cells1 = [FakeTextCellViewModel(), FakeTextCellViewModel(), FakeTextCellViewModel()].map { $0.eraseToAnyViewModel() }
-        let cells2 = [FakeNumberCellViewModel(), FakeNumberCellViewModel(), FakeNumberCellViewModel()].map { $0.eraseToAnyViewModel() }
-        let header = FakeHeaderViewModel()
-        let footer = FakeFooterViewModel()
-        let views = [FakeSupplementaryViewModel(), FakeSupplementaryViewModel(), FakeSupplementaryViewModel()]
-        let section = SectionViewModel(
-            id: "id",
-            cells: cells1 + cells2,
-            header: header,
-            footer: footer,
-            supplementaryViews: views
+        func viewModel(
+            id: String,
+            numCells: Int,
+            useCellNibs: Bool = false,
+            includeHeader: Bool = false,
+            includeFooter: Bool = false,
+            includeSupplementaryViews: Bool = false
+        ) -> SectionViewModel {
+            fakeSectionViewModel(
+                id: id,
+                cellId: { _, cellIndex in "cell_\(cellIndex)" },
+                supplementaryViewId: { _, cellIndex in "supplementaryview_\(cellIndex)" },
+                numCells: numCells,
+                useCellNibs: useCellNibs,
+                includeHeader: includeHeader,
+                includeFooter: includeFooter,
+                includeSupplementaryViews: includeSupplementaryViews
+            )
+        }
+
+        func assertEqual(
+            _ lhs: String, _ rhs: String,
+            _ message: @autoclosure () -> String = "", file: StaticString = #filePath, line: UInt = #line
+        ) {
+            XCTAssertEqual(lhs, rhs + "\n", message(), file: file, line: line)
+        }
+
+        let viewModel1 = viewModel(
+            id: "viewModel_1",
+            numCells: 0
+        )
+        assertEqual(
+            viewModel1.debugDescription,
+            """
+            <SectionViewModel:
+              id: section_viewModel_1
+              header: nil
+              footer: nil
+              cells: none
+              supplementary views: none
+              registrations: none
+              isEmpty: true
+            >
+            """
         )
 
-        print(section.debugDescription)
+        let viewModel2 = viewModel(
+            id: "viewModel_2",
+            numCells: 1
+        )
+        assertEqual(
+            viewModel2.debugDescription,
+            """
+            <SectionViewModel:
+              id: section_viewModel_2
+              header: nil
+              footer: nil
+              cells:
+                [0]: cell_0 (FakeNumberCellViewModel)
+              supplementary views: none
+              registrations:
+                - FakeNumberCellViewModel (cell)
+              isEmpty: false
+            >
+            """
+        )
+
+        let viewModel3 = viewModel(
+            id: "viewModel_3",
+            numCells: 2
+        )
+        assertEqual(
+            viewModel3.debugDescription,
+            """
+            <SectionViewModel:
+              id: section_viewModel_3
+              header: nil
+              footer: nil
+              cells:
+                [0]: cell_0 (FakeNumberCellViewModel)
+                [1]: cell_1 (FakeTextCellViewModel)
+              supplementary views: none
+              registrations:
+                - FakeNumberCellViewModel (cell)
+                - FakeTextCellViewModel (cell)
+              isEmpty: false
+            >
+            """
+        )
+
+        let viewModel4 = viewModel(
+            id: "viewModel_4",
+            numCells: 3
+        )
+        assertEqual(
+            viewModel4.debugDescription,
+            """
+            <SectionViewModel:
+              id: section_viewModel_4
+              header: nil
+              footer: nil
+              cells:
+                [0]: cell_0 (FakeNumberCellViewModel)
+                [1]: cell_1 (FakeTextCellViewModel)
+                [2]: cell_2 (FakeNumberCellViewModel)
+              supplementary views: none
+              registrations:
+                - FakeNumberCellViewModel (cell)
+                - FakeTextCellViewModel (cell)
+              isEmpty: false
+            >
+            """
+        )
+
+        let viewModel5 = viewModel(
+            id: "viewModel_5",
+            numCells: 3,
+            useCellNibs: true
+        )
+        assertEqual(
+            viewModel5.debugDescription,
+            """
+            <SectionViewModel:
+              id: section_viewModel_5
+              header: nil
+              footer: nil
+              cells:
+                [0]: cell_0 (FakeCellNibViewModel)
+                [1]: cell_1 (FakeCellNibViewModel)
+                [2]: cell_2 (FakeCellNibViewModel)
+              supplementary views: none
+              registrations:
+                - FakeCellNibViewModel (cell)
+              isEmpty: false
+            >
+            """
+        )
+
+        let viewModel6 = viewModel(
+            id: "viewModel_6",
+            numCells: 3,
+            includeHeader: true
+        )
+        assertEqual(
+            viewModel6.debugDescription,
+            """
+            <SectionViewModel:
+              id: section_viewModel_6
+              header: Header (FakeHeaderViewModel)
+              footer: nil
+              cells:
+                [0]: cell_0 (FakeNumberCellViewModel)
+                [1]: cell_1 (FakeTextCellViewModel)
+                [2]: cell_2 (FakeNumberCellViewModel)
+              supplementary views: none
+              registrations:
+                - FakeHeaderViewModel (UICollectionElementKindSectionHeader)
+                - FakeNumberCellViewModel (cell)
+                - FakeTextCellViewModel (cell)
+              isEmpty: false
+            >
+            """
+        )
+
+        let viewModel7 = viewModel(
+            id: "viewModel_7",
+            numCells: 3,
+            includeFooter: true
+        )
+        assertEqual(
+            viewModel7.debugDescription,
+            """
+            <SectionViewModel:
+              id: section_viewModel_7
+              header: nil
+              footer: Footer (FakeFooterViewModel)
+              cells:
+                [0]: cell_0 (FakeNumberCellViewModel)
+                [1]: cell_1 (FakeTextCellViewModel)
+                [2]: cell_2 (FakeNumberCellViewModel)
+              supplementary views: none
+              registrations:
+                - FakeFooterViewModel (UICollectionElementKindSectionFooter)
+                - FakeNumberCellViewModel (cell)
+                - FakeTextCellViewModel (cell)
+              isEmpty: false
+            >
+            """
+        )
+
+        let viewModel8 = viewModel(
+            id: "viewModel_8",
+            numCells: 3,
+            includeHeader: true,
+            includeFooter: true
+        )
+        assertEqual(
+            viewModel8.debugDescription,
+            """
+            <SectionViewModel:
+              id: section_viewModel_8
+              header: Header (FakeHeaderViewModel)
+              footer: Footer (FakeFooterViewModel)
+              cells:
+                [0]: cell_0 (FakeNumberCellViewModel)
+                [1]: cell_1 (FakeTextCellViewModel)
+                [2]: cell_2 (FakeNumberCellViewModel)
+              supplementary views: none
+              registrations:
+                - FakeFooterViewModel (UICollectionElementKindSectionFooter)
+                - FakeHeaderViewModel (UICollectionElementKindSectionHeader)
+                - FakeNumberCellViewModel (cell)
+                - FakeTextCellViewModel (cell)
+              isEmpty: false
+            >
+            """
+        )
+
+        let viewModel9 = viewModel(
+            id: "viewModel_9",
+            numCells: 3,
+            includeHeader: true,
+            includeFooter: true,
+            includeSupplementaryViews: true
+        )
+        assertEqual(
+            viewModel9.debugDescription,
+            """
+            <SectionViewModel:
+              id: section_viewModel_9
+              header: Header (FakeHeaderViewModel)
+              footer: Footer (FakeFooterViewModel)
+              cells:
+                [0]: cell_0 (FakeNumberCellViewModel)
+                [1]: cell_1 (FakeTextCellViewModel)
+                [2]: cell_2 (FakeNumberCellViewModel)
+              supplementary views:
+                [0]: supplementaryview_0 (FakeSupplementaryViewModel)
+                [1]: supplementaryview_1 (FakeSupplementaryViewModel)
+                [2]: supplementaryview_2 (FakeSupplementaryViewModel)
+              registrations:
+                - FakeFooterViewModel (UICollectionElementKindSectionFooter)
+                - FakeHeaderViewModel (UICollectionElementKindSectionHeader)
+                - FakeNumberCellViewModel (cell)
+                - FakeSupplementaryViewModel (FakeKind)
+                - FakeTextCellViewModel (cell)
+              isEmpty: false
+            >
+            """
+        )
     }
 }
