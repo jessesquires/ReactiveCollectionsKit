@@ -262,54 +262,7 @@ extension CollectionViewModel: CustomDebugStringConvertible {
     /// :nodoc:
     nonisolated public var debugDescription: String {
         MainActor.assumeIsolated {
-            var text = "<CollectionViewModel:\n id: \(self.id)\n sections:\n"
-
-            for sectionIndex in 0..<self.count {
-                let section = self[sectionIndex]
-
-                text.append("\t[\(sectionIndex)]: \(section.id)\n")
-                text.append("\t isEmpty: \(section.isEmpty)\n")
-
-                if let header = section.header {
-                    text.append("\t header: \(header.id) (\(header._kind))\n")
-                } else {
-                    text.append("\t header: nil\n")
-                }
-
-                if let footer = section.footer {
-                    text.append("\t footer: \(footer.id) (\(footer._kind))\n")
-                } else {
-                    text.append("\t footer: nil\n")
-                }
-
-                text.append("\t cells: \n")
-                for cellIndex in 0..<section.cells.count {
-                    let cell = section[cellIndex]
-                    let cellId = String(describing: cell.id)
-                    let reuseId = String(describing: cell.registration.reuseIdentifier)
-                    text.append("\t\t[\(cellIndex)]: \(cellId) (\(reuseId)) \n")
-                }
-
-                text.append("\t supplementary views: \n")
-                if section.supplementaryViews.isEmpty {
-                    text.append("\t\tnone \n")
-                }
-
-                for viewIndex in 0..<section.supplementaryViews.count {
-                    let view = section.supplementaryViews[viewIndex]
-                    let viewId = String(describing: view.id)
-                    let kind = String(describing: view._kind)
-                    text.append("\t\t[\(viewIndex)]: \(viewId) (\(kind)) \n")
-                }
-            }
-
-            text.append(" registrations: \n")
-            self.allRegistrations().forEach {
-                text.append("\t- \($0.reuseIdentifier) (\($0.viewType.kind))\n")
-            }
-            text.append(" isEmpty: \(self.isEmpty)\n")
-            text.append(">")
-            return text
+            ReactiveCollectionsKit.debugDescription(for: self)
         }
     }
 }
