@@ -13,7 +13,6 @@
 
 import Foundation
 
-/// :nodoc:
 private enum Element {
     case type(Any.Type)
     case index(Int)
@@ -28,7 +27,6 @@ private enum Element {
     case end
 }
 
-/// :nodoc:
 private func print<Target: TextOutputStream>(
     _ text: String,
     indent: Int,
@@ -37,8 +35,7 @@ private func print<Target: TextOutputStream>(
     Swift.print("\(String(repeating: " ", count: indent))\(text)", to: &output)
 }
 
-/// :nodoc:
-private func print<Target: TextOutputStream>(
+private func debugDescriptionBuilder<Target: TextOutputStream>(
     elements: [(Element, Int)],
     to output: inout Target
 ) {
@@ -97,7 +94,7 @@ private func print<Target: TextOutputStream>(
             }
 
             for (index, section) in sections.enumerated() {
-                print(
+                debugDescriptionBuilder(
                     elements: [
                         (.index(index), indent + 2),
                         (.id(section.id), indent + 4),
@@ -131,11 +128,10 @@ private func print<Target: TextOutputStream>(
     }
 }
 
-/// :nodoc:
 @MainActor
-func collectionDescription(for collection: CollectionViewModel) -> String {
+func debugDescription(for collection: CollectionViewModel) -> String {
     var output = ""
-    print(
+    debugDescriptionBuilder(
         elements: [
             (.type(CollectionViewModel.self), 0),
             (.id(collection.id), 2),
@@ -149,11 +145,10 @@ func collectionDescription(for collection: CollectionViewModel) -> String {
     return output
 }
 
-/// :nodoc:
 @MainActor
-func sectionDescription(for section: SectionViewModel) -> String {
+func debugDescription(for section: SectionViewModel) -> String {
     var output = ""
-    print(
+    debugDescriptionBuilder(
         elements: [
             (.type(SectionViewModel.self), 0),
             (.id(section.id), 2),

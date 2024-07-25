@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		07E72F9C2C3ECE86009B2387 /* Descriptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07E72F9B2C3ECE86009B2387 /* Descriptions.swift */; };
+		07E72F9C2C3ECE86009B2387 /* DebugDescriptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07E72F9B2C3ECE86009B2387 /* DebugDescriptions.swift */; };
 		0B01476F2BBCF0330041D432 /* Collection+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B01476E2BBCF0330041D432 /* Collection+Extensions.swift */; };
 		0B0433262C2FE25C0083C8DB /* TestDiffableSnapshot.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B0433252C2FE25C0083C8DB /* TestDiffableSnapshot.swift */; };
 		0B0B5AA32BFF0BDB0037BC02 /* EmptyViewProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B0B5AA22BFF0BDB0037BC02 /* EmptyViewProvider.swift */; };
@@ -75,7 +75,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		07E72F9B2C3ECE86009B2387 /* Descriptions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Descriptions.swift; sourceTree = "<group>"; };
+		07E72F9B2C3ECE86009B2387 /* DebugDescriptions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DebugDescriptions.swift; sourceTree = "<group>"; };
 		0B01476E2BBCF0330041D432 /* Collection+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Collection+Extensions.swift"; sourceTree = "<group>"; };
 		0B0433252C2FE25C0083C8DB /* TestDiffableSnapshot.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestDiffableSnapshot.swift; sourceTree = "<group>"; };
 		0B0B5AA22BFF0BDB0037BC02 /* EmptyViewProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyViewProvider.swift; sourceTree = "<group>"; };
@@ -222,7 +222,7 @@
 				88FA48FA2363A7880061F8B2 /* CollectionViewDriver.swift */,
 				0B4245D92C014F4B00DBEC2F /* CollectionViewDriverOptions.swift */,
 				88FA48F92363A7880061F8B2 /* CollectionViewModel.swift */,
-				07E72F9B2C3ECE86009B2387 /* Descriptions.swift */,
+				07E72F9B2C3ECE86009B2387 /* DebugDescriptions.swift */,
 				88C02078236CBCB000B43713 /* DiffableDataSource.swift */,
 				0BC546EE267923BA00E36D30 /* DiffableSnapshot.swift */,
 				88FA49302363BC5F0061F8B2 /* DiffableViewModel.swift */,
@@ -416,7 +416,7 @@
 				0BFA774E2BB92DC8009B9C5B /* ViewRegistrationViewType.swift in Sources */,
 				0B25D73A2BFAD31C00EB3664 /* UICollectionView+Extensions.swift in Sources */,
 				0B01476F2BBCF0330041D432 /* Collection+Extensions.swift in Sources */,
-				07E72F9C2C3ECE86009B2387 /* Descriptions.swift in Sources */,
+				07E72F9C2C3ECE86009B2387 /* DebugDescriptions.swift in Sources */,
 				88FA490A2363A7890061F8B2 /* CellViewModel.swift in Sources */,
 				0BC1EC28267FC37200FF774F /* SupplementaryHeaderViewModel.swift in Sources */,
 			);

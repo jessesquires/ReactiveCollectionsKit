@@ -299,7 +299,7 @@ extension SectionViewModel: CustomDebugStringConvertible {
     /// :nodoc:
     nonisolated public var debugDescription: String {
         MainActor.assumeIsolated {
-            sectionDescription(for: self)
+            ReactiveCollectionsKit.debugDescription(for: self)
         }
     }
 }
