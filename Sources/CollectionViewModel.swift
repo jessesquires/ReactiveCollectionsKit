@@ -262,7 +262,7 @@ extension CollectionViewModel: CustomDebugStringConvertible {
     /// :nodoc:
     nonisolated public var debugDescription: String {
         MainActor.assumeIsolated {
-            ReactiveCollectionsKit.debugDescription(for: self)
+            collectionDebugDescription(self)
         }
     }
 }

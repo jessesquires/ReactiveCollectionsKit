@@ -7,6 +7,11 @@ NEXT
 
 - TBA
 
+0.1.3
+-----
+
+- Improve debug descriptions for `CollectionViewModel` and `SectionViewModel` ([@nuomi1](https://github.com/nuomi1), [#119](https://github.com/jessesquires/ReactiveCollectionsKit/pull/119))
+
 0.1.2
 -----
 

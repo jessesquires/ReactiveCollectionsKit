@@ -27,14 +27,15 @@ private enum Element {
     case end
 }
 
-private func print<Target: TextOutputStream>(
+private func buildString<Target: TextOutputStream>(
     _ text: String,
     indent: Int,
     to output: inout Target
 ) {
-    Swift.print("\(String(repeating: " ", count: indent))\(text)", to: &output)
+    print("\(String(repeating: " ", count: indent))\(text)", to: &output)
 }
 
+// swiftlint:disable:next cyclomatic_complexity
 private func debugDescriptionBuilder<Target: TextOutputStream>(
     elements: [(Element, Int)],
     to output: inout Target
@@ -42,55 +43,55 @@ private func debugDescriptionBuilder<Target: TextOutputStream>(
     for (element, indent) in elements {
         switch element {
         case let .type(type):
-            print("<\(type):", indent: indent, to: &output)
+            buildString("<\(type):", indent: indent, to: &output)
 
         case let .index(index):
-            print("[\(index)]:", indent: indent, to: &output)
+            buildString("[\(index)]:", indent: indent, to: &output)
 
         case let .id(id):
-            print("id: \(id)", indent: indent, to: &output)
+            buildString("id: \(id)", indent: indent, to: &output)
 
         case let .header(header):
             if let header {
-                print("header: \(header.id) (\(header.reuseIdentifier))", indent: indent, to: &output)
+                buildString("header: \(header.id) (\(header.reuseIdentifier))", indent: indent, to: &output)
             } else {
-                print("header: nil", indent: indent, to: &output)
+                buildString("header: nil", indent: indent, to: &output)
             }
 
         case let .footer(footer):
             if let footer {
-                print("footer: \(footer.id) (\(footer.reuseIdentifier))", indent: indent, to: &output)
+                buildString("footer: \(footer.id) (\(footer.reuseIdentifier))", indent: indent, to: &output)
             } else {
-                print("footer: nil", indent: indent, to: &output)
+                buildString("footer: nil", indent: indent, to: &output)
             }
 
         case let .cells(cells):
             if !cells.isEmpty {
-                print("cells:", indent: indent, to: &output)
+                buildString("cells:", indent: indent, to: &output)
             } else {
-                print("cells: none", indent: indent, to: &output)
+                buildString("cells: none", indent: indent, to: &output)
             }
 
             for (index, cell) in cells.enumerated() {
-                print("[\(index)]: \(cell.id) (\(cell.reuseIdentifier))", indent: indent + 2, to: &output)
+                buildString("[\(index)]: \(cell.id) (\(cell.reuseIdentifier))", indent: indent + 2, to: &output)
             }
 
         case let .supplementaryViews(supplementaryViews):
             if !supplementaryViews.isEmpty {
-                print("supplementary views:", indent: indent, to: &output)
+                buildString("supplementary views:", indent: indent, to: &output)
             } else {
-                print("supplementary views: none", indent: indent, to: &output)
+                buildString("supplementary views: none", indent: indent, to: &output)
             }
 
             for (index, supplementaryView) in supplementaryViews.enumerated() {
-                print("[\(index)]: \(supplementaryView.id) (\(supplementaryView.reuseIdentifier))", indent: indent + 2, to: &output)
+                buildString("[\(index)]: \(supplementaryView.id) (\(supplementaryView.reuseIdentifier))", indent: indent + 2, to: &output)
             }
 
         case let .sections(sections):
             if !sections.isEmpty {
-                print("sections:", indent: indent, to: &output)
+                buildString("sections:", indent: indent, to: &output)
             } else {
-                print("sections: none", indent: indent, to: &output)
+                buildString("sections: none", indent: indent, to: &output)
             }
 
             for (index, section) in sections.enumerated() {
@@ -102,7 +103,7 @@ private func debugDescriptionBuilder<Target: TextOutputStream>(
                         (.footer(section.footer), indent + 4),
                         (.cells(section.cells), indent + 4),
                         (.supplementaryViews(section.supplementaryViews), indent + 4),
-                        (.isEmpty(section.isEmpty), indent + 4),
+                        (.isEmpty(section.isEmpty), indent + 4)
                     ],
                     to: &output
                 )
@@ -110,26 +111,26 @@ private func debugDescriptionBuilder<Target: TextOutputStream>(
 
         case let .registrations(registrations):
             if !registrations.isEmpty {
-                print("registrations:", indent: indent, to: &output)
+                buildString("registrations:", indent: indent, to: &output)
             } else {
-                print("registrations: none", indent: indent, to: &output)
+                buildString("registrations: none", indent: indent, to: &output)
             }
 
             for registration in registrations.sorted(by: { $0.reuseIdentifier < $1.reuseIdentifier }) {
-                print("- \(registration.reuseIdentifier) (\(registration.viewType.kind))", indent: indent + 2, to: &output)
+                buildString("- \(registration.reuseIdentifier) (\(registration.viewType.kind))", indent: indent + 2, to: &output)
             }
 
         case let .isEmpty(isEmpty):
-            print("isEmpty: \(isEmpty)", indent: indent, to: &output)
+            buildString("isEmpty: \(isEmpty)", indent: indent, to: &output)
 
         case .end:
-            print(">", indent: indent, to: &output)
+            buildString(">", indent: indent, to: &output)
         }
     }
 }
 
 @MainActor
-func debugDescription(for collection: CollectionViewModel) -> String {
+func collectionDebugDescription(_ collection: CollectionViewModel) -> String {
     var output = ""
     debugDescriptionBuilder(
         elements: [
@@ -138,7 +139,7 @@ func debugDescription(for collection: CollectionViewModel) -> String {
             (.sections(collection.sections), 2),
             (.registrations(collection.allRegistrations()), 2),
             (.isEmpty(collection.isEmpty), 2),
-            (.end, 0),
+            (.end, 0)
         ],
         to: &output
     )
@@ -146,7 +147,7 @@ func debugDescription(for collection: CollectionViewModel) -> String {
 }
 
 @MainActor
-func debugDescription(for section: SectionViewModel) -> String {
+func sectionDebugDescription(_ section: SectionViewModel) -> String {
     var output = ""
     debugDescriptionBuilder(
         elements: [
@@ -158,7 +159,7 @@ func debugDescription(for section: SectionViewModel) -> String {
             (.supplementaryViews(section.supplementaryViews), 2),
             (.registrations(section.allRegistrations()), 2),
             (.isEmpty(section.isEmpty), 2),
-            (.end, 0),
+            (.end, 0)
         ],
         to: &output
     )
