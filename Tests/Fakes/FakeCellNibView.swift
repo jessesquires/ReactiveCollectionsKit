@@ -44,16 +44,6 @@ struct FakeCellNibViewModel: CellViewModel {
         self.expectationDidSelect?.fulfillAndLog()
     }
 
-    init(
-        id: UniqueIdentifier = String.random,
-        expectationConfigureCell: XCTestExpectation? = nil,
-        expectationDidSelect: XCTestExpectation? = nil
-    ) {
-        self.id = id
-        self.expectationConfigureCell = expectationConfigureCell
-        self.expectationDidSelect = expectationDidSelect
-    }
-
     nonisolated static func == (left: Self, right: Self) -> Bool {
         left.id == right.id
     }

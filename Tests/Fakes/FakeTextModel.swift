@@ -19,9 +19,7 @@ import XCTest
 struct FakeTextModel: Hashable {
     let text: String
 
-    init(
-        text: String = .random
-    ) {
+    init(text: String = .random) {
         self.text = text
     }
 }

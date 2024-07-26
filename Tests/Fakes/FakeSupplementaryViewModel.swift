@@ -35,12 +35,8 @@ struct FakeSupplementaryViewModel: SupplementaryViewModel {
         self.expectationConfigureView?.fulfillAndLog()
     }
 
-    init(
-        title: String = .random,
-        expectationConfigureView: XCTestExpectation? = nil
-    ) {
+    init(title: String = .random) {
         self.title = title
-        self.expectationConfigureView = expectationConfigureView
     }
 
     nonisolated static func == (left: Self, right: Self) -> Bool {

@@ -17,14 +17,10 @@ import UIKit
 import XCTest
 
 struct FakeNumberModel: Hashable {
-    let number: Int
+    let number = Int.random(in: 0...1_000_000)
     let id: String
 
-    init(
-        number: Int = .random(in: 0...1_000_000),
-        id: String = .random
-    ) {
-        self.number = number
+    init(id: String = .random) {
         self.id = id
     }
 }
@@ -50,18 +46,8 @@ struct FakeNumberCellViewModel: CellViewModel {
         self.expectationDidSelect?.fulfillAndLog()
     }
 
-    init(
-        model: FakeNumberModel = FakeNumberModel(),
-        shouldHighlight: Bool = true,
-        contextMenuConfiguration: UIContextMenuConfiguration? = nil,
-        expectationConfigureCell: XCTestExpectation? = nil,
-        expectationDidSelect: XCTestExpectation? = nil
-    ) {
+    init(model: FakeNumberModel = FakeNumberModel()) {
         self.model = model
-        self.shouldHighlight = shouldHighlight
-        self.contextMenuConfiguration = contextMenuConfiguration
-        self.expectationConfigureCell = expectationConfigureCell
-        self.expectationDidSelect = expectationDidSelect
     }
 
     nonisolated static func == (left: Self, right: Self) -> Bool {
