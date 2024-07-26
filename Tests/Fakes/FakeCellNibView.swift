@@ -21,7 +21,7 @@ final class FakeCellNibView: UICollectionViewCell {
 }
 
 struct FakeCellNibViewModel: CellViewModel {
-    let id: UniqueIdentifier = String.random
+    let id: UniqueIdentifier
 
     var registration: ViewRegistration {
         ViewRegistration(

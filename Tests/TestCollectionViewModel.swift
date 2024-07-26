@@ -255,10 +255,4 @@ final class TestCollectionViewModel: XCTestCase {
         XCTAssertEqual(model[.init(item: 1, section: 0)], cell2)
         XCTAssertEqual(model[item: 2, section: 0], cell3)
     }
-
-    @MainActor
-    func test_debugDescription() {
-        let viewModel = self.fakeCollectionViewModel()
-        print(viewModel.debugDescription)
-    }
 }

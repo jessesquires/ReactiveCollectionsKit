@@ -17,11 +17,15 @@ import UIKit
 import XCTest
 
 struct FakeTextModel: Hashable {
-    let text = String.random
+    let text: String
+
+    init(text: String = .random) {
+        self.text = text
+    }
 }
 
 struct FakeTextCellViewModel: CellViewModel {
-    let model = FakeTextModel()
+    let model: FakeTextModel
 
     nonisolated var id: UniqueIdentifier {
         self.model.text
@@ -39,6 +43,20 @@ struct FakeTextCellViewModel: CellViewModel {
     var expectationDidSelect: XCTestExpectation?
     func didSelect(with coordinator: (any CellEventCoordinator)?) {
         self.expectationDidSelect?.fulfillAndLog()
+    }
+
+    init(
+        model: FakeTextModel = FakeTextModel(),
+        shouldHighlight: Bool = true,
+        contextMenuConfiguration: UIContextMenuConfiguration? = nil,
+        expectationConfigureCell: XCTestExpectation? = nil,
+        expectationDidSelect: XCTestExpectation? = nil
+    ) {
+        self.model = model
+        self.shouldHighlight = shouldHighlight
+        self.contextMenuConfiguration = contextMenuConfiguration
+        self.expectationConfigureCell = expectationConfigureCell
+        self.expectationDidSelect = expectationDidSelect
     }
 
     nonisolated static func == (left: Self, right: Self) -> Bool {

@@ -197,22 +197,4 @@ final class TestSectionViewModel: XCTestCase {
         XCTAssertEqual(section[1], cells[1].eraseToAnyViewModel())
         XCTAssertEqual(section[2], cells[2].eraseToAnyViewModel())
     }
-
-    @MainActor
-    func test_debugDescription() {
-        let cells1 = [FakeTextCellViewModel(), FakeTextCellViewModel(), FakeTextCellViewModel()].map { $0.eraseToAnyViewModel() }
-        let cells2 = [FakeNumberCellViewModel(), FakeNumberCellViewModel(), FakeNumberCellViewModel()].map { $0.eraseToAnyViewModel() }
-        let header = FakeHeaderViewModel()
-        let footer = FakeFooterViewModel()
-        let views = [FakeSupplementaryViewModel(), FakeSupplementaryViewModel(), FakeSupplementaryViewModel()]
-        let section = SectionViewModel(
-            id: "id",
-            cells: cells1 + cells2,
-            header: header,
-            footer: footer,
-            supplementaryViews: views
-        )
-
-        print(section.debugDescription)
-    }
 }

@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		07C025E42C535FE7009AF8AD /* TestDebugDescriptionCollection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07C025E32C535FE6009AF8AD /* TestDebugDescriptionCollection.swift */; };
 		07E72F9C2C3ECE86009B2387 /* DebugDescriptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07E72F9B2C3ECE86009B2387 /* DebugDescriptions.swift */; };
 		0B01476F2BBCF0330041D432 /* Collection+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B01476E2BBCF0330041D432 /* Collection+Extensions.swift */; };
 		0B0433262C2FE25C0083C8DB /* TestDiffableSnapshot.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B0433252C2FE25C0083C8DB /* TestDiffableSnapshot.swift */; };
@@ -14,6 +15,7 @@
 		0B25D73A2BFAD31C00EB3664 /* UICollectionView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B25D7392BFAD31C00EB3664 /* UICollectionView+Extensions.swift */; };
 		0B31B9312BCC5B66006F2078 /* CellEventCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B31B9302BCC5B66006F2078 /* CellEventCoordinator.swift */; };
 		0B4245DA2C014F4B00DBEC2F /* CollectionViewDriverOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B4245D92C014F4B00DBEC2F /* CollectionViewDriverOptions.swift */; };
+		0B4263E12C54409F006FE56D /* TestDebugDescriptionSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B4263E02C54409F006FE56D /* TestDebugDescriptionSection.swift */; };
 		0B7A18EC2C2A17A700E59C35 /* TestCollectionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B7A18EB2C2A17A700E59C35 /* TestCollectionViewModel.swift */; };
 		0B7A18EF2C2A4DE300E59C35 /* FakeSupplementaryNib.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0B7A18EE2C2A4DE300E59C35 /* FakeSupplementaryNib.xib */; };
 		0B7A18F12C2A4E1A00E59C35 /* FakeCellNibView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B7A18F02C2A4E1A00E59C35 /* FakeCellNibView.swift */; };
@@ -75,6 +77,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		07C025E32C535FE6009AF8AD /* TestDebugDescriptionCollection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestDebugDescriptionCollection.swift; sourceTree = "<group>"; };
 		07E72F9B2C3ECE86009B2387 /* DebugDescriptions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DebugDescriptions.swift; sourceTree = "<group>"; };
 		0B01476E2BBCF0330041D432 /* Collection+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Collection+Extensions.swift"; sourceTree = "<group>"; };
 		0B0433252C2FE25C0083C8DB /* TestDiffableSnapshot.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestDiffableSnapshot.swift; sourceTree = "<group>"; };
@@ -82,6 +85,7 @@
 		0B25D7392BFAD31C00EB3664 /* UICollectionView+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UICollectionView+Extensions.swift"; sourceTree = "<group>"; };
 		0B31B9302BCC5B66006F2078 /* CellEventCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CellEventCoordinator.swift; sourceTree = "<group>"; };
 		0B4245D92C014F4B00DBEC2F /* CollectionViewDriverOptions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewDriverOptions.swift; sourceTree = "<group>"; };
+		0B4263E02C54409F006FE56D /* TestDebugDescriptionSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestDebugDescriptionSection.swift; sourceTree = "<group>"; };
 		0B7A18EB2C2A17A700E59C35 /* TestCollectionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestCollectionViewModel.swift; sourceTree = "<group>"; };
 		0B7A18EE2C2A4DE300E59C35 /* FakeSupplementaryNib.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FakeSupplementaryNib.xib; sourceTree = "<group>"; };
 		0B7A18F02C2A4E1A00E59C35 /* FakeCellNibView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FakeCellNibView.swift; sourceTree = "<group>"; };
@@ -251,6 +255,8 @@
 				0BA0E2CB2C030445001FB5AA /* TestCollectionViewDriverOptions.swift */,
 				0BBB8A482C32309800200477 /* TestCollectionViewDriverReconfigure.swift */,
 				0B7A18EB2C2A17A700E59C35 /* TestCollectionViewModel.swift */,
+				07C025E32C535FE6009AF8AD /* TestDebugDescriptionCollection.swift */,
+				0B4263E02C54409F006FE56D /* TestDebugDescriptionSection.swift */,
 				0B0433252C2FE25C0083C8DB /* TestDiffableSnapshot.swift */,
 				0BA0E2CD2C0304B4001FB5AA /* TestEmptyView.swift */,
 				0BFBB2F62C0D4A91000842B6 /* TestPlans */,
@@ -437,6 +443,7 @@
 				0BFBB2EE2C0C3C36000842B6 /* TestCellEventCoordinator.swift in Sources */,
 				0BFBB2EA2C0BF8B8000842B6 /* FakeTextModel.swift in Sources */,
 				88BD6D16238D03F100FB1846 /* TestCellViewModel.swift in Sources */,
+				0B4263E12C54409F006FE56D /* TestDebugDescriptionSection.swift in Sources */,
 				0BA0E2D02C03056D001FB5AA /* TestViewRegistration.swift in Sources */,
 				0BFBB2FB2C0D4C34000842B6 /* FakeSupplementaryViewModel.swift in Sources */,
 				0BA0E2D22C030849001FB5AA /* TestViewRegistrationMethod.swift in Sources */,
@@ -444,6 +451,7 @@
 				0BA0E2CC2C030445001FB5AA /* TestCollectionViewDriverOptions.swift in Sources */,
 				0BBB8A492C32309800200477 /* TestCollectionViewDriverReconfigure.swift in Sources */,
 				0BFBB2EC2C0BFD1B000842B6 /* FakeCellEventCoordinator.swift in Sources */,
+				07C025E42C535FE7009AF8AD /* TestDebugDescriptionCollection.swift in Sources */,
 				0BFA774C2BB8B717009B9C5B /* FakeCellViewModel.swift in Sources */,
 				0B7A18F32C2A4E4500E59C35 /* FakeSupplementaryNibView.swift in Sources */,
 				0BFBB2F02C0D3C92000842B6 /* XCTestExpectation+Expectations.swift in Sources */,

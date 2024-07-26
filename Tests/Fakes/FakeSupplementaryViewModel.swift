@@ -18,7 +18,7 @@ import XCTest
 struct FakeSupplementaryViewModel: SupplementaryViewModel {
     static let kind = "FakeKind"
 
-    let title = String.random
+    let title: String
 
     nonisolated var id: UniqueIdentifier { self.title }
 
@@ -35,6 +35,10 @@ struct FakeSupplementaryViewModel: SupplementaryViewModel {
         self.expectationConfigureView?.fulfillAndLog()
     }
 
+    init(title: String = .random) {
+        self.title = title
+    }
+
     nonisolated static func == (left: Self, right: Self) -> Bool {
         left.title == right.title
     }
@@ -47,13 +51,21 @@ struct FakeSupplementaryViewModel: SupplementaryViewModel {
 final class FakeSupplementaryView: UICollectionViewCell { }
 
 struct FakeHeaderViewModel: SupplementaryHeaderViewModel {
-    let title = String.random
+    let title: String
 
     nonisolated var id: UniqueIdentifier { "Header" }
 
     var expectationConfigureView: XCTestExpectation?
     func configure(view: FakeCollectionHeaderView) {
         self.expectationConfigureView?.fulfillAndLog()
+    }
+
+    init(
+        title: String = .random,
+        expectationConfigureView: XCTestExpectation? = nil
+    ) {
+        self.title = title
+        self.expectationConfigureView = expectationConfigureView
     }
 
     nonisolated static func == (left: Self, right: Self) -> Bool {
@@ -68,13 +80,21 @@ struct FakeHeaderViewModel: SupplementaryHeaderViewModel {
 final class FakeCollectionHeaderView: UICollectionReusableView { }
 
 struct FakeFooterViewModel: SupplementaryFooterViewModel {
-    let title = String.random
+    let title: String
 
     nonisolated var id: UniqueIdentifier { "Footer" }
 
     var expectationConfigureView: XCTestExpectation?
     func configure(view: FakeCollectionFooterView) {
         self.expectationConfigureView?.fulfillAndLog()
+    }
+
+    init(
+        title: String = .random,
+        expectationConfigureView: XCTestExpectation? = nil
+    ) {
+        self.title = title
+        self.expectationConfigureView = expectationConfigureView
     }
 
     nonisolated static func == (left: Self, right: Self) -> Bool {

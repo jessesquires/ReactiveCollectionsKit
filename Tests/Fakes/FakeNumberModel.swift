@@ -18,11 +18,15 @@ import XCTest
 
 struct FakeNumberModel: Hashable {
     let number = Int.random(in: 0...1_000_000)
-    let id = String.random
+    let id: String
+
+    init(id: String = .random) {
+        self.id = id
+    }
 }
 
 struct FakeNumberCellViewModel: CellViewModel {
-    let model = FakeNumberModel()
+    let model: FakeNumberModel
 
     nonisolated var id: UniqueIdentifier {
         self.model.id
@@ -40,6 +44,10 @@ struct FakeNumberCellViewModel: CellViewModel {
     var expectationDidSelect: XCTestExpectation?
     func didSelect(with coordinator: (any CellEventCoordinator)?) {
         self.expectationDidSelect?.fulfillAndLog()
+    }
+
+    init(model: FakeNumberModel = FakeNumberModel()) {
+        self.model = model
     }
 
     nonisolated static func == (left: Self, right: Self) -> Bool {
