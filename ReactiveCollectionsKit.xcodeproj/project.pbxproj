@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		07C025E42C535FE7009AF8AD /* TestDebugDescriptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07C025E32C535FE6009AF8AD /* TestDebugDescriptions.swift */; };
 		07E72F9C2C3ECE86009B2387 /* DebugDescriptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07E72F9B2C3ECE86009B2387 /* DebugDescriptions.swift */; };
 		0B01476F2BBCF0330041D432 /* Collection+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B01476E2BBCF0330041D432 /* Collection+Extensions.swift */; };
 		0B0433262C2FE25C0083C8DB /* TestDiffableSnapshot.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B0433252C2FE25C0083C8DB /* TestDiffableSnapshot.swift */; };
@@ -75,6 +76,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		07C025E32C535FE6009AF8AD /* TestDebugDescriptions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestDebugDescriptions.swift; sourceTree = "<group>"; };
 		07E72F9B2C3ECE86009B2387 /* DebugDescriptions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DebugDescriptions.swift; sourceTree = "<group>"; };
 		0B01476E2BBCF0330041D432 /* Collection+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Collection+Extensions.swift"; sourceTree = "<group>"; };
 		0B0433252C2FE25C0083C8DB /* TestDiffableSnapshot.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestDiffableSnapshot.swift; sourceTree = "<group>"; };
@@ -251,6 +253,7 @@
 				0BA0E2CB2C030445001FB5AA /* TestCollectionViewDriverOptions.swift */,
 				0BBB8A482C32309800200477 /* TestCollectionViewDriverReconfigure.swift */,
 				0B7A18EB2C2A17A700E59C35 /* TestCollectionViewModel.swift */,
+				07C025E32C535FE6009AF8AD /* TestDebugDescriptions.swift */,
 				0B0433252C2FE25C0083C8DB /* TestDiffableSnapshot.swift */,
 				0BA0E2CD2C0304B4001FB5AA /* TestEmptyView.swift */,
 				0BFBB2F62C0D4A91000842B6 /* TestPlans */,
@@ -444,6 +447,7 @@
 				0BA0E2CC2C030445001FB5AA /* TestCollectionViewDriverOptions.swift in Sources */,
 				0BBB8A492C32309800200477 /* TestCollectionViewDriverReconfigure.swift in Sources */,
 				0BFBB2EC2C0BFD1B000842B6 /* FakeCellEventCoordinator.swift in Sources */,
+				07C025E42C535FE7009AF8AD /* TestDebugDescriptions.swift in Sources */,
 				0BFA774C2BB8B717009B9C5B /* FakeCellViewModel.swift in Sources */,
 				0B7A18F32C2A4E4500E59C35 /* FakeSupplementaryNibView.swift in Sources */,
 				0BFBB2F02C0D3C92000842B6 /* XCTestExpectation+Expectations.swift in Sources */,
