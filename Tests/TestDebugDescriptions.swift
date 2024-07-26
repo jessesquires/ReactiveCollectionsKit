@@ -17,44 +17,38 @@ import XCTest
 
 final class TestDebugDescriptions: XCTestCase {
 
-    private func assertEqual(
-        _ lhs: String, _ rhs: String,
-        _ message: @autoclosure () -> String = "", file: StaticString = #filePath, line: UInt = #line
-    ) {
-        XCTAssertEqual(lhs, rhs + "\n", message(), file: file, line: line)
+    @MainActor
+    private func generateViewModel(
+        id: String,
+        numSections: Int,
+        numCells: Int,
+        useCellNibs: Bool = false,
+        includeHeader: Bool = false,
+        includeFooter: Bool = false,
+        includeSupplementaryViews: Bool = false
+    ) -> CollectionViewModel {
+        fakeCollectionViewModel(
+            id: id,
+            sectionId: { sectionIndex in "\(sectionIndex)" },
+            cellId: { sectionIndex, cellIndex in "cell_\(cellIndex)_section_\(sectionIndex)" },
+            supplementaryViewId: { sectionIndex, cellIndex in "supplementaryview_\(cellIndex)_section_\(sectionIndex)" },
+            numSections: numSections,
+            numCells: numCells,
+            useCellNibs: useCellNibs,
+            includeHeader: includeHeader,
+            includeFooter: includeFooter,
+            includeSupplementaryViews: includeSupplementaryViews
+        )
     }
 
     @MainActor
     func test_collectionViewModel_debugDescription() {
-        func viewModel(
-            id: String,
-            numSections: Int,
-            numCells: Int,
-            useCellNibs: Bool = false,
-            includeHeader: Bool = false,
-            includeFooter: Bool = false,
-            includeSupplementaryViews: Bool = false
-        ) -> CollectionViewModel {
-            fakeCollectionViewModel(
-                id: id,
-                sectionId: { sectionIndex in "\(sectionIndex)" },
-                cellId: { sectionIndex, cellIndex in "cell_\(cellIndex)_section_\(sectionIndex)" },
-                supplementaryViewId: { sectionIndex, cellIndex in "supplementaryview_\(cellIndex)_section_\(sectionIndex)" },
-                numSections: numSections,
-                numCells: numCells,
-                useCellNibs: useCellNibs,
-                includeHeader: includeHeader,
-                includeFooter: includeFooter,
-                includeSupplementaryViews: includeSupplementaryViews
-            )
-        }
-
-        let viewModel1 = viewModel(
+        let viewModel1 = generateViewModel(
             id: "viewModel_1",
             numSections: 0,
             numCells: 0
         )
-        assertEqual(
+        XCTAssertEqual(
             viewModel1.debugDescription,
             """
             <CollectionViewModel:
@@ -63,15 +57,16 @@ final class TestDebugDescriptions: XCTestCase {
               registrations: none
               isEmpty: true
             >
+
             """
         )
 
-        let viewModel2 = viewModel(
+        let viewModel2 = generateViewModel(
             id: "viewModel_2",
             numSections: 1,
             numCells: 1
         )
-        assertEqual(
+        XCTAssertEqual(
             viewModel2.debugDescription,
             """
             <CollectionViewModel:
@@ -89,15 +84,16 @@ final class TestDebugDescriptions: XCTestCase {
                 - FakeNumberCellViewModel (cell)
               isEmpty: false
             >
+
             """
         )
 
-        let viewModel3 = viewModel(
+        let viewModel3 = generateViewModel(
             id: "viewModel_3",
             numSections: 1,
             numCells: 2
         )
-        assertEqual(
+        XCTAssertEqual(
             viewModel3.debugDescription,
             """
             <CollectionViewModel:
@@ -117,15 +113,16 @@ final class TestDebugDescriptions: XCTestCase {
                 - FakeTextCellViewModel (cell)
               isEmpty: false
             >
+
             """
         )
 
-        let viewModel4 = viewModel(
+        let viewModel4 = generateViewModel(
             id: "viewModel_4",
             numSections: 1,
             numCells: 3
         )
-        assertEqual(
+        XCTAssertEqual(
             viewModel4.debugDescription,
             """
             <CollectionViewModel:
@@ -146,16 +143,17 @@ final class TestDebugDescriptions: XCTestCase {
                 - FakeTextCellViewModel (cell)
               isEmpty: false
             >
+
             """
         )
 
-        let viewModel5 = viewModel(
+        let viewModel5 = generateViewModel(
             id: "viewModel_5",
             numSections: 1,
             numCells: 3,
             useCellNibs: true
         )
-        assertEqual(
+        XCTAssertEqual(
             viewModel5.debugDescription,
             """
             <CollectionViewModel:
@@ -175,16 +173,17 @@ final class TestDebugDescriptions: XCTestCase {
                 - FakeCellNibViewModel (cell)
               isEmpty: false
             >
+
             """
         )
 
-        let viewModel6 = viewModel(
+        let viewModel6 = generateViewModel(
             id: "viewModel_6",
             numSections: 1,
             numCells: 3,
             includeHeader: true
         )
-        assertEqual(
+        XCTAssertEqual(
             viewModel6.debugDescription,
             """
             <CollectionViewModel:
@@ -206,16 +205,17 @@ final class TestDebugDescriptions: XCTestCase {
                 - FakeTextCellViewModel (cell)
               isEmpty: false
             >
+
             """
         )
 
-        let viewModel7 = viewModel(
+        let viewModel7 = generateViewModel(
             id: "viewModel_7",
             numSections: 1,
             numCells: 3,
             includeFooter: true
         )
-        assertEqual(
+        XCTAssertEqual(
             viewModel7.debugDescription,
             """
             <CollectionViewModel:
@@ -237,17 +237,18 @@ final class TestDebugDescriptions: XCTestCase {
                 - FakeTextCellViewModel (cell)
               isEmpty: false
             >
+
             """
         )
 
-        let viewModel8 = viewModel(
+        let viewModel8 = generateViewModel(
             id: "viewModel_8",
             numSections: 1,
             numCells: 3,
             includeHeader: true,
             includeFooter: true
         )
-        assertEqual(
+        XCTAssertEqual(
             viewModel8.debugDescription,
             """
             <CollectionViewModel:
@@ -270,10 +271,11 @@ final class TestDebugDescriptions: XCTestCase {
                 - FakeTextCellViewModel (cell)
               isEmpty: false
             >
+
             """
         )
 
-        let viewModel9 = viewModel(
+        let viewModel9 = generateViewModel(
             id: "viewModel_9",
             numSections: 1,
             numCells: 3,
@@ -281,7 +283,7 @@ final class TestDebugDescriptions: XCTestCase {
             includeFooter: true,
             includeSupplementaryViews: true
         )
-        assertEqual(
+        XCTAssertEqual(
             viewModel9.debugDescription,
             """
             <CollectionViewModel:
@@ -308,15 +310,16 @@ final class TestDebugDescriptions: XCTestCase {
                 - FakeTextCellViewModel (cell)
               isEmpty: false
             >
+
             """
         )
 
-        let viewModel10 = viewModel(
+        let viewModel10 = generateViewModel(
             id: "viewModel_10",
             numSections: 2,
             numCells: 1
         )
-        assertEqual(
+        XCTAssertEqual(
             viewModel10.debugDescription,
             """
             <CollectionViewModel:
@@ -342,15 +345,16 @@ final class TestDebugDescriptions: XCTestCase {
                 - FakeNumberCellViewModel (cell)
               isEmpty: false
             >
+
             """
         )
 
-        let viewModel11 = viewModel(
+        let viewModel11 = generateViewModel(
             id: "viewModel_11",
             numSections: 2,
             numCells: 2
         )
-        assertEqual(
+        XCTAssertEqual(
             viewModel11.debugDescription,
             """
             <CollectionViewModel:
@@ -379,15 +383,16 @@ final class TestDebugDescriptions: XCTestCase {
                 - FakeTextCellViewModel (cell)
               isEmpty: false
             >
+
             """
         )
 
-        let viewModel12 = viewModel(
+        let viewModel12 = generateViewModel(
             id: "viewModel_12",
             numSections: 2,
             numCells: 3
         )
-        assertEqual(
+        XCTAssertEqual(
             viewModel12.debugDescription,
             """
             <CollectionViewModel:
@@ -418,16 +423,17 @@ final class TestDebugDescriptions: XCTestCase {
                 - FakeTextCellViewModel (cell)
               isEmpty: false
             >
+
             """
         )
 
-        let viewModel13 = viewModel(
+        let viewModel13 = generateViewModel(
             id: "viewModel_13",
             numSections: 2,
             numCells: 3,
             useCellNibs: true
         )
-        assertEqual(
+        XCTAssertEqual(
             viewModel13.debugDescription,
             """
             <CollectionViewModel:
@@ -457,16 +463,17 @@ final class TestDebugDescriptions: XCTestCase {
                 - FakeCellNibViewModel (cell)
               isEmpty: false
             >
+
             """
         )
 
-        let viewModel14 = viewModel(
+        let viewModel14 = generateViewModel(
             id: "viewModel_14",
             numSections: 2,
             numCells: 3,
             includeHeader: true
         )
-        assertEqual(
+        XCTAssertEqual(
             viewModel14.debugDescription,
             """
             <CollectionViewModel:
@@ -498,16 +505,17 @@ final class TestDebugDescriptions: XCTestCase {
                 - FakeTextCellViewModel (cell)
               isEmpty: false
             >
+
             """
         )
 
-        let viewModel15 = viewModel(
+        let viewModel15 = generateViewModel(
             id: "viewModel_15",
             numSections: 2,
             numCells: 3,
             includeFooter: true
         )
-        assertEqual(
+        XCTAssertEqual(
             viewModel15.debugDescription,
             """
             <CollectionViewModel:
@@ -539,17 +547,18 @@ final class TestDebugDescriptions: XCTestCase {
                 - FakeTextCellViewModel (cell)
               isEmpty: false
             >
+
             """
         )
 
-        let viewModel16 = viewModel(
+        let viewModel16 = generateViewModel(
             id: "viewModel_16",
             numSections: 2,
             numCells: 3,
             includeHeader: true,
             includeFooter: true
         )
-        assertEqual(
+        XCTAssertEqual(
             viewModel16.debugDescription,
             """
             <CollectionViewModel:
@@ -582,10 +591,11 @@ final class TestDebugDescriptions: XCTestCase {
                 - FakeTextCellViewModel (cell)
               isEmpty: false
             >
+
             """
         )
 
-        let viewModel17 = viewModel(
+        let viewModel17 = generateViewModel(
             id: "viewModel_17",
             numSections: 2,
             numCells: 3,
@@ -593,7 +603,7 @@ final class TestDebugDescriptions: XCTestCase {
             includeFooter: true,
             includeSupplementaryViews: true
         )
-        assertEqual(
+        XCTAssertEqual(
             viewModel17.debugDescription,
             """
             <CollectionViewModel:
@@ -633,6 +643,7 @@ final class TestDebugDescriptions: XCTestCase {
                 - FakeTextCellViewModel (cell)
               isEmpty: false
             >
+
             """
         )
     }
@@ -663,7 +674,7 @@ final class TestDebugDescriptions: XCTestCase {
             id: "viewModel_1",
             numCells: 0
         )
-        assertEqual(
+        XCTAssertEqual(
             viewModel1.debugDescription,
             """
             <SectionViewModel:
@@ -675,6 +686,7 @@ final class TestDebugDescriptions: XCTestCase {
               registrations: none
               isEmpty: true
             >
+
             """
         )
 
@@ -682,7 +694,7 @@ final class TestDebugDescriptions: XCTestCase {
             id: "viewModel_2",
             numCells: 1
         )
-        assertEqual(
+        XCTAssertEqual(
             viewModel2.debugDescription,
             """
             <SectionViewModel:
@@ -696,6 +708,7 @@ final class TestDebugDescriptions: XCTestCase {
                 - FakeNumberCellViewModel (cell)
               isEmpty: false
             >
+
             """
         )
 
@@ -703,7 +716,7 @@ final class TestDebugDescriptions: XCTestCase {
             id: "viewModel_3",
             numCells: 2
         )
-        assertEqual(
+        XCTAssertEqual(
             viewModel3.debugDescription,
             """
             <SectionViewModel:
@@ -719,6 +732,7 @@ final class TestDebugDescriptions: XCTestCase {
                 - FakeTextCellViewModel (cell)
               isEmpty: false
             >
+
             """
         )
 
@@ -726,7 +740,7 @@ final class TestDebugDescriptions: XCTestCase {
             id: "viewModel_4",
             numCells: 3
         )
-        assertEqual(
+        XCTAssertEqual(
             viewModel4.debugDescription,
             """
             <SectionViewModel:
@@ -743,6 +757,7 @@ final class TestDebugDescriptions: XCTestCase {
                 - FakeTextCellViewModel (cell)
               isEmpty: false
             >
+
             """
         )
 
@@ -751,7 +766,7 @@ final class TestDebugDescriptions: XCTestCase {
             numCells: 3,
             useCellNibs: true
         )
-        assertEqual(
+        XCTAssertEqual(
             viewModel5.debugDescription,
             """
             <SectionViewModel:
@@ -767,6 +782,7 @@ final class TestDebugDescriptions: XCTestCase {
                 - FakeCellNibViewModel (cell)
               isEmpty: false
             >
+
             """
         )
 
@@ -775,7 +791,7 @@ final class TestDebugDescriptions: XCTestCase {
             numCells: 3,
             includeHeader: true
         )
-        assertEqual(
+        XCTAssertEqual(
             viewModel6.debugDescription,
             """
             <SectionViewModel:
@@ -793,6 +809,7 @@ final class TestDebugDescriptions: XCTestCase {
                 - FakeTextCellViewModel (cell)
               isEmpty: false
             >
+
             """
         )
 
@@ -801,7 +818,7 @@ final class TestDebugDescriptions: XCTestCase {
             numCells: 3,
             includeFooter: true
         )
-        assertEqual(
+        XCTAssertEqual(
             viewModel7.debugDescription,
             """
             <SectionViewModel:
@@ -819,6 +836,7 @@ final class TestDebugDescriptions: XCTestCase {
                 - FakeTextCellViewModel (cell)
               isEmpty: false
             >
+
             """
         )
 
@@ -828,7 +846,7 @@ final class TestDebugDescriptions: XCTestCase {
             includeHeader: true,
             includeFooter: true
         )
-        assertEqual(
+        XCTAssertEqual(
             viewModel8.debugDescription,
             """
             <SectionViewModel:
@@ -847,6 +865,7 @@ final class TestDebugDescriptions: XCTestCase {
                 - FakeTextCellViewModel (cell)
               isEmpty: false
             >
+
             """
         )
 
@@ -857,7 +876,7 @@ final class TestDebugDescriptions: XCTestCase {
             includeFooter: true,
             includeSupplementaryViews: true
         )
-        assertEqual(
+        XCTAssertEqual(
             viewModel9.debugDescription,
             """
             <SectionViewModel:
@@ -880,6 +899,7 @@ final class TestDebugDescriptions: XCTestCase {
                 - FakeTextCellViewModel (cell)
               isEmpty: false
             >
+
             """
         )
     }
