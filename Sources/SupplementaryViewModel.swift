@@ -26,6 +26,21 @@ public protocol SupplementaryViewModel: DiffableViewModel, ViewRegistrationProvi
     /// Configures the provided view for display in the collection.
     /// - Parameter view: The view to configure.
     func configure(view: ViewType)
+
+    /// Tells that this supplementary view is about to be displayed in the collection view.
+    func willDisplay()
+
+    /// Tells that this supplementary view was removed from the collection view.
+    func didEndDisplaying()
+}
+
+extension SupplementaryViewModel {
+
+    /// Default implementation. Does nothing.
+    public func willDisplay() { }
+
+    /// Default implementation. Does nothing.
+    public func didEndDisplaying() { }
 }
 
 extension SupplementaryViewModel {
@@ -91,6 +106,16 @@ public struct AnySupplementaryViewModel: SupplementaryViewModel {
         self._configure(view)
     }
 
+    /// :nodoc:
+    public func willDisplay() {
+        self._willDisplay()
+    }
+
+    /// :nodoc:
+    public func didEndDisplaying() {
+        self._didEndDisplaying()
+    }
+
     /// :nodoc: "override" extension
     public let viewClass: AnyClass
 
@@ -103,6 +128,8 @@ public struct AnySupplementaryViewModel: SupplementaryViewModel {
     private let _id: UniqueIdentifier
     private let _registration: ViewRegistration
     private let _configure: (ViewType) -> Void
+    private let _willDisplay: () -> Void
+    private let _didEndDisplaying: () -> Void
 
     // MARK: Init
 
@@ -121,6 +148,8 @@ public struct AnySupplementaryViewModel: SupplementaryViewModel {
             precondition(view is T.ViewType, "View must be of type \(T.ViewType.self). Found \(view.self)")
             viewModel.configure(view: view as! T.ViewType)
         }
+        self._willDisplay = viewModel.willDisplay
+        self._didEndDisplaying = viewModel.didEndDisplaying
         self.viewClass = viewModel.viewClass
         self.reuseIdentifier = viewModel.reuseIdentifier
     }

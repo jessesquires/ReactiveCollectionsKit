@@ -304,4 +304,36 @@ extension CollectionViewDriver: UICollectionViewDelegate {
                                point: CGPoint) -> UIContextMenuConfiguration? {
         self.viewModel.cellViewModel(at: indexPath).contextMenuConfiguration
     }
+
+    // MARK: Tracking the addition and removal of views
+
+    /// :nodoc:
+    public func collectionView(_ collectionView: UICollectionView,
+                               willDisplay cell: UICollectionViewCell,
+                               forItemAt indexPath: IndexPath) {
+        self.viewModel.cellViewModel(at: indexPath).willDisplay()
+    }
+
+    /// :nodoc:
+    public func collectionView(_ collectionView: UICollectionView,
+                               willDisplaySupplementaryView view: UICollectionReusableView,
+                               forElementKind elementKind: String,
+                               at indexPath: IndexPath) {
+        self.viewModel.supplementaryViewModel(ofKind: elementKind, at: indexPath)?.willDisplay()
+    }
+
+    /// :nodoc:
+    public func collectionView(_ collectionView: UICollectionView,
+                               didEndDisplaying cell: UICollectionViewCell,
+                               forItemAt indexPath: IndexPath) {
+        self.viewModel.cellViewModel(at: indexPath).didEndDisplaying()
+    }
+
+    /// :nodoc:
+    public func collectionView(_ collectionView: UICollectionView,
+                               didEndDisplayingSupplementaryView view: UICollectionReusableView,
+                               forElementOfKind elementKind: String,
+                               at indexPath: IndexPath) {
+        self.viewModel.supplementaryViewModel(ofKind: elementKind, at: indexPath)?.didEndDisplaying()
+    }
 }

@@ -36,6 +36,12 @@ public protocol CellViewModel: DiffableViewModel, ViewRegistrationProvider {
     /// Handles the selection event for this cell, optionally using the provided `coordinator`.
     /// - Parameter coordinator: An event coordinator object, if one was provided to the `CollectionViewDriver`.
     func didSelect(with coordinator: CellEventCoordinator?)
+
+    /// Tells that this cell is about to be displayed in the collection view.
+    func willDisplay()
+
+    /// Tells that this cell was removed from the collection view.
+    func didEndDisplaying()
 }
 
 extension CellViewModel {
@@ -51,6 +57,12 @@ extension CellViewModel {
     public func didSelect(with coordinator: CellEventCoordinator?) {
         coordinator?.didSelectCell(viewModel: self)
     }
+
+    /// Default implementation. Does nothing.
+    public func willDisplay() { }
+
+    /// Default implementation. Does nothing.
+    public func didEndDisplaying() { }
 }
 
 extension CellViewModel {
@@ -124,6 +136,16 @@ public struct AnyCellViewModel: CellViewModel {
         self._didSelect(coordinator)
     }
 
+    /// :nodoc:
+    public func willDisplay() {
+        self._willDisplay()
+    }
+
+    /// :nodoc:
+    public func didEndDisplaying() {
+        self._didEndDisplaying()
+    }
+
     /// :nodoc: "override" extension
     public let cellClass: AnyClass
 
@@ -139,6 +161,8 @@ public struct AnyCellViewModel: CellViewModel {
     private let _contextMenuConfiguration: UIContextMenuConfiguration?
     private let _configure: (CellType) -> Void
     private let _didSelect: (CellEventCoordinator?) -> Void
+    private let _willDisplay: () -> Void
+    private let _didEndDisplaying: () -> Void
 
     // MARK: Init
 
@@ -162,6 +186,8 @@ public struct AnyCellViewModel: CellViewModel {
         self._didSelect = { coordinator in
             viewModel.didSelect(with: coordinator)
         }
+        self._willDisplay = viewModel.willDisplay
+        self._didEndDisplaying = viewModel.didEndDisplaying
         self.cellClass = viewModel.cellClass
         self.reuseIdentifier = viewModel.reuseIdentifier
     }
