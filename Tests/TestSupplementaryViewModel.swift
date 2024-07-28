@@ -31,6 +31,12 @@ final class TestSupplementaryViewModel: XCTestCase {
         viewModel.expectationConfigureView = self.expectation(name: "configure_view")
         viewModel.expectationConfigureView?.expectedFulfillmentCount = 2
 
+        viewModel.expectationWillDisplay = self.expectation(name: "will_display")
+        viewModel.expectationWillDisplay?.expectedFulfillmentCount = 2
+
+        viewModel.expectationDidEndDisplaying = self.expectation(name: "did_end_displaying")
+        viewModel.expectationDidEndDisplaying?.expectedFulfillmentCount = 2
+
         let erased = viewModel.eraseToAnyViewModel()
         XCTAssertEqual(erased.id, viewModel.id)
         XCTAssertEqual(erased.hashValue, viewModel.hashValue)
@@ -39,7 +45,13 @@ final class TestSupplementaryViewModel: XCTestCase {
         XCTAssertEqual(erased.reuseIdentifier, viewModel.reuseIdentifier)
 
         viewModel.configure(view: FakeSupplementaryView())
+        viewModel.willDisplay()
+        viewModel.didEndDisplaying()
+
         erased.configure(view: FakeSupplementaryView())
+        erased.willDisplay()
+        erased.didEndDisplaying()
+
         self.waitForExpectations()
 
         let erased2 = viewModel.eraseToAnyViewModel()
