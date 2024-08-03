@@ -35,6 +35,16 @@ struct FakeSupplementaryViewModel: SupplementaryViewModel {
         self.expectationConfigureView?.fulfillAndLog()
     }
 
+    var expectationWillDisplay: XCTestExpectation?
+    func willDisplay() {
+        self.expectationWillDisplay?.fulfillAndLog()
+    }
+
+    var expectationDidEndDisplaying: XCTestExpectation?
+    func didEndDisplaying() {
+        self.expectationDidEndDisplaying?.fulfillAndLog()
+    }
+
     init(title: String = .random) {
         self.title = title
     }
