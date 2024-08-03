@@ -37,10 +37,10 @@ public protocol CellViewModel: DiffableViewModel, ViewRegistrationProvider {
     /// - Parameter coordinator: An event coordinator object, if one was provided to the `CollectionViewDriver`.
     func didSelect(with coordinator: CellEventCoordinator?)
 
-    /// Tells that this cell is about to be displayed in the collection view.
+    /// Tells the view model that its cell is about to be displayed in the collection view.
     func willDisplay()
 
-    /// Tells that this cell was removed from the collection view.
+    /// Tells the view model that its cell was removed from the collection view.
     func didEndDisplaying()
 }
 
@@ -146,10 +146,10 @@ public struct AnyCellViewModel: CellViewModel {
         self._didEndDisplaying()
     }
 
-    /// :nodoc: "override" extension
+    /// :nodoc: "override" the extension
     public let cellClass: AnyClass
 
-    /// :nodoc: "override" extension
+    /// :nodoc: "override" the extension
     public let reuseIdentifier: String
 
     // MARK: Private

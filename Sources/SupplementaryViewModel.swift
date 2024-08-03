@@ -27,15 +27,14 @@ public protocol SupplementaryViewModel: DiffableViewModel, ViewRegistrationProvi
     /// - Parameter view: The view to configure.
     func configure(view: ViewType)
 
-    /// Tells that this supplementary view is about to be displayed in the collection view.
+    /// Tells the view model that its supplementary view is about to be displayed in the collection view.
     func willDisplay()
 
-    /// Tells that this supplementary view was removed from the collection view.
+    /// Tells the view model that its supplementary view was removed from the collection view.
     func didEndDisplaying()
 }
 
 extension SupplementaryViewModel {
-
     /// Default implementation. Does nothing.
     public func willDisplay() { }
 
@@ -116,10 +115,10 @@ public struct AnySupplementaryViewModel: SupplementaryViewModel {
         self._didEndDisplaying()
     }
 
-    /// :nodoc: "override" extension
+    /// :nodoc: "override" the extension
     public let viewClass: AnyClass
 
-    /// :nodoc: "override" extension
+    /// :nodoc: "override" the extension
     public let reuseIdentifier: String
 
     // MARK: Private
