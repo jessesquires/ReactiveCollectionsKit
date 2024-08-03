@@ -317,7 +317,7 @@ extension CollectionViewDriver: UICollectionViewDelegate {
     public func collectionView(_ collectionView: UICollectionView,
                                willDisplay cell: UICollectionViewCell,
                                forItemAt indexPath: IndexPath) {
-        self.viewModel.cellViewModel(at: indexPath).willDisplay()
+        self.viewModel._safeCellViewModel(at: indexPath)?.willDisplay()
     }
 
     /// :nodoc:
@@ -325,14 +325,14 @@ extension CollectionViewDriver: UICollectionViewDelegate {
                                willDisplaySupplementaryView view: UICollectionReusableView,
                                forElementKind elementKind: String,
                                at indexPath: IndexPath) {
-        self.viewModel.supplementaryViewModel(ofKind: elementKind, at: indexPath)?.willDisplay()
+        self.viewModel._safeSupplementaryViewModel(ofKind: elementKind, at: indexPath)?.willDisplay()
     }
 
     /// :nodoc:
     public func collectionView(_ collectionView: UICollectionView,
                                didEndDisplaying cell: UICollectionViewCell,
                                forItemAt indexPath: IndexPath) {
-        self.viewModel.cellViewModel(at: indexPath).didEndDisplaying()
+        self.viewModel._safeCellViewModel(at: indexPath)?.didEndDisplaying()
     }
 
     /// :nodoc:
@@ -340,6 +340,6 @@ extension CollectionViewDriver: UICollectionViewDelegate {
                                didEndDisplayingSupplementaryView view: UICollectionReusableView,
                                forElementOfKind elementKind: String,
                                at indexPath: IndexPath) {
-        self.viewModel.supplementaryViewModel(ofKind: elementKind, at: indexPath)?.didEndDisplaying()
+        self.viewModel._safeSupplementaryViewModel(ofKind: elementKind, at: indexPath)?.didEndDisplaying()
     }
 }

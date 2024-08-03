@@ -152,6 +152,34 @@ public struct CollectionViewModel: Hashable, DiffableViewModel {
 
     // MARK: Internal
 
+    func _safeSectionViewModel(at index: Int) -> SectionViewModel? {
+        guard index < self.count else {
+            return nil
+        }
+        return self.sectionViewModel(at: index)
+    }
+
+    func _safeCellViewModel(at indexPath: IndexPath) -> AnyCellViewModel? {
+        guard let section = self._safeSectionViewModel(at: indexPath.section),
+              indexPath.item < section.cells.count else {
+            return nil
+        }
+        return self.cellViewModel(at: indexPath)
+    }
+
+    func _safeSupplementaryViewModel(ofKind kind: String, at indexPath: IndexPath) -> AnySupplementaryViewModel? {
+        guard let section = self._safeSectionViewModel(at: indexPath.section) else {
+            return nil
+        }
+
+        let supplementaryViews = section.supplementaryViews.filter { $0._kind == kind }
+        guard indexPath.item < supplementaryViews.count else {
+            return nil
+        }
+
+        return self.supplementaryViewModel(ofKind: kind, at: indexPath)
+    }
+
     func allRegistrations() -> Set<ViewRegistration> {
         var all = Set<ViewRegistration>()
         self.sections.forEach {
