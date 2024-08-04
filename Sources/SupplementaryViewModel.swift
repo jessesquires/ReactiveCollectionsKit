@@ -28,9 +28,11 @@ public protocol SupplementaryViewModel: DiffableViewModel, ViewRegistrationProvi
     func configure(view: ViewType)
 
     /// Tells the view model that its supplementary view is about to be displayed in the collection view.
+    /// This corresponds to the delegate method `collectionView(_:willDisplaySupplementaryView:forElementKind:at:)`.
     func willDisplay()
 
     /// Tells the view model that its supplementary view was removed from the collection view.
+    /// This corresponds to the delegate method `collectionView(_:didEndDisplayingSupplementaryView:forElementOfKind:at:)`.
     func didEndDisplaying()
 }
 

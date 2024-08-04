@@ -38,9 +38,11 @@ public protocol CellViewModel: DiffableViewModel, ViewRegistrationProvider {
     func didSelect(with coordinator: CellEventCoordinator?)
 
     /// Tells the view model that its cell is about to be displayed in the collection view.
+    /// This corresponds to the delegate method `collectionView(_:willDisplay:forItemAt:)`.
     func willDisplay()
 
     /// Tells the view model that its cell was removed from the collection view.
+    /// This corresponds to the delegate method `collectionView(_:didEndDisplaying:forItemAt:)`.
     func didEndDisplaying()
 }
 
