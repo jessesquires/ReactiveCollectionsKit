@@ -172,6 +172,14 @@ public struct CollectionViewModel: Hashable, DiffableViewModel {
             return nil
         }
 
+        if kind == section.header?._kind {
+            return section.header
+        }
+
+        if kind == section.footer?._kind {
+            return section.footer
+        }
+
         let supplementaryViews = section.supplementaryViews.filter { $0._kind == kind }
         guard indexPath.item < supplementaryViews.count else {
             return nil
