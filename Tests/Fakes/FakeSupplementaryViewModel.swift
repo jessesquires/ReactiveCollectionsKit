@@ -70,6 +70,16 @@ struct FakeHeaderViewModel: SupplementaryHeaderViewModel {
         self.expectationConfigureView?.fulfillAndLog()
     }
 
+    var expectationWillDisplay: XCTestExpectation?
+    func willDisplay() {
+        self.expectationWillDisplay?.fulfillAndLog()
+    }
+
+    var expectationDidEndDisplaying: XCTestExpectation?
+    func didEndDisplaying() {
+        self.expectationDidEndDisplaying?.fulfillAndLog()
+    }
+
     init(
         title: String = .random,
         expectationConfigureView: XCTestExpectation? = nil
@@ -97,6 +107,16 @@ struct FakeFooterViewModel: SupplementaryFooterViewModel {
     var expectationConfigureView: XCTestExpectation?
     func configure(view: FakeCollectionFooterView) {
         self.expectationConfigureView?.fulfillAndLog()
+    }
+
+    var expectationWillDisplay: XCTestExpectation?
+    func willDisplay() {
+        self.expectationWillDisplay?.fulfillAndLog()
+    }
+
+    var expectationDidEndDisplaying: XCTestExpectation?
+    func didEndDisplaying() {
+        self.expectationDidEndDisplaying?.fulfillAndLog()
     }
 
     init(

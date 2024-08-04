@@ -30,7 +30,9 @@ extension XCTestCase {
         includeFooter: Bool = false,
         includeSupplementaryViews: Bool = false,
         expectDidSelectCell: Bool = false,
-        expectConfigureCell: Bool = false
+        expectConfigureCell: Bool = false,
+        expectWillDisplay: Bool = false,
+        expectDidEndDisplaying: Bool = false
     ) -> CollectionViewModel {
         let sections = (0..<numSections).map { sectionIndex in
             self.fakeSectionViewModel(
@@ -44,7 +46,9 @@ extension XCTestCase {
                 includeFooter: includeFooter,
                 includeSupplementaryViews: includeSupplementaryViews,
                 expectDidSelectCell: expectDidSelectCell,
-                expectConfigureCell: expectConfigureCell
+                expectConfigureCell: expectConfigureCell,
+                expectWillDisplay: expectWillDisplay,
+                expectDidEndDisplaying: expectDidEndDisplaying
             )
         }
         return CollectionViewModel(id: "collection_\(id)", sections: sections)
@@ -62,7 +66,9 @@ extension XCTestCase {
         includeFooter: Bool = false,
         includeSupplementaryViews: Bool = false,
         expectDidSelectCell: Bool = false,
-        expectConfigureCell: Bool = false
+        expectConfigureCell: Bool = false,
+        expectWillDisplay: Bool = false,
+        expectDidEndDisplaying: Bool = false
     ) -> SectionViewModel {
         let cells = self.fakeCellViewModels(
             id: cellId,
@@ -70,12 +76,23 @@ extension XCTestCase {
             count: numCells,
             useNibs: useCellNibs,
             expectDidSelectCell: expectDidSelectCell,
-            expectConfigureCell: expectConfigureCell
+            expectConfigureCell: expectConfigureCell,
+            expectWillDisplay: expectWillDisplay,
+            expectDidEndDisplaying: expectDidEndDisplaying
         )
-        let header = includeHeader ? FakeHeaderViewModel() : nil
-        let footer = includeFooter ? FakeFooterViewModel() : nil
+        var header = includeHeader ? FakeHeaderViewModel() : nil
+        header?.expectationWillDisplay = self._willDisplayExpectation(expect: expectWillDisplay, id: "Header")
+        header?.expectationDidEndDisplaying = self._didEndDisplayingExpectation(expect: expectDidEndDisplaying, id: "Header")
+        var footer = includeFooter ? FakeFooterViewModel() : nil
+        footer?.expectationWillDisplay = self._willDisplayExpectation(expect: expectWillDisplay, id: "Footer")
+        footer?.expectationDidEndDisplaying = self._didEndDisplayingExpectation(expect: expectDidEndDisplaying, id: "Footer")
         let supplementaryViews = includeSupplementaryViews
-            ? (0..<numCells).map { cellIndex in FakeSupplementaryViewModel(title: supplementaryViewId(sectionIndex, cellIndex)) }
+            ? (0..<numCells).map { cellIndex -> FakeSupplementaryViewModel in
+                var viewModel = FakeSupplementaryViewModel(title: supplementaryViewId(sectionIndex, cellIndex))
+                viewModel.expectationWillDisplay = self._willDisplayExpectation(expect: expectWillDisplay, id: viewModel.id)
+                viewModel.expectationDidEndDisplaying = self._didEndDisplayingExpectation(expect: expectDidEndDisplaying, id: viewModel.id)
+                return viewModel
+            }
             : []
         return SectionViewModel(
             id: "section_\(id)",
@@ -93,7 +110,9 @@ extension XCTestCase {
         count: Int = Int.random(in: 3...20),
         useNibs: Bool = false,
         expectDidSelectCell: Bool = false,
-        expectConfigureCell: Bool = false
+        expectConfigureCell: Bool = false,
+        expectWillDisplay: Bool = false,
+        expectDidEndDisplaying: Bool = false
     ) -> [AnyCellViewModel] {
         var cells = [AnyCellViewModel]()
         for cellIndex in 0..<count {
@@ -102,7 +121,9 @@ extension XCTestCase {
                 cellIndex: cellIndex,
                 useNibs: useNibs,
                 expectDidSelectCell: expectDidSelectCell,
-                expectConfigureCell: expectConfigureCell
+                expectConfigureCell: expectConfigureCell,
+                expectWillDisplay: expectWillDisplay,
+                expectDidEndDisplaying: expectDidEndDisplaying
             )
             cells.append(model)
         }
@@ -115,12 +136,16 @@ extension XCTestCase {
         cellIndex: Int,
         useNibs: Bool,
         expectDidSelectCell: Bool,
-        expectConfigureCell: Bool
+        expectConfigureCell: Bool,
+        expectWillDisplay: Bool,
+        expectDidEndDisplaying: Bool
     ) -> AnyCellViewModel {
         if useNibs {
             var viewModel = FakeCellNibViewModel(id: id)
             viewModel.expectationDidSelect = self._cellDidSelectExpectation(expect: expectDidSelectCell, id: viewModel.id)
             viewModel.expectationConfigureCell = self._cellConfigureExpectation(expect: expectConfigureCell, id: viewModel.id)
+            viewModel.expectationWillDisplay = self._willDisplayExpectation(expect: expectWillDisplay, id: viewModel.id)
+            viewModel.expectationDidEndDisplaying = self._didEndDisplayingExpectation(expect: expectDidEndDisplaying, id: viewModel.id)
             return viewModel.eraseToAnyViewModel()
         }
 
@@ -128,12 +153,16 @@ extension XCTestCase {
             var viewModel = FakeNumberCellViewModel(model: .init(id: id))
             viewModel.expectationDidSelect = self._cellDidSelectExpectation(expect: expectDidSelectCell, id: viewModel.id)
             viewModel.expectationConfigureCell = self._cellConfigureExpectation(expect: expectConfigureCell, id: viewModel.id)
+            viewModel.expectationWillDisplay = self._willDisplayExpectation(expect: expectWillDisplay, id: viewModel.id)
+            viewModel.expectationDidEndDisplaying = self._didEndDisplayingExpectation(expect: expectDidEndDisplaying, id: viewModel.id)
             return viewModel.eraseToAnyViewModel()
         }
 
         var viewModel = FakeTextCellViewModel(model: .init(text: id))
         viewModel.expectationDidSelect = self._cellDidSelectExpectation(expect: expectDidSelectCell, id: viewModel.id)
         viewModel.expectationConfigureCell = self._cellConfigureExpectation(expect: expectConfigureCell, id: viewModel.id)
+        viewModel.expectationWillDisplay = self._willDisplayExpectation(expect: expectWillDisplay, id: viewModel.id)
+        viewModel.expectationDidEndDisplaying = self._didEndDisplayingExpectation(expect: expectDidEndDisplaying, id: viewModel.id)
         return viewModel.eraseToAnyViewModel()
     }
 
@@ -145,5 +174,15 @@ extension XCTestCase {
     @MainActor
     private func _cellConfigureExpectation(expect: Bool, id: UniqueIdentifier) -> XCTestExpectation? {
         expect ? self.expectation(description: "configureCell_\(id)") : nil
+    }
+
+    @MainActor
+    private func _willDisplayExpectation(expect: Bool, id: UniqueIdentifier) -> XCTestExpectation? {
+        expect ? self.expectation(description: "willDisplay_\(id)") : nil
+    }
+
+    @MainActor
+    private func _didEndDisplayingExpectation(expect: Bool, id: UniqueIdentifier) -> XCTestExpectation? {
+        expect ? self.expectation(description: "didEndDisplaying_\(id)") : nil
     }
 }
