@@ -16,6 +16,8 @@ import Foundation
 import UIKit
 import XCTest
 
+// swiftlint:disable function_parameter_count
+
 extension XCTestCase {
     @MainActor
     func fakeCollectionViewModel(
@@ -186,3 +188,5 @@ extension XCTestCase {
         expect ? self.expectation(description: "didEndDisplaying_\(id)") : nil
     }
 }
+
+// swiftlint:enable function_parameter_count

@@ -10,7 +10,7 @@ NEXT
 0.1.4
 -----
 
-- Implement `willDisplay` and `didEndDisplaying` APIs for both `CellViewModel` and `SupplementaryViewModel`. ([@nuomi1](https://github.com/nuomi1), [#121](https://github.com/jessesquires/ReactiveCollectionsKit/pull/121))
+- Implemented `willDisplay()` and `didEndDisplaying()` APIs for both `CellViewModel` and `SupplementaryViewModel`. ([@nuomi1](https://github.com/nuomi1), [#121](https://github.com/jessesquires/ReactiveCollectionsKit/pull/121))
 
 0.1.3
 -----
