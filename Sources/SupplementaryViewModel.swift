@@ -26,6 +26,22 @@ public protocol SupplementaryViewModel: DiffableViewModel, ViewRegistrationProvi
     /// Configures the provided view for display in the collection.
     /// - Parameter view: The view to configure.
     func configure(view: ViewType)
+
+    /// Tells the view model that its supplementary view is about to be displayed in the collection view.
+    /// This corresponds to the delegate method `collectionView(_:willDisplaySupplementaryView:forElementKind:at:)`.
+    func willDisplay()
+
+    /// Tells the view model that its supplementary view was removed from the collection view.
+    /// This corresponds to the delegate method `collectionView(_:didEndDisplayingSupplementaryView:forElementOfKind:at:)`.
+    func didEndDisplaying()
+}
+
+extension SupplementaryViewModel {
+    /// Default implementation. Does nothing.
+    public func willDisplay() { }
+
+    /// Default implementation. Does nothing.
+    public func didEndDisplaying() { }
 }
 
 extension SupplementaryViewModel {
@@ -91,10 +107,20 @@ public struct AnySupplementaryViewModel: SupplementaryViewModel {
         self._configure(view)
     }
 
-    /// :nodoc: "override" extension
+    /// :nodoc:
+    public func willDisplay() {
+        self._willDisplay()
+    }
+
+    /// :nodoc:
+    public func didEndDisplaying() {
+        self._didEndDisplaying()
+    }
+
+    /// :nodoc: "override" the extension
     public let viewClass: AnyClass
 
-    /// :nodoc: "override" extension
+    /// :nodoc: "override" the extension
     public let reuseIdentifier: String
 
     // MARK: Private
@@ -103,6 +129,8 @@ public struct AnySupplementaryViewModel: SupplementaryViewModel {
     private let _id: UniqueIdentifier
     private let _registration: ViewRegistration
     private let _configure: (ViewType) -> Void
+    private let _willDisplay: () -> Void
+    private let _didEndDisplaying: () -> Void
 
     // MARK: Init
 
@@ -121,6 +149,8 @@ public struct AnySupplementaryViewModel: SupplementaryViewModel {
             precondition(view is T.ViewType, "View must be of type \(T.ViewType.self). Found \(view.self)")
             viewModel.configure(view: view as! T.ViewType)
         }
+        self._willDisplay = viewModel.willDisplay
+        self._didEndDisplaying = viewModel.didEndDisplaying
         self.viewClass = viewModel.viewClass
         self.reuseIdentifier = viewModel.reuseIdentifier
     }

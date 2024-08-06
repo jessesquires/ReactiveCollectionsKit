@@ -286,11 +286,15 @@ public final class CollectionViewDriver: NSObject {
 // MARK: UICollectionViewDelegate
 
 extension CollectionViewDriver: UICollectionViewDelegate {
+    // MARK: Managing the selected cells
+
     /// :nodoc:
     public func collectionView(_ collectionView: UICollectionView,
                                didSelectItemAt indexPath: IndexPath) {
         self.viewModel.cellViewModel(at: indexPath).didSelect(with: self._cellEventCoordinator)
     }
+
+    // MARK: Managing cell highlighting
 
     /// :nodoc:
     public func collectionView(_ collectionView: UICollectionView,
@@ -298,10 +302,44 @@ extension CollectionViewDriver: UICollectionViewDelegate {
         self.viewModel.cellViewModel(at: indexPath).shouldHighlight
     }
 
+    // MARK: Managing context menus
+
     /// :nodoc:
     public func collectionView(_ collectionView: UICollectionView,
                                contextMenuConfigurationForItemAt indexPath: IndexPath,
                                point: CGPoint) -> UIContextMenuConfiguration? {
         self.viewModel.cellViewModel(at: indexPath).contextMenuConfiguration
+    }
+
+    // MARK: Tracking the addition and removal of views
+
+    /// :nodoc:
+    public func collectionView(_ collectionView: UICollectionView,
+                               willDisplay cell: UICollectionViewCell,
+                               forItemAt indexPath: IndexPath) {
+        self.viewModel._safeCellViewModel(at: indexPath)?.willDisplay()
+    }
+
+    /// :nodoc:
+    public func collectionView(_ collectionView: UICollectionView,
+                               willDisplaySupplementaryView view: UICollectionReusableView,
+                               forElementKind elementKind: String,
+                               at indexPath: IndexPath) {
+        self.viewModel._safeSupplementaryViewModel(ofKind: elementKind, at: indexPath)?.willDisplay()
+    }
+
+    /// :nodoc:
+    public func collectionView(_ collectionView: UICollectionView,
+                               didEndDisplaying cell: UICollectionViewCell,
+                               forItemAt indexPath: IndexPath) {
+        self.viewModel._safeCellViewModel(at: indexPath)?.didEndDisplaying()
+    }
+
+    /// :nodoc:
+    public func collectionView(_ collectionView: UICollectionView,
+                               didEndDisplayingSupplementaryView view: UICollectionReusableView,
+                               forElementOfKind elementKind: String,
+                               at indexPath: IndexPath) {
+        self.viewModel._safeSupplementaryViewModel(ofKind: elementKind, at: indexPath)?.didEndDisplaying()
     }
 }

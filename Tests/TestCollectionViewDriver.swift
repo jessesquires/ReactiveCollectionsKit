@@ -126,6 +126,80 @@ final class TestCollectionViewDriver: UnitTestCase {
     }
 
     @MainActor
+    func test_delegate_willDisplay_didEndDisplaying_calls_cellViewModel() {
+        let cell = FakeCollectionCell()
+        let sections = 2
+        let cells = 5
+        let model = self.fakeCollectionViewModel(
+            numSections: sections,
+            numCells: cells,
+            expectWillDisplay: true,
+            expectDidEndDisplaying: true
+        )
+        let driver = CollectionViewDriver(
+            view: self.collectionView,
+            viewModel: model,
+            options: .test()
+        )
+
+        for section in 0..<sections {
+            for item in 0..<cells {
+                let indexPath = IndexPath(item: item, section: section)
+                driver.collectionView(self.collectionView, willDisplay: cell, forItemAt: indexPath)
+                driver.collectionView(self.collectionView, didEndDisplaying: cell, forItemAt: indexPath)
+            }
+        }
+
+        self.waitForExpectations()
+
+        self.keepDriverAlive(driver)
+    }
+
+    @MainActor
+    func test_delegate_willDisplay_didEndDisplaying_calls_supplementaryViewModel() {
+        let cell = FakeCollectionCell()
+        let view = FakeSupplementaryView()
+        let sections = 2
+        let cells = 5
+        let model = self.fakeCollectionViewModel(
+            numSections: sections,
+            numCells: cells,
+            includeHeader: true,
+            includeFooter: true,
+            includeSupplementaryViews: true,
+            expectWillDisplay: true,
+            expectDidEndDisplaying: true
+        )
+        let driver = CollectionViewDriver(
+            view: self.collectionView,
+            viewModel: model,
+            options: .test()
+        )
+
+        for section in 0..<sections {
+            for item in 0..<cells {
+                let indexPath = IndexPath(item: item, section: section)
+                driver.collectionView(self.collectionView, willDisplay: cell, forItemAt: indexPath)
+                driver.collectionView(self.collectionView, didEndDisplaying: cell, forItemAt: indexPath)
+
+                driver.collectionView(self.collectionView, willDisplaySupplementaryView: view, forElementKind: FakeSupplementaryViewModel.kind, at: indexPath)
+                driver.collectionView(self.collectionView, didEndDisplayingSupplementaryView: view, forElementOfKind: FakeSupplementaryViewModel.kind, at: indexPath)
+            }
+
+            let indexPath = IndexPath(item: 0, section: section)
+            driver.collectionView(self.collectionView, willDisplaySupplementaryView: view, forElementKind: FakeHeaderViewModel.kind, at: indexPath)
+            driver.collectionView(self.collectionView, didEndDisplayingSupplementaryView: view, forElementOfKind: FakeHeaderViewModel.kind, at: indexPath)
+
+            driver.collectionView(self.collectionView, willDisplaySupplementaryView: view, forElementKind: FakeFooterViewModel.kind, at: indexPath)
+            driver.collectionView(self.collectionView, didEndDisplayingSupplementaryView: view, forElementOfKind: FakeFooterViewModel.kind, at: indexPath)
+        }
+
+        self.waitForExpectations()
+
+        self.keepDriverAlive(driver)
+    }
+
+    @MainActor
     func test_dataSource_cellForItemAt_calls_cellViewModel_configure() async {
         let viewController = FakeCollectionViewController()
         let driver = CollectionViewDriver(view: viewController.collectionView)
