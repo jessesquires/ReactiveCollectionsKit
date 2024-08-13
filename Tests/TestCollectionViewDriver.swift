@@ -200,6 +200,35 @@ final class TestCollectionViewDriver: UnitTestCase {
     }
 
     @MainActor
+    func test_delegate_didHighlight_didUnhighlight_calls_cellViewModel() {
+        let sections = 2
+        let cells = 5
+        let model = self.fakeCollectionViewModel(
+            numSections: sections,
+            numCells: cells,
+            expectDidHighlight: true,
+            expectDidUnhighlight: true
+        )
+        let driver = CollectionViewDriver(
+            view: self.collectionView,
+            viewModel: model,
+            options: .test()
+        )
+
+        for section in 0..<sections {
+            for item in 0..<cells {
+                let indexPath = IndexPath(item: item, section: section)
+                driver.collectionView(self.collectionView, didHighlightItemAt: indexPath)
+                driver.collectionView(self.collectionView, didUnhighlightItemAt: indexPath)
+            }
+        }
+
+        self.waitForExpectations()
+
+        self.keepDriverAlive(driver)
+    }
+
+    @MainActor
     func test_dataSource_cellForItemAt_calls_cellViewModel_configure() async {
         let viewController = FakeCollectionViewController()
         let driver = CollectionViewDriver(view: viewController.collectionView)

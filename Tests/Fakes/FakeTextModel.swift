@@ -55,6 +55,16 @@ struct FakeTextCellViewModel: CellViewModel {
         self.expectationDidEndDisplaying?.fulfillAndLog()
     }
 
+    var expectationDidHighlight: XCTestExpectation?
+    func didHighlight() {
+        self.expectationDidHighlight?.fulfillAndLog()
+    }
+
+    var expectationDidUnhighlight: XCTestExpectation?
+    func didUnhighlight() {
+        self.expectationDidUnhighlight?.fulfillAndLog()
+    }
+
     init(
         model: FakeTextModel = FakeTextModel(),
         shouldHighlight: Bool = true,
