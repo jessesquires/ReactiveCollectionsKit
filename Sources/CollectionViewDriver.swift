@@ -302,6 +302,18 @@ extension CollectionViewDriver: UICollectionViewDelegate {
         self.viewModel.cellViewModel(at: indexPath).shouldHighlight
     }
 
+    /// :nodoc:
+    public func collectionView(_ collectionView: UICollectionView,
+                               didHighlightItemAt indexPath: IndexPath) {
+        self.viewModel.cellViewModel(at: indexPath).didHighlight()
+    }
+
+    /// :nodoc:
+    public func collectionView(_ collectionView: UICollectionView,
+                               didUnhighlightItemAt indexPath: IndexPath) {
+        self.viewModel.cellViewModel(at: indexPath).didUnhighlight()
+    }
+
     // MARK: Managing context menus
 
     /// :nodoc:

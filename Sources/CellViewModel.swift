@@ -44,6 +44,14 @@ public protocol CellViewModel: DiffableViewModel, ViewRegistrationProvider {
     /// Tells the view model that its cell was removed from the collection view.
     /// This corresponds to the delegate method `collectionView(_:didEndDisplaying:forItemAt:)`.
     func didEndDisplaying()
+
+    /// Tells the view model that its cell was highlighted.
+    /// This corresponds to the delegate method `collectionView(_:didHighlightItemAt:)`.
+    func didHighlight()
+
+    /// Tells the view model that the highlight was removed from its cell.
+    /// This corresponds to the delegate method `collectionView(_:didUnhighlightItemAt:)`.
+    func didUnhighlight()
 }
 
 extension CellViewModel {
@@ -65,6 +73,12 @@ extension CellViewModel {
 
     /// Default implementation. Does nothing.
     public func didEndDisplaying() { }
+
+    /// Default implementation. Does nothing.
+    public func didHighlight() { }
+
+    /// Default implementation. Does nothing.
+    public func didUnhighlight() { }
 }
 
 extension CellViewModel {
@@ -148,6 +162,16 @@ public struct AnyCellViewModel: CellViewModel {
         self._didEndDisplaying()
     }
 
+    /// :nodoc:
+    public func didHighlight() {
+        self._didHighlight()
+    }
+
+    /// :nodoc:
+    public func didUnhighlight() {
+        self._didUnhighlight()
+    }
+
     /// :nodoc: "override" the extension
     public let cellClass: AnyClass
 
@@ -165,6 +189,8 @@ public struct AnyCellViewModel: CellViewModel {
     private let _didSelect: (CellEventCoordinator?) -> Void
     private let _willDisplay: () -> Void
     private let _didEndDisplaying: () -> Void
+    private let _didHighlight: () -> Void
+    private let _didUnhighlight: () -> Void
 
     // MARK: Init
 
@@ -190,6 +216,8 @@ public struct AnyCellViewModel: CellViewModel {
         }
         self._willDisplay = viewModel.willDisplay
         self._didEndDisplaying = viewModel.didEndDisplaying
+        self._didHighlight = viewModel.didHighlight
+        self._didUnhighlight = viewModel.didUnhighlight
         self.cellClass = viewModel.cellClass
         self.reuseIdentifier = viewModel.reuseIdentifier
     }
