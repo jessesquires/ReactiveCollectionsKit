@@ -7,6 +7,11 @@ NEXT
 
 - TBA
 
+0.1.5
+-----
+
+- Implemented `didHighlight()` and `didUnhighlight()` APIs for `CellViewModel`. ([@nuomi1](https://github.com/nuomi1), [#123](https://github.com/jessesquires/ReactiveCollectionsKit/pull/123))
+
 0.1.4
 -----
 

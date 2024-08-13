@@ -56,6 +56,16 @@ struct FakeNumberCellViewModel: CellViewModel {
         self.expectationDidEndDisplaying?.fulfillAndLog()
     }
 
+    var expectationDidHighlight: XCTestExpectation?
+    func didHighlight() {
+        self.expectationDidHighlight?.fulfillAndLog()
+    }
+
+    var expectationDidUnhighlight: XCTestExpectation?
+    func didUnhighlight() {
+        self.expectationDidUnhighlight?.fulfillAndLog()
+    }
+
     init(model: FakeNumberModel = FakeNumberModel()) {
         self.model = model
     }

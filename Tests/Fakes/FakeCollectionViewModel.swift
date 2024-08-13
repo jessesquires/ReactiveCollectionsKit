@@ -34,7 +34,9 @@ extension XCTestCase {
         expectDidSelectCell: Bool = false,
         expectConfigureCell: Bool = false,
         expectWillDisplay: Bool = false,
-        expectDidEndDisplaying: Bool = false
+        expectDidEndDisplaying: Bool = false,
+        expectDidHighlight: Bool = false,
+        expectDidUnhighlight: Bool = false
     ) -> CollectionViewModel {
         let sections = (0..<numSections).map { sectionIndex in
             self.fakeSectionViewModel(
@@ -50,7 +52,9 @@ extension XCTestCase {
                 expectDidSelectCell: expectDidSelectCell,
                 expectConfigureCell: expectConfigureCell,
                 expectWillDisplay: expectWillDisplay,
-                expectDidEndDisplaying: expectDidEndDisplaying
+                expectDidEndDisplaying: expectDidEndDisplaying,
+                expectDidHighlight: expectDidHighlight,
+                expectDidUnhighlight: expectDidUnhighlight
             )
         }
         return CollectionViewModel(id: "collection_\(id)", sections: sections)
@@ -70,7 +74,9 @@ extension XCTestCase {
         expectDidSelectCell: Bool = false,
         expectConfigureCell: Bool = false,
         expectWillDisplay: Bool = false,
-        expectDidEndDisplaying: Bool = false
+        expectDidEndDisplaying: Bool = false,
+        expectDidHighlight: Bool = false,
+        expectDidUnhighlight: Bool = false
     ) -> SectionViewModel {
         let cells = self.fakeCellViewModels(
             id: cellId,
@@ -80,7 +86,9 @@ extension XCTestCase {
             expectDidSelectCell: expectDidSelectCell,
             expectConfigureCell: expectConfigureCell,
             expectWillDisplay: expectWillDisplay,
-            expectDidEndDisplaying: expectDidEndDisplaying
+            expectDidEndDisplaying: expectDidEndDisplaying,
+            expectDidHighlight: expectDidHighlight,
+            expectDidUnhighlight: expectDidUnhighlight
         )
         var header = includeHeader ? FakeHeaderViewModel() : nil
         header?.expectationWillDisplay = self._willDisplayExpectation(expect: expectWillDisplay, id: "Header")
@@ -114,7 +122,9 @@ extension XCTestCase {
         expectDidSelectCell: Bool = false,
         expectConfigureCell: Bool = false,
         expectWillDisplay: Bool = false,
-        expectDidEndDisplaying: Bool = false
+        expectDidEndDisplaying: Bool = false,
+        expectDidHighlight: Bool = false,
+        expectDidUnhighlight: Bool = false
     ) -> [AnyCellViewModel] {
         var cells = [AnyCellViewModel]()
         for cellIndex in 0..<count {
@@ -125,7 +135,9 @@ extension XCTestCase {
                 expectDidSelectCell: expectDidSelectCell,
                 expectConfigureCell: expectConfigureCell,
                 expectWillDisplay: expectWillDisplay,
-                expectDidEndDisplaying: expectDidEndDisplaying
+                expectDidEndDisplaying: expectDidEndDisplaying,
+                expectDidHighlight: expectDidHighlight,
+                expectDidUnhighlight: expectDidUnhighlight
             )
             cells.append(model)
         }
@@ -140,7 +152,9 @@ extension XCTestCase {
         expectDidSelectCell: Bool,
         expectConfigureCell: Bool,
         expectWillDisplay: Bool,
-        expectDidEndDisplaying: Bool
+        expectDidEndDisplaying: Bool,
+        expectDidHighlight: Bool,
+        expectDidUnhighlight: Bool
     ) -> AnyCellViewModel {
         if useNibs {
             var viewModel = FakeCellNibViewModel(id: id)
@@ -148,6 +162,8 @@ extension XCTestCase {
             viewModel.expectationConfigureCell = self._cellConfigureExpectation(expect: expectConfigureCell, id: viewModel.id)
             viewModel.expectationWillDisplay = self._willDisplayExpectation(expect: expectWillDisplay, id: viewModel.id)
             viewModel.expectationDidEndDisplaying = self._didEndDisplayingExpectation(expect: expectDidEndDisplaying, id: viewModel.id)
+            viewModel.expectationDidHighlight = self._didHighlightExpectation(expect: expectDidHighlight, id: viewModel.id)
+            viewModel.expectationDidUnhighlight = self._didUnhighlightExpectation(expect: expectDidUnhighlight, id: viewModel.id)
             return viewModel.eraseToAnyViewModel()
         }
 
@@ -157,6 +173,8 @@ extension XCTestCase {
             viewModel.expectationConfigureCell = self._cellConfigureExpectation(expect: expectConfigureCell, id: viewModel.id)
             viewModel.expectationWillDisplay = self._willDisplayExpectation(expect: expectWillDisplay, id: viewModel.id)
             viewModel.expectationDidEndDisplaying = self._didEndDisplayingExpectation(expect: expectDidEndDisplaying, id: viewModel.id)
+            viewModel.expectationDidHighlight = self._didHighlightExpectation(expect: expectDidHighlight, id: viewModel.id)
+            viewModel.expectationDidUnhighlight = self._didUnhighlightExpectation(expect: expectDidUnhighlight, id: viewModel.id)
             return viewModel.eraseToAnyViewModel()
         }
 
@@ -165,6 +183,8 @@ extension XCTestCase {
         viewModel.expectationConfigureCell = self._cellConfigureExpectation(expect: expectConfigureCell, id: viewModel.id)
         viewModel.expectationWillDisplay = self._willDisplayExpectation(expect: expectWillDisplay, id: viewModel.id)
         viewModel.expectationDidEndDisplaying = self._didEndDisplayingExpectation(expect: expectDidEndDisplaying, id: viewModel.id)
+        viewModel.expectationDidHighlight = self._didHighlightExpectation(expect: expectDidHighlight, id: viewModel.id)
+        viewModel.expectationDidUnhighlight = self._didUnhighlightExpectation(expect: expectDidUnhighlight, id: viewModel.id)
         return viewModel.eraseToAnyViewModel()
     }
 
@@ -186,6 +206,16 @@ extension XCTestCase {
     @MainActor
     private func _didEndDisplayingExpectation(expect: Bool, id: UniqueIdentifier) -> XCTestExpectation? {
         expect ? self.expectation(description: "didEndDisplaying_\(id)") : nil
+    }
+
+    @MainActor
+    private func _didHighlightExpectation(expect: Bool, id: UniqueIdentifier) -> XCTestExpectation? {
+        expect ? self.expectation(description: "didHighlight_\(id)") : nil
+    }
+
+    @MainActor
+    private func _didUnhighlightExpectation(expect: Bool, id: UniqueIdentifier) -> XCTestExpectation? {
+        expect ? self.expectation(description: "didUnhighlight_\(id)") : nil
     }
 }
 

@@ -54,6 +54,16 @@ struct FakeCellNibViewModel: CellViewModel {
         self.expectationDidEndDisplaying?.fulfillAndLog()
     }
 
+    var expectationDidHighlight: XCTestExpectation?
+    func didHighlight() {
+        self.expectationDidHighlight?.fulfillAndLog()
+    }
+
+    var expectationDidUnhighlight: XCTestExpectation?
+    func didUnhighlight() {
+        self.expectationDidUnhighlight?.fulfillAndLog()
+    }
+
     nonisolated static func == (left: Self, right: Self) -> Bool {
         left.id == right.id
     }
