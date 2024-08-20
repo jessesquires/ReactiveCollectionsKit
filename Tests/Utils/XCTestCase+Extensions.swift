@@ -12,6 +12,7 @@
 //
 
 import Foundation
+import ReactiveCollectionsKit
 import XCTest
 
 extension XCTestCase {
@@ -22,7 +23,11 @@ extension XCTestCase {
         self.waitForExpectations(timeout: self.defaultTimeout, handler: nil)
     }
 
-    func expectation(function: String = #function, name: String = "") -> XCTestExpectation {
+    func expectation(name: String, function: String = #function) -> XCTestExpectation {
         self.expectation(description: function + "-" + name)
+    }
+
+    func expectation(field: TestExpectField, id: UniqueIdentifier, function: String = #function) -> XCTestExpectation {
+        self.expectation(name: "\(field.rawValue)_\(id)", function: function)
     }
 }

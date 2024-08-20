@@ -16,8 +16,6 @@ import Foundation
 import UIKit
 import XCTest
 
-// swiftlint:disable function_parameter_count
-
 extension XCTestCase {
     @MainActor
     func fakeCollectionViewModel(
@@ -31,12 +29,8 @@ extension XCTestCase {
         includeHeader: Bool = false,
         includeFooter: Bool = false,
         includeSupplementaryViews: Bool = false,
-        expectDidSelectCell: Bool = false,
-        expectConfigureCell: Bool = false,
-        expectWillDisplay: Bool = false,
-        expectDidEndDisplaying: Bool = false,
-        expectDidHighlight: Bool = false,
-        expectDidUnhighlight: Bool = false
+        expectFields: Set<TestExpectField> = [],
+        function: String = #function
     ) -> CollectionViewModel {
         let sections = (0..<numSections).map { sectionIndex in
             self.fakeSectionViewModel(
@@ -49,12 +43,8 @@ extension XCTestCase {
                 includeHeader: includeHeader,
                 includeFooter: includeFooter,
                 includeSupplementaryViews: includeSupplementaryViews,
-                expectDidSelectCell: expectDidSelectCell,
-                expectConfigureCell: expectConfigureCell,
-                expectWillDisplay: expectWillDisplay,
-                expectDidEndDisplaying: expectDidEndDisplaying,
-                expectDidHighlight: expectDidHighlight,
-                expectDidUnhighlight: expectDidUnhighlight
+                expectFields: expectFields,
+                function: function
             )
         }
         return CollectionViewModel(id: "collection_\(id)", sections: sections)
@@ -71,36 +61,37 @@ extension XCTestCase {
         includeHeader: Bool = false,
         includeFooter: Bool = false,
         includeSupplementaryViews: Bool = false,
-        expectDidSelectCell: Bool = false,
-        expectConfigureCell: Bool = false,
-        expectWillDisplay: Bool = false,
-        expectDidEndDisplaying: Bool = false,
-        expectDidHighlight: Bool = false,
-        expectDidUnhighlight: Bool = false
+        expectFields: Set<TestExpectField> = [],
+        function: String = #function
     ) -> SectionViewModel {
         let cells = self.fakeCellViewModels(
             id: cellId,
             sectionIndex: sectionIndex,
             count: numCells,
             useNibs: useCellNibs,
-            expectDidSelectCell: expectDidSelectCell,
-            expectConfigureCell: expectConfigureCell,
-            expectWillDisplay: expectWillDisplay,
-            expectDidEndDisplaying: expectDidEndDisplaying,
-            expectDidHighlight: expectDidHighlight,
-            expectDidUnhighlight: expectDidUnhighlight
+            expectFields: expectFields,
+            function: function
         )
-        var header = includeHeader ? FakeHeaderViewModel() : nil
-        header?.expectationWillDisplay = self._willDisplayExpectation(expect: expectWillDisplay, id: "Header")
-        header?.expectationDidEndDisplaying = self._didEndDisplayingExpectation(expect: expectDidEndDisplaying, id: "Header")
-        var footer = includeFooter ? FakeFooterViewModel() : nil
-        footer?.expectationWillDisplay = self._willDisplayExpectation(expect: expectWillDisplay, id: "Footer")
-        footer?.expectationDidEndDisplaying = self._didEndDisplayingExpectation(expect: expectDidEndDisplaying, id: "Footer")
+        let header = includeHeader ? {
+            var viewModel = FakeHeaderViewModel()
+            viewModel.expectationConfigureView = self._expectation(expectFields, target: .configure, id: viewModel.id, function: function)
+            viewModel.expectationWillDisplay = self._expectation(expectFields, target: .willDisplay, id: viewModel.id, function: function)
+            viewModel.expectationDidEndDisplaying = self._expectation(expectFields, target: .didEndDisplaying, id: viewModel.id, function: function)
+            return viewModel
+        }() : nil
+        let footer = includeFooter ? {
+            var viewModel = FakeFooterViewModel()
+            viewModel.expectationConfigureView = self._expectation(expectFields, target: .configure, id: viewModel.id, function: function)
+            viewModel.expectationWillDisplay = self._expectation(expectFields, target: .willDisplay, id: viewModel.id, function: function)
+            viewModel.expectationDidEndDisplaying = self._expectation(expectFields, target: .didEndDisplaying, id: viewModel.id, function: function)
+            return viewModel
+        }() : nil
         let supplementaryViews = includeSupplementaryViews
             ? (0..<numCells).map { cellIndex -> FakeSupplementaryViewModel in
                 var viewModel = FakeSupplementaryViewModel(title: supplementaryViewId(sectionIndex, cellIndex))
-                viewModel.expectationWillDisplay = self._willDisplayExpectation(expect: expectWillDisplay, id: viewModel.id)
-                viewModel.expectationDidEndDisplaying = self._didEndDisplayingExpectation(expect: expectDidEndDisplaying, id: viewModel.id)
+                viewModel.expectationConfigureView = self._expectation(expectFields, target: .configure, id: viewModel.id, function: function)
+                viewModel.expectationWillDisplay = self._expectation(expectFields, target: .willDisplay, id: viewModel.id, function: function)
+                viewModel.expectationDidEndDisplaying = self._expectation(expectFields, target: .didEndDisplaying, id: viewModel.id, function: function)
                 return viewModel
             }
             : []
@@ -119,12 +110,8 @@ extension XCTestCase {
         sectionIndex: Int = 0,
         count: Int = Int.random(in: 3...20),
         useNibs: Bool = false,
-        expectDidSelectCell: Bool = false,
-        expectConfigureCell: Bool = false,
-        expectWillDisplay: Bool = false,
-        expectDidEndDisplaying: Bool = false,
-        expectDidHighlight: Bool = false,
-        expectDidUnhighlight: Bool = false
+        expectFields: Set<TestExpectField> = [],
+        function: String = #function
     ) -> [AnyCellViewModel] {
         var cells = [AnyCellViewModel]()
         for cellIndex in 0..<count {
@@ -132,12 +119,8 @@ extension XCTestCase {
                 id: id(sectionIndex, cellIndex),
                 cellIndex: cellIndex,
                 useNibs: useNibs,
-                expectDidSelectCell: expectDidSelectCell,
-                expectConfigureCell: expectConfigureCell,
-                expectWillDisplay: expectWillDisplay,
-                expectDidEndDisplaying: expectDidEndDisplaying,
-                expectDidHighlight: expectDidHighlight,
-                expectDidUnhighlight: expectDidUnhighlight
+                expectFields: expectFields,
+                function: function
             )
             cells.append(model)
         }
@@ -149,74 +132,48 @@ extension XCTestCase {
         id: String,
         cellIndex: Int,
         useNibs: Bool,
-        expectDidSelectCell: Bool,
-        expectConfigureCell: Bool,
-        expectWillDisplay: Bool,
-        expectDidEndDisplaying: Bool,
-        expectDidHighlight: Bool,
-        expectDidUnhighlight: Bool
+        expectFields: Set<TestExpectField>,
+        function: String = #function
     ) -> AnyCellViewModel {
         if useNibs {
             var viewModel = FakeCellNibViewModel(id: id)
-            viewModel.expectationDidSelect = self._cellDidSelectExpectation(expect: expectDidSelectCell, id: viewModel.id)
-            viewModel.expectationConfigureCell = self._cellConfigureExpectation(expect: expectConfigureCell, id: viewModel.id)
-            viewModel.expectationWillDisplay = self._willDisplayExpectation(expect: expectWillDisplay, id: viewModel.id)
-            viewModel.expectationDidEndDisplaying = self._didEndDisplayingExpectation(expect: expectDidEndDisplaying, id: viewModel.id)
-            viewModel.expectationDidHighlight = self._didHighlightExpectation(expect: expectDidHighlight, id: viewModel.id)
-            viewModel.expectationDidUnhighlight = self._didUnhighlightExpectation(expect: expectDidUnhighlight, id: viewModel.id)
+            viewModel.expectationDidSelect = self._expectation(expectFields, target: .didSelect, id: viewModel.id, function: function)
+            viewModel.expectationConfigureCell = self._expectation(expectFields, target: .configure, id: viewModel.id, function: function)
+            viewModel.expectationWillDisplay = self._expectation(expectFields, target: .willDisplay, id: viewModel.id, function: function)
+            viewModel.expectationDidEndDisplaying = self._expectation(expectFields, target: .didEndDisplaying, id: viewModel.id, function: function)
+            viewModel.expectationDidHighlight = self._expectation(expectFields, target: .didHighlight, id: viewModel.id, function: function)
+            viewModel.expectationDidUnhighlight = self._expectation(expectFields, target: .didUnhighlight, id: viewModel.id, function: function)
             return viewModel.eraseToAnyViewModel()
         }
 
         if cellIndex.isMultiple(of: 2) {
             var viewModel = FakeNumberCellViewModel(model: .init(id: id))
-            viewModel.expectationDidSelect = self._cellDidSelectExpectation(expect: expectDidSelectCell, id: viewModel.id)
-            viewModel.expectationConfigureCell = self._cellConfigureExpectation(expect: expectConfigureCell, id: viewModel.id)
-            viewModel.expectationWillDisplay = self._willDisplayExpectation(expect: expectWillDisplay, id: viewModel.id)
-            viewModel.expectationDidEndDisplaying = self._didEndDisplayingExpectation(expect: expectDidEndDisplaying, id: viewModel.id)
-            viewModel.expectationDidHighlight = self._didHighlightExpectation(expect: expectDidHighlight, id: viewModel.id)
-            viewModel.expectationDidUnhighlight = self._didUnhighlightExpectation(expect: expectDidUnhighlight, id: viewModel.id)
+            viewModel.expectationDidSelect = self._expectation(expectFields, target: .didSelect, id: viewModel.id, function: function)
+            viewModel.expectationConfigureCell = self._expectation(expectFields, target: .configure, id: viewModel.id, function: function)
+            viewModel.expectationWillDisplay = self._expectation(expectFields, target: .willDisplay, id: viewModel.id, function: function)
+            viewModel.expectationDidEndDisplaying = self._expectation(expectFields, target: .didEndDisplaying, id: viewModel.id, function: function)
+            viewModel.expectationDidHighlight = self._expectation(expectFields, target: .didHighlight, id: viewModel.id, function: function)
+            viewModel.expectationDidUnhighlight = self._expectation(expectFields, target: .didUnhighlight, id: viewModel.id, function: function)
             return viewModel.eraseToAnyViewModel()
         }
 
         var viewModel = FakeTextCellViewModel(model: .init(text: id))
-        viewModel.expectationDidSelect = self._cellDidSelectExpectation(expect: expectDidSelectCell, id: viewModel.id)
-        viewModel.expectationConfigureCell = self._cellConfigureExpectation(expect: expectConfigureCell, id: viewModel.id)
-        viewModel.expectationWillDisplay = self._willDisplayExpectation(expect: expectWillDisplay, id: viewModel.id)
-        viewModel.expectationDidEndDisplaying = self._didEndDisplayingExpectation(expect: expectDidEndDisplaying, id: viewModel.id)
-        viewModel.expectationDidHighlight = self._didHighlightExpectation(expect: expectDidHighlight, id: viewModel.id)
-        viewModel.expectationDidUnhighlight = self._didUnhighlightExpectation(expect: expectDidUnhighlight, id: viewModel.id)
+        viewModel.expectationDidSelect = self._expectation(expectFields, target: .didSelect, id: viewModel.id, function: function)
+        viewModel.expectationConfigureCell = self._expectation(expectFields, target: .configure, id: viewModel.id, function: function)
+        viewModel.expectationWillDisplay = self._expectation(expectFields, target: .willDisplay, id: viewModel.id, function: function)
+        viewModel.expectationDidEndDisplaying = self._expectation(expectFields, target: .didEndDisplaying, id: viewModel.id, function: function)
+        viewModel.expectationDidHighlight = self._expectation(expectFields, target: .didHighlight, id: viewModel.id, function: function)
+        viewModel.expectationDidUnhighlight = self._expectation(expectFields, target: .didUnhighlight, id: viewModel.id, function: function)
         return viewModel.eraseToAnyViewModel()
     }
 
     @MainActor
-    private func _cellDidSelectExpectation(expect: Bool, id: UniqueIdentifier) -> XCTestExpectation? {
-        expect ? self.expectation(description: "didSelect_\(id)") : nil
-    }
-
-    @MainActor
-    private func _cellConfigureExpectation(expect: Bool, id: UniqueIdentifier) -> XCTestExpectation? {
-        expect ? self.expectation(description: "configureCell_\(id)") : nil
-    }
-
-    @MainActor
-    private func _willDisplayExpectation(expect: Bool, id: UniqueIdentifier) -> XCTestExpectation? {
-        expect ? self.expectation(description: "willDisplay_\(id)") : nil
-    }
-
-    @MainActor
-    private func _didEndDisplayingExpectation(expect: Bool, id: UniqueIdentifier) -> XCTestExpectation? {
-        expect ? self.expectation(description: "didEndDisplaying_\(id)") : nil
-    }
-
-    @MainActor
-    private func _didHighlightExpectation(expect: Bool, id: UniqueIdentifier) -> XCTestExpectation? {
-        expect ? self.expectation(description: "didHighlight_\(id)") : nil
-    }
-
-    @MainActor
-    private func _didUnhighlightExpectation(expect: Bool, id: UniqueIdentifier) -> XCTestExpectation? {
-        expect ? self.expectation(description: "didUnhighlight_\(id)") : nil
+    private func _expectation(
+        _ fields: Set<TestExpectField>,
+        target: TestExpectField,
+        id: UniqueIdentifier,
+        function: String
+    ) -> XCTestExpectation? {
+        fields.contains(target) ? self.expectation(field: target, id: id, function: function) : nil
     }
 }
-
-// swiftlint:enable function_parameter_count

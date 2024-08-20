@@ -53,7 +53,7 @@ final class TestCollectionViewDriver: UnitTestCase {
     func test_delegate_didSelectItemAt_calls_cellViewModel() {
         let sections = 2
         let cells = 5
-        let model = self.fakeCollectionViewModel(numSections: sections, numCells: cells, expectDidSelectCell: true)
+        let model = self.fakeCollectionViewModel(numSections: sections, numCells: cells, expectFields: [.didSelect])
         let driver = CollectionViewDriver(
             view: self.collectionView,
             viewModel: model,
@@ -133,8 +133,7 @@ final class TestCollectionViewDriver: UnitTestCase {
         let model = self.fakeCollectionViewModel(
             numSections: sections,
             numCells: cells,
-            expectWillDisplay: true,
-            expectDidEndDisplaying: true
+            expectFields: [.willDisplay, .didEndDisplaying]
         )
         let driver = CollectionViewDriver(
             view: self.collectionView,
@@ -167,8 +166,7 @@ final class TestCollectionViewDriver: UnitTestCase {
             includeHeader: true,
             includeFooter: true,
             includeSupplementaryViews: true,
-            expectWillDisplay: true,
-            expectDidEndDisplaying: true
+            expectFields: [.willDisplay, .didEndDisplaying]
         )
         let driver = CollectionViewDriver(
             view: self.collectionView,
@@ -206,8 +204,7 @@ final class TestCollectionViewDriver: UnitTestCase {
         let model = self.fakeCollectionViewModel(
             numSections: sections,
             numCells: cells,
-            expectDidHighlight: true,
-            expectDidUnhighlight: true
+            expectFields: [.didHighlight, .didUnhighlight]
         )
         let driver = CollectionViewDriver(
             view: self.collectionView,
@@ -235,7 +232,7 @@ final class TestCollectionViewDriver: UnitTestCase {
 
         let sections = 2
         let cells = 5
-        let model = self.fakeCollectionViewModel(numSections: sections, numCells: cells, expectConfigureCell: true)
+        let model = self.fakeCollectionViewModel(numSections: sections, numCells: cells, expectFields: [.configure])
 
         // Should only be called for the total number of unique registrations
         let cellRegistrationCount = model.allCellRegistrations().count
@@ -270,7 +267,7 @@ final class TestCollectionViewDriver: UnitTestCase {
             numSections: sections,
             numCells: cells,
             useCellNibs: true,
-            expectConfigureCell: true
+            expectFields: [.configure]
         )
 
         let viewController = FakeCollectionViewController()
@@ -306,30 +303,16 @@ final class TestCollectionViewDriver: UnitTestCase {
 
         let driver = CollectionViewDriver(view: viewController.collectionView)
 
-        let count = 3
-        let cells = (1...count).map { _ in FakeNumberCellViewModel() }
-
-        var header = FakeHeaderViewModel()
-        header.expectationConfigureView = self.expectation(name: "configure_header")
-
-        var footer = FakeFooterViewModel()
-        footer.expectationConfigureView = self.expectation(name: "configure_footer")
-
-        let views = (1...count).map { _ in
-            var view = FakeSupplementaryViewModel()
-            view.expectationConfigureView = self.expectation(name: "configure_view_\(view.title)")
-            return view
-        }
-
-        let section = SectionViewModel(
-            id: "section",
-            cells: cells,
-            header: header,
-            footer: footer,
-            supplementaryViews: views
+        let sections = 1
+        let cells = 3
+        let model = self.fakeCollectionViewModel(
+            numSections: sections,
+            numCells: cells,
+            includeHeader: true,
+            includeFooter: true,
+            includeSupplementaryViews: true,
+            expectFields: [.configure]
         )
-
-        let model = CollectionViewModel(id: "id", sections: [section])
 
         // Should only be called for the total number of unique registrations
         let supplementaryCount = model.allSupplementaryViewRegistrations().count
@@ -340,7 +323,7 @@ final class TestCollectionViewDriver: UnitTestCase {
 
         // Should be called for every view (plus header and footer)
         viewController.collectionView.dequeueSupplementaryViewExpectation = self.expectation(name: "dequeue_view")
-        viewController.collectionView.dequeueSupplementaryViewExpectation?.expectedFulfillmentCount = count + 2
+        viewController.collectionView.dequeueSupplementaryViewExpectation?.expectedFulfillmentCount = cells + 2
 
         await driver.update(viewModel: model)
         self.simulateAppearance(viewController: viewController)
@@ -364,7 +347,7 @@ final class TestCollectionViewDriver: UnitTestCase {
 
         let views = (1...count).map { _ in
             var view = FakeSupplementaryNibViewModel()
-            view.expectationConfigureView = self.expectation(name: "configure_nib_view_\(view.id)")
+            view.expectationConfigureView = self.expectation(field: .configure, id: view.id)
             return view
         }
 
@@ -408,7 +391,7 @@ final class TestCollectionViewDriver: UnitTestCase {
     func test_update_callsCompletion_withDefaultOptions() {
         let driver = CollectionViewDriver(view: self.collectionView)
 
-        let expectation = self.expectation()
+        let expectation = self.expectation(name: "update")
 
         let newModel = self.fakeCollectionViewModel()
         driver.update(viewModel: newModel, animated: true) { _ in
@@ -425,7 +408,7 @@ final class TestCollectionViewDriver: UnitTestCase {
             options: .init(diffOnBackgroundQueue: true)
         )
 
-        let expectation = self.expectation()
+        let expectation = self.expectation(name: "update_diffOnBackgroundQueue")
 
         let newModel = self.fakeCollectionViewModel()
         driver.update(viewModel: newModel, animated: true) { _ in
@@ -442,7 +425,7 @@ final class TestCollectionViewDriver: UnitTestCase {
             options: .init(reloadDataOnReplacingViewModel: true)
         )
 
-        let expectation = self.expectation()
+        let expectation = self.expectation(name: "update_reloadDataOnReplacingViewModel")
 
         let newModel = self.fakeCollectionViewModel()
         driver.update(viewModel: newModel, animated: true) { _ in
