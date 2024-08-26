@@ -24,7 +24,7 @@ final class TestCellViewModel: XCTestCase {
         XCTAssertNil(viewModel.contextMenuConfiguration)
 
         let coordinator = FakeCellEventCoordinator()
-        coordinator.expectationDidSelect = self.expectation(name: "did_select")
+        coordinator.expectationDidSelect = self.expectation()
         viewModel.didSelect(with: coordinator)
         self.waitForExpectations()
     }

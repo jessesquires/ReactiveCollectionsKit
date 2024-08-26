@@ -34,7 +34,7 @@ final class TestCellEventCoordinator: UnitTestCase {
         let model = CollectionViewModel(id: "id", sections: [section])
 
         let coordinator = FakeCellEventCoordinator()
-        coordinator.expectationDidSelect = self.expectation(name: "did_select")
+        coordinator.expectationDidSelect = self.expectation()
 
         let driver = CollectionViewDriver(
             view: self.collectionView,

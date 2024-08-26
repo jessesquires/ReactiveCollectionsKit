@@ -391,7 +391,7 @@ final class TestCollectionViewDriver: UnitTestCase {
     func test_update_callsCompletion_withDefaultOptions() {
         let driver = CollectionViewDriver(view: self.collectionView)
 
-        let expectation = self.expectation(name: "update")
+        let expectation = self.expectation()
 
         let newModel = self.fakeCollectionViewModel()
         driver.update(viewModel: newModel, animated: true) { _ in
@@ -408,7 +408,7 @@ final class TestCollectionViewDriver: UnitTestCase {
             options: .init(diffOnBackgroundQueue: true)
         )
 
-        let expectation = self.expectation(name: "update_diffOnBackgroundQueue")
+        let expectation = self.expectation()
 
         let newModel = self.fakeCollectionViewModel()
         driver.update(viewModel: newModel, animated: true) { _ in
@@ -425,7 +425,7 @@ final class TestCollectionViewDriver: UnitTestCase {
             options: .init(reloadDataOnReplacingViewModel: true)
         )
 
-        let expectation = self.expectation(name: "update_reloadDataOnReplacingViewModel")
+        let expectation = self.expectation()
 
         let newModel = self.fakeCollectionViewModel()
         driver.update(viewModel: newModel, animated: true) { _ in

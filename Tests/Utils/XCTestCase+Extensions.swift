@@ -23,11 +23,11 @@ extension XCTestCase {
         self.waitForExpectations(timeout: self.defaultTimeout, handler: nil)
     }
 
-    func expectation(name: String, function: String = #function) -> XCTestExpectation {
-        self.expectation(description: function + "-" + name)
+    func expectation(function: String = #function, name: String? = nil) -> XCTestExpectation {
+        self.expectation(description: [function, name].compactMap { $0 }.joined(separator: "-"))
     }
 
     func expectation(field: TestExpectationField, id: UniqueIdentifier, function: String = #function) -> XCTestExpectation {
-        self.expectation(name: "\(field.rawValue)_\(id)", function: function)
+        self.expectation(function: function, name: "\(field.rawValue)_\(id)")
     }
 }
