@@ -53,7 +53,7 @@ final class TestCollectionViewDriver: UnitTestCase {
     func test_delegate_didSelectItemAt_calls_cellViewModel() {
         let sections = 2
         let cells = 5
-        let model = self.fakeCollectionViewModel(numSections: sections, numCells: cells, expectFields: [.didSelect])
+        let model = self.fakeCollectionViewModel(numSections: sections, numCells: cells, expectationFields: [.didSelect])
         let driver = CollectionViewDriver(
             view: self.collectionView,
             viewModel: model,
@@ -133,7 +133,7 @@ final class TestCollectionViewDriver: UnitTestCase {
         let model = self.fakeCollectionViewModel(
             numSections: sections,
             numCells: cells,
-            expectFields: [.willDisplay, .didEndDisplaying]
+            expectationFields: [.willDisplay, .didEndDisplaying]
         )
         let driver = CollectionViewDriver(
             view: self.collectionView,
@@ -166,7 +166,7 @@ final class TestCollectionViewDriver: UnitTestCase {
             includeHeader: true,
             includeFooter: true,
             includeSupplementaryViews: true,
-            expectFields: [.willDisplay, .didEndDisplaying]
+            expectationFields: [.willDisplay, .didEndDisplaying]
         )
         let driver = CollectionViewDriver(
             view: self.collectionView,
@@ -204,7 +204,7 @@ final class TestCollectionViewDriver: UnitTestCase {
         let model = self.fakeCollectionViewModel(
             numSections: sections,
             numCells: cells,
-            expectFields: [.didHighlight, .didUnhighlight]
+            expectationFields: [.didHighlight, .didUnhighlight]
         )
         let driver = CollectionViewDriver(
             view: self.collectionView,
@@ -232,7 +232,7 @@ final class TestCollectionViewDriver: UnitTestCase {
 
         let sections = 2
         let cells = 5
-        let model = self.fakeCollectionViewModel(numSections: sections, numCells: cells, expectFields: [.configure])
+        let model = self.fakeCollectionViewModel(numSections: sections, numCells: cells, expectationFields: [.configure])
 
         // Should only be called for the total number of unique registrations
         let cellRegistrationCount = model.allCellRegistrations().count
@@ -267,7 +267,7 @@ final class TestCollectionViewDriver: UnitTestCase {
             numSections: sections,
             numCells: cells,
             useCellNibs: true,
-            expectFields: [.configure]
+            expectationFields: [.configure]
         )
 
         let viewController = FakeCollectionViewController()
@@ -311,7 +311,7 @@ final class TestCollectionViewDriver: UnitTestCase {
             includeHeader: true,
             includeFooter: true,
             includeSupplementaryViews: true,
-            expectFields: [.configure]
+            expectationFields: [.configure]
         )
 
         // Should only be called for the total number of unique registrations

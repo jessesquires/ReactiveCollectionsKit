@@ -13,11 +13,11 @@
 
 import Foundation
 
-enum TestExpectField: String, Hashable {
+enum TestExpectationField: String, Hashable {
     case configure
-    case didSelect = "did_select"
-    case willDisplay = "will_display"
-    case didEndDisplaying = "did_end_displaying"
-    case didHighlight = "did_highlight"
-    case didUnhighlight = "did_unhighlight"
+    case didSelect
+    case willDisplay
+    case didEndDisplaying
+    case didHighlight
+    case didUnhighlight
 }

@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		073E47B82C739DBB00A97884 /* TestExpectField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 073E47B72C739DBB00A97884 /* TestExpectField.swift */; };
+		073E47B82C739DBB00A97884 /* TestExpectationField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 073E47B72C739DBB00A97884 /* TestExpectationField.swift */; };
 		07C025E42C535FE7009AF8AD /* TestDebugDescriptionCollection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07C025E32C535FE6009AF8AD /* TestDebugDescriptionCollection.swift */; };
 		07E72F9C2C3ECE86009B2387 /* DebugDescriptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07E72F9B2C3ECE86009B2387 /* DebugDescriptions.swift */; };
 		0B01476F2BBCF0330041D432 /* Collection+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B01476E2BBCF0330041D432 /* Collection+Extensions.swift */; };
@@ -78,7 +78,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		073E47B72C739DBB00A97884 /* TestExpectField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestExpectField.swift; sourceTree = "<group>"; };
+		073E47B72C739DBB00A97884 /* TestExpectationField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestExpectationField.swift; sourceTree = "<group>"; };
 		07C025E32C535FE6009AF8AD /* TestDebugDescriptionCollection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestDebugDescriptionCollection.swift; sourceTree = "<group>"; };
 		07E72F9B2C3ECE86009B2387 /* DebugDescriptions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DebugDescriptions.swift; sourceTree = "<group>"; };
 		0B01476E2BBCF0330041D432 /* Collection+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Collection+Extensions.swift"; sourceTree = "<group>"; };
@@ -186,7 +186,7 @@
 				0BFBB2F12C0D4985000842B6 /* CollectionViewDriverOptions+Extensions.swift */,
 				0BFA77442BB8B6AC009B9C5B /* String+Extensions.swift */,
 				0B8F50442C2B46A20081C0D2 /* TestBundle.swift */,
-				073E47B72C739DBB00A97884 /* TestExpectField.swift */,
+				073E47B72C739DBB00A97884 /* TestExpectationField.swift */,
 				884880D6238CE9020056F669 /* UnitTestCase.swift */,
 				884880DD238CF02F0056F669 /* XCTestCase+Extensions.swift */,
 				0BFBB2EF2C0D3C92000842B6 /* XCTestExpectation+Expectations.swift */,
@@ -453,7 +453,7 @@
 				0B8F50452C2B46A20081C0D2 /* TestBundle.swift in Sources */,
 				0BA0E2CC2C030445001FB5AA /* TestCollectionViewDriverOptions.swift in Sources */,
 				0BBB8A492C32309800200477 /* TestCollectionViewDriverReconfigure.swift in Sources */,
-				073E47B82C739DBB00A97884 /* TestExpectField.swift in Sources */,
+				073E47B82C739DBB00A97884 /* TestExpectationField.swift in Sources */,
 				0BFBB2EC2C0BFD1B000842B6 /* FakeCellEventCoordinator.swift in Sources */,
 				07C025E42C535FE7009AF8AD /* TestDebugDescriptionCollection.swift in Sources */,
 				0BFA774C2BB8B717009B9C5B /* FakeCellViewModel.swift in Sources */,

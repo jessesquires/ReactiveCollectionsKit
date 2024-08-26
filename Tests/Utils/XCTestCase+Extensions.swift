@@ -27,7 +27,7 @@ extension XCTestCase {
         self.expectation(description: function + "-" + name)
     }
 
-    func expectation(field: TestExpectField, id: UniqueIdentifier, function: String = #function) -> XCTestExpectation {
+    func expectation(field: TestExpectationField, id: UniqueIdentifier, function: String = #function) -> XCTestExpectation {
         self.expectation(name: "\(field.rawValue)_\(id)", function: function)
     }
 }
