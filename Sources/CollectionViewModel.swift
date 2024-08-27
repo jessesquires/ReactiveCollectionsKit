@@ -41,7 +41,7 @@ public struct CollectionViewModel: Hashable, DiffableViewModel {
     ///   - sections: The sections in the collection.
     public init(id: UniqueIdentifier, sections: [SectionViewModel] = []) {
         self.id = id
-        self.sections = sections.filter { $0.isNotEmpty }
+        self.sections = sections.filter(\.isNotEmpty)
     }
 
     // MARK: Accessing Sections
@@ -71,7 +71,7 @@ public struct CollectionViewModel: Hashable, DiffableViewModel {
     /// - Parameter id: The identifier for the cell.
     /// - Returns: The cell, if it exists.
     public func cellViewModel(for id: UniqueIdentifier) -> AnyCellViewModel? {
-        self.flatMap { $0.cells }.first { $0.id == id }
+        self.flatMap(\.cells).first { $0.id == id }
     }
 
     /// Returns the cell at the specified index path.
@@ -97,7 +97,7 @@ public struct CollectionViewModel: Hashable, DiffableViewModel {
     /// - Parameter id: The identifier for the supplementary view.
     /// - Returns: The supplementary view, if it exists.
     public func supplementaryViewModel(for id: UniqueIdentifier) -> AnySupplementaryViewModel? {
-        self.flatMap { $0.supplementaryViews }.first { $0.id == id }
+        self.flatMap(\.supplementaryViews).first { $0.id == id }
     }
 
     /// Returns the supplementary view for the specified kind and index path.
@@ -226,7 +226,7 @@ public struct CollectionViewModel: Hashable, DiffableViewModel {
     }
 
     func allCellsByIdentifier() -> [UniqueIdentifier: AnyCellViewModel] {
-        let allCells = self.flatMap { $0.cells }
+        let allCells = self.flatMap(\.cells)
         let tuples = allCells.map { ($0.id, $0) }
         return Dictionary(uniqueKeysWithValues: tuples)
     }

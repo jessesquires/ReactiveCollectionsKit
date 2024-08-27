@@ -191,7 +191,7 @@ final class TestCollectionViewModel: XCTestCase {
         let section2 = self.fakeSectionViewModel(id: "2")
         let section3 = self.fakeSectionViewModel(id: "3")
         let model = CollectionViewModel(id: "id", sections: [section1, section2, section3])
-        let ids = model.sections.map { $0.id }
+        let ids = model.sections.map(\.id)
         XCTAssertEqual(ids.count, count)
 
         let sectionsById = model.allSectionsByIdentifier()
@@ -207,7 +207,7 @@ final class TestCollectionViewModel: XCTestCase {
     @MainActor
     func test_allCellsByIdentifier() {
         let model = self.fakeCollectionViewModel()
-        let expectedIds = Set(model.sections.flatMap { $0.cells }.map { $0.id })
+        let expectedIds = Set(model.sections.flatMap(\.cells).map(\.id))
 
         let cellIds = Set(model.allCellsByIdentifier().keys)
         XCTAssertEqual(cellIds, expectedIds)

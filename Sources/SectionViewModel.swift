@@ -225,7 +225,7 @@ public struct SectionViewModel: DiffableViewModel {
     // MARK: Internal
 
     func cellRegistrations() -> Set<ViewRegistration> {
-        Set(self.cells.map { $0.registration })
+        Set(self.cells.map(\.registration))
     }
 
     func headerFooterRegistrations() -> Set<ViewRegistration> {
@@ -233,7 +233,7 @@ public struct SectionViewModel: DiffableViewModel {
     }
 
     func supplementaryViewRegistrations() -> Set<ViewRegistration> {
-        Set(self.supplementaryViews.map { $0.registration })
+        Set(self.supplementaryViews.map(\.registration))
     }
 
     func allRegistrations() -> Set<ViewRegistration> {

@@ -79,6 +79,7 @@ extension XCTestCase {
             viewModel.expectationDidEndDisplaying = self._expectation(expectationFields, target: .didEndDisplaying, id: viewModel.id, function: function)
             return viewModel
         }() : nil
+
         let footer = includeFooter ? {
             var viewModel = FakeFooterViewModel()
             viewModel.expectationConfigureView = self._expectation(expectationFields, target: .configure, id: viewModel.id, function: function)
@@ -86,6 +87,7 @@ extension XCTestCase {
             viewModel.expectationDidEndDisplaying = self._expectation(expectationFields, target: .didEndDisplaying, id: viewModel.id, function: function)
             return viewModel
         }() : nil
+
         let supplementaryViews = includeSupplementaryViews
             ? (0..<numCells).map { cellIndex -> FakeSupplementaryViewModel in
                 var viewModel = FakeSupplementaryViewModel(title: supplementaryViewId(sectionIndex, cellIndex))
@@ -93,8 +95,8 @@ extension XCTestCase {
                 viewModel.expectationWillDisplay = self._expectation(expectationFields, target: .willDisplay, id: viewModel.id, function: function)
                 viewModel.expectationDidEndDisplaying = self._expectation(expectationFields, target: .didEndDisplaying, id: viewModel.id, function: function)
                 return viewModel
-            }
-            : []
+            } : []
+
         return SectionViewModel(
             id: "section_\(id)",
             cells: cells,

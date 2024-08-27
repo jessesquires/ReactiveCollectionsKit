@@ -45,8 +45,8 @@ struct Model {
 
 extension Model: CustomDebugStringConvertible {
     var debugDescription: String {
-        let peopleNames = self.people.map { $0.name }.joined(separator: "\n\t")
-        let colorNames = self.colors.map { $0.name }.joined(separator: "\n\t")
+        let peopleNames = self.people.map(\.name).joined(separator: "\n\t")
+        let colorNames = self.colors.map(\.name).joined(separator: "\n\t")
         return """
         People:
             \(peopleNames)
