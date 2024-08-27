@@ -28,13 +28,13 @@ final class TestSupplementaryViewModel: XCTestCase {
     @MainActor
     func test_eraseToAnyViewModel() {
         var viewModel = FakeSupplementaryViewModel()
-        viewModel.expectationConfigureView = self.expectation(name: "configure_view")
+        viewModel.expectationConfigureView = self.expectation(field: .configure, id: viewModel.id)
         viewModel.expectationConfigureView?.expectedFulfillmentCount = 2
 
-        viewModel.expectationWillDisplay = self.expectation(name: "will_display")
+        viewModel.expectationWillDisplay = self.expectation(field: .willDisplay, id: viewModel.id)
         viewModel.expectationWillDisplay?.expectedFulfillmentCount = 2
 
-        viewModel.expectationDidEndDisplaying = self.expectation(name: "did_end_displaying")
+        viewModel.expectationDidEndDisplaying = self.expectation(field: .didEndDisplaying, id: viewModel.id)
         viewModel.expectationDidEndDisplaying?.expectedFulfillmentCount = 2
 
         let erased = viewModel.eraseToAnyViewModel()

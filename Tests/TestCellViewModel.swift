@@ -43,22 +43,22 @@ final class TestCellViewModel: XCTestCase {
     @MainActor
     func test_eraseToAnyViewModel() {
         var viewModel = FakeTextCellViewModel()
-        viewModel.expectationConfigureCell = self.expectation(name: "configure_cell")
+        viewModel.expectationConfigureCell = self.expectation(field: .configure, id: viewModel.id)
         viewModel.expectationConfigureCell?.expectedFulfillmentCount = 2
 
-        viewModel.expectationDidSelect = self.expectation(name: "did_select")
+        viewModel.expectationDidSelect = self.expectation(field: .didSelect, id: viewModel.id)
         viewModel.expectationDidSelect?.expectedFulfillmentCount = 2
 
-        viewModel.expectationWillDisplay = self.expectation(name: "will_display")
+        viewModel.expectationWillDisplay = self.expectation(field: .willDisplay, id: viewModel.id)
         viewModel.expectationWillDisplay?.expectedFulfillmentCount = 2
 
-        viewModel.expectationDidEndDisplaying = self.expectation(name: "did_end_displaying")
+        viewModel.expectationDidEndDisplaying = self.expectation(field: .didEndDisplaying, id: viewModel.id)
         viewModel.expectationDidEndDisplaying?.expectedFulfillmentCount = 2
 
-        viewModel.expectationDidHighlight = self.expectation(name: "did_highlight")
+        viewModel.expectationDidHighlight = self.expectation(field: .didHighlight, id: viewModel.id)
         viewModel.expectationDidHighlight?.expectedFulfillmentCount = 2
 
-        viewModel.expectationDidUnhighlight = self.expectation(name: "did_unhighlight")
+        viewModel.expectationDidUnhighlight = self.expectation(field: .didUnhighlight, id: viewModel.id)
         viewModel.expectationDidUnhighlight?.expectedFulfillmentCount = 2
 
         let erased = viewModel.eraseToAnyViewModel()

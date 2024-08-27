@@ -68,15 +68,11 @@ struct FakeTextCellViewModel: CellViewModel {
     init(
         model: FakeTextModel = FakeTextModel(),
         shouldHighlight: Bool = true,
-        contextMenuConfiguration: UIContextMenuConfiguration? = nil,
-        expectationConfigureCell: XCTestExpectation? = nil,
-        expectationDidSelect: XCTestExpectation? = nil
+        contextMenuConfiguration: UIContextMenuConfiguration? = nil
     ) {
         self.model = model
         self.shouldHighlight = shouldHighlight
         self.contextMenuConfiguration = contextMenuConfiguration
-        self.expectationConfigureCell = expectationConfigureCell
-        self.expectationDidSelect = expectationDidSelect
     }
 
     nonisolated static func == (left: Self, right: Self) -> Bool {

@@ -20,11 +20,11 @@ final class TestCollectionViewDriverReconfigure: UnitTestCase {
     @MainActor
     func test_reconfigure_item() async {
         var uniqueCell = MyStaticCellViewModel(name: "initial")
-        uniqueCell.expectation = self.expectation(name: "initial_configure")
+        uniqueCell.expectation = self.expectation(field: .configure, id: uniqueCell.name)
 
         let numberCells = (1...5).map { _ in
             var viewModel = FakeNumberCellViewModel()
-            viewModel.expectationConfigureCell = self.expectation(name: "configure_cell_\(viewModel.id)")
+            viewModel.expectationConfigureCell = self.expectation(field: .configure, id: viewModel.id)
             return viewModel
         }
 
@@ -40,7 +40,7 @@ final class TestCollectionViewDriverReconfigure: UnitTestCase {
 
         // Update one cell to be reconfigured
         uniqueCell = MyStaticCellViewModel(name: "updated")
-        uniqueCell.expectation = self.expectation(name: "updated_configure")
+        uniqueCell.expectation = self.expectation(field: .configure, id: uniqueCell.name)
         let updatedSection = SectionViewModel(id: "two", cells: [uniqueCell])
         let updatedModel = CollectionViewModel(id: "id", sections: [section1, updatedSection])
         await driver.update(viewModel: updatedModel)
@@ -60,8 +60,10 @@ final class TestCollectionViewDriverReconfigure: UnitTestCase {
         let driver = CollectionViewDriver(view: viewController.collectionView, options: .test())
 
         // Initial header and footer
-        let header = FakeHeaderViewModel(expectationConfigureView: self.expectation(name: "initial_header"))
-        let footer = FakeFooterViewModel(expectationConfigureView: self.expectation(name: "initial_footer"))
+        var header = FakeHeaderViewModel()
+        header.expectationConfigureView = self.expectation(field: .configure, id: "initial_header")
+        var footer = FakeFooterViewModel()
+        footer.expectationConfigureView = self.expectation(field: .configure, id: "initial_footer")
         let cells = [FakeNumberCellViewModel()]
         let section = SectionViewModel(id: "id", cells: cells, header: header, footer: footer)
         let model = CollectionViewModel(id: "id", sections: [section])
@@ -71,8 +73,10 @@ final class TestCollectionViewDriverReconfigure: UnitTestCase {
         self.waitForExpectations()
 
         // Update header and footer to be reconfigured
-        let updatedHeader = FakeHeaderViewModel(expectationConfigureView: self.expectation(name: "updated_header"))
-        let updatedFooter = FakeFooterViewModel(expectationConfigureView: self.expectation(name: "updated_footer"))
+        var updatedHeader = FakeHeaderViewModel()
+        updatedHeader.expectationConfigureView = self.expectation(field: .configure, id: "updated_header")
+        var updatedFooter = FakeFooterViewModel()
+        updatedFooter.expectationConfigureView = self.expectation(field: .configure, id: "updated_footer")
         let updatedSection = SectionViewModel(id: "id", cells: cells, header: updatedHeader, footer: updatedFooter)
         let updatedModel = CollectionViewModel(id: "id", sections: [updatedSection])
 
