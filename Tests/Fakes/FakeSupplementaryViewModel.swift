@@ -80,12 +80,8 @@ struct FakeHeaderViewModel: SupplementaryHeaderViewModel {
         self.expectationDidEndDisplaying?.fulfillAndLog()
     }
 
-    init(
-        title: String = .random,
-        expectationConfigureView: XCTestExpectation? = nil
-    ) {
+    init(title: String = .random) {
         self.title = title
-        self.expectationConfigureView = expectationConfigureView
     }
 
     nonisolated static func == (left: Self, right: Self) -> Bool {
@@ -119,12 +115,8 @@ struct FakeFooterViewModel: SupplementaryFooterViewModel {
         self.expectationDidEndDisplaying?.fulfillAndLog()
     }
 
-    init(
-        title: String = .random,
-        expectationConfigureView: XCTestExpectation? = nil
-    ) {
+    init(title: String = .random) {
         self.title = title
-        self.expectationConfigureView = expectationConfigureView
     }
 
     nonisolated static func == (left: Self, right: Self) -> Bool {

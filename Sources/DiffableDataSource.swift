@@ -259,7 +259,7 @@ final class DiffableDataSource: UICollectionViewDiffableDataSource<AnyHashable, 
         let visibleIndexPaths = allKinds.flatMap {
             self._collectionView.indexPathsForVisibleSupplementaryElements(ofKind: $0)
         }
-        let visibleSections = visibleIndexPaths.map { $0.section }
+        let visibleSections = visibleIndexPaths.map(\.section)
 
         // These are the current, existing (that is, "source") section identifiers.
         let visibleSourceSectionIdentifiers = visibleSections.compactMap { self.sectionIdentifier(for: $0) }
