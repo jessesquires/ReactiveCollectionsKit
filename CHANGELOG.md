@@ -7,6 +7,11 @@ NEXT
 
 - TBA
 
+0.1.6
+-----
+
+- Fixed a crash when hiding a collection view before animations complete. This previously caused a `Fatal error: Attempted to read an unowned reference but the object was already deallocated` crash. ([@lachenmayer](https://github.com/lachenmayer), [#125](https://github.com/jessesquires/ReactiveCollectionsKit/issues/125))
+
 0.1.5
 -----
 
