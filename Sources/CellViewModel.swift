@@ -20,6 +20,16 @@ public protocol CellViewModel: DiffableViewModel, ViewRegistrationProvider {
     /// The type of cell that this view model represents and configures.
     associatedtype CellType: UICollectionViewCell
 
+    /// Returns whether or not the cell should get selected.
+    /// This corresponds to the delegate method `collectionView(_:shouldSelectItemAt:)`.
+    /// The default implementation returns `true`.
+    var shouldSelect: Bool { get }
+
+    /// Returns whether or not the cell should get deselected.
+    /// This corresponds to the delegate method `collectionView(_:shouldDeselectItemAt:)`.
+    /// The default implementation returns `true`.
+    var shouldDeselect: Bool { get }
+
     /// Returns whether or not the cell should get highlighted.
     /// This corresponds to the delegate method `collectionView(_:shouldHighlightItemAt:)`.
     /// The default implementation returns `true`.
@@ -36,6 +46,9 @@ public protocol CellViewModel: DiffableViewModel, ViewRegistrationProvider {
     /// Handles the selection event for this cell, optionally using the provided `coordinator`.
     /// - Parameter coordinator: An event coordinator object, if one was provided to the `CollectionViewDriver`.
     func didSelect(with coordinator: CellEventCoordinator?)
+
+    /// Tells the view model that its cell was deselected.
+    func didDeselect()
 
     /// Tells the view model that its cell is about to be displayed in the collection view.
     /// This corresponds to the delegate method `collectionView(_:willDisplay:forItemAt:)`.
@@ -56,6 +69,12 @@ public protocol CellViewModel: DiffableViewModel, ViewRegistrationProvider {
 
 extension CellViewModel {
     /// Default implementation. Returns `true`.
+    public var shouldSelect: Bool { true }
+
+    /// Default implementation. Returns `true`.
+    public var shouldDeselect: Bool { true }
+
+    /// Default implementation. Returns `true`.
     public var shouldHighlight: Bool { true }
 
     /// Default implementation. Returns `nil`.
@@ -67,6 +86,9 @@ extension CellViewModel {
     public func didSelect(with coordinator: CellEventCoordinator?) {
         coordinator?.didSelectCell(viewModel: self)
     }
+
+    /// Default implementation. Does nothing.
+    public func didDeselect() { }
 
     /// Default implementation. Does nothing.
     public func willDisplay() { }
@@ -137,6 +159,12 @@ public struct AnyCellViewModel: CellViewModel {
     public typealias CellType = UICollectionViewCell
 
     /// :nodoc:
+    public var shouldSelect: Bool { self._shouldSelect }
+
+    /// :nodoc:
+    public var shouldDeselect: Bool { self._shouldDeselect }
+
+    /// :nodoc:
     public var shouldHighlight: Bool { self._shouldHighlight }
 
     /// :nodoc:
@@ -150,6 +178,11 @@ public struct AnyCellViewModel: CellViewModel {
     /// :nodoc:
     public func didSelect(with coordinator: CellEventCoordinator?) {
         self._didSelect(coordinator)
+    }
+
+    /// :nodoc:
+    public func didDeselect() {
+        self._didDeselect()
     }
 
     /// :nodoc:
@@ -183,10 +216,13 @@ public struct AnyCellViewModel: CellViewModel {
     private let _viewModel: AnyHashable
     private let _id: UniqueIdentifier
     private let _registration: ViewRegistration
+    private let _shouldSelect: Bool
+    private let _shouldDeselect: Bool
     private let _shouldHighlight: Bool
     private let _contextMenuConfiguration: UIContextMenuConfiguration?
     private let _configure: (CellType) -> Void
     private let _didSelect: (CellEventCoordinator?) -> Void
+    private let _didDeselect: () -> Void
     private let _willDisplay: () -> Void
     private let _didEndDisplaying: () -> Void
     private let _didHighlight: () -> Void
@@ -205,6 +241,8 @@ public struct AnyCellViewModel: CellViewModel {
         self._viewModel = viewModel
         self._id = viewModel.id
         self._registration = viewModel.registration
+        self._shouldSelect = viewModel.shouldSelect
+        self._shouldDeselect = viewModel.shouldDeselect
         self._shouldHighlight = viewModel.shouldHighlight
         self._contextMenuConfiguration = viewModel.contextMenuConfiguration
         self._configure = { cell in
@@ -214,6 +252,7 @@ public struct AnyCellViewModel: CellViewModel {
         self._didSelect = { coordinator in
             viewModel.didSelect(with: coordinator)
         }
+        self._didDeselect = viewModel.didDeselect
         self._willDisplay = viewModel.willDisplay
         self._didEndDisplaying = viewModel.didEndDisplaying
         self._didHighlight = viewModel.didHighlight
