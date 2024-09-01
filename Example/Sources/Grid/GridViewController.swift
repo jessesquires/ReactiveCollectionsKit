@@ -129,7 +129,8 @@ final class GridViewController: ExampleViewController, CellEventCoordinator {
 
             return PersonCellViewModelGrid(
                 person: $0,
-                contextMenuConfiguration: menuConfig
+                contextMenuConfiguration: menuConfig,
+                shouldSelect: .random()
             ).eraseToAnyViewModel()
         }
         let peopleHeader = HeaderViewModel(title: "People", style: .large)
