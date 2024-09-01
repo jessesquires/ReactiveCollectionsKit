@@ -16,6 +16,7 @@ import Foundation
 enum TestExpectationField: String, Hashable {
     case configure
     case didSelect
+    case didDeselect
     case willDisplay
     case didEndDisplaying
     case didHighlight

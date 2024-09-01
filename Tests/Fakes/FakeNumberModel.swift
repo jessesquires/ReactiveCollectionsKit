@@ -32,6 +32,10 @@ struct FakeNumberCellViewModel: CellViewModel {
         self.model.id
     }
 
+    var shouldSelect = true
+
+    var shouldDeselect = true
+
     var shouldHighlight = true
 
     var contextMenuConfiguration: UIContextMenuConfiguration?
@@ -44,6 +48,11 @@ struct FakeNumberCellViewModel: CellViewModel {
     var expectationDidSelect: XCTestExpectation?
     func didSelect(with coordinator: (any CellEventCoordinator)?) {
         self.expectationDidSelect?.fulfillAndLog()
+    }
+
+    var expectationDidDeselect: XCTestExpectation?
+    func didDeselect() {
+        self.expectationDidDeselect?.fulfillAndLog()
     }
 
     var expectationWillDisplay: XCTestExpectation?
@@ -66,8 +75,18 @@ struct FakeNumberCellViewModel: CellViewModel {
         self.expectationDidUnhighlight?.fulfillAndLog()
     }
 
-    init(model: FakeNumberModel = FakeNumberModel()) {
+    init(
+        model: FakeNumberModel = FakeNumberModel(),
+        shouldSelect: Bool = true,
+        shouldDeselect: Bool = true,
+        shouldHighlight: Bool = true,
+        contextMenuConfiguration: UIContextMenuConfiguration? = nil
+    ) {
         self.model = model
+        self.shouldSelect = shouldSelect
+        self.shouldDeselect = shouldDeselect
+        self.shouldHighlight = shouldHighlight
+        self.contextMenuConfiguration = contextMenuConfiguration
     }
 
     nonisolated static func == (left: Self, right: Self) -> Bool {

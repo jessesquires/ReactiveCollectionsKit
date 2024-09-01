@@ -140,6 +140,7 @@ extension XCTestCase {
         if useNibs {
             var viewModel = FakeCellNibViewModel(id: id)
             viewModel.expectationDidSelect = self._expectation(expectationFields, target: .didSelect, id: viewModel.id, function: function)
+            viewModel.expectationDidDeselect = self._expectation(expectationFields, target: .didDeselect, id: viewModel.id, function: function)
             viewModel.expectationConfigureCell = self._expectation(expectationFields, target: .configure, id: viewModel.id, function: function)
             viewModel.expectationWillDisplay = self._expectation(expectationFields, target: .willDisplay, id: viewModel.id, function: function)
             viewModel.expectationDidEndDisplaying = self._expectation(expectationFields, target: .didEndDisplaying, id: viewModel.id, function: function)
@@ -151,6 +152,7 @@ extension XCTestCase {
         if cellIndex.isMultiple(of: 2) {
             var viewModel = FakeNumberCellViewModel(model: .init(id: id))
             viewModel.expectationDidSelect = self._expectation(expectationFields, target: .didSelect, id: viewModel.id, function: function)
+            viewModel.expectationDidDeselect = self._expectation(expectationFields, target: .didDeselect, id: viewModel.id, function: function)
             viewModel.expectationConfigureCell = self._expectation(expectationFields, target: .configure, id: viewModel.id, function: function)
             viewModel.expectationWillDisplay = self._expectation(expectationFields, target: .willDisplay, id: viewModel.id, function: function)
             viewModel.expectationDidEndDisplaying = self._expectation(expectationFields, target: .didEndDisplaying, id: viewModel.id, function: function)
@@ -161,6 +163,7 @@ extension XCTestCase {
 
         var viewModel = FakeTextCellViewModel(model: .init(text: id))
         viewModel.expectationDidSelect = self._expectation(expectationFields, target: .didSelect, id: viewModel.id, function: function)
+        viewModel.expectationDidDeselect = self._expectation(expectationFields, target: .didDeselect, id: viewModel.id, function: function)
         viewModel.expectationConfigureCell = self._expectation(expectationFields, target: .configure, id: viewModel.id, function: function)
         viewModel.expectationWillDisplay = self._expectation(expectationFields, target: .willDisplay, id: viewModel.id, function: function)
         viewModel.expectationDidEndDisplaying = self._expectation(expectationFields, target: .didEndDisplaying, id: viewModel.id, function: function)

@@ -44,6 +44,11 @@ struct FakeCellNibViewModel: CellViewModel {
         self.expectationDidSelect?.fulfillAndLog()
     }
 
+    var expectationDidDeselect: XCTestExpectation?
+    func didDeselect() {
+        self.expectationDidDeselect?.fulfillAndLog()
+    }
+
     var expectationWillDisplay: XCTestExpectation?
     func willDisplay() {
         self.expectationWillDisplay?.fulfillAndLog()
