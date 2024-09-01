@@ -30,19 +30,24 @@ struct PersonCellViewModelGrid: CellViewModel {
 
     let contextMenuConfiguration: UIContextMenuConfiguration?
 
+    let shouldSelect: Bool
+
     func configure(cell: GridPersonCell) {
         cell.titleLabel.text = self.person.name
         cell.subtitleLabel.text = self.person.birthDateText
         cell.flagLabel.text = self.person.nationality
+        cell.contentView.alpha = self.shouldSelect ? 1 : 0.3
     }
 
     // MARK: Hashable
 
     nonisolated func hash(into hasher: inout Hasher) {
         hasher.combine(self.person)
+        hasher.combine(self.shouldSelect)
     }
 
     nonisolated static func == (left: Self, right: Self) -> Bool {
         left.person == right.person
+            && left.shouldSelect == right.shouldSelect
     }
 }
