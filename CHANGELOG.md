@@ -7,6 +7,11 @@ NEXT
 
 - TBA
 
+0.1.6
+-----
+
+- Fixed a potential crash (in `DiffableDataSource`) when hiding a collection view before animations complete when diffing. This may have caused a crash with the message _Fatal error: Attempted to read an unowned reference but the object was already deallocated_. ([@lachenmayer](https://github.com/lachenmayer), [#125](https://github.com/jessesquires/ReactiveCollectionsKit/issues/125), [#126](https://github.com/jessesquires/ReactiveCollectionsKit/issues/126))
+
 0.1.5
 -----
 

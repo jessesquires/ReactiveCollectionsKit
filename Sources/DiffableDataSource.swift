@@ -97,7 +97,7 @@ final class DiffableDataSource: UICollectionViewDiffableDataSource<AnyHashable, 
         destinationSnapshot.reconfigureItems(itemsToReconfigure)
 
         // Apply the snapshot with item reconfigure updates.
-        self._applyDiffSnapshot(destinationSnapshot, animated: animated) {
+        self._applyDiffSnapshot(destinationSnapshot, animated: animated) { [weak self] in
 
             // Once the snapshot with item reconfigures is applied,
             // we need to find and apply supplementary view reconfigures, if needed.
@@ -124,7 +124,7 @@ final class DiffableDataSource: UICollectionViewDiffableDataSource<AnyHashable, 
             // (e.g. "My 10 Items")
 
             // Check all the supplementary views and reconfigure them, if needed.
-            self._reconfigureSupplementaryViewsIfNeeded(from: source, to: destination)
+            self?._reconfigureSupplementaryViewsIfNeeded(from: source, to: destination)
 
             // Finally, we're done and can call completion.
             completion?()
