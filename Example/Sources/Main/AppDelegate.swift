@@ -38,12 +38,17 @@ final class AppDelegate: UIResponder, UIApplicationDelegate {
         flow.title = "Flow Layout"
         flow.tabBarItem.image = UIImage(systemName: "square.grid.3x3.square")
 
+        let browser = FileBrowserViewController()
+        browser.title = "File Browser"
+        browser.tabBarItem.image = UIImage(systemName: "folder.fill")
+
         let tabBar = UITabBarController()
         tabBar.viewControllers = [
             UINavigationController(rootViewController: grid),
             UINavigationController(rootViewController: list),
             UINavigationController(rootViewController: simple),
-            UINavigationController(rootViewController: flow)
+            UINavigationController(rootViewController: flow),
+            UINavigationController(rootViewController: browser)
         ]
 
         self.window = UIWindow()

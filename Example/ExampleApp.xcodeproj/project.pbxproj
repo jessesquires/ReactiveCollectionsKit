@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		07D62A8A2C87728E00C8015A /* FileBrowserViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07D62A892C87728E00C8015A /* FileBrowserViewController.swift */; };
 		0B0B5AA52BFF0FDB0037BC02 /* EmptyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B0B5AA42BFF0FDB0037BC02 /* EmptyView.swift */; };
 		0B31B9482BCC62A5006F2078 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0B31B9472BCC62A5006F2078 /* Assets.xcassets */; };
 		0B31B94B2BCC62A5006F2078 /* Base in Resources */ = {isa = PBXBuildFile; fileRef = 0B31B94A2BCC62A5006F2078 /* Base */; };
@@ -87,6 +88,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		07D62A892C87728E00C8015A /* FileBrowserViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileBrowserViewController.swift; sourceTree = "<group>"; };
 		0B0B5AA42BFF0FDB0037BC02 /* EmptyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyView.swift; sourceTree = "<group>"; };
 		0B31B93B2BCC62A4006F2078 /* ExampleApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ExampleApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0B31B9472BCC62A5006F2078 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -150,6 +152,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		07D62A882C87726B00C8015A /* FileBrowser */ = {
+			isa = PBXGroup;
+			children = (
+				07D62A892C87728E00C8015A /* FileBrowserViewController.swift */,
+			);
+			path = FileBrowser;
+			sourceTree = "<group>";
+		};
 		0B31B9322BCC62A4006F2078 = {
 			isa = PBXGroup;
 			children = (
@@ -175,14 +185,15 @@
 			isa = PBXGroup;
 			children = (
 				0B31B9472BCC62A5006F2078 /* Assets.xcassets */,
-				0B31B9492BCC62A5006F2078 /* LaunchScreen.storyboard */,
-				0B31B9902BCC6349006F2078 /* Main */,
 				0B31B9BD2BCC69A4006F2078 /* ColorModel */,
-				0B31B9BC2BCC6986006F2078 /* PersonModel */,
-				0B31B9892BCC6349006F2078 /* Grid */,
-				0B31B9822BCC6349006F2078 /* List */,
-				0B31B9922BCC6349006F2078 /* SimpleStatic */,
+				07D62A882C87726B00C8015A /* FileBrowser */,
 				0BFBB2E02C0BF278000842B6 /* FlowLayout */,
+				0B31B9892BCC6349006F2078 /* Grid */,
+				0B31B9492BCC62A5006F2078 /* LaunchScreen.storyboard */,
+				0B31B9822BCC6349006F2078 /* List */,
+				0B31B9902BCC6349006F2078 /* Main */,
+				0B31B9BC2BCC6986006F2078 /* PersonModel */,
+				0B31B9922BCC6349006F2078 /* SimpleStatic */,
 				0B31B97E2BCC6349006F2078 /* SupplementaryViews */,
 			);
 			path = Sources;
@@ -219,9 +230,9 @@
 		0B31B9822BCC6349006F2078 /* List */ = {
 			isa = PBXGroup;
 			children = (
-				0B31B9802BCC6349006F2078 /* PersonCellViewModelList.swift */,
 				0B31B97F2BCC6349006F2078 /* ColorCellViewModelList.swift */,
 				0B31B9812BCC6349006F2078 /* ListViewController.swift */,
+				0B31B9802BCC6349006F2078 /* PersonCellViewModelList.swift */,
 			);
 			path = List;
 			sourceTree = "<group>";
@@ -481,6 +492,7 @@
 				0B0B5AA52BFF0FDB0037BC02 /* EmptyView.swift in Sources */,
 				0B31B99D2BCC6349006F2078 /* ListViewController.swift in Sources */,
 				0B31B9972BCC6349006F2078 /* FavoriteBadgeView.swift in Sources */,
+				07D62A8A2C87728E00C8015A /* FileBrowserViewController.swift in Sources */,
 				0B31B9A32BCC6349006F2078 /* GridViewController.swift in Sources */,
 				0B31B9A22BCC6349006F2078 /* PersonCellViewModelGrid.swift in Sources */,
 				0B31B99E2BCC6349006F2078 /* GridColorCell.swift in Sources */,
