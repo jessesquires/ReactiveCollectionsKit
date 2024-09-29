@@ -31,6 +31,9 @@ public final class CollectionViewDriver: NSObject {
 
     /// The collection view model.
     @Published public private(set) var viewModel: CollectionViewModel
+    
+    /// The scroll view delegate to forward.
+    public weak var scrollViewDelegate: UIScrollViewDelegate?
 
     private let _emptyViewProvider: EmptyViewProvider?
 
@@ -371,5 +374,98 @@ extension CollectionViewDriver: UICollectionViewDelegate {
                                forElementOfKind elementKind: String,
                                at indexPath: IndexPath) {
         self.viewModel._safeSupplementaryViewModel(ofKind: elementKind, at: indexPath)?.didEndDisplaying()
+    }
+}
+
+// MARK: UIScrollViewDelegate
+
+extension CollectionViewDriver: UIScrollViewDelegate {
+    // MARK: Managing offset and zoom scale changes
+
+    /// :nodoc:
+    public func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        self.scrollViewDelegate?.scrollViewDidScroll?(scrollView)
+    }
+
+    /// :nodoc:
+    public func scrollViewDidZoom(_ scrollView: UIScrollView) {
+        self.scrollViewDelegate?.scrollViewDidZoom?(scrollView)
+    }
+    
+    // MARK: Tracking dragging
+    
+    /// :nodoc:
+    public func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
+        self.scrollViewDelegate?.scrollViewWillBeginDragging?(scrollView)
+    }
+    
+    /// :nodoc:
+    public func scrollViewWillEndDragging(_ scrollView: UIScrollView,
+                                          withVelocity velocity: CGPoint,
+                                          targetContentOffset: UnsafeMutablePointer<CGPoint>) {
+        self.scrollViewDelegate?.scrollViewWillEndDragging?(scrollView, withVelocity: velocity, targetContentOffset: targetContentOffset)
+    }
+    
+    /// :nodoc:
+    public func scrollViewDidEndDragging(_ scrollView: UIScrollView,
+                                         willDecelerate decelerate: Bool) {
+        self.scrollViewDelegate?.scrollViewDidEndDragging?(scrollView, willDecelerate: decelerate)
+    }
+    
+    // MARK: Tracking deceleration and scrolling animation
+    
+    /// :nodoc:
+    public func scrollViewWillBeginDecelerating(_ scrollView: UIScrollView) {
+        self.scrollViewDelegate?.scrollViewWillBeginDragging?(scrollView)
+    }
+    
+    /// :nodoc:
+    public func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
+        self.scrollViewDelegate?.scrollViewDidEndDecelerating?(scrollView)
+    }
+    
+    /// :nodoc:
+    public func scrollViewDidEndScrollingAnimation(_ scrollView: UIScrollView) {
+        self.scrollViewDelegate?.scrollViewDidEndScrollingAnimation?(scrollView)
+    }
+    
+    // MARK: Managing and tracking zooming more granularly
+    
+    /// :nodoc:
+    public func viewForZooming(in scrollView: UIScrollView) -> UIView? {
+        self.scrollViewDelegate?.viewForZooming?(in: scrollView)
+    }
+    
+    /// :nodoc:
+    public func scrollViewWillBeginZooming(_ scrollView: UIScrollView,
+                                           with view: UIView?) {
+        self.scrollViewDelegate?.scrollViewWillBeginZooming?(scrollView, with: view)
+    }
+    
+    /// :nodoc:
+    public func scrollViewDidEndZooming(_ scrollView: UIScrollView,
+                                        with view: UIView?,
+                                        atScale scale: CGFloat) {
+        self.scrollViewDelegate?.scrollViewDidEndZooming?(scrollView, with: view, atScale: scale)
+    }
+    
+    // MARK: Managing if should scroll to top and tracking if done so
+    
+    /// :nodoc:
+    public func scrollViewShouldScrollToTop(_ scrollView: UIScrollView) -> Bool {
+        self.scrollViewDelegate?.scrollViewShouldScrollToTop?(scrollView) ?? true
+    }
+    
+    /// :nodoc:
+    public func scrollViewDidScrollToTop(_ scrollView: UIScrollView) {
+        self.scrollViewDelegate?.scrollViewDidScrollToTop?(scrollView)
+    }
+    
+    
+    // MARK: Tracking adjusted content insets on scroll view
+    
+    /// :nodoc:
+    public func scrollViewDidChangeAdjustedContentInset(_ scrollView: UIScrollView) {
+        self.scrollViewDelegate?.scrollViewDidChangeAdjustedContentInset?(scrollView)
     }
 }
