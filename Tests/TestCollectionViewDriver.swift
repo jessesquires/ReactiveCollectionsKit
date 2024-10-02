@@ -50,10 +50,10 @@ final class TestCollectionViewDriver: UnitTestCase, @unchecked Sendable {
     }
 
     @MainActor
-    func test_delegate_didSelectItemAt_calls_cellViewModel() {
+    func test_delegate_didSelect_didDeselect_calls_cellViewModel() {
         let sections = 2
         let cells = 5
-        let model = self.fakeCollectionViewModel(numSections: sections, numCells: cells, expectationFields: [.didSelect])
+        let model = self.fakeCollectionViewModel(numSections: sections, numCells: cells, expectationFields: [.didSelect, .didDeselect])
         let driver = CollectionViewDriver(
             view: self.collectionView,
             viewModel: model,
@@ -64,10 +64,39 @@ final class TestCollectionViewDriver: UnitTestCase, @unchecked Sendable {
             for cell in 0..<cells {
                 let indexPath = IndexPath(item: cell, section: section)
                 driver.collectionView(self.collectionView, didSelectItemAt: indexPath)
+                driver.collectionView(self.collectionView, didDeselectItemAt: indexPath)
             }
         }
 
         self.waitForExpectations()
+
+        self.keepDriverAlive(driver)
+    }
+
+    @MainActor
+    func test_delegate_shouldSelect_shouldDeselect_calls_cellViewModel() {
+        let cell1 = FakeTextCellViewModel(shouldSelect: true, shouldDeselect: true)
+        let cell2 = FakeTextCellViewModel(shouldSelect: false, shouldDeselect: false)
+        let section = SectionViewModel(id: "section", cells: [cell1, cell2])
+        let collection = CollectionViewModel(id: "collection", sections: [section])
+
+        let driver = CollectionViewDriver(
+            view: self.collectionView,
+            viewModel: collection,
+            options: .test()
+        )
+
+        for (section, sectionViewModel) in collection.sections.enumerated() {
+            for (item, cellViewModel) in sectionViewModel.cells.enumerated() {
+                let indexPath = IndexPath(item: item, section: section)
+
+                let shouldSelect = driver.collectionView(self.collectionView, shouldSelectItemAt: indexPath)
+                XCTAssertEqual(shouldSelect, cellViewModel.shouldSelect)
+
+                let shouldDeselect = driver.collectionView(self.collectionView, shouldDeselectItemAt: indexPath)
+                XCTAssertEqual(shouldDeselect, cellViewModel.shouldDeselect)
+            }
+        }
 
         self.keepDriverAlive(driver)
     }

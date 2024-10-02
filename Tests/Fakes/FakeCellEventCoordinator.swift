@@ -23,4 +23,11 @@ final class FakeCellEventCoordinator: CellEventCoordinator {
         self.selectedCell = viewModel
         self.expectationDidSelect?.fulfillAndLog()
     }
+
+    var deselectedCell: (any CellViewModel)?
+    var expectationDidDeselect: XCTestExpectation?
+    func didDeselectCell(viewModel: any CellViewModel) {
+        self.deselectedCell = viewModel
+        self.expectationDidDeselect?.fulfillAndLog()
+    }
 }

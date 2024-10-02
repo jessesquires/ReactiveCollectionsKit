@@ -290,8 +290,26 @@ extension CollectionViewDriver: UICollectionViewDelegate {
 
     /// :nodoc:
     public func collectionView(_ collectionView: UICollectionView,
+                               shouldSelectItemAt indexPath: IndexPath) -> Bool {
+        self.viewModel.cellViewModel(at: indexPath).shouldSelect
+    }
+
+    /// :nodoc:
+    public func collectionView(_ collectionView: UICollectionView,
                                didSelectItemAt indexPath: IndexPath) {
         self.viewModel.cellViewModel(at: indexPath).didSelect(with: self._cellEventCoordinator)
+    }
+
+    /// :nodoc:
+    public func collectionView(_ collectionView: UICollectionView,
+                               shouldDeselectItemAt indexPath: IndexPath) -> Bool {
+        self.viewModel.cellViewModel(at: indexPath).shouldDeselect
+    }
+
+    /// :nodoc:
+    public func collectionView(_ collectionView: UICollectionView,
+                               didDeselectItemAt indexPath: IndexPath) {
+        self.viewModel.cellViewModel(at: indexPath).didDeselect(with: self._cellEventCoordinator)
     }
 
     // MARK: Managing cell highlighting

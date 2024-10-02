@@ -68,6 +68,10 @@ final class GridViewController: ExampleViewController, CellEventCoordinator {
         assertionFailure("unhandled cell selection")
     }
 
+    func didDeselectCell(viewModel: any CellViewModel) {
+        print("\(#function): \(viewModel.id)")
+    }
+
     // MARK: Private
 
     private static func makeLayout() -> UICollectionViewCompositionalLayout {
@@ -129,7 +133,8 @@ final class GridViewController: ExampleViewController, CellEventCoordinator {
 
             return PersonCellViewModelGrid(
                 person: $0,
-                contextMenuConfiguration: menuConfig
+                contextMenuConfiguration: menuConfig,
+                shouldSelect: false
             ).eraseToAnyViewModel()
         }
         let peopleHeader = HeaderViewModel(title: "People", style: .large)

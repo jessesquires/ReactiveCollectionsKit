@@ -31,6 +31,10 @@ struct FakeTextCellViewModel: CellViewModel {
         self.model.text
     }
 
+    var shouldSelect = true
+
+    var shouldDeselect = true
+
     var shouldHighlight = true
 
     var contextMenuConfiguration: UIContextMenuConfiguration?
@@ -43,6 +47,11 @@ struct FakeTextCellViewModel: CellViewModel {
     var expectationDidSelect: XCTestExpectation?
     func didSelect(with coordinator: (any CellEventCoordinator)?) {
         self.expectationDidSelect?.fulfillAndLog()
+    }
+
+    var expectationDidDeselect: XCTestExpectation?
+    func didDeselect(with coordinator: (any CellEventCoordinator)?) {
+        self.expectationDidDeselect?.fulfillAndLog()
     }
 
     var expectationWillDisplay: XCTestExpectation?
@@ -67,10 +76,14 @@ struct FakeTextCellViewModel: CellViewModel {
 
     init(
         model: FakeTextModel = FakeTextModel(),
+        shouldSelect: Bool = true,
+        shouldDeselect: Bool = true,
         shouldHighlight: Bool = true,
         contextMenuConfiguration: UIContextMenuConfiguration? = nil
     ) {
         self.model = model
+        self.shouldSelect = shouldSelect
+        self.shouldDeselect = shouldDeselect
         self.shouldHighlight = shouldHighlight
         self.contextMenuConfiguration = contextMenuConfiguration
     }

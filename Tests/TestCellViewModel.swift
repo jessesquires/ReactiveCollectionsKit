@@ -20,6 +20,8 @@ final class TestCellViewModel: XCTestCase {
     @MainActor
     func test_CellViewModel_protocol_default_values() {
         let viewModel = FakeCellViewModel()
+        XCTAssertTrue(viewModel.shouldSelect)
+        XCTAssertTrue(viewModel.shouldDeselect)
         XCTAssertTrue(viewModel.shouldHighlight)
         XCTAssertNil(viewModel.contextMenuConfiguration)
 
@@ -49,6 +51,9 @@ final class TestCellViewModel: XCTestCase {
         viewModel.expectationDidSelect = self.expectation(field: .didSelect, id: viewModel.id)
         viewModel.expectationDidSelect?.expectedFulfillmentCount = 2
 
+        viewModel.expectationDidDeselect = self.expectation(field: .didDeselect, id: viewModel.id)
+        viewModel.expectationDidDeselect?.expectedFulfillmentCount = 2
+
         viewModel.expectationWillDisplay = self.expectation(field: .willDisplay, id: viewModel.id)
         viewModel.expectationWillDisplay?.expectedFulfillmentCount = 2
 
@@ -66,6 +71,8 @@ final class TestCellViewModel: XCTestCase {
 
         XCTAssertEqual(erased.id, viewModel.id)
         XCTAssertEqual(erased.registration, viewModel.registration)
+        XCTAssertEqual(erased.shouldSelect, viewModel.shouldSelect)
+        XCTAssertEqual(erased.shouldDeselect, viewModel.shouldDeselect)
         XCTAssertEqual(erased.shouldHighlight, viewModel.shouldHighlight)
         XCTAssertIdentical(erased.contextMenuConfiguration, viewModel.contextMenuConfiguration)
         XCTAssertTrue(erased.cellClass == viewModel.cellClass)
@@ -73,6 +80,7 @@ final class TestCellViewModel: XCTestCase {
 
         viewModel.configure(cell: FakeTextCollectionCell())
         viewModel.didSelect(with: nil)
+        viewModel.didDeselect(with: nil)
         viewModel.willDisplay()
         viewModel.didEndDisplaying()
         viewModel.didHighlight()
@@ -80,6 +88,7 @@ final class TestCellViewModel: XCTestCase {
 
         erased.configure(cell: FakeTextCollectionCell())
         erased.didSelect(with: nil)
+        erased.didDeselect(with: nil)
         erased.willDisplay()
         erased.didEndDisplaying()
         erased.didHighlight()
@@ -102,6 +111,8 @@ final class TestCellViewModel: XCTestCase {
         XCTAssertEqual(erased3.hashValue, viewModel.hashValue)
         XCTAssertEqual(erased3.id, viewModel.id)
         XCTAssertEqual(erased3.registration, viewModel.registration)
+        XCTAssertEqual(erased3.shouldSelect, viewModel.shouldSelect)
+        XCTAssertEqual(erased3.shouldDeselect, viewModel.shouldDeselect)
         XCTAssertEqual(erased3.shouldHighlight, viewModel.shouldHighlight)
         XCTAssertIdentical(erased3.contextMenuConfiguration, viewModel.contextMenuConfiguration)
         XCTAssertTrue(erased3.cellClass == viewModel.cellClass)
@@ -115,6 +126,8 @@ final class TestCellViewModel: XCTestCase {
         XCTAssertEqual(erased4.hashValue, viewModel.hashValue)
         XCTAssertEqual(erased4.id, viewModel.id)
         XCTAssertEqual(erased4.registration, viewModel.registration)
+        XCTAssertEqual(erased4.shouldSelect, viewModel.shouldSelect)
+        XCTAssertEqual(erased4.shouldDeselect, viewModel.shouldDeselect)
         XCTAssertEqual(erased4.shouldHighlight, viewModel.shouldHighlight)
         XCTAssertIdentical(erased4.contextMenuConfiguration, viewModel.contextMenuConfiguration)
         XCTAssertTrue(erased4.cellClass == viewModel.cellClass)
