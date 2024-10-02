@@ -43,12 +43,19 @@ public protocol CellViewModel: DiffableViewModel, ViewRegistrationProvider {
     /// - Parameter cell: The cell to configure.
     func configure(cell: CellType)
 
-    /// Handles the selection event for this cell, optionally using the provided `coordinator`.
+    /// Tells the view model that its cell was selected.
+    ///
+    /// Implement this method to handle this event, optionally using the provided `coordinator`.
+    ///
     /// - Parameter coordinator: An event coordinator object, if one was provided to the `CollectionViewDriver`.
     func didSelect(with coordinator: CellEventCoordinator?)
 
     /// Tells the view model that its cell was deselected.
-    func didDeselect()
+    ///
+    /// Implement this method to handle this event, optionally using the provided `coordinator`.
+    ///
+    /// - Parameter coordinator: An event coordinator object, if one was provided to the `CollectionViewDriver`.
+    func didDeselect(with coordinator: CellEventCoordinator?)
 
     /// Tells the view model that its cell is about to be displayed in the collection view.
     /// This corresponds to the delegate method `collectionView(_:willDisplay:forItemAt:)`.
@@ -87,8 +94,12 @@ extension CellViewModel {
         coordinator?.didSelectCell(viewModel: self)
     }
 
-    /// Default implementation. Does nothing.
-    public func didDeselect() { }
+    /// Default implementation.
+    /// Calls `didDeselectCell(viewModel:)` on the `coordinator`,
+    /// passing `self` to the `viewModel` parameter.
+    public func didDeselect(with coordinator: CellEventCoordinator?) {
+        coordinator?.didDeselectCell(viewModel: self)
+    }
 
     /// Default implementation. Does nothing.
     public func willDisplay() { }
@@ -181,8 +192,8 @@ public struct AnyCellViewModel: CellViewModel {
     }
 
     /// :nodoc:
-    public func didDeselect() {
-        self._didDeselect()
+    public func didDeselect(with coordinator: CellEventCoordinator?) {
+        self._didDeselect(coordinator)
     }
 
     /// :nodoc:
@@ -222,7 +233,7 @@ public struct AnyCellViewModel: CellViewModel {
     private let _contextMenuConfiguration: UIContextMenuConfiguration?
     private let _configure: (CellType) -> Void
     private let _didSelect: (CellEventCoordinator?) -> Void
-    private let _didDeselect: () -> Void
+    private let _didDeselect: (CellEventCoordinator?) -> Void
     private let _willDisplay: () -> Void
     private let _didEndDisplaying: () -> Void
     private let _didHighlight: () -> Void

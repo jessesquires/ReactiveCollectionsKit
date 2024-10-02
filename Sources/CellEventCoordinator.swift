@@ -22,6 +22,10 @@ public protocol CellEventCoordinator: AnyObject {
     /// - Parameter viewModel: The cell view model that corresponds to the cell.
     func didSelectCell(viewModel: any CellViewModel)
 
+    /// Called when a cell is deselected.
+    /// - Parameter viewModel: The cell view model that corresponds to the cell.
+    func didDeselectCell(viewModel: any CellViewModel)
+
     /// Returns the underlying view controller that owns the collection view for the cell.
     ///
     /// You may use this to optionally handle navigation within your cell view model.
@@ -32,6 +36,9 @@ extension CellEventCoordinator {
 
     /// Default implementation. Does nothing.
     public func didSelectCell(viewModel: any CellViewModel) { }
+
+    /// Default implementation. Does nothing.
+    public func didDeselectCell(viewModel: any CellViewModel) { }
 
     /// Default implementation. Returns `nil`.
     public var underlyingViewController: UIViewController? { nil }

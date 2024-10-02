@@ -80,7 +80,7 @@ final class TestCellViewModel: XCTestCase {
 
         viewModel.configure(cell: FakeTextCollectionCell())
         viewModel.didSelect(with: nil)
-        viewModel.didDeselect()
+        viewModel.didDeselect(with: nil)
         viewModel.willDisplay()
         viewModel.didEndDisplaying()
         viewModel.didHighlight()
@@ -88,7 +88,7 @@ final class TestCellViewModel: XCTestCase {
 
         erased.configure(cell: FakeTextCollectionCell())
         erased.didSelect(with: nil)
-        erased.didDeselect()
+        erased.didDeselect(with: nil)
         erased.willDisplay()
         erased.didEndDisplaying()
         erased.didHighlight()

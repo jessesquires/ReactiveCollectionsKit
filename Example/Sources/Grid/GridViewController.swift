@@ -68,6 +68,10 @@ final class GridViewController: ExampleViewController, CellEventCoordinator {
         assertionFailure("unhandled cell selection")
     }
 
+    func didDeselectCell(viewModel: any CellViewModel) {
+        print("\(#function): \(viewModel.id)")
+    }
+
     // MARK: Private
 
     private static func makeLayout() -> UICollectionViewCompositionalLayout {

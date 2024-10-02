@@ -309,7 +309,7 @@ extension CollectionViewDriver: UICollectionViewDelegate {
     /// :nodoc:
     public func collectionView(_ collectionView: UICollectionView,
                                didDeselectItemAt indexPath: IndexPath) {
-        self.viewModel.cellViewModel(at: indexPath).didDeselect()
+        self.viewModel.cellViewModel(at: indexPath).didDeselect(with: self._cellEventCoordinator)
     }
 
     // MARK: Managing cell highlighting

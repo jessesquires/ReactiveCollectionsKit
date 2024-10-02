@@ -50,7 +50,7 @@ struct FakeTextCellViewModel: CellViewModel {
     }
 
     var expectationDidDeselect: XCTestExpectation?
-    func didDeselect() {
+    func didDeselect(with coordinator: (any CellEventCoordinator)?) {
         self.expectationDidDeselect?.fulfillAndLog()
     }
 

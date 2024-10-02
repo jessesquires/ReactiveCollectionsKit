@@ -45,7 +45,7 @@ struct FakeCellNibViewModel: CellViewModel {
     }
 
     var expectationDidDeselect: XCTestExpectation?
-    func didDeselect() {
+    func didDeelect(with coordinator: (any CellEventCoordinator)?) {
         self.expectationDidDeselect?.fulfillAndLog()
     }
 
