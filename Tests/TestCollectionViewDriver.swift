@@ -89,8 +89,10 @@ final class TestCollectionViewDriver: UnitTestCase, @unchecked Sendable {
         for (section, sectionViewModel) in collection.sections.enumerated() {
             for (item, cellViewModel) in sectionViewModel.cells.enumerated() {
                 let indexPath = IndexPath(item: item, section: section)
+
                 let shouldSelect = driver.collectionView(self.collectionView, shouldSelectItemAt: indexPath)
                 XCTAssertEqual(shouldSelect, cellViewModel.shouldSelect)
+
                 let shouldDeselect = driver.collectionView(self.collectionView, shouldDeselectItemAt: indexPath)
                 XCTAssertEqual(shouldDeselect, cellViewModel.shouldDeselect)
             }

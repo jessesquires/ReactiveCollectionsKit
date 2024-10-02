@@ -48,6 +48,6 @@ struct PersonCellViewModelGrid: CellViewModel {
 
     nonisolated static func == (left: Self, right: Self) -> Bool {
         left.person == right.person
-            && left.shouldSelect == right.shouldSelect
+        && left.shouldSelect == right.shouldSelect
     }
 }
