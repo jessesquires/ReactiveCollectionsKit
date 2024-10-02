@@ -44,7 +44,7 @@ let package = Package(
     swiftLanguageModes: [.v5]
 )
 
-#warning("Remove this when it stops being broken. Xcode 16? Swift 6?")
+#warning("Remove after Swift 6 language mode")
 let swiftSettings = [
     SwiftSetting.enableExperimentalFeature("StrictConcurrency")
 ]
