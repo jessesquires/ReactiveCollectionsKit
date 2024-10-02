@@ -19,8 +19,8 @@ final class GridPersonCell: UICollectionViewCell {
     @IBOutlet weak var subtitleLabel: UILabel!
     @IBOutlet weak var flagLabel: UILabel!
 
-    override func prepareForReuse() {
-        super.prepareForReuse()
+    required init?(coder: NSCoder) {
+        super.init(coder: coder)
         self.backgroundColor = .systemGray6
         self.selectedBackgroundView = UIView()
         self.selectedBackgroundView?.backgroundColor = .systemGray4
