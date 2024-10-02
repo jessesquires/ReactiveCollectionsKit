@@ -15,7 +15,7 @@ import Foundation
 @testable import ReactiveCollectionsKit
 import XCTest
 
-final class TestCellEventCoordinator: UnitTestCase {
+final class TestCellEventCoordinator: UnitTestCase, @unchecked Sendable {
 
     @MainActor
     func test_underlyingViewController() {

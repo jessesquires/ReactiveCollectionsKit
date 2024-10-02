@@ -15,7 +15,7 @@ import Foundation
 @testable import ReactiveCollectionsKit
 import XCTest
 
-final class TestEmptyView: UnitTestCase {
+final class TestEmptyView: UnitTestCase, @unchecked Sendable {
 
     @MainActor
     func test_provider() {
