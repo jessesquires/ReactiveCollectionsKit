@@ -15,7 +15,7 @@ import Foundation
 @testable import ReactiveCollectionsKit
 import XCTest
 
-final class TestCollectionViewDriverReconfigure: UnitTestCase {
+final class TestCollectionViewDriverReconfigure: UnitTestCase, @unchecked Sendable {
 
     @MainActor
     func test_reconfigure_item() async {

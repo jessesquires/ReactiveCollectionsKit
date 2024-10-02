@@ -14,7 +14,7 @@
 import Foundation
 import UIKit
 
-extension AnyHashable: @unchecked Sendable { }
+extension AnyHashable: @unchecked @retroactive Sendable { }
 
 @MainActor
 final class DiffableDataSource: UICollectionViewDiffableDataSource<AnyHashable, AnyHashable> {
@@ -61,7 +61,13 @@ final class DiffableDataSource: UICollectionViewDiffableDataSource<AnyHashable, 
 
     func reload(_ viewModel: CollectionViewModel, completion: SnapshotCompletion?) {
         let snapshot = DiffableSnapshot(viewModel: viewModel)
-        self._applyReloadSnapshot(snapshot, completion: completion)
+        self.applySnapshotUsingReloadData(snapshot) {
+            // UIKit guarantees `completion` is called on the main queue.
+            dispatchPrecondition(condition: .onQueue(.main))
+            MainActor.assumeIsolated {
+                completion?()
+            }
+        }
     }
 
     func applySnapshot(
@@ -282,19 +288,9 @@ final class DiffableDataSource: UICollectionViewDiffableDataSource<AnyHashable, 
 
     private func _applyDiffSnapshot(_ snapshot: Snapshot, animated: Bool, completion: SnapshotCompletion?) {
         self._performOnDiffingQueueIfNeeded {
+            // Swift 6 complains about 'Call to main actor-isolated instance method' here.
+            // However, this is valid according to the docs.
             self.apply(snapshot, animatingDifferences: animated) {
-                // UIKit guarantees `completion` is called on the main queue.
-                dispatchPrecondition(condition: .onQueue(.main))
-                MainActor.assumeIsolated {
-                    completion?()
-                }
-            }
-        }
-    }
-
-    private func _applyReloadSnapshot(_ snapshot: Snapshot, completion: SnapshotCompletion?) {
-        self._performOnDiffingQueueIfNeeded {
-            self.applySnapshotUsingReloadData(snapshot) {
                 // UIKit guarantees `completion` is called on the main queue.
                 dispatchPrecondition(condition: .onQueue(.main))
                 MainActor.assumeIsolated {

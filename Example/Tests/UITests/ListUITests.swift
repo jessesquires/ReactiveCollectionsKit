@@ -13,14 +13,13 @@
 
 import XCTest
 
-final class ListUITests: XCTestCase {
+final class ListUITests: XCTestCase, @unchecked Sendable {
     @MainActor var app: XCUIApplication { XCUIApplication() }
 
-    @MainActor
-    override func setUp() {
-        super.setUp()
+    override func setUp() async throws {
+        try await super.setUp()
         self.continueAfterFailure = false
-        self.app.launch()
+        await self.app.launch()
     }
 
     @MainActor

@@ -92,7 +92,7 @@ driver.update(viewModel: updated)
 
 - iOS 15.0+
 - Swift 5.10+
-- Xcode 15.4+
+- Xcode 16.0+
 - [SwiftLint](https://github.com/realm/SwiftLint)
 
 ## Installation

@@ -15,7 +15,7 @@ import Foundation
 @testable import ReactiveCollectionsKit
 import XCTest
 
-final class TestCollectionViewDriver: UnitTestCase {
+final class TestCollectionViewDriver: UnitTestCase, @unchecked Sendable {
 
     @MainActor
     func test_numberOfSections_numberOfItems() {

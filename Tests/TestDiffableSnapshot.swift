@@ -15,7 +15,7 @@ import Foundation
 @testable import ReactiveCollectionsKit
 import XCTest
 
-final class TestDiffableSnapshot: UnitTestCase {
+final class TestDiffableSnapshot: UnitTestCase, @unchecked Sendable {
 
     @MainActor
     func test_init() {
