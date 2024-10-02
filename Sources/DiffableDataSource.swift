@@ -288,6 +288,8 @@ final class DiffableDataSource: UICollectionViewDiffableDataSource<AnyHashable, 
 
     private func _applyDiffSnapshot(_ snapshot: Snapshot, animated: Bool, completion: SnapshotCompletion?) {
         self._performOnDiffingQueueIfNeeded {
+            // Swift 6 complains about 'Call to main actor-isolated instance method' here.
+            // However, this is valid according to the docs.
             self.apply(snapshot, animatingDifferences: animated) {
                 // UIKit guarantees `completion` is called on the main queue.
                 dispatchPrecondition(condition: .onQueue(.main))

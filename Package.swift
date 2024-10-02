@@ -1,4 +1,4 @@
-// swift-tools-version:5.10
+// swift-tools-version:6.0
 // The swift-tools-version declares the minimum version
 // of Swift required to build this package.
 // ----------------------------------------------------
@@ -41,7 +41,7 @@ let package = Package(
             ]
         )
     ],
-    swiftLanguageVersions: [.v5]
+    swiftLanguageModes: [.v5]
 )
 
 #warning("Remove this when it stops being broken. Xcode 16? Swift 6?")
