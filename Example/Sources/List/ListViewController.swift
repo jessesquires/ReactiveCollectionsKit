@@ -17,12 +17,19 @@ import UIKit
 
 final class ListViewController: ExampleViewController, CellEventCoordinator {
 
-    lazy var driver = CollectionViewDriver(
-        view: self.collectionView,
-        options: .init(diffOnBackgroundQueue: true),
-        emptyViewProvider: sharedEmptyViewProvider,
-        cellEventCoordinator: self
-    )
+    lazy var driver: CollectionViewDriver = {
+        let driver = CollectionViewDriver(
+            view: self.collectionView,
+            options: .init(diffOnBackgroundQueue: true),
+            emptyViewProvider: sharedEmptyViewProvider,
+            cellEventCoordinator: self
+        )
+        
+        // Access `UIScrollViewDelegate` and handle protocol
+        driver.scrollViewDelegate = self
+
+        return driver
+    }()
 
     override var model: Model {
         didSet {
@@ -129,5 +136,13 @@ final class ListViewController: ExampleViewController, CellEventCoordinator {
 
         // Create final view model
         return CollectionViewModel(id: "list_view", sections: [peopleSection, colorSection])
+    }
+}
+
+extension ListViewController: UIScrollViewDelegate {
+    
+    // Demonstrate delegate override; tapping status bar does not scroll to top
+    func scrollViewShouldScrollToTop(_ scrollView: UIScrollView) -> Bool {
+        false
     }
 }

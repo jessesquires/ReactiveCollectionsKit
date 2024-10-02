@@ -14,6 +14,7 @@ NEXT
 - Reverted back to Swift 5 language mode because of issues in UIKit. ([@jessesquires](https://github.com/jessesquires), [#116](https://github.com/jessesquires/ReactiveCollectionsKit/pull/116))
 - Applying a snapshot using `reloadData` now always occurs on the main thread. ([@jessesquires](https://github.com/jessesquires), [#116](https://github.com/jessesquires/ReactiveCollectionsKit/pull/116))
 - Implemented additional selection APIs for `CellViewModel`: `shouldSelect`, `shouldDeselect`, `didDeselect()`. ([@nuomi1](https://github.com/nuomi1), [#127](https://github.com/jessesquires/ReactiveCollectionsKit/pull/127))
+- Allow setting a `UIScrollViewDelegate` object to receive scroll view events from the collection view. ([@ruddfawcett](https://github.com/ruddfawcett), [#131](https://github.com/jessesquires/ReactiveCollectionsKit/pull/131), [#133](https://github.com/jessesquires/ReactiveCollectionsKit/pull/133))
 
 0.1.6
 -----
