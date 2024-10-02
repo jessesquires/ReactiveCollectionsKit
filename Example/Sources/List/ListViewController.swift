@@ -24,10 +24,7 @@ final class ListViewController: ExampleViewController, CellEventCoordinator {
             emptyViewProvider: sharedEmptyViewProvider,
             cellEventCoordinator: self
         )
-        
-        // Access `UIScrollViewDelegate` and handle protocol
         driver.scrollViewDelegate = self
-
         return driver
     }()
 
@@ -140,9 +137,8 @@ final class ListViewController: ExampleViewController, CellEventCoordinator {
 }
 
 extension ListViewController: UIScrollViewDelegate {
-    
-    // Demonstrate delegate override; tapping status bar does not scroll to top
-    func scrollViewShouldScrollToTop(_ scrollView: UIScrollView) -> Bool {
-        false
+    // Example of receiving scroll view events
+    func scrollViewDidScrollToTop(_ scrollView: UIScrollView) {
+        print(#function)
     }
 }
