@@ -10,8 +10,9 @@ NEXT
 0.1.7
 -----
 
-- Upgrade to Xcode 16. ([@jessesquires](https://github.com/jessesquires), [#116](https://github.com/jessesquires/ReactiveCollectionsKit/pull/116))
+- Upgraded to Xcode 16. ([@jessesquires](https://github.com/jessesquires), [#116](https://github.com/jessesquires/ReactiveCollectionsKit/pull/116))
 - Reverted back to Swift 5 language mode because of issues in UIKit. ([@jessesquires](https://github.com/jessesquires), [#116](https://github.com/jessesquires/ReactiveCollectionsKit/pull/116))
+- Implemented additional selection APIs for `CellViewModel`: `shouldSelect`, `shouldDeselect`, `didDeselect()`. ([@nuomi1](https://github.com/nuomi1), [#127](https://github.com/jessesquires/ReactiveCollectionsKit/pull/127))
 
 0.1.6
 -----
