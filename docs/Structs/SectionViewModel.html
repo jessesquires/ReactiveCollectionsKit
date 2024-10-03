@@ -182,7 +182,8 @@
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">let</span> <span class="nv">id</span><span class="p">:</span> <span class="kt"><a href="../Typealiases.html#/s:22ReactiveCollectionsKit16UniqueIdentifiera">UniqueIdentifier</a></span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">@MainActor</span>
+<span class="kd">public</span> <span class="k">let</span> <span class="nv">id</span><span class="p">:</span> <span class="kt"><a href="../Typealiases.html#/s:22ReactiveCollectionsKit16UniqueIdentifiera">UniqueIdentifier</a></span></code></pre>
 
                         </div>
                       </div>
@@ -222,7 +223,8 @@
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">let</span> <span class="nv">cells</span><span class="p">:</span> <span class="p">[</span><span class="kt"><a href="../Structs/AnyCellViewModel.html">AnyCellViewModel</a></span><span class="p">]</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">@MainActor</span>
+<span class="kd">public</span> <span class="k">let</span> <span class="nv">cells</span><span class="p">:</span> <span class="p">[</span><span class="kt"><a href="../Structs/AnyCellViewModel.html">AnyCellViewModel</a></span><span class="p">]</span></code></pre>
 
                         </div>
                       </div>
@@ -249,7 +251,8 @@
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">let</span> <span class="nv">header</span><span class="p">:</span> <span class="kt"><a href="../Structs/AnySupplementaryViewModel.html">AnySupplementaryViewModel</a></span><span class="p">?</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">@MainActor</span>
+<span class="kd">public</span> <span class="k">let</span> <span class="nv">header</span><span class="p">:</span> <span class="kt"><a href="../Structs/AnySupplementaryViewModel.html">AnySupplementaryViewModel</a></span><span class="p">?</span></code></pre>
 
                         </div>
                       </div>
@@ -276,7 +279,8 @@
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">let</span> <span class="nv">footer</span><span class="p">:</span> <span class="kt"><a href="../Structs/AnySupplementaryViewModel.html">AnySupplementaryViewModel</a></span><span class="p">?</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">@MainActor</span>
+<span class="kd">public</span> <span class="k">let</span> <span class="nv">footer</span><span class="p">:</span> <span class="kt"><a href="../Structs/AnySupplementaryViewModel.html">AnySupplementaryViewModel</a></span><span class="p">?</span></code></pre>
 
                         </div>
                       </div>
@@ -303,7 +307,8 @@
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">let</span> <span class="nv">supplementaryViews</span><span class="p">:</span> <span class="p">[</span><span class="kt"><a href="../Structs/AnySupplementaryViewModel.html">AnySupplementaryViewModel</a></span><span class="p">]</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">@MainActor</span>
+<span class="kd">public</span> <span class="k">let</span> <span class="nv">supplementaryViews</span><span class="p">:</span> <span class="p">[</span><span class="kt"><a href="../Structs/AnySupplementaryViewModel.html">AnySupplementaryViewModel</a></span><span class="p">]</span></code></pre>
 
                         </div>
                       </div>
@@ -330,7 +335,8 @@
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">hasSupplementaryViews</span><span class="p">:</span> <span class="kt">Bool</span> <span class="p">{</span> <span class="k">get</span> <span class="p">}</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">@MainActor</span>
+<span class="kd">public</span> <span class="k">var</span> <span class="nv">hasSupplementaryViews</span><span class="p">:</span> <span class="kt">Bool</span> <span class="p">{</span> <span class="k">get</span> <span class="p">}</span></code></pre>
 
                         </div>
                       </div>
@@ -370,7 +376,8 @@
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="nf">init</span><span class="p">(</span>
+                          <pre class="highlight swift"><code><span class="kd">@MainActor</span>
+<span class="kd">public</span> <span class="nf">init</span><span class="p">(</span>
     <span class="nv">id</span><span class="p">:</span> <span class="kt"><a href="../Typealiases.html#/s:22ReactiveCollectionsKit16UniqueIdentifiera">UniqueIdentifier</a></span><span class="p">,</span>
     <span class="nv">cells</span><span class="p">:</span> <span class="p">[</span><span class="kt"><a href="../Structs/AnyCellViewModel.html">AnyCellViewModel</a></span><span class="p">]</span> <span class="o">=</span> <span class="p">[],</span>
     <span class="nv">header</span><span class="p">:</span> <span class="kt"><a href="../Structs/AnySupplementaryViewModel.html">AnySupplementaryViewModel</a></span><span class="p">?</span> <span class="o">=</span> <span class="kc">nil</span><span class="p">,</span>
@@ -470,7 +477,8 @@
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">init</span><span class="o">&lt;</span><span class="kt">Cell</span><span class="p">:</span> <span class="kt"><a href="../Protocols/CellViewModel.html">CellViewModel</a></span><span class="o">&gt;</span><span class="p">(</span>
+                          <pre class="highlight swift"><code><span class="kd">@MainActor</span>
+<span class="kd">public</span> <span class="kd">init</span><span class="o">&lt;</span><span class="kt">Cell</span><span class="p">:</span> <span class="kt"><a href="../Protocols/CellViewModel.html">CellViewModel</a></span><span class="o">&gt;</span><span class="p">(</span>
     <span class="nv">id</span><span class="p">:</span> <span class="kt"><a href="../Typealiases.html#/s:22ReactiveCollectionsKit16UniqueIdentifiera">UniqueIdentifier</a></span><span class="p">,</span>
     <span class="nv">cells</span><span class="p">:</span> <span class="p">[</span><span class="kt">Cell</span><span class="p">]</span>
 <span class="p">)</span></code></pre>
@@ -531,7 +539,8 @@
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">init</span><span class="o">&lt;</span><span class="kt">Header</span><span class="p">:</span> <span class="kt"><a href="../Protocols/SupplementaryHeaderViewModel.html">SupplementaryHeaderViewModel</a></span><span class="p">,</span> <span class="kt">Footer</span><span class="p">:</span> <span class="kt"><a href="../Protocols/SupplementaryFooterViewModel.html">SupplementaryFooterViewModel</a></span><span class="o">&gt;</span><span class="p">(</span>
+                          <pre class="highlight swift"><code><span class="kd">@MainActor</span>
+<span class="kd">public</span> <span class="kd">init</span><span class="o">&lt;</span><span class="kt">Header</span><span class="p">:</span> <span class="kt"><a href="../Protocols/SupplementaryHeaderViewModel.html">SupplementaryHeaderViewModel</a></span><span class="p">,</span> <span class="kt">Footer</span><span class="p">:</span> <span class="kt"><a href="../Protocols/SupplementaryFooterViewModel.html">SupplementaryFooterViewModel</a></span><span class="o">&gt;</span><span class="p">(</span>
     <span class="nv">id</span><span class="p">:</span> <span class="kt"><a href="../Typealiases.html#/s:22ReactiveCollectionsKit16UniqueIdentifiera">UniqueIdentifier</a></span><span class="p">,</span>
     <span class="nv">cells</span><span class="p">:</span> <span class="p">[</span><span class="kt"><a href="../Structs/AnyCellViewModel.html">AnyCellViewModel</a></span><span class="p">]</span> <span class="o">=</span> <span class="p">[],</span>
     <span class="nv">header</span><span class="p">:</span> <span class="kt">Header</span><span class="p">?,</span>
@@ -631,7 +640,8 @@
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">init</span><span class="o">&lt;</span><span class="kt">Cell</span><span class="p">:</span> <span class="kt"><a href="../Protocols/CellViewModel.html">CellViewModel</a></span><span class="p">,</span> <span class="kt">Header</span><span class="p">:</span> <span class="kt"><a href="../Protocols/SupplementaryHeaderViewModel.html">SupplementaryHeaderViewModel</a></span><span class="p">,</span> <span class="kt">Footer</span><span class="p">:</span> <span class="kt"><a href="../Protocols/SupplementaryFooterViewModel.html">SupplementaryFooterViewModel</a></span><span class="o">&gt;</span><span class="p">(</span>
+                          <pre class="highlight swift"><code><span class="kd">@MainActor</span>
+<span class="kd">public</span> <span class="kd">init</span><span class="o">&lt;</span><span class="kt">Cell</span><span class="p">:</span> <span class="kt"><a href="../Protocols/CellViewModel.html">CellViewModel</a></span><span class="p">,</span> <span class="kt">Header</span><span class="p">:</span> <span class="kt"><a href="../Protocols/SupplementaryHeaderViewModel.html">SupplementaryHeaderViewModel</a></span><span class="p">,</span> <span class="kt">Footer</span><span class="p">:</span> <span class="kt"><a href="../Protocols/SupplementaryFooterViewModel.html">SupplementaryFooterViewModel</a></span><span class="o">&gt;</span><span class="p">(</span>
     <span class="nv">id</span><span class="p">:</span> <span class="kt"><a href="../Typealiases.html#/s:22ReactiveCollectionsKit16UniqueIdentifiera">UniqueIdentifier</a></span><span class="p">,</span>
     <span class="nv">cells</span><span class="p">:</span> <span class="p">[</span><span class="kt">Cell</span><span class="p">],</span>
     <span class="nv">header</span><span class="p">:</span> <span class="kt">Header</span><span class="p">?,</span>
@@ -731,7 +741,8 @@
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">init</span><span class="o">&lt;</span><span class="kt">Cell</span><span class="p">:</span> <span class="kt"><a href="../Protocols/CellViewModel.html">CellViewModel</a></span><span class="p">,</span> <span class="kt">View</span><span class="p">:</span> <span class="kt"><a href="../Protocols/SupplementaryViewModel.html">SupplementaryViewModel</a></span><span class="o">&gt;</span><span class="p">(</span>
+                          <pre class="highlight swift"><code><span class="kd">@MainActor</span>
+<span class="kd">public</span> <span class="kd">init</span><span class="o">&lt;</span><span class="kt">Cell</span><span class="p">:</span> <span class="kt"><a href="../Protocols/CellViewModel.html">CellViewModel</a></span><span class="p">,</span> <span class="kt">View</span><span class="p">:</span> <span class="kt"><a href="../Protocols/SupplementaryViewModel.html">SupplementaryViewModel</a></span><span class="o">&gt;</span><span class="p">(</span>
     <span class="nv">id</span><span class="p">:</span> <span class="kt"><a href="../Typealiases.html#/s:22ReactiveCollectionsKit16UniqueIdentifiera">UniqueIdentifier</a></span><span class="p">,</span>
     <span class="nv">cells</span><span class="p">:</span> <span class="p">[</span><span class="kt">Cell</span><span class="p">],</span>
     <span class="nv">header</span><span class="p">:</span> <span class="kt"><a href="../Structs/AnySupplementaryViewModel.html">AnySupplementaryViewModel</a></span><span class="p">?</span> <span class="o">=</span> <span class="kc">nil</span><span class="p">,</span>
@@ -831,7 +842,8 @@
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">init</span><span class="o">&lt;</span>
+                          <pre class="highlight swift"><code><span class="kd">@MainActor</span>
+<span class="kd">public</span> <span class="kd">init</span><span class="o">&lt;</span>
     <span class="kt">Cell</span><span class="p">:</span> <span class="kt"><a href="../Protocols/CellViewModel.html">CellViewModel</a></span><span class="p">,</span>
     <span class="kt">Header</span><span class="p">:</span> <span class="kt"><a href="../Protocols/SupplementaryHeaderViewModel.html">SupplementaryHeaderViewModel</a></span><span class="p">,</span>
     <span class="kt">Footer</span><span class="p">:</span> <span class="kt"><a href="../Protocols/SupplementaryFooterViewModel.html">SupplementaryFooterViewModel</a></span><span class="p">,</span>
@@ -949,7 +961,8 @@
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">cellViewModel</span><span class="p">(</span><span class="k">for</span> <span class="nv">id</span><span class="p">:</span> <span class="kt"><a href="../Typealiases.html#/s:22ReactiveCollectionsKit16UniqueIdentifiera">UniqueIdentifier</a></span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Structs/AnyCellViewModel.html">AnyCellViewModel</a></span><span class="p">?</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">@MainActor</span>
+<span class="kd">public</span> <span class="kd">func</span> <span class="nf">cellViewModel</span><span class="p">(</span><span class="k">for</span> <span class="nv">id</span><span class="p">:</span> <span class="kt"><a href="../Typealiases.html#/s:22ReactiveCollectionsKit16UniqueIdentifiera">UniqueIdentifier</a></span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Structs/AnyCellViewModel.html">AnyCellViewModel</a></span><span class="p">?</span></code></pre>
 
                         </div>
                       </div>
@@ -999,7 +1012,8 @@
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">supplementaryViewModel</span><span class="p">(</span><span class="k">for</span> <span class="nv">id</span><span class="p">:</span> <span class="kt"><a href="../Typealiases.html#/s:22ReactiveCollectionsKit16UniqueIdentifiera">UniqueIdentifier</a></span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Structs/AnySupplementaryViewModel.html">AnySupplementaryViewModel</a></span><span class="p">?</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">@MainActor</span>
+<span class="kd">public</span> <span class="kd">func</span> <span class="nf">supplementaryViewModel</span><span class="p">(</span><span class="k">for</span> <span class="nv">id</span><span class="p">:</span> <span class="kt"><a href="../Typealiases.html#/s:22ReactiveCollectionsKit16UniqueIdentifiera">UniqueIdentifier</a></span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Structs/AnySupplementaryViewModel.html">AnySupplementaryViewModel</a></span><span class="p">?</span></code></pre>
 
                         </div>
                       </div>
@@ -1034,8 +1048,8 @@
           </section>
         </section>
         <section id="footer">
-          <p>&copy; 2024 <a class="link" href="https://jessesquires.com" target="_blank" rel="external noopener">Jesse Squires</a>. All rights reserved. (Last updated: 2024-09-02)</p>
-          <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external noopener">jazzy ♪♫ v0.15.1</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external noopener">Realm</a> project.</p>
+          <p>&copy; 2024 <a class="link" href="https://jessesquires.com" target="_blank" rel="external noopener">Jesse Squires</a>. All rights reserved. (Last updated: 2024-10-02)</p>
+          <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external noopener">jazzy ♪♫ v0.15.2</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external noopener">Realm</a> project.</p>
         </section>
       </article>
     </div>
