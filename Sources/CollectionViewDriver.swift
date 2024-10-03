@@ -423,7 +423,7 @@ extension CollectionViewDriver: UIScrollViewDelegate {
 
     /// :nodoc:
     public func scrollViewWillBeginDecelerating(_ scrollView: UIScrollView) {
-        self.scrollViewDelegate?.scrollViewWillBeginDragging?(scrollView)
+        self.scrollViewDelegate?.scrollViewWillBeginDecelerating?(scrollView)
     }
 
     /// :nodoc:
