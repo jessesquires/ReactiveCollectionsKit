@@ -46,6 +46,8 @@ final class TestCellEventCoordinator: UnitTestCase, @unchecked Sendable {
         let indexPath = IndexPath(item: 0, section: 0)
         driver.collectionView(self.collectionView, didSelectItemAt: indexPath)
 
+        XCTAssertEqual(coordinator.selectedCell as! FakeCellViewModel, cell)
+
         self.waitForExpectations()
 
         self.keepDriverAlive(driver)
@@ -69,6 +71,8 @@ final class TestCellEventCoordinator: UnitTestCase, @unchecked Sendable {
 
         let indexPath = IndexPath(item: 0, section: 0)
         driver.collectionView(self.collectionView, didDeselectItemAt: indexPath)
+
+        XCTAssertEqual(coordinator.deselectedCell as! FakeCellViewModel, cell)
 
         self.waitForExpectations()
 

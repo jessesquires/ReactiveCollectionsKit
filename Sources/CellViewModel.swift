@@ -260,10 +260,8 @@ public struct AnyCellViewModel: CellViewModel {
             precondition(cell is T.CellType, "Cell must be of type \(T.CellType.self). Found \(cell.self)")
             viewModel.configure(cell: cell as! T.CellType)
         }
-        self._didSelect = { coordinator in
-            viewModel.didSelect(with: coordinator)
-        }
-        self._didDeselect = viewModel.didDeselect
+        self._didSelect = viewModel.didSelect(with:)
+        self._didDeselect = viewModel.didDeselect(with:)
         self._willDisplay = viewModel.willDisplay
         self._didEndDisplaying = viewModel.didEndDisplaying
         self._didHighlight = viewModel.didHighlight
