@@ -10,7 +10,7 @@ NEXT
 0.1.8 - NEXT
 -----
 
-- Allow setting a `UICollectionViewDelegateFlowLayout` object to receive flow layout events from the collection view. ([@jessesquires](https://github.com/jessesquires), [#NNN(https://github.com/jessesquires/ReactiveCollectionsKit/pull/NNN))
+- Allow setting a `UICollectionViewDelegateFlowLayout` object to receive flow layout events from the collection view. ([@jessesquires](https://github.com/jessesquires), [#134](https://github.com/jessesquires/ReactiveCollectionsKit/pull/134))
 
 0.1.7
 -----
