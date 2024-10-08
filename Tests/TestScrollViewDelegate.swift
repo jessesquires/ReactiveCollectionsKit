@@ -69,7 +69,5 @@ final class TestScrollViewDelegate: UnitTestCase, @unchecked Sendable {
 
         // Verify expectations
         self.waitForExpectations()
-
-        self.keepDriverAlive(driver)
     }
 }
