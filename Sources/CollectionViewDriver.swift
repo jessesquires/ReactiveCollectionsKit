@@ -32,8 +32,11 @@ public final class CollectionViewDriver: NSObject {
     /// The collection view model.
     @Published public private(set) var viewModel: CollectionViewModel
 
-    /// The scroll view delegate to forward.
+    /// A scroll view delegate object to receive forwarded events.
     public weak var scrollViewDelegate: UIScrollViewDelegate?
+
+    /// A flow layout delegate object to receive forwarded events.
+    public weak var flowLayoutDelegate: UICollectionViewDelegateFlowLayout?
 
     private let _emptyViewProvider: EmptyViewProvider?
 
@@ -286,7 +289,7 @@ public final class CollectionViewDriver: NSObject {
     }
 }
 
-// MARK: UICollectionViewDelegate
+// MARK: - UICollectionViewDelegate
 
 extension CollectionViewDriver: UICollectionViewDelegate {
     // MARK: Managing the selected cells
@@ -377,7 +380,7 @@ extension CollectionViewDriver: UICollectionViewDelegate {
     }
 }
 
-// MARK: UIScrollViewDelegate
+// MARK: - UIScrollViewDelegate
 
 extension CollectionViewDriver: UIScrollViewDelegate {
     // MARK: Responding to scrolling and dragging
@@ -467,5 +470,110 @@ extension CollectionViewDriver: UIScrollViewDelegate {
     /// :nodoc:
     public func scrollViewDidChangeAdjustedContentInset(_ scrollView: UIScrollView) {
         self.scrollViewDelegate?.scrollViewDidChangeAdjustedContentInset?(scrollView)
+    }
+}
+
+// MARK: - UICollectionViewDelegateFlowLayout
+
+extension CollectionViewDriver: UICollectionViewDelegateFlowLayout {
+
+    private var flowLayout: UICollectionViewFlowLayout? {
+        self.view.collectionViewLayout as? UICollectionViewFlowLayout
+    }
+
+    // MARK: Getting the size of items
+
+    /// :nodoc:
+    public func collectionView(
+        _ collectionView: UICollectionView,
+        layout collectionViewLayout: UICollectionViewLayout,
+        sizeForItemAt indexPath: IndexPath
+    ) -> CGSize {
+        self.flowLayoutDelegate?.collectionView?(
+            collectionView,
+            layout: collectionViewLayout,
+            sizeForItemAt: indexPath
+        )
+        ?? self.flowLayout?.itemSize
+        ?? .zero
+    }
+
+    // MARK: Getting the section spacing
+
+    /// :nodoc:
+    public func collectionView(
+        _ collectionView: UICollectionView,
+        layout collectionViewLayout: UICollectionViewLayout,
+        insetForSectionAt section: Int
+    ) -> UIEdgeInsets {
+        self.flowLayoutDelegate?.collectionView?(
+            collectionView,
+            layout: collectionViewLayout,
+            insetForSectionAt: section
+        )
+        ?? self.flowLayout?.sectionInset
+        ?? .zero
+    }
+
+    /// :nodoc:
+    public func collectionView(
+        _ collectionView: UICollectionView,
+        layout collectionViewLayout: UICollectionViewLayout,
+        minimumLineSpacingForSectionAt section: Int
+    ) -> CGFloat {
+        self.flowLayoutDelegate?.collectionView?(
+            collectionView,
+            layout: collectionViewLayout,
+            minimumLineSpacingForSectionAt: section
+        )
+        ?? self.flowLayout?.minimumLineSpacing
+        ?? .zero
+    }
+
+    /// :nodoc:
+    public func collectionView(
+        _ collectionView: UICollectionView,
+        layout collectionViewLayout: UICollectionViewLayout,
+        minimumInteritemSpacingForSectionAt section: Int
+    ) -> CGFloat {
+        self.flowLayoutDelegate?.collectionView?(
+            collectionView,
+            layout: collectionViewLayout,
+            minimumInteritemSpacingForSectionAt: section
+        )
+        ?? self.flowLayout?.minimumInteritemSpacing
+        ?? .zero
+    }
+
+    // MARK: Getting the header and footer sizes
+
+    /// :nodoc:
+    public func collectionView(
+        _ collectionView: UICollectionView,
+        layout collectionViewLayout: UICollectionViewLayout,
+        referenceSizeForHeaderInSection section: Int
+    ) -> CGSize {
+        self.flowLayoutDelegate?.collectionView?(
+            collectionView,
+            layout: collectionViewLayout,
+            referenceSizeForHeaderInSection: section
+        )
+        ?? self.flowLayout?.headerReferenceSize
+        ?? .zero
+    }
+
+    /// :nodoc:
+    public func collectionView(
+        _ collectionView: UICollectionView,
+        layout collectionViewLayout: UICollectionViewLayout,
+        referenceSizeForFooterInSection section: Int
+    ) -> CGSize {
+        self.flowLayoutDelegate?.collectionView?(
+            collectionView,
+            layout: collectionViewLayout,
+            referenceSizeForFooterInSection: section
+        )
+        ?? self.flowLayout?.footerReferenceSize
+        ?? .zero
     }
 }

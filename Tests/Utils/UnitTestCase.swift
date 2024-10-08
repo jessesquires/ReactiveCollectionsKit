@@ -23,9 +23,11 @@ class UnitTestCase: XCTestCase, @unchecked Sendable {
     @MainActor var collectionView: FakeCollectionView {
         FakeCollectionView(
             frame: Self.frame,
-            collectionViewLayout: FakeCollectionLayout()
+            collectionViewLayout: self.layout
         )
     }
+
+    @MainActor let layout = FakeCollectionLayout()
 
     var keepAliveDrivers = [CollectionViewDriver]()
 

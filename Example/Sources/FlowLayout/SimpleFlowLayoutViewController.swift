@@ -15,22 +15,14 @@ import Foundation
 import ReactiveCollectionsKit
 import UIKit
 
-final class SimpleFlowLayoutViewController: UICollectionViewController {
+final class SimpleFlowLayoutViewController: UICollectionViewController, UICollectionViewDelegateFlowLayout {
 
     lazy var driver = CollectionViewDriver(view: self.collectionView)
 
     // MARK: Init
 
     init() {
-        /// NOTE: you do not have access to `UICollectionViewDelegateFlowLayout`.
-        /// Docs: https://developer.apple.com/documentation/uikit/uicollectionviewdelegateflowlayout
-        /// You can only create basic flow layouts with fixed item sizes, spacing, etc.
-        /// If you need more flexibility, use `UICollectionViewCompositionalLayout` instead.
         let layout = UICollectionViewFlowLayout()
-        layout.itemSize = CGSize(width: 110, height: 110)
-        layout.minimumInteritemSpacing = 8
-        layout.minimumLineSpacing = 8
-        layout.sectionInset = UIEdgeInsets(top: 8, left: 8, bottom: 8, right: 8)
         super.init(collectionViewLayout: layout)
         self.collectionView.alwaysBounceVertical = true
     }
@@ -44,6 +36,8 @@ final class SimpleFlowLayoutViewController: UICollectionViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+
+        self.driver.flowLayoutDelegate = self
 
         let models = ColorModel.makeColors()
 
@@ -59,5 +53,40 @@ final class SimpleFlowLayoutViewController: UICollectionViewController {
         let collectionViewModel = CollectionViewModel(id: "static_flow_layout", sections: [section])
 
         self.driver.update(viewModel: collectionViewModel)
+    }
+
+    // MARK: UICollectionViewDelegateFlowLayout
+
+    func collectionView(
+        _ collectionView: UICollectionView,
+        layout collectionViewLayout: UICollectionViewLayout,
+        sizeForItemAt indexPath: IndexPath
+    ) -> CGSize {
+        let random = Int.random(in: 70...200)
+        return CGSize(width: random, height: random)
+    }
+
+    func collectionView(
+        _ collectionView: UICollectionView,
+        layout collectionViewLayout: UICollectionViewLayout,
+        minimumInteritemSpacingForSectionAt section: Int
+    ) -> CGFloat {
+        8
+    }
+
+    func collectionView(
+        _ collectionView: UICollectionView,
+        layout collectionViewLayout: UICollectionViewLayout,
+        minimumLineSpacingForSectionAt section: Int
+    ) -> CGFloat {
+        8
+    }
+
+    func collectionView(
+        _ collectionView: UICollectionView,
+        layout collectionViewLayout: UICollectionViewLayout,
+        insetForSectionAt section: Int
+    ) -> UIEdgeInsets {
+        UIEdgeInsets(top: 12, left: 12, bottom: 12, right: 12)
     }
 }

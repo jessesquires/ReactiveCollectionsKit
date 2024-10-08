@@ -7,6 +7,11 @@ NEXT
 
 - TBA
 
+0.1.8 - NEXT
+-----
+
+- Allow setting a `UICollectionViewDelegateFlowLayout` object to receive flow layout events from the collection view. ([@jessesquires](https://github.com/jessesquires), [#NNN(https://github.com/jessesquires/ReactiveCollectionsKit/pull/NNN))
+
 0.1.7
 -----
 
