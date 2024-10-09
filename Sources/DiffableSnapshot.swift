@@ -21,12 +21,12 @@ extension DiffableSnapshot {
     init(viewModel: CollectionViewModel) {
         self.init()
 
-        let allSectionIdentifiers = viewModel.sections.map(\.id)
-        self.appendSections(allSectionIdentifiers)
+        for section in viewModel.sections {
+            self.appendSections([section.id])
 
-        viewModel.sections.forEach {
-            let allCellIdentifiers = $0.cells.map(\.id)
-            self.appendItems(allCellIdentifiers, toSection: $0.id)
+            for cell in section {
+                self.appendItems([cell.id], toSection: section.id)
+            }
         }
     }
 }
