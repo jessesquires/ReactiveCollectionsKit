@@ -16,6 +16,7 @@ import Foundation
 import XCTest
 
 final class TestCollectionExtensions: XCTestCase {
+
     func test_isNotEmpty() {
         XCTAssertTrue([1, 2, 3].isNotEmpty)
         XCTAssertFalse([].isNotEmpty)

@@ -14,7 +14,6 @@
 import Foundation
 
 /// Represents a section of items in a collection.
-@MainActor
 public struct SectionViewModel: DiffableViewModel {
     // MARK: DiffableViewModel
 
@@ -194,9 +193,9 @@ public struct SectionViewModel: DiffableViewModel {
         anyFooter: AnySupplementaryViewModel?,
         anySupplementaryViews: [AnySupplementaryViewModel]
     ) {
-        if let anyHeader { precondition(anyHeader._isHeader) }
-        if let anyFooter { precondition(anyFooter._isFooter) }
-        precondition(anySupplementaryViews.allSatisfy { !$0._isHeader && !$0._isFooter })
+        if let anyHeader { precondition(anyHeader.isHeader) }
+        if let anyFooter { precondition(anyFooter.isFooter) }
+        precondition(anySupplementaryViews.allSatisfy(\.isOtherSupplementaryView))
         self.id = id
         self.cells = anyCells
         self.header = anyHeader
@@ -253,53 +252,39 @@ public struct SectionViewModel: DiffableViewModel {
 
 extension SectionViewModel: Collection, RandomAccessCollection {
     /// :nodoc:
-    nonisolated public var count: Int {
-        MainActor.assumeIsolated {
-            self.cells.count
-        }
+    public var count: Int {
+        self.cells.count
     }
 
     /// :nodoc:
-    nonisolated public var isEmpty: Bool {
-        MainActor.assumeIsolated {
-            self.cells.isEmpty
-        }
+    public var isEmpty: Bool {
+        self.cells.isEmpty
     }
 
     /// :nodoc:
-    nonisolated public var startIndex: Int {
-        MainActor.assumeIsolated {
-            self.cells.startIndex
-        }
+    public var startIndex: Int {
+        self.cells.startIndex
     }
 
     /// :nodoc:
-    nonisolated public var endIndex: Int {
-        MainActor.assumeIsolated {
-            self.cells.endIndex
-        }
+    public var endIndex: Int {
+        self.cells.endIndex
     }
 
     /// :nodoc:
-    nonisolated public subscript(position: Int) -> AnyCellViewModel {
-        MainActor.assumeIsolated {
-            self.cells[position]
-        }
+    public subscript(position: Int) -> AnyCellViewModel {
+        self.cells[position]
     }
 
     /// :nodoc:
-    nonisolated public func index(after pos: Int) -> Int {
-        MainActor.assumeIsolated {
-            self.cells.index(after: pos)
-        }
+    public func index(after pos: Int) -> Int {
+        self.cells.index(after: pos)
     }
 }
 
 extension SectionViewModel: CustomDebugStringConvertible {
     /// :nodoc:
-    nonisolated public var debugDescription: String {
-        MainActor.assumeIsolated {
-            sectionDebugDescription(self)
-        }
+    public var debugDescription: String {
+        sectionDebugDescription(self)
     }
 }

@@ -27,7 +27,7 @@ struct FakeTextModel: Hashable {
 struct FakeTextCellViewModel: CellViewModel {
     let model: FakeTextModel
 
-    nonisolated var id: UniqueIdentifier {
+    var id: UniqueIdentifier {
         self.model.text
     }
 
@@ -88,11 +88,11 @@ struct FakeTextCellViewModel: CellViewModel {
         self.contextMenuConfiguration = contextMenuConfiguration
     }
 
-    nonisolated static func == (left: Self, right: Self) -> Bool {
+    static func == (left: Self, right: Self) -> Bool {
         left.model == right.model
     }
 
-    nonisolated func hash(into hasher: inout Hasher) {
+    func hash(into hasher: inout Hasher) {
         hasher.combine(self.model)
     }
 }

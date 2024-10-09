@@ -41,11 +41,11 @@ struct FakeSupplementaryNibViewModel: SupplementaryViewModel {
         self.expectationConfigureView?.fulfillAndLog()
     }
 
-    nonisolated static func == (left: Self, right: Self) -> Bool {
+    static func == (left: Self, right: Self) -> Bool {
         left.id == right.id
     }
 
-    nonisolated func hash(into hasher: inout Hasher) {
+    func hash(into hasher: inout Hasher) {
         hasher.combine(self.id)
     }
 }

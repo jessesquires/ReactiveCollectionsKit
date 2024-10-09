@@ -15,7 +15,6 @@ import Foundation
 import UIKit
 
 /// Provides registration information for a reusable view in a `UICollectionView`.
-@MainActor
 public protocol ViewRegistrationProvider {
     /// The view registration information.
     var registration: ViewRegistration { get }

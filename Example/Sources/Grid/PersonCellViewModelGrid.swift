@@ -19,7 +19,7 @@ struct PersonCellViewModelGrid: CellViewModel {
 
     // MARK: CellViewModel
 
-    nonisolated var id: UniqueIdentifier { self.person.id }
+    var id: UniqueIdentifier { self.person.id }
 
     var registration: ViewRegistration {
         ViewRegistration(
@@ -41,12 +41,12 @@ struct PersonCellViewModelGrid: CellViewModel {
 
     // MARK: Hashable
 
-    nonisolated func hash(into hasher: inout Hasher) {
+    func hash(into hasher: inout Hasher) {
         hasher.combine(self.person)
         hasher.combine(self.shouldSelect)
     }
 
-    nonisolated static func == (left: Self, right: Self) -> Bool {
+    static func == (left: Self, right: Self) -> Bool {
         left.person == right.person
         && left.shouldSelect == right.shouldSelect
     }

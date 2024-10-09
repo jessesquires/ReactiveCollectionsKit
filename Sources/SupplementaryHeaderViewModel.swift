@@ -16,7 +16,6 @@ import UIKit
 
 /// Defines a view model that describes and configures a header view
 /// for a section in the collection view.
-@MainActor
 public protocol SupplementaryHeaderViewModel: SupplementaryViewModel {
     /// The collection view header element kind.
     static var kind: SupplementaryViewKind { get }
@@ -25,8 +24,9 @@ public protocol SupplementaryHeaderViewModel: SupplementaryViewModel {
 extension SupplementaryHeaderViewModel {
     /// Default implementation. Returns a section header kind.
     public static var kind: SupplementaryViewKind {
-        UICollectionView.elementKindSectionHeader
+        CollectionViewConstants.headerKind
     }
+
     /// A default registration for this header view model for class-based views.
     ///
     /// - Warning: Does not work for nib-based views.

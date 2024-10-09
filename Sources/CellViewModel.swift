@@ -15,7 +15,6 @@ import Foundation
 import UIKit
 
 /// Defines a view model that describes and configures a cell in the collection view.
-@MainActor
 public protocol CellViewModel: DiffableViewModel, ViewRegistrationProvider {
     /// The type of cell that this view model represents and configures.
     associatedtype CellType: UICollectionViewCell
@@ -41,6 +40,7 @@ public protocol CellViewModel: DiffableViewModel, ViewRegistrationProvider {
 
     /// Configures the provided cell for display in the collection.
     /// - Parameter cell: The cell to configure.
+    @MainActor
     func configure(cell: CellType)
 
     /// Tells the view model that its cell was selected.
@@ -48,6 +48,7 @@ public protocol CellViewModel: DiffableViewModel, ViewRegistrationProvider {
     /// Implement this method to handle this event, optionally using the provided `coordinator`.
     ///
     /// - Parameter coordinator: An event coordinator object, if one was provided to the `CollectionViewDriver`.
+    @MainActor
     func didSelect(with coordinator: CellEventCoordinator?)
 
     /// Tells the view model that its cell was deselected.
@@ -55,22 +56,27 @@ public protocol CellViewModel: DiffableViewModel, ViewRegistrationProvider {
     /// Implement this method to handle this event, optionally using the provided `coordinator`.
     ///
     /// - Parameter coordinator: An event coordinator object, if one was provided to the `CollectionViewDriver`.
+    @MainActor
     func didDeselect(with coordinator: CellEventCoordinator?)
 
     /// Tells the view model that its cell is about to be displayed in the collection view.
     /// This corresponds to the delegate method `collectionView(_:willDisplay:forItemAt:)`.
+    @MainActor
     func willDisplay()
 
     /// Tells the view model that its cell was removed from the collection view.
     /// This corresponds to the delegate method `collectionView(_:didEndDisplaying:forItemAt:)`.
+    @MainActor
     func didEndDisplaying()
 
     /// Tells the view model that its cell was highlighted.
     /// This corresponds to the delegate method `collectionView(_:didHighlightItemAt:)`.
+    @MainActor
     func didHighlight()
 
     /// Tells the view model that the highlight was removed from its cell.
     /// This corresponds to the delegate method `collectionView(_:didUnhighlightItemAt:)`.
+    @MainActor
     func didUnhighlight()
 }
 
@@ -90,6 +96,7 @@ extension CellViewModel {
     /// Default implementation.
     /// Calls `didSelectCell(viewModel:)` on the `coordinator`,
     /// passing `self` to the `viewModel` parameter.
+    @MainActor
     public func didSelect(with coordinator: CellEventCoordinator?) {
         coordinator?.didSelectCell(viewModel: self)
     }
@@ -97,21 +104,34 @@ extension CellViewModel {
     /// Default implementation.
     /// Calls `didDeselectCell(viewModel:)` on the `coordinator`,
     /// passing `self` to the `viewModel` parameter.
+    @MainActor
     public func didDeselect(with coordinator: CellEventCoordinator?) {
         coordinator?.didDeselectCell(viewModel: self)
     }
 
     /// Default implementation. Does nothing.
+    @MainActor
     public func willDisplay() { }
 
     /// Default implementation. Does nothing.
+    @MainActor
     public func didEndDisplaying() { }
 
     /// Default implementation. Does nothing.
+    @MainActor
     public func didHighlight() { }
 
     /// Default implementation. Does nothing.
+    @MainActor
     public func didUnhighlight() { }
+
+    // MARK: Internal
+
+    @MainActor
+    func _configureGeneric(cell: UICollectionViewCell) {
+        precondition(cell is CellType, "Cell must be of type \(CellType.self). Found \(cell.self)")
+        self.configure(cell: cell as! CellType)
+    }
 }
 
 extension CellViewModel {
@@ -141,6 +161,7 @@ extension CellViewModel {
 
     // MARK: Internal
 
+    @MainActor
     func dequeueAndConfigureCellFor(collectionView: UICollectionView, at indexPath: IndexPath) -> CellType {
         let cell = self.registration.dequeueViewFor(collectionView: collectionView, at: indexPath) as! CellType
         self.configure(cell: cell)
@@ -152,12 +173,11 @@ extension CellViewModel {
 ///
 /// - Note: When providing cells with mixed data types to a `SectionViewModel`,
 /// it is necessary to convert them to `AnyCellViewModel`.
-@MainActor
 public struct AnyCellViewModel: CellViewModel {
     // MARK: DiffableViewModel
 
     /// :nodoc:
-    nonisolated public var id: UniqueIdentifier { self._id }
+    public var id: UniqueIdentifier { self._id }
 
     // MARK: ViewRegistrationProvider
 
@@ -231,13 +251,13 @@ public struct AnyCellViewModel: CellViewModel {
     private let _shouldDeselect: Bool
     private let _shouldHighlight: Bool
     private let _contextMenuConfiguration: UIContextMenuConfiguration?
-    private let _configure: (CellType) -> Void
-    private let _didSelect: (CellEventCoordinator?) -> Void
-    private let _didDeselect: (CellEventCoordinator?) -> Void
-    private let _willDisplay: () -> Void
-    private let _didEndDisplaying: () -> Void
-    private let _didHighlight: () -> Void
-    private let _didUnhighlight: () -> Void
+    private let _configure: @MainActor (CellType) -> Void
+    private let _didSelect: @MainActor (CellEventCoordinator?) -> Void
+    private let _didDeselect: @MainActor (CellEventCoordinator?) -> Void
+    private let _willDisplay: @MainActor () -> Void
+    private let _didEndDisplaying: @MainActor () -> Void
+    private let _didHighlight: @MainActor() -> Void
+    private let _didUnhighlight: @MainActor () -> Void
 
     // MARK: Init
 
@@ -245,6 +265,7 @@ public struct AnyCellViewModel: CellViewModel {
     ///
     /// - Parameter viewModel: The view model to type-erase.
     public init<T: CellViewModel>(_ viewModel: T) {
+        // prevent "double" / "nested" erasure
         if let erasedViewModel = viewModel as? Self {
             self = erasedViewModel
             return
@@ -256,10 +277,7 @@ public struct AnyCellViewModel: CellViewModel {
         self._shouldDeselect = viewModel.shouldDeselect
         self._shouldHighlight = viewModel.shouldHighlight
         self._contextMenuConfiguration = viewModel.contextMenuConfiguration
-        self._configure = { cell in
-            precondition(cell is T.CellType, "Cell must be of type \(T.CellType.self). Found \(cell.self)")
-            viewModel.configure(cell: cell as! T.CellType)
-        }
+        self._configure = viewModel._configureGeneric(cell:)
         self._didSelect = viewModel.didSelect(with:)
         self._didDeselect = viewModel.didDeselect(with:)
         self._willDisplay = viewModel.willDisplay
@@ -273,23 +291,21 @@ public struct AnyCellViewModel: CellViewModel {
 
 extension AnyCellViewModel: Equatable {
     /// :nodoc:
-    nonisolated public static func == (left: AnyCellViewModel, right: AnyCellViewModel) -> Bool {
+    public static func == (left: AnyCellViewModel, right: AnyCellViewModel) -> Bool {
         left._viewModel == right._viewModel
     }
 }
 
 extension AnyCellViewModel: Hashable {
     /// :nodoc:
-    nonisolated public func hash(into hasher: inout Hasher) {
+    public func hash(into hasher: inout Hasher) {
         self._viewModel.hash(into: &hasher)
     }
 }
 
 extension AnyCellViewModel: CustomDebugStringConvertible {
     /// :nodoc:
-    nonisolated public var debugDescription: String {
-        MainActor.assumeIsolated {
-            "\(self._viewModel)"
-        }
+    public var debugDescription: String {
+        "\(self._viewModel)"
     }
 }

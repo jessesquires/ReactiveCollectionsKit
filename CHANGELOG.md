@@ -11,6 +11,7 @@ NEXT
 -----
 
 - Allow setting a `UICollectionViewDelegateFlowLayout` object to receive flow layout events from the collection view. ([@jessesquires](https://github.com/jessesquires), [#134](https://github.com/jessesquires/ReactiveCollectionsKit/pull/134))
+- Swift Concurrency improvements: `@MainActor` annotations have been removed from most top-level types and protocols, instead opting to apply `@MainActor` to individual members only where necessary. The goal is to impose fewer restrictions/burdens on clients. ([@jessesquires](https://github.com/jessesquires), [#135](https://github.com/jessesquires/ReactiveCollectionsKit/pull/135))
 
 0.1.7
 -----

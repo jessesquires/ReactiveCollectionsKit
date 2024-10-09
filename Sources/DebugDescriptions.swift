@@ -129,7 +129,6 @@ private func debugDescriptionBuilder<Target: TextOutputStream>(
     }
 }
 
-@MainActor
 func collectionDebugDescription(_ collection: CollectionViewModel) -> String {
     var output = ""
     debugDescriptionBuilder(
@@ -146,7 +145,6 @@ func collectionDebugDescription(_ collection: CollectionViewModel) -> String {
     return output
 }
 
-@MainActor
 func sectionDebugDescription(_ section: SectionViewModel) -> String {
     var output = ""
     debugDescriptionBuilder(
