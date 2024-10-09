@@ -37,6 +37,7 @@ final class SimpleStaticViewController: UICollectionViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.collectionView.accessibilityIdentifier = "Simple Static"
 
         let models = ColorModel.makeColors()
 

@@ -19,7 +19,7 @@ struct FooterViewModel: SupplementaryFooterViewModel {
 
     // MARK: SupplementaryViewModel
 
-    nonisolated var id: UniqueIdentifier { self.text }
+    var id: UniqueIdentifier { self.text }
 
     func configure(view: UICollectionViewListCell) {
         var config = UIListContentConfiguration.groupedFooter()

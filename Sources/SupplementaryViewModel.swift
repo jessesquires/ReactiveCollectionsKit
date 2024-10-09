@@ -18,30 +18,42 @@ import UIKit
 public typealias SupplementaryViewKind = String
 
 /// Defines a view model that describes and configures a supplementary view in a collection.
-@MainActor
 public protocol SupplementaryViewModel: DiffableViewModel, ViewRegistrationProvider {
     /// The type of view that this view model represents and configures.
     associatedtype ViewType: UICollectionReusableView
 
     /// Configures the provided view for display in the collection.
     /// - Parameter view: The view to configure.
+    @MainActor
     func configure(view: ViewType)
 
     /// Tells the view model that its supplementary view is about to be displayed in the collection view.
     /// This corresponds to the delegate method `collectionView(_:willDisplaySupplementaryView:forElementKind:at:)`.
+    @MainActor
     func willDisplay()
 
     /// Tells the view model that its supplementary view was removed from the collection view.
     /// This corresponds to the delegate method `collectionView(_:didEndDisplayingSupplementaryView:forElementOfKind:at:)`.
+    @MainActor
     func didEndDisplaying()
 }
 
 extension SupplementaryViewModel {
     /// Default implementation. Does nothing.
+    @MainActor
     public func willDisplay() { }
 
     /// Default implementation. Does nothing.
+    @MainActor
     public func didEndDisplaying() { }
+
+    // MARK: Internal
+
+    @MainActor
+    func _configureGeneric(view: UICollectionReusableView) {
+        precondition(view is ViewType, "View must be of type \(ViewType.self). Found \(view.self)")
+        self.configure(view: view as! ViewType)
+    }
 }
 
 extension SupplementaryViewModel {
@@ -70,10 +82,7 @@ extension SupplementaryViewModel {
         return self.registration.viewType.kind
     }
 
-    var _isHeader: Bool { self._kind == UICollectionView.elementKindSectionHeader }
-
-    var _isFooter: Bool { self._kind == UICollectionView.elementKindSectionFooter }
-
+    @MainActor
     func dequeueAndConfigureViewFor(collectionView: UICollectionView, at indexPath: IndexPath) -> ViewType {
         let view = self.registration.dequeueViewFor(collectionView: collectionView, at: indexPath) as! ViewType
         self.configure(view: view)
@@ -85,12 +94,11 @@ extension SupplementaryViewModel {
 ///
 /// - Note: When providing supplementary views with mixed data types to a `SectionViewModel`,
 /// it is necessary to convert them to `AnySupplementaryViewModel`.
-@MainActor
 public struct AnySupplementaryViewModel: SupplementaryViewModel {
     // MARK: DiffableViewModel
 
     /// :nodoc:
-    nonisolated public var id: UniqueIdentifier { self._id }
+    public var id: UniqueIdentifier { self._id }
 
     // MARK: ViewRegistrationProvider
 
@@ -123,14 +131,28 @@ public struct AnySupplementaryViewModel: SupplementaryViewModel {
     /// :nodoc: "override" the extension
     public let reuseIdentifier: String
 
+    // MARK: Internal
+
+    var isHeader: Bool {
+        self._registration.viewType.isHeader
+    }
+
+    var isFooter: Bool {
+        self._registration.viewType.isFooter
+    }
+
+    var isOtherSupplementaryView: Bool {
+        !self.isHeader && !self.isFooter
+    }
+
     // MARK: Private
 
     private let _viewModel: AnyHashable
     private let _id: UniqueIdentifier
     private let _registration: ViewRegistration
-    private let _configure: (ViewType) -> Void
-    private let _willDisplay: () -> Void
-    private let _didEndDisplaying: () -> Void
+    private let _configure: @MainActor (ViewType) -> Void
+    private let _willDisplay: @MainActor () -> Void
+    private let _didEndDisplaying: @MainActor () -> Void
 
     // MARK: Init
 
@@ -138,6 +160,7 @@ public struct AnySupplementaryViewModel: SupplementaryViewModel {
     ///
     /// - Parameter viewModel: The view model to type-erase.
     public init<T: SupplementaryViewModel>(_ viewModel: T) {
+        // prevent "double" / "nested" erasure
         if let erasedViewModel = viewModel as? Self {
             self = erasedViewModel
             return
@@ -145,10 +168,7 @@ public struct AnySupplementaryViewModel: SupplementaryViewModel {
         self._viewModel = viewModel
         self._id = viewModel.id
         self._registration = viewModel.registration
-        self._configure = { view in
-            precondition(view is T.ViewType, "View must be of type \(T.ViewType.self). Found \(view.self)")
-            viewModel.configure(view: view as! T.ViewType)
-        }
+        self._configure = viewModel._configureGeneric(view:)
         self._willDisplay = viewModel.willDisplay
         self._didEndDisplaying = viewModel.didEndDisplaying
         self.viewClass = viewModel.viewClass
@@ -158,23 +178,21 @@ public struct AnySupplementaryViewModel: SupplementaryViewModel {
 
 extension AnySupplementaryViewModel: Equatable {
     /// :nodoc:
-    nonisolated public static func == (left: AnySupplementaryViewModel, right: AnySupplementaryViewModel) -> Bool {
+    public static func == (left: AnySupplementaryViewModel, right: AnySupplementaryViewModel) -> Bool {
         left._viewModel == right._viewModel
     }
 }
 
 extension AnySupplementaryViewModel: Hashable {
     /// :nodoc:
-    nonisolated public func hash(into hasher: inout Hasher) {
+    public func hash(into hasher: inout Hasher) {
         self._viewModel.hash(into: &hasher)
     }
 }
 
 extension AnySupplementaryViewModel: CustomDebugStringConvertible {
     /// :nodoc:
-    nonisolated public var debugDescription: String {
-        MainActor.assumeIsolated {
-            "\(self._viewModel)"
-        }
+    public var debugDescription: String {
+        "\(self._viewModel)"
     }
 }

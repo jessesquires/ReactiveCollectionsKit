@@ -36,6 +36,7 @@ final class SimpleFlowLayoutViewController: UICollectionViewController, UICollec
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.collectionView.accessibilityIdentifier = "Flow Layout"
 
         self.driver.flowLayoutDelegate = self
 

@@ -20,7 +20,7 @@ struct FakeSupplementaryViewModel: SupplementaryViewModel {
 
     let title: String
 
-    nonisolated var id: UniqueIdentifier { self.title }
+    var id: UniqueIdentifier { self.title }
 
     var registration: ViewRegistration {
         ViewRegistration(
@@ -49,11 +49,11 @@ struct FakeSupplementaryViewModel: SupplementaryViewModel {
         self.title = title
     }
 
-    nonisolated static func == (left: Self, right: Self) -> Bool {
+    static func == (left: Self, right: Self) -> Bool {
         left.title == right.title
     }
 
-    nonisolated func hash(into hasher: inout Hasher) {
+    func hash(into hasher: inout Hasher) {
         hasher.combine(self.title)
     }
 }
@@ -63,7 +63,7 @@ final class FakeSupplementaryView: UICollectionViewCell { }
 struct FakeHeaderViewModel: SupplementaryHeaderViewModel {
     let title: String
 
-    nonisolated var id: UniqueIdentifier { "Header" }
+    var id: UniqueIdentifier { "Header" }
 
     var expectationConfigureView: XCTestExpectation?
     func configure(view: FakeCollectionHeaderView) {
@@ -84,11 +84,11 @@ struct FakeHeaderViewModel: SupplementaryHeaderViewModel {
         self.title = title
     }
 
-    nonisolated static func == (left: Self, right: Self) -> Bool {
+    static func == (left: Self, right: Self) -> Bool {
         left.title == right.title
     }
 
-    nonisolated func hash(into hasher: inout Hasher) {
+    func hash(into hasher: inout Hasher) {
         hasher.combine(self.title)
     }
 }
@@ -98,7 +98,7 @@ final class FakeCollectionHeaderView: UICollectionReusableView { }
 struct FakeFooterViewModel: SupplementaryFooterViewModel {
     let title: String
 
-    nonisolated var id: UniqueIdentifier { "Footer" }
+    var id: UniqueIdentifier { "Footer" }
 
     var expectationConfigureView: XCTestExpectation?
     func configure(view: FakeCollectionFooterView) {
@@ -119,11 +119,11 @@ struct FakeFooterViewModel: SupplementaryFooterViewModel {
         self.title = title
     }
 
-    nonisolated static func == (left: Self, right: Self) -> Bool {
+    static func == (left: Self, right: Self) -> Bool {
         left.title == right.title
     }
 
-    nonisolated func hash(into hasher: inout Hasher) {
+    func hash(into hasher: inout Hasher) {
         hasher.combine(self.title)
     }
 }

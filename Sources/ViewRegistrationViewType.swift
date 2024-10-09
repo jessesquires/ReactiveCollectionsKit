@@ -43,4 +43,12 @@ public enum ViewRegistrationViewType: Hashable, Sendable {
         case .supplementary: true
         }
     }
+
+    var isHeader: Bool {
+        self.kind == CollectionViewConstants.headerKind
+    }
+
+    var isFooter: Bool {
+        self.kind == CollectionViewConstants.footerKind
+    }
 }

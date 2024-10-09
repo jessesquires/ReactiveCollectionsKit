@@ -57,6 +57,15 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
+		0B58E3F92CB72BD0001D4087 /* Exceptions for "Tests" folder in "ExampleAppUITests" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				UITests/GridUITests.swift,
+				UITests/ListUITests.swift,
+				UITests/StaticViewUITests.swift,
+			);
+			target = 0B31B95A2BCC62A5006F2078 /* ExampleAppUITests */;
+		};
 		0B8701A52CAE1D980098CB29 /* Exceptions for "Sources" folder in "ExampleApp" target */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
@@ -70,14 +79,6 @@
 				UnitTests/ExampleModelTests.swift,
 			);
 			target = 0B31B9502BCC62A5006F2078 /* ExampleAppTests */;
-		};
-		0B8701B42CAE1D9A0098CB29 /* Exceptions for "Tests" folder in "ExampleAppUITests" target */ = {
-			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
-			membershipExceptions = (
-				UITests/GridUITests.swift,
-				UITests/ListUITests.swift,
-			);
-			target = 0B31B95A2BCC62A5006F2078 /* ExampleAppUITests */;
 		};
 /* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
 
@@ -105,7 +106,7 @@
 			isa = PBXFileSystemSynchronizedRootGroup;
 			exceptions = (
 				0B8701B32CAE1D9A0098CB29 /* Exceptions for "Tests" folder in "ExampleAppTests" target */,
-				0B8701B42CAE1D9A0098CB29 /* Exceptions for "Tests" folder in "ExampleAppUITests" target */,
+				0B58E3F92CB72BD0001D4087 /* Exceptions for "Tests" folder in "ExampleAppUITests" target */,
 			);
 			path = Tests;
 			sourceTree = "<group>";

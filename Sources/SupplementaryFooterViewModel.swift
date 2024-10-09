@@ -16,7 +16,6 @@ import UIKit
 
 /// Defines a view model that describes and configures a footer view
 /// for a section in the collection view.
-@MainActor
 public protocol SupplementaryFooterViewModel: SupplementaryViewModel {
     /// The collection view footer element kind.
     static var kind: SupplementaryViewKind { get }
@@ -25,7 +24,7 @@ public protocol SupplementaryFooterViewModel: SupplementaryViewModel {
 extension SupplementaryFooterViewModel {
     /// Default implementation. Returns a section footer kind.
     public static var kind: SupplementaryViewKind {
-        UICollectionView.elementKindSectionFooter
+        CollectionViewConstants.footerKind
     }
 
     /// A default registration for this footer view model for class-based views.

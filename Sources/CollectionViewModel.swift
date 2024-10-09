@@ -15,7 +15,6 @@ import Foundation
 import UIKit
 
 /// Represents a collection view with sections and items.
-@MainActor
 public struct CollectionViewModel: Hashable, DiffableViewModel {
     /// Returns the empty collection view model.
     public static var empty: Self {
@@ -252,53 +251,39 @@ public struct CollectionViewModel: Hashable, DiffableViewModel {
 
 extension CollectionViewModel: Collection, RandomAccessCollection {
     /// :nodoc:
-    nonisolated public var count: Int {
-        MainActor.assumeIsolated {
-            self.sections.count
-        }
+    public var count: Int {
+        self.sections.count
     }
 
     /// :nodoc:
-    nonisolated public var isEmpty: Bool {
-        MainActor.assumeIsolated {
-            self.sections.isEmpty
-        }
+    public var isEmpty: Bool {
+        self.sections.isEmpty
     }
 
     /// :nodoc:
-    nonisolated public var startIndex: Int {
-        MainActor.assumeIsolated {
-            self.sections.startIndex
-        }
+    public var startIndex: Int {
+        self.sections.startIndex
     }
 
     /// :nodoc:
-    nonisolated public var endIndex: Int {
-        MainActor.assumeIsolated {
-            self.sections.endIndex
-        }
+    public var endIndex: Int {
+        self.sections.endIndex
     }
 
     /// :nodoc:
-    nonisolated public subscript(position: Int) -> SectionViewModel {
-        MainActor.assumeIsolated {
-            self.sections[position]
-        }
+    public subscript(position: Int) -> SectionViewModel {
+        self.sections[position]
     }
 
     /// :nodoc:
-    nonisolated public func index(after pos: Int) -> Int {
-        MainActor.assumeIsolated {
-            self.sections.index(after: pos)
-        }
+    public func index(after pos: Int) -> Int {
+        self.sections.index(after: pos)
     }
 }
 
 extension CollectionViewModel: CustomDebugStringConvertible {
     /// :nodoc:
-    nonisolated public var debugDescription: String {
-        MainActor.assumeIsolated {
-            collectionDebugDescription(self)
-        }
+    public var debugDescription: String {
+        collectionDebugDescription(self)
     }
 }

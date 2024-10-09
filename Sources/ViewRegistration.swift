@@ -15,8 +15,7 @@ import Foundation
 import UIKit
 
 /// Describes all information needed to register a view for reuse with a `UICollectionView`.
-@MainActor
-public struct ViewRegistration: Hashable {
+public struct ViewRegistration: Hashable, Sendable {
     /// The view reuse identifier.
     public let reuseIdentifier: String
 
@@ -44,6 +43,7 @@ public struct ViewRegistration: Hashable {
 
     // MARK: Dequeuing Views
 
+    @MainActor
     func dequeueViewFor(collectionView: UICollectionView, at indexPath: IndexPath) -> UICollectionReusableView {
         switch self.viewType {
         case .cell:
@@ -54,10 +54,12 @@ public struct ViewRegistration: Hashable {
         }
     }
 
+    @MainActor
     private func _dequeueCellFor(collectionView: UICollectionView, at indexPath: IndexPath) -> UICollectionViewCell {
         collectionView.dequeueReusableCell(withReuseIdentifier: self.reuseIdentifier, for: indexPath)
     }
 
+    @MainActor
     private func _dequeueSupplementaryViewFor(kind: String, collectionView: UICollectionView, at indexPath: IndexPath) -> UICollectionReusableView {
         collectionView.dequeueReusableSupplementaryView(
             ofKind: kind,
@@ -68,6 +70,7 @@ public struct ViewRegistration: Hashable {
 
     // MARK: Registering Views
 
+    @MainActor
     func registerWith(collectionView: UICollectionView) {
         switch self.viewType {
         case .cell:
@@ -78,6 +81,7 @@ public struct ViewRegistration: Hashable {
         }
     }
 
+    @MainActor
     private func _registerCellWith(collectionView: UICollectionView) {
         switch self.method {
         case .viewClass(let anyClass):
@@ -89,6 +93,7 @@ public struct ViewRegistration: Hashable {
         }
     }
 
+    @MainActor
     private func _registerSupplementaryView(kind: String, with collectionView: UICollectionView) {
         switch self.method {
         case .viewClass(let anyClass):

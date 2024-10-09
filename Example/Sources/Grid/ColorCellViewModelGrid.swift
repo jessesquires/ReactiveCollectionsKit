@@ -19,7 +19,7 @@ struct ColorCellViewModelGrid: CellViewModel {
 
     // MARK: CellViewModel
 
-    nonisolated var id: UniqueIdentifier { self.color.id }
+    var id: UniqueIdentifier { self.color.id }
 
     let contextMenuConfiguration: UIContextMenuConfiguration?
 
@@ -30,11 +30,11 @@ struct ColorCellViewModelGrid: CellViewModel {
 
     // MARK: Hashable
 
-    nonisolated func hash(into hasher: inout Hasher) {
+    func hash(into hasher: inout Hasher) {
         hasher.combine(self.color)
     }
 
-    nonisolated static func == (left: Self, right: Self) -> Bool {
+    static func == (left: Self, right: Self) -> Bool {
         left.color == right.color
     }
 }

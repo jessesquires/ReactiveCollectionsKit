@@ -96,11 +96,11 @@ private struct MyStaticCellViewModel: CellViewModel {
         expectation?.fulfillAndLog()
     }
 
-    nonisolated static func == (left: Self, right: Self) -> Bool {
+    static func == (left: Self, right: Self) -> Bool {
         left.name == right.name
     }
 
-    nonisolated func hash(into hasher: inout Hasher) {
+    func hash(into hasher: inout Hasher) {
         hasher.combine(self.name)
     }
 }
