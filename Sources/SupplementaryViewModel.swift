@@ -150,9 +150,9 @@ public struct AnySupplementaryViewModel: SupplementaryViewModel {
     private let _viewModel: AnyHashable
     private let _id: UniqueIdentifier
     private let _registration: ViewRegistration
-    private let _configure: @MainActor (ViewType) -> Void
-    private let _willDisplay: @MainActor () -> Void
-    private let _didEndDisplaying: @MainActor () -> Void
+    private let _configure: @Sendable @MainActor (ViewType) -> Void
+    private let _willDisplay: @Sendable @MainActor () -> Void
+    private let _didEndDisplaying: @Sendable @MainActor () -> Void
 
     // MARK: Init
 
@@ -168,9 +168,15 @@ public struct AnySupplementaryViewModel: SupplementaryViewModel {
         self._viewModel = viewModel
         self._id = viewModel.id
         self._registration = viewModel.registration
-        self._configure = viewModel._configureGeneric(view:)
-        self._willDisplay = viewModel.willDisplay
-        self._didEndDisplaying = viewModel.didEndDisplaying
+        self._configure = {
+            viewModel._configureGeneric(view: $0)
+        }
+        self._willDisplay = {
+            viewModel.willDisplay()
+        }
+        self._didEndDisplaying = {
+            viewModel.didEndDisplaying()
+        }
         self.viewClass = viewModel.viewClass
         self.reuseIdentifier = viewModel.reuseIdentifier
     }

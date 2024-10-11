@@ -251,13 +251,13 @@ public struct AnyCellViewModel: CellViewModel {
     private let _shouldDeselect: Bool
     private let _shouldHighlight: Bool
     private let _contextMenuConfiguration: UIContextMenuConfiguration?
-    private let _configure: @MainActor (CellType) -> Void
-    private let _didSelect: @MainActor (CellEventCoordinator?) -> Void
-    private let _didDeselect: @MainActor (CellEventCoordinator?) -> Void
-    private let _willDisplay: @MainActor () -> Void
-    private let _didEndDisplaying: @MainActor () -> Void
-    private let _didHighlight: @MainActor() -> Void
-    private let _didUnhighlight: @MainActor () -> Void
+    private let _configure: @Sendable @MainActor (CellType) -> Void
+    private let _didSelect: @Sendable @MainActor (CellEventCoordinator?) -> Void
+    private let _didDeselect: @Sendable @MainActor (CellEventCoordinator?) -> Void
+    private let _willDisplay: @Sendable @MainActor () -> Void
+    private let _didEndDisplaying: @Sendable @MainActor () -> Void
+    private let _didHighlight: @Sendable @MainActor() -> Void
+    private let _didUnhighlight: @Sendable @MainActor () -> Void
 
     // MARK: Init
 
@@ -277,13 +277,27 @@ public struct AnyCellViewModel: CellViewModel {
         self._shouldDeselect = viewModel.shouldDeselect
         self._shouldHighlight = viewModel.shouldHighlight
         self._contextMenuConfiguration = viewModel.contextMenuConfiguration
-        self._configure = viewModel._configureGeneric(cell:)
-        self._didSelect = viewModel.didSelect(with:)
-        self._didDeselect = viewModel.didDeselect(with:)
-        self._willDisplay = viewModel.willDisplay
-        self._didEndDisplaying = viewModel.didEndDisplaying
-        self._didHighlight = viewModel.didHighlight
-        self._didUnhighlight = viewModel.didUnhighlight
+        self._configure = {
+            viewModel._configureGeneric(cell: $0)
+        }
+        self._didSelect = {
+            viewModel.didSelect(with: $0)
+        }
+        self._didDeselect = {
+            viewModel.didDeselect(with: $0)
+        }
+        self._willDisplay = {
+            viewModel.willDisplay()
+        }
+        self._didEndDisplaying = {
+            viewModel.didEndDisplaying()
+        }
+        self._didHighlight = {
+            viewModel.didHighlight()
+        }
+        self._didUnhighlight = {
+            viewModel.didUnhighlight()
+        }
         self.cellClass = viewModel.cellClass
         self.reuseIdentifier = viewModel.reuseIdentifier
     }

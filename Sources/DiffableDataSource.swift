@@ -150,6 +150,14 @@ final class DiffableDataSource: UICollectionViewDiffableDataSource<AnyHashable, 
         self.apply(destinationSnapshot, animatingDifferences: animated) { [weak self] in
             // UIKit guarantees `completion` is called on the main queue.
             dispatchPrecondition(condition: .onQueue(.main))
+
+            guard let self else {
+                MainActor.assumeIsolated {
+                    completion?()
+                }
+                return
+            }
+
             MainActor.assumeIsolated {
                 // Once the snapshot with item reconfigures is applied,
                 // we need to find and apply supplementary view reconfigures, if needed.
@@ -176,7 +184,7 @@ final class DiffableDataSource: UICollectionViewDiffableDataSource<AnyHashable, 
                 // (e.g. "My 10 Items")
 
                 // Check all the supplementary views and reconfigure them, if needed.
-                self?._reconfigureSupplementaryViewsIfNeeded(from: source, to: destination)
+                self._reconfigureSupplementaryViewsIfNeeded(from: source, to: destination)
 
                 // Finally, we're done and can call completion.
                 completion?()
