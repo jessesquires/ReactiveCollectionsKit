@@ -5,7 +5,7 @@ The changelog for `ReactiveCollectionsKit`. Also see [the releases on GitHub](ht
 NEXT
 -----
 
-- TBA
+- Fix a performance regression. ([@lachenmayer](https://github.com/lachenmayer), [#138](https://github.com/jessesquires/ReactiveCollectionsKit/pull/138))
 
 0.1.8 - NEXT
 -----
