@@ -7,12 +7,14 @@ NEXT
 
 - TBA
 
-0.1.8 - NEXT
+0.1.8
 -----
 
 - Allow setting a `UICollectionViewDelegateFlowLayout` object to receive flow layout events from the collection view. ([@jessesquires](https://github.com/jessesquires), [#134](https://github.com/jessesquires/ReactiveCollectionsKit/pull/134))
-- Swift Concurrency improvements: `@MainActor` annotations have been removed from most top-level types and protocols, instead opting to apply `@MainActor` to individual members only where necessary. The goal is to impose fewer restrictions/burdens on clients. ([@jessesquires](https://github.com/jessesquires), [#135](https://github.com/jessesquires/ReactiveCollectionsKit/pull/135))
-- Various performance improvements. ([@jessesquires](https://github.com/jessesquires), [#136](https://github.com/jessesquires/ReactiveCollectionsKit/pull/136), [@lachenmayer](https://github.com/lachenmayer), [#138](https://github.com/jessesquires/ReactiveCollectionsKit/pull/138))
+- Swift Concurrency improvements:
+    - `@MainActor` annotations have been removed from most top-level types and protocols, instead opting to apply `@MainActor` to individual members only where necessary. ([@jessesquires](https://github.com/jessesquires), [#135](https://github.com/jessesquires/ReactiveCollectionsKit/pull/135))
+    - `DiffableViewModel` is now marked as `Sendable`. This means `Sendable` also applies to `CellViewModel`, `SupplementaryViewModel`, `SectionViewModel`, and `CollectionViewModel`. ([@jessesquires](https://github.com/jessesquires), [#137](https://github.com/jessesquires/ReactiveCollectionsKit/pull/137))
+- Various performance improvements. Notably, when configuring `CollectionViewDriver` to perform diffing on a background queue via `CollectionViewDriverOptions.diffOnBackgroundQueue`, more operations are now performed in the background that were previously running on the main thread. ([@jessesquires](https://github.com/jessesquires), [#136](https://github.com/jessesquires/ReactiveCollectionsKit/pull/136), [#137](https://github.com/jessesquires/ReactiveCollectionsKit/pull/137), [@lachenmayer](https://github.com/lachenmayer), [#138](https://github.com/jessesquires/ReactiveCollectionsKit/pull/138))
 
 0.1.7
 -----
