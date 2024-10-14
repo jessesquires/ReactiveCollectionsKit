@@ -44,4 +44,13 @@ final class TestDiffableSnapshot: UnitTestCase, @unchecked Sendable {
         XCTAssertTrue(snapshot.sectionIdentifiers.isEmpty)
         XCTAssertTrue(snapshot.itemIdentifiers.isEmpty)
     }
+
+    @MainActor
+    func test_init_perf() {
+        let model = self.fakeCollectionViewModel(numSections: 10, numCells: 10_000)
+        measure {
+            let snapshot = DiffableSnapshot(viewModel: model)
+            XCTAssertEqual(snapshot.numberOfItems, 100_000)
+        }
+    }
 }

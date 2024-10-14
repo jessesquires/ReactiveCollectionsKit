@@ -20,9 +20,9 @@ extension XCTestCase {
     @MainActor
     func fakeCollectionViewModel(
         id: String = .random,
-        sectionId: (Int) -> String = { _ in .random },
-        cellId: (Int, Int) -> String = { _, _ in .random },
-        supplementaryViewId: (Int, Int) -> String = { _, _ in .random },
+        sectionId: (Int) -> String = defaultSectionId,
+        cellId: (Int, Int) -> String = defaultCellId,
+        supplementaryViewId: (Int, Int) -> String = defaultCellId,
         numSections: Int = Int.random(in: 2...15),
         numCells: Int? = nil,
         useCellNibs: Bool = false,
@@ -53,8 +53,8 @@ extension XCTestCase {
     @MainActor
     func fakeSectionViewModel(
         id: String = .random,
-        cellId: (Int, Int) -> String = { _, _ in .random },
-        supplementaryViewId: (Int, Int) -> String = { _, _ in .random },
+        cellId: (Int, Int) -> String = defaultCellId,
+        supplementaryViewId: (Int, Int) -> String = defaultCellId,
         sectionIndex: Int = 0,
         numCells: Int = Int.random(in: 1...20),
         useCellNibs: Bool = false,
@@ -108,7 +108,7 @@ extension XCTestCase {
 
     @MainActor
     func fakeCellViewModels(
-        id: (Int, Int) -> String = { _, _ in .random },
+        id: (Int, Int) -> String = defaultCellId,
         sectionIndex: Int = 0,
         count: Int = Int.random(in: 3...20),
         useNibs: Bool = false,
@@ -181,4 +181,12 @@ extension XCTestCase {
     ) -> XCTestExpectation? {
         fields.contains(target) ? self.expectation(field: target, id: id, function: function) : nil
     }
+}
+
+private func defaultSectionId(_ index: Int) -> String {
+    "\(index)"
+}
+
+private func defaultCellId(_ sectionIndex: Int, _ itemIndex: Int) -> String {
+    "\(sectionIndex)-\(itemIndex)"
 }
