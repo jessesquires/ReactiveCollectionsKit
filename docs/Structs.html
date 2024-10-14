@@ -168,8 +168,7 @@ it is necessary to convert them to <code>AnyCellViewModel</code>.
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">@MainActor</span>
-<span class="kd">public</span> <span class="kd">struct</span> <span class="kt">AnyCellViewModel</span> <span class="p">:</span> <span class="kt"><a href="Protocols/CellViewModel.html">CellViewModel</a></span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">struct</span> <span class="kt">AnyCellViewModel</span> <span class="p">:</span> <span class="kt"><a href="Protocols/CellViewModel.html">CellViewModel</a></span></code></pre>
 <pre class="highlight swift"><code><span class="kd">extension</span> <span class="kt">AnyCellViewModel</span><span class="p">:</span> <span class="kt">Equatable</span></code></pre>
 <pre class="highlight swift"><code><span class="kd">extension</span> <span class="kt">AnyCellViewModel</span><span class="p">:</span> <span class="kt">Hashable</span></code></pre>
 <pre class="highlight swift"><code><span class="kd">extension</span> <span class="kt">AnyCellViewModel</span><span class="p">:</span> <span class="kt">CustomDebugStringConvertible</span></code></pre>
@@ -228,8 +227,7 @@ it is necessary to convert them to <code>AnyCellViewModel</code>.
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">@MainActor</span>
-<span class="kd">public</span> <span class="kd">struct</span> <span class="kt">CollectionViewModel</span> <span class="p">:</span> <span class="kt">Hashable</span><span class="p">,</span> <span class="kt"><a href="Protocols/DiffableViewModel.html">DiffableViewModel</a></span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">struct</span> <span class="kt">CollectionViewModel</span> <span class="p">:</span> <span class="kt"><a href="Protocols/DiffableViewModel.html">DiffableViewModel</a></span></code></pre>
 <pre class="highlight swift"><code><span class="kd">extension</span> <span class="kt">CollectionViewModel</span><span class="p">:</span> <span class="kt">Collection</span><span class="p">,</span> <span class="kt">RandomAccessCollection</span></code></pre>
 <pre class="highlight swift"><code><span class="kd">extension</span> <span class="kt">CollectionViewModel</span><span class="p">:</span> <span class="kt">CustomDebugStringConvertible</span></code></pre>
 
@@ -288,8 +286,7 @@ it is necessary to convert them to <code>AnyCellViewModel</code>.
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">@MainActor</span>
-<span class="kd">public</span> <span class="kd">struct</span> <span class="kt">SectionViewModel</span> <span class="p">:</span> <span class="kt"><a href="Protocols/DiffableViewModel.html">DiffableViewModel</a></span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">struct</span> <span class="kt">SectionViewModel</span> <span class="p">:</span> <span class="kt"><a href="Protocols/DiffableViewModel.html">DiffableViewModel</a></span></code></pre>
 <pre class="highlight swift"><code><span class="kd">extension</span> <span class="kt">SectionViewModel</span><span class="p">:</span> <span class="kt">Collection</span><span class="p">,</span> <span class="kt">RandomAccessCollection</span></code></pre>
 <pre class="highlight swift"><code><span class="kd">extension</span> <span class="kt">SectionViewModel</span><span class="p">:</span> <span class="kt">CustomDebugStringConvertible</span></code></pre>
 
@@ -325,8 +322,7 @@ it is necessary to convert them to <code>AnySupplementaryViewModel</code>.
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">@MainActor</span>
-<span class="kd">public</span> <span class="kd">struct</span> <span class="kt">AnySupplementaryViewModel</span> <span class="p">:</span> <span class="kt"><a href="Protocols/SupplementaryViewModel.html">SupplementaryViewModel</a></span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">struct</span> <span class="kt">AnySupplementaryViewModel</span> <span class="p">:</span> <span class="kt"><a href="Protocols/SupplementaryViewModel.html">SupplementaryViewModel</a></span></code></pre>
 <pre class="highlight swift"><code><span class="kd">extension</span> <span class="kt">AnySupplementaryViewModel</span><span class="p">:</span> <span class="kt">Equatable</span></code></pre>
 <pre class="highlight swift"><code><span class="kd">extension</span> <span class="kt">AnySupplementaryViewModel</span><span class="p">:</span> <span class="kt">Hashable</span></code></pre>
 <pre class="highlight swift"><code><span class="kd">extension</span> <span class="kt">AnySupplementaryViewModel</span><span class="p">:</span> <span class="kt">CustomDebugStringConvertible</span></code></pre>
@@ -357,8 +353,7 @@ it is necessary to convert them to <code>AnySupplementaryViewModel</code>.
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">@MainActor</span>
-<span class="kd">public</span> <span class="kd">struct</span> <span class="kt">ViewRegistration</span> <span class="p">:</span> <span class="kt">Hashable</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">struct</span> <span class="kt">ViewRegistration</span> <span class="p">:</span> <span class="kt">Hashable</span><span class="p">,</span> <span class="kt">Sendable</span></code></pre>
 
                         </div>
                       </div>
@@ -370,7 +365,7 @@ it is necessary to convert them to <code>AnySupplementaryViewModel</code>.
           </section>
         </section>
         <section id="footer">
-          <p>&copy; 2024 <a class="link" href="https://jessesquires.com" target="_blank" rel="external noopener">Jesse Squires</a>. All rights reserved. (Last updated: 2024-10-02)</p>
+          <p>&copy; 2024 <a class="link" href="https://jessesquires.com" target="_blank" rel="external noopener">Jesse Squires</a>. All rights reserved. (Last updated: 2024-10-14)</p>
           <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external noopener">jazzy ♪♫ v0.15.2</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external noopener">Realm</a> project.</p>
         </section>
       </article>
