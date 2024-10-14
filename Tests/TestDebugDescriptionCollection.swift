@@ -27,12 +27,12 @@ final class TestDebugDescriptionCollection: XCTestCase {
         XCTAssertEqual(
             viewModel1.debugDescription,
             """
-            <CollectionViewModel:
+            CollectionViewModel {
               id: viewModel_1
               sections: none
               registrations: none
               isEmpty: true
-            >
+            }
 
             """
         )
@@ -48,7 +48,7 @@ final class TestDebugDescriptionCollection: XCTestCase {
         XCTAssertEqual(
             viewModel4.debugDescription,
             """
-            <CollectionViewModel:
+            CollectionViewModel {
               id: viewModel_4
               sections:
                 [0]:
@@ -65,7 +65,7 @@ final class TestDebugDescriptionCollection: XCTestCase {
                 - FakeNumberCellViewModel (cell)
                 - FakeTextCellViewModel (cell)
               isEmpty: false
-            >
+            }
 
             """
         )
@@ -79,7 +79,7 @@ final class TestDebugDescriptionCollection: XCTestCase {
         XCTAssertEqual(
             viewModel5.debugDescription,
             """
-            <CollectionViewModel:
+            CollectionViewModel {
               id: viewModel_5
               sections:
                 [0]:
@@ -95,7 +95,7 @@ final class TestDebugDescriptionCollection: XCTestCase {
               registrations:
                 - FakeCellNibViewModel (cell)
               isEmpty: false
-            >
+            }
 
             """
         )
@@ -112,7 +112,7 @@ final class TestDebugDescriptionCollection: XCTestCase {
         XCTAssertEqual(
             viewModel6.debugDescription,
             """
-            <CollectionViewModel:
+            CollectionViewModel {
               id: viewModel_6
               sections:
                 [0]:
@@ -130,7 +130,7 @@ final class TestDebugDescriptionCollection: XCTestCase {
                 - FakeNumberCellViewModel (cell)
                 - FakeTextCellViewModel (cell)
               isEmpty: false
-            >
+            }
 
             """
         )
@@ -144,7 +144,7 @@ final class TestDebugDescriptionCollection: XCTestCase {
         XCTAssertEqual(
             viewModel7.debugDescription,
             """
-            <CollectionViewModel:
+            CollectionViewModel {
               id: viewModel_7
               sections:
                 [0]:
@@ -162,7 +162,7 @@ final class TestDebugDescriptionCollection: XCTestCase {
                 - FakeNumberCellViewModel (cell)
                 - FakeTextCellViewModel (cell)
               isEmpty: false
-            >
+            }
 
             """
         )
@@ -177,7 +177,7 @@ final class TestDebugDescriptionCollection: XCTestCase {
         XCTAssertEqual(
             viewModel8.debugDescription,
             """
-            <CollectionViewModel:
+            CollectionViewModel {
               id: viewModel_8
               sections:
                 [0]:
@@ -196,7 +196,7 @@ final class TestDebugDescriptionCollection: XCTestCase {
                 - FakeNumberCellViewModel (cell)
                 - FakeTextCellViewModel (cell)
               isEmpty: false
-            >
+            }
 
             """
         )
@@ -215,7 +215,7 @@ final class TestDebugDescriptionCollection: XCTestCase {
         XCTAssertEqual(
             viewModel9.debugDescription,
             """
-            <CollectionViewModel:
+            CollectionViewModel {
               id: viewModel_9
               sections:
                 [0]:
@@ -238,7 +238,7 @@ final class TestDebugDescriptionCollection: XCTestCase {
                 - FakeSupplementaryViewModel (FakeKind)
                 - FakeTextCellViewModel (cell)
               isEmpty: false
-            >
+            }
 
             """
         )
@@ -254,7 +254,7 @@ final class TestDebugDescriptionCollection: XCTestCase {
         XCTAssertEqual(
             viewModel12.debugDescription,
             """
-            <CollectionViewModel:
+            CollectionViewModel {
               id: viewModel_12
               sections:
                 [0]:
@@ -281,7 +281,7 @@ final class TestDebugDescriptionCollection: XCTestCase {
                 - FakeNumberCellViewModel (cell)
                 - FakeTextCellViewModel (cell)
               isEmpty: false
-            >
+            }
 
             """
         )
@@ -295,7 +295,7 @@ final class TestDebugDescriptionCollection: XCTestCase {
         XCTAssertEqual(
             viewModel13.debugDescription,
             """
-            <CollectionViewModel:
+            CollectionViewModel {
               id: viewModel_13
               sections:
                 [0]:
@@ -321,7 +321,7 @@ final class TestDebugDescriptionCollection: XCTestCase {
               registrations:
                 - FakeCellNibViewModel (cell)
               isEmpty: false
-            >
+            }
 
             """
         )
@@ -335,7 +335,7 @@ final class TestDebugDescriptionCollection: XCTestCase {
         XCTAssertEqual(
             viewModel14.debugDescription,
             """
-            <CollectionViewModel:
+            CollectionViewModel {
               id: viewModel_14
               sections:
                 [0]:
@@ -363,7 +363,7 @@ final class TestDebugDescriptionCollection: XCTestCase {
                 - FakeNumberCellViewModel (cell)
                 - FakeTextCellViewModel (cell)
               isEmpty: false
-            >
+            }
 
             """
         )
@@ -380,7 +380,7 @@ final class TestDebugDescriptionCollection: XCTestCase {
         XCTAssertEqual(
             viewModel15.debugDescription,
             """
-            <CollectionViewModel:
+            CollectionViewModel {
               id: viewModel_15
               sections:
                 [0]:
@@ -408,7 +408,7 @@ final class TestDebugDescriptionCollection: XCTestCase {
                 - FakeNumberCellViewModel (cell)
                 - FakeTextCellViewModel (cell)
               isEmpty: false
-            >
+            }
 
             """
         )
@@ -423,7 +423,7 @@ final class TestDebugDescriptionCollection: XCTestCase {
         XCTAssertEqual(
             viewModel16.debugDescription,
             """
-            <CollectionViewModel:
+            CollectionViewModel {
               id: viewModel_16
               sections:
                 [0]:
@@ -452,7 +452,7 @@ final class TestDebugDescriptionCollection: XCTestCase {
                 - FakeNumberCellViewModel (cell)
                 - FakeTextCellViewModel (cell)
               isEmpty: false
-            >
+            }
 
             """
         )
@@ -468,7 +468,7 @@ final class TestDebugDescriptionCollection: XCTestCase {
         XCTAssertEqual(
             viewModel17.debugDescription,
             """
-            <CollectionViewModel:
+            CollectionViewModel {
               id: viewModel_17
               sections:
                 [0]:
@@ -504,7 +504,7 @@ final class TestDebugDescriptionCollection: XCTestCase {
                 - FakeSupplementaryViewModel (FakeKind)
                 - FakeTextCellViewModel (cell)
               isEmpty: false
-            >
+            }
 
             """
         )

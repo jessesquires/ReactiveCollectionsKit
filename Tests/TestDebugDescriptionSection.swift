@@ -26,7 +26,7 @@ final class TestDebugDescriptionSection: XCTestCase {
         XCTAssertEqual(
             viewModel1.debugDescription,
             """
-            <SectionViewModel:
+            SectionViewModel {
               id: viewModel_1
               header: nil
               footer: nil
@@ -34,7 +34,7 @@ final class TestDebugDescriptionSection: XCTestCase {
               supplementary views: none
               registrations: none
               isEmpty: true
-            >
+            }
 
             """
         )
@@ -49,7 +49,7 @@ final class TestDebugDescriptionSection: XCTestCase {
         XCTAssertEqual(
             viewModel2.debugDescription,
             """
-            <SectionViewModel:
+            SectionViewModel {
               id: viewModel_2
               header: nil
               footer: nil
@@ -59,7 +59,7 @@ final class TestDebugDescriptionSection: XCTestCase {
               registrations:
                 - FakeNumberCellViewModel (cell)
               isEmpty: false
-            >
+            }
 
             """
         )
@@ -74,7 +74,7 @@ final class TestDebugDescriptionSection: XCTestCase {
         XCTAssertEqual(
             viewModel4.debugDescription,
             """
-            <SectionViewModel:
+            SectionViewModel {
               id: viewModel_4
               header: nil
               footer: nil
@@ -87,7 +87,7 @@ final class TestDebugDescriptionSection: XCTestCase {
                 - FakeNumberCellViewModel (cell)
                 - FakeTextCellViewModel (cell)
               isEmpty: false
-            >
+            }
 
             """
         )
@@ -100,7 +100,7 @@ final class TestDebugDescriptionSection: XCTestCase {
         XCTAssertEqual(
             viewModel5.debugDescription,
             """
-            <SectionViewModel:
+            SectionViewModel {
               id: viewModel_5
               header: nil
               footer: nil
@@ -112,7 +112,7 @@ final class TestDebugDescriptionSection: XCTestCase {
               registrations:
                 - FakeCellNibViewModel (cell)
               isEmpty: false
-            >
+            }
 
             """
         )
@@ -128,7 +128,7 @@ final class TestDebugDescriptionSection: XCTestCase {
         XCTAssertEqual(
             viewModel6.debugDescription,
             """
-            <SectionViewModel:
+            SectionViewModel {
               id: viewModel_6
               header: Header (FakeHeaderViewModel)
               footer: nil
@@ -142,7 +142,7 @@ final class TestDebugDescriptionSection: XCTestCase {
                 - FakeNumberCellViewModel (cell)
                 - FakeTextCellViewModel (cell)
               isEmpty: false
-            >
+            }
 
             """
         )
@@ -155,7 +155,7 @@ final class TestDebugDescriptionSection: XCTestCase {
         XCTAssertEqual(
             viewModel7.debugDescription,
             """
-            <SectionViewModel:
+            SectionViewModel {
               id: viewModel_7
               header: nil
               footer: Footer (FakeFooterViewModel)
@@ -169,7 +169,7 @@ final class TestDebugDescriptionSection: XCTestCase {
                 - FakeNumberCellViewModel (cell)
                 - FakeTextCellViewModel (cell)
               isEmpty: false
-            >
+            }
 
             """
         )
@@ -183,7 +183,7 @@ final class TestDebugDescriptionSection: XCTestCase {
         XCTAssertEqual(
             viewModel8.debugDescription,
             """
-            <SectionViewModel:
+            SectionViewModel {
               id: viewModel_8
               header: Header (FakeHeaderViewModel)
               footer: Footer (FakeFooterViewModel)
@@ -198,7 +198,7 @@ final class TestDebugDescriptionSection: XCTestCase {
                 - FakeNumberCellViewModel (cell)
                 - FakeTextCellViewModel (cell)
               isEmpty: false
-            >
+            }
 
             """
         )
@@ -213,7 +213,7 @@ final class TestDebugDescriptionSection: XCTestCase {
         XCTAssertEqual(
             viewModel9.debugDescription,
             """
-            <SectionViewModel:
+            SectionViewModel {
               id: viewModel_9
               header: Header (FakeHeaderViewModel)
               footer: Footer (FakeFooterViewModel)
@@ -232,7 +232,7 @@ final class TestDebugDescriptionSection: XCTestCase {
                 - FakeSupplementaryViewModel (FakeKind)
                 - FakeTextCellViewModel (cell)
               isEmpty: false
-            >
+            }
 
             """
         )

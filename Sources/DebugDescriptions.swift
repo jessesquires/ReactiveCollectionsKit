@@ -43,7 +43,7 @@ private func debugDescriptionBuilder<Target: TextOutputStream>(
     for (element, indent) in elements {
         switch element {
         case let .type(type):
-            buildString("<\(type):", indent: indent, to: &output)
+            buildString("\(type) {", indent: indent, to: &output)
 
         case let .index(index):
             buildString("[\(index)]:", indent: indent, to: &output)
@@ -124,7 +124,7 @@ private func debugDescriptionBuilder<Target: TextOutputStream>(
             buildString("isEmpty: \(isEmpty)", indent: indent, to: &output)
 
         case .end:
-            buildString(">", indent: indent, to: &output)
+            buildString("}", indent: indent, to: &output)
         }
     }
 }
