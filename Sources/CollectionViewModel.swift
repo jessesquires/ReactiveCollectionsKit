@@ -15,7 +15,7 @@ import Foundation
 import UIKit
 
 /// Represents a collection view with sections and items.
-public struct CollectionViewModel: Hashable, DiffableViewModel {
+public struct CollectionViewModel: DiffableViewModel {
     /// Returns the empty collection view model.
     public static var empty: Self {
         Self(id: "com.ReactiveCollectionsKit.CollectionViewModel.empty")
