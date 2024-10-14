@@ -19,7 +19,7 @@ final class TestDebugDescriptionCollection: XCTestCase {
 
     @MainActor
     func test_empty() {
-        let viewModel1 = generateCollectionWithKnownIds(
+        let viewModel1 = self.fakeCollectionViewModel(
             id: "viewModel_1",
             numSections: 0,
             numCells: 0
@@ -28,7 +28,7 @@ final class TestDebugDescriptionCollection: XCTestCase {
             viewModel1.debugDescription,
             """
             <CollectionViewModel:
-              id: collection_viewModel_1
+              id: viewModel_1
               sections: none
               registrations: none
               isEmpty: true
@@ -40,7 +40,7 @@ final class TestDebugDescriptionCollection: XCTestCase {
 
     @MainActor
     func test_oneSection() {
-        let viewModel4 = generateCollectionWithKnownIds(
+        let viewModel4 = self.fakeCollectionViewModel(
             id: "viewModel_4",
             numSections: 1,
             numCells: 3
@@ -49,16 +49,16 @@ final class TestDebugDescriptionCollection: XCTestCase {
             viewModel4.debugDescription,
             """
             <CollectionViewModel:
-              id: collection_viewModel_4
+              id: viewModel_4
               sections:
                 [0]:
                   id: section_0
                   header: nil
                   footer: nil
                   cells:
-                    [0]: cell_0_section_0 (FakeNumberCellViewModel)
-                    [1]: cell_1_section_0 (FakeTextCellViewModel)
-                    [2]: cell_2_section_0 (FakeNumberCellViewModel)
+                    [0]: cell_0_0 (FakeNumberCellViewModel)
+                    [1]: cell_0_1 (FakeTextCellViewModel)
+                    [2]: cell_0_2 (FakeNumberCellViewModel)
                   supplementary views: none
                   isEmpty: false
               registrations:
@@ -70,7 +70,7 @@ final class TestDebugDescriptionCollection: XCTestCase {
             """
         )
 
-        let viewModel5 = generateCollectionWithKnownIds(
+        let viewModel5 = self.fakeCollectionViewModel(
             id: "viewModel_5",
             numSections: 1,
             numCells: 3,
@@ -80,16 +80,16 @@ final class TestDebugDescriptionCollection: XCTestCase {
             viewModel5.debugDescription,
             """
             <CollectionViewModel:
-              id: collection_viewModel_5
+              id: viewModel_5
               sections:
                 [0]:
                   id: section_0
                   header: nil
                   footer: nil
                   cells:
-                    [0]: cell_0_section_0 (FakeCellNibViewModel)
-                    [1]: cell_1_section_0 (FakeCellNibViewModel)
-                    [2]: cell_2_section_0 (FakeCellNibViewModel)
+                    [0]: cell_0_0 (FakeCellNibViewModel)
+                    [1]: cell_0_1 (FakeCellNibViewModel)
+                    [2]: cell_0_2 (FakeCellNibViewModel)
                   supplementary views: none
                   isEmpty: false
               registrations:
@@ -103,7 +103,7 @@ final class TestDebugDescriptionCollection: XCTestCase {
 
     @MainActor
     func test_section_withHeaderFooter() {
-        let viewModel6 = generateCollectionWithKnownIds(
+        let viewModel6 = self.fakeCollectionViewModel(
             id: "viewModel_6",
             numSections: 1,
             numCells: 3,
@@ -113,16 +113,16 @@ final class TestDebugDescriptionCollection: XCTestCase {
             viewModel6.debugDescription,
             """
             <CollectionViewModel:
-              id: collection_viewModel_6
+              id: viewModel_6
               sections:
                 [0]:
                   id: section_0
                   header: Header (FakeHeaderViewModel)
                   footer: nil
                   cells:
-                    [0]: cell_0_section_0 (FakeNumberCellViewModel)
-                    [1]: cell_1_section_0 (FakeTextCellViewModel)
-                    [2]: cell_2_section_0 (FakeNumberCellViewModel)
+                    [0]: cell_0_0 (FakeNumberCellViewModel)
+                    [1]: cell_0_1 (FakeTextCellViewModel)
+                    [2]: cell_0_2 (FakeNumberCellViewModel)
                   supplementary views: none
                   isEmpty: false
               registrations:
@@ -135,7 +135,7 @@ final class TestDebugDescriptionCollection: XCTestCase {
             """
         )
 
-        let viewModel7 = generateCollectionWithKnownIds(
+        let viewModel7 = self.fakeCollectionViewModel(
             id: "viewModel_7",
             numSections: 1,
             numCells: 3,
@@ -145,16 +145,16 @@ final class TestDebugDescriptionCollection: XCTestCase {
             viewModel7.debugDescription,
             """
             <CollectionViewModel:
-              id: collection_viewModel_7
+              id: viewModel_7
               sections:
                 [0]:
                   id: section_0
                   header: nil
                   footer: Footer (FakeFooterViewModel)
                   cells:
-                    [0]: cell_0_section_0 (FakeNumberCellViewModel)
-                    [1]: cell_1_section_0 (FakeTextCellViewModel)
-                    [2]: cell_2_section_0 (FakeNumberCellViewModel)
+                    [0]: cell_0_0 (FakeNumberCellViewModel)
+                    [1]: cell_0_1 (FakeTextCellViewModel)
+                    [2]: cell_0_2 (FakeNumberCellViewModel)
                   supplementary views: none
                   isEmpty: false
               registrations:
@@ -167,7 +167,7 @@ final class TestDebugDescriptionCollection: XCTestCase {
             """
         )
 
-        let viewModel8 = generateCollectionWithKnownIds(
+        let viewModel8 = self.fakeCollectionViewModel(
             id: "viewModel_8",
             numSections: 1,
             numCells: 3,
@@ -178,16 +178,16 @@ final class TestDebugDescriptionCollection: XCTestCase {
             viewModel8.debugDescription,
             """
             <CollectionViewModel:
-              id: collection_viewModel_8
+              id: viewModel_8
               sections:
                 [0]:
                   id: section_0
                   header: Header (FakeHeaderViewModel)
                   footer: Footer (FakeFooterViewModel)
                   cells:
-                    [0]: cell_0_section_0 (FakeNumberCellViewModel)
-                    [1]: cell_1_section_0 (FakeTextCellViewModel)
-                    [2]: cell_2_section_0 (FakeNumberCellViewModel)
+                    [0]: cell_0_0 (FakeNumberCellViewModel)
+                    [1]: cell_0_1 (FakeTextCellViewModel)
+                    [2]: cell_0_2 (FakeNumberCellViewModel)
                   supplementary views: none
                   isEmpty: false
               registrations:
@@ -204,7 +204,7 @@ final class TestDebugDescriptionCollection: XCTestCase {
 
     @MainActor
     func test_section_withSupplementaryViews() {
-        let viewModel9 = generateCollectionWithKnownIds(
+        let viewModel9 = self.fakeCollectionViewModel(
             id: "viewModel_9",
             numSections: 1,
             numCells: 3,
@@ -216,20 +216,20 @@ final class TestDebugDescriptionCollection: XCTestCase {
             viewModel9.debugDescription,
             """
             <CollectionViewModel:
-              id: collection_viewModel_9
+              id: viewModel_9
               sections:
                 [0]:
                   id: section_0
                   header: Header (FakeHeaderViewModel)
                   footer: Footer (FakeFooterViewModel)
                   cells:
-                    [0]: cell_0_section_0 (FakeNumberCellViewModel)
-                    [1]: cell_1_section_0 (FakeTextCellViewModel)
-                    [2]: cell_2_section_0 (FakeNumberCellViewModel)
+                    [0]: cell_0_0 (FakeNumberCellViewModel)
+                    [1]: cell_0_1 (FakeTextCellViewModel)
+                    [2]: cell_0_2 (FakeNumberCellViewModel)
                   supplementary views:
-                    [0]: supplementaryView_0_section_0 (FakeSupplementaryViewModel)
-                    [1]: supplementaryView_1_section_0 (FakeSupplementaryViewModel)
-                    [2]: supplementaryView_2_section_0 (FakeSupplementaryViewModel)
+                    [0]: view_0_0 (FakeSupplementaryViewModel)
+                    [1]: view_0_1 (FakeSupplementaryViewModel)
+                    [2]: view_0_2 (FakeSupplementaryViewModel)
                   isEmpty: false
               registrations:
                 - FakeFooterViewModel (UICollectionElementKindSectionFooter)
@@ -246,7 +246,7 @@ final class TestDebugDescriptionCollection: XCTestCase {
 
     @MainActor
     func test_multiple_sections() {
-        let viewModel12 = generateCollectionWithKnownIds(
+        let viewModel12 = self.fakeCollectionViewModel(
             id: "viewModel_12",
             numSections: 2,
             numCells: 3
@@ -255,16 +255,16 @@ final class TestDebugDescriptionCollection: XCTestCase {
             viewModel12.debugDescription,
             """
             <CollectionViewModel:
-              id: collection_viewModel_12
+              id: viewModel_12
               sections:
                 [0]:
                   id: section_0
                   header: nil
                   footer: nil
                   cells:
-                    [0]: cell_0_section_0 (FakeNumberCellViewModel)
-                    [1]: cell_1_section_0 (FakeTextCellViewModel)
-                    [2]: cell_2_section_0 (FakeNumberCellViewModel)
+                    [0]: cell_0_0 (FakeNumberCellViewModel)
+                    [1]: cell_0_1 (FakeTextCellViewModel)
+                    [2]: cell_0_2 (FakeNumberCellViewModel)
                   supplementary views: none
                   isEmpty: false
                 [1]:
@@ -272,9 +272,9 @@ final class TestDebugDescriptionCollection: XCTestCase {
                   header: nil
                   footer: nil
                   cells:
-                    [0]: cell_0_section_1 (FakeNumberCellViewModel)
-                    [1]: cell_1_section_1 (FakeTextCellViewModel)
-                    [2]: cell_2_section_1 (FakeNumberCellViewModel)
+                    [0]: cell_1_0 (FakeNumberCellViewModel)
+                    [1]: cell_1_1 (FakeTextCellViewModel)
+                    [2]: cell_1_2 (FakeNumberCellViewModel)
                   supplementary views: none
                   isEmpty: false
               registrations:
@@ -286,7 +286,7 @@ final class TestDebugDescriptionCollection: XCTestCase {
             """
         )
 
-        let viewModel13 = generateCollectionWithKnownIds(
+        let viewModel13 = self.fakeCollectionViewModel(
             id: "viewModel_13",
             numSections: 2,
             numCells: 3,
@@ -296,16 +296,16 @@ final class TestDebugDescriptionCollection: XCTestCase {
             viewModel13.debugDescription,
             """
             <CollectionViewModel:
-              id: collection_viewModel_13
+              id: viewModel_13
               sections:
                 [0]:
                   id: section_0
                   header: nil
                   footer: nil
                   cells:
-                    [0]: cell_0_section_0 (FakeCellNibViewModel)
-                    [1]: cell_1_section_0 (FakeCellNibViewModel)
-                    [2]: cell_2_section_0 (FakeCellNibViewModel)
+                    [0]: cell_0_0 (FakeCellNibViewModel)
+                    [1]: cell_0_1 (FakeCellNibViewModel)
+                    [2]: cell_0_2 (FakeCellNibViewModel)
                   supplementary views: none
                   isEmpty: false
                 [1]:
@@ -313,9 +313,9 @@ final class TestDebugDescriptionCollection: XCTestCase {
                   header: nil
                   footer: nil
                   cells:
-                    [0]: cell_0_section_1 (FakeCellNibViewModel)
-                    [1]: cell_1_section_1 (FakeCellNibViewModel)
-                    [2]: cell_2_section_1 (FakeCellNibViewModel)
+                    [0]: cell_1_0 (FakeCellNibViewModel)
+                    [1]: cell_1_1 (FakeCellNibViewModel)
+                    [2]: cell_1_2 (FakeCellNibViewModel)
                   supplementary views: none
                   isEmpty: false
               registrations:
@@ -326,7 +326,7 @@ final class TestDebugDescriptionCollection: XCTestCase {
             """
         )
 
-        let viewModel14 = generateCollectionWithKnownIds(
+        let viewModel14 = self.fakeCollectionViewModel(
             id: "viewModel_14",
             numSections: 2,
             numCells: 3,
@@ -336,16 +336,16 @@ final class TestDebugDescriptionCollection: XCTestCase {
             viewModel14.debugDescription,
             """
             <CollectionViewModel:
-              id: collection_viewModel_14
+              id: viewModel_14
               sections:
                 [0]:
                   id: section_0
                   header: Header (FakeHeaderViewModel)
                   footer: nil
                   cells:
-                    [0]: cell_0_section_0 (FakeNumberCellViewModel)
-                    [1]: cell_1_section_0 (FakeTextCellViewModel)
-                    [2]: cell_2_section_0 (FakeNumberCellViewModel)
+                    [0]: cell_0_0 (FakeNumberCellViewModel)
+                    [1]: cell_0_1 (FakeTextCellViewModel)
+                    [2]: cell_0_2 (FakeNumberCellViewModel)
                   supplementary views: none
                   isEmpty: false
                 [1]:
@@ -353,9 +353,9 @@ final class TestDebugDescriptionCollection: XCTestCase {
                   header: Header (FakeHeaderViewModel)
                   footer: nil
                   cells:
-                    [0]: cell_0_section_1 (FakeNumberCellViewModel)
-                    [1]: cell_1_section_1 (FakeTextCellViewModel)
-                    [2]: cell_2_section_1 (FakeNumberCellViewModel)
+                    [0]: cell_1_0 (FakeNumberCellViewModel)
+                    [1]: cell_1_1 (FakeTextCellViewModel)
+                    [2]: cell_1_2 (FakeNumberCellViewModel)
                   supplementary views: none
                   isEmpty: false
               registrations:
@@ -371,7 +371,7 @@ final class TestDebugDescriptionCollection: XCTestCase {
 
     @MainActor
     func test_multiple_sections_withSupplementaryViews() {
-        let viewModel15 = generateCollectionWithKnownIds(
+        let viewModel15 = self.fakeCollectionViewModel(
             id: "viewModel_15",
             numSections: 2,
             numCells: 3,
@@ -381,16 +381,16 @@ final class TestDebugDescriptionCollection: XCTestCase {
             viewModel15.debugDescription,
             """
             <CollectionViewModel:
-              id: collection_viewModel_15
+              id: viewModel_15
               sections:
                 [0]:
                   id: section_0
                   header: nil
                   footer: Footer (FakeFooterViewModel)
                   cells:
-                    [0]: cell_0_section_0 (FakeNumberCellViewModel)
-                    [1]: cell_1_section_0 (FakeTextCellViewModel)
-                    [2]: cell_2_section_0 (FakeNumberCellViewModel)
+                    [0]: cell_0_0 (FakeNumberCellViewModel)
+                    [1]: cell_0_1 (FakeTextCellViewModel)
+                    [2]: cell_0_2 (FakeNumberCellViewModel)
                   supplementary views: none
                   isEmpty: false
                 [1]:
@@ -398,9 +398,9 @@ final class TestDebugDescriptionCollection: XCTestCase {
                   header: nil
                   footer: Footer (FakeFooterViewModel)
                   cells:
-                    [0]: cell_0_section_1 (FakeNumberCellViewModel)
-                    [1]: cell_1_section_1 (FakeTextCellViewModel)
-                    [2]: cell_2_section_1 (FakeNumberCellViewModel)
+                    [0]: cell_1_0 (FakeNumberCellViewModel)
+                    [1]: cell_1_1 (FakeTextCellViewModel)
+                    [2]: cell_1_2 (FakeNumberCellViewModel)
                   supplementary views: none
                   isEmpty: false
               registrations:
@@ -413,7 +413,7 @@ final class TestDebugDescriptionCollection: XCTestCase {
             """
         )
 
-        let viewModel16 = generateCollectionWithKnownIds(
+        let viewModel16 = self.fakeCollectionViewModel(
             id: "viewModel_16",
             numSections: 2,
             numCells: 3,
@@ -424,16 +424,16 @@ final class TestDebugDescriptionCollection: XCTestCase {
             viewModel16.debugDescription,
             """
             <CollectionViewModel:
-              id: collection_viewModel_16
+              id: viewModel_16
               sections:
                 [0]:
                   id: section_0
                   header: Header (FakeHeaderViewModel)
                   footer: Footer (FakeFooterViewModel)
                   cells:
-                    [0]: cell_0_section_0 (FakeNumberCellViewModel)
-                    [1]: cell_1_section_0 (FakeTextCellViewModel)
-                    [2]: cell_2_section_0 (FakeNumberCellViewModel)
+                    [0]: cell_0_0 (FakeNumberCellViewModel)
+                    [1]: cell_0_1 (FakeTextCellViewModel)
+                    [2]: cell_0_2 (FakeNumberCellViewModel)
                   supplementary views: none
                   isEmpty: false
                 [1]:
@@ -441,9 +441,9 @@ final class TestDebugDescriptionCollection: XCTestCase {
                   header: Header (FakeHeaderViewModel)
                   footer: Footer (FakeFooterViewModel)
                   cells:
-                    [0]: cell_0_section_1 (FakeNumberCellViewModel)
-                    [1]: cell_1_section_1 (FakeTextCellViewModel)
-                    [2]: cell_2_section_1 (FakeNumberCellViewModel)
+                    [0]: cell_1_0 (FakeNumberCellViewModel)
+                    [1]: cell_1_1 (FakeTextCellViewModel)
+                    [2]: cell_1_2 (FakeNumberCellViewModel)
                   supplementary views: none
                   isEmpty: false
               registrations:
@@ -457,7 +457,7 @@ final class TestDebugDescriptionCollection: XCTestCase {
             """
         )
 
-        let viewModel17 = generateCollectionWithKnownIds(
+        let viewModel17 = self.fakeCollectionViewModel(
             id: "viewModel_17",
             numSections: 2,
             numCells: 3,
@@ -469,33 +469,33 @@ final class TestDebugDescriptionCollection: XCTestCase {
             viewModel17.debugDescription,
             """
             <CollectionViewModel:
-              id: collection_viewModel_17
+              id: viewModel_17
               sections:
                 [0]:
                   id: section_0
                   header: Header (FakeHeaderViewModel)
                   footer: Footer (FakeFooterViewModel)
                   cells:
-                    [0]: cell_0_section_0 (FakeNumberCellViewModel)
-                    [1]: cell_1_section_0 (FakeTextCellViewModel)
-                    [2]: cell_2_section_0 (FakeNumberCellViewModel)
+                    [0]: cell_0_0 (FakeNumberCellViewModel)
+                    [1]: cell_0_1 (FakeTextCellViewModel)
+                    [2]: cell_0_2 (FakeNumberCellViewModel)
                   supplementary views:
-                    [0]: supplementaryView_0_section_0 (FakeSupplementaryViewModel)
-                    [1]: supplementaryView_1_section_0 (FakeSupplementaryViewModel)
-                    [2]: supplementaryView_2_section_0 (FakeSupplementaryViewModel)
+                    [0]: view_0_0 (FakeSupplementaryViewModel)
+                    [1]: view_0_1 (FakeSupplementaryViewModel)
+                    [2]: view_0_2 (FakeSupplementaryViewModel)
                   isEmpty: false
                 [1]:
                   id: section_1
                   header: Header (FakeHeaderViewModel)
                   footer: Footer (FakeFooterViewModel)
                   cells:
-                    [0]: cell_0_section_1 (FakeNumberCellViewModel)
-                    [1]: cell_1_section_1 (FakeTextCellViewModel)
-                    [2]: cell_2_section_1 (FakeNumberCellViewModel)
+                    [0]: cell_1_0 (FakeNumberCellViewModel)
+                    [1]: cell_1_1 (FakeTextCellViewModel)
+                    [2]: cell_1_2 (FakeNumberCellViewModel)
                   supplementary views:
-                    [0]: supplementaryView_0_section_1 (FakeSupplementaryViewModel)
-                    [1]: supplementaryView_1_section_1 (FakeSupplementaryViewModel)
-                    [2]: supplementaryView_2_section_1 (FakeSupplementaryViewModel)
+                    [0]: view_1_0 (FakeSupplementaryViewModel)
+                    [1]: view_1_1 (FakeSupplementaryViewModel)
+                    [2]: view_1_2 (FakeSupplementaryViewModel)
                   isEmpty: false
               registrations:
                 - FakeFooterViewModel (UICollectionElementKindSectionFooter)
@@ -507,32 +507,6 @@ final class TestDebugDescriptionCollection: XCTestCase {
             >
 
             """
-        )
-    }
-}
-
-extension TestDebugDescriptionCollection {
-    @MainActor
-    func generateCollectionWithKnownIds(
-        id: String,
-        numSections: Int,
-        numCells: Int,
-        useCellNibs: Bool = false,
-        includeHeader: Bool = false,
-        includeFooter: Bool = false,
-        includeSupplementaryViews: Bool = false
-    ) -> CollectionViewModel {
-        fakeCollectionViewModel(
-            id: id,
-            sectionId: { sectionIndex in "\(sectionIndex)" },
-            cellId: { sectionIndex, cellIndex in "cell_\(cellIndex)_section_\(sectionIndex)" },
-            supplementaryViewId: { sectionIndex, cellIndex in "supplementaryView_\(cellIndex)_section_\(sectionIndex)" },
-            numSections: numSections,
-            numCells: numCells,
-            useCellNibs: useCellNibs,
-            includeHeader: includeHeader,
-            includeFooter: includeFooter,
-            includeSupplementaryViews: includeSupplementaryViews
         )
     }
 }

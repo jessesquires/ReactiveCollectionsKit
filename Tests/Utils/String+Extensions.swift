@@ -15,6 +15,6 @@ import Foundation
 
 extension String {
     static var random: String {
-        String(UUID().uuidString.dropLast(28))
+        String(UUID().uuidString)
     }
 }

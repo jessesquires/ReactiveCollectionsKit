@@ -19,7 +19,7 @@ final class TestDebugDescriptionSection: XCTestCase {
 
     @MainActor
     func test_empty() {
-        let viewModel1 = generateSectionWithKnownIds(
+        let viewModel1 = fakeSectionViewModel(
             id: "viewModel_1",
             numCells: 0
         )
@@ -27,7 +27,7 @@ final class TestDebugDescriptionSection: XCTestCase {
             viewModel1.debugDescription,
             """
             <SectionViewModel:
-              id: section_viewModel_1
+              id: viewModel_1
               header: nil
               footer: nil
               cells: none
@@ -42,7 +42,7 @@ final class TestDebugDescriptionSection: XCTestCase {
 
     @MainActor
     func test_oneCell() {
-        let viewModel2 = generateSectionWithKnownIds(
+        let viewModel2 = fakeSectionViewModel(
             id: "viewModel_2",
             numCells: 1
         )
@@ -50,11 +50,11 @@ final class TestDebugDescriptionSection: XCTestCase {
             viewModel2.debugDescription,
             """
             <SectionViewModel:
-              id: section_viewModel_2
+              id: viewModel_2
               header: nil
               footer: nil
               cells:
-                [0]: cell_0 (FakeNumberCellViewModel)
+                [0]: cell_0_0 (FakeNumberCellViewModel)
               supplementary views: none
               registrations:
                 - FakeNumberCellViewModel (cell)
@@ -67,7 +67,7 @@ final class TestDebugDescriptionSection: XCTestCase {
 
     @MainActor
     func test_multipleCells() {
-        let viewModel4 = generateSectionWithKnownIds(
+        let viewModel4 = fakeSectionViewModel(
             id: "viewModel_4",
             numCells: 3
         )
@@ -75,13 +75,13 @@ final class TestDebugDescriptionSection: XCTestCase {
             viewModel4.debugDescription,
             """
             <SectionViewModel:
-              id: section_viewModel_4
+              id: viewModel_4
               header: nil
               footer: nil
               cells:
-                [0]: cell_0 (FakeNumberCellViewModel)
-                [1]: cell_1 (FakeTextCellViewModel)
-                [2]: cell_2 (FakeNumberCellViewModel)
+                [0]: cell_0_0 (FakeNumberCellViewModel)
+                [1]: cell_0_1 (FakeTextCellViewModel)
+                [2]: cell_0_2 (FakeNumberCellViewModel)
               supplementary views: none
               registrations:
                 - FakeNumberCellViewModel (cell)
@@ -92,7 +92,7 @@ final class TestDebugDescriptionSection: XCTestCase {
             """
         )
 
-        let viewModel5 = generateSectionWithKnownIds(
+        let viewModel5 = fakeSectionViewModel(
             id: "viewModel_5",
             numCells: 3,
             useCellNibs: true
@@ -101,13 +101,13 @@ final class TestDebugDescriptionSection: XCTestCase {
             viewModel5.debugDescription,
             """
             <SectionViewModel:
-              id: section_viewModel_5
+              id: viewModel_5
               header: nil
               footer: nil
               cells:
-                [0]: cell_0 (FakeCellNibViewModel)
-                [1]: cell_1 (FakeCellNibViewModel)
-                [2]: cell_2 (FakeCellNibViewModel)
+                [0]: cell_0_0 (FakeCellNibViewModel)
+                [1]: cell_0_1 (FakeCellNibViewModel)
+                [2]: cell_0_2 (FakeCellNibViewModel)
               supplementary views: none
               registrations:
                 - FakeCellNibViewModel (cell)
@@ -120,7 +120,7 @@ final class TestDebugDescriptionSection: XCTestCase {
 
     @MainActor
     func test_multipleCells_withSupplementaryViews() {
-        let viewModel6 = generateSectionWithKnownIds(
+        let viewModel6 = fakeSectionViewModel(
             id: "viewModel_6",
             numCells: 3,
             includeHeader: true
@@ -129,13 +129,13 @@ final class TestDebugDescriptionSection: XCTestCase {
             viewModel6.debugDescription,
             """
             <SectionViewModel:
-              id: section_viewModel_6
+              id: viewModel_6
               header: Header (FakeHeaderViewModel)
               footer: nil
               cells:
-                [0]: cell_0 (FakeNumberCellViewModel)
-                [1]: cell_1 (FakeTextCellViewModel)
-                [2]: cell_2 (FakeNumberCellViewModel)
+                [0]: cell_0_0 (FakeNumberCellViewModel)
+                [1]: cell_0_1 (FakeTextCellViewModel)
+                [2]: cell_0_2 (FakeNumberCellViewModel)
               supplementary views: none
               registrations:
                 - FakeHeaderViewModel (UICollectionElementKindSectionHeader)
@@ -147,7 +147,7 @@ final class TestDebugDescriptionSection: XCTestCase {
             """
         )
 
-        let viewModel7 = generateSectionWithKnownIds(
+        let viewModel7 = fakeSectionViewModel(
             id: "viewModel_7",
             numCells: 3,
             includeFooter: true
@@ -156,13 +156,13 @@ final class TestDebugDescriptionSection: XCTestCase {
             viewModel7.debugDescription,
             """
             <SectionViewModel:
-              id: section_viewModel_7
+              id: viewModel_7
               header: nil
               footer: Footer (FakeFooterViewModel)
               cells:
-                [0]: cell_0 (FakeNumberCellViewModel)
-                [1]: cell_1 (FakeTextCellViewModel)
-                [2]: cell_2 (FakeNumberCellViewModel)
+                [0]: cell_0_0 (FakeNumberCellViewModel)
+                [1]: cell_0_1 (FakeTextCellViewModel)
+                [2]: cell_0_2 (FakeNumberCellViewModel)
               supplementary views: none
               registrations:
                 - FakeFooterViewModel (UICollectionElementKindSectionFooter)
@@ -174,7 +174,7 @@ final class TestDebugDescriptionSection: XCTestCase {
             """
         )
 
-        let viewModel8 = generateSectionWithKnownIds(
+        let viewModel8 = fakeSectionViewModel(
             id: "viewModel_8",
             numCells: 3,
             includeHeader: true,
@@ -184,13 +184,13 @@ final class TestDebugDescriptionSection: XCTestCase {
             viewModel8.debugDescription,
             """
             <SectionViewModel:
-              id: section_viewModel_8
+              id: viewModel_8
               header: Header (FakeHeaderViewModel)
               footer: Footer (FakeFooterViewModel)
               cells:
-                [0]: cell_0 (FakeNumberCellViewModel)
-                [1]: cell_1 (FakeTextCellViewModel)
-                [2]: cell_2 (FakeNumberCellViewModel)
+                [0]: cell_0_0 (FakeNumberCellViewModel)
+                [1]: cell_0_1 (FakeTextCellViewModel)
+                [2]: cell_0_2 (FakeNumberCellViewModel)
               supplementary views: none
               registrations:
                 - FakeFooterViewModel (UICollectionElementKindSectionFooter)
@@ -203,7 +203,7 @@ final class TestDebugDescriptionSection: XCTestCase {
             """
         )
 
-        let viewModel9 = generateSectionWithKnownIds(
+        let viewModel9 = fakeSectionViewModel(
             id: "viewModel_9",
             numCells: 3,
             includeHeader: true,
@@ -214,17 +214,17 @@ final class TestDebugDescriptionSection: XCTestCase {
             viewModel9.debugDescription,
             """
             <SectionViewModel:
-              id: section_viewModel_9
+              id: viewModel_9
               header: Header (FakeHeaderViewModel)
               footer: Footer (FakeFooterViewModel)
               cells:
-                [0]: cell_0 (FakeNumberCellViewModel)
-                [1]: cell_1 (FakeTextCellViewModel)
-                [2]: cell_2 (FakeNumberCellViewModel)
+                [0]: cell_0_0 (FakeNumberCellViewModel)
+                [1]: cell_0_1 (FakeTextCellViewModel)
+                [2]: cell_0_2 (FakeNumberCellViewModel)
               supplementary views:
-                [0]: supplementaryView_0 (FakeSupplementaryViewModel)
-                [1]: supplementaryView_1 (FakeSupplementaryViewModel)
-                [2]: supplementaryView_2 (FakeSupplementaryViewModel)
+                [0]: view_0_0 (FakeSupplementaryViewModel)
+                [1]: view_0_1 (FakeSupplementaryViewModel)
+                [2]: view_0_2 (FakeSupplementaryViewModel)
               registrations:
                 - FakeFooterViewModel (UICollectionElementKindSectionFooter)
                 - FakeHeaderViewModel (UICollectionElementKindSectionHeader)
@@ -235,29 +235,6 @@ final class TestDebugDescriptionSection: XCTestCase {
             >
 
             """
-        )
-    }
-}
-
-extension TestDebugDescriptionSection {
-    @MainActor
-    func generateSectionWithKnownIds(
-        id: String,
-        numCells: Int,
-        useCellNibs: Bool = false,
-        includeHeader: Bool = false,
-        includeFooter: Bool = false,
-        includeSupplementaryViews: Bool = false
-    ) -> SectionViewModel {
-        fakeSectionViewModel(
-            id: id,
-            cellId: { _, cellIndex in "cell_\(cellIndex)" },
-            supplementaryViewId: { _, cellIndex in "supplementaryView_\(cellIndex)" },
-            numCells: numCells,
-            useCellNibs: useCellNibs,
-            includeHeader: includeHeader,
-            includeFooter: includeFooter,
-            includeSupplementaryViews: includeSupplementaryViews
         )
     }
 }

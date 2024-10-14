@@ -22,7 +22,7 @@ extension XCTestCase {
         id: String = .random,
         sectionId: (Int) -> String = defaultSectionId,
         cellId: (Int, Int) -> String = defaultCellId,
-        supplementaryViewId: (Int, Int) -> String = defaultCellId,
+        supplementaryViewId: (Int, Int) -> String = defaultViewId,
         numSections: Int = Int.random(in: 2...15),
         numCells: Int? = nil,
         useCellNibs: Bool = false,
@@ -47,14 +47,14 @@ extension XCTestCase {
                 function: function
             )
         }
-        return CollectionViewModel(id: "collection_\(id)", sections: sections)
+        return CollectionViewModel(id: id, sections: sections)
     }
 
     @MainActor
     func fakeSectionViewModel(
         id: String = .random,
         cellId: (Int, Int) -> String = defaultCellId,
-        supplementaryViewId: (Int, Int) -> String = defaultCellId,
+        supplementaryViewId: (Int, Int) -> String = defaultViewId,
         sectionIndex: Int = 0,
         numCells: Int = Int.random(in: 1...20),
         useCellNibs: Bool = false,
@@ -98,7 +98,7 @@ extension XCTestCase {
             } : []
 
         return SectionViewModel(
-            id: "section_\(id)",
+            id: id,
             cells: cells,
             header: header,
             footer: footer,
@@ -184,9 +184,13 @@ extension XCTestCase {
 }
 
 private func defaultSectionId(_ index: Int) -> String {
-    "\(index)"
+    "section_\(index)"
 }
 
 private func defaultCellId(_ sectionIndex: Int, _ itemIndex: Int) -> String {
-    "\(sectionIndex)-\(itemIndex)"
+    "cell_\(sectionIndex)_\(itemIndex)"
+}
+
+private func defaultViewId(_ sectionIndex: Int, _ itemIndex: Int) -> String {
+    "view_\(sectionIndex)_\(itemIndex)"
 }

@@ -28,9 +28,9 @@ final class TestSectionViewModel: XCTestCase {
     @MainActor
     func test_section_with_only_cells() {
         let numCells = 3
-        let name = "name"
+        let name = "section_id"
         let section = self.fakeSectionViewModel(id: name, numCells: numCells)
-        XCTAssertEqual(section.id, "section_name")
+        XCTAssertEqual(section.id, "section_id")
 
         XCTAssertEqual(section.count, numCells)
         XCTAssertFalse(section.isEmpty)
