@@ -24,6 +24,8 @@ private enum Element {
     case sections([SectionViewModel])
     case registrations(Set<ViewRegistration>)
     case isEmpty(Bool)
+    case diffOnBackgroundQueue(Bool)
+    case reloadDataOnReplacingViewModel(Bool)
     case end
 }
 
@@ -123,6 +125,12 @@ private func debugDescriptionBuilder<Target: TextOutputStream>(
         case let .isEmpty(isEmpty):
             buildString("isEmpty: \(isEmpty)", indent: indent, to: &output)
 
+        case let .diffOnBackgroundQueue(diffOnBackgroundQueue):
+            buildString("diffOnBackgroundQueue: \(diffOnBackgroundQueue)", indent: indent, to: &output)
+
+        case let .reloadDataOnReplacingViewModel(reloadDataOnReplacingViewModel):
+            buildString("reloadDataOnReplacingViewModel: \(reloadDataOnReplacingViewModel)", indent: indent, to: &output)
+
         case .end:
             buildString("}", indent: indent, to: &output)
         }
@@ -157,6 +165,20 @@ func sectionDebugDescription(_ section: SectionViewModel) -> String {
             (.supplementaryViews(section.supplementaryViews), 2),
             (.registrations(section.allRegistrations()), 2),
             (.isEmpty(section.isEmpty), 2),
+            (.end, 0)
+        ],
+        to: &output
+    )
+    return output
+}
+
+func driverOptionsDebugDescription(_ options: CollectionViewDriverOptions) -> String {
+    var output = ""
+    debugDescriptionBuilder(
+        elements: [
+            (.type(CollectionViewDriverOptions.self), 0),
+            (.diffOnBackgroundQueue(options.diffOnBackgroundQueue), 2),
+            (.reloadDataOnReplacingViewModel(options.reloadDataOnReplacingViewModel), 2),
             (.end, 0)
         ],
         to: &output
