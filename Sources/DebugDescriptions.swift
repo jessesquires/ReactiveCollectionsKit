@@ -12,6 +12,7 @@
 //
 
 import Foundation
+import UIKit
 
 private enum Element {
     case type(Any.Type)
@@ -26,6 +27,13 @@ private enum Element {
     case isEmpty(Bool)
     case diffOnBackgroundQueue(Bool)
     case reloadDataOnReplacingViewModel(Bool)
+    case options(CollectionViewDriverOptions)
+    case viewModel(CollectionViewModel)
+    case emptyViewProvider(EmptyViewProvider?)
+    case cellEventCoordinator(CellEventCoordinator?)
+    case scrollViewDelegate(UIScrollViewDelegate?)
+    case flowLayoutDelegate(UICollectionViewDelegateFlowLayout?)
+    case view(UICollectionView)
     case end
 }
 
@@ -131,6 +139,65 @@ private func debugDescriptionBuilder<Target: TextOutputStream>(
         case let .reloadDataOnReplacingViewModel(reloadDataOnReplacingViewModel):
             buildString("reloadDataOnReplacingViewModel: \(reloadDataOnReplacingViewModel)", indent: indent, to: &output)
 
+        case let .options(options):
+            buildString("options:", indent: indent, to: &output)
+
+            debugDescriptionBuilder(
+                elements: [
+                    (.type(CollectionViewDriverOptions.self), indent + 2),
+                    (.diffOnBackgroundQueue(options.diffOnBackgroundQueue), indent + 4),
+                    (.reloadDataOnReplacingViewModel(options.reloadDataOnReplacingViewModel), indent + 4),
+                    (.end, indent + 2)
+                ],
+                to: &output
+            )
+
+        case let .viewModel(viewModel):
+            buildString("viewModel:", indent: indent, to: &output)
+
+            debugDescriptionBuilder(
+                elements: [
+                    (.type(CollectionViewModel.self), indent + 2),
+                    (.id(viewModel.id), indent + 4),
+                    (.sections(viewModel.sections), indent + 4),
+                    (.registrations(viewModel.allRegistrations()), indent + 4),
+                    (.isEmpty(viewModel.isEmpty), indent + 4),
+                    (.end, indent + 2)
+                ],
+                to: &output
+            )
+
+        case let .emptyViewProvider(emptyViewProvider):
+            if let emptyViewProvider {
+                buildString("emptyViewProvider: \(emptyViewProvider)", indent: indent, to: &output)
+            } else {
+                buildString("emptyViewProvider: nil", indent: indent, to: &output)
+            }
+
+        case let .cellEventCoordinator(cellEventCoordinator):
+            if let cellEventCoordinator {
+                buildString("cellEventCoordinator: \(cellEventCoordinator)", indent: indent, to: &output)
+            } else {
+                buildString("cellEventCoordinator: nil", indent: indent, to: &output)
+            }
+
+        case let .scrollViewDelegate(scrollViewDelegate):
+            if let scrollViewDelegate {
+                buildString("scrollViewDelegate: \(scrollViewDelegate)", indent: indent, to: &output)
+            } else {
+                buildString("scrollViewDelegate: nil", indent: indent, to: &output)
+            }
+
+        case let .flowLayoutDelegate(flowLayoutDelegate):
+            if let flowLayoutDelegate {
+                buildString("flowLayoutDelegate: \(flowLayoutDelegate)", indent: indent, to: &output)
+            } else {
+                buildString("flowLayoutDelegate: nil", indent: indent, to: &output)
+            }
+
+        case let .view(view):
+            buildString("view: \(view)", indent: indent, to: &output)
+
         case .end:
             buildString("}", indent: indent, to: &output)
         }
@@ -179,6 +246,26 @@ func driverOptionsDebugDescription(_ options: CollectionViewDriverOptions) -> St
             (.type(CollectionViewDriverOptions.self), 0),
             (.diffOnBackgroundQueue(options.diffOnBackgroundQueue), 2),
             (.reloadDataOnReplacingViewModel(options.reloadDataOnReplacingViewModel), 2),
+            (.end, 0)
+        ],
+        to: &output
+    )
+    return output
+}
+
+@MainActor
+func driverDebugDescription(_ driver: CollectionViewDriver) -> String {
+    var output = ""
+    debugDescriptionBuilder(
+        elements: [
+            (.type(CollectionViewDriver.self), 0),
+            (.options(driver.options), 2),
+            (.viewModel(driver.viewModel), 2),
+            (.emptyViewProvider(driver._emptyViewProvider), 2),
+            (.cellEventCoordinator(driver._cellEventCoordinator), 2),
+            (.scrollViewDelegate(driver.scrollViewDelegate), 2),
+            (.flowLayoutDelegate(driver.flowLayoutDelegate), 2),
+            (.view(driver.view), 2),
             (.end, 0)
         ],
         to: &output
