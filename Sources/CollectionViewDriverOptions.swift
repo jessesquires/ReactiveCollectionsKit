@@ -41,3 +41,9 @@ public struct CollectionViewDriverOptions: Hashable {
         self.reloadDataOnReplacingViewModel = reloadDataOnReplacingViewModel
     }
 }
+
+extension CollectionViewDriverOptions: CustomDebugStringConvertible {
+    public var debugDescription: String {
+        driverOptionsDebugDescription(self)
+    }
+}
