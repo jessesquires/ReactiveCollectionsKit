@@ -38,14 +38,14 @@ public final class CollectionViewDriver: NSObject {
     /// A flow layout delegate object to receive forwarded events.
     public weak var flowLayoutDelegate: UICollectionViewDelegateFlowLayout?
 
-    let _emptyViewProvider: EmptyViewProvider?
+    private let _emptyViewProvider: EmptyViewProvider?
 
     private var _currentEmptyView: UIView?
 
     // Avoiding a strong reference to prevent a possible retain cycle.
     // This is typically the view controller that owns `self` (the driver).
     // The caller is responsible for retaining this object for the lifetime of the driver.
-    private(set) weak var _cellEventCoordinator: CellEventCoordinator?
+    private weak var _cellEventCoordinator: CellEventCoordinator?
 
     private(set) var _dataSource: DiffableDataSource
 
@@ -581,7 +581,7 @@ extension CollectionViewDriver: UICollectionViewDelegateFlowLayout {
 extension CollectionViewDriver {
     override public var debugDescription: String {
         MainActor.assumeIsolated {
-            driverDebugDescription(self)
+            driverDebugDescription(self, self._emptyViewProvider, self._cellEventCoordinator)
         }
     }
 }

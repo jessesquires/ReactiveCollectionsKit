@@ -209,15 +209,19 @@ func driverOptionsDebugDescription(_ options: CollectionViewDriverOptions) -> St
 }
 
 @MainActor
-func driverDebugDescription(_ driver: CollectionViewDriver) -> String {
+func driverDebugDescription(
+    _ driver: CollectionViewDriver,
+    _ emptyViewProvider: EmptyViewProvider?,
+    _ cellEventCoordinator: CellEventCoordinator?
+) -> String {
     var output = ""
     debugDescriptionBuilder(
         elements: [
             (.type(CollectionViewDriver.self), 0),
             (.options(driver.options), 2),
             (.viewModel(driver.viewModel), 2),
-            (.field(label: "emptyViewProvider", value: driver._emptyViewProvider), 2),
-            (.field(label: "cellEventCoordinator", value: driver._cellEventCoordinator), 2),
+            (.field(label: "emptyViewProvider", value: emptyViewProvider), 2),
+            (.field(label: "cellEventCoordinator", value: cellEventCoordinator), 2),
             (.field(label: "scrollViewDelegate", value: driver.scrollViewDelegate), 2),
             (.field(label: "flowLayoutDelegate", value: driver.flowLayoutDelegate), 2),
             (.field(label: "view", value: driver.view), 2),
