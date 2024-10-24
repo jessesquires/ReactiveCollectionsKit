@@ -23,16 +23,8 @@ final class TestDebugDescriptionDriver: XCTestCase {
     private static let contentSizePattern = #"\{\d+, \d+\}"# // {0, 0}
     private static let adjustedContentInsetPattern = #"\{\d+, \d+, \d+, \d+\}"# // {0, 0, 0, 0}
 
-    private let viewPattern = """
-        <ReactiveCollectionsKitTests\\.FakeCollectionView: \(addressPattern);
-        baseClass = UICollectionView; frame = \(framePattern); clipsToBounds = YES;
-        gestureRecognizers = <NSArray: \(addressPattern)>;
-        backgroundColor = <UIDynamicSystemColor: \(addressPattern); name = systemBackgroundColor>;
-        layer = <CALayer: \(addressPattern)>; contentOffset: \(contentOffsetPattern);
-        contentSize: \(contentSizePattern); adjustedContentInset: \(adjustedContentInsetPattern);
-        layout: <ReactiveCollectionsKitTests\\.FakeCollectionLayout: \(addressPattern)>;
-        dataSource: <ReactiveCollectionsKit\\.DiffableDataSource: \(addressPattern)>>
-        """
+    // swiftlint:disable:next line_length
+    private let viewPattern = "<ReactiveCollectionsKitTests\\.FakeCollectionView: \(addressPattern); baseClass = UICollectionView; frame = \(framePattern); clipsToBounds = YES; gestureRecognizers = <NSArray: \(addressPattern)>; backgroundColor = <UIDynamicSystemColor: \(addressPattern); name = systemBackgroundColor>; layer = <CALayer: \(addressPattern)>; contentOffset: \(contentOffsetPattern); contentSize: \(contentSizePattern); adjustedContentInset: \(adjustedContentInsetPattern); layout: <ReactiveCollectionsKitTests\\.FakeCollectionLayout: \(addressPattern)>; dataSource: <ReactiveCollectionsKit\\.DiffableDataSource: \(addressPattern)>>"
 
     private func assertEqualRegex(
         string: String,
