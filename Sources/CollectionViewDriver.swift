@@ -577,3 +577,11 @@ extension CollectionViewDriver: UICollectionViewDelegateFlowLayout {
         ?? .zero
     }
 }
+
+extension CollectionViewDriver {
+    override public var debugDescription: String {
+        MainActor.assumeIsolated {
+            driverDebugDescription(self, self._emptyViewProvider, self._cellEventCoordinator)
+        }
+    }
+}

@@ -5,6 +5,7 @@ The changelog for `ReactiveCollectionsKit`. Also see [the releases on GitHub](ht
 NEXT
 -----
 
+- Improve debug descriptions (i.e., `CustomDebugStringConvertible`) for various types. ([@nuomi1](https://github.com/nuomi1), [#139](https://github.com/jessesquires/ReactiveCollectionsKit/pull/139))
 - TBA
 
 0.1.8

@@ -16,14 +16,15 @@ import Foundation
 private enum Element {
     case type(Any.Type)
     case index(Int)
-    case id(UniqueIdentifier)
     case header(AnySupplementaryViewModel?)
     case footer(AnySupplementaryViewModel?)
     case cells([AnyCellViewModel])
     case supplementaryViews([AnySupplementaryViewModel])
     case sections([SectionViewModel])
     case registrations(Set<ViewRegistration>)
-    case isEmpty(Bool)
+    case field(label: String, value: Any?)
+    case options(CollectionViewDriverOptions)
+    case viewModel(CollectionViewModel)
     case end
 }
 
@@ -47,9 +48,6 @@ private func debugDescriptionBuilder<Target: TextOutputStream>(
 
         case let .index(index):
             buildString("[\(index)]:", indent: indent, to: &output)
-
-        case let .id(id):
-            buildString("id: \(id)", indent: indent, to: &output)
 
         case let .header(header):
             if let header {
@@ -98,12 +96,12 @@ private func debugDescriptionBuilder<Target: TextOutputStream>(
                 debugDescriptionBuilder(
                     elements: [
                         (.index(index), indent + 2),
-                        (.id(section.id), indent + 4),
+                        (.field(label: "id", value: section.id), indent + 4),
                         (.header(section.header), indent + 4),
                         (.footer(section.footer), indent + 4),
                         (.cells(section.cells), indent + 4),
                         (.supplementaryViews(section.supplementaryViews), indent + 4),
-                        (.isEmpty(section.isEmpty), indent + 4)
+                        (.field(label: "isEmpty", value: section.isEmpty), indent + 4)
                     ],
                     to: &output
                 )
@@ -120,8 +118,40 @@ private func debugDescriptionBuilder<Target: TextOutputStream>(
                 buildString("- \(registration.reuseIdentifier) (\(registration.viewType.kind))", indent: indent + 2, to: &output)
             }
 
-        case let .isEmpty(isEmpty):
-            buildString("isEmpty: \(isEmpty)", indent: indent, to: &output)
+        case let .field(label, value):
+            if let value {
+                buildString("\(label): \(value)", indent: indent, to: &output)
+            } else {
+                buildString("\(label): nil", indent: indent, to: &output)
+            }
+
+        case let .options(options):
+            buildString("options:", indent: indent, to: &output)
+
+            debugDescriptionBuilder(
+                elements: [
+                    (.type(CollectionViewDriverOptions.self), indent + 2),
+                    (.field(label: "diffOnBackgroundQueue", value: options.diffOnBackgroundQueue), indent + 4),
+                    (.field(label: "reloadDataOnReplacingViewModel", value: options.reloadDataOnReplacingViewModel), indent + 4),
+                    (.end, indent + 2)
+                ],
+                to: &output
+            )
+
+        case let .viewModel(viewModel):
+            buildString("viewModel:", indent: indent, to: &output)
+
+            debugDescriptionBuilder(
+                elements: [
+                    (.type(CollectionViewModel.self), indent + 2),
+                    (.field(label: "id", value: viewModel.id), indent + 4),
+                    (.sections(viewModel.sections), indent + 4),
+                    (.registrations(viewModel.allRegistrations()), indent + 4),
+                    (.field(label: "isEmpty", value: viewModel.isEmpty), indent + 4),
+                    (.end, indent + 2)
+                ],
+                to: &output
+            )
 
         case .end:
             buildString("}", indent: indent, to: &output)
@@ -134,10 +164,10 @@ func collectionDebugDescription(_ collection: CollectionViewModel) -> String {
     debugDescriptionBuilder(
         elements: [
             (.type(CollectionViewModel.self), 0),
-            (.id(collection.id), 2),
+            (.field(label: "id", value: collection.id), 2),
             (.sections(collection.sections), 2),
             (.registrations(collection.allRegistrations()), 2),
-            (.isEmpty(collection.isEmpty), 2),
+            (.field(label: "isEmpty", value: collection.isEmpty), 2),
             (.end, 0)
         ],
         to: &output
@@ -150,13 +180,51 @@ func sectionDebugDescription(_ section: SectionViewModel) -> String {
     debugDescriptionBuilder(
         elements: [
             (.type(SectionViewModel.self), 0),
-            (.id(section.id), 2),
+            (.field(label: "id", value: section.id), 2),
             (.header(section.header), 2),
             (.footer(section.footer), 2),
             (.cells(section.cells), 2),
             (.supplementaryViews(section.supplementaryViews), 2),
             (.registrations(section.allRegistrations()), 2),
-            (.isEmpty(section.isEmpty), 2),
+            (.field(label: "isEmpty", value: section.isEmpty), 2),
+            (.end, 0)
+        ],
+        to: &output
+    )
+    return output
+}
+
+func driverOptionsDebugDescription(_ options: CollectionViewDriverOptions) -> String {
+    var output = ""
+    debugDescriptionBuilder(
+        elements: [
+            (.type(CollectionViewDriverOptions.self), 0),
+            (.field(label: "diffOnBackgroundQueue", value: options.diffOnBackgroundQueue), 2),
+            (.field(label: "reloadDataOnReplacingViewModel", value: options.reloadDataOnReplacingViewModel), 2),
+            (.end, 0)
+        ],
+        to: &output
+    )
+    return output
+}
+
+@MainActor
+func driverDebugDescription(
+    _ driver: CollectionViewDriver,
+    _ emptyViewProvider: EmptyViewProvider?,
+    _ cellEventCoordinator: CellEventCoordinator?
+) -> String {
+    var output = ""
+    debugDescriptionBuilder(
+        elements: [
+            (.type(CollectionViewDriver.self), 0),
+            (.options(driver.options), 2),
+            (.viewModel(driver.viewModel), 2),
+            (.field(label: "emptyViewProvider", value: emptyViewProvider), 2),
+            (.field(label: "cellEventCoordinator", value: cellEventCoordinator), 2),
+            (.field(label: "scrollViewDelegate", value: driver.scrollViewDelegate), 2),
+            (.field(label: "flowLayoutDelegate", value: driver.flowLayoutDelegate), 2),
+            (.field(label: "view", value: driver.view), 2),
             (.end, 0)
         ],
         to: &output
