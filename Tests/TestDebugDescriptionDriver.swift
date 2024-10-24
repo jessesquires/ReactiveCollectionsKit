@@ -23,21 +23,16 @@ final class TestDebugDescriptionDriver: XCTestCase {
     private static let contentSizePattern = #"\{\d+, \d+\}"# // {0, 0}
     private static let adjustedContentInsetPattern = #"\{\d+, \d+, \d+, \d+\}"# // {0, 0, 0, 0}
 
-    // swiftlint:disable:next line_length
-    private let viewPattern = "<ReactiveCollectionsKitTests\\.FakeCollectionView: \(addressPattern); baseClass = UICollectionView; frame = \(framePattern); clipsToBounds = YES; gestureRecognizers = <NSArray: \(addressPattern)>; backgroundColor = <UIDynamicSystemColor: \(addressPattern); name = systemBackgroundColor>; layer = <CALayer: \(addressPattern)>; contentOffset: \(contentOffsetPattern); contentSize: \(contentSizePattern); adjustedContentInset: \(adjustedContentInsetPattern); layout: <ReactiveCollectionsKitTests\\.FakeCollectionLayout: \(addressPattern)>; dataSource: <ReactiveCollectionsKit\\.DiffableDataSource: \(addressPattern)>>"
-
-    private func assertEqualRegex(
-        string: String,
-        pattern: String,
-        numMatches: Int = 1,
-        _ message: @autoclosure () -> String = "",
-        file: StaticString = #filePath,
-        line: UInt = #line
-    ) throws {
-        let regex = try NSRegularExpression(pattern: pattern)
-        let count = regex.numberOfMatches(in: string, range: NSRange(string.startIndex..., in: string))
-        XCTAssertEqual(count, numMatches, message(), file: file, line: line)
-    }
+    private let viewPattern = """
+    <ReactiveCollectionsKitTests\\.FakeCollectionView: \(addressPattern); \
+    baseClass = UICollectionView; frame = \(framePattern); clipsToBounds = YES; \
+    gestureRecognizers = <NSArray: \(addressPattern)>; \
+    backgroundColor = <UIDynamicSystemColor: \(addressPattern); name = systemBackgroundColor>; \
+    layer = <CALayer: \(addressPattern)>; contentOffset: \(contentOffsetPattern); \
+    contentSize: \(contentSizePattern); adjustedContentInset: \(adjustedContentInsetPattern); \
+    layout: <ReactiveCollectionsKitTests\\.FakeCollectionLayout: \(addressPattern)>; \
+    dataSource: <ReactiveCollectionsKit\\.DiffableDataSource: \(addressPattern)>>
+    """
 
     @MainActor
     func test_empty() throws {
@@ -52,7 +47,7 @@ final class TestDebugDescriptionDriver: XCTestCase {
             viewModel: viewModel
         )
 
-        let pattern =
+        let expected =
             """
             CollectionViewDriver \\{
               options:
@@ -76,7 +71,7 @@ final class TestDebugDescriptionDriver: XCTestCase {
 
             """
 
-        try self.assertEqualRegex(string: driver.debugDescription, pattern: pattern)
+        XCTAssertTrue(driver.debugDescription.regexMatches(pattern: expected))
     }
 
     @MainActor
@@ -95,7 +90,7 @@ final class TestDebugDescriptionDriver: XCTestCase {
             viewModel: viewModel
         )
 
-        let pattern =
+        let expected =
             """
             CollectionViewDriver \\{
               options:
@@ -132,7 +127,7 @@ final class TestDebugDescriptionDriver: XCTestCase {
 
             """
 
-        try self.assertEqualRegex(string: driver.debugDescription, pattern: pattern)
+        XCTAssertTrue(driver.debugDescription.regexMatches(pattern: expected))
     }
 
     @MainActor
@@ -157,7 +152,7 @@ final class TestDebugDescriptionDriver: XCTestCase {
         driver.scrollViewDelegate = flowLayoutDelegate
         driver.flowLayoutDelegate = flowLayoutDelegate
 
-        let pattern =
+        let expected =
             """
             CollectionViewDriver \\{
               options:
@@ -181,6 +176,14 @@ final class TestDebugDescriptionDriver: XCTestCase {
 
             """
 
-        try self.assertEqualRegex(string: driver.debugDescription, pattern: pattern)
+        XCTAssertTrue(driver.debugDescription.regexMatches(pattern: expected))
+    }
+}
+
+extension String {
+    func regexMatches(pattern: String) -> Bool {
+        let regex = try? NSRegularExpression(pattern: pattern)
+        let range = NSRange(self.startIndex..., in: self)
+        return regex?.numberOfMatches(in: self, range: range) == 1
     }
 }
