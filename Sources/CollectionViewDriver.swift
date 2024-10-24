@@ -578,6 +578,8 @@ extension CollectionViewDriver: UICollectionViewDelegateFlowLayout {
     }
 }
 
+// MARK: - CustomDebugStringConvertible
+
 extension CollectionViewDriver {
     override public var debugDescription: String {
         MainActor.assumeIsolated {

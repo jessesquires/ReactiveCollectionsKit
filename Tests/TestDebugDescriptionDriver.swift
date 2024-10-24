@@ -23,9 +23,18 @@ final class TestDebugDescriptionDriver: XCTestCase {
     private static let contentSizePattern = #"\{\d+, \d+\}"# // {0, 0}
     private static let adjustedContentInsetPattern = #"\{\d+, \d+, \d+, \d+\}"# // {0, 0, 0, 0}
 
-    private let viewPattern = "<ReactiveCollectionsKitTests\\.FakeCollectionView: \(addressPattern); baseClass = UICollectionView; frame = \(framePattern); clipsToBounds = YES; gestureRecognizers = <NSArray: \(addressPattern)>; backgroundColor = <UIDynamicSystemColor: \(addressPattern); name = systemBackgroundColor>; layer = <CALayer: \(addressPattern)>; contentOffset: \(contentOffsetPattern); contentSize: \(contentSizePattern); adjustedContentInset: \(adjustedContentInsetPattern); layout: <ReactiveCollectionsKitTests\\.FakeCollectionLayout: \(addressPattern)>; dataSource: <ReactiveCollectionsKit\\.DiffableDataSource: \(addressPattern)>>"
+    private let viewPattern = """
+        <ReactiveCollectionsKitTests\\.FakeCollectionView: \(addressPattern);
+        baseClass = UICollectionView; frame = \(framePattern); clipsToBounds = YES;
+        gestureRecognizers = <NSArray: \(addressPattern)>;
+        backgroundColor = <UIDynamicSystemColor: \(addressPattern); name = systemBackgroundColor>;
+        layer = <CALayer: \(addressPattern)>; contentOffset: \(contentOffsetPattern);
+        contentSize: \(contentSizePattern); adjustedContentInset: \(adjustedContentInsetPattern);
+        layout: <ReactiveCollectionsKitTests\\.FakeCollectionLayout: \(addressPattern)>;
+        dataSource: <ReactiveCollectionsKit\\.DiffableDataSource: \(addressPattern)>>
+        """
 
-    private func XCTAssertEqualRegex(
+    private func assertEqualRegex(
         string: String,
         pattern: String,
         numMatches: Int = 1,
@@ -75,7 +84,7 @@ final class TestDebugDescriptionDriver: XCTestCase {
 
             """
 
-        try XCTAssertEqualRegex(string: driver.debugDescription, pattern: pattern)
+        try self.assertEqualRegex(string: driver.debugDescription, pattern: pattern)
     }
 
     @MainActor
@@ -131,7 +140,7 @@ final class TestDebugDescriptionDriver: XCTestCase {
 
             """
 
-        try XCTAssertEqualRegex(string: driver.debugDescription, pattern: pattern)
+        try self.assertEqualRegex(string: driver.debugDescription, pattern: pattern)
     }
 
     @MainActor
@@ -180,6 +189,6 @@ final class TestDebugDescriptionDriver: XCTestCase {
 
             """
 
-        try XCTAssertEqualRegex(string: driver.debugDescription, pattern: pattern)
+        try self.assertEqualRegex(string: driver.debugDescription, pattern: pattern)
     }
 }

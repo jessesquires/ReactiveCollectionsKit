@@ -16,13 +16,13 @@ import Foundation
 private enum Element {
     case type(Any.Type)
     case index(Int)
+    case field(label: String, value: Any?)
     case header(AnySupplementaryViewModel?)
     case footer(AnySupplementaryViewModel?)
     case cells([AnyCellViewModel])
     case supplementaryViews([AnySupplementaryViewModel])
     case sections([SectionViewModel])
     case registrations(Set<ViewRegistration>)
-    case field(label: String, value: Any?)
     case options(CollectionViewDriverOptions)
     case viewModel(CollectionViewModel)
     case end
@@ -119,11 +119,7 @@ private func debugDescriptionBuilder<Target: TextOutputStream>(
             }
 
         case let .field(label, value):
-            if let value {
-                buildString("\(label): \(value)", indent: indent, to: &output)
-            } else {
-                buildString("\(label): nil", indent: indent, to: &output)
-            }
+            buildString("\(label): \(value ?? "nil")", indent: indent, to: &output)
 
         case let .options(options):
             buildString("options:", indent: indent, to: &output)

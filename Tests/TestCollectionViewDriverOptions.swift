@@ -35,5 +35,20 @@ final class TestCollectionViewDriverOptions: XCTestCase {
 
             """
         )
+
+        let options2 = CollectionViewDriverOptions(
+            diffOnBackgroundQueue: true,
+            reloadDataOnReplacingViewModel: true
+        )
+        XCTAssertEqual(
+            options2.debugDescription,
+            """
+            CollectionViewDriverOptions {
+              diffOnBackgroundQueue: true
+              reloadDataOnReplacingViewModel: true
+            }
+
+            """
+        )
     }
 }
