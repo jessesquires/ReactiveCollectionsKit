@@ -24,7 +24,6 @@ final class SimpleFlowLayoutViewController: UICollectionViewController, UICollec
     init() {
         let layout = UICollectionViewFlowLayout()
         super.init(collectionViewLayout: layout)
-        self.collectionView.alwaysBounceVertical = true
     }
 
     @available(*, unavailable)
@@ -36,6 +35,7 @@ final class SimpleFlowLayoutViewController: UICollectionViewController, UICollec
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.collectionView.alwaysBounceVertical = true
         self.collectionView.accessibilityIdentifier = "Flow Layout"
 
         self.driver.flowLayoutDelegate = self
