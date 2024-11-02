@@ -36,6 +36,12 @@ private func buildString<Target: TextOutputStream>(
     print("\(String(repeating: " ", count: indent))\(text)", to: &output)
 }
 
+private func adjustLastTerminator(_ output: inout String) {
+    if output.last == "\n" {
+        output.removeLast()
+    }
+}
+
 // swiftlint:disable:next cyclomatic_complexity
 private func debugDescriptionBuilder<Target: TextOutputStream>(
     elements: [(Element, Int)],
@@ -168,6 +174,7 @@ func collectionDebugDescription(_ collection: CollectionViewModel) -> String {
         ],
         to: &output
     )
+    adjustLastTerminator(&output)
     return output
 }
 
@@ -187,6 +194,7 @@ func sectionDebugDescription(_ section: SectionViewModel) -> String {
         ],
         to: &output
     )
+    adjustLastTerminator(&output)
     return output
 }
 
@@ -201,6 +209,7 @@ func driverOptionsDebugDescription(_ options: CollectionViewDriverOptions) -> St
         ],
         to: &output
     )
+    adjustLastTerminator(&output)
     return output
 }
 
@@ -225,5 +234,6 @@ func driverDebugDescription(
         ],
         to: &output
     )
+    adjustLastTerminator(&output)
     return output
 }
