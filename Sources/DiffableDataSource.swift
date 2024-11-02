@@ -19,6 +19,7 @@ extension AnyHashable: @retroactive @unchecked Sendable { }
 @MainActor
 final class DiffableDataSource: UICollectionViewDiffableDataSource<AnyHashable, AnyHashable> {
     typealias Snapshot = NSDiffableDataSourceSnapshot<AnyHashable, AnyHashable>
+    typealias ReconfiguredView = (model: AnySupplementaryViewModel, indexPath: IndexPath)
 
     typealias SnapshotCompletion = @Sendable @MainActor () -> Void
 
@@ -184,7 +185,13 @@ final class DiffableDataSource: UICollectionViewDiffableDataSource<AnyHashable, 
                 // (e.g. "My 10 Items")
 
                 // Check all the supplementary views and reconfigure them, if needed.
-                self._reconfigureSupplementaryViewsIfNeeded(from: source, to: destination)
+                let visibleSectionIdentifiers = self._visibleSectionIdentifiersFrom(destination: destination)
+                let viewsToReconfigure = self._findViewsToReconfigure(
+                    from: source,
+                    to: destination,
+                    withVisibleSectionIdentifiers: visibleSectionIdentifiers
+                )
+                self._reconfigureSupplementaryViewsIfNeeded(reconfiguredViews: viewsToReconfigure)
 
                 // Finally, we're done and can call completion.
                 completion?()
@@ -240,18 +247,29 @@ final class DiffableDataSource: UICollectionViewDiffableDataSource<AnyHashable, 
     // MARK: Reconfiguring Supplementary Views
 
     private func _reconfigureSupplementaryViewsIfNeeded(
-        from source: CollectionViewModel,
-        to destination: CollectionViewModel
+        reconfiguredViews: [ReconfiguredView]
     ) {
+        for (model, indexPath) in reconfiguredViews {
+            if let view = self._collectionView.supplementaryView(forElementKind: model._kind, at: indexPath) {
+                model.configure(view: view)
+            }
+        }
+    }
+
+    nonisolated private func _findViewsToReconfigure(
+        from source: CollectionViewModel,
+        to destination: CollectionViewModel,
+        withVisibleSectionIdentifiers visibleSectionIdentifiers: Set<UniqueIdentifier>
+    ) -> [ReconfiguredView] {
         let allSourceSections = source.allSectionsByIdentifier()
 
-        let visibleSectionIds = self._visibleSectionIdentifiersFrom(destination: destination)
+        var viewsToReconfigure = [ReconfiguredView]()
 
         for sectionIndex in 0..<destination.sections.count {
             let destinationSection = destination.sections[sectionIndex]
 
             // If this section is not visible, skip it.
-            guard visibleSectionIds.contains(destinationSection.id) else {
+            guard visibleSectionIdentifiers.contains(destinationSection.id) else {
                 continue
             }
 
@@ -273,22 +291,14 @@ final class DiffableDataSource: UICollectionViewDiffableDataSource<AnyHashable, 
             if let destinationHeader = destinationSection.header,
                let sourceHeader = sourceSection.header,
                destinationHeader != sourceHeader {
-                self._reconfigureSupplementaryView(
-                    model: destinationHeader,
-                    item: 0,
-                    section: sectionIndex
-                )
+                viewsToReconfigure.append((destinationHeader, IndexPath(item: 0, section: sectionIndex)))
             }
 
             // Second, check and reconfigure footer.
             if let destinationFooter = destinationSection.footer,
                let sourceFooter = sourceSection.footer,
                destinationFooter != sourceFooter {
-                self._reconfigureSupplementaryView(
-                    model: destinationFooter,
-                    item: 0,
-                    section: sectionIndex
-                )
+                viewsToReconfigure.append((destinationFooter, IndexPath(item: 0, section: sectionIndex)))
             }
 
             // Third, check all supplementary views.
@@ -305,14 +315,12 @@ final class DiffableDataSource: UICollectionViewDiffableDataSource<AnyHashable, 
 
                 // Check and reconfigure supplementary view.
                 if destinationView != sourceView {
-                    self._reconfigureSupplementaryView(
-                        model: destinationView,
-                        item: viewIndex,
-                        section: sectionIndex
-                    )
+                    viewsToReconfigure.append((destinationView, IndexPath(item: viewIndex, section: sectionIndex)))
                 }
             }
         }
+
+        return viewsToReconfigure
     }
 
     private func _visibleSectionIdentifiersFrom(destination: CollectionViewModel) -> Set<UniqueIdentifier> {
@@ -334,12 +342,5 @@ final class DiffableDataSource: UICollectionViewDiffableDataSource<AnyHashable, 
         // Anything that has been newly inserted (from the "destination") will
         // be getting configured for the first time.
         return Set(visibleSourceSectionIdentifiers)
-    }
-
-    private func _reconfigureSupplementaryView(model: AnySupplementaryViewModel, item: Int, section: Int) {
-        let indexPath = IndexPath(item: item, section: section)
-        if let view = self._collectionView.supplementaryView(forElementKind: model._kind, at: indexPath) {
-            model.configure(view: view)
-        }
     }
 }
