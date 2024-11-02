@@ -68,7 +68,6 @@ final class TestDebugDescriptionDriver: XCTestCase {
               flowLayoutDelegate: nil
               view: \(viewPattern)
             \\}
-
             """
 
         XCTAssertTrue(driver.debugDescription.regexMatches(pattern: expected))
@@ -124,7 +123,6 @@ final class TestDebugDescriptionDriver: XCTestCase {
               flowLayoutDelegate: nil
               view: \(viewPattern)
             \\}
-
             """
 
         XCTAssertTrue(driver.debugDescription.regexMatches(pattern: expected))
@@ -173,7 +171,6 @@ final class TestDebugDescriptionDriver: XCTestCase {
               flowLayoutDelegate: <ReactiveCollectionsKitTests\\.FakeFlowLayoutDelegate: \(Self.addressPattern)>
               view: \(viewPattern)
             \\}
-
             """
 
         XCTAssertTrue(driver.debugDescription.regexMatches(pattern: expected))
