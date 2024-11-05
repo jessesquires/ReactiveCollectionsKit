@@ -35,7 +35,6 @@ final class TestDebugDescriptionSection: XCTestCase {
               registrations: none
               isEmpty: true
             }
-
             """
         )
     }
@@ -60,7 +59,6 @@ final class TestDebugDescriptionSection: XCTestCase {
                 - FakeNumberCellViewModel (cell)
               isEmpty: false
             }
-
             """
         )
     }
@@ -88,7 +86,6 @@ final class TestDebugDescriptionSection: XCTestCase {
                 - FakeTextCellViewModel (cell)
               isEmpty: false
             }
-
             """
         )
 
@@ -113,7 +110,6 @@ final class TestDebugDescriptionSection: XCTestCase {
                 - FakeCellNibViewModel (cell)
               isEmpty: false
             }
-
             """
         )
     }
@@ -143,7 +139,6 @@ final class TestDebugDescriptionSection: XCTestCase {
                 - FakeTextCellViewModel (cell)
               isEmpty: false
             }
-
             """
         )
 
@@ -170,7 +165,6 @@ final class TestDebugDescriptionSection: XCTestCase {
                 - FakeTextCellViewModel (cell)
               isEmpty: false
             }
-
             """
         )
 
@@ -199,7 +193,6 @@ final class TestDebugDescriptionSection: XCTestCase {
                 - FakeTextCellViewModel (cell)
               isEmpty: false
             }
-
             """
         )
 
@@ -233,7 +226,6 @@ final class TestDebugDescriptionSection: XCTestCase {
                 - FakeTextCellViewModel (cell)
               isEmpty: false
             }
-
             """
         )
     }

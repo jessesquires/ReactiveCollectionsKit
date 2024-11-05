@@ -32,7 +32,6 @@ final class TestCollectionViewDriverOptions: XCTestCase {
               diffOnBackgroundQueue: false
               reloadDataOnReplacingViewModel: false
             }
-
             """
         )
 
@@ -47,7 +46,6 @@ final class TestCollectionViewDriverOptions: XCTestCase {
               diffOnBackgroundQueue: true
               reloadDataOnReplacingViewModel: true
             }
-
             """
         )
     }
