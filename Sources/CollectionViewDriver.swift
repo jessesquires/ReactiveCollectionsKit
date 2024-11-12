@@ -51,15 +51,12 @@ public final class CollectionViewDriver: NSObject {
 
     private var _cachedRegistrations = Set<ViewRegistration>()
 
-    /// A logger for the driver.
-    /// By default, this is `nil` in release builds and a shared internal logger in debug builds.
-    public var logger: (any Logging)? = {
-        #if DEBUG
-            Logger.shared
-        #else
-            nil
-        #endif
-    }() {
+    /// A debug logger to log messages that track the internal operations of the driver.
+    /// The default value is `nil`.
+    ///
+    /// - Note: You may wish to set this property to the library-provided logger, `RCKLogger.shared`.
+    ///         However, you can also provide your own implementation via the `Logging` protocol.
+    public var logger: Logging? {
         didSet {
             self._dataSource.logger = self.logger
         }
@@ -110,7 +107,6 @@ public final class CollectionViewDriver: NSObject {
         self._dataSource = DiffableDataSource(
             view: view,
             diffOnBackgroundQueue: options.diffOnBackgroundQueue,
-            logger: self.logger,
             cellProvider: { [unowned self] view, indexPath, itemIdentifier in
                 self._cellProvider(
                     collectionView: view,
@@ -212,10 +208,10 @@ public final class CollectionViewDriver: NSObject {
             guard new.id == old.id else {
                 self.logger?.log(
                     """
-                    reload view model
-                    from old
+                    Driver will reload view model.
+                    Old:
                     \(old.debugDescription)
-                    to new
+                    New:
                     \(new.debugDescription)
                     """
                 )
@@ -230,10 +226,10 @@ public final class CollectionViewDriver: NSObject {
 
         self.logger?.log(
             """
-            update view model
-            from old
+            Driver will update view model.
+            Old:
             \(old.debugDescription)
-            to new
+            New:
             \(new.debugDescription)
             """
         )

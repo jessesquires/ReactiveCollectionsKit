@@ -34,20 +34,18 @@ final class DiffableDataSource: UICollectionViewDiffableDataSource<AnyHashable, 
         autoreleaseFrequency: .workItem
     )
 
-    var logger: (any Logging)?
+    var logger: Logging?
 
     // MARK: Init
 
     init(
         view: UICollectionView,
         diffOnBackgroundQueue: Bool,
-        logger: (any Logging)? = nil,
         cellProvider: @escaping DiffableDataSource.CellProvider,
         supplementaryViewProvider: @escaping DiffableDataSource.SupplementaryViewProvider
     ) {
         self._collectionView = view
         self._diffOnBackgroundQueue = diffOnBackgroundQueue
-        self.logger = logger
         super.init(collectionView: view, cellProvider: cellProvider)
         self.supplementaryViewProvider = supplementaryViewProvider
     }
@@ -56,7 +54,6 @@ final class DiffableDataSource: UICollectionViewDiffableDataSource<AnyHashable, 
         self.init(
             view: view,
             diffOnBackgroundQueue: diffOnBackgroundQueue,
-            logger: nil,
             cellProvider: { _, _, _ in nil },
             supplementaryViewProvider: { _, _, _ in nil }
         )
@@ -65,12 +62,15 @@ final class DiffableDataSource: UICollectionViewDiffableDataSource<AnyHashable, 
     // MARK: Applying snapshots
 
     func reload(_ viewModel: CollectionViewModel, completion: SnapshotCompletion?) {
+        self.logger?.log("DataSource will apply reload snapshot")
+
         let snapshot = DiffableSnapshot(viewModel: viewModel)
         self.applySnapshotUsingReloadData(snapshot) {
             // UIKit guarantees `completion` is called on the main queue.
             dispatchPrecondition(condition: .onQueue(.main))
             MainActor.assumeIsolated {
                 completion?()
+                self.logger?.log("DataSource reload snapshot completed")
             }
         }
     }
@@ -81,6 +81,8 @@ final class DiffableDataSource: UICollectionViewDiffableDataSource<AnyHashable, 
         animated: Bool,
         completion: SnapshotCompletion?
     ) {
+        self.logger?.log("DataSource will apply diffing snapshot")
+
         // Get all the currently visible items, so we can reconfigure them if needed.
         //
         // This queries the collection view for visible items, so it must happen on the main thread.
@@ -88,6 +90,7 @@ final class DiffableDataSource: UICollectionViewDiffableDataSource<AnyHashable, 
         let visibleItemIdentifiers = self._visibleItemIdentifiers()
 
         if self._diffOnBackgroundQueue {
+            self.logger?.log("DataSource using background queue")
             self._diffingQueue.async {
                 self._applySnapshot(
                     from: source,
@@ -98,6 +101,7 @@ final class DiffableDataSource: UICollectionViewDiffableDataSource<AnyHashable, 
                 )
             }
         } else {
+            self.logger?.log("DataSource using main queue")
             dispatchPrecondition(condition: .onQueue(.main))
             self._applySnapshot(
                 from: source,
@@ -193,6 +197,8 @@ final class DiffableDataSource: UICollectionViewDiffableDataSource<AnyHashable, 
 
                 // Finally, we're done and can call completion.
                 completion?()
+
+                self.logger?.log("DataSource diffing snapshot complete")
             }
         }
     }

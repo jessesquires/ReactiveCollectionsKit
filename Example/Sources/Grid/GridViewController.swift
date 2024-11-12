@@ -26,9 +26,8 @@ final class GridViewController: ExampleViewController, CellEventCoordinator {
         didSet {
             // Every time the model updates, regenerate and set the view model
             let viewModel = self.makeViewModel()
-            self.driver.update(viewModel: viewModel, animated: true) {
+            self.driver.update(viewModel: viewModel, animated: true) { _ in
                 print("grid did update!")
-                print($0.viewModel)
             }
         }
     }
@@ -43,6 +42,8 @@ final class GridViewController: ExampleViewController, CellEventCoordinator {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.driver.logger = RCKLogger.shared
+
         let viewModel = self.makeViewModel()
         self.driver.update(viewModel: viewModel)
     }
