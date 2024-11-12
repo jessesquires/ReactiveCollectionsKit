@@ -34,16 +34,20 @@ final class DiffableDataSource: UICollectionViewDiffableDataSource<AnyHashable, 
         autoreleaseFrequency: .workItem
     )
 
+    var logger: (any Logging)?
+
     // MARK: Init
 
     init(
         view: UICollectionView,
         diffOnBackgroundQueue: Bool,
+        logger: (any Logging)? = nil,
         cellProvider: @escaping DiffableDataSource.CellProvider,
         supplementaryViewProvider: @escaping DiffableDataSource.SupplementaryViewProvider
     ) {
         self._collectionView = view
         self._diffOnBackgroundQueue = diffOnBackgroundQueue
+        self.logger = logger
         super.init(collectionView: view, cellProvider: cellProvider)
         self.supplementaryViewProvider = supplementaryViewProvider
     }
@@ -52,6 +56,7 @@ final class DiffableDataSource: UICollectionViewDiffableDataSource<AnyHashable, 
         self.init(
             view: view,
             diffOnBackgroundQueue: diffOnBackgroundQueue,
+            logger: nil,
             cellProvider: { _, _, _ in nil },
             supplementaryViewProvider: { _, _, _ in nil }
         )

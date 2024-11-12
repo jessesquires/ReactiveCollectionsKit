@@ -51,6 +51,20 @@ public final class CollectionViewDriver: NSObject {
 
     private var _cachedRegistrations = Set<ViewRegistration>()
 
+    /// A logger for the driver.
+    /// By default, this is `nil` in release builds and a shared internal logger in debug builds.
+    public var logger: (any Logging)? = {
+        #if DEBUG
+            Logger.shared
+        #else
+            nil
+        #endif
+    }() {
+        didSet {
+            self._dataSource.logger = self.logger
+        }
+    }
+
     // MARK: Init
 
     /// Initializes a new `CollectionViewDriver`.
@@ -96,6 +110,7 @@ public final class CollectionViewDriver: NSObject {
         self._dataSource = DiffableDataSource(
             view: view,
             diffOnBackgroundQueue: options.diffOnBackgroundQueue,
+            logger: self.logger,
             cellProvider: { [unowned self] view, indexPath, itemIdentifier in
                 self._cellProvider(
                     collectionView: view,
@@ -195,6 +210,16 @@ public final class CollectionViewDriver: NSObject {
         if self.options.reloadDataOnReplacingViewModel {
             // if given a totally new model, simply reload instead of diff
             guard new.id == old.id else {
+                self.logger?.log(
+                    """
+                    reload view model
+                    from old
+                    \(old.debugDescription)
+                    to new
+                    \(new.debugDescription)
+                    """
+                )
+
                 self._dataSource.reload(self.viewModel) { [weak self] in
                     // Note: UIKit guarantees this closure is called on the main queue.
                     self?._displayEmptyViewIfNeeded(animated: animated, completion: completion)
@@ -202,6 +227,16 @@ public final class CollectionViewDriver: NSObject {
                 return
             }
         }
+
+        self.logger?.log(
+            """
+            update view model
+            from old
+            \(old.debugDescription)
+            to new
+            \(new.debugDescription)
+            """
+        )
 
         self._dataSource.applySnapshot(
             from: old,
