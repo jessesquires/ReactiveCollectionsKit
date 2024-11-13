@@ -111,7 +111,7 @@ analyzer_rules:
   - capture_variable
 
 line_length: 200
-file_length: 600
+file_length: 650
 
 type_body_length: 500
 function_body_length: 250

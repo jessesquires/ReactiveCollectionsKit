@@ -51,6 +51,17 @@ public final class CollectionViewDriver: NSObject {
 
     private var _cachedRegistrations = Set<ViewRegistration>()
 
+    /// A debug logger to log messages that track the internal operations of the driver.
+    /// The default value is `nil`.
+    ///
+    /// - Note: You may wish to set this property to the library-provided logger, `RCKLogger.shared`.
+    ///         However, you can also provide your own implementation via the `Logging` protocol.
+    public var logger: Logging? {
+        didSet {
+            self._dataSource.logger = self.logger
+        }
+    }
+
     // MARK: Init
 
     /// Initializes a new `CollectionViewDriver`.
@@ -195,6 +206,16 @@ public final class CollectionViewDriver: NSObject {
         if self.options.reloadDataOnReplacingViewModel {
             // if given a totally new model, simply reload instead of diff
             guard new.id == old.id else {
+                self.logger?.log(
+                    """
+                    Driver will reload view model.
+                    Old:
+                    \(old.debugDescription)
+                    New:
+                    \(new.debugDescription)
+                    """
+                )
+
                 self._dataSource.reload(self.viewModel) { [weak self] in
                     // Note: UIKit guarantees this closure is called on the main queue.
                     self?._displayEmptyViewIfNeeded(animated: animated, completion: completion)
@@ -202,6 +223,16 @@ public final class CollectionViewDriver: NSObject {
                 return
             }
         }
+
+        self.logger?.log(
+            """
+            Driver will update view model.
+            Old:
+            \(old.debugDescription)
+            New:
+            \(new.debugDescription)
+            """
+        )
 
         self._dataSource.applySnapshot(
             from: old,

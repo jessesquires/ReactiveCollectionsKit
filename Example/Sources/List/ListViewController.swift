@@ -36,7 +36,6 @@ final class ListViewController: ExampleViewController, CellEventCoordinator {
             Task { @MainActor in
                 await self.driver.update(viewModel: viewModel)
                 print("list did update! async")
-                print(viewModel)
             }
         }
     }
@@ -66,6 +65,7 @@ final class ListViewController: ExampleViewController, CellEventCoordinator {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.driver.logger = RCKLogger.shared
 
         let viewModel = self.makeViewModel()
         self.driver.update(viewModel: viewModel)
