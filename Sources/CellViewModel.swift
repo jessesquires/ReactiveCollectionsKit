@@ -38,6 +38,10 @@ public protocol CellViewModel: DiffableViewModel, ViewRegistrationProvider {
     /// This corresponds to the delegate method `collectionView(_:contextMenuConfigurationForItemAt:point:)`.
     var contextMenuConfiguration: UIContextMenuConfiguration? { get }
 
+    /// Returns an array of children for the cell.
+    /// These children correspond to the items that have been appended to this item as part of a `NSDiffableDataSourceSectionSnapshot`.
+    var children: [AnyCellViewModel] { get }
+
     /// Configures the provided cell for display in the collection.
     /// - Parameter cell: The cell to configure.
     @MainActor
@@ -89,6 +93,9 @@ extension CellViewModel {
 
     /// Default implementation. Returns `true`.
     public var shouldHighlight: Bool { true }
+
+    /// Default implementation. Returns `[]`.
+    public var children: [AnyCellViewModel] { [] }
 
     /// Default implementation. Returns `nil`.
     public var contextMenuConfiguration: UIContextMenuConfiguration? { nil }
@@ -199,6 +206,9 @@ public struct AnyCellViewModel: CellViewModel {
     public var shouldHighlight: Bool { self._shouldHighlight }
 
     /// :nodoc:
+    public var children: [AnyCellViewModel] { self._children }
+
+    /// :nodoc:
     public var contextMenuConfiguration: UIContextMenuConfiguration? { self._contextMenuConfiguration }
 
     /// :nodoc:
@@ -251,6 +261,7 @@ public struct AnyCellViewModel: CellViewModel {
     private let _shouldDeselect: Bool
     private let _shouldHighlight: Bool
     private let _contextMenuConfiguration: UIContextMenuConfiguration?
+    private let _children: [AnyCellViewModel]
     private let _configure: @Sendable @MainActor (CellType) -> Void
     private let _didSelect: @Sendable @MainActor (CellEventCoordinator?) -> Void
     private let _didDeselect: @Sendable @MainActor (CellEventCoordinator?) -> Void
@@ -276,6 +287,7 @@ public struct AnyCellViewModel: CellViewModel {
         self._shouldSelect = viewModel.shouldSelect
         self._shouldDeselect = viewModel.shouldDeselect
         self._shouldHighlight = viewModel.shouldHighlight
+        self._children = viewModel.children
         self._contextMenuConfiguration = viewModel.contextMenuConfiguration
         self._configure = {
             viewModel._configureGeneric(cell: $0)
