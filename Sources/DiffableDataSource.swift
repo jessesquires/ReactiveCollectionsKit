@@ -122,6 +122,60 @@ final class DiffableDataSource: UICollectionViewDiffableDataSource<AnyHashable, 
         animated: Bool,
         completion: SnapshotCompletion?
     ) {
+        // Before applying a snapshot, first check if there's at least one cell that has children.
+        // If so, nesting is desired and we must use section snapshots, since UIKit only supports
+        // this behavior through the use of NSDiffableDataSourceSectionSnapshots.
+        // Otherwise, use a standard snapshot.
+        let childrenExist = destination.sections.first?.contains(where: \.children.isNotEmpty) ?? false
+
+        if childrenExist {
+            _applySectionSnapshot(from: source,
+                                  to: destination,
+                                  withVisibleItems: visibleItemIdentifiers,
+                                  animated: animated,
+                                  completion: completion)
+        }
+        else {
+            _applyStandardSnapshot(from: source,
+                                   to: destination,
+                                   withVisibleItems: visibleItemIdentifiers,
+                                   animated: animated,
+                                   completion: completion)
+        }
+    }
+
+    nonisolated private func _applySectionSnapshot(
+        from source: CollectionViewModel,
+        to destination: CollectionViewModel,
+        withVisibleItems visibleItemIdentifiers: Set<UniqueIdentifier>,
+        animated: Bool,
+        completion: SnapshotCompletion?
+    ) {
+        // For each section, build the destination section snapshot.
+        destination.sections.forEach {
+            let destinationSectionSnapshot = DiffableSectionSnapshot(viewModel: $0)
+
+            // Apply the section snapshot.
+            //
+            // Swift 6 complains about 'call to main actor-isolated instance method' here.
+            // However, call this method from a background thread is valid according to the docs.
+            self.apply(destinationSectionSnapshot, to: $0.id, animatingDifferences: animated) { [weak self] in
+                self?._applySnapshotCompletion(source: source,
+                                               destination: destination,
+                                               completion)
+            }
+        }
+
+
+    }
+
+    nonisolated private func _applyStandardSnapshot(
+        from source: CollectionViewModel,
+        to destination: CollectionViewModel,
+        withVisibleItems visibleItemIdentifiers: Set<UniqueIdentifier>,
+        animated: Bool,
+        completion: SnapshotCompletion?
+    ) {
         // Build initial destination snapshot, then make adjustments below.
         // This takes care of newly added items and newly added sections,
         // which will trigger the whole dequeue and configure flow for each.
@@ -157,49 +211,48 @@ final class DiffableDataSource: UICollectionViewDiffableDataSource<AnyHashable, 
         // Swift 6 complains about 'call to main actor-isolated instance method' here.
         // However, call this method from a background thread is valid according to the docs.
         self.apply(destinationSnapshot, animatingDifferences: animated) { [weak self] in
-            // UIKit guarantees `completion` is called on the main queue.
-            dispatchPrecondition(condition: .onQueue(.main))
+            self?._applySnapshotCompletion(source: source,
+                                           destination: destination,
+                                           completion)
+        }
+    }
 
-            guard let self else {
-                MainActor.assumeIsolated {
-                    completion?()
-                }
-                return
-            }
+    nonisolated private func _applySnapshotCompletion(source: CollectionViewModel, destination: CollectionViewModel, _ completion: SnapshotCompletion?) {
+        // UIKit guarantees `completion` is called on the main queue.
+        dispatchPrecondition(condition: .onQueue(.main))
 
-            MainActor.assumeIsolated {
-                // Once the snapshot with item reconfigures is applied,
-                // we need to find and apply supplementary view reconfigures, if needed.
-                //
-                // This is necessary to update all headers, footers, and supplementary views.
-                // Per notes above, supplementary views do not get reloaded / reconfigured
-                // automatically by `DiffableDataSource` when they change.
-                //
-                // To trigger updates on supplementary views with the existing APIs,
-                // the entire section must be reloaded. Yes, that sucks. We don't want to do that.
-                // That causes all items in the section to be hard-reloaded, too.
-                // Aside from the performance impact, doing that results in an ugly UI "flash"
-                // for all item cells in the collection. Gross.
-                //
-                // However, we can actually do much better than a hard reload!
-                // Instead of reloading the entire section, we can find and compare
-                // the supplementary views and manually reconfigure them if they changed.
-                //
-                // NOTE: this only matters if supplementary views are not static.
-                // That is, if they reflect data in the data source.
-                //
-                // For example, a header with a fixed title (e.g. "My Items") will NOT need to be reloaded.
-                // However, a header that displays changing data WILL need to be reloaded.
-                // (e.g. "My 10 Items")
+        MainActor.assumeIsolated {
+            // Once the snapshot with item reconfigures is applied,
+            // we need to find and apply supplementary view reconfigures, if needed.
+            //
+            // This is necessary to update all headers, footers, and supplementary views.
+            // Per notes above, supplementary views do not get reloaded / reconfigured
+            // automatically by `DiffableDataSource` when they change.
+            //
+            // To trigger updates on supplementary views with the existing APIs,
+            // the entire section must be reloaded. Yes, that sucks. We don't want to do that.
+            // That causes all items in the section to be hard-reloaded, too.
+            // Aside from the performance impact, doing that results in an ugly UI "flash"
+            // for all item cells in the collection. Gross.
+            //
+            // However, we can actually do much better than a hard reload!
+            // Instead of reloading the entire section, we can find and compare
+            // the supplementary views and manually reconfigure them if they changed.
+            //
+            // NOTE: this only matters if supplementary views are not static.
+            // That is, if they reflect data in the data source.
+            //
+            // For example, a header with a fixed title (e.g. "My Items") will NOT need to be reloaded.
+            // However, a header that displays changing data WILL need to be reloaded.
+            // (e.g. "My 10 Items")
 
-                // Check all the supplementary views and reconfigure them, if needed.
-                self._reconfigureSupplementaryViewsIfNeeded(from: source, to: destination)
+            // Check all the supplementary views and reconfigure them, if needed.
+            self._reconfigureSupplementaryViewsIfNeeded(from: source, to: destination)
 
-                // Finally, we're done and can call completion.
-                completion?()
+            // Finally, we're done and can call completion.
+            completion?()
 
-                self.logger?.log("DataSource diffing snapshot complete")
-            }
+            self.logger?.log("DataSource diffing snapshot complete")
         }
     }
 
