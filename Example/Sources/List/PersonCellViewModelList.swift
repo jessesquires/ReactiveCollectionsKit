@@ -23,6 +23,8 @@ struct PersonCellViewModelList: CellViewModel {
 
     let contextMenuConfiguration: UIContextMenuConfiguration?
 
+    let children: [AnyCellViewModel]
+
     func configure(cell: UICollectionViewListCell) {
         var contentConfiguration = UIListContentConfiguration.subtitleCell()
         contentConfiguration.text = self.person.name
@@ -35,7 +37,7 @@ struct PersonCellViewModelList: CellViewModel {
         let flagEmoji = UICellAccessory.customView(
             configuration: .init(customView: label, placement: .leading())
         )
-        var accessories = [flagEmoji, .disclosureIndicator()]
+        var accessories = [flagEmoji, .disclosureIndicator(), .outlineDisclosure()]
 
         if self.person.isFavorite {
             let imageView = UIImageView(image: UIImage(systemName: "star.fill"))
