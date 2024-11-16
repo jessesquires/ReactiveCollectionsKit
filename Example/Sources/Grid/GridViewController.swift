@@ -76,7 +76,6 @@ final class GridViewController: ExampleViewController, CellEventCoordinator {
     // MARK: Private
 
     private static func makeLayout() -> UICollectionViewCompositionalLayout {
-        let fractionalWidth = CGFloat(0.5)
         let inset = CGFloat(4)
 
         // Supplementary Item
@@ -89,15 +88,17 @@ final class GridViewController: ExampleViewController, CellEventCoordinator {
                                                         containerAnchor: badgeAnchor)
 
         // Item
-        let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(fractionalWidth),
-                                              heightDimension: .fractionalHeight(1))
+        let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0),
+                                              heightDimension: .fractionalHeight(1.0))
         let item = NSCollectionLayoutItem(layoutSize: itemSize, supplementaryItems: [badge])
         item.contentInsets = NSDirectionalEdgeInsets(top: inset, leading: inset, bottom: inset, trailing: inset)
 
         // Group
-        let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1),
-                                               heightDimension: .fractionalWidth(fractionalWidth))
-        let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitems: [item])
+        let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(0.5),
+                                               heightDimension: .fractionalHeight(0.5))
+        let group = NSCollectionLayoutGroup.vertical(layoutSize: groupSize,
+                                                     subitem: item,
+                                                     count: 2)
 
         // Headers and Footers
         let headerFooterSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0),
@@ -113,6 +114,7 @@ final class GridViewController: ExampleViewController, CellEventCoordinator {
 
         // Section
         let section = NSCollectionLayoutSection(group: group)
+        section.orthogonalScrollingBehavior = .continuous
         section.contentInsets = NSDirectionalEdgeInsets(top: inset, leading: inset, bottom: inset, trailing: inset)
         section.boundarySupplementaryItems = [sectionHeader, sectionFooter]
 
