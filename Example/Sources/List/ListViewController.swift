@@ -81,9 +81,9 @@ final class ListViewController: ExampleViewController, CellEventCoordinator {
 
     private func makeViewModel() -> CollectionViewModel {
         // Create People Section
-        let peopleCellViewModels = self.model.people.map {
+        let peopleCellViewModels = self.model.people.enumerated().map { index, person in
             let menuConfig = UIContextMenuConfiguration.configFor(
-                itemId: $0.id,
+                itemId: person.id,
                 favoriteAction: { [unowned self] in
                     self.toggleFavorite(id: $0)
                 },
@@ -92,9 +92,12 @@ final class ListViewController: ExampleViewController, CellEventCoordinator {
                 }
             )
 
+            let children = makeViewModel(for: person.subPeople)
+
             return PersonCellViewModelList(
-                person: $0,
-                contextMenuConfiguration: menuConfig
+                person: person,
+                contextMenuConfiguration: menuConfig,
+                children: children
             ).eraseToAnyViewModel()
         }
         let peopleHeader = HeaderViewModel(title: "People", style: .small)
@@ -133,6 +136,16 @@ final class ListViewController: ExampleViewController, CellEventCoordinator {
 
         // Create final view model
         return CollectionViewModel(id: "list_view", sections: [peopleSection, colorSection])
+    }
+
+    private func makeViewModel(for people: [PersonModel]) -> [AnyCellViewModel] {
+        let children: [AnyCellViewModel] = people.map {
+            PersonCellViewModelList(person: $0,
+                                    contextMenuConfiguration: nil,
+                                    children: makeViewModel(for: $0.subPeople)).eraseToAnyViewModel()
+        }
+
+        return children
     }
 }
 

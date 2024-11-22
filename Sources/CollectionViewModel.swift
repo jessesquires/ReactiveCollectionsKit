@@ -65,16 +65,19 @@ public struct CollectionViewModel: DiffableViewModel {
 
     // MARK: Accessing Cells
 
-    /// Returns the cell for the specified `id`.
+    /// Returns the cell for the specified `id` by traversing each section and all of the children of each cell.
     ///
     /// - Parameter id: The identifier for the cell.
     /// - Returns: The cell, if it exists.
     public func cellViewModel(for id: UniqueIdentifier) -> AnyCellViewModel? {
         for section in self.sections {
-            for cell in section.cells where cell.id == id {
-                return cell
+            for cell in section.cells {
+                if let foundViewModel = cellViewModel(in: cell, with: id) {
+                    return foundViewModel
+                }
             }
         }
+
         return nil
     }
 
@@ -84,14 +87,42 @@ public struct CollectionViewModel: DiffableViewModel {
     /// - Returns: The cell at `indexPath`.
     ///
     /// - Precondition: The specified `indexPath` must be valid.
-    public func cellViewModel(at indexPath: IndexPath) -> AnyCellViewModel {
+    public func cellViewModel(at indexPath: IndexPath, in collectionView: UICollectionView) -> AnyCellViewModel {
         precondition(indexPath.section < self.count)
         let section = self.sectionViewModel(at: indexPath.section)
 
         let cells = section.cells
         precondition(indexPath.item < cells.count)
 
-        return cells[indexPath.item]
+        guard let diffableDataSource = collectionView.dataSource as? DiffableDataSource
+        else {
+            return cells[indexPath.item]
+        }
+
+        let snapshot = diffableDataSource.snapshot(for: section.id)
+        let id = snapshot.visibleItems[indexPath.item]
+
+        guard let cellViewModel = cellViewModel(for: id)
+        else {
+            return cells[indexPath.item]
+        }
+
+        return cellViewModel
+    }
+
+    /// Recursively traverse the children array of each child to locate a matching cell view model
+    private func cellViewModel(in viewModel: AnyCellViewModel, with id: UniqueIdentifier) -> AnyCellViewModel? {
+        if viewModel.id == id {
+            return viewModel
+        }
+
+        for child in viewModel.children {
+            if let foundChildViewModel = cellViewModel(in: child, with: id) {
+                return foundChildViewModel
+            }
+        }
+
+        return nil
     }
 
     // MARK: Accessing Supplementary Views
@@ -168,12 +199,12 @@ public struct CollectionViewModel: DiffableViewModel {
         return self.sectionViewModel(at: index)
     }
 
-    func _safeCellViewModel(at indexPath: IndexPath) -> AnyCellViewModel? {
+    func _safeCellViewModel(at indexPath: IndexPath, in collectionView: UICollectionView) -> AnyCellViewModel? {
         guard let section = self._safeSectionViewModel(at: indexPath.section),
               indexPath.item < section.cells.count else {
             return nil
         }
-        return self.cellViewModel(at: indexPath)
+        return self.cellViewModel(at: indexPath, in: collectionView)
     }
 
     func _safeSupplementaryViewModel(ofKind kind: String, at indexPath: IndexPath) -> AnySupplementaryViewModel? {
