@@ -24,7 +24,7 @@ extension XCTestCase {
     }
 
     func expectation(function: String = #function, name: String? = nil) -> XCTestExpectation {
-        self.expectation(description: [function, name].compactMap { $0 }.joined(separator: "-"))
+        self.expectation(description: [function, name].compactMap(\.self).joined(separator: "-"))
     }
 
     func expectation(field: TestExpectationField, id: UniqueIdentifier, function: String = #function) -> XCTestExpectation {
