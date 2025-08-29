@@ -20,13 +20,13 @@ final class GridUITests: XCTestCase, @unchecked Sendable {
         try await super.setUp()
         self.continueAfterFailure = false
         await self.app.launch()
+        await self.app.activate()
     }
 
     @MainActor
     func test_grid_shuffle() {
-        self.app.activate()
-
         let shuffleButton = self.app.navigationBars["Grid"].buttons["repeat"]
+        XCTAssertTrue(shuffleButton.waitForExistence(timeout: 3))
 
         for _ in 1...20 {
             shuffleButton.tap()
@@ -35,12 +35,12 @@ final class GridUITests: XCTestCase, @unchecked Sendable {
 
     @MainActor
     func test_grid_remove_reset() {
-        self.app.activate()
-
         let shuffleButton = self.app.navigationBars["Grid"].buttons["repeat"]
+        XCTAssertTrue(shuffleButton.waitForExistence(timeout: 3))
         shuffleButton.tap()
 
         let resetButton = self.app.navigationBars["Grid"].buttons["Refresh"]
+        XCTAssertTrue(resetButton.waitForExistence(timeout: 3))
         resetButton.tap()
 
         let collectionViewsQuery = self.app.collectionViews

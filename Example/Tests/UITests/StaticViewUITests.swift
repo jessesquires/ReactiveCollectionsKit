@@ -20,13 +20,11 @@ final class StaticViewUITests: XCTestCase, @unchecked Sendable {
         try await super.setUp()
         self.continueAfterFailure = false
         await self.app.launch()
+        await self.app.activate()
     }
 
     @MainActor
     func test_view_other_tabs() {
-        self.app.activate()
-        XCTAssertTrue(true)
-
         self.app.tabBars["Tab Bar"].buttons["Simple Static"].tap()
         self.app.collectionViews["Simple Static"].swipeUp()
         self.app.collectionViews["Simple Static"].swipeDown()
@@ -34,6 +32,5 @@ final class StaticViewUITests: XCTestCase, @unchecked Sendable {
         self.app.tabBars["Tab Bar"].buttons["Flow Layout"].tap()
         self.app.collectionViews["Flow Layout"].swipeUp()
         self.app.collectionViews["Flow Layout"].swipeDown()
-
     }
 }
