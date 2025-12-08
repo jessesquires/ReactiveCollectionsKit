@@ -6,6 +6,7 @@ excluded:
   - Pods
   - docs
   - build
+  - .build
   - scripts
   - swiftpm
   - .bundle
