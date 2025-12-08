@@ -16,6 +16,7 @@ This release closes the [0.1.9 milestone](https://github.com/jessesquires/Reacti
     - Previous behavior: `"MyCellClassName"`
     - New behavior: `"MyModuleName.MyCellClassName"`
     - **Note:** This should be a transparent change and not impact any existing code. If you were previously working around this issue by providing a custom `reuseIdentifier`, you can now adopt the default implementation instead.
+- Fixed possible crash in `async` version of `CollectionViewDriver.update(viewModel: animated:)` due to incorrect handling of the `continuation`. ([@jessesquires](https://github.com/jessesquires), [#152](https://github.com/jessesquires/ReactiveCollectionsKit/issues/152), [#155](https://github.com/jessesquires/ReactiveCollectionsKit/pull/155))
 - Improve debug descriptions (i.e., `CustomDebugStringConvertible`) for various types. ([@nuomi1](https://github.com/nuomi1), [#139](https://github.com/jessesquires/ReactiveCollectionsKit/pull/139))
 - Implement (optional) debug logging for view model updates. You can now provide a logger for debugging purposes by setting `CollectionViewDriver.logger`. The library provides a default implementation via `RCKLogger.shared`. ([@nuomi1](https://github.com/nuomi1), [#141](https://github.com/jessesquires/ReactiveCollectionsKit/pull/141))
 - Upgrade to Xcode 26. ([@jessesquires](https://github.com/jessesquires), [#153](https://github.com/jessesquires/ReactiveCollectionsKit/pull/153))
