@@ -89,16 +89,18 @@ final class GridViewController: ExampleViewController, CellEventCoordinator {
 
         // Item
         let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0),
-                                              heightDimension: .fractionalHeight(1.0))
+                                              heightDimension: .fractionalHeight(0.5))
         let item = NSCollectionLayoutItem(layoutSize: itemSize, supplementaryItems: [badge])
         item.contentInsets = NSDirectionalEdgeInsets(top: inset, leading: inset, bottom: inset, trailing: inset)
 
         // Group
         let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(0.5),
                                                heightDimension: .fractionalHeight(0.5))
-        let group = NSCollectionLayoutGroup.vertical(layoutSize: groupSize,
-                                                     subitem: item,
-                                                     count: 2)
+        let group = NSCollectionLayoutGroup.vertical(
+            layoutSize: groupSize,
+            repeatingSubitem: item,
+            count: 2
+        )
 
         // Headers and Footers
         let headerFooterSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0),

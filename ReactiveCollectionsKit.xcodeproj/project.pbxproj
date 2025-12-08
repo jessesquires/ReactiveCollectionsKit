@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 77;
+	objectVersion = 90;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -54,18 +54,14 @@
 /* Begin PBXFrameworksBuildPhase section */
 		88FA48D72363A6160061F8B2 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
 			files = (
 			);
-			runOnlyForDeploymentPostprocessing = 0;
 		};
 		88FA48E02363A6160061F8B2 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
 			files = (
 				88FA48E42363A6160061F8B2 /* ReactiveCollectionsKit.framework in Frameworks */,
 			);
-			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
@@ -93,10 +89,8 @@
 /* Begin PBXHeadersBuildPhase section */
 		88FA48D52363A6160061F8B2 /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
-			buildActionMask = 2147483647;
 			files = (
 			);
-			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXHeadersBuildPhase section */
 
@@ -112,8 +106,6 @@
 				88FA49242363AF790061F8B2 /* Run SwiftLint */,
 			);
 			buildRules = (
-			);
-			dependencies = (
 			);
 			fileSystemSynchronizedGroups = (
 				0B8700FA2CAE1D810098CB29 /* Sources */,
@@ -152,7 +144,7 @@
 			attributes = {
 				BuildIndependentTargetsInParallel = YES;
 				LastSwiftUpdateCheck = 1110;
-				LastUpgradeCheck = 1600;
+				LastUpgradeCheck = 2610;
 				ORGANIZATIONNAME = "Hexed Bits";
 				TargetAttributes = {
 					88FA48D92363A6160061F8B2 = {
@@ -173,7 +165,7 @@
 			);
 			mainGroup = 88FA48D02363A6160061F8B2;
 			minimizedProjectReferenceProxies = 1;
-			preferredProjectObjectVersion = 77;
+			preferredProjectObjectVersion = 90;
 			productRefGroup = 88FA48DB2363A6160061F8B2 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -187,17 +179,13 @@
 /* Begin PBXResourcesBuildPhase section */
 		88FA48D82363A6160061F8B2 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
 			files = (
 			);
-			runOnlyForDeploymentPostprocessing = 0;
 		};
 		88FA48E12363A6160061F8B2 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
 			files = (
 			);
-			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
 
@@ -205,38 +193,25 @@
 		88FA49242363AF790061F8B2 /* Run SwiftLint */ = {
 			isa = PBXShellScriptBuildPhase;
 			alwaysOutOfDate = 1;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-			);
 			name = "Run SwiftLint";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/zsh;
-			shellScript = "\"${SRCROOT}/scripts/lint.zsh\"\n";
+			shellScript = (
+				"\"${SRCROOT}/scripts/lint.zsh\"",
+				"",
+			);
 		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		88FA48D62363A6160061F8B2 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
 			files = (
 			);
-			runOnlyForDeploymentPostprocessing = 0;
 		};
 		88FA48DF2363A6160061F8B2 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
 			files = (
 			);
-			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
@@ -249,7 +224,7 @@
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
-		88FA48EC2363A6160061F8B2 /* Debug */ = {
+		88FA48EC2363A6160061F8B2 /* Debug configuration for PBXProject "ReactiveCollectionsKit" */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -303,12 +278,13 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.6;
 				MARKETING_VERSION = 1.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_STRICT_CONCURRENCY = complete;
@@ -318,7 +294,7 @@
 			};
 			name = Debug;
 		};
-		88FA48ED2363A6160061F8B2 /* Release */ = {
+		88FA48ED2363A6160061F8B2 /* Release configuration for PBXProject "ReactiveCollectionsKit" */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -366,11 +342,12 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.6;
 				MARKETING_VERSION = 1.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
 				SWIFT_COMPILATION_MODE = wholemodule;
 				SWIFT_OPTIMIZATION_LEVEL = "-O";
 				SWIFT_STRICT_CONCURRENCY = complete;
@@ -381,7 +358,7 @@
 			};
 			name = Release;
 		};
-		88FA48EF2363A6160061F8B2 /* Debug */ = {
+		88FA48EF2363A6160061F8B2 /* Debug configuration for PBXNativeTarget "ReactiveCollectionsKit" */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
@@ -415,7 +392,7 @@
 			};
 			name = Debug;
 		};
-		88FA48F02363A6160061F8B2 /* Release */ = {
+		88FA48F02363A6160061F8B2 /* Release configuration for PBXNativeTarget "ReactiveCollectionsKit" */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
@@ -448,7 +425,7 @@
 			};
 			name = Release;
 		};
-		88FA48F22363A6160061F8B2 /* Debug */ = {
+		88FA48F22363A6160061F8B2 /* Debug configuration for PBXNativeTarget "ReactiveCollectionsKitTests" */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "Apple Development";
@@ -471,7 +448,7 @@
 			};
 			name = Debug;
 		};
-		88FA48F32363A6160061F8B2 /* Release */ = {
+		88FA48F32363A6160061F8B2 /* Release configuration for PBXNativeTarget "ReactiveCollectionsKitTests" */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "Apple Development";
@@ -500,28 +477,25 @@
 		88FA48D42363A6160061F8B2 /* Build configuration list for PBXProject "ReactiveCollectionsKit" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				88FA48EC2363A6160061F8B2 /* Debug */,
-				88FA48ED2363A6160061F8B2 /* Release */,
+				88FA48EC2363A6160061F8B2 /* Debug configuration for PBXProject "ReactiveCollectionsKit" */,
+				88FA48ED2363A6160061F8B2 /* Release configuration for PBXProject "ReactiveCollectionsKit" */,
 			);
-			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
 		88FA48EE2363A6160061F8B2 /* Build configuration list for PBXNativeTarget "ReactiveCollectionsKit" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				88FA48EF2363A6160061F8B2 /* Debug */,
-				88FA48F02363A6160061F8B2 /* Release */,
+				88FA48EF2363A6160061F8B2 /* Debug configuration for PBXNativeTarget "ReactiveCollectionsKit" */,
+				88FA48F02363A6160061F8B2 /* Release configuration for PBXNativeTarget "ReactiveCollectionsKit" */,
 			);
-			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
 		88FA48F12363A6160061F8B2 /* Build configuration list for PBXNativeTarget "ReactiveCollectionsKitTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				88FA48F22363A6160061F8B2 /* Debug */,
-				88FA48F32363A6160061F8B2 /* Release */,
+				88FA48F22363A6160061F8B2 /* Debug configuration for PBXNativeTarget "ReactiveCollectionsKitTests" */,
+				88FA48F32363A6160061F8B2 /* Release configuration for PBXNativeTarget "ReactiveCollectionsKitTests" */,
 			);
-			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
