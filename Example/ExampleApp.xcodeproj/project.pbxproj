@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 77;
+	objectVersion = 90;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -38,14 +38,12 @@
 /* Begin PBXCopyFilesBuildPhase section */
 		0B31B9B72BCC63D4006F2078 /* Embed Frameworks */ = {
 			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
 			dstPath = "";
-			dstSubfolderSpec = 10;
+			dstSubfolder = Frameworks;
 			files = (
 				0B31B9B62BCC63D4006F2078 /* ReactiveCollectionsKit.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
-			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXCopyFilesBuildPhase section */
 
@@ -117,25 +115,19 @@
 /* Begin PBXFrameworksBuildPhase section */
 		0B31B9382BCC62A4006F2078 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
 			files = (
 				0B31B9B52BCC63D4006F2078 /* ReactiveCollectionsKit.framework in Frameworks */,
 			);
-			runOnlyForDeploymentPostprocessing = 0;
 		};
 		0B31B94E2BCC62A5006F2078 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
 			files = (
 			);
-			runOnlyForDeploymentPostprocessing = 0;
 		};
 		0B31B9582BCC62A5006F2078 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
 			files = (
 			);
-			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
@@ -189,8 +181,6 @@
 				0B31B9B72BCC63D4006F2078 /* Embed Frameworks */,
 			);
 			buildRules = (
-			);
-			dependencies = (
 			);
 			fileSystemSynchronizedGroups = (
 				0B8701882CAE1D980098CB29 /* Sources */,
@@ -269,7 +259,7 @@
 			);
 			mainGroup = 0B31B9322BCC62A4006F2078;
 			minimizedProjectReferenceProxies = 1;
-			preferredProjectObjectVersion = 77;
+			preferredProjectObjectVersion = 90;
 			productRefGroup = 0B31B93C2BCC62A4006F2078 /* Products */;
 			projectDirPath = "";
 			projectReferences = (
@@ -300,48 +290,36 @@
 /* Begin PBXResourcesBuildPhase section */
 		0B31B9392BCC62A4006F2078 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
 			files = (
 			);
-			runOnlyForDeploymentPostprocessing = 0;
 		};
 		0B31B94F2BCC62A5006F2078 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
 			files = (
 			);
-			runOnlyForDeploymentPostprocessing = 0;
 		};
 		0B31B9592BCC62A5006F2078 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
 			files = (
 			);
-			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		0B31B9372BCC62A4006F2078 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
 			files = (
 			);
-			runOnlyForDeploymentPostprocessing = 0;
 		};
 		0B31B94D2BCC62A5006F2078 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
 			files = (
 			);
-			runOnlyForDeploymentPostprocessing = 0;
 		};
 		0B31B9572BCC62A5006F2078 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
 			files = (
 			);
-			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
@@ -359,7 +337,7 @@
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
-		0B31B9632BCC62A5006F2078 /* Debug */ = {
+		0B31B9632BCC62A5006F2078 /* Debug configuration for PBXProject "ExampleApp" */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -415,7 +393,7 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.6;
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
 				MARKETING_VERSION = 1.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
@@ -430,7 +408,7 @@
 			};
 			name = Debug;
 		};
-		0B31B9642BCC62A5006F2078 /* Release */ = {
+		0B31B9642BCC62A5006F2078 /* Release configuration for PBXProject "ExampleApp" */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -480,7 +458,7 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.6;
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
 				MARKETING_VERSION = 1.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
@@ -494,7 +472,7 @@
 			};
 			name = Release;
 		};
-		0B31B9662BCC62A5006F2078 /* Debug */ = {
+		0B31B9662BCC62A5006F2078 /* Debug configuration for PBXNativeTarget "ExampleApp" */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
@@ -524,7 +502,7 @@
 			};
 			name = Debug;
 		};
-		0B31B9672BCC62A5006F2078 /* Release */ = {
+		0B31B9672BCC62A5006F2078 /* Release configuration for PBXNativeTarget "ExampleApp" */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
@@ -554,7 +532,7 @@
 			};
 			name = Release;
 		};
-		0B31B9692BCC62A5006F2078 /* Debug */ = {
+		0B31B9692BCC62A5006F2078 /* Debug configuration for PBXNativeTarget "ExampleAppTests" */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -573,7 +551,7 @@
 			};
 			name = Debug;
 		};
-		0B31B96A2BCC62A5006F2078 /* Release */ = {
+		0B31B96A2BCC62A5006F2078 /* Release configuration for PBXNativeTarget "ExampleAppTests" */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -592,7 +570,7 @@
 			};
 			name = Release;
 		};
-		0B31B96C2BCC62A5006F2078 /* Debug */ = {
+		0B31B96C2BCC62A5006F2078 /* Debug configuration for PBXNativeTarget "ExampleAppUITests" */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_STYLE = Manual;
@@ -610,7 +588,7 @@
 			};
 			name = Debug;
 		};
-		0B31B96D2BCC62A5006F2078 /* Release */ = {
+		0B31B96D2BCC62A5006F2078 /* Release configuration for PBXNativeTarget "ExampleAppUITests" */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_STYLE = Manual;
@@ -634,37 +612,33 @@
 		0B31B9362BCC62A4006F2078 /* Build configuration list for PBXProject "ExampleApp" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				0B31B9632BCC62A5006F2078 /* Debug */,
-				0B31B9642BCC62A5006F2078 /* Release */,
+				0B31B9632BCC62A5006F2078 /* Debug configuration for PBXProject "ExampleApp" */,
+				0B31B9642BCC62A5006F2078 /* Release configuration for PBXProject "ExampleApp" */,
 			);
-			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
 		0B31B9652BCC62A5006F2078 /* Build configuration list for PBXNativeTarget "ExampleApp" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				0B31B9662BCC62A5006F2078 /* Debug */,
-				0B31B9672BCC62A5006F2078 /* Release */,
+				0B31B9662BCC62A5006F2078 /* Debug configuration for PBXNativeTarget "ExampleApp" */,
+				0B31B9672BCC62A5006F2078 /* Release configuration for PBXNativeTarget "ExampleApp" */,
 			);
-			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
 		0B31B9682BCC62A5006F2078 /* Build configuration list for PBXNativeTarget "ExampleAppTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				0B31B9692BCC62A5006F2078 /* Debug */,
-				0B31B96A2BCC62A5006F2078 /* Release */,
+				0B31B9692BCC62A5006F2078 /* Debug configuration for PBXNativeTarget "ExampleAppTests" */,
+				0B31B96A2BCC62A5006F2078 /* Release configuration for PBXNativeTarget "ExampleAppTests" */,
 			);
-			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
 		0B31B96B2BCC62A5006F2078 /* Build configuration list for PBXNativeTarget "ExampleAppUITests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				0B31B96C2BCC62A5006F2078 /* Debug */,
-				0B31B96D2BCC62A5006F2078 /* Release */,
+				0B31B96C2BCC62A5006F2078 /* Debug configuration for PBXNativeTarget "ExampleAppUITests" */,
+				0B31B96D2BCC62A5006F2078 /* Release configuration for PBXNativeTarget "ExampleAppUITests" */,
 			);
-			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */

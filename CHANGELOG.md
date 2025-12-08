@@ -12,6 +12,7 @@ NEXT
 
 This release closes the [0.1.9 milestone](https://github.com/jessesquires/ReactiveCollectionsKit/milestone/2?closed=1).
 
+- Drop support for iOS 15. **Minimum iOS 16 now required.**
 - Fixed a (potential) bug where cells with the same name, but in different modules, would provide the same (conflicting) default `reuseIdentifier`. Default `reuseIdentifiers` now return the fully qualified type name. ([@jessesquires](https://github.com/jessesquires), [#150](https://github.com/jessesquires/ReactiveCollectionsKit/issues/150), [#154](https://github.com/jessesquires/ReactiveCollectionsKit/pull/154))
     - Previous behavior: `"MyCellClassName"`
     - New behavior: `"MyModuleName.MyCellClassName"`
