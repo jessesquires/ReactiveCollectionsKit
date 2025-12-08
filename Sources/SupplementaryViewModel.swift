@@ -61,7 +61,7 @@ extension SupplementaryViewModel {
     public var viewClass: AnyClass { ViewType.self }
 
     /// A default reuse identifier for cell registration.
-    /// Returns the name of the class implementing the `CellViewModel` protocol.
+    /// Returns the fully qualified type name of the class implementing the `SupplementaryViewModel` protocol.
     public var reuseIdentifier: String { String(reflecting: Self.self) }
 
     /// Returns a type-erased version of this view model.
