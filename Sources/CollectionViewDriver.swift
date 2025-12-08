@@ -613,6 +613,7 @@ extension CollectionViewDriver: UICollectionViewDelegateFlowLayout {
 // MARK: - CustomDebugStringConvertible
 
 extension CollectionViewDriver {
+    /// :nodoc:
     override public var debugDescription: String {
         MainActor.assumeIsolated {
             driverDebugDescription(self, self._emptyViewProvider, self._cellEventCoordinator)

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>EmptyViewProvider Structure Reference</title>
+    <title>Logging Protocol Reference</title>
     <link rel="stylesheet" type="text/css" href="../css/jazzy.css" />
     <link rel="stylesheet" type="text/css" href="../css/highlight.css" />
     <meta charset='utf-8'>
@@ -13,8 +13,8 @@
     <script src="../js/jazzy.search.js" defer></script>
   </head>
   <body>
-    <a name="//apple_ref/swift/Struct/EmptyViewProvider" class="dashAnchor"></a>
-    <a title="EmptyViewProvider Structure Reference"></a>
+    <a name="//apple_ref/swift/Protocol/Logging" class="dashAnchor"></a>
+    <a title="Logging Protocol Reference"></a>
     <header>
       <div class="content-wrapper">
         <p><a href="../index.html">ReactiveCollectionsKit Docs</a> (100% documented)</p>
@@ -30,9 +30,9 @@
       <p id="breadcrumbs">
         <a href="../index.html">ReactiveCollectionsKit</a>
         <img id="carat" src="../img/carat.png" alt=""/>
-        <a href="../Structs.html">Structures</a>
+        <a href="../Protocols.html">Protocols</a>
         <img id="carat" src="../img/carat.png" alt=""/>
-        EmptyViewProvider Structure Reference
+        Logging Protocol Reference
       </p>
     </div>
     <div class="content-wrapper">
@@ -142,16 +142,15 @@
       <article class="main-content">
         <section>
           <section class="section">
-            <h1>EmptyViewProvider</h1>
+            <h1>Logging</h1>
               <div class="declaration">
                 <div class="language">
                   
-                  <pre class="highlight swift"><code><span class="kd">@MainActor</span>
-<span class="kd">public</span> <span class="kd">struct</span> <span class="kt">EmptyViewProvider</span></code></pre>
+                  <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">protocol</span> <span class="kt">Logging</span> <span class="p">:</span> <span class="kt">Sendable</span></code></pre>
 
                 </div>
               </div>
-            <p>Provides an &ldquo;empty state&rdquo; or &ldquo;no content&rdquo; view for the collection view.</p>
+            <p>Describes a type that logs messages for the library.</p>
 
           </section>
           <section class="section task-group-section">
@@ -160,9 +159,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:22ReactiveCollectionsKit17EmptyViewProviderV11viewBuilderSo6UIViewCycvp"></a>
-                    <a name="//apple_ref/swift/Property/viewBuilder" class="dashAnchor"></a>
-                    <a class="token" href="#/s:22ReactiveCollectionsKit17EmptyViewProviderV11viewBuilderSo6UIViewCycvp">viewBuilder</a>
+                    <a name="/s:22ReactiveCollectionsKit7LoggingP3logyySSyXAF"></a>
+                    <a name="//apple_ref/swift/Method/log(_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:22ReactiveCollectionsKit7LoggingP3logyySSyXAF">log(_:<wbr>)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -170,71 +169,14 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>A closure that returns the view.</p>
+                        <p>Logs the provided message.</p>
 
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">@MainActor</span>
-<span class="kd">public</span> <span class="k">let</span> <span class="nv">viewBuilder</span><span class="p">:</span> <span class="p">()</span> <span class="o">-&gt;</span> <span class="kt">UIView</span></code></pre>
-
-                        </div>
-                      </div>
-                    </section>
-                  </div>
-                </li>
-                <li class="item">
-                  <div>
-                    <code>
-                    <a name="/s:22ReactiveCollectionsKit17EmptyViewProviderV4viewSo6UIViewCvp"></a>
-                    <a name="//apple_ref/swift/Property/view" class="dashAnchor"></a>
-                    <a class="token" href="#/s:22ReactiveCollectionsKit17EmptyViewProviderV4viewSo6UIViewCvp">view</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        <p>The empty view.</p>
-
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-                        <div class="language">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">@MainActor</span>
-<span class="kd">public</span> <span class="k">var</span> <span class="nv">view</span><span class="p">:</span> <span class="kt">UIView</span> <span class="p">{</span> <span class="k">get</span> <span class="p">}</span></code></pre>
-
-                        </div>
-                      </div>
-                    </section>
-                  </div>
-                </li>
-                <li class="item">
-                  <div>
-                    <code>
-                    <a name="/s:22ReactiveCollectionsKit17EmptyViewProviderVyACSo6UIViewCyccfc"></a>
-                    <a name="//apple_ref/swift/Method/init(_:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:22ReactiveCollectionsKit17EmptyViewProviderVyACSo6UIViewCyccfc">init(_:<wbr>)</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        <p>Initializes an <code>EmptyViewProvider</code> with the given closure.</p>
-
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-                        <div class="language">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">@MainActor</span>
-<span class="kd">public</span> <span class="nf">init</span><span class="p">(</span><span class="n">_</span> <span class="nv">viewBuilder</span><span class="p">:</span> <span class="kd">@escaping</span> <span class="p">()</span> <span class="o">-&gt;</span> <span class="kt">UIView</span><span class="p">)</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">log</span><span class="p">(</span><span class="n">_</span> <span class="nv">message</span><span class="p">:</span> <span class="kd">@escaping</span> <span class="kd">@autoclosure</span> <span class="p">()</span> <span class="o">-&gt;</span> <span class="kt">String</span><span class="p">)</span></code></pre>
 
                         </div>
                       </div>
@@ -245,12 +187,12 @@
                             <tr>
                               <td>
                                 <code>
-                                <em>viewBuilder</em>
+                                <em>message</em>
                                 </code>
                               </td>
                               <td>
                                 <div>
-                                  <p>A closure that creates and returns the empty view.</p>
+                                  <p>The message to log.</p>
                                 </div>
                               </td>
                             </tr>
