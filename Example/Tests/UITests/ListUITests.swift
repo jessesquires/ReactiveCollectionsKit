@@ -25,9 +25,13 @@ final class ListUITests: XCTestCase, @unchecked Sendable {
 
     @MainActor
     func test_list_shuffle() {
-        self.app.tabBars["Tab Bar"].buttons["List"].tap()
+        let listTab = self.app.images["list.dash"].firstMatch
+        listTab.tap()
 
-        let shuffleButton = self.app.navigationBars["List"].buttons["repeat"]
+        let listView = self.app.staticTexts["List"].firstMatch
+        XCTAssertTrue(listView.waitForExistence(timeout: 3))
+
+        let shuffleButton = self.app.buttons["shuffle"].firstMatch
         XCTAssertTrue(shuffleButton.waitForExistence(timeout: 3))
 
         for _ in 1...20 {
@@ -37,20 +41,25 @@ final class ListUITests: XCTestCase, @unchecked Sendable {
 
     @MainActor
     func test_list_remove_reset() {
-        self.app.tabBars["Tab Bar"].buttons["List"].tap()
+        let listTab = self.app.images["list.dash"].firstMatch
+        listTab.tap()
 
-        let shuffleButton = self.app.navigationBars["List"].buttons["repeat"]
+        let listView = self.app.staticTexts["List"].firstMatch
+        XCTAssertTrue(listView.waitForExistence(timeout: 3))
+
+        let shuffleButton = self.app.buttons["shuffle"].firstMatch
         XCTAssertTrue(shuffleButton.waitForExistence(timeout: 3))
         shuffleButton.tap()
 
-        let resetButton = self.app.navigationBars["List"].buttons["Refresh"]
+        let resetButton = self.app.buttons["Refresh"].firstMatch
         XCTAssertTrue(resetButton.waitForExistence(timeout: 3))
         resetButton.tap()
 
-        let collectionViewsQuery = self.app.collectionViews
-        collectionViewsQuery.buttons["Remove All"].tap()
+        let removeAllButton = self.app.buttons["Remove All"].firstMatch
+        XCTAssertTrue(removeAllButton.waitForExistence(timeout: 3))
+        removeAllButton.tap()
 
+        XCTAssertTrue(resetButton.waitForExistence(timeout: 3))
         resetButton.tap()
-        collectionViewsQuery.buttons["Reset"].tap()
     }
 }
