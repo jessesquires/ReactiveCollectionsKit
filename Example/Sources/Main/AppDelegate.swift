@@ -15,40 +15,20 @@ import UIKit
 
 @main
 final class AppDelegate: UIResponder, UIApplicationDelegate {
-    var window: UIWindow?
-
     func application(
         _ application: UIApplication,
         // swiftlint:disable:next discouraged_optional_collection
         didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?
     ) -> Bool {
-        let grid = GridViewController()
-        grid.title = "Grid"
-        grid.tabBarItem.image = UIImage(systemName: "square.grid.2x2.fill")
+        true
+    }
 
-        let list = ListViewController()
-        list.title = "List"
-        list.tabBarItem.image = UIImage(systemName: "list.dash")
+    // MARK: UISceneSession Lifecycle
 
-        let simple = SimpleStaticViewController()
-        simple.title = "Simple Static"
-        simple.tabBarItem.image = UIImage(systemName: "list.bullet.rectangle.portrait.fill")
-
-        let flow = SimpleFlowLayoutViewController()
-        flow.title = "Flow Layout"
-        flow.tabBarItem.image = UIImage(systemName: "square.grid.3x3.square")
-
-        let tabBar = UITabBarController()
-        tabBar.viewControllers = [
-            UINavigationController(rootViewController: grid),
-            UINavigationController(rootViewController: list),
-            UINavigationController(rootViewController: simple),
-            UINavigationController(rootViewController: flow)
-        ]
-
-        self.window = UIWindow()
-        self.window?.rootViewController = tabBar
-        self.window?.makeKeyAndVisible()
-        return true
+    func application(
+        _ application: UIApplication,
+        configurationForConnecting connectingSceneSession: UISceneSession,
+        options: UIScene.ConnectionOptions) -> UISceneConfiguration {
+            UISceneConfiguration(name: "Default Configuration", sessionRole: connectingSceneSession.role)
     }
 }
