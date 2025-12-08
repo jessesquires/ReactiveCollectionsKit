@@ -178,8 +178,9 @@ public final class CollectionViewDriver: NSObject {
     /// You can customize this behavior via the ``options`` for the driver.
     public func update(viewModel new: CollectionViewModel, animated: Bool = true) async {
         await withCheckedContinuation { continuation in
-            self.update(viewModel: new, animated: animated)
-            continuation.resume()
+            self.update(viewModel: new, animated: animated) { _ in
+                continuation.resume()
+            }
         }
     }
 
