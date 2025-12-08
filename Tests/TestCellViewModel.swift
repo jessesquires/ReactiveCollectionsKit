@@ -35,9 +35,12 @@ final class TestCellViewModel: XCTestCase {
     func test_CellViewModel_protocol_extension() {
         let viewModel = FakeCellViewModel()
         XCTAssert(viewModel.cellClass == FakeCollectionCell.self)
-        XCTAssertEqual(viewModel.reuseIdentifier, "FakeCellViewModel")
+        XCTAssertEqual(viewModel.reuseIdentifier, "ReactiveCollectionsKitTests.FakeCellViewModel")
 
-        let expected = ViewRegistration(reuseIdentifier: "FakeCellViewModel", cellClass: FakeCollectionCell.self)
+        let expected = ViewRegistration(
+            reuseIdentifier: "ReactiveCollectionsKitTests.FakeCellViewModel",
+            cellClass: FakeCollectionCell.self
+        )
         XCTAssertEqual(viewModel.registration, expected)
     }
 

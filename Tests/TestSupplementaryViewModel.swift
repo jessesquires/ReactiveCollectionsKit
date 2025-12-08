@@ -21,7 +21,7 @@ final class TestSupplementaryViewModel: XCTestCase {
     func test_SupplementaryViewModel_protocol_extension() {
         let viewModel = FakeSupplementaryViewModel()
         XCTAssert(viewModel.viewClass == FakeSupplementaryView.self)
-        XCTAssertEqual(viewModel.reuseIdentifier, "FakeSupplementaryViewModel")
+        XCTAssertEqual(viewModel.reuseIdentifier, "ReactiveCollectionsKitTests.FakeSupplementaryViewModel")
     }
 
     // swiftlint:disable xct_specific_matcher
@@ -101,7 +101,7 @@ final class TestSupplementaryViewModel: XCTestCase {
         XCTAssertEqual(viewModel._kind, UICollectionView.elementKindSectionHeader)
 
         let expected = ViewRegistration(
-            reuseIdentifier: "FakeHeaderViewModel",
+            reuseIdentifier: "ReactiveCollectionsKitTests.FakeHeaderViewModel",
             supplementaryViewClass: FakeCollectionHeaderView.self,
             kind: UICollectionView.elementKindSectionHeader
         )
@@ -116,7 +116,7 @@ final class TestSupplementaryViewModel: XCTestCase {
         XCTAssertEqual(viewModel._kind, UICollectionView.elementKindSectionFooter)
 
         let expected = ViewRegistration(
-            reuseIdentifier: "FakeFooterViewModel",
+            reuseIdentifier: "ReactiveCollectionsKitTests.FakeFooterViewModel",
             supplementaryViewClass: FakeCollectionFooterView.self,
             kind: UICollectionView.elementKindSectionFooter
         )

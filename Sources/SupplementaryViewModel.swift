@@ -62,7 +62,7 @@ extension SupplementaryViewModel {
 
     /// A default reuse identifier for cell registration.
     /// Returns the name of the class implementing the `CellViewModel` protocol.
-    public var reuseIdentifier: String { "\(Self.self)" }
+    public var reuseIdentifier: String { String(reflecting: Self.self) }
 
     /// Returns a type-erased version of this view model.
     public func eraseToAnyViewModel() -> AnySupplementaryViewModel {
