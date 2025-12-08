@@ -5,6 +5,15 @@ The changelog for `ReactiveCollectionsKit`. Also see [the releases on GitHub](ht
 NEXT
 -----
 
+- TBA
+
+0.1.9
+-----
+
+- Fixed a (potential) bug where cells with the same name, but in different modules, would provide the same (conflicting) default `reuseIdentifier`. Default `reuseIdentifiers` now return the fully qualified type name. ([@jessesquires](https://github.com/jessesquires), [#150](https://github.com/jessesquires/ReactiveCollectionsKit/issues/150), [#154](https://github.com/jessesquires/ReactiveCollectionsKit/pull/154))
+    - Previous behavior: `"MyCellClassName"`
+    - New behavior: `"MyModuleName.MyCellClassName"`
+    - **Note:** This should be a transparent change and not impact any existing code. If you were previously working around this issue by providing a custom `reuseIdentifier`, you can now adopt the default implementation instead.
 - Improve debug descriptions (i.e., `CustomDebugStringConvertible`) for various types. ([@nuomi1](https://github.com/nuomi1), [#139](https://github.com/jessesquires/ReactiveCollectionsKit/pull/139))
 - Implement (optional) debug logging for view model updates. You can now provide a logger for debugging purposes by setting `CollectionViewDriver.logger`. The library provides a default implementation via `RCKLogger.shared`. ([@nuomi1](https://github.com/nuomi1), [#141](https://github.com/jessesquires/ReactiveCollectionsKit/pull/141))
 - Upgrade to Xcode 26. ([@jessesquires](https://github.com/jessesquires), [#153](https://github.com/jessesquires/ReactiveCollectionsKit/pull/153))

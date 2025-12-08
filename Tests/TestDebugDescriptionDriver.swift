@@ -103,18 +103,18 @@ final class TestDebugDescriptionDriver: XCTestCase {
                   sections:
                     \\[0\\]:
                       id: section_0
-                      header: Header \\(FakeHeaderViewModel\\)
-                      footer: Footer \\(FakeFooterViewModel\\)
+                      header: Header \\(ReactiveCollectionsKitTests.FakeHeaderViewModel\\)
+                      footer: Footer \\(ReactiveCollectionsKitTests.FakeFooterViewModel\\)
                       cells:
-                        \\[0\\]: cell_0_0 \\(FakeNumberCellViewModel\\)
+                        \\[0\\]: cell_0_0 \\(ReactiveCollectionsKitTests.FakeNumberCellViewModel\\)
                       supplementary views:
-                        \\[0\\]: view_0_0 \\(FakeSupplementaryViewModel\\)
+                        \\[0\\]: view_0_0 \\(ReactiveCollectionsKitTests.FakeSupplementaryViewModel\\)
                       isEmpty: false
                   registrations:
-                    - FakeFooterViewModel \\(UICollectionElementKindSectionFooter\\)
-                    - FakeHeaderViewModel \\(UICollectionElementKindSectionHeader\\)
-                    - FakeNumberCellViewModel \\(cell\\)
-                    - FakeSupplementaryViewModel \\(FakeKind\\)
+                    - ReactiveCollectionsKitTests.FakeFooterViewModel \\(UICollectionElementKindSectionFooter\\)
+                    - ReactiveCollectionsKitTests.FakeHeaderViewModel \\(UICollectionElementKindSectionHeader\\)
+                    - ReactiveCollectionsKitTests.FakeNumberCellViewModel \\(cell\\)
+                    - ReactiveCollectionsKitTests.FakeSupplementaryViewModel \\(FakeKind\\)
                   isEmpty: false
                 \\}
               emptyViewProvider: nil

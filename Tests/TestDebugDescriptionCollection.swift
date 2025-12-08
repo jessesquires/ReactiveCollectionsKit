@@ -55,14 +55,14 @@ final class TestDebugDescriptionCollection: XCTestCase {
                   header: nil
                   footer: nil
                   cells:
-                    [0]: cell_0_0 (FakeNumberCellViewModel)
-                    [1]: cell_0_1 (FakeTextCellViewModel)
-                    [2]: cell_0_2 (FakeNumberCellViewModel)
+                    [0]: cell_0_0 (ReactiveCollectionsKitTests.FakeNumberCellViewModel)
+                    [1]: cell_0_1 (ReactiveCollectionsKitTests.FakeTextCellViewModel)
+                    [2]: cell_0_2 (ReactiveCollectionsKitTests.FakeNumberCellViewModel)
                   supplementary views: none
                   isEmpty: false
               registrations:
-                - FakeNumberCellViewModel (cell)
-                - FakeTextCellViewModel (cell)
+                - ReactiveCollectionsKitTests.FakeNumberCellViewModel (cell)
+                - ReactiveCollectionsKitTests.FakeTextCellViewModel (cell)
               isEmpty: false
             }
             """
@@ -85,13 +85,13 @@ final class TestDebugDescriptionCollection: XCTestCase {
                   header: nil
                   footer: nil
                   cells:
-                    [0]: cell_0_0 (FakeCellNibViewModel)
-                    [1]: cell_0_1 (FakeCellNibViewModel)
-                    [2]: cell_0_2 (FakeCellNibViewModel)
+                    [0]: cell_0_0 (ReactiveCollectionsKitTests.FakeCellNibViewModel)
+                    [1]: cell_0_1 (ReactiveCollectionsKitTests.FakeCellNibViewModel)
+                    [2]: cell_0_2 (ReactiveCollectionsKitTests.FakeCellNibViewModel)
                   supplementary views: none
                   isEmpty: false
               registrations:
-                - FakeCellNibViewModel (cell)
+                - ReactiveCollectionsKitTests.FakeCellNibViewModel (cell)
               isEmpty: false
             }
             """
@@ -114,18 +114,18 @@ final class TestDebugDescriptionCollection: XCTestCase {
               sections:
                 [0]:
                   id: section_0
-                  header: Header (FakeHeaderViewModel)
+                  header: Header (ReactiveCollectionsKitTests.FakeHeaderViewModel)
                   footer: nil
                   cells:
-                    [0]: cell_0_0 (FakeNumberCellViewModel)
-                    [1]: cell_0_1 (FakeTextCellViewModel)
-                    [2]: cell_0_2 (FakeNumberCellViewModel)
+                    [0]: cell_0_0 (ReactiveCollectionsKitTests.FakeNumberCellViewModel)
+                    [1]: cell_0_1 (ReactiveCollectionsKitTests.FakeTextCellViewModel)
+                    [2]: cell_0_2 (ReactiveCollectionsKitTests.FakeNumberCellViewModel)
                   supplementary views: none
                   isEmpty: false
               registrations:
-                - FakeHeaderViewModel (UICollectionElementKindSectionHeader)
-                - FakeNumberCellViewModel (cell)
-                - FakeTextCellViewModel (cell)
+                - ReactiveCollectionsKitTests.FakeHeaderViewModel (UICollectionElementKindSectionHeader)
+                - ReactiveCollectionsKitTests.FakeNumberCellViewModel (cell)
+                - ReactiveCollectionsKitTests.FakeTextCellViewModel (cell)
               isEmpty: false
             }
             """
@@ -146,17 +146,17 @@ final class TestDebugDescriptionCollection: XCTestCase {
                 [0]:
                   id: section_0
                   header: nil
-                  footer: Footer (FakeFooterViewModel)
+                  footer: Footer (ReactiveCollectionsKitTests.FakeFooterViewModel)
                   cells:
-                    [0]: cell_0_0 (FakeNumberCellViewModel)
-                    [1]: cell_0_1 (FakeTextCellViewModel)
-                    [2]: cell_0_2 (FakeNumberCellViewModel)
+                    [0]: cell_0_0 (ReactiveCollectionsKitTests.FakeNumberCellViewModel)
+                    [1]: cell_0_1 (ReactiveCollectionsKitTests.FakeTextCellViewModel)
+                    [2]: cell_0_2 (ReactiveCollectionsKitTests.FakeNumberCellViewModel)
                   supplementary views: none
                   isEmpty: false
               registrations:
-                - FakeFooterViewModel (UICollectionElementKindSectionFooter)
-                - FakeNumberCellViewModel (cell)
-                - FakeTextCellViewModel (cell)
+                - ReactiveCollectionsKitTests.FakeFooterViewModel (UICollectionElementKindSectionFooter)
+                - ReactiveCollectionsKitTests.FakeNumberCellViewModel (cell)
+                - ReactiveCollectionsKitTests.FakeTextCellViewModel (cell)
               isEmpty: false
             }
             """
@@ -177,19 +177,19 @@ final class TestDebugDescriptionCollection: XCTestCase {
               sections:
                 [0]:
                   id: section_0
-                  header: Header (FakeHeaderViewModel)
-                  footer: Footer (FakeFooterViewModel)
+                  header: Header (ReactiveCollectionsKitTests.FakeHeaderViewModel)
+                  footer: Footer (ReactiveCollectionsKitTests.FakeFooterViewModel)
                   cells:
-                    [0]: cell_0_0 (FakeNumberCellViewModel)
-                    [1]: cell_0_1 (FakeTextCellViewModel)
-                    [2]: cell_0_2 (FakeNumberCellViewModel)
+                    [0]: cell_0_0 (ReactiveCollectionsKitTests.FakeNumberCellViewModel)
+                    [1]: cell_0_1 (ReactiveCollectionsKitTests.FakeTextCellViewModel)
+                    [2]: cell_0_2 (ReactiveCollectionsKitTests.FakeNumberCellViewModel)
                   supplementary views: none
                   isEmpty: false
               registrations:
-                - FakeFooterViewModel (UICollectionElementKindSectionFooter)
-                - FakeHeaderViewModel (UICollectionElementKindSectionHeader)
-                - FakeNumberCellViewModel (cell)
-                - FakeTextCellViewModel (cell)
+                - ReactiveCollectionsKitTests.FakeFooterViewModel (UICollectionElementKindSectionFooter)
+                - ReactiveCollectionsKitTests.FakeHeaderViewModel (UICollectionElementKindSectionHeader)
+                - ReactiveCollectionsKitTests.FakeNumberCellViewModel (cell)
+                - ReactiveCollectionsKitTests.FakeTextCellViewModel (cell)
               isEmpty: false
             }
             """
@@ -214,23 +214,23 @@ final class TestDebugDescriptionCollection: XCTestCase {
               sections:
                 [0]:
                   id: section_0
-                  header: Header (FakeHeaderViewModel)
-                  footer: Footer (FakeFooterViewModel)
+                  header: Header (ReactiveCollectionsKitTests.FakeHeaderViewModel)
+                  footer: Footer (ReactiveCollectionsKitTests.FakeFooterViewModel)
                   cells:
-                    [0]: cell_0_0 (FakeNumberCellViewModel)
-                    [1]: cell_0_1 (FakeTextCellViewModel)
-                    [2]: cell_0_2 (FakeNumberCellViewModel)
+                    [0]: cell_0_0 (ReactiveCollectionsKitTests.FakeNumberCellViewModel)
+                    [1]: cell_0_1 (ReactiveCollectionsKitTests.FakeTextCellViewModel)
+                    [2]: cell_0_2 (ReactiveCollectionsKitTests.FakeNumberCellViewModel)
                   supplementary views:
-                    [0]: view_0_0 (FakeSupplementaryViewModel)
-                    [1]: view_0_1 (FakeSupplementaryViewModel)
-                    [2]: view_0_2 (FakeSupplementaryViewModel)
+                    [0]: view_0_0 (ReactiveCollectionsKitTests.FakeSupplementaryViewModel)
+                    [1]: view_0_1 (ReactiveCollectionsKitTests.FakeSupplementaryViewModel)
+                    [2]: view_0_2 (ReactiveCollectionsKitTests.FakeSupplementaryViewModel)
                   isEmpty: false
               registrations:
-                - FakeFooterViewModel (UICollectionElementKindSectionFooter)
-                - FakeHeaderViewModel (UICollectionElementKindSectionHeader)
-                - FakeNumberCellViewModel (cell)
-                - FakeSupplementaryViewModel (FakeKind)
-                - FakeTextCellViewModel (cell)
+                - ReactiveCollectionsKitTests.FakeFooterViewModel (UICollectionElementKindSectionFooter)
+                - ReactiveCollectionsKitTests.FakeHeaderViewModel (UICollectionElementKindSectionHeader)
+                - ReactiveCollectionsKitTests.FakeNumberCellViewModel (cell)
+                - ReactiveCollectionsKitTests.FakeSupplementaryViewModel (FakeKind)
+                - ReactiveCollectionsKitTests.FakeTextCellViewModel (cell)
               isEmpty: false
             }
             """
@@ -255,9 +255,9 @@ final class TestDebugDescriptionCollection: XCTestCase {
                   header: nil
                   footer: nil
                   cells:
-                    [0]: cell_0_0 (FakeNumberCellViewModel)
-                    [1]: cell_0_1 (FakeTextCellViewModel)
-                    [2]: cell_0_2 (FakeNumberCellViewModel)
+                    [0]: cell_0_0 (ReactiveCollectionsKitTests.FakeNumberCellViewModel)
+                    [1]: cell_0_1 (ReactiveCollectionsKitTests.FakeTextCellViewModel)
+                    [2]: cell_0_2 (ReactiveCollectionsKitTests.FakeNumberCellViewModel)
                   supplementary views: none
                   isEmpty: false
                 [1]:
@@ -265,14 +265,14 @@ final class TestDebugDescriptionCollection: XCTestCase {
                   header: nil
                   footer: nil
                   cells:
-                    [0]: cell_1_0 (FakeNumberCellViewModel)
-                    [1]: cell_1_1 (FakeTextCellViewModel)
-                    [2]: cell_1_2 (FakeNumberCellViewModel)
+                    [0]: cell_1_0 (ReactiveCollectionsKitTests.FakeNumberCellViewModel)
+                    [1]: cell_1_1 (ReactiveCollectionsKitTests.FakeTextCellViewModel)
+                    [2]: cell_1_2 (ReactiveCollectionsKitTests.FakeNumberCellViewModel)
                   supplementary views: none
                   isEmpty: false
               registrations:
-                - FakeNumberCellViewModel (cell)
-                - FakeTextCellViewModel (cell)
+                - ReactiveCollectionsKitTests.FakeNumberCellViewModel (cell)
+                - ReactiveCollectionsKitTests.FakeTextCellViewModel (cell)
               isEmpty: false
             }
             """
@@ -295,9 +295,9 @@ final class TestDebugDescriptionCollection: XCTestCase {
                   header: nil
                   footer: nil
                   cells:
-                    [0]: cell_0_0 (FakeCellNibViewModel)
-                    [1]: cell_0_1 (FakeCellNibViewModel)
-                    [2]: cell_0_2 (FakeCellNibViewModel)
+                    [0]: cell_0_0 (ReactiveCollectionsKitTests.FakeCellNibViewModel)
+                    [1]: cell_0_1 (ReactiveCollectionsKitTests.FakeCellNibViewModel)
+                    [2]: cell_0_2 (ReactiveCollectionsKitTests.FakeCellNibViewModel)
                   supplementary views: none
                   isEmpty: false
                 [1]:
@@ -305,13 +305,13 @@ final class TestDebugDescriptionCollection: XCTestCase {
                   header: nil
                   footer: nil
                   cells:
-                    [0]: cell_1_0 (FakeCellNibViewModel)
-                    [1]: cell_1_1 (FakeCellNibViewModel)
-                    [2]: cell_1_2 (FakeCellNibViewModel)
+                    [0]: cell_1_0 (ReactiveCollectionsKitTests.FakeCellNibViewModel)
+                    [1]: cell_1_1 (ReactiveCollectionsKitTests.FakeCellNibViewModel)
+                    [2]: cell_1_2 (ReactiveCollectionsKitTests.FakeCellNibViewModel)
                   supplementary views: none
                   isEmpty: false
               registrations:
-                - FakeCellNibViewModel (cell)
+                - ReactiveCollectionsKitTests.FakeCellNibViewModel (cell)
               isEmpty: false
             }
             """
@@ -331,28 +331,28 @@ final class TestDebugDescriptionCollection: XCTestCase {
               sections:
                 [0]:
                   id: section_0
-                  header: Header (FakeHeaderViewModel)
+                  header: Header (ReactiveCollectionsKitTests.FakeHeaderViewModel)
                   footer: nil
                   cells:
-                    [0]: cell_0_0 (FakeNumberCellViewModel)
-                    [1]: cell_0_1 (FakeTextCellViewModel)
-                    [2]: cell_0_2 (FakeNumberCellViewModel)
+                    [0]: cell_0_0 (ReactiveCollectionsKitTests.FakeNumberCellViewModel)
+                    [1]: cell_0_1 (ReactiveCollectionsKitTests.FakeTextCellViewModel)
+                    [2]: cell_0_2 (ReactiveCollectionsKitTests.FakeNumberCellViewModel)
                   supplementary views: none
                   isEmpty: false
                 [1]:
                   id: section_1
-                  header: Header (FakeHeaderViewModel)
+                  header: Header (ReactiveCollectionsKitTests.FakeHeaderViewModel)
                   footer: nil
                   cells:
-                    [0]: cell_1_0 (FakeNumberCellViewModel)
-                    [1]: cell_1_1 (FakeTextCellViewModel)
-                    [2]: cell_1_2 (FakeNumberCellViewModel)
+                    [0]: cell_1_0 (ReactiveCollectionsKitTests.FakeNumberCellViewModel)
+                    [1]: cell_1_1 (ReactiveCollectionsKitTests.FakeTextCellViewModel)
+                    [2]: cell_1_2 (ReactiveCollectionsKitTests.FakeNumberCellViewModel)
                   supplementary views: none
                   isEmpty: false
               registrations:
-                - FakeHeaderViewModel (UICollectionElementKindSectionHeader)
-                - FakeNumberCellViewModel (cell)
-                - FakeTextCellViewModel (cell)
+                - ReactiveCollectionsKitTests.FakeHeaderViewModel (UICollectionElementKindSectionHeader)
+                - ReactiveCollectionsKitTests.FakeNumberCellViewModel (cell)
+                - ReactiveCollectionsKitTests.FakeTextCellViewModel (cell)
               isEmpty: false
             }
             """
@@ -376,27 +376,27 @@ final class TestDebugDescriptionCollection: XCTestCase {
                 [0]:
                   id: section_0
                   header: nil
-                  footer: Footer (FakeFooterViewModel)
+                  footer: Footer (ReactiveCollectionsKitTests.FakeFooterViewModel)
                   cells:
-                    [0]: cell_0_0 (FakeNumberCellViewModel)
-                    [1]: cell_0_1 (FakeTextCellViewModel)
-                    [2]: cell_0_2 (FakeNumberCellViewModel)
+                    [0]: cell_0_0 (ReactiveCollectionsKitTests.FakeNumberCellViewModel)
+                    [1]: cell_0_1 (ReactiveCollectionsKitTests.FakeTextCellViewModel)
+                    [2]: cell_0_2 (ReactiveCollectionsKitTests.FakeNumberCellViewModel)
                   supplementary views: none
                   isEmpty: false
                 [1]:
                   id: section_1
                   header: nil
-                  footer: Footer (FakeFooterViewModel)
+                  footer: Footer (ReactiveCollectionsKitTests.FakeFooterViewModel)
                   cells:
-                    [0]: cell_1_0 (FakeNumberCellViewModel)
-                    [1]: cell_1_1 (FakeTextCellViewModel)
-                    [2]: cell_1_2 (FakeNumberCellViewModel)
+                    [0]: cell_1_0 (ReactiveCollectionsKitTests.FakeNumberCellViewModel)
+                    [1]: cell_1_1 (ReactiveCollectionsKitTests.FakeTextCellViewModel)
+                    [2]: cell_1_2 (ReactiveCollectionsKitTests.FakeNumberCellViewModel)
                   supplementary views: none
                   isEmpty: false
               registrations:
-                - FakeFooterViewModel (UICollectionElementKindSectionFooter)
-                - FakeNumberCellViewModel (cell)
-                - FakeTextCellViewModel (cell)
+                - ReactiveCollectionsKitTests.FakeFooterViewModel (UICollectionElementKindSectionFooter)
+                - ReactiveCollectionsKitTests.FakeNumberCellViewModel (cell)
+                - ReactiveCollectionsKitTests.FakeTextCellViewModel (cell)
               isEmpty: false
             }
             """
@@ -417,29 +417,29 @@ final class TestDebugDescriptionCollection: XCTestCase {
               sections:
                 [0]:
                   id: section_0
-                  header: Header (FakeHeaderViewModel)
-                  footer: Footer (FakeFooterViewModel)
+                  header: Header (ReactiveCollectionsKitTests.FakeHeaderViewModel)
+                  footer: Footer (ReactiveCollectionsKitTests.FakeFooterViewModel)
                   cells:
-                    [0]: cell_0_0 (FakeNumberCellViewModel)
-                    [1]: cell_0_1 (FakeTextCellViewModel)
-                    [2]: cell_0_2 (FakeNumberCellViewModel)
+                    [0]: cell_0_0 (ReactiveCollectionsKitTests.FakeNumberCellViewModel)
+                    [1]: cell_0_1 (ReactiveCollectionsKitTests.FakeTextCellViewModel)
+                    [2]: cell_0_2 (ReactiveCollectionsKitTests.FakeNumberCellViewModel)
                   supplementary views: none
                   isEmpty: false
                 [1]:
                   id: section_1
-                  header: Header (FakeHeaderViewModel)
-                  footer: Footer (FakeFooterViewModel)
+                  header: Header (ReactiveCollectionsKitTests.FakeHeaderViewModel)
+                  footer: Footer (ReactiveCollectionsKitTests.FakeFooterViewModel)
                   cells:
-                    [0]: cell_1_0 (FakeNumberCellViewModel)
-                    [1]: cell_1_1 (FakeTextCellViewModel)
-                    [2]: cell_1_2 (FakeNumberCellViewModel)
+                    [0]: cell_1_0 (ReactiveCollectionsKitTests.FakeNumberCellViewModel)
+                    [1]: cell_1_1 (ReactiveCollectionsKitTests.FakeTextCellViewModel)
+                    [2]: cell_1_2 (ReactiveCollectionsKitTests.FakeNumberCellViewModel)
                   supplementary views: none
                   isEmpty: false
               registrations:
-                - FakeFooterViewModel (UICollectionElementKindSectionFooter)
-                - FakeHeaderViewModel (UICollectionElementKindSectionHeader)
-                - FakeNumberCellViewModel (cell)
-                - FakeTextCellViewModel (cell)
+                - ReactiveCollectionsKitTests.FakeFooterViewModel (UICollectionElementKindSectionFooter)
+                - ReactiveCollectionsKitTests.FakeHeaderViewModel (UICollectionElementKindSectionHeader)
+                - ReactiveCollectionsKitTests.FakeNumberCellViewModel (cell)
+                - ReactiveCollectionsKitTests.FakeTextCellViewModel (cell)
               isEmpty: false
             }
             """
@@ -461,36 +461,36 @@ final class TestDebugDescriptionCollection: XCTestCase {
               sections:
                 [0]:
                   id: section_0
-                  header: Header (FakeHeaderViewModel)
-                  footer: Footer (FakeFooterViewModel)
+                  header: Header (ReactiveCollectionsKitTests.FakeHeaderViewModel)
+                  footer: Footer (ReactiveCollectionsKitTests.FakeFooterViewModel)
                   cells:
-                    [0]: cell_0_0 (FakeNumberCellViewModel)
-                    [1]: cell_0_1 (FakeTextCellViewModel)
-                    [2]: cell_0_2 (FakeNumberCellViewModel)
+                    [0]: cell_0_0 (ReactiveCollectionsKitTests.FakeNumberCellViewModel)
+                    [1]: cell_0_1 (ReactiveCollectionsKitTests.FakeTextCellViewModel)
+                    [2]: cell_0_2 (ReactiveCollectionsKitTests.FakeNumberCellViewModel)
                   supplementary views:
-                    [0]: view_0_0 (FakeSupplementaryViewModel)
-                    [1]: view_0_1 (FakeSupplementaryViewModel)
-                    [2]: view_0_2 (FakeSupplementaryViewModel)
+                    [0]: view_0_0 (ReactiveCollectionsKitTests.FakeSupplementaryViewModel)
+                    [1]: view_0_1 (ReactiveCollectionsKitTests.FakeSupplementaryViewModel)
+                    [2]: view_0_2 (ReactiveCollectionsKitTests.FakeSupplementaryViewModel)
                   isEmpty: false
                 [1]:
                   id: section_1
-                  header: Header (FakeHeaderViewModel)
-                  footer: Footer (FakeFooterViewModel)
+                  header: Header (ReactiveCollectionsKitTests.FakeHeaderViewModel)
+                  footer: Footer (ReactiveCollectionsKitTests.FakeFooterViewModel)
                   cells:
-                    [0]: cell_1_0 (FakeNumberCellViewModel)
-                    [1]: cell_1_1 (FakeTextCellViewModel)
-                    [2]: cell_1_2 (FakeNumberCellViewModel)
+                    [0]: cell_1_0 (ReactiveCollectionsKitTests.FakeNumberCellViewModel)
+                    [1]: cell_1_1 (ReactiveCollectionsKitTests.FakeTextCellViewModel)
+                    [2]: cell_1_2 (ReactiveCollectionsKitTests.FakeNumberCellViewModel)
                   supplementary views:
-                    [0]: view_1_0 (FakeSupplementaryViewModel)
-                    [1]: view_1_1 (FakeSupplementaryViewModel)
-                    [2]: view_1_2 (FakeSupplementaryViewModel)
+                    [0]: view_1_0 (ReactiveCollectionsKitTests.FakeSupplementaryViewModel)
+                    [1]: view_1_1 (ReactiveCollectionsKitTests.FakeSupplementaryViewModel)
+                    [2]: view_1_2 (ReactiveCollectionsKitTests.FakeSupplementaryViewModel)
                   isEmpty: false
               registrations:
-                - FakeFooterViewModel (UICollectionElementKindSectionFooter)
-                - FakeHeaderViewModel (UICollectionElementKindSectionHeader)
-                - FakeNumberCellViewModel (cell)
-                - FakeSupplementaryViewModel (FakeKind)
-                - FakeTextCellViewModel (cell)
+                - ReactiveCollectionsKitTests.FakeFooterViewModel (UICollectionElementKindSectionFooter)
+                - ReactiveCollectionsKitTests.FakeHeaderViewModel (UICollectionElementKindSectionHeader)
+                - ReactiveCollectionsKitTests.FakeNumberCellViewModel (cell)
+                - ReactiveCollectionsKitTests.FakeSupplementaryViewModel (FakeKind)
+                - ReactiveCollectionsKitTests.FakeTextCellViewModel (cell)
               isEmpty: false
             }
             """

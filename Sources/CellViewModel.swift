@@ -139,8 +139,8 @@ extension CellViewModel {
     public var cellClass: AnyClass { CellType.self }
 
     /// A default reuse identifier for cell registration.
-    /// Returns the name of the class implementing the `CellViewModel` protocol.
-    public var reuseIdentifier: String { "\(Self.self)" }
+    /// Returns the fully qualified type name (module name + class name) of the class implementing the `CellViewModel` protocol.
+    public var reuseIdentifier: String { String(reflecting: Self.self) }
 
     /// A default registration for this view model for class-based cells.
     /// - Warning: Does not work for nib-based cells.
