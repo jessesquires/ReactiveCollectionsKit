@@ -33,7 +33,7 @@ fi
 PROJECT="ReactiveCollectionsKit.xcodeproj"
 SCHEME="ReactiveCollectionsKit"
 
-VERSION="0.57.0"
+VERSION="0.62.2"
 FOUND=$(swiftlint version)
 CONFIG="./.swiftlint.yml"
 

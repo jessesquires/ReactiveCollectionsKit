@@ -18,14 +18,14 @@ env:
   EXAMPLE_PROJECT: Example/ExampleApp.xcodeproj
   EXAMPLE_SCHEME: ExampleApp
 
-  DEVELOPER_DIR: /Applications/Xcode_16.4.app/Contents/Developer
+  DEVELOPER_DIR: /Applications/Xcode_26.1.app/Contents/Developer
 
-  IOS_DEST: "platform=iOS Simulator,name=iPhone 16,OS=latest"
+  IOS_DEST: "platform=iOS Simulator,name=iPhone 17,OS=latest"
 
 jobs:
   env-details:
     name: Environment details
-    runs-on: macos-15
+    runs-on: macos-latest
     steps:
       - name: xcode version
         run: xcodebuild -version -sdk
@@ -37,7 +37,7 @@ jobs:
 
   test-iOS:
     name: iOS unit test
-    runs-on: macos-15
+    runs-on: macos-latest
     steps:
       - name: git checkout
         uses: actions/checkout@v6
@@ -53,7 +53,7 @@ jobs:
 
   ui-test-iOS:
     name: iOS UI tests
-    runs-on: macos-15
+    runs-on: macos-latest
     steps:
       - name: git checkout
         uses: actions/checkout@v6
