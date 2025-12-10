@@ -16,6 +16,6 @@ import ReactiveCollectionsKit
 
 extension CollectionViewDriverOptions {
     static func test() -> Self {
-        .init(diffOnBackgroundQueue: false, reloadDataOnReplacingViewModel: true)
+        .init(reloadDataOnReplacingViewModel: true)
     }
 }

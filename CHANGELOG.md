@@ -7,6 +7,14 @@ NEXT
 
 - TBA
 
+0.2.0
+-----
+
+This release closes the [0.2.0 milestone](https://github.com/jessesquires/ReactiveCollectionsKit/milestone/3?closed=1).
+
+**Breaking Changes:**
+- Adopt Swift 6 and Swift Concurrency, remove `CollectionViewDriverOptions.diffOnBackgroundQueue`. ([@jessesquires](https://github.com/jessesquires), [#157](https://github.com/jessesquires/ReactiveCollectionsKit/issues/157), [#158](https://github.com/jessesquires/ReactiveCollectionsKit/pull/158)) **See linked issue and pull request for decision to remove `diffOnBackgroundQueue`.**
+
 0.1.9
 -----
 

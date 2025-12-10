@@ -19,7 +19,6 @@ final class TestCollectionViewDriverOptions: XCTestCase {
 
     func test_defaultValues() {
         let options = CollectionViewDriverOptions()
-        XCTAssertFalse(options.diffOnBackgroundQueue)
         XCTAssertFalse(options.reloadDataOnReplacingViewModel)
     }
 
@@ -29,21 +28,18 @@ final class TestCollectionViewDriverOptions: XCTestCase {
             options.debugDescription,
             """
             CollectionViewDriverOptions {
-              diffOnBackgroundQueue: false
               reloadDataOnReplacingViewModel: false
             }
             """
         )
 
         let options2 = CollectionViewDriverOptions(
-            diffOnBackgroundQueue: true,
             reloadDataOnReplacingViewModel: true
         )
         XCTAssertEqual(
             options2.debugDescription,
             """
             CollectionViewDriverOptions {
-              diffOnBackgroundQueue: true
               reloadDataOnReplacingViewModel: true
             }
             """

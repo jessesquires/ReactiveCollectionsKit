@@ -431,23 +431,6 @@ final class TestCollectionViewDriver: UnitTestCase, @unchecked Sendable {
     }
 
     @MainActor
-    func test_update_callsCompletion_withBackgroundDiffing() {
-        let driver = CollectionViewDriver(
-            view: self.collectionView,
-            options: .init(diffOnBackgroundQueue: true)
-        )
-
-        let expectation = self.expectation()
-
-        let newModel = self.fakeCollectionViewModel()
-        driver.update(viewModel: newModel, animated: true) { _ in
-            expectation.fulfillAndLog()
-        }
-
-        self.waitForExpectations()
-    }
-
-    @MainActor
     func test_update_callsCompletion_withReloadOnReplace() {
         let driver = CollectionViewDriver(
             view: self.collectionView,

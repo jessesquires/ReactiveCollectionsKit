@@ -52,7 +52,6 @@ final class TestDebugDescriptionDriver: XCTestCase {
             CollectionViewDriver \\{
               options:
                 CollectionViewDriverOptions \\{
-                  diffOnBackgroundQueue: false
                   reloadDataOnReplacingViewModel: false
                 \\}
               viewModel:
@@ -94,7 +93,6 @@ final class TestDebugDescriptionDriver: XCTestCase {
             CollectionViewDriver \\{
               options:
                 CollectionViewDriverOptions \\{
-                  diffOnBackgroundQueue: false
                   reloadDataOnReplacingViewModel: false
                 \\}
               viewModel:
@@ -155,7 +153,6 @@ final class TestDebugDescriptionDriver: XCTestCase {
             CollectionViewDriver \\{
               options:
                 CollectionViewDriverOptions \\{
-                  diffOnBackgroundQueue: false
                   reloadDataOnReplacingViewModel: false
                 \\}
               viewModel:

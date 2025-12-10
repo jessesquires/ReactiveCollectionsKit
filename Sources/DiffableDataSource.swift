@@ -26,34 +26,23 @@ final class DiffableDataSource: UICollectionViewDiffableDataSource<AnyHashable, 
     // Thus, unowned is safe here.
     private unowned let _collectionView: UICollectionView
 
-    private let _diffOnBackgroundQueue: Bool
-
-    private lazy var _diffingQueue = DispatchQueue(
-        label: "com.jessesquires.ReactiveCollectionsKit",
-        qos: .userInteractive,
-        autoreleaseFrequency: .workItem
-    )
-
     var logger: Logging?
 
     // MARK: Init
 
     init(
         view: UICollectionView,
-        diffOnBackgroundQueue: Bool,
         cellProvider: @escaping DiffableDataSource.CellProvider,
         supplementaryViewProvider: @escaping DiffableDataSource.SupplementaryViewProvider
     ) {
         self._collectionView = view
-        self._diffOnBackgroundQueue = diffOnBackgroundQueue
         super.init(collectionView: view, cellProvider: cellProvider)
         self.supplementaryViewProvider = supplementaryViewProvider
     }
 
-    convenience init(view: UICollectionView, diffOnBackgroundQueue: Bool) {
+    convenience init(view: UICollectionView) {
         self.init(
             view: view,
-            diffOnBackgroundQueue: diffOnBackgroundQueue,
             cellProvider: { _, _, _ in nil },
             supplementaryViewProvider: { _, _, _ in nil }
         )
@@ -66,12 +55,8 @@ final class DiffableDataSource: UICollectionViewDiffableDataSource<AnyHashable, 
 
         let snapshot = DiffableSnapshot(viewModel: viewModel)
         self.applySnapshotUsingReloadData(snapshot) {
-            // UIKit guarantees `completion` is called on the main queue.
-            dispatchPrecondition(condition: .onQueue(.main))
-            MainActor.assumeIsolated {
-                completion?()
-                self.logger?.log("DataSource reload snapshot completed")
-            }
+            completion?()
+            self.logger?.log("DataSource reload snapshot completed")
         }
     }
 
@@ -89,33 +74,18 @@ final class DiffableDataSource: UICollectionViewDiffableDataSource<AnyHashable, 
         // We need to inspect the current collection view state first, then pass this info downstream.
         let visibleItemIdentifiers = self._visibleItemIdentifiers()
 
-        if self._diffOnBackgroundQueue {
-            self.logger?.log("DataSource using background queue")
-            self._diffingQueue.async {
-                self._applySnapshot(
-                    from: source,
-                    to: destination,
-                    withVisibleItems: visibleItemIdentifiers,
-                    animated: animated,
-                    completion: completion
-                )
-            }
-        } else {
-            self.logger?.log("DataSource using main queue")
-            dispatchPrecondition(condition: .onQueue(.main))
-            self._applySnapshot(
-                from: source,
-                to: destination,
-                withVisibleItems: visibleItemIdentifiers,
-                animated: animated,
-                completion: completion
-            )
-        }
+        self._applySnapshot(
+            from: source,
+            to: destination,
+            withVisibleItems: visibleItemIdentifiers,
+            animated: animated,
+            completion: completion
+        )
     }
 
     // MARK: Private
 
-    nonisolated private func _applySnapshot(
+    private func _applySnapshot(
         from source: CollectionViewModel,
         to destination: CollectionViewModel,
         withVisibleItems visibleItemIdentifiers: Set<UniqueIdentifier>,
@@ -153,59 +123,49 @@ final class DiffableDataSource: UICollectionViewDiffableDataSource<AnyHashable, 
         destinationSnapshot.reconfigureItems(itemsToReconfigure)
 
         // Apply the snapshot with item reconfigure updates.
-        //
-        // Swift 6 complains about 'call to main actor-isolated instance method' here.
-        // However, call this method from a background thread is valid according to the docs.
         self.apply(destinationSnapshot, animatingDifferences: animated) { [weak self] in
-            // UIKit guarantees `completion` is called on the main queue.
-            dispatchPrecondition(condition: .onQueue(.main))
-
             guard let self else {
-                MainActor.assumeIsolated {
-                    completion?()
-                }
+                completion?()
                 return
             }
 
-            MainActor.assumeIsolated {
-                // Once the snapshot with item reconfigures is applied,
-                // we need to find and apply supplementary view reconfigures, if needed.
-                //
-                // This is necessary to update all headers, footers, and supplementary views.
-                // Per notes above, supplementary views do not get reloaded / reconfigured
-                // automatically by `DiffableDataSource` when they change.
-                //
-                // To trigger updates on supplementary views with the existing APIs,
-                // the entire section must be reloaded. Yes, that sucks. We don't want to do that.
-                // That causes all items in the section to be hard-reloaded, too.
-                // Aside from the performance impact, doing that results in an ugly UI "flash"
-                // for all item cells in the collection. Gross.
-                //
-                // However, we can actually do much better than a hard reload!
-                // Instead of reloading the entire section, we can find and compare
-                // the supplementary views and manually reconfigure them if they changed.
-                //
-                // NOTE: this only matters if supplementary views are not static.
-                // That is, if they reflect data in the data source.
-                //
-                // For example, a header with a fixed title (e.g. "My Items") will NOT need to be reloaded.
-                // However, a header that displays changing data WILL need to be reloaded.
-                // (e.g. "My 10 Items")
+            // Once the snapshot with item reconfigures is applied,
+            // we need to find and apply supplementary view reconfigures, if needed.
+            //
+            // This is necessary to update all headers, footers, and supplementary views.
+            // Per notes above, supplementary views do not get reloaded / reconfigured
+            // automatically by `DiffableDataSource` when they change.
+            //
+            // To trigger updates on supplementary views with the existing APIs,
+            // the entire section must be reloaded. Yes, that sucks. We don't want to do that.
+            // That causes all items in the section to be hard-reloaded, too.
+            // Aside from the performance impact, doing that results in an ugly UI "flash"
+            // for all item cells in the collection. Gross.
+            //
+            // However, we can actually do much better than a hard reload!
+            // Instead of reloading the entire section, we can find and compare
+            // the supplementary views and manually reconfigure them if they changed.
+            //
+            // NOTE: this only matters if supplementary views are not static.
+            // That is, if they reflect data in the data source.
+            //
+            // For example, a header with a fixed title (e.g. "My Items") will NOT need to be reloaded.
+            // However, a header that displays changing data WILL need to be reloaded.
+            // (e.g. "My 10 Items")
 
-                // Check all the supplementary views and reconfigure them, if needed.
-                self._reconfigureSupplementaryViewsIfNeeded(from: source, to: destination)
+            // Check all the supplementary views and reconfigure them, if needed.
+            self._reconfigureSupplementaryViewsIfNeeded(from: source, to: destination)
 
-                // Finally, we're done and can call completion.
-                completion?()
+            // Finally, we're done and can call completion.
+            completion?()
 
-                self.logger?.log("DataSource diffing snapshot complete")
-            }
+            self.logger?.log("DataSource diffing snapshot complete")
         }
     }
 
     // MARK: Reconfiguring Cells
 
-    nonisolated private func _findItemsToReconfigure(
+    private func _findItemsToReconfigure(
         from source: CollectionViewModel,
         to destination: CollectionViewModel,
         withVisibleItems visibleItemIdentifiers: Set<UniqueIdentifier>

@@ -91,7 +91,7 @@ driver.update(viewModel: updated)
 ## Requirements
 
 - iOS 16.0+
-- Swift 5.10+
+- Swift 6.0+
 - Xcode 26.0+
 - [SwiftLint](https://github.com/realm/SwiftLint)
 
