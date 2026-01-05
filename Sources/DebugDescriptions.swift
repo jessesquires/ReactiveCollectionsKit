@@ -133,7 +133,6 @@ private func debugDescriptionBuilder<Target: TextOutputStream>(
             debugDescriptionBuilder(
                 elements: [
                     (.type(CollectionViewDriverOptions.self), indent + 2),
-                    (.field(label: "diffOnBackgroundQueue", value: options.diffOnBackgroundQueue), indent + 4),
                     (.field(label: "reloadDataOnReplacingViewModel", value: options.reloadDataOnReplacingViewModel), indent + 4),
                     (.end, indent + 2)
                 ],
@@ -203,7 +202,6 @@ func driverOptionsDebugDescription(_ options: CollectionViewDriverOptions) -> St
     debugDescriptionBuilder(
         elements: [
             (.type(CollectionViewDriverOptions.self), 0),
-            (.field(label: "diffOnBackgroundQueue", value: options.diffOnBackgroundQueue), 2),
             (.field(label: "reloadDataOnReplacingViewModel", value: options.reloadDataOnReplacingViewModel), 2),
             (.end, 0)
         ],

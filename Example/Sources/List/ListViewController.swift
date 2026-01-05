@@ -20,7 +20,6 @@ final class ListViewController: ExampleViewController, CellEventCoordinator {
     lazy var driver: CollectionViewDriver = {
         let driver = CollectionViewDriver(
             view: self.collectionView,
-            options: .init(diffOnBackgroundQueue: true),
             emptyViewProvider: sharedEmptyViewProvider,
             cellEventCoordinator: self
         )

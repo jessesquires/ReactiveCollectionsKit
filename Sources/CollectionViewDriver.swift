@@ -92,7 +92,7 @@ public final class CollectionViewDriver: NSObject {
 
         // workaround for swift initialization rules.
         // the "real" init is below.
-        self._dataSource = DiffableDataSource(view: view, diffOnBackgroundQueue: false)
+        self._dataSource = DiffableDataSource(view: view)
 
         super.init()
 
@@ -106,7 +106,6 @@ public final class CollectionViewDriver: NSObject {
         // `self` owns the `_dataSource`, so we know that `self` will always exist.
         self._dataSource = DiffableDataSource(
             view: view,
-            diffOnBackgroundQueue: options.diffOnBackgroundQueue,
             cellProvider: { [unowned self] view, indexPath, itemIdentifier in
                 self._cellProvider(
                     collectionView: view,

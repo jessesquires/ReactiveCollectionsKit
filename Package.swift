@@ -41,16 +41,5 @@ let package = Package(
             ]
         )
     ],
-    swiftLanguageModes: [.v5]
+    swiftLanguageModes: [.v6]
 )
-
-#warning("Remove after Swift 6 language mode")
-let swiftSettings = [
-    SwiftSetting.enableExperimentalFeature("StrictConcurrency")
-]
-
-for target in package.targets {
-    var settings = target.swiftSettings ?? []
-    settings.append(contentsOf: swiftSettings)
-    target.swiftSettings = settings
-}
