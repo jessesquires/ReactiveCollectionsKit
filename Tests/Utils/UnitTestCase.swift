@@ -15,9 +15,8 @@ import Foundation
 @testable import ReactiveCollectionsKit
 import XCTest
 
-@MainActor
-// swiftlint:disable:next final_test_case
-class UnitTestCase: XCTestCase {
+// swiftlint:disable:next final_test_case attributes
+@MainActor class UnitTestCase: XCTestCase {
 
     private static let frame = CGRect(x: 0, y: 0, width: 320, height: 600)
 
