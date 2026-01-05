@@ -14,6 +14,7 @@
 import Foundation
 import UIKit
 
+// @mattiem please don't be mad at me
 extension AnyHashable: @retroactive @unchecked Sendable { }
 
 @MainActor

@@ -15,19 +15,20 @@ import Foundation
 @testable import ReactiveCollectionsKit
 import XCTest
 
+@MainActor
 // swiftlint:disable:next final_test_case
-class UnitTestCase: XCTestCase, @unchecked Sendable {
+class UnitTestCase: XCTestCase {
 
     private static let frame = CGRect(x: 0, y: 0, width: 320, height: 600)
 
-    @MainActor var collectionView: FakeCollectionView {
+    var collectionView: FakeCollectionView {
         FakeCollectionView(
             frame: Self.frame,
             collectionViewLayout: self.layout
         )
     }
 
-    @MainActor let layout = FakeCollectionLayout()
+    let layout = FakeCollectionLayout()
 
     var keepAliveDrivers = [CollectionViewDriver]()
 
@@ -35,14 +36,13 @@ class UnitTestCase: XCTestCase, @unchecked Sendable {
 
     override func setUp() async throws {
         try await super.setUp()
-        await self.collectionView.layoutSubviews()
-        await self.collectionView.reloadData()
+        self.collectionView.layoutSubviews()
+        self.collectionView.reloadData()
 
         self.keepAliveDrivers.removeAll()
         self.keepAliveWindows.removeAll()
     }
 
-    @MainActor
     func simulateAppearance(viewController: UIViewController) {
         viewController.beginAppearanceTransition(true, animated: false)
         viewController.endAppearanceTransition()
@@ -55,7 +55,6 @@ class UnitTestCase: XCTestCase, @unchecked Sendable {
         self.keepAliveWindows.append(window)
     }
 
-    @MainActor
     func keepDriverAlive(_ driver: CollectionViewDriver) {
         self.keepAliveDrivers.append(driver)
     }

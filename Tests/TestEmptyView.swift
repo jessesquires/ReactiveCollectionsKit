@@ -15,9 +15,8 @@ import Foundation
 @testable import ReactiveCollectionsKit
 import XCTest
 
-final class TestEmptyView: UnitTestCase, @unchecked Sendable {
+final class TestEmptyView: UnitTestCase {
 
-    @MainActor
     func test_provider() {
         let view = FakeEmptyView()
         let provider = EmptyViewProvider {
@@ -27,7 +26,6 @@ final class TestEmptyView: UnitTestCase, @unchecked Sendable {
         XCTAssertIdentical(provider.view, view)
     }
 
-    @MainActor
     func test_driver_displaysEmptyView() {
         let emptyView = FakeEmptyView()
         let provider = EmptyViewProvider {

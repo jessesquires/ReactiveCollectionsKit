@@ -15,6 +15,7 @@ import Foundation
 @testable import ReactiveCollectionsKit
 import XCTest
 
+@MainActor
 final class TestDebugDescriptionDriver: XCTestCase {
 
     private static let addressPattern = "0x[0-9a-fA-F]{8,12}" // 0x7b7c00003800 or 0x1509a2270
@@ -34,7 +35,6 @@ final class TestDebugDescriptionDriver: XCTestCase {
     dataSource: <ReactiveCollectionsKit\\.DiffableDataSource: \(addressPattern)>>
     """
 
-    @MainActor
     func test_empty() throws {
         let viewController = FakeCollectionViewController()
         let viewModel = self.fakeCollectionViewModel(
@@ -72,7 +72,6 @@ final class TestDebugDescriptionDriver: XCTestCase {
         XCTAssertTrue(driver.debugDescription.regexMatches(pattern: expected))
     }
 
-    @MainActor
     func test_viewModel() throws {
         let viewController = FakeCollectionViewController()
         let viewModel = self.fakeCollectionViewModel(
@@ -126,7 +125,6 @@ final class TestDebugDescriptionDriver: XCTestCase {
         XCTAssertTrue(driver.debugDescription.regexMatches(pattern: expected))
     }
 
-    @MainActor
     func test_delegate() throws {
         let viewController = FakeCollectionViewController()
         let viewModel = self.fakeCollectionViewModel(

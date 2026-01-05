@@ -15,9 +15,9 @@ import Foundation
 @testable import ReactiveCollectionsKit
 import XCTest
 
+@MainActor
 final class TestCellViewModel: XCTestCase {
 
-    @MainActor
     func test_CellViewModel_protocol_default_values() {
         let viewModel = FakeCellViewModel()
         XCTAssertTrue(viewModel.shouldSelect)
@@ -31,7 +31,6 @@ final class TestCellViewModel: XCTestCase {
         self.waitForExpectations()
     }
 
-    @MainActor
     func test_CellViewModel_protocol_extension() {
         let viewModel = FakeCellViewModel()
         XCTAssert(viewModel.cellClass == FakeCollectionCell.self)
@@ -45,7 +44,6 @@ final class TestCellViewModel: XCTestCase {
     }
 
     // swiftlint:disable xct_specific_matcher
-    @MainActor
     func test_eraseToAnyViewModel() {
         var viewModel = FakeTextCellViewModel()
         viewModel.expectationConfigureCell = self.expectation(field: .configure, id: viewModel.id)
@@ -150,7 +148,6 @@ final class TestCellViewModel: XCTestCase {
     }
     // swiftlint:enable xct_specific_matcher
 
-    @MainActor
     func test_debugDescription() {
         let cell = FakeTextCellViewModel().eraseToAnyViewModel()
         print(cell.debugDescription)

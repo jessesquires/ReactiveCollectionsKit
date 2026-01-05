@@ -15,9 +15,8 @@ import Foundation
 @testable import ReactiveCollectionsKit
 import XCTest
 
-final class TestDiffableSnapshot: UnitTestCase, @unchecked Sendable {
+final class TestDiffableSnapshot: UnitTestCase {
 
-    @MainActor
     func test_init() {
         let model = self.fakeCollectionViewModel()
         let sectionIds = Set(model.allSectionsByIdentifier().keys)
@@ -38,14 +37,12 @@ final class TestDiffableSnapshot: UnitTestCase, @unchecked Sendable {
         }
     }
 
-    @MainActor
     func test_init_empty() {
         let snapshot = DiffableSnapshot(viewModel: .empty)
         XCTAssertTrue(snapshot.sectionIdentifiers.isEmpty)
         XCTAssertTrue(snapshot.itemIdentifiers.isEmpty)
     }
 
-    @MainActor
     func test_init_perf() {
         let model = self.fakeCollectionViewModel(numSections: 10, numCells: 10_000)
         self.measure {

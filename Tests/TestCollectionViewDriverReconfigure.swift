@@ -15,9 +15,8 @@ import Foundation
 @testable import ReactiveCollectionsKit
 import XCTest
 
-final class TestCollectionViewDriverReconfigure: UnitTestCase, @unchecked Sendable {
+final class TestCollectionViewDriverReconfigure: UnitTestCase {
 
-    @MainActor
     func test_reconfigure_item() async {
         var uniqueCell = MyStaticCellViewModel(name: "initial")
         uniqueCell.expectation = self.expectation(field: .configure, id: uniqueCell.name)
@@ -49,7 +48,6 @@ final class TestCollectionViewDriverReconfigure: UnitTestCase, @unchecked Sendab
         self.keepDriverAlive(driver)
     }
 
-    @MainActor
     func test_reconfigure_header_footer() {
         let viewController = FakeCollectionViewController()
         viewController.collectionView.setCollectionViewLayout(

@@ -13,17 +13,17 @@
 
 import XCTest
 
-final class StaticViewUITests: XCTestCase, @unchecked Sendable {
-    @MainActor var app: XCUIApplication { XCUIApplication() }
+@MainActor
+final class StaticViewUITests: XCTestCase {
+    var app: XCUIApplication { XCUIApplication() }
 
     override func setUp() async throws {
         try await super.setUp()
         self.continueAfterFailure = false
-        await self.app.launch()
-        await self.app.activate()
+        self.app.launch()
+        self.app.activate()
     }
 
-    @MainActor
     func test_view_other_tabs() {
         self.app.tabBars["Tab Bar"].buttons["Simple Static"].tap()
         self.app.collectionViews["Simple Static"].swipeUp()

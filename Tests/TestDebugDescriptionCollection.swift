@@ -15,9 +15,9 @@ import Foundation
 @testable import ReactiveCollectionsKit
 import XCTest
 
+@MainActor
 final class TestDebugDescriptionCollection: XCTestCase {
 
-    @MainActor
     func test_empty() {
         let viewModel1 = self.fakeCollectionViewModel(
             id: "viewModel_1",
@@ -37,7 +37,6 @@ final class TestDebugDescriptionCollection: XCTestCase {
         )
     }
 
-    @MainActor
     func test_oneSection() {
         let viewModel4 = self.fakeCollectionViewModel(
             id: "viewModel_4",
@@ -98,7 +97,6 @@ final class TestDebugDescriptionCollection: XCTestCase {
         )
     }
 
-    @MainActor
     func test_section_withHeaderFooter() {
         let viewModel6 = self.fakeCollectionViewModel(
             id: "viewModel_6",
@@ -196,7 +194,6 @@ final class TestDebugDescriptionCollection: XCTestCase {
         )
     }
 
-    @MainActor
     func test_section_withSupplementaryViews() {
         let viewModel9 = self.fakeCollectionViewModel(
             id: "viewModel_9",
@@ -237,7 +234,6 @@ final class TestDebugDescriptionCollection: XCTestCase {
         )
     }
 
-    @MainActor
     func test_multiple_sections() {
         let viewModel12 = self.fakeCollectionViewModel(
             id: "viewModel_12",
@@ -359,7 +355,6 @@ final class TestDebugDescriptionCollection: XCTestCase {
         )
     }
 
-    @MainActor
     func test_multiple_sections_withSupplementaryViews() {
         let viewModel15 = self.fakeCollectionViewModel(
             id: "viewModel_15",

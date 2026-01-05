@@ -15,9 +15,8 @@ import Foundation
 @testable import ReactiveCollectionsKit
 import XCTest
 
-final class TestCollectionViewDriver: UnitTestCase, @unchecked Sendable {
+final class TestCollectionViewDriver: UnitTestCase {
 
-    @MainActor
     func test_numberOfSections_numberOfItems() {
         let sections = Int.random(in: 5...10)
         let cells = Int.random(in: 5...15)
@@ -37,7 +36,6 @@ final class TestCollectionViewDriver: UnitTestCase, @unchecked Sendable {
         self.keepDriverAlive(driver)
     }
 
-    @MainActor
     func test_numberOfSections_isEmpty() {
         let driver = CollectionViewDriver(
             view: self.collectionView,
@@ -49,7 +47,6 @@ final class TestCollectionViewDriver: UnitTestCase, @unchecked Sendable {
         self.keepDriverAlive(driver)
     }
 
-    @MainActor
     func test_delegate_didSelect_didDeselect_calls_cellViewModel() {
         let sections = 2
         let cells = 5
@@ -73,7 +70,6 @@ final class TestCollectionViewDriver: UnitTestCase, @unchecked Sendable {
         self.keepDriverAlive(driver)
     }
 
-    @MainActor
     func test_delegate_shouldSelect_shouldDeselect_calls_cellViewModel() {
         let cell1 = FakeTextCellViewModel(shouldSelect: true, shouldDeselect: true)
         let cell2 = FakeTextCellViewModel(shouldSelect: false, shouldDeselect: false)
@@ -101,7 +97,6 @@ final class TestCollectionViewDriver: UnitTestCase, @unchecked Sendable {
         self.keepDriverAlive(driver)
     }
 
-    @MainActor
     func test_delegate_shouldHighlight_calls_cellViewModel() {
         let cell1 = FakeTextCellViewModel(shouldHighlight: true)
         let cell2 = FakeTextCellViewModel(shouldHighlight: false)
@@ -123,7 +118,6 @@ final class TestCollectionViewDriver: UnitTestCase, @unchecked Sendable {
         self.keepDriverAlive(driver)
     }
 
-    @MainActor
     func test_delegate_contextMenuConfigurationForItemAt_calls_cellViewModel() {
         let contextMenu = UIContextMenuConfiguration()
         let cell1 = FakeTextCellViewModel(contextMenuConfiguration: contextMenu)
@@ -154,7 +148,6 @@ final class TestCollectionViewDriver: UnitTestCase, @unchecked Sendable {
         self.keepDriverAlive(driver)
     }
 
-    @MainActor
     func test_delegate_willDisplay_didEndDisplaying_calls_cellViewModel() {
         let cell = FakeCollectionCell()
         let sections = 2
@@ -183,7 +176,6 @@ final class TestCollectionViewDriver: UnitTestCase, @unchecked Sendable {
         self.keepDriverAlive(driver)
     }
 
-    @MainActor
     func test_delegate_willDisplay_didEndDisplaying_calls_supplementaryViewModel() {
         let cell = FakeCollectionCell()
         let view = FakeSupplementaryView()
@@ -226,7 +218,6 @@ final class TestCollectionViewDriver: UnitTestCase, @unchecked Sendable {
         self.keepDriverAlive(driver)
     }
 
-    @MainActor
     func test_delegate_didHighlight_didUnhighlight_calls_cellViewModel() {
         let sections = 2
         let cells = 5
@@ -254,7 +245,6 @@ final class TestCollectionViewDriver: UnitTestCase, @unchecked Sendable {
         self.keepDriverAlive(driver)
     }
 
-    @MainActor
     func test_dataSource_cellForItemAt_calls_cellViewModel_configure() async {
         let viewController = FakeCollectionViewController()
         let driver = CollectionViewDriver(view: viewController.collectionView)
@@ -288,7 +278,6 @@ final class TestCollectionViewDriver: UnitTestCase, @unchecked Sendable {
         self.keepDriverAlive(driver)
     }
 
-    @MainActor
     func test_dataSource_cellForItemAt_calls_cellViewModel_configure_usingNibs() {
         let sections = 2
         let cells = 5
@@ -322,7 +311,6 @@ final class TestCollectionViewDriver: UnitTestCase, @unchecked Sendable {
         self.keepDriverAlive(driver)
     }
 
-    @MainActor
     func test_dataSource_supplementaryViewAt_calls_supplementaryViewModel_configure() async {
         let viewController = FakeCollectionViewController()
         viewController.collectionView.setCollectionViewLayout(
@@ -369,7 +357,6 @@ final class TestCollectionViewDriver: UnitTestCase, @unchecked Sendable {
         self.keepDriverAlive(driver)
     }
 
-    @MainActor
     func test_dataSource_supplementaryViewAt_calls_supplementaryViewModel_configure_usingNibs() {
         let count = 3
         let cells = (1...count).map { _ in FakeNumberCellViewModel() }
@@ -416,7 +403,6 @@ final class TestCollectionViewDriver: UnitTestCase, @unchecked Sendable {
         self.keepDriverAlive(driver)
     }
 
-    @MainActor
     func test_update_callsCompletion_withDefaultOptions() {
         let driver = CollectionViewDriver(view: self.collectionView)
 
@@ -430,7 +416,6 @@ final class TestCollectionViewDriver: UnitTestCase, @unchecked Sendable {
         self.waitForExpectations()
     }
 
-    @MainActor
     func test_update_callsCompletion_withReloadOnReplace() {
         let driver = CollectionViewDriver(
             view: self.collectionView,

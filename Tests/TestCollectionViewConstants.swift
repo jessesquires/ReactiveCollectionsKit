@@ -16,14 +16,13 @@ import Foundation
 import UIKit
 import XCTest
 
+@MainActor
 final class TestCollectionViewConstants: XCTestCase {
 
-    @MainActor
     func test_header() {
         XCTAssertEqual(CollectionViewConstants.headerKind, UICollectionView.elementKindSectionHeader)
     }
 
-    @MainActor
     func test_footer() {
         XCTAssertEqual(CollectionViewConstants.footerKind, UICollectionView.elementKindSectionFooter)
     }

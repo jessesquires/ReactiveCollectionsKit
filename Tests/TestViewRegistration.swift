@@ -15,11 +15,11 @@ import Foundation
 @testable import ReactiveCollectionsKit
 import XCTest
 
+@MainActor
 final class TestViewRegistration: XCTestCase {
 
     private class TestView: UICollectionReusableView { }
 
-    @MainActor
     func test_convenience_init_class_cell() {
         let id = "test"
         let registration = ViewRegistration(reuseIdentifier: id, cellClass: TestView.self)
@@ -29,7 +29,6 @@ final class TestViewRegistration: XCTestCase {
         XCTAssertEqual(registration.method, .viewClass(TestView.self))
     }
 
-    @MainActor
     func test_convenience_init_nib_cell() {
         let id = "test"
         let nib = "nib"
@@ -40,7 +39,6 @@ final class TestViewRegistration: XCTestCase {
         XCTAssertEqual(registration.method, .nib(name: nib, bundle: nil))
     }
 
-    @MainActor
     func test_convenience_init_class_supplementary() {
         let id = "test"
         let kind = "kind"
@@ -51,7 +49,6 @@ final class TestViewRegistration: XCTestCase {
         XCTAssertEqual(registration.method, .viewClass(TestView.self))
     }
 
-    @MainActor
     func test_convenience_init_nib_supplementary() {
         let id = "test"
         let nib = "nib"

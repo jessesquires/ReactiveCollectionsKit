@@ -13,17 +13,17 @@
 
 import XCTest
 
-final class GridUITests: XCTestCase, @unchecked Sendable {
-    @MainActor var app: XCUIApplication { XCUIApplication() }
+@MainActor
+final class GridUITests: XCTestCase {
+    var app: XCUIApplication { XCUIApplication() }
 
     override func setUp() async throws {
         try await super.setUp()
         self.continueAfterFailure = false
-        await self.app.launch()
-        await self.app.activate()
+        self.app.launch()
+        self.app.activate()
     }
 
-    @MainActor
     func test_grid_shuffle() {
         let shuffleButton = self.app.buttons["shuffle"].firstMatch
         XCTAssertTrue(shuffleButton.waitForExistence(timeout: 3))
@@ -33,7 +33,6 @@ final class GridUITests: XCTestCase, @unchecked Sendable {
         }
     }
 
-    @MainActor
     func test_grid_remove_reset() {
         let shuffleButton = self.app.buttons["shuffle"].firstMatch
         XCTAssertTrue(shuffleButton.waitForExistence(timeout: 3))

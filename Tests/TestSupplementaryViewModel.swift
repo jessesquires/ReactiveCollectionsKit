@@ -15,9 +15,9 @@ import Foundation
 @testable import ReactiveCollectionsKit
 import XCTest
 
+@MainActor
 final class TestSupplementaryViewModel: XCTestCase {
 
-    @MainActor
     func test_SupplementaryViewModel_protocol_extension() {
         let viewModel = FakeSupplementaryViewModel()
         XCTAssert(viewModel.viewClass == FakeSupplementaryView.self)
@@ -25,7 +25,6 @@ final class TestSupplementaryViewModel: XCTestCase {
     }
 
     // swiftlint:disable xct_specific_matcher
-    @MainActor
     func test_eraseToAnyViewModel() {
         var viewModel = FakeSupplementaryViewModel()
         viewModel.expectationConfigureView = self.expectation(field: .configure, id: viewModel.id)
@@ -93,7 +92,6 @@ final class TestSupplementaryViewModel: XCTestCase {
     }
     // swiftlint:enable xct_specific_matcher
 
-    @MainActor
     func test_header() {
         XCTAssertEqual(FakeHeaderViewModel.kind, UICollectionView.elementKindSectionHeader)
 
@@ -108,7 +106,6 @@ final class TestSupplementaryViewModel: XCTestCase {
         XCTAssertEqual(viewModel.registration, expected)
     }
 
-    @MainActor
     func test_footer() {
         XCTAssertEqual(FakeFooterViewModel.kind, UICollectionView.elementKindSectionFooter)
 
@@ -123,7 +120,6 @@ final class TestSupplementaryViewModel: XCTestCase {
         XCTAssertEqual(viewModel.registration, expected)
     }
 
-    @MainActor
     func test_debugDescription() {
         let cell = FakeSupplementaryViewModel().eraseToAnyViewModel()
         print(cell.debugDescription)

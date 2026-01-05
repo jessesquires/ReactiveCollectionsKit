@@ -15,9 +15,9 @@ import Foundation
 @testable import ReactiveCollectionsKit
 import XCTest
 
+@MainActor
 final class TestSectionViewModel: XCTestCase {
 
-    @MainActor
     func test_empty_section() {
         let section = SectionViewModel(id: "name")
 
@@ -25,7 +25,6 @@ final class TestSectionViewModel: XCTestCase {
         XCTAssertTrue(section.isEmpty)
     }
 
-    @MainActor
     func test_section_with_only_cells() {
         let numCells = 3
         let name = "section_id"
@@ -36,7 +35,6 @@ final class TestSectionViewModel: XCTestCase {
         XCTAssertFalse(section.isEmpty)
     }
 
-    @MainActor
     func test_hasSupplementaryViews() {
         let section1 = SectionViewModel(id: "name")
         XCTAssertFalse(section1.hasSupplementaryViews)
@@ -58,7 +56,6 @@ final class TestSectionViewModel: XCTestCase {
         XCTAssertTrue(section5.hasSupplementaryViews)
     }
 
-    @MainActor
     func test_cellViewModel_forId() {
         let cells = self.fakeCellViewModels(count: 10)
         let expected = cells.first!
@@ -70,7 +67,6 @@ final class TestSectionViewModel: XCTestCase {
         XCTAssertNil(section.cellViewModel(for: "nonexistent"))
     }
 
-    @MainActor
     func test_supplementaryViewModel_forId() {
         let expected = FakeSupplementaryViewModel()
 
@@ -85,7 +81,6 @@ final class TestSectionViewModel: XCTestCase {
         XCTAssertNil(section.supplementaryViewModel(for: "nonexistent"))
     }
 
-    @MainActor
     func test_cell_registrations() {
         let cells1 = [FakeTextCellViewModel(), FakeTextCellViewModel(), FakeTextCellViewModel()].map { $0.eraseToAnyViewModel() }
         let cells2 = [FakeNumberCellViewModel(), FakeNumberCellViewModel(), FakeNumberCellViewModel()].map { $0.eraseToAnyViewModel() }
@@ -106,7 +101,6 @@ final class TestSectionViewModel: XCTestCase {
         XCTAssertEqual(section2.cellRegistrations().count, 1)
     }
 
-    @MainActor
     func test_header_footer_registrations() {
         let cells1 = [FakeTextCellViewModel(), FakeTextCellViewModel(), FakeTextCellViewModel()].map { $0.eraseToAnyViewModel() }
         let cells2 = [FakeNumberCellViewModel(), FakeNumberCellViewModel(), FakeNumberCellViewModel()].map { $0.eraseToAnyViewModel() }
@@ -125,7 +119,6 @@ final class TestSectionViewModel: XCTestCase {
         XCTAssertTrue(headerFooterRegistrations.contains(FakeFooterViewModel().registration))
     }
 
-    @MainActor
     func test_supplementary_registrations() {
         let cells1 = [FakeTextCellViewModel(), FakeTextCellViewModel(), FakeTextCellViewModel()].map { $0.eraseToAnyViewModel() }
         let cells2 = [FakeNumberCellViewModel(), FakeNumberCellViewModel(), FakeNumberCellViewModel()].map { $0.eraseToAnyViewModel() }
@@ -141,7 +134,6 @@ final class TestSectionViewModel: XCTestCase {
         XCTAssertTrue(supplementaryViewRegistrations.contains(FakeSupplementaryViewModel().registration))
     }
 
-    @MainActor
     func test_all_registrations() {
         let cells1 = [FakeTextCellViewModel(), FakeTextCellViewModel(), FakeTextCellViewModel()].map { $0.eraseToAnyViewModel() }
         let cells2 = [FakeNumberCellViewModel(), FakeNumberCellViewModel(), FakeNumberCellViewModel()].map { $0.eraseToAnyViewModel() }
@@ -166,7 +158,6 @@ final class TestSectionViewModel: XCTestCase {
         XCTAssertTrue(allRegistrations.contains(FakeSupplementaryViewModel().registration))
     }
 
-    @MainActor
     func test_allSupplementaryViewsByIdentifier() {
         let cells = [FakeTextCellViewModel(), FakeTextCellViewModel(), FakeTextCellViewModel()]
         let originalViews = [FakeSupplementaryViewModel(), FakeSupplementaryViewModel(), FakeSupplementaryViewModel()]
@@ -181,7 +172,6 @@ final class TestSectionViewModel: XCTestCase {
         }
     }
 
-    @MainActor
     func test_RandomAccessCollection_conformance() {
         let cells = [FakeTextCellViewModel(), FakeTextCellViewModel(), FakeTextCellViewModel()]
         let header = FakeHeaderViewModel()

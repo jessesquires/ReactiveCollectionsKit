@@ -15,9 +15,9 @@ import Foundation
 @testable import ReactiveCollectionsKit
 import XCTest
 
+@MainActor
 final class TestCollectionViewModel: XCTestCase {
 
-    @MainActor
     func test_emptyViewModel() {
         let viewModel = CollectionViewModel.empty
 
@@ -25,7 +25,6 @@ final class TestCollectionViewModel: XCTestCase {
         XCTAssertTrue(viewModel.sections.isEmpty)
     }
 
-    @MainActor
     func test_init_trims_empty_sections() {
         let sections = [
             SectionViewModel(id: "1"),
@@ -38,7 +37,6 @@ final class TestCollectionViewModel: XCTestCase {
         XCTAssertEqual(viewModel.sections.first?.id, "3")
     }
 
-    @MainActor
     func test_sectionViewModel_forId() {
         let sections = [
             SectionViewModel(id: "first", cells: self.fakeCellViewModels()),
@@ -54,7 +52,6 @@ final class TestCollectionViewModel: XCTestCase {
         XCTAssertNil(viewModel.sectionViewModel(for: "nonexistent"))
     }
 
-    @MainActor
     func test_sectionViewModel_atIndex() {
         let sections = [
             SectionViewModel(id: "first", cells: self.fakeCellViewModels()),
@@ -68,7 +65,6 @@ final class TestCollectionViewModel: XCTestCase {
         XCTAssertEqual(viewModel.sectionViewModel(at: 2), sections[2])
     }
 
-    @MainActor
     func test_cellViewModel_forId() {
         let expectedCell = FakeCellViewModel()
 
@@ -89,7 +85,6 @@ final class TestCollectionViewModel: XCTestCase {
         XCTAssertNil(viewModel.cellViewModel(for: "nonexistent"))
     }
 
-    @MainActor
     func test_cellViewModel_atIndexPath() {
         let expectedCell = FakeCellViewModel()
         let expectedSection = SectionViewModel(
@@ -112,7 +107,6 @@ final class TestCollectionViewModel: XCTestCase {
         )
     }
 
-    @MainActor
     func test_supplementaryViewModel_forId() {
         let expected = FakeSupplementaryViewModel()
 
@@ -133,7 +127,6 @@ final class TestCollectionViewModel: XCTestCase {
         XCTAssertNil(viewModel.supplementaryViewModel(for: "nonexistent"))
     }
 
-    @MainActor
     func test_supplementaryViewModel_atIndexPath() {
         let expected = FakeSupplementaryViewModel()
 
@@ -158,7 +151,6 @@ final class TestCollectionViewModel: XCTestCase {
         )
     }
 
-    @MainActor
     func test_allRegistrations() {
         let cells = (1...3).map { _ in FakeNumberCellViewModel() }
         let header = FakeHeaderViewModel()
@@ -184,7 +176,6 @@ final class TestCollectionViewModel: XCTestCase {
         XCTAssertTrue(CollectionViewModel.empty.allRegistrations().isEmpty)
     }
 
-    @MainActor
     func test_allSectionsByIdentifier() {
         let count = 3
         let section1 = self.fakeSectionViewModel(id: "1")
@@ -204,7 +195,6 @@ final class TestCollectionViewModel: XCTestCase {
         XCTAssertTrue(CollectionViewModel.empty.allSectionsByIdentifier().isEmpty)
     }
 
-    @MainActor
     func test_allCellsByIdentifier() {
         let model = self.fakeCollectionViewModel()
         let expectedIds = Set(model.sections.flatMap(\.cells).map(\.id))
@@ -225,7 +215,6 @@ final class TestCollectionViewModel: XCTestCase {
         XCTAssertEqual(cellsById[cell3.id], cell3.eraseToAnyViewModel())
     }
 
-    @MainActor
     func test_RandomAccessCollection_conformance() {
         let sectionCount = Int.random(in: 5...15)
         let cellCount = Int.random(in: 5...10)
@@ -242,7 +231,6 @@ final class TestCollectionViewModel: XCTestCase {
         }
     }
 
-    @MainActor
     func test_subscript_indexPath() {
         let cell1 = FakeNumberCellViewModel().eraseToAnyViewModel()
         let cell2 = FakeNumberCellViewModel().eraseToAnyViewModel()

@@ -15,9 +15,8 @@ import Foundation
 @testable import ReactiveCollectionsKit
 import XCTest
 
-final class TestCellEventCoordinator: UnitTestCase, @unchecked Sendable {
+final class TestCellEventCoordinator: UnitTestCase {
 
-    @MainActor
     func test_underlyingViewController() {
         class CustomVC: UIViewController, CellEventCoordinator { }
         let controller = CustomVC()
@@ -27,7 +26,6 @@ final class TestCellEventCoordinator: UnitTestCase, @unchecked Sendable {
         XCTAssertNil(coordinator.underlyingViewController)
     }
 
-    @MainActor
     func test_didSelectCell_getsCalled() {
         let cell = FakeCellViewModel()
         let section = SectionViewModel(id: "id", cells: [cell])
@@ -53,7 +51,6 @@ final class TestCellEventCoordinator: UnitTestCase, @unchecked Sendable {
         self.keepDriverAlive(driver)
     }
 
-    @MainActor
     func test_didDeselectCell_getsCalled() {
         let cell = FakeCellViewModel()
         let section = SectionViewModel(id: "id", cells: [cell])

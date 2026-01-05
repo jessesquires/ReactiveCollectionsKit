@@ -15,9 +15,8 @@ import Foundation
 @testable import ReactiveCollectionsKit
 import XCTest
 
-final class TestFlowLayoutDelegate: UnitTestCase, @unchecked Sendable {
+final class TestFlowLayoutDelegate: UnitTestCase {
 
-    @MainActor
     func test_forwardsEvents_to_flowLayoutDelegate() {
         let model = self.fakeCollectionViewModel()
         let driver = CollectionViewDriver(
@@ -53,7 +52,6 @@ final class TestFlowLayoutDelegate: UnitTestCase, @unchecked Sendable {
         self.waitForExpectations()
     }
 
-    @MainActor
     func test_delegateMethods_returnLayoutProperties_whenNoDelegateIsSet() {
         let model = self.fakeCollectionViewModel()
         let driver = CollectionViewDriver(

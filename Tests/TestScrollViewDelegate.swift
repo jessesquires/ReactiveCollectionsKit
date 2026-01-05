@@ -15,9 +15,8 @@ import Foundation
 @testable import ReactiveCollectionsKit
 import XCTest
 
-final class TestScrollViewDelegate: UnitTestCase, @unchecked Sendable {
+final class TestScrollViewDelegate: UnitTestCase {
 
-    @MainActor
     func test_forwardsEvents_to_scrollViewDelegate() {
         let model = self.fakeCollectionViewModel()
         let driver = CollectionViewDriver(

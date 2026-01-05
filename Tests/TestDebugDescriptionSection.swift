@@ -15,9 +15,9 @@ import Foundation
 @testable import ReactiveCollectionsKit
 import XCTest
 
+@MainActor
 final class TestDebugDescriptionSection: XCTestCase {
 
-    @MainActor
     func test_empty() {
         let viewModel1 = fakeSectionViewModel(
             id: "viewModel_1",
@@ -39,7 +39,6 @@ final class TestDebugDescriptionSection: XCTestCase {
         )
     }
 
-    @MainActor
     func test_oneCell() {
         let viewModel2 = fakeSectionViewModel(
             id: "viewModel_2",
@@ -63,7 +62,6 @@ final class TestDebugDescriptionSection: XCTestCase {
         )
     }
 
-    @MainActor
     func test_multipleCells() {
         let viewModel4 = fakeSectionViewModel(
             id: "viewModel_4",
@@ -114,7 +112,6 @@ final class TestDebugDescriptionSection: XCTestCase {
         )
     }
 
-    @MainActor
     func test_multipleCells_withSupplementaryViews() {
         let viewModel6 = fakeSectionViewModel(
             id: "viewModel_6",
