@@ -7,6 +7,11 @@ NEXT
 
 - TBA
 
+0.2.1
+-----
+
+- Fixed a breaking syntax typo that was previously allowed under prior versions of the Swift compiler. ([@timoliver](https://github.com/timoliver), [#160](https://github.com/jessesquires/ReactiveCollectionsKit/pull/160))
+
 0.2.0
 -----
 
