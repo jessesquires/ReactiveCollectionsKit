@@ -256,7 +256,7 @@ public struct AnyCellViewModel: CellViewModel {
     private let _didDeselect: @Sendable @MainActor (CellEventCoordinator?) -> Void
     private let _willDisplay: @Sendable @MainActor () -> Void
     private let _didEndDisplaying: @Sendable @MainActor () -> Void
-    private let _didHighlight: @Sendable @MainActor() -> Void
+    private let _didHighlight: @Sendable @MainActor () -> Void
     private let _didUnhighlight: @Sendable @MainActor () -> Void
 
     // MARK: Init
