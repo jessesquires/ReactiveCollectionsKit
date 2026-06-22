@@ -22,7 +22,7 @@ jobs:
     runs-on: macos-latest
     steps:
       - name: git checkout
-        uses: actions/checkout@v6
+        uses: actions/checkout@v7
 
       - name: xcode version
         run: xcodebuild -version -sdk
